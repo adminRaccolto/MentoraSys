@@ -433,13 +433,23 @@ exports.Prisma.PlanoDeContasScalarFieldEnum = {
   criado_em: 'criado_em'
 };
 
+exports.Prisma.BancoScalarFieldEnum = {
+  id: 'id',
+  codigo: 'codigo',
+  nome: 'nome',
+  sigla: 'sigla'
+};
+
 exports.Prisma.ContaBancariaScalarFieldEnum = {
   id: 'id',
   empresa_id: 'empresa_id',
   nome: 'nome',
+  banco_id: 'banco_id',
   banco: 'banco',
   agencia: 'agencia',
   conta: 'conta',
+  digito: 'digito',
+  pix_chave: 'pix_chave',
   tipo: 'tipo',
   saldo_inicial: 'saldo_inicial',
   ativo: 'ativo',
@@ -753,6 +763,7 @@ exports.Prisma.ModelName = {
   Tarefa: 'Tarefa',
   Documento: 'Documento',
   PlanoDeContas: 'PlanoDeContas',
+  Banco: 'Banco',
   ContaBancaria: 'ContaBancaria',
   Recebivel: 'Recebivel',
   ContaPagar: 'ContaPagar',

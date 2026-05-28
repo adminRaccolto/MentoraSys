@@ -5,14 +5,18 @@ import ContasBancariasClient from "./contas-bancarias-client";
 export default async function ContasBancariasPage() {
   const empresaId = await obterEmpresaAtiva();
 
-  const contas = await prisma.contaBancaria.findMany({
-    where: { empresa_id: empresaId },
-    include: {
-      recebiveis: { where: { status: "PAGO" }, select: { valor_pago: true } },
-      contas_pagar: { where: { status: "PAGO" }, select: { valor_pago: true } },
-    },
-    orderBy: { criado_em: "asc" },
-  });
+  const [contas, bancos] = await Promise.all([
+    prisma.contaBancaria.findMany({
+      where: { empresa_id: empresaId },
+      include: {
+        banco_ref: true,
+        recebiveis: { where: { status: "PAGO" }, select: { valor_pago: true } },
+        contas_pagar: { where: { status: "PAGO" }, select: { valor_pago: true } },
+      },
+      orderBy: { criado_em: "asc" },
+    }),
+    prisma.banco.findMany({ orderBy: [{ codigo: "asc" }] }),
+  ]);
 
   const contasComSaldo = contas.map((c) => {
     const entradas = c.recebiveis.reduce((s, r) => s + Number(r.valor_pago ?? 0), 0);
@@ -20,9 +24,12 @@ export default async function ContasBancariasPage() {
     return {
       id: c.id,
       nome: c.nome,
-      banco: c.banco,
+      banco_id: c.banco_id,
+      banco_nome: c.banco_ref ? `${c.banco_ref.codigo} - ${c.banco_ref.sigla}` : (c.banco ?? null),
       agencia: c.agencia,
       conta: c.conta,
+      digito: c.digito,
+      pix_chave: c.pix_chave,
       tipo: c.tipo,
       saldo_inicial: Number(c.saldo_inicial),
       saldo_atual: Number(c.saldo_inicial) + entradas - saidas,
@@ -30,5 +37,5 @@ export default async function ContasBancariasPage() {
     };
   });
 
-  return <ContasBancariasClient contas={contasComSaldo} />;
+  return <ContasBancariasClient contas={contasComSaldo} bancos={bancos} />;
 }

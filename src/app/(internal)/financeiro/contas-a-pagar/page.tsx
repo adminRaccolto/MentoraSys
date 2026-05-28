@@ -42,6 +42,7 @@ export default async function ContasPagarPage({ searchParams }: Props) {
 
   return (
     <ContasPagarClient
+      key={`${deStr}_${ateStr}_${status ?? "TODOS"}`}
       contas={contas.map((c) => ({
         ...c,
         valor: Number(c.valor),

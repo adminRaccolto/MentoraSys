@@ -641,15 +641,31 @@ model PlanoDeContas {
   @@map("plano_de_contas")
 }
 
+// ─── BANCOS ───────────────────────────────────────────────────────────────────
+
+model Banco {
+  id     String @id @default(cuid())
+  codigo String @unique
+  nome   String
+  sigla  String
+
+  contas_bancarias ContaBancaria[]
+
+  @@map("bancos")
+}
+
 // ─── CONTAS BANCÁRIAS ─────────────────────────────────────────────────────────
 
 model ContaBancaria {
   id            String    @id @default(cuid())
   empresa_id    String
   nome          String
+  banco_id      String?
   banco         String?
   agencia       String?
   conta         String?
+  digito        String?
+  pix_chave     String?
   tipo          TipoConta @default(CORRENTE)
   saldo_inicial Decimal   @db.Decimal(12, 2) @default(0)
   ativo         Boolean   @default(true)
@@ -657,6 +673,7 @@ model ContaBancaria {
   atualizado_em DateTime  @updatedAt
 
   empresa      Empresa      @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  banco_ref    Banco?       @relation(fields: [banco_id], references: [id])
   recebiveis   Recebivel[]
   contas_pagar ContaPagar[]
 

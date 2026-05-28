@@ -59,6 +59,7 @@ export default async function RecebiveisPage({ searchParams }: Props) {
 
   return (
     <RecebiveisClient
+      key={`${deStr}_${ateStr}_${status ?? "TODOS"}`}
       recebiveis={recebiveis.map((r) => ({
         ...r,
         valor: Number(r.valor),

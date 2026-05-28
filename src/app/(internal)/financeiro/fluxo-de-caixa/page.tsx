@@ -67,5 +67,5 @@ export default async function FluxoCaixaPage({ searchParams }: Props) {
     })),
   ].sort((a, b) => a.data.getTime() - b.data.getTime());
 
-  return <FluxoCaixaClient lancamentos={lancamentos} de={deStr} ate={ateStr} />;
+  return <FluxoCaixaClient key={`${deStr}_${ateStr}`} lancamentos={lancamentos} de={deStr} ate={ateStr} />;
 }
