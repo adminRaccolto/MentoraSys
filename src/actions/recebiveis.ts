@@ -26,7 +26,7 @@ const schemaBaixar = z.object({
 });
 
 const schemaParcelas = z.object({
-  n_parcelas: z.coerce.number().int().min(1).max(24),
+  n_parcelas: z.coerce.number().int().min(1).max(120),
   data_primeira: z.string().min(1),
   valor_parcela: z.coerce.number().positive(),
   plano_contas_id: z.string().optional(),

@@ -367,6 +367,21 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
     ? (Number(contratoParcelar.valor_total) / nParcelas).toFixed(2)
     : "";
 
+  const gerarParcelasDirecto = (c: Contrato) => {
+    startTransition(async () => {
+      try {
+        const n = c.numero_parcelas!;
+        const dataP = new Date(c.primeiro_vencimento!).toISOString().split("T")[0];
+        const valorP = Number(c.valor_total) / n;
+        await gerarParcelasContrato(c.id, { n_parcelas: n, data_primeira: dataP, valor_parcela: valorP });
+        toast.success(`${n} parcela${n > 1 ? "s" : ""} gerada${n > 1 ? "s" : ""} com sucesso!`);
+        router.push("/financeiro/recebiveis");
+      } catch (e: unknown) {
+        toast.error(e instanceof Error ? e.message : "Erro ao gerar parcelas");
+      }
+    });
+  };
+
   const onSubmitParcelas = (data: FormParcelas) => {
     if (!contratoParcelar) return;
     startTransition(async () => {
@@ -376,7 +391,7 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
           data_primeira: data.data_primeira,
           valor_parcela: Number(data.valor_parcela),
         });
-        toast.success(`${data.n_parcelas} parcelas geradas`);
+        toast.success(`${data.n_parcelas} parcela${Number(data.n_parcelas) > 1 ? "s" : ""} gerada${Number(data.n_parcelas) > 1 ? "s" : ""}`);
         setContratoParcelar(null);
         formParcelas.reset();
         router.push("/financeiro/recebiveis");
@@ -581,19 +596,30 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
                               <Download className="size-3.5" />
                             </Button>
                           )}
-                          <Button size="icon" variant="ghost" className="size-8 text-primary" title="Gerar recebíveis"
+                          <Button
+                            size="icon"
+                            variant="ghost"
+                            className="size-8 text-primary"
+                            title="Gerar recebíveis"
+                            disabled={isPending}
                             onClick={() => {
-                              formParcelas.reset({
-                                n_parcelas: c.numero_parcelas ? String(c.numero_parcelas) : "1",
-                                valor_parcela: c.numero_parcelas && Number(c.valor_total) > 0
-                                  ? String((Number(c.valor_total) / c.numero_parcelas).toFixed(2))
-                                  : String(Number(c.valor_total || 0).toFixed(2)),
-                                data_primeira: c.primeiro_vencimento
-                                  ? new Date(c.primeiro_vencimento).toISOString().split("T")[0]
-                                  : "",
-                              });
-                              setContratoParcelar(c);
-                            }}>
+                              const dadosCompletos = c.numero_parcelas && c.primeiro_vencimento && Number(c.valor_total) > 0;
+                              if (dadosCompletos) {
+                                gerarParcelasDirecto(c);
+                              } else {
+                                formParcelas.reset({
+                                  n_parcelas: c.numero_parcelas ? String(c.numero_parcelas) : "1",
+                                  valor_parcela: c.numero_parcelas && Number(c.valor_total) > 0
+                                    ? String((Number(c.valor_total) / c.numero_parcelas).toFixed(2))
+                                    : String(Number(c.valor_total || 0).toFixed(2)),
+                                  data_primeira: c.primeiro_vencimento
+                                    ? new Date(c.primeiro_vencimento).toISOString().split("T")[0]
+                                    : "",
+                                });
+                                setContratoParcelar(c);
+                              }
+                            }}
+                          >
                             <DollarSign className="size-3.5" />
                           </Button>
                         </>
