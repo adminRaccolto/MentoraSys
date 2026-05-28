@@ -1,0 +1,893 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── ENUMS ────────────────────────────────────────────────────────────────────
+
+enum PlanoTipo {
+  BASICO
+  PROFISSIONAL
+  ENTERPRISE
+}
+
+enum StatusEmpresa {
+  ATIVA
+  SUSPENSA
+  CANCELADA
+}
+
+// ─── MULTIEMPRESA ─────────────────────────────────────────────────────────────
+
+model Empresa {
+  id            String        @id @default(cuid())
+  nome          String
+  slug          String        @unique
+  cnpj          String?       @unique
+  logo_url      String?
+  plano         PlanoTipo     @default(BASICO)
+  status        StatusEmpresa @default(ATIVA)
+  configuracoes Json          @default("{}")
+  criado_em     DateTime      @default(now())
+  atualizado_em DateTime      @updatedAt
+
+  membros    MembroEmpresa[]
+  perfis     Perfil[]
+  convites   ConviteEmpresa[]
+  convites_cliente ConviteCliente[]
+  clientes   Cliente[]
+  servicos   Servico[]
+  leads      Lead[]
+  propostas  Proposta[]
+  contratos  Contrato[]
+  projetos         Projeto[]
+  documentos       Documento[]
+  plano_contas     PlanoDeContas[]
+  contas_bancarias ContaBancaria[]
+  recebiveis           Recebivel[]
+  contas_pagar         ContaPagar[]
+  modelos_documento    ModeloDocumento[]
+  eventos              Evento[]
+  registros_auditoria  RegistroAuditoria[]
+  notificacoes         Notificacao[]
+  notas_fiscais        NotaFiscal[]
+  diagnosticos         Diagnostico[]
+
+  @@map("empresas")
+}
+
+// ─── USUÁRIOS (espelha auth.users do Supabase) ────────────────────────────────
+
+model Usuario {
+  id            String   @id // igual ao auth.users.id
+  nome          String
+  email         String   @unique
+  avatar_url    String?
+  criado_em     DateTime @default(now())
+  atualizado_em DateTime @updatedAt
+
+  membros           MembroEmpresa[]
+  convites          ConviteEmpresa[]
+  leads             Lead[]
+  atividades_crm    AtividadeCRM[]
+  propostas_criadas Proposta[]
+  contratos_criados Contrato[]
+  projetos_criados    Projeto[]
+  tarefas             Tarefa[]
+  documentos_criados  Documento[]
+  recebiveis_criados  Recebivel[]  @relation("RecebiveisCriados")
+  contas_pagar_criadas ContaPagar[] @relation("ContasPagarCriadas")
+  eventos_responsavel    Evento[]     @relation("EventosResponsavel")
+  propostas_responsavel  Proposta[]   @relation("PropostasResponsavel")
+  contratos_responsavel  Contrato[]   @relation("ContratosResponsavel")
+  convites_cliente       ConviteCliente[]
+
+  @@map("usuarios")
+}
+
+// ─── MEMBRO: relação usuário ↔ empresa ───────────────────────────────────────
+
+model MembroEmpresa {
+  id         String   @id @default(cuid())
+  usuario_id String
+  empresa_id String
+  perfil_id  String
+  ativo      Boolean  @default(true)
+  criado_em  DateTime @default(now())
+
+  usuario Usuario @relation(fields: [usuario_id], references: [id], onDelete: Cascade)
+  empresa Empresa @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  perfil  Perfil  @relation(fields: [perfil_id], references: [id])
+
+  @@unique([usuario_id, empresa_id])
+  @@map("membros_empresa")
+}
+
+// ─── RBAC: PERFIS ─────────────────────────────────────────────────────────────
+
+model Perfil {
+  id         String   @id @default(cuid())
+  empresa_id String?  // null = perfil padrão do sistema (não editável)
+  nome       String
+  descricao  String?
+  sistema    Boolean  @default(false)
+  criado_em  DateTime @default(now())
+
+  empresa    Empresa?        @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  membros    MembroEmpresa[]
+  permissoes PerfilPermissao[]
+
+  @@unique([empresa_id, nome])
+  @@map("perfis")
+}
+
+// ─── RBAC: PERMISSÕES ─────────────────────────────────────────────────────────
+
+model Permissao {
+  id        String  @id @default(cuid())
+  recurso   String  // ex: "clientes", "propostas", "contratos"
+  acao      String  // ex: "ver", "criar", "editar", "excluir"
+  descricao String?
+
+  perfis PerfilPermissao[]
+
+  @@unique([recurso, acao])
+  @@map("permissoes")
+}
+
+// ─── RBAC: PERFIL ↔ PERMISSÃO ────────────────────────────────────────────────
+
+model PerfilPermissao {
+  perfil_id    String
+  permissao_id String
+
+  perfil    Perfil    @relation(fields: [perfil_id], references: [id], onDelete: Cascade)
+  permissao Permissao @relation(fields: [permissao_id], references: [id], onDelete: Cascade)
+
+  @@id([perfil_id, permissao_id])
+  @@map("perfis_permissoes")
+}
+
+// ─── CONVITE DE USUÁRIO ───────────────────────────────────────────────────────
+
+model ConviteEmpresa {
+  id            String    @id @default(cuid())
+  empresa_id    String
+  email         String
+  perfil_id     String
+  token         String    @unique @default(cuid())
+  convidado_por String?
+  aceito_em     DateTime?
+  expira_em     DateTime
+  criado_em     DateTime  @default(now())
+
+  empresa   Empresa  @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  convidado Usuario? @relation(fields: [convidado_por], references: [id])
+
+  @@map("convites_empresa")
+}
+
+model ConviteCliente {
+  id         String    @id @default(cuid())
+  empresa_id String
+  token      String    @unique @default(cuid())
+  criado_por String?
+  usado_em   DateTime?
+  cliente_id String?   @unique
+  expira_em  DateTime?
+  criado_em  DateTime  @default(now())
+
+  empresa  Empresa  @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  criador  Usuario? @relation(fields: [criado_por], references: [id])
+  cliente  Cliente? @relation(fields: [cliente_id], references: [id])
+
+  @@map("convites_cliente")
+}
+
+// ─── FASE 1: ENUMS ────────────────────────────────────────────────────────────
+
+enum TipoCliente {
+  PESSOA_FISICA
+  PESSOA_JURIDICA
+}
+
+enum StatusCliente {
+  ATIVO
+  INATIVO
+  PROSPECT
+}
+
+enum StatusLead {
+  NOVO
+  QUALIFICADO
+  PROPOSTA
+  GANHO
+  PERDIDO
+}
+
+enum StatusProposta {
+  RASCUNHO
+  ENVIADA
+  VISUALIZADA
+  ACEITA
+  RECUSADA
+  EXPIRADA
+}
+
+enum StatusContrato {
+  RASCUNHO
+  AGUARDANDO_ASSINATURA
+  ASSINADO
+  CANCELADO
+}
+
+// ─── CLIENTES ─────────────────────────────────────────────────────────────────
+
+model Cliente {
+  id                 String        @id @default(cuid())
+  empresa_id         String
+  nome               String
+  tipo               TipoCliente   @default(PESSOA_JURIDICA)
+  nome_fantasia      String?
+  cpf_cnpj           String?
+  inscricao_estadual String?
+  contato_principal  String?
+  email              String?
+  telefone           String?
+  whatsapp           String?
+  cep                String?
+  logradouro         String?
+  numero             String?
+  complemento        String?
+  bairro             String?
+  cidade             String?
+  estado             String?
+  nome_fazenda       String?
+  distancia_km       Decimal?      @db.Decimal(8, 2)
+  preco_km           Decimal?      @db.Decimal(8, 2)
+  status             StatusCliente @default(ATIVO)
+  criado_em          DateTime      @default(now())
+  atualizado_em      DateTime      @updatedAt
+
+  empresa       Empresa       @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  contatos      Contato[]
+  leads         Lead[]
+  propostas     Proposta[]
+  contratos     Contrato[]
+  projetos      Projeto[]
+  tokens_portal TokenPortal[]
+  recebiveis    Recebivel[]
+  eventos       Evento[]
+  notas_fiscais NotaFiscal[]
+  diagnosticos  Diagnostico[]
+  convite       ConviteCliente?
+
+  @@map("clientes")
+}
+
+model Contato {
+  id         String   @id @default(cuid())
+  cliente_id String
+  nome       String
+  cargo      String?
+  email      String?
+  telefone   String?
+  principal  Boolean  @default(false)
+  criado_em  DateTime @default(now())
+
+  cliente Cliente @relation(fields: [cliente_id], references: [id], onDelete: Cascade)
+
+  @@map("contatos")
+}
+
+// ─── SERVIÇOS ─────────────────────────────────────────────────────────────────
+
+model Servico {
+  id              String   @id @default(cuid())
+  empresa_id      String
+  plano_contas_id String?
+  nome            String
+  descricao       String?
+  valor_base      Decimal? @db.Decimal(10, 2)
+  ativo           Boolean  @default(true)
+  criado_em       DateTime @default(now())
+  atualizado_em   DateTime @updatedAt
+
+  empresa        Empresa        @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  plano_contas   PlanoDeContas? @relation(fields: [plano_contas_id], references: [id], onDelete: SetNull)
+  itens_proposta ItemProposta[]
+
+  @@map("servicos")
+}
+
+// ─── CRM ──────────────────────────────────────────────────────────────────────
+
+model Lead {
+  id             String     @id @default(cuid())
+  empresa_id     String
+  cliente_id     String?
+  responsavel_id String?
+  nome           String
+  empresa_nome   String?
+  email          String?
+  telefone       String?
+  status         StatusLead @default(NOVO)
+  valor_estimado Decimal?   @db.Decimal(10, 2)
+  origem         String?
+  observacoes    String?
+  ganho_em       DateTime?
+  perdido_em     DateTime?
+  motivo_perda   String?
+  criado_em      DateTime   @default(now())
+  atualizado_em  DateTime   @updatedAt
+
+  empresa     Empresa        @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  cliente     Cliente?       @relation(fields: [cliente_id], references: [id])
+  responsavel Usuario?       @relation(fields: [responsavel_id], references: [id])
+  atividades  AtividadeCRM[]
+  propostas   Proposta[]
+
+  @@map("leads")
+}
+
+model AtividadeCRM {
+  id         String   @id @default(cuid())
+  lead_id    String
+  usuario_id String?
+  tipo       String
+  descricao  String
+  data       DateTime @default(now())
+
+  lead    Lead     @relation(fields: [lead_id], references: [id], onDelete: Cascade)
+  usuario Usuario? @relation(fields: [usuario_id], references: [id])
+
+  @@map("atividades_crm")
+}
+
+// ─── PROPOSTAS ────────────────────────────────────────────────────────────────
+
+model Proposta {
+  id                  String         @id @default(cuid())
+  empresa_id          String
+  cliente_id          String
+  lead_id             String?
+  criado_por          String?
+  responsavel_id      String?
+  titulo              String
+  objeto              String?
+  status              StatusProposta @default(RASCUNHO)
+  token_aceite        String         @unique @default(cuid())
+  introducao          String?
+  condicoes           String?
+  valor_total         Decimal        @db.Decimal(10, 2) @default(0)
+  forma_pagamento     String?
+  periodicidade       String?
+  numero_parcelas     Int?
+  primeiro_vencimento DateTime?
+  validade            DateTime?
+  contato_nome        String?
+  contato_email       String?
+  contato_telefone    String?
+  parcelas_json       Json?
+  enviado_em          DateTime?
+  visualizado_em      DateTime?
+  aceito_em           DateTime?
+  recusado_em         DateTime?
+  criado_em           DateTime       @default(now())
+  atualizado_em       DateTime       @updatedAt
+
+  empresa      Empresa        @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  cliente      Cliente        @relation(fields: [cliente_id], references: [id])
+  lead         Lead?          @relation(fields: [lead_id], references: [id])
+  criador      Usuario?       @relation(fields: [criado_por], references: [id])
+  responsavel  Usuario?       @relation("PropostasResponsavel", fields: [responsavel_id], references: [id])
+  itens        ItemProposta[]
+  contrato     Contrato?
+  aceite_otps  AceiteOtp[]
+
+  @@map("propostas")
+}
+
+model AceiteOtp {
+  id          String   @id @default(cuid())
+  proposta_id String
+  codigo      String
+  email       String
+  expira_em   DateTime
+  tentativas  Int      @default(0)
+  criado_em   DateTime @default(now())
+
+  proposta Proposta @relation(fields: [proposta_id], references: [id], onDelete: Cascade)
+
+  @@map("aceite_otp")
+}
+
+model ItemProposta {
+  id             String  @id @default(cuid())
+  proposta_id    String
+  servico_id     String?
+  descricao      String
+  quantidade     Decimal @db.Decimal(10, 3) @default(1)
+  valor_unitario Decimal @db.Decimal(10, 2)
+  desconto       Decimal @db.Decimal(5, 2) @default(0)
+  ordem          Int     @default(0)
+
+  proposta Proposta @relation(fields: [proposta_id], references: [id], onDelete: Cascade)
+  servico  Servico? @relation(fields: [servico_id], references: [id])
+
+  @@map("itens_proposta")
+}
+
+// ─── CONTRATOS ────────────────────────────────────────────────────────────────
+
+model Contrato {
+  id                    String         @id @default(cuid())
+  empresa_id            String
+  proposta_id           String?        @unique
+  cliente_id            String
+  criado_por            String?
+  responsavel_id        String?
+  numero_contrato       String?
+  tipo_contrato         String?
+  titulo                String
+  objeto                String?
+  status                StatusContrato @default(RASCUNHO)
+  conteudo              String?
+  valor_total           Decimal        @db.Decimal(10, 2) @default(0)
+  forma_pagamento       String?
+  periodicidade         String?
+  numero_parcelas       Int?
+  primeiro_vencimento   DateTime?
+  dia_vencimento        Int?
+  indice_reajuste       String?
+  periodicidade_reajuste String?
+  renovacao_automatica  Boolean        @default(false)
+  gerar_projeto         Boolean        @default(false)
+  gerar_financeiro      Boolean        @default(true)
+  cliente_nome          String?
+  cliente_cpf_cnpj      String?
+  cliente_contato_nome  String?
+  cliente_contato_email String?
+  cliente_contato_tel   String?
+  data_emissao          DateTime?
+  data_inicio           DateTime?
+  data_fim              DateTime?
+  assinado_em           DateTime?
+  authentique_id        String?
+  authentique_url       String?
+  pdf_assinado_url      String?
+  criado_em             DateTime       @default(now())
+  atualizado_em         DateTime       @updatedAt
+
+  empresa     Empresa   @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  proposta    Proposta? @relation(fields: [proposta_id], references: [id])
+  cliente     Cliente   @relation(fields: [cliente_id], references: [id])
+  criador     Usuario?  @relation(fields: [criado_por], references: [id])
+  responsavel Usuario?  @relation("ContratosResponsavel", fields: [responsavel_id], references: [id])
+  projeto       Projeto?
+  recebiveis    Recebivel[]
+  eventos       Evento[]
+  notas_fiscais NotaFiscal[]
+
+  @@map("contratos")
+}
+
+// ─── FASE 2: ENUMS ────────────────────────────────────────────────────────────
+
+enum StatusProjeto {
+  PLANEJAMENTO
+  EM_ANDAMENTO
+  CONCLUIDO
+  CANCELADO
+}
+
+enum StatusEtapa {
+  PENDENTE
+  EM_ANDAMENTO
+  CONCLUIDA
+  CANCELADA
+}
+
+enum StatusTarefa {
+  PENDENTE
+  EM_ANDAMENTO
+  CONCLUIDA
+  CANCELADA
+}
+
+// ─── PROJETOS ─────────────────────────────────────────────────────────────────
+
+model Projeto {
+  id            String        @id @default(cuid())
+  empresa_id    String
+  contrato_id   String?       @unique
+  cliente_id    String
+  criado_por    String?
+  titulo        String
+  descricao     String?
+  status        StatusProjeto @default(PLANEJAMENTO)
+  data_inicio   DateTime?
+  data_fim      DateTime?
+  criado_em     DateTime      @default(now())
+  atualizado_em DateTime      @updatedAt
+
+  empresa   Empresa     @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  contrato  Contrato?   @relation(fields: [contrato_id], references: [id])
+  cliente   Cliente     @relation(fields: [cliente_id], references: [id])
+  criador   Usuario?    @relation(fields: [criado_por], references: [id])
+  etapas    Etapa[]
+  tarefas   Tarefa[]
+  documentos   Documento[]
+  eventos      Evento[]
+  diagnosticos Diagnostico[]
+
+  @@map("projetos")
+}
+
+model Etapa {
+  id            String      @id @default(cuid())
+  projeto_id    String
+  titulo        String
+  descricao     String?
+  status        StatusEtapa @default(PENDENTE)
+  ordem         Int         @default(0)
+  data_inicio   DateTime?
+  data_fim      DateTime?
+  criado_em     DateTime    @default(now())
+  atualizado_em DateTime    @updatedAt
+
+  projeto Projeto  @relation(fields: [projeto_id], references: [id], onDelete: Cascade)
+  tarefas Tarefa[]
+
+  @@map("etapas")
+}
+
+model Tarefa {
+  id            String       @id @default(cuid())
+  etapa_id      String
+  projeto_id    String
+  responsavel_id String?
+  titulo        String
+  descricao     String?
+  status        StatusTarefa @default(PENDENTE)
+  data_prazo    DateTime?
+  concluida_em  DateTime?
+  criado_em     DateTime     @default(now())
+  atualizado_em DateTime     @updatedAt
+
+  etapa       Etapa    @relation(fields: [etapa_id], references: [id], onDelete: Cascade)
+  projeto     Projeto  @relation(fields: [projeto_id], references: [id], onDelete: Cascade)
+  responsavel Usuario? @relation(fields: [responsavel_id], references: [id])
+
+  @@map("tarefas")
+}
+
+// ─── DOCUMENTOS ───────────────────────────────────────────────────────────────
+
+model Documento {
+  id              String   @id @default(cuid())
+  empresa_id      String
+  projeto_id      String
+  criado_por      String?
+  titulo          String
+  arquivo_url     String
+  arquivo_nome    String
+  arquivo_tamanho Int      @default(0)
+  mime_type       String   @default("application/octet-stream")
+  criado_em       DateTime @default(now())
+
+  empresa Empresa  @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  projeto Projeto  @relation(fields: [projeto_id], references: [id], onDelete: Cascade)
+  criador Usuario? @relation(fields: [criado_por], references: [id])
+
+  @@map("documentos")
+}
+
+// ─── FASE 3: ENUMS ────────────────────────────────────────────────────────────
+
+enum TipoConta {
+  CORRENTE
+  POUPANCA
+  CAIXA
+  INVESTIMENTO
+}
+
+enum StatusRecebivel {
+  PENDENTE
+  PAGO
+  VENCIDO
+  CANCELADO
+}
+
+enum StatusContaPagar {
+  PENDENTE
+  PAGO
+  VENCIDO
+  CANCELADO
+}
+
+enum TipoPlanoContas {
+  RECEITA
+  CUSTO
+  DESPESA
+  INVESTIMENTO
+  TESOURARIA
+}
+
+// ─── PLANO DE CONTAS ──────────────────────────────────────────────────────────
+
+model PlanoDeContas {
+  id                String          @id @default(cuid())
+  empresa_id        String
+  parent_id         String?
+  nome              String
+  tipo              TipoPlanoContas
+  codigo            String?
+  aceita_lancamento Boolean         @default(true)
+  ativo             Boolean         @default(true)
+  criado_em         DateTime        @default(now())
+
+  empresa      Empresa         @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  parent       PlanoDeContas?  @relation("PlanoHierarquia", fields: [parent_id], references: [id])
+  filhos       PlanoDeContas[] @relation("PlanoHierarquia")
+  recebiveis   Recebivel[]
+  contas_pagar ContaPagar[]
+  servicos     Servico[]
+
+  @@map("plano_de_contas")
+}
+
+// ─── CONTAS BANCÁRIAS ─────────────────────────────────────────────────────────
+
+model ContaBancaria {
+  id            String    @id @default(cuid())
+  empresa_id    String
+  nome          String
+  banco         String?
+  agencia       String?
+  conta         String?
+  tipo          TipoConta @default(CORRENTE)
+  saldo_inicial Decimal   @db.Decimal(12, 2) @default(0)
+  ativo         Boolean   @default(true)
+  criado_em     DateTime  @default(now())
+  atualizado_em DateTime  @updatedAt
+
+  empresa      Empresa      @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  recebiveis   Recebivel[]
+  contas_pagar ContaPagar[]
+
+  @@map("contas_bancarias")
+}
+
+// ─── RECEBÍVEIS ───────────────────────────────────────────────────────────────
+
+model Recebivel {
+  id               String          @id @default(cuid())
+  empresa_id       String
+  cliente_id       String?
+  contrato_id      String?
+  plano_contas_id  String?
+  conta_bancaria_id String?
+  criado_por       String?
+  descricao        String
+  valor            Decimal         @db.Decimal(10, 2)
+  data_vencimento  DateTime
+  status           StatusRecebivel @default(PENDENTE)
+  data_pagamento   DateTime?
+  valor_pago       Decimal?        @db.Decimal(10, 2)
+  forma_pagamento  String?
+  numero_parcela   Int?
+  total_parcelas   Int?
+  observacoes      String?
+  criado_em        DateTime        @default(now())
+  atualizado_em    DateTime        @updatedAt
+
+  empresa        Empresa        @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  cliente        Cliente?       @relation(fields: [cliente_id], references: [id])
+  contrato       Contrato?      @relation(fields: [contrato_id], references: [id])
+  plano_contas   PlanoDeContas? @relation(fields: [plano_contas_id], references: [id])
+  conta_bancaria ContaBancaria? @relation(fields: [conta_bancaria_id], references: [id])
+  criador        Usuario?       @relation("RecebiveisCriados", fields: [criado_por], references: [id])
+
+  @@map("recebiveis")
+}
+
+// ─── CONTAS A PAGAR ───────────────────────────────────────────────────────────
+
+model ContaPagar {
+  id                String           @id @default(cuid())
+  empresa_id        String
+  plano_contas_id   String?
+  conta_bancaria_id String?
+  criado_por        String?
+  descricao         String
+  fornecedor        String?
+  valor             Decimal          @db.Decimal(10, 2)
+  data_vencimento   DateTime
+  status            StatusContaPagar @default(PENDENTE)
+  data_pagamento    DateTime?
+  valor_pago        Decimal?         @db.Decimal(10, 2)
+  forma_pagamento   String?
+  observacoes       String?
+  criado_em         DateTime         @default(now())
+  atualizado_em     DateTime         @updatedAt
+
+  empresa        Empresa        @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  plano_contas   PlanoDeContas? @relation(fields: [plano_contas_id], references: [id])
+  conta_bancaria ContaBancaria? @relation(fields: [conta_bancaria_id], references: [id])
+  criador        Usuario?       @relation("ContasPagarCriadas", fields: [criado_por], references: [id])
+
+  @@map("contas_pagar")
+}
+
+// ─── FASE 4: ENUMS ────────────────────────────────────────────────────────────
+
+enum TipoModelo {
+  CONTRATO
+  PROPOSTA
+  RECIBO
+  GENERICO
+}
+
+// ─── MODELOS DE DOCUMENTO ─────────────────────────────────────────────────────
+
+model ModeloDocumento {
+  id            String     @id @default(cuid())
+  empresa_id    String
+  nome          String
+  tipo          TipoModelo
+  conteudo      String     @default("")
+  ativo         Boolean    @default(true)
+  criado_em     DateTime   @default(now())
+  atualizado_em DateTime   @updatedAt
+
+  empresa Empresa @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+
+  @@map("modelos_documento")
+}
+
+// ─── FASE 5: AGENDA ───────────────────────────────────────────────────────────
+
+model Evento {
+  id               String    @id @default(cuid())
+  empresa_id       String
+  responsavel_id   String?
+  cliente_id       String?
+  contrato_id      String?
+  projeto_id       String?
+  titulo           String
+  descricao        String?
+  inicio           DateTime
+  fim              DateTime?
+  dia_todo         Boolean   @default(false)
+  lembrete_minutos Int?
+  lembrete_em      DateTime?
+  lembrete_enviado Boolean   @default(false)
+  criado_em        DateTime  @default(now())
+  atualizado_em    DateTime  @updatedAt
+
+  empresa     Empresa   @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  responsavel Usuario?  @relation("EventosResponsavel", fields: [responsavel_id], references: [id])
+  cliente     Cliente?  @relation(fields: [cliente_id], references: [id])
+  contrato    Contrato? @relation(fields: [contrato_id], references: [id])
+  projeto     Projeto?  @relation(fields: [projeto_id], references: [id])
+
+  @@map("eventos")
+}
+
+// ─── FASE 5: AUDITORIA ────────────────────────────────────────────────────────
+
+model RegistroAuditoria {
+  id           String   @id @default(cuid())
+  empresa_id   String
+  usuario_id   String?
+  usuario_nome String?
+  recurso      String
+  acao         String
+  registro_id  String?
+  detalhes     Json?
+  criado_em    DateTime @default(now())
+
+  empresa Empresa @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+
+  @@map("registros_auditoria")
+}
+
+// ─── FASE 6: NOTIFICAÇÕES ─────────────────────────────────────────────────────
+
+model Notificacao {
+  id         String    @id @default(cuid())
+  empresa_id String
+  usuario_id String?
+  tipo       String
+  titulo     String
+  mensagem   String?
+  lida       Boolean   @default(false)
+  lida_em    DateTime?
+  url        String?
+  criado_em  DateTime  @default(now())
+
+  empresa Empresa @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+
+  @@map("notificacoes")
+}
+
+// ─── FASE 7: FATURAMENTO ──────────────────────────────────────────────────────
+
+enum StatusNota {
+  PENDENTE
+  EMITIDA
+  PAGA
+  CANCELADA
+}
+
+model NotaFiscal {
+  id              String     @id @default(cuid())
+  empresa_id      String
+  cliente_id      String
+  contrato_id     String?
+  criado_por      String?
+  numero          String?
+  competencia     DateTime
+  valor           Decimal    @db.Decimal(10, 2)
+  descricao       String
+  status          StatusNota @default(PENDENTE)
+  data_emissao    DateTime?
+  data_vencimento DateTime?
+  observacoes     String?
+  criado_em       DateTime   @default(now())
+  atualizado_em   DateTime   @updatedAt
+
+  empresa  Empresa   @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  cliente  Cliente   @relation(fields: [cliente_id], references: [id])
+  contrato Contrato? @relation(fields: [contrato_id], references: [id])
+
+  @@map("notas_fiscais")
+}
+
+// ─── FASE 8: DIAGRAMAS & DIAGNÓSTICOS ────────────────────────────────────────
+
+enum TipoDiagnostico {
+  SWOT
+  CANVAS
+  CINCO_W_DOIS_H
+}
+
+model Diagnostico {
+  id            String          @id @default(cuid())
+  empresa_id    String
+  cliente_id    String?
+  projeto_id    String?
+  criado_por    String?
+  tipo          TipoDiagnostico
+  titulo        String
+  conteudo      Json            @default("{}")
+  criado_em     DateTime        @default(now())
+  atualizado_em DateTime        @updatedAt
+
+  empresa Empresa  @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  cliente Cliente? @relation(fields: [cliente_id], references: [id])
+  projeto Projeto? @relation(fields: [projeto_id], references: [id])
+
+  @@map("diagnosticos")
+}
+
+// ─── PORTAL DO CLIENTE ────────────────────────────────────────────────────────
+
+model TokenPortal {
+  id         String    @id @default(cuid())
+  cliente_id String
+  token      String    @unique @default(cuid())
+  email      String
+  expira_em  DateTime
+  usado_em   DateTime?
+  criado_em  DateTime  @default(now())
+
+  cliente Cliente @relation(fields: [cliente_id], references: [id], onDelete: Cascade)
+
+  @@map("tokens_portal")
+}
