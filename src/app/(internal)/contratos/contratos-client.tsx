@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Plus, Trash2, FileSignature, Link as LinkIcon, DollarSign, FileText, RefreshCw, Printer, Send, Download, ExternalLink, Copy } from "lucide-react";
+import { Plus, Trash2, FileSignature, Link as LinkIcon, DollarSign, FileText, RefreshCw, Printer, Send, Download, ExternalLink, Copy, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -18,7 +18,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
-import { criarContrato, editarContrato, excluirContrato } from "@/actions/contratos";
+import { criarContrato, editarContrato, excluirContrato, marcarAssinado } from "@/actions/contratos";
 import { gerarParcelasContrato } from "@/actions/recebiveis";
 import { enviarParaAssinatura } from "@/actions/assinatura";
 
@@ -215,6 +215,8 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
   const [contratoParcelar, setContratoParcelar] = useState<Contrato | null>(null);
   const [contratoDocumento, setContratoDocumento] = useState<Contrato | null>(null);
   const [contratoAssinatura, setContratoAssinatura] = useState<Contrato | null>(null);
+  const [contratoMarcarAssinado, setContratoMarcarAssinado] = useState<Contrato | null>(null);
+  const [dataAssinatura, setDataAssinatura] = useState(new Date().toISOString().split("T")[0]);
   const [isPending, startTransition] = useTransition();
 
   const { register, handleSubmit, reset, setValue, watch, formState: { errors } } = useForm<FormData>({
@@ -556,6 +558,12 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
                           <Send className="size-3.5" />
                         </Button>
                       )}
+                      {(c.status === "RASCUNHO" || c.status === "AGUARDANDO_ASSINATURA") && (
+                        <Button size="icon" variant="ghost" className="size-8 text-green-600" title="Marcar como assinado"
+                          onClick={() => { setDataAssinatura(new Date().toISOString().split("T")[0]); setContratoMarcarAssinado(c); }}>
+                          <CheckCircle className="size-3.5" />
+                        </Button>
+                      )}
                       {c.status === "AGUARDANDO_ASSINATURA" && c.authentique_url && (
                         <Button size="icon" variant="ghost" className="size-8 text-yellow-600" title="Copiar link de assinatura"
                           onClick={() => {
@@ -883,6 +891,20 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
                 </Button>
               )}
 
+              {/* Marcar como assinado — disponível em rascunho e aguardando */}
+              {contratoEditando && (contratoEditando.status === "RASCUNHO" || contratoEditando.status === "AGUARDANDO_ASSINATURA") && (
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="text-green-700 border-green-300 hover:bg-green-50"
+                  disabled={isPending}
+                  onClick={() => { setModalAberto(false); setDataAssinatura(new Date().toISOString().split("T")[0]); setContratoMarcarAssinado(contratoEditando); }}
+                >
+                  <CheckCircle className="size-4 mr-2" />
+                  Marcar como assinado
+                </Button>
+              )}
+
               {/* Aguardando assinatura */}
               {contratoEditando && contratoEditando.status === "AGUARDANDO_ASSINATURA" && (
                 <div className="flex items-center gap-2 text-xs text-yellow-700 bg-yellow-50 border border-yellow-200 rounded-md px-3 py-1.5">
@@ -1070,6 +1092,56 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
           </form>
         </DialogContent>
       </Dialog>
+
+      {/* Marcar como assinado */}
+      <AlertDialog open={!!contratoMarcarAssinado} onOpenChange={(v) => !v && setContratoMarcarAssinado(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle className="flex items-center gap-2">
+              <CheckCircle className="size-5 text-green-600" />
+              Marcar como assinado?
+            </AlertDialogTitle>
+            <AlertDialogDescription>
+              O contrato <strong>{contratoMarcarAssinado?.titulo}</strong> será marcado como assinado.
+              Use esta opção quando o contrato foi assinado de outra forma (papel, outro sistema, etc.).
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <div className="px-1 py-2 space-y-1.5">
+            <Label className="text-sm">Data de assinatura</Label>
+            <Input
+              type="date"
+              value={dataAssinatura}
+              onChange={(e) => setDataAssinatura(e.target.value)}
+              className="h-9"
+            />
+          </div>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction
+              className="bg-green-600 text-white hover:bg-green-700"
+              onClick={async () => {
+                if (!contratoMarcarAssinado) return;
+                const res = await marcarAssinado(contratoMarcarAssinado.id, dataAssinatura);
+                if (res.ok) {
+                  setContratos(prev => prev.map(c =>
+                    c.id === contratoMarcarAssinado.id
+                      ? { ...c, status: "ASSINADO" as const, assinado_em: new Date(dataAssinatura) }
+                      : c
+                  ));
+                  toast.success("Contrato marcado como assinado!");
+                  setContratoMarcarAssinado(null);
+                  router.refresh();
+                } else {
+                  toast.error(res.error);
+                }
+              }}
+            >
+              <CheckCircle className="size-4 mr-2" />
+              Confirmar
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
 
       {/* Confirmar exclusão */}
       <AlertDialog open={!!contratoExcluindo} onOpenChange={(v) => !v && setContratoExcluindo(null)}>

@@ -151,3 +151,24 @@ export async function excluirContrato(id: string) {
   revalidatePath("/contratos");
   return { data: null };
 }
+
+export async function marcarAssinado(id: string, dataAssinatura?: string) {
+  await verificarPermissao("contratos", "editar");
+  const empresaId = await obterEmpresaAtiva();
+
+  const existente = await prisma.contrato.findFirst({ where: { id, empresa_id: empresaId } });
+  if (!existente) return { ok: false as const, error: "Contrato não encontrado" };
+  if (existente.status === "CANCELADO") return { ok: false as const, error: "Contrato cancelado não pode ser marcado como assinado" };
+
+  await prisma.contrato.update({
+    where: { id },
+    data: {
+      status: "ASSINADO",
+      assinado_em: dataAssinatura ? new Date(dataAssinatura) : new Date(),
+    },
+  });
+
+  await registrar({ recurso: "contratos", acao: "marcar_assinado", registroId: id });
+  revalidatePath("/contratos");
+  return { ok: true as const };
+}

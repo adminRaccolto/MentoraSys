@@ -212,15 +212,21 @@ export async function enviarParaAssinatura(input: Input) {
   const htmlContent = substituir(modelo.conteudo, vars);
 
   // ── Criar documento no Authentique ─────────────────────────────────────────
-  const doc = await criarDocumentoAuthentique({
-    nome: contrato.titulo,
-    htmlContent,
-    signatarios: [
-      { email: data.email_empresa, nome: data.nome_empresa },
-      { email: data.email_cliente, nome: data.nome_cliente },
-    ],
-    sandbox: data.sandbox,
-  });
+  let doc: { id: string; signatarios: Array<{ email: string; link: string }> };
+  try {
+    doc = await criarDocumentoAuthentique({
+      nome: contrato.titulo,
+      htmlContent,
+      signatarios: [
+        { email: data.email_empresa, nome: data.nome_empresa },
+        { email: data.email_cliente, nome: data.nome_cliente },
+      ],
+      sandbox: data.sandbox,
+    });
+  } catch (e: unknown) {
+    const msg = e instanceof Error ? e.message : "Erro ao criar documento na Authentique";
+    return { ok: false as const, error: msg };
+  }
 
   // Usa o link do primeiro signatário como URL de acompanhamento (admin)
   const authentique_url = doc.signatarios[0]?.link ?? null;
@@ -242,5 +248,5 @@ export async function enviarParaAssinatura(input: Input) {
   });
 
   revalidatePath("/contratos");
-  return { ok: true, authentique_id: doc.id };
+  return { ok: true as const, authentique_id: doc.id };
 }
