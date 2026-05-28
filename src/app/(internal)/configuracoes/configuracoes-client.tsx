@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Settings, Building2, User, Upload, Trash2, ImageIcon, Loader2, Users, UserPlus, Mail, MoreVertical, X } from "lucide-react";
+import { Settings, Building2, User, Upload, Trash2, ImageIcon, Loader2, Users, UserPlus, Mail, MoreVertical, X, ShieldCheck, Plus, Check, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -36,6 +36,25 @@ import {
   uploadAvatarAction,
 } from "@/actions/configuracoes";
 import { convidarMembro, removerMembro, alterarPerfilMembro, cancelarConvite } from "@/actions/equipe";
+import { criarPerfil, editarPerfil, excluirPerfil } from "@/actions/perfis";
+import { criarEmpresa } from "@/actions/empresas";
+
+const RECURSOS = [
+  { key: "clientes", label: "Clientes" },
+  { key: "servicos", label: "Serviços" },
+  { key: "crm", label: "CRM" },
+  { key: "propostas", label: "Propostas" },
+  { key: "contratos", label: "Contratos" },
+  { key: "projetos", label: "Projetos" },
+  { key: "modelos", label: "Modelos" },
+  { key: "agenda", label: "Agenda" },
+  { key: "financeiro", label: "Financeiro" },
+  { key: "faturamento", label: "Faturamento" },
+  { key: "diagnosticos", label: "Diagnósticos" },
+  { key: "configuracoes", label: "Configurações" },
+] as const;
+
+const ACOES = ["criar", "editar", "excluir"] as const;
 
 const schemaEmpresa = z.object({
   nome: z.string().min(2, "Nome obrigatório"),
@@ -69,6 +88,14 @@ interface ConvitePendente {
   expira_em: string;
 }
 
+interface PerfilItem {
+  id: string;
+  nome: string;
+  descricao: string;
+  membros: number;
+  permissoes: { recurso: string; acao: string }[];
+}
+
 interface Props {
   empresa: {
     id: string;
@@ -90,9 +117,11 @@ interface Props {
     avatar_url: string;
   } | null;
   membros: MembroItem[];
-  perfis: { id: string; nome: string }[];
+  perfis: PerfilItem[];
   convitesPendentes: ConvitePendente[];
   usuarioAtualId: string | null;
+  empresaAtualId: string;
+  minhasEmpresas: { id: string; nome: string; logo_url: string | null; plano: string }[];
 }
 
 const PLANO_LABELS: Record<string, string> = {
@@ -259,7 +288,7 @@ function ImageUploadZone({
   );
 }
 
-export default function ConfiguracoesClient({ empresa, usuario, membros: membrosInicial, perfis, convitesPendentes: convitesInicial, usuarioAtualId }: Props) {
+export default function ConfiguracoesClient({ empresa, usuario, membros: membrosInicial, perfis: perfisInicial, convitesPendentes: convitesInicial, usuarioAtualId, empresaAtualId, minhasEmpresas: minhasEmpresasInicial }: Props) {
   const [isPendingEmpresa, startEmpresa] = useTransition();
   const [isPendingPerfil, startPerfil] = useTransition();
 
@@ -267,9 +296,93 @@ export default function ConfiguracoesClient({ empresa, usuario, membros: membros
   const [membros, setMembros] = useState(membrosInicial);
   const [convitesPendentes, setConvitesPendentes] = useState(convitesInicial);
   const [conviteEmail, setConviteEmail] = useState("");
-  const [convitePerfilId, setConvitePerfilId] = useState(perfis[0]?.id ?? "");
+  const [convitePerfilId, setConvitePerfilId] = useState(perfisInicial[0]?.id ?? "");
   const [enviandoConvite, setEnviandoConvite] = useState(false);
   const [erroConvite, setErroConvite] = useState<string | null>(null);
+
+  // Perfis de Acesso
+  const [perfis, setPerfis] = useState(perfisInicial);
+  const [perfilEditando, setPerfilEditando] = useState<PerfilItem | null>(null);
+  const [modalPerfilAberto, setModalPerfilAberto] = useState(false);
+  const [nomePerfil, setNomePerfil] = useState("");
+  const [descricaoPerfil, setDescricaoPerfil] = useState("");
+  const [permissoesSelecionadas, setPermissoesSelecionadas] = useState<Set<string>>(new Set());
+  const [salvandoPerfil, setSalvandoPerfil] = useState(false);
+  const [erroPerfil, setErroPerfil] = useState<string | null>(null);
+
+  // Empresas
+  const [minhasEmpresas, setMinhasEmpresas] = useState(minhasEmpresasInicial);
+  const [criandoEmpresa, setCriandoEmpresa] = useState(false);
+  const [nomeNovaEmpresa, setNomeNovaEmpresa] = useState("");
+  const [cnpjNovaEmpresa, setCnpjNovaEmpresa] = useState("");
+  const [salvandoEmpresa, setSalvandoEmpresa] = useState(false);
+
+  const abrirModalPerfil = (p?: PerfilItem) => {
+    if (p) {
+      setPerfilEditando(p);
+      setNomePerfil(p.nome);
+      setDescricaoPerfil(p.descricao);
+      setPermissoesSelecionadas(new Set(p.permissoes.map((x) => `${x.recurso}:${x.acao}`)));
+    } else {
+      setPerfilEditando(null);
+      setNomePerfil("");
+      setDescricaoPerfil("");
+      setPermissoesSelecionadas(new Set());
+    }
+    setErroPerfil(null);
+    setModalPerfilAberto(true);
+  };
+
+  const togglePermissao = (recurso: string, acao: string) => {
+    const key = `${recurso}:${acao}`;
+    setPermissoesSelecionadas((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key); else next.add(key);
+      return next;
+    });
+  };
+
+  const toggleRecurso = (recurso: string) => {
+    const todasAcoes = ACOES.map((a) => `${recurso}:${a}`);
+    const todasMarcadas = todasAcoes.every((k) => permissoesSelecionadas.has(k));
+    setPermissoesSelecionadas((prev) => {
+      const next = new Set(prev);
+      if (todasMarcadas) { todasAcoes.forEach((k) => next.delete(k)); }
+      else { todasAcoes.forEach((k) => next.add(k)); }
+      return next;
+    });
+  };
+
+  const salvarPerfil = async () => {
+    if (!nomePerfil.trim()) { setErroPerfil("Nome obrigatório"); return; }
+    setSalvandoPerfil(true);
+    setErroPerfil(null);
+    const permissoes = Array.from(permissoesSelecionadas).map((k) => {
+      const [recurso, acao] = k.split(":");
+      return { recurso, acao };
+    });
+    try {
+      if (perfilEditando) {
+        const res = await editarPerfil(perfilEditando.id, { nome: nomePerfil, descricao: descricaoPerfil, permissoes });
+        if (res.ok) {
+          setPerfis((prev) => prev.map((p) => p.id === perfilEditando.id
+            ? { ...p, nome: nomePerfil, descricao: descricaoPerfil, permissoes }
+            : p
+          ));
+          toast.success("Perfil atualizado");
+          setModalPerfilAberto(false);
+        } else { setErroPerfil(res.error); }
+      } else {
+        const res = await criarPerfil({ nome: nomePerfil, descricao: descricaoPerfil, permissoes });
+        if (res.ok) {
+          setPerfis((prev) => [...prev, { id: res.id, nome: nomePerfil, descricao: descricaoPerfil, membros: 0, permissoes }]);
+          toast.success("Perfil criado");
+          setModalPerfilAberto(false);
+        }
+      }
+    } catch { setErroPerfil("Erro ao salvar perfil"); }
+    finally { setSalvandoPerfil(false); }
+  };
 
   const formEmpresa = useForm<EmpresaForm>({
     resolver: zodResolver(schemaEmpresa),
@@ -592,6 +705,228 @@ export default function ConfiguracoesClient({ empresa, usuario, membros: membros
           </div>
         </div>
       </section>
+
+      {/* ── Perfis de Acesso ── */}
+      <section className="rounded-xl border bg-card">
+        <div className="px-6 py-4 border-b flex items-center gap-2">
+          <ShieldCheck className="size-4 text-primary" />
+          <h2 className="font-semibold">Perfis de Acesso</h2>
+          <span className="ml-auto text-xs text-muted-foreground">{perfis.length} perfil{perfis.length !== 1 ? "s" : ""}</span>
+          <Button size="sm" variant="outline" className="ml-2 h-7 text-xs gap-1" onClick={() => abrirModalPerfil()}>
+            <Plus className="size-3" />
+            Novo perfil
+          </Button>
+        </div>
+
+        <div className="divide-y">
+          {perfis.map((p) => (
+            <div key={p.id} className="px-6 py-4 flex items-center gap-3">
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium">{p.nome}</p>
+                {p.descricao && <p className="text-xs text-muted-foreground">{p.descricao}</p>}
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  {p.permissoes.length} permissão{p.permissoes.length !== 1 ? "ões" : ""} · {p.membros} membro{p.membros !== 1 ? "s" : ""}
+                </p>
+              </div>
+              <Button size="sm" variant="ghost" className="h-7 text-xs gap-1" onClick={() => abrirModalPerfil(p)}>
+                Editar
+                <ChevronRight className="size-3" />
+              </Button>
+              {p.membros === 0 && (
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  className="size-7 text-muted-foreground hover:text-destructive"
+                  title="Excluir perfil"
+                  onClick={async () => {
+                    const res = await excluirPerfil(p.id);
+                    if (res.ok) {
+                      setPerfis((prev) => prev.filter((x) => x.id !== p.id));
+                      toast.success("Perfil excluído");
+                    } else {
+                      toast.error(res.error);
+                    }
+                  }}
+                >
+                  <Trash2 className="size-3.5" />
+                </Button>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Minhas Empresas ── */}
+      <section className="rounded-xl border bg-card">
+        <div className="px-6 py-4 border-b flex items-center gap-2">
+          <Building2 className="size-4 text-primary" />
+          <h2 className="font-semibold">Minhas Empresas</h2>
+        </div>
+
+        <div className="px-6 py-6 space-y-4">
+          <div className="space-y-2">
+            {minhasEmpresas.map((e) => (
+              <div key={e.id} className={`flex items-center gap-3 py-2 px-3 rounded-lg border ${e.id === empresaAtualId ? "border-primary/30 bg-primary/5" : "border-transparent"}`}>
+                <div className="size-9 rounded-md bg-muted flex items-center justify-center shrink-0">
+                  {e.logo_url
+                    ? <img src={e.logo_url} alt={e.nome} className="size-full object-contain rounded-md p-1" />
+                    : <Building2 className="size-4 text-muted-foreground" />
+                  }
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium truncate">{e.nome}</p>
+                  <p className="text-xs text-muted-foreground">{PLANO_LABELS[e.plano] ?? e.plano}</p>
+                </div>
+                {e.id === empresaAtualId && (
+                  <span className="text-xs text-primary font-medium flex items-center gap-1">
+                    <Check className="size-3" />
+                    Ativa
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <Separator />
+
+          {!criandoEmpresa ? (
+            <Button variant="ghost" className="w-full gap-2 text-muted-foreground" onClick={() => setCriandoEmpresa(true)}>
+              <Plus className="size-4" />
+              Cadastrar nova empresa
+            </Button>
+          ) : (
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <p className="text-sm font-medium">Nova empresa</p>
+                <Button variant="ghost" size="icon" className="size-6" onClick={() => { setCriandoEmpresa(false); setNomeNovaEmpresa(""); setCnpjNovaEmpresa(""); }}>
+                  <X className="size-3.5" />
+                </Button>
+              </div>
+              <div className="space-y-2">
+                <Input
+                  placeholder="Razão Social / Nome *"
+                  value={nomeNovaEmpresa}
+                  onChange={(e) => setNomeNovaEmpresa(e.target.value)}
+                  className="h-9 text-sm"
+                />
+                <Input
+                  placeholder="CNPJ (opcional)"
+                  value={cnpjNovaEmpresa}
+                  onChange={(e) => setCnpjNovaEmpresa(e.target.value)}
+                  className="h-9 text-sm"
+                />
+              </div>
+              <Button
+                className="w-full"
+                disabled={salvandoEmpresa || !nomeNovaEmpresa.trim()}
+                onClick={async () => {
+                  setSalvandoEmpresa(true);
+                  try {
+                    const res = await criarEmpresa({ nome: nomeNovaEmpresa, cnpj: cnpjNovaEmpresa || undefined });
+                    if (res.ok) {
+                      toast.success("Empresa criada! Acesse via Selecionar Empresa.");
+                      setMinhasEmpresas((prev) => [...prev, { id: res.empresaId, nome: nomeNovaEmpresa, logo_url: null, plano: "BASICO" }]);
+                      setCriandoEmpresa(false);
+                      setNomeNovaEmpresa("");
+                      setCnpjNovaEmpresa("");
+                    }
+                  } catch (e: unknown) {
+                    toast.error(e instanceof Error ? e.message : "Erro ao criar empresa");
+                  } finally {
+                    setSalvandoEmpresa(false);
+                  }
+                }}
+              >
+                {salvandoEmpresa ? "Criando..." : "Criar empresa"}
+              </Button>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Modal perfil */}
+      {modalPerfilAberto && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
+          <div className="bg-white rounded-2xl shadow-xl w-full max-w-2xl max-h-[90vh] flex flex-col">
+            <div className="flex items-center justify-between px-6 py-4 border-b">
+              <h2 className="font-semibold text-lg">{perfilEditando ? `Editar perfil — ${perfilEditando.nome}` : "Novo perfil"}</h2>
+              <Button variant="ghost" size="icon" className="size-8" onClick={() => setModalPerfilAberto(false)}>
+                <X className="size-4" />
+              </Button>
+            </div>
+
+            <div className="overflow-y-auto flex-1 px-6 py-5 space-y-5">
+              {/* Nome e descrição */}
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-1.5">
+                  <Label>Nome do perfil *</Label>
+                  <Input value={nomePerfil} onChange={(e) => setNomePerfil(e.target.value)} placeholder="Ex: Analista Financeiro" />
+                </div>
+                <div className="space-y-1.5">
+                  <Label>Descrição</Label>
+                  <Input value={descricaoPerfil} onChange={(e) => setDescricaoPerfil(e.target.value)} placeholder="Breve descrição do perfil" />
+                </div>
+              </div>
+
+              {/* Grade de permissões */}
+              <div className="space-y-2">
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Permissões</p>
+                <div className="rounded-xl border overflow-hidden">
+                  {/* Cabeçalho */}
+                  <div className="grid grid-cols-[1fr_80px_80px_80px_60px] bg-muted/50 border-b px-4 py-2">
+                    <span className="text-xs font-medium text-muted-foreground">Módulo</span>
+                    {ACOES.map((a) => (
+                      <span key={a} className="text-xs font-medium text-muted-foreground text-center capitalize">{a}</span>
+                    ))}
+                    <span className="text-xs font-medium text-muted-foreground text-center">Todos</span>
+                  </div>
+                  {/* Linhas */}
+                  {RECURSOS.map(({ key, label }) => {
+                    const todasMarcadas = ACOES.every((a) => permissoesSelecionadas.has(`${key}:${a}`));
+                    const algumasMarcadas = ACOES.some((a) => permissoesSelecionadas.has(`${key}:${a}`));
+                    return (
+                      <div key={key} className={`grid grid-cols-[1fr_80px_80px_80px_60px] px-4 py-2.5 border-b last:border-0 ${algumasMarcadas ? "bg-primary/3" : ""}`}>
+                        <span className="text-sm">{label}</span>
+                        {ACOES.map((a) => (
+                          <div key={a} className="flex justify-center">
+                            <input
+                              type="checkbox"
+                              checked={permissoesSelecionadas.has(`${key}:${a}`)}
+                              onChange={() => togglePermissao(key, a)}
+                              className="h-4 w-4 rounded border-gray-300 accent-primary cursor-pointer"
+                            />
+                          </div>
+                        ))}
+                        <div className="flex justify-center">
+                          <input
+                            type="checkbox"
+                            checked={todasMarcadas}
+                            onChange={() => toggleRecurso(key)}
+                            className="h-4 w-4 rounded border-gray-300 accent-primary cursor-pointer"
+                          />
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  {permissoesSelecionadas.size} permissão{permissoesSelecionadas.size !== 1 ? "ões" : ""} selecionada{permissoesSelecionadas.size !== 1 ? "s" : ""}
+                </p>
+              </div>
+            </div>
+
+            <div className="px-6 py-4 border-t flex items-center justify-between gap-3">
+              {erroPerfil && <p className="text-sm text-destructive">{erroPerfil}</p>}
+              <div className="flex gap-2 ml-auto">
+                <Button variant="outline" onClick={() => setModalPerfilAberto(false)}>Cancelar</Button>
+                <Button onClick={salvarPerfil} disabled={salvandoPerfil}>
+                  {salvandoPerfil ? "Salvando..." : perfilEditando ? "Salvar alterações" : "Criar perfil"}
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Instrução bucket */}
       <div className="rounded-lg border border-amber-200 bg-amber-50 px-5 py-4 text-sm text-amber-800">

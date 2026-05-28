@@ -8,7 +8,7 @@ export default async function ConfiguracoesPage() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
-  const [empresa, usuario, membros, perfis, convitesPendentes] = await Promise.all([
+  const [empresa, usuario, membros, perfisComPermissoes, convitesPendentes, minhasEmpresas] = await Promise.all([
     prisma.empresa.findUnique({
       where: { id: empresaId },
       select: { id: true, nome: true, cnpj: true, logo_url: true, plano: true, configuracoes: true },
@@ -29,7 +29,12 @@ export default async function ConfiguracoesPage() {
     }),
     prisma.perfil.findMany({
       where: { empresa_id: empresaId },
-      select: { id: true, nome: true },
+      include: {
+        permissoes: {
+          include: { permissao: { select: { recurso: true, acao: true } } },
+        },
+        _count: { select: { membros: true } },
+      },
       orderBy: { nome: "asc" },
     }),
     prisma.conviteEmpresa.findMany({
@@ -37,11 +42,31 @@ export default async function ConfiguracoesPage() {
       select: { id: true, email: true, criado_em: true, expira_em: true },
       orderBy: { criado_em: "desc" },
     }),
+    user
+      ? prisma.membroEmpresa.findMany({
+          where: { usuario_id: user.id },
+          include: {
+            empresa: { select: { id: true, nome: true, logo_url: true, plano: true } },
+          },
+          orderBy: { criado_em: "asc" },
+        })
+      : [],
   ]);
 
   if (!empresa) return null;
 
   const config = (empresa.configuracoes as Record<string, string>) ?? {};
+
+  const perfis = perfisComPermissoes.map((p) => ({
+    id: p.id,
+    nome: p.nome,
+    descricao: p.descricao ?? "",
+    membros: p._count.membros,
+    permissoes: p.permissoes.map((pp) => ({
+      recurso: pp.permissao.recurso,
+      acao: pp.permissao.acao,
+    })),
+  }));
 
   return (
     <ConfiguracoesClient
@@ -78,6 +103,13 @@ export default async function ConfiguracoesPage() {
         expira_em: c.expira_em.toISOString(),
       }))}
       usuarioAtualId={user?.id ?? null}
+      empresaAtualId={empresaId}
+      minhasEmpresas={minhasEmpresas.map((m) => ({
+        id: m.empresa.id,
+        nome: m.empresa.nome,
+        logo_url: m.empresa.logo_url ?? null,
+        plano: m.empresa.plano,
+      }))}
     />
   );
 }
