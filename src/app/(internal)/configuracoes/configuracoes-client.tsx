@@ -5,13 +5,27 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Settings, Building2, User, Upload, Trash2, ImageIcon, Loader2 } from "lucide-react";
+import { Settings, Building2, User, Upload, Trash2, ImageIcon, Loader2, Users, UserPlus, Mail, MoreVertical, X } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {
   atualizarEmpresa,
   removerLogo,
@@ -21,6 +35,7 @@ import {
   uploadLogoAction,
   uploadAvatarAction,
 } from "@/actions/configuracoes";
+import { convidarMembro, removerMembro, alterarPerfilMembro, cancelarConvite } from "@/actions/equipe";
 
 const schemaEmpresa = z.object({
   nome: z.string().min(2, "Nome obrigatório"),
@@ -39,6 +54,20 @@ const schemaPerfil = z.object({
 
 type EmpresaForm = z.input<typeof schemaEmpresa>;
 type PerfilForm = z.input<typeof schemaPerfil>;
+
+interface MembroItem {
+  id: string;
+  ativo: boolean;
+  usuario: { id: string; nome: string; email: string; avatar_url: string | null };
+  perfil: { id: string; nome: string };
+}
+
+interface ConvitePendente {
+  id: string;
+  email: string;
+  criado_em: string;
+  expira_em: string;
+}
 
 interface Props {
   empresa: {
@@ -60,6 +89,10 @@ interface Props {
     email: string;
     avatar_url: string;
   } | null;
+  membros: MembroItem[];
+  perfis: { id: string; nome: string }[];
+  convitesPendentes: ConvitePendente[];
+  usuarioAtualId: string | null;
 }
 
 const PLANO_LABELS: Record<string, string> = {
@@ -226,9 +259,17 @@ function ImageUploadZone({
   );
 }
 
-export default function ConfiguracoesClient({ empresa, usuario }: Props) {
+export default function ConfiguracoesClient({ empresa, usuario, membros: membrosInicial, perfis, convitesPendentes: convitesInicial, usuarioAtualId }: Props) {
   const [isPendingEmpresa, startEmpresa] = useTransition();
   const [isPendingPerfil, startPerfil] = useTransition();
+
+  // Equipe
+  const [membros, setMembros] = useState(membrosInicial);
+  const [convitesPendentes, setConvitesPendentes] = useState(convitesInicial);
+  const [conviteEmail, setConviteEmail] = useState("");
+  const [convitePerfilId, setConvitePerfilId] = useState(perfis[0]?.id ?? "");
+  const [enviandoConvite, setEnviandoConvite] = useState(false);
+  const [erroConvite, setErroConvite] = useState<string | null>(null);
 
   const formEmpresa = useForm<EmpresaForm>({
     resolver: zodResolver(schemaEmpresa),
@@ -385,6 +426,172 @@ export default function ConfiguracoesClient({ empresa, usuario }: Props) {
           </div>
         </section>
       )}
+
+      {/* ── Equipe ── */}
+      <section className="rounded-xl border bg-card">
+        <div className="px-6 py-4 border-b flex items-center gap-2">
+          <Users className="size-4 text-primary" />
+          <h2 className="font-semibold">Equipe</h2>
+          <span className="ml-auto text-xs text-muted-foreground">{membros.length} membro{membros.length !== 1 ? "s" : ""}</span>
+        </div>
+
+        <div className="px-6 py-6 space-y-6">
+          {/* Lista de membros */}
+          <div className="space-y-2">
+            {membros.map((m) => (
+              <div key={m.id} className="flex items-center gap-3 py-2">
+                <div className="size-9 rounded-full bg-primary/10 flex items-center justify-center shrink-0 text-primary font-semibold text-sm">
+                  {m.usuario.nome.charAt(0).toUpperCase()}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium truncate">{m.usuario.nome}</p>
+                  <p className="text-xs text-muted-foreground truncate">{m.usuario.email}</p>
+                </div>
+                <Select
+                  value={m.perfil.id}
+                  onValueChange={async (perfilId) => {
+                    if (!perfilId) return;
+                    const res = await alterarPerfilMembro(m.id, perfilId);
+                    if (res.ok) {
+                      const nomePerfil = perfis.find(p => p.id === perfilId)?.nome ?? "";
+                      setMembros(prev => prev.map(x => x.id === m.id ? { ...x, perfil: { id: perfilId, nome: nomePerfil } } : x));
+                      toast.success("Perfil alterado");
+                    }
+                  }}
+                  disabled={m.usuario.id === usuarioAtualId}
+                >
+                  <SelectTrigger className="h-7 text-xs w-36">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {perfis.map((p) => (
+                      <SelectItem key={p.id} value={p.id} className="text-xs">{p.nome}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                {m.usuario.id !== usuarioAtualId && (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger className="inline-flex items-center justify-center size-7 rounded-md hover:bg-accent transition-colors shrink-0">
+                      <MoreVertical className="size-3.5" />
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem
+                        className="text-destructive focus:text-destructive text-xs"
+                        onClick={async () => {
+                          const res = await removerMembro(m.id);
+                          if (res.ok) {
+                            setMembros(prev => prev.filter(x => x.id !== m.id));
+                            toast.success("Membro removido");
+                          } else {
+                            toast.error(res.error);
+                          }
+                        }}
+                      >
+                        Remover da empresa
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                )}
+                {m.usuario.id === usuarioAtualId && <div className="size-7 shrink-0" />}
+              </div>
+            ))}
+          </div>
+
+          {/* Convites pendentes */}
+          {convitesPendentes.length > 0 && (
+            <>
+              <Separator />
+              <div className="space-y-2">
+                <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Convites pendentes</p>
+                {convitesPendentes.map((c) => (
+                  <div key={c.id} className="flex items-center gap-3 py-1.5">
+                    <Mail className="size-4 text-muted-foreground shrink-0" />
+                    <p className="text-sm flex-1">{c.email}</p>
+                    <p className="text-xs text-muted-foreground">
+                      Expira {new Date(c.expira_em).toLocaleDateString("pt-BR")}
+                    </p>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="size-6 text-muted-foreground hover:text-destructive"
+                      onClick={async () => {
+                        const res = await cancelarConvite(c.id);
+                        if (res.ok) {
+                          setConvitesPendentes(prev => prev.filter(x => x.id !== c.id));
+                          toast.success("Convite cancelado");
+                        }
+                      }}
+                    >
+                      <X className="size-3" />
+                    </Button>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+
+          <Separator />
+
+          {/* Convidar novo membro */}
+          <div className="space-y-3">
+            <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Convidar novo membro</p>
+            <div className="flex gap-2">
+              <Input
+                type="email"
+                placeholder="email@exemplo.com"
+                value={conviteEmail}
+                onChange={(e) => setConviteEmail(e.target.value)}
+                className="h-9 text-sm flex-1"
+              />
+              <Select value={convitePerfilId} onValueChange={(v) => { if (v) setConvitePerfilId(v); }}>
+                <SelectTrigger className="h-9 text-sm w-36">
+                  <SelectValue placeholder="Perfil" />
+                </SelectTrigger>
+                <SelectContent>
+                  {perfis.map((p) => (
+                    <SelectItem key={p.id} value={p.id} className="text-sm">{p.nome}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Button
+                size="sm"
+                className="h-9 gap-1.5 shrink-0"
+                disabled={enviandoConvite || !conviteEmail || !convitePerfilId}
+                onClick={async () => {
+                  setErroConvite(null);
+                  setEnviandoConvite(true);
+                  try {
+                    const res = await convidarMembro({ email: conviteEmail, perfil_id: convitePerfilId });
+                    if (res.ok) {
+                      toast.success(`Convite enviado para ${conviteEmail}`);
+                      const expira = new Date();
+                      expira.setDate(expira.getDate() + 7);
+                      setConvitesPendentes(prev => [...prev, {
+                        id: Date.now().toString(),
+                        email: conviteEmail,
+                        criado_em: new Date().toISOString(),
+                        expira_em: expira.toISOString(),
+                      }]);
+                      setConviteEmail("");
+                    } else {
+                      setErroConvite(res.error);
+                    }
+                  } catch {
+                    setErroConvite("Erro ao enviar convite");
+                  } finally {
+                    setEnviandoConvite(false);
+                  }
+                }}
+              >
+                <UserPlus className="size-3.5" />
+                {enviandoConvite ? "Enviando..." : "Convidar"}
+              </Button>
+            </div>
+            {erroConvite && <p className="text-xs text-destructive">{erroConvite}</p>}
+          </div>
+        </div>
+      </section>
 
       {/* Instrução bucket */}
       <div className="rounded-lg border border-amber-200 bg-amber-50 px-5 py-4 text-sm text-amber-800">

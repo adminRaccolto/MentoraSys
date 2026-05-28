@@ -21,6 +21,39 @@ export async function enviarOtpAceite(para: string, codigo: string, tituloPropos
   });
 }
 
+export async function enviarConviteEquipe(
+  para: string,
+  empresaNome: string,
+  convidadoPorNome: string,
+  token: string,
+) {
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL
+    ?? (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+
+  const link = `${baseUrl}/membro/${token}`;
+
+  await resend.emails.send({
+    from: process.env.RESEND_EMAIL_FROM ?? "Raccolto <noreply@raccolto.com.br>",
+    to: para,
+    subject: `Você foi convidado para ${empresaNome}`,
+    html: `
+      <div style="font-family: sans-serif; max-width: 480px; margin: 0 auto;">
+        <h2 style="color: #1B4F72;">Convite para ${empresaNome}</h2>
+        <p style="font-size: 15px; color: #334155;">
+          <strong>${convidadoPorNome}</strong> convidou você para acessar a plataforma Raccolto como membro de <strong>${empresaNome}</strong>.
+        </p>
+        <div style="text-align: center; margin: 32px 0;">
+          <a href="${link}" style="background:#1B4F72;color:#fff;padding:14px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;">
+            Aceitar convite
+          </a>
+        </div>
+        <p style="color: #64748b; font-size: 13px;">Este link expira em 7 dias.</p>
+        <p style="color: #94a3b8; font-size: 12px; margin-top: 24px;">Se você não esperava este convite, ignore este e-mail.</p>
+      </div>
+    `,
+  });
+}
+
 export async function enviarLembrete(para: string, titulo: string, inicio: Date) {
   const dataFormatada = inicio.toLocaleString("pt-BR", {
     weekday: "long",
