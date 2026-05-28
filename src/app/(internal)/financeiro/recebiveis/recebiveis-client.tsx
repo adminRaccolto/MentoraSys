@@ -63,7 +63,7 @@ interface Recebivel {
   status: Status; data_pagamento: Date | null; valor_pago: string | number | null;
   forma_pagamento: string | null; numero_parcela: number | null; total_parcelas: number | null;
   cliente: { id: string; nome: string } | null;
-  contrato: { id: string; titulo: string } | null;
+  contrato: { id: string; titulo: string; numero_contrato: string | null } | null;
   plano_contas: { id: string; nome: string } | null;
 }
 
@@ -280,14 +280,18 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
               const cfg = STATUS_CONFIG[vencido ? "VENCIDO" : r.status];
               return (
                 <TableRow key={r.id}>
-                  <TableCell className="font-medium">
-                    {r.descricao}
+                  <TableCell className="font-medium max-w-[220px]">
+                    <span className="block truncate" title={r.descricao}>{r.descricao}</span>
                     {r.numero_parcela && r.total_parcelas && (
-                      <span className="ml-1 text-xs text-muted-foreground">({r.numero_parcela}/{r.total_parcelas})</span>
+                      <span className="text-xs text-muted-foreground">{r.numero_parcela}/{r.total_parcelas}</span>
                     )}
                   </TableCell>
-                  <TableCell className="text-muted-foreground text-sm">{r.cliente?.nome ?? "—"}</TableCell>
-                  <TableCell className="text-muted-foreground text-sm">{r.contrato?.titulo ?? "—"}</TableCell>
+                  <TableCell className="text-muted-foreground text-sm max-w-[140px]">
+                    <span className="block truncate" title={r.cliente?.nome}>{r.cliente?.nome ?? "—"}</span>
+                  </TableCell>
+                  <TableCell className="text-muted-foreground text-sm">
+                    {r.contrato?.numero_contrato ?? r.contrato?.titulo ?? "—"}
+                  </TableCell>
                   <TableCell className="text-right font-medium">{formatBRL(r.valor)}</TableCell>
                   <TableCell className={`text-sm ${vencido ? "text-destructive font-medium" : "text-muted-foreground"}`}>
                     {new Date(r.data_vencimento).toLocaleDateString("pt-BR")}

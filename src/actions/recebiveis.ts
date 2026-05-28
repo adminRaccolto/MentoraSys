@@ -71,9 +71,14 @@ export async function gerarParcelasContrato(contratoId: string, input: InputParc
   const { data: { user } } = await supabase.auth.getUser();
   const data = schemaParcelas.parse(input);
 
+  type ParcelaJson = { numero: number; vencimento: string; valor: number };
+
   const contrato = await prisma.contrato.findUnique({
     where: { id: contratoId, empresa_id: empresaId },
-    include: { cliente: { select: { id: true, nome: true } } },
+    include: {
+      cliente: { select: { id: true, nome: true } },
+      proposta: { select: { parcelas_json: true } },
+    },
   });
   if (!contrato) throw new Error("Contrato não encontrado");
   if (contrato.status !== "ASSINADO") throw new Error("Contrato não está assinado");
@@ -81,16 +86,27 @@ export async function gerarParcelasContrato(contratoId: string, input: InputParc
   const jaExiste = await prisma.recebivel.count({ where: { contrato_id: contratoId, empresa_id: empresaId } });
   if (jaExiste > 0) throw new Error("Este contrato já tem recebíveis gerados no financeiro");
 
+  const propostaParcelas = Array.isArray(contrato.proposta?.parcelas_json)
+    ? (contrato.proposta!.parcelas_json as ParcelaJson[])
+    : null;
+
+  const label = contrato.tipo_contrato || contrato.objeto || contrato.titulo;
+
   const parcelas = Array.from({ length: data.n_parcelas }, (_, i) => {
-    const vencimento = new Date(data.data_primeira);
-    vencimento.setMonth(vencimento.getMonth() + i);
+    const pp = propostaParcelas?.[i];
+    const vencimento = pp ? new Date(pp.vencimento) : (() => {
+      const d = new Date(data.data_primeira);
+      d.setMonth(d.getMonth() + i);
+      return d;
+    })();
+    const valor = pp ? pp.valor : data.valor_parcela;
     return {
       empresa_id: empresaId,
       criado_por: user?.id ?? null,
       contrato_id: contratoId,
       cliente_id: contrato.cliente_id,
-      descricao: `${contrato.titulo} — Parcela ${i + 1}/${data.n_parcelas}`,
-      valor: data.valor_parcela,
+      descricao: `${label} — Parcela ${i + 1}/${data.n_parcelas}`,
+      valor,
       data_vencimento: vencimento,
       numero_parcela: i + 1,
       total_parcelas: data.n_parcelas,
