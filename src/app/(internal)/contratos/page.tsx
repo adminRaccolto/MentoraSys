@@ -12,11 +12,13 @@ export default async function ContratosPage() {
         cliente: { select: { id: true, nome: true } },
         proposta: { select: { id: true, titulo: true } },
         responsavel: { select: { id: true, nome: true } },
+        _count: { select: { recebiveis: true } },
       },
       orderBy: { criado_em: "desc" },
     }).then((rows) => rows.map((r) => ({
       ...r,
       valor_total: Number(r.valor_total),
+      recebiveis_count: r._count.recebiveis,
     }))),
     prisma.cliente.findMany({
       where: { empresa_id: empresaId },

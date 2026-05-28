@@ -78,6 +78,9 @@ export async function gerarParcelasContrato(contratoId: string, input: InputParc
   if (!contrato) throw new Error("Contrato não encontrado");
   if (contrato.status !== "ASSINADO") throw new Error("Contrato não está assinado");
 
+  const jaExiste = await prisma.recebivel.count({ where: { contrato_id: contratoId, empresa_id: empresaId } });
+  if (jaExiste > 0) throw new Error("Este contrato já tem recebíveis gerados no financeiro");
+
   const parcelas = Array.from({ length: data.n_parcelas }, (_, i) => {
     const vencimento = new Date(data.data_primeira);
     vencimento.setMonth(vencimento.getMonth() + i);

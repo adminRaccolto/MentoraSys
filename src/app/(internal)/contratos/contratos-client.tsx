@@ -106,6 +106,7 @@ interface Contrato {
   cliente: { id: string; nome: string };
   proposta: { id: string; titulo: string } | null;
   responsavel: { id: string; nome: string } | null;
+  recebiveis_count: number;
 }
 
 interface Cliente {
@@ -599,10 +600,14 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
                           <Button
                             size="icon"
                             variant="ghost"
-                            className="size-8 text-primary"
-                            title="Gerar recebíveis"
+                            className={`size-8 ${c.recebiveis_count > 0 ? "text-green-600" : "text-primary"}`}
+                            title={c.recebiveis_count > 0 ? `Financeiro já lançado (${c.recebiveis_count} parcelas)` : "Gerar recebíveis"}
                             disabled={isPending}
                             onClick={() => {
+                              if (c.recebiveis_count > 0) {
+                                toast.info(`Este contrato já tem ${c.recebiveis_count} parcela${c.recebiveis_count > 1 ? "s" : ""} lançada${c.recebiveis_count > 1 ? "s" : ""} no financeiro.`);
+                                return;
+                              }
                               const dadosCompletos = c.numero_parcelas && c.primeiro_vencimento && Number(c.valor_total) > 0;
                               if (dadosCompletos) {
                                 gerarParcelasDirecto(c);
