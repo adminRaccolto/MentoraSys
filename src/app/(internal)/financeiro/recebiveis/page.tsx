@@ -16,11 +16,14 @@ export default async function RecebiveisPage({ searchParams }: Props) {
   const inicio = new Date(ano, mesNum - 1, 1);
   const fim = new Date(ano, mesNum, 0, 23, 59, 59);
 
+  // PENDENTE e VENCIDO mostram todos os meses (o usuário quer ver tudo em aberto)
+  const filtrarPorMes = !status || status === "TODOS" || status === "PAGO" || status === "CANCELADO";
+
   const [recebiveis, clientes, contratos, categorias, contasBancarias, modelosRecibo] = await Promise.all([
     prisma.recebivel.findMany({
       where: {
         empresa_id: empresaId,
-        data_vencimento: { gte: inicio, lte: fim },
+        ...(filtrarPorMes ? { data_vencimento: { gte: inicio, lte: fim } } : {}),
         ...(status && status !== "TODOS" ? { status: status as never } : {}),
       },
       include: {

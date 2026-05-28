@@ -216,15 +216,19 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
 
       {/* Navegação de mês + totais */}
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Button variant="ghost" size="icon" className="size-7" onClick={() => navMes(-1)}>
-            <ChevronLeft className="size-4" />
-          </Button>
-          <span className="text-sm font-medium capitalize">{nomeMes}</span>
-          <Button variant="ghost" size="icon" className="size-7" onClick={() => navMes(1)}>
-            <ChevronRight className="size-4" />
-          </Button>
-        </div>
+        {statusFiltro === "PENDENTE" || statusFiltro === "VENCIDO" ? (
+          <span className="text-sm text-muted-foreground">Todos os meses</span>
+        ) : (
+          <div className="flex items-center gap-2">
+            <Button variant="ghost" size="icon" className="size-7" onClick={() => navMes(-1)}>
+              <ChevronLeft className="size-4" />
+            </Button>
+            <span className="text-sm font-medium capitalize">{nomeMes}</span>
+            <Button variant="ghost" size="icon" className="size-7" onClick={() => navMes(1)}>
+              <ChevronRight className="size-4" />
+            </Button>
+          </div>
+        )}
         <div className="flex gap-4 text-sm">
           <span className="text-muted-foreground">Pendente: <strong className="text-foreground">{formatBRL(totalPendente)}</strong></span>
           <span className="text-muted-foreground">Recebido: <strong className="text-primary">{formatBRL(totalPago)}</strong></span>
