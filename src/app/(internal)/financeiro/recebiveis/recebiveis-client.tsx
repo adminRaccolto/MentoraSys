@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Plus, ArrowDownCircle, Trash2, CheckCircle, ChevronLeft, ChevronRight, Receipt } from "lucide-react";
+import { Plus, ArrowDownCircle, Trash2, CheckCircle, Receipt } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -83,7 +83,8 @@ interface Props {
   contratos: Contrato[];
   categorias: { id: string; nome: string }[];
   contasBancarias: { id: string; nome: string }[];
-  anoMes: string;
+  de: string;
+  ate: string;
   statusFiltro: string;
   modelosRecibo: ModeloDoc[];
 }
@@ -96,7 +97,7 @@ function isVencido(data: Date, status: Status) {
   return status === "PENDENTE" && new Date(data) < new Date();
 }
 
-export default function RecebiveisClient({ recebiveis: inicial, clientes, contratos, categorias, contasBancarias, anoMes, statusFiltro, modelosRecibo }: Props) {
+export default function RecebiveisClient({ recebiveis: inicial, clientes, contratos, categorias, contasBancarias, de, ate, statusFiltro, modelosRecibo }: Props) {
   const router = useRouter();
   const [recebiveis, setRecebiveis] = useState(inicial);
   const [modalNovo, setModalNovo] = useState(false);
@@ -105,16 +106,12 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
   const [modalRecibo, setModalRecibo] = useState<Recebivel | null>(null);
   const [excluindo, setExcluindo] = useState<Recebivel | null>(null);
   const [isPending, startTransition] = useTransition();
+  const [filtroDe, setFiltroDe] = useState(de);
+  const [filtroAte, setFiltroAte] = useState(ate);
 
-  const [ano, mes] = anoMes.split("-").map(Number);
-
-  const navMes = (delta: number) => {
-    const d = new Date(ano, mes - 1 + delta, 1);
-    const novoMes = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
-    router.push(`/financeiro/recebiveis?mes=${novoMes}&status=${statusFiltro}`);
+  const aplicarFiltro = () => {
+    router.push(`/financeiro/recebiveis?de=${filtroDe}&ate=${filtroAte}&status=${statusFiltro}`);
   };
-
-  const nomeMes = new Date(ano, mes - 1, 1).toLocaleString("pt-BR", { month: "long", year: "numeric" });
 
   const statusFiltrados = statusFiltro === "TODOS" ? recebiveis : recebiveis.filter((r) => r.status === statusFiltro);
 
@@ -214,21 +211,15 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
         </div>
       </div>
 
-      {/* Navegação de mês + totais */}
-      <div className="flex items-center justify-between">
-        {statusFiltro !== "PAGO" && statusFiltro !== "CANCELADO" ? (
-          <span className="text-sm text-muted-foreground">Todos os meses</span>
-        ) : (
-          <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" className="size-7" onClick={() => navMes(-1)}>
-              <ChevronLeft className="size-4" />
-            </Button>
-            <span className="text-sm font-medium capitalize">{nomeMes}</span>
-            <Button variant="ghost" size="icon" className="size-7" onClick={() => navMes(1)}>
-              <ChevronRight className="size-4" />
-            </Button>
-          </div>
-        )}
+      {/* Filtro de período + totais */}
+      <div className="flex items-center justify-between gap-4 flex-wrap">
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="text-sm text-muted-foreground">De</span>
+          <Input type="date" value={filtroDe} onChange={(e) => setFiltroDe(e.target.value)} className="h-8 w-36 text-sm" />
+          <span className="text-sm text-muted-foreground">Até</span>
+          <Input type="date" value={filtroAte} onChange={(e) => setFiltroAte(e.target.value)} className="h-8 w-36 text-sm" />
+          <Button size="sm" variant="outline" className="h-8" onClick={aplicarFiltro}>Aplicar</Button>
+        </div>
         <div className="flex gap-4 text-sm">
           <span className="text-muted-foreground">Pendente: <strong className="text-foreground">{formatBRL(totalPendente)}</strong></span>
           <span className="text-muted-foreground">Recebido: <strong className="text-primary">{formatBRL(totalPago)}</strong></span>
@@ -240,7 +231,7 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
         {tabs.map((tab) => (
           <button
             key={tab.key}
-            onClick={() => router.push(`/financeiro/recebiveis?mes=${anoMes}&status=${tab.key}`)}
+            onClick={() => router.push(`/financeiro/recebiveis?de=${filtroDe}&ate=${filtroAte}&status=${tab.key}`)}
             className={`px-3 py-2 text-sm font-medium border-b-2 -mb-px transition-colors ${
               statusFiltro === tab.key
                 ? "border-primary text-primary"

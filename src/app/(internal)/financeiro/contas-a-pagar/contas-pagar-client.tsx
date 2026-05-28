@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Plus, ArrowUpCircle, Trash2, CheckCircle, ChevronLeft, ChevronRight } from "lucide-react";
+import { Plus, ArrowUpCircle, Trash2, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -59,7 +59,8 @@ interface Props {
   contas: ContaPagar[];
   categorias: { id: string; nome: string }[];
   contasBancarias: { id: string; nome: string }[];
-  anoMes: string;
+  de: string;
+  ate: string;
   statusFiltro: string;
 }
 
@@ -71,21 +72,19 @@ function isVencido(data: Date, status: Status) {
   return status === "PENDENTE" && new Date(data) < new Date();
 }
 
-export default function ContasPagarClient({ contas: inicial, categorias, contasBancarias, anoMes, statusFiltro }: Props) {
+export default function ContasPagarClient({ contas: inicial, categorias, contasBancarias, de, ate, statusFiltro }: Props) {
   const router = useRouter();
   const [contas, setContas] = useState(inicial);
   const [modalNovo, setModalNovo] = useState(false);
   const [modalBaixar, setModalBaixar] = useState<ContaPagar | null>(null);
   const [excluindo, setExcluindo] = useState<ContaPagar | null>(null);
   const [isPending, startTransition] = useTransition();
+  const [filtroDe, setFiltroDe] = useState(de);
+  const [filtroAte, setFiltroAte] = useState(ate);
 
-  const [ano, mes] = anoMes.split("-").map(Number);
-  const navMes = (delta: number) => {
-    const d = new Date(ano, mes - 1 + delta, 1);
-    const novoMes = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
-    router.push(`/financeiro/contas-a-pagar?mes=${novoMes}&status=${statusFiltro}`);
+  const aplicarFiltro = () => {
+    router.push(`/financeiro/contas-a-pagar?de=${filtroDe}&ate=${filtroAte}&status=${statusFiltro}`);
   };
-  const nomeMes = new Date(ano, mes - 1, 1).toLocaleString("pt-BR", { month: "long", year: "numeric" });
 
   const filtradas = statusFiltro === "TODOS" ? contas : contas.filter((c) => c.status === statusFiltro);
   const totalPendente = contas.filter((c) => c.status === "PENDENTE").reduce((s, c) => s + Number(c.valor), 0);
@@ -147,15 +146,13 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
         </Button>
       </div>
 
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Button variant="ghost" size="icon" className="size-7" onClick={() => navMes(-1)}>
-            <ChevronLeft className="size-4" />
-          </Button>
-          <span className="text-sm font-medium capitalize">{nomeMes}</span>
-          <Button variant="ghost" size="icon" className="size-7" onClick={() => navMes(1)}>
-            <ChevronRight className="size-4" />
-          </Button>
+      <div className="flex items-center justify-between gap-4 flex-wrap">
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="text-sm text-muted-foreground">De</span>
+          <Input type="date" value={filtroDe} onChange={(e) => setFiltroDe(e.target.value)} className="h-8 w-36 text-sm" />
+          <span className="text-sm text-muted-foreground">Até</span>
+          <Input type="date" value={filtroAte} onChange={(e) => setFiltroAte(e.target.value)} className="h-8 w-36 text-sm" />
+          <Button size="sm" variant="outline" className="h-8" onClick={aplicarFiltro}>Aplicar</Button>
         </div>
         <div className="flex gap-4 text-sm">
           <span className="text-muted-foreground">Pendente: <strong className="text-foreground">{formatBRL(totalPendente)}</strong></span>
@@ -167,7 +164,7 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
         {tabs.map((tab) => (
           <button
             key={tab.key}
-            onClick={() => router.push(`/financeiro/contas-a-pagar?mes=${anoMes}&status=${tab.key}`)}
+            onClick={() => router.push(`/financeiro/contas-a-pagar?de=${filtroDe}&ate=${filtroAte}&status=${tab.key}`)}
             className={`px-3 py-2 text-sm font-medium border-b-2 -mb-px transition-colors ${statusFiltro === tab.key ? "border-primary text-primary" : "border-transparent text-muted-foreground hover:text-foreground"}`}
           >
             {tab.label}

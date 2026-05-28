@@ -1,8 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { BarChart2, ChevronLeft, ChevronRight } from "lucide-react";
+import { BarChart2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
@@ -13,24 +15,22 @@ interface Lancamento {
 
 interface Props {
   lancamentos: Lancamento[];
-  anoMes: string;
+  de: string;
+  ate: string;
 }
 
 function formatBRL(v: number) {
   return v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 }
 
-export default function FluxoCaixaClient({ lancamentos, anoMes }: Props) {
+export default function FluxoCaixaClient({ lancamentos, de, ate }: Props) {
   const router = useRouter();
-  const [ano, mes] = anoMes.split("-").map(Number);
+  const [filtroDe, setFiltroDe] = useState(de);
+  const [filtroAte, setFiltroAte] = useState(ate);
 
-  const navMes = (delta: number) => {
-    const d = new Date(ano, mes - 1 + delta, 1);
-    const novoMes = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
-    router.push(`/financeiro/fluxo-de-caixa?mes=${novoMes}`);
+  const aplicarFiltro = () => {
+    router.push(`/financeiro/fluxo-de-caixa?de=${filtroDe}&ate=${filtroAte}`);
   };
-
-  const nomeMes = new Date(ano, mes - 1, 1).toLocaleString("pt-BR", { month: "long", year: "numeric" });
 
   const realizados = lancamentos.filter((l) => !l.projetado);
   const projetados = lancamentos.filter((l) => l.projetado);
@@ -57,15 +57,13 @@ export default function FluxoCaixaClient({ lancamentos, anoMes }: Props) {
         <h1 className="text-xl font-semibold">Fluxo de Caixa</h1>
       </div>
 
-      {/* Seletor de mês */}
-      <div className="flex items-center gap-2">
-        <Button variant="ghost" size="icon" className="size-7" onClick={() => navMes(-1)}>
-          <ChevronLeft className="size-4" />
-        </Button>
-        <span className="text-sm font-medium capitalize">{nomeMes}</span>
-        <Button variant="ghost" size="icon" className="size-7" onClick={() => navMes(1)}>
-          <ChevronRight className="size-4" />
-        </Button>
+      {/* Filtro de período */}
+      <div className="flex items-center gap-2 flex-wrap">
+        <span className="text-sm text-muted-foreground">De</span>
+        <Input type="date" value={filtroDe} onChange={(e) => setFiltroDe(e.target.value)} className="h-8 w-36 text-sm" />
+        <span className="text-sm text-muted-foreground">Até</span>
+        <Input type="date" value={filtroAte} onChange={(e) => setFiltroAte(e.target.value)} className="h-8 w-36 text-sm" />
+        <Button size="sm" variant="outline" className="h-8" onClick={aplicarFiltro}>Aplicar</Button>
       </div>
 
       {/* Cards de resumo */}

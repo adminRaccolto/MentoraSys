@@ -3,18 +3,18 @@ import { obterEmpresaAtiva } from "@/lib/permissoes";
 import ContasPagarClient from "./contas-pagar-client";
 
 interface Props {
-  searchParams: Promise<{ status?: string; mes?: string }>;
+  searchParams: Promise<{ status?: string; de?: string; ate?: string }>;
 }
 
 export default async function ContasPagarPage({ searchParams }: Props) {
-  const { status, mes } = await searchParams;
+  const { status, de, ate } = await searchParams;
   const empresaId = await obterEmpresaAtiva();
 
   const hoje = new Date();
-  const anoMes = mes ?? `${hoje.getFullYear()}-${String(hoje.getMonth() + 1).padStart(2, "0")}`;
-  const [ano, mesNum] = anoMes.split("-").map(Number);
-  const inicio = new Date(ano, mesNum - 1, 1);
-  const fim = new Date(ano, mesNum, 0, 23, 59, 59);
+  const deStr = de ?? `${hoje.getFullYear()}-${String(hoje.getMonth() + 1).padStart(2, "0")}-01`;
+  const ateStr = ate ?? `${hoje.getFullYear()}-${String(hoje.getMonth() + 1).padStart(2, "0")}-${new Date(hoje.getFullYear(), hoje.getMonth() + 1, 0).getDate()}`;
+  const inicio = new Date(`${deStr}T00:00:00`);
+  const fim = new Date(`${ateStr}T23:59:59`);
 
   const [contas, categorias, contasBancarias] = await Promise.all([
     prisma.contaPagar.findMany({
@@ -49,7 +49,8 @@ export default async function ContasPagarPage({ searchParams }: Props) {
       }))}
       categorias={categorias}
       contasBancarias={contasBancarias}
-      anoMes={anoMes}
+      de={deStr}
+      ate={ateStr}
       statusFiltro={status ?? "TODOS"}
     />
   );

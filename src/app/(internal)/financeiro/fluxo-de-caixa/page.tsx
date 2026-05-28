@@ -3,18 +3,18 @@ import { obterEmpresaAtiva } from "@/lib/permissoes";
 import FluxoCaixaClient from "./fluxo-caixa-client";
 
 interface Props {
-  searchParams: Promise<{ mes?: string }>;
+  searchParams: Promise<{ de?: string; ate?: string }>;
 }
 
 export default async function FluxoCaixaPage({ searchParams }: Props) {
-  const { mes } = await searchParams;
+  const { de, ate } = await searchParams;
   const empresaId = await obterEmpresaAtiva();
 
   const hoje = new Date();
-  const anoMes = mes ?? `${hoje.getFullYear()}-${String(hoje.getMonth() + 1).padStart(2, "0")}`;
-  const [ano, mesNum] = anoMes.split("-").map(Number);
-  const inicio = new Date(ano, mesNum - 1, 1);
-  const fim = new Date(ano, mesNum, 0, 23, 59, 59);
+  const deStr = de ?? `${hoje.getFullYear()}-${String(hoje.getMonth() + 1).padStart(2, "0")}-01`;
+  const ateStr = ate ?? `${hoje.getFullYear()}-${String(hoje.getMonth() + 1).padStart(2, "0")}-${new Date(hoje.getFullYear(), hoje.getMonth() + 1, 0).getDate()}`;
+  const inicio = new Date(`${deStr}T00:00:00`);
+  const fim = new Date(`${ateStr}T23:59:59`);
 
   const [recebiveisPagos, recebiveisPendentes, contasPagarPagas, contasPagarPendentes] = await Promise.all([
     prisma.recebivel.findMany({
@@ -67,5 +67,5 @@ export default async function FluxoCaixaPage({ searchParams }: Props) {
     })),
   ].sort((a, b) => a.data.getTime() - b.data.getTime());
 
-  return <FluxoCaixaClient lancamentos={lancamentos} anoMes={anoMes} />;
+  return <FluxoCaixaClient lancamentos={lancamentos} de={deStr} ate={ateStr} />;
 }

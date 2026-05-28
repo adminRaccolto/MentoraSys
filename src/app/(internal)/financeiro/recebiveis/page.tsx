@@ -3,27 +3,24 @@ import { obterEmpresaAtiva } from "@/lib/permissoes";
 import RecebiveisClient from "./recebiveis-client";
 
 interface Props {
-  searchParams: Promise<{ status?: string; mes?: string }>;
+  searchParams: Promise<{ status?: string; de?: string; ate?: string }>;
 }
 
 export default async function RecebiveisPage({ searchParams }: Props) {
-  const { status, mes } = await searchParams;
+  const { status, de, ate } = await searchParams;
   const empresaId = await obterEmpresaAtiva();
 
   const hoje = new Date();
-  const anoMes = mes ?? `${hoje.getFullYear()}-${String(hoje.getMonth() + 1).padStart(2, "0")}`;
-  const [ano, mesNum] = anoMes.split("-").map(Number);
-  const inicio = new Date(ano, mesNum - 1, 1);
-  const fim = new Date(ano, mesNum, 0, 23, 59, 59);
-
-  // Filtrar por mês apenas para PAGO e CANCELADO (histórico); demais mostram tudo
-  const filtrarPorMes = status === "PAGO" || status === "CANCELADO";
+  const deStr = de ?? `${hoje.getFullYear()}-${String(hoje.getMonth() + 1).padStart(2, "0")}-01`;
+  const ateStr = ate ?? `${hoje.getFullYear()}-${String(hoje.getMonth() + 1).padStart(2, "0")}-${new Date(hoje.getFullYear(), hoje.getMonth() + 1, 0).getDate()}`;
+  const inicio = new Date(`${deStr}T00:00:00`);
+  const fim = new Date(`${ateStr}T23:59:59`);
 
   const [recebiveis, clientes, contratos, categorias, contasBancarias, modelosRecibo] = await Promise.all([
     prisma.recebivel.findMany({
       where: {
         empresa_id: empresaId,
-        ...(filtrarPorMes ? { data_vencimento: { gte: inicio, lte: fim } } : {}),
+        data_vencimento: { gte: inicio, lte: fim },
         ...(status && status !== "TODOS" ? { status: status as never } : {}),
       },
       include: {
@@ -71,7 +68,8 @@ export default async function RecebiveisPage({ searchParams }: Props) {
       contratos={contratos.map((c) => ({ ...c, valor_total: Number(c.valor_total) }))}
       categorias={categorias}
       contasBancarias={contasBancarias}
-      anoMes={anoMes}
+      de={deStr}
+      ate={ateStr}
       statusFiltro={status ?? "TODOS"}
       modelosRecibo={modelosRecibo}
     />
