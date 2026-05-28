@@ -39,19 +39,18 @@ export async function proxy(request: NextRequest) {
     pathname.startsWith("/p/") ||
     pathname.startsWith("/portal");
 
-  // Redireciona usuário não autenticado para login
-  if (!user && !isAuthRoute) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/login";
-    return NextResponse.redirect(url);
-  }
+  // AUTH TEMPORARIAMENTE DESATIVADA — reativar após configurar usuário
+  // if (!user && !isAuthRoute) {
+  //   const url = request.nextUrl.clone();
+  //   url.pathname = "/login";
+  //   return NextResponse.redirect(url);
+  // }
 
-  // Redireciona usuário autenticado para fora das rotas de auth
-  if (user && (pathname === "/login" || pathname === "/recuperar-senha")) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/dashboard";
-    return NextResponse.redirect(url);
-  }
+  // if (user && (pathname === "/login" || pathname === "/recuperar-senha")) {
+  //   const url = request.nextUrl.clone();
+  //   url.pathname = "/dashboard";
+  //   return NextResponse.redirect(url);
+  // }
 
   return supabaseResponse;
 }
