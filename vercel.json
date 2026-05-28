@@ -1,4 +1,5 @@
 {
+  "alias": ["app.raccolto.com.br"],
   "crons": [
     {
       "path": "/api/cron/lembretes",
