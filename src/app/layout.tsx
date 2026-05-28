@@ -14,8 +14,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MentoraSys",
+  title: "Raccolto",
   description: "Plataforma de gestão para consultoria",
+  openGraph: {
+    title: "Raccolto",
+    description: "Plataforma de gestão para consultoria",
+    url: "https://app.raccolto.com.br",
+    siteName: "Raccolto",
+    images: [{ url: "/favicon.png", width: 512, height: 512 }],
+  },
 };
 
 export default function RootLayout({
