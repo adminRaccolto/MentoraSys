@@ -16,51 +16,54 @@ export default async function FluxoCaixaPage({ searchParams }: Props) {
   const inicio = new Date(ano, mesNum - 1, 1);
   const fim = new Date(ano, mesNum, 0, 23, 59, 59);
 
-  const [recebiveis, contasPagar] = await Promise.all([
+  const [recebiveisPagos, recebiveisPendentes, contasPagarPagas, contasPagarPendentes] = await Promise.all([
     prisma.recebivel.findMany({
-      where: {
-        empresa_id: empresaId,
-        status: "PAGO",
-        data_pagamento: { gte: inicio, lte: fim },
-      },
-      select: {
-        id: true, descricao: true, valor_pago: true, data_pagamento: true,
-        cliente: { select: { nome: true } },
-      },
+      where: { empresa_id: empresaId, status: "PAGO", data_pagamento: { gte: inicio, lte: fim } },
+      select: { id: true, descricao: true, valor_pago: true, data_pagamento: true, cliente: { select: { nome: true } } },
+      orderBy: { data_pagamento: "asc" },
+    }),
+    prisma.recebivel.findMany({
+      where: { empresa_id: empresaId, status: { in: ["PENDENTE", "VENCIDO"] }, data_vencimento: { gte: inicio, lte: fim } },
+      select: { id: true, descricao: true, valor: true, data_vencimento: true, cliente: { select: { nome: true } } },
+      orderBy: { data_vencimento: "asc" },
+    }),
+    prisma.contaPagar.findMany({
+      where: { empresa_id: empresaId, status: "PAGO", data_pagamento: { gte: inicio, lte: fim } },
+      select: { id: true, descricao: true, valor_pago: true, data_pagamento: true, fornecedor: true },
       orderBy: { data_pagamento: "asc" },
     }),
     prisma.contaPagar.findMany({
-      where: {
-        empresa_id: empresaId,
-        status: "PAGO",
-        data_pagamento: { gte: inicio, lte: fim },
-      },
-      select: {
-        id: true, descricao: true, valor_pago: true, data_pagamento: true, fornecedor: true,
-      },
-      orderBy: { data_pagamento: "asc" },
+      where: { empresa_id: empresaId, status: { in: ["PENDENTE", "VENCIDO"] }, data_vencimento: { gte: inicio, lte: fim } },
+      select: { id: true, descricao: true, valor: true, data_vencimento: true, fornecedor: true },
+      orderBy: { data_vencimento: "asc" },
     }),
   ]);
 
   type Lancamento = {
     id: string; tipo: "ENTRADA" | "SAIDA"; descricao: string;
-    referencia: string; valor: number; data: Date;
+    referencia: string; valor: number; data: Date; projetado: boolean;
   };
 
   const lancamentos: Lancamento[] = [
-    ...recebiveis.map((r) => ({
-      id: r.id, tipo: "ENTRADA" as const,
-      descricao: r.descricao,
-      referencia: r.cliente?.nome ?? "—",
-      valor: Number(r.valor_pago ?? 0),
-      data: r.data_pagamento!,
+    ...recebiveisPagos.map((r) => ({
+      id: r.id, tipo: "ENTRADA" as const, descricao: r.descricao,
+      referencia: r.cliente?.nome ?? "—", valor: Number(r.valor_pago ?? 0),
+      data: r.data_pagamento!, projetado: false,
     })),
-    ...contasPagar.map((c) => ({
-      id: c.id, tipo: "SAIDA" as const,
-      descricao: c.descricao,
-      referencia: c.fornecedor ?? "—",
-      valor: Number(c.valor_pago ?? 0),
-      data: c.data_pagamento!,
+    ...recebiveisPendentes.map((r) => ({
+      id: `p-${r.id}`, tipo: "ENTRADA" as const, descricao: r.descricao,
+      referencia: r.cliente?.nome ?? "—", valor: Number(r.valor),
+      data: r.data_vencimento, projetado: true,
+    })),
+    ...contasPagarPagas.map((c) => ({
+      id: c.id, tipo: "SAIDA" as const, descricao: c.descricao,
+      referencia: c.fornecedor ?? "—", valor: Number(c.valor_pago ?? 0),
+      data: c.data_pagamento!, projetado: false,
+    })),
+    ...contasPagarPendentes.map((c) => ({
+      id: `p-${c.id}`, tipo: "SAIDA" as const, descricao: c.descricao,
+      referencia: c.fornecedor ?? "—", valor: Number(c.valor),
+      data: c.data_vencimento, projetado: true,
     })),
   ].sort((a, b) => a.data.getTime() - b.data.getTime());
 

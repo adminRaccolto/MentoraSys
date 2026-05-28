@@ -216,7 +216,7 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
 
       {/* Navegação de mês + totais */}
       <div className="flex items-center justify-between">
-        {statusFiltro === "PENDENTE" || statusFiltro === "VENCIDO" ? (
+        {statusFiltro !== "PAGO" && statusFiltro !== "CANCELADO" ? (
           <span className="text-sm text-muted-foreground">Todos os meses</span>
         ) : (
           <div className="flex items-center gap-2">

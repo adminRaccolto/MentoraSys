@@ -8,7 +8,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 
 interface Lancamento {
   id: string; tipo: "ENTRADA" | "SAIDA"; descricao: string;
-  referencia: string; valor: number; data: Date;
+  referencia: string; valor: number; data: Date; projetado: boolean;
 }
 
 interface Props {
@@ -32,11 +32,18 @@ export default function FluxoCaixaClient({ lancamentos, anoMes }: Props) {
 
   const nomeMes = new Date(ano, mes - 1, 1).toLocaleString("pt-BR", { month: "long", year: "numeric" });
 
-  const totalEntradas = lancamentos.filter((l) => l.tipo === "ENTRADA").reduce((s, l) => s + l.valor, 0);
-  const totalSaidas = lancamentos.filter((l) => l.tipo === "SAIDA").reduce((s, l) => s + l.valor, 0);
+  const realizados = lancamentos.filter((l) => !l.projetado);
+  const projetados = lancamentos.filter((l) => l.projetado);
+
+  const totalEntradasRealizadas = realizados.filter((l) => l.tipo === "ENTRADA").reduce((s, l) => s + l.valor, 0);
+  const totalSaidasRealizadas = realizados.filter((l) => l.tipo === "SAIDA").reduce((s, l) => s + l.valor, 0);
+  const totalEntradasProjetadas = projetados.filter((l) => l.tipo === "ENTRADA").reduce((s, l) => s + l.valor, 0);
+  const totalSaidasProjetadas = projetados.filter((l) => l.tipo === "SAIDA").reduce((s, l) => s + l.valor, 0);
+
+  const totalEntradas = totalEntradasRealizadas + totalEntradasProjetadas;
+  const totalSaidas = totalSaidasRealizadas + totalSaidasProjetadas;
   const saldo = totalEntradas - totalSaidas;
 
-  // Saldo acumulado por linha
   let acumulado = 0;
   const linhas = lancamentos.map((l) => {
     acumulado += l.tipo === "ENTRADA" ? l.valor : -l.valor;
@@ -66,10 +73,20 @@ export default function FluxoCaixaClient({ lancamentos, anoMes }: Props) {
         <div className="rounded-lg border bg-card p-4">
           <p className="text-xs text-muted-foreground mb-1">Total Entradas</p>
           <p className="text-xl font-bold text-primary">{formatBRL(totalEntradas)}</p>
+          {totalEntradasProjetadas > 0 && (
+            <p className="text-xs text-muted-foreground mt-1">
+              {formatBRL(totalEntradasRealizadas)} realizado · {formatBRL(totalEntradasProjetadas)} projetado
+            </p>
+          )}
         </div>
         <div className="rounded-lg border bg-card p-4">
           <p className="text-xs text-muted-foreground mb-1">Total Saídas</p>
           <p className="text-xl font-bold text-orange-600">{formatBRL(totalSaidas)}</p>
+          {totalSaidasProjetadas > 0 && (
+            <p className="text-xs text-muted-foreground mt-1">
+              {formatBRL(totalSaidasRealizadas)} realizado · {formatBRL(totalSaidasProjetadas)} projetado
+            </p>
+          )}
         </div>
         <div className="rounded-lg border bg-card p-4">
           <p className="text-xs text-muted-foreground mb-1">Saldo do Período</p>
@@ -101,16 +118,21 @@ export default function FluxoCaixaClient({ lancamentos, anoMes }: Props) {
               </TableRow>
             )}
             {linhas.map((l) => (
-              <TableRow key={`${l.tipo}-${l.id}`}>
+              <TableRow key={l.id} className={l.projetado ? "opacity-60" : ""}>
                 <TableCell className="text-muted-foreground text-sm">
                   {new Date(l.data).toLocaleDateString("pt-BR")}
                 </TableCell>
                 <TableCell>
-                  {l.tipo === "ENTRADA" ? (
-                    <Badge variant="default" className="text-xs bg-green-600 hover:bg-green-600">ENTRADA</Badge>
-                  ) : (
-                    <Badge variant="destructive" className="text-xs">SAÍDA</Badge>
-                  )}
+                  <div className="flex items-center gap-1.5">
+                    {l.tipo === "ENTRADA" ? (
+                      <Badge variant="default" className="text-xs bg-green-600 hover:bg-green-600">ENTRADA</Badge>
+                    ) : (
+                      <Badge variant="destructive" className="text-xs">SAÍDA</Badge>
+                    )}
+                    {l.projetado && (
+                      <span className="text-xs text-muted-foreground italic">projetado</span>
+                    )}
+                  </div>
                 </TableCell>
                 <TableCell className="font-medium">{l.descricao}</TableCell>
                 <TableCell className="text-muted-foreground text-sm">{l.referencia}</TableCell>
