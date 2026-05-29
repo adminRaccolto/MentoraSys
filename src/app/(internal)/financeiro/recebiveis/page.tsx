@@ -27,6 +27,7 @@ export default async function RecebiveisPage({ searchParams }: Props) {
         cliente: { select: { id: true, nome: true } },
         contrato: { select: { id: true, titulo: true, numero_contrato: true } },
         plano_contas: { select: { id: true, nome: true } },
+        boleto: { select: { id: true, status: true, linha_digitavel: true, url_boleto: true, url_fatura: true } },
       },
       orderBy: { data_vencimento: "asc" },
     }),

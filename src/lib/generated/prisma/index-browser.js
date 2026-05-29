@@ -579,6 +579,33 @@ exports.Prisma.NotaFiscalScalarFieldEnum = {
   data_vencimento: 'data_vencimento',
   observacoes: 'observacoes',
   criado_em: 'criado_em',
+  atualizado_em: 'atualizado_em',
+  nfsio_id: 'nfsio_id',
+  numero_nfse: 'numero_nfse',
+  codigo_servico: 'codigo_servico',
+  aliquota_iss: 'aliquota_iss',
+  pdf_url: 'pdf_url',
+  xml_url: 'xml_url',
+  email_enviado: 'email_enviado',
+  email_enviado_em: 'email_enviado_em'
+};
+
+exports.Prisma.BoletoScalarFieldEnum = {
+  id: 'id',
+  empresa_id: 'empresa_id',
+  recebivel_id: 'recebivel_id',
+  cliente_id: 'cliente_id',
+  asaas_id: 'asaas_id',
+  asaas_customer_id: 'asaas_customer_id',
+  status: 'status',
+  valor: 'valor',
+  vencimento: 'vencimento',
+  linha_digitavel: 'linha_digitavel',
+  codigo_barras: 'codigo_barras',
+  url_boleto: 'url_boleto',
+  url_fatura: 'url_fatura',
+  nosso_numero: 'nosso_numero',
+  criado_em: 'criado_em',
   atualizado_em: 'atualizado_em'
 };
 
@@ -786,6 +813,7 @@ exports.Prisma.ModelName = {
   RegistroAuditoria: 'RegistroAuditoria',
   Notificacao: 'Notificacao',
   NotaFiscal: 'NotaFiscal',
+  Boleto: 'Boleto',
   Diagnostico: 'Diagnostico',
   TokenPortal: 'TokenPortal'
 };

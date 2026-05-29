@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Plus, ArrowDownCircle, Trash2, CheckCircle, Receipt, Undo2 } from "lucide-react";
+import { Plus, ArrowDownCircle, Trash2, CheckCircle, Receipt, Undo2, FileText, RefreshCw, XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -17,6 +17,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { criarRecebivel, baixarRecebivel, excluirRecebivel, gerarParcelasContrato, estornarRecebivel, baixarLoteRecebiveis } from "@/actions/recebiveis";
+import { gerarBoleto, consultarBoleto, cancelarBoleto } from "@/actions/boletos";
 
 type Status = "PENDENTE" | "PARCIAL" | "PAGO" | "VENCIDO" | "CANCELADO";
 
@@ -59,6 +60,11 @@ type FormCreate = z.input<typeof schemaCreate>;
 type FormBaixar = z.input<typeof schemaBaixar>;
 type FormParcelas = z.input<typeof schemaParcelas>;
 
+interface Boleto {
+  id: string; status: string; linha_digitavel: string | null;
+  url_boleto: string | null; url_fatura: string | null;
+}
+
 interface Recebivel {
   id: string; descricao: string; valor: string | number; data_vencimento: Date;
   status: Status; data_pagamento: Date | null; valor_pago: string | number | null;
@@ -66,6 +72,7 @@ interface Recebivel {
   cliente: { id: string; nome: string } | null;
   contrato: { id: string; titulo: string; numero_contrato: string | null } | null;
   plano_contas: { id: string; nome: string } | null;
+  boleto: Boleto | null;
 }
 
 interface Contrato {
@@ -217,6 +224,36 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
         setModalLote(false);
         toast.success(`${res.data.qtd} lançamento(s) baixado(s)`);
       } catch (e: unknown) { toast.error(e instanceof Error ? e.message : "Erro na baixa em lote"); }
+    });
+  };
+
+  const handleGerarBoleto = (id: string) => {
+    startTransition(async () => {
+      try {
+        const res = await gerarBoleto(id);
+        setRecebiveis(prev => prev.map(r => r.id === id ? { ...r, boleto: { id: res.data.id, status: res.data.status, linha_digitavel: res.data.linha_digitavel, url_boleto: res.data.url_boleto, url_fatura: res.data.url_fatura } } : r));
+        toast.success("Boleto gerado com sucesso");
+      } catch (e: unknown) { toast.error(e instanceof Error ? e.message : "Erro ao gerar boleto"); }
+    });
+  };
+
+  const handleConsultarBoleto = (boletoId: string, recebivelId: string) => {
+    startTransition(async () => {
+      try {
+        const res = await consultarBoleto(boletoId);
+        setRecebiveis(prev => prev.map(r => r.id === recebivelId ? { ...r, boleto: { ...r.boleto!, status: res.data.status, url_boleto: res.data.url_boleto, url_fatura: res.data.url_fatura } } : r));
+        toast.success(`Status: ${res.data.status}`);
+      } catch (e: unknown) { toast.error(e instanceof Error ? e.message : "Erro"); }
+    });
+  };
+
+  const handleCancelarBoleto = (boletoId: string, recebivelId: string) => {
+    startTransition(async () => {
+      try {
+        await cancelarBoleto(boletoId);
+        setRecebiveis(prev => prev.map(r => r.id === recebivelId ? { ...r, boleto: null } : r));
+        toast.success("Boleto cancelado");
+      } catch (e: unknown) { toast.error(e instanceof Error ? e.message : "Erro"); }
     });
   };
 
@@ -384,6 +421,44 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
                         >
                           <Receipt className="size-3.5" />
                         </Button>
+                      )}
+                      {/* Boleto */}
+                      {!r.boleto && (r.status === "PENDENTE" || r.status === "PARCIAL") && (
+                        <Button
+                          size="icon" variant="ghost" className="size-7 text-blue-600 hover:text-blue-600"
+                          title="Gerar boleto (Asaas)"
+                          onClick={() => handleGerarBoleto(r.id)}
+                          disabled={isPending}
+                        >
+                          <FileText className="size-3.5" />
+                        </Button>
+                      )}
+                      {r.boleto && (
+                        <>
+                          {r.boleto.url_fatura && (
+                            <a href={r.boleto.url_fatura} target="_blank" rel="noopener noreferrer">
+                              <Button size="icon" variant="ghost" className="size-7 text-blue-600 hover:text-blue-600" title="Ver boleto">
+                                <FileText className="size-3.5" />
+                              </Button>
+                            </a>
+                          )}
+                          <Button
+                            size="icon" variant="ghost" className="size-7 text-muted-foreground hover:text-foreground"
+                            title="Atualizar status boleto"
+                            onClick={() => handleConsultarBoleto(r.boleto!.id, r.id)}
+                            disabled={isPending}
+                          >
+                            <RefreshCw className="size-3.5" />
+                          </Button>
+                          <Button
+                            size="icon" variant="ghost" className="size-7 text-destructive hover:text-destructive"
+                            title="Cancelar boleto"
+                            onClick={() => handleCancelarBoleto(r.boleto!.id, r.id)}
+                            disabled={isPending}
+                          >
+                            <XCircle className="size-3.5" />
+                          </Button>
+                        </>
                       )}
                       {r.status !== "PAGO" && (
                         <Button

@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -15,6 +16,9 @@ import {
   XCircle,
   Trash2,
   ArrowDownCircle,
+  FileDown,
+  Mail,
+  RefreshCw,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -43,11 +47,17 @@ import {
   cancelarNota,
   excluirNota,
   gerarRecebivel,
+  enviarNotaPorEmail,
+  consultarStatusNfse,
 } from "@/actions/faturamento";
 
 interface Nota {
   id: string;
   numero: string | null;
+  numero_nfse: string | null;
+  nfsio_id: string | null;
+  pdf_url: string | null;
+  email_enviado: boolean;
   competencia: string;
   valor: number;
   descricao: string;
@@ -93,6 +103,9 @@ const schemaEmitir = z.object({
   numero: z.string().optional(),
   data_emissao: z.string().min(1, "Data de emissão obrigatória"),
   data_vencimento: z.string().optional(),
+  usar_nfsio: z.boolean().optional(),
+  codigo_servico: z.string().optional(),
+  aliquota_iss: z.coerce.number().optional(),
 });
 type FormEmitir = z.input<typeof schemaEmitir>;
 
@@ -232,6 +245,26 @@ export default function FaturamentoClient({
       router.refresh();
     });
   });
+
+  const handleEnviarEmail = (id: string) => {
+    startTransition(async () => {
+      try {
+        await enviarNotaPorEmail(id);
+        toast.success("E-mail enviado com sucesso");
+        router.refresh();
+      } catch (e: unknown) { toast.error(e instanceof Error ? e.message : "Erro ao enviar e-mail"); }
+    });
+  };
+
+  const handleConsultarNfse = (id: string) => {
+    startTransition(async () => {
+      try {
+        const res = await consultarStatusNfse(id);
+        toast.success(`NFS-e status: ${res.status}`);
+        router.refresh();
+      } catch (e: unknown) { toast.error(e instanceof Error ? e.message : "Erro ao consultar NFS-e"); }
+    });
+  };
 
   const handleConfirmar = () => {
     if (!confirmarAcao) return;
@@ -439,6 +472,33 @@ export default function FaturamentoClient({
                             <ArrowDownCircle className="size-3.5 mr-1" />
                             Recebível
                           </Button>
+                          {nota.pdf_url && (
+                            <a href={nota.pdf_url} target="_blank" rel="noopener noreferrer">
+                              <Button size="sm" variant="ghost" className="h-7 px-2 text-xs text-primary hover:text-primary">
+                                <FileDown className="size-3.5 mr-1" /> PDF
+                              </Button>
+                            </a>
+                          )}
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            className={`h-7 px-2 text-xs ${nota.email_enviado ? "text-green-600" : "text-muted-foreground hover:text-foreground"}`}
+                            disabled={isPending}
+                            title={nota.email_enviado ? "E-mail já enviado" : "Enviar por e-mail"}
+                            onClick={() => handleEnviarEmail(nota.id)}
+                          >
+                            <Mail className="size-3.5 mr-1" />
+                            {nota.email_enviado ? "Reenviare-mail" : "E-mail"}
+                          </Button>
+                          {nota.nfsio_id && (
+                            <Button
+                              size="sm" variant="ghost" className="h-7 px-2 text-xs text-muted-foreground hover:text-foreground"
+                              disabled={isPending} title="Atualizar status NFS-e"
+                              onClick={() => handleConsultarNfse(nota.id)}
+                            >
+                              <RefreshCw className="size-3.5" />
+                            </Button>
+                          )}
                         </>
                       )}
                       {nota.status !== "PAGA" && nota.status !== "CANCELADA" && (
@@ -594,6 +654,34 @@ export default function FaturamentoClient({
                 <Input type="date" {...formEmitir.register("data_vencimento")} />
               </div>
             </div>
+
+            {/* NFSe.io */}
+            <div className="rounded-md border p-3 space-y-3">
+              <div className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  id="usar_nfsio"
+                  className="accent-primary"
+                  {...formEmitir.register("usar_nfsio")}
+                />
+                <label htmlFor="usar_nfsio" className="text-sm font-medium cursor-pointer">
+                  Emitir NFS-e via NFSe.io
+                </label>
+              </div>
+              {formEmitir.watch("usar_nfsio") && (
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="space-y-1">
+                    <Label className="text-xs">Código do serviço (LC 116)</Label>
+                    <Input {...formEmitir.register("codigo_servico")} placeholder="Ex.: 6.02" className="h-8 text-sm" />
+                  </div>
+                  <div className="space-y-1">
+                    <Label className="text-xs">Alíquota ISS (%)</Label>
+                    <Input {...formEmitir.register("aliquota_iss")} type="number" step="0.01" placeholder="5.00" className="h-8 text-sm" />
+                  </div>
+                </div>
+              )}
+            </div>
+
             <DialogFooter>
               <Button type="button" variant="outline" onClick={() => setModalEmitir(null)}>
                 Cancelar

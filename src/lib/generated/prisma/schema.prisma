@@ -49,6 +49,7 @@ model Empresa {
   plano_contas              PlanoDeContas[]
   contas_bancarias          ContaBancaria[]
   transferencias_tesouraria TransferenciaTesouraria[]
+  boletos                   Boleto[]
   recebiveis                Recebivel[]
   contas_pagar              ContaPagar[]
   modelos_documento         ModeloDocumento[]
@@ -262,6 +263,7 @@ model Cliente {
   projetos      Projeto[]
   tokens_portal TokenPortal[]
   recebiveis    Recebivel[]
+  boletos       Boleto[]
   eventos       Evento[]
   notas_fiscais NotaFiscal[]
   diagnosticos  Diagnostico[]
@@ -731,6 +733,7 @@ model Recebivel {
   plano_contas   PlanoDeContas? @relation(fields: [plano_contas_id], references: [id])
   conta_bancaria ContaBancaria? @relation(fields: [conta_bancaria_id], references: [id])
   criador        Usuario?       @relation("RecebiveisCriados", fields: [criado_por], references: [id])
+  boleto         Boleto?
 
   @@map("recebiveis")
 }
@@ -881,11 +884,45 @@ model NotaFiscal {
   criado_em       DateTime   @default(now())
   atualizado_em   DateTime   @updatedAt
 
+  nfsio_id         String?
+  numero_nfse      String?
+  codigo_servico   String?
+  aliquota_iss     Decimal?  @db.Decimal(5, 2)
+  pdf_url          String?
+  xml_url          String?
+  email_enviado    Boolean   @default(false)
+  email_enviado_em DateTime?
+
   empresa  Empresa   @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
   cliente  Cliente   @relation(fields: [cliente_id], references: [id])
   contrato Contrato? @relation(fields: [contrato_id], references: [id])
 
   @@map("notas_fiscais")
+}
+
+model Boleto {
+  id                String   @id @default(cuid())
+  empresa_id        String
+  recebivel_id      String   @unique
+  cliente_id        String?
+  asaas_id          String?
+  asaas_customer_id String?
+  status            String   @default("PENDENTE")
+  valor             Decimal  @db.Decimal(12, 2)
+  vencimento        DateTime
+  linha_digitavel   String?
+  codigo_barras     String?
+  url_boleto        String?
+  url_fatura        String?
+  nosso_numero      String?
+  criado_em         DateTime @default(now())
+  atualizado_em     DateTime @updatedAt
+
+  empresa   Empresa   @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  recebivel Recebivel @relation(fields: [recebivel_id], references: [id], onDelete: Cascade)
+  cliente   Cliente?  @relation(fields: [cliente_id], references: [id])
+
+  @@map("boletos")
 }
 
 // ─── FASE 8: DIAGRAMAS & DIAGNÓSTICOS ────────────────────────────────────────

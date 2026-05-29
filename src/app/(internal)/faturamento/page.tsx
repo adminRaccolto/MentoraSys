@@ -70,6 +70,10 @@ export default async function FaturamentoPage({
         data_vencimento: n.data_vencimento?.toISOString() ?? null,
         criado_em: n.criado_em.toISOString(),
         atualizado_em: n.atualizado_em.toISOString(),
+        numero_nfse: n.numero_nfse ?? null,
+        nfsio_id: n.nfsio_id ?? null,
+        pdf_url: n.pdf_url ?? null,
+        email_enviado: n.email_enviado,
       }))}
       clientes={clientes}
       contratos={contratos}
