@@ -107,4 +107,3 @@ export async function excluirPerfil(id: string) {
   return { ok: true as const };
 }
 
-export { TODOS_RECURSOS, TODAS_ACOES };
