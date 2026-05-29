@@ -58,7 +58,7 @@ const NAV_SISTEMA = [
 const NAV_FINANCEIRO = [
   { label: "Visão Geral",    href: "/financeiro",                 icon: DollarSign },
   { label: "Faturamento",    href: "/faturamento",                icon: Receipt },
-  { label: "Recebíveis",     href: "/financeiro/recebiveis",      icon: ArrowDownCircle },
+  { label: "Contas a Receber", href: "/financeiro/recebiveis",     icon: ArrowDownCircle },
   { label: "Contas a Pagar", href: "/financeiro/contas-a-pagar",  icon: ArrowUpCircle },
   { label: "Fluxo de Caixa", href: "/financeiro/fluxo-de-caixa",  icon: BarChart2 },
   { label: "Plano de Contas", href: "/plano-contas",              icon: ListTree },

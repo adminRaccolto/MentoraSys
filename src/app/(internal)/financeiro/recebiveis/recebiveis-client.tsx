@@ -125,7 +125,7 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
       try {
         const res = await criarRecebivel({ ...data, valor: Number(data.valor) });
         setRecebiveis((prev) => [...prev, res.data as unknown as Recebivel]);
-        toast.success("Recebível criado");
+        toast.success("Lançamento criado");
         setModalNovo(false);
         formNovo.reset();
       } catch { toast.error("Erro ao criar recebível"); }
@@ -140,7 +140,7 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
       try {
         await baixarRecebivel(modalBaixar.id, { ...data, valor_pago: Number(data.valor_pago) });
         setRecebiveis((prev) => prev.map((r) => r.id === modalBaixar.id ? { ...r, status: "PAGO", data_pagamento: new Date(data.data_pagamento), valor_pago: data.valor_pago, forma_pagamento: data.forma_pagamento } : r));
-        toast.success("Recebível baixado");
+        toast.success("Baixa registrada");
         setModalBaixar(null);
         formBaixar.reset();
       } catch { toast.error("Erro ao baixar recebível"); }
@@ -178,7 +178,7 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
       try {
         await excluirRecebivel(excluindo.id);
         setRecebiveis((prev) => prev.filter((r) => r.id !== excluindo.id));
-        toast.success("Recebível excluído");
+        toast.success("Lançamento excluído");
         setExcluindo(null);
       } catch (e: unknown) {
         toast.error(e instanceof Error ? e.message : "Erro ao excluir");
@@ -199,14 +199,14 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <ArrowDownCircle className="size-5 text-primary" />
-          <h1 className="text-xl font-semibold">Recebíveis</h1>
+          <h1 className="text-xl font-semibold">Contas a Receber</h1>
         </div>
         <div className="flex gap-2">
           <Button variant="outline" size="sm" onClick={() => { formParcelas.reset(); setModalParcelas(true); }}>
             Gerar parcelas de contrato
           </Button>
           <Button size="sm" onClick={() => { formNovo.reset(); setModalNovo(true); }}>
-            <Plus className="size-4 mr-1.5" /> Novo recebível
+            <Plus className="size-4 mr-1.5" /> Nova conta a receber
           </Button>
         </div>
       </div>
