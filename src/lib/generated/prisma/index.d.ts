@@ -293,6 +293,7 @@ export type TipoConta = (typeof TipoConta)[keyof typeof TipoConta]
 
 export const StatusRecebivel: {
   PENDENTE: 'PENDENTE',
+  PARCIAL: 'PARCIAL',
   PAGO: 'PAGO',
   VENCIDO: 'VENCIDO',
   CANCELADO: 'CANCELADO'
@@ -303,6 +304,7 @@ export type StatusRecebivel = (typeof StatusRecebivel)[keyof typeof StatusRecebi
 
 export const StatusContaPagar: {
   PENDENTE: 'PENDENTE',
+  PARCIAL: 'PARCIAL',
   PAGO: 'PAGO',
   VENCIDO: 'VENCIDO',
   CANCELADO: 'CANCELADO'

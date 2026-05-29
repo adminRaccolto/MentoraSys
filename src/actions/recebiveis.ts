@@ -131,10 +131,12 @@ export async function baixarRecebivel(id: string, input: InputBaixar) {
   if (recebivel.status === "PAGO") throw new Error("Recebível já foi baixado");
   if (recebivel.status === "CANCELADO") throw new Error("Recebível cancelado não pode ser baixado");
 
+  const novoStatus = data.valor_pago < Number(recebivel.valor) ? "PARCIAL" : "PAGO";
+
   const updated = await prisma.recebivel.update({
     where: { id },
     data: {
-      status: "PAGO",
+      status: novoStatus,
       data_pagamento: new Date(data.data_pagamento),
       valor_pago: data.valor_pago,
       forma_pagamento: data.forma_pagamento,
@@ -142,10 +144,67 @@ export async function baixarRecebivel(id: string, input: InputBaixar) {
     },
   });
 
-  await registrar({ recurso: "recebiveis", acao: "baixar", registroId: id });
+  await registrar({ recurso: "recebiveis", acao: "baixar", registroId: id, detalhes: { status: novoStatus, valor_pago: data.valor_pago } });
   revalidatePath("/financeiro/recebiveis");
   revalidatePath("/financeiro");
   return { data: { ...updated, valor: Number(updated.valor), valor_pago: updated.valor_pago != null ? Number(updated.valor_pago) : null } };
+}
+
+export async function estornarRecebivel(id: string) {
+  await verificarPermissao("financeiro", "editar");
+  const empresaId = await obterEmpresaAtiva();
+
+  const recebivel = await prisma.recebivel.findFirst({ where: { id, empresa_id: empresaId } });
+  if (!recebivel) throw new Error("Recebível não encontrado");
+  if (recebivel.status !== "PAGO" && recebivel.status !== "PARCIAL") throw new Error("Apenas lançamentos pagos ou parciais podem ser estornados");
+
+  const vencimento = recebivel.data_vencimento;
+  const novoStatus = vencimento < new Date() ? "VENCIDO" : "PENDENTE";
+
+  const updated = await prisma.recebivel.update({
+    where: { id },
+    data: { status: novoStatus, data_pagamento: null, valor_pago: null, forma_pagamento: null },
+  });
+
+  await registrar({ recurso: "recebiveis", acao: "estornar", registroId: id });
+  revalidatePath("/financeiro/recebiveis");
+  revalidatePath("/financeiro");
+  return { data: { ...updated, valor: Number(updated.valor), valor_pago: null } };
+}
+
+const schemaBaixarLote = z.object({
+  data_pagamento: z.string().min(1, "Data obrigatória"),
+  forma_pagamento: z.string().min(1, "Forma obrigatória"),
+  conta_bancaria_id: z.string().optional(),
+});
+type InputBaixarLote = z.input<typeof schemaBaixarLote>;
+
+export async function baixarLoteRecebiveis(ids: string[], input: InputBaixarLote) {
+  await verificarPermissao("financeiro", "editar");
+  const empresaId = await obterEmpresaAtiva();
+  const data = schemaBaixarLote.parse(input);
+
+  const recebiveis = await prisma.recebivel.findMany({ where: { id: { in: ids }, empresa_id: empresaId } });
+  const elegíveis = recebiveis.filter(r => r.status !== "PAGO" && r.status !== "CANCELADO");
+  if (elegíveis.length === 0) throw new Error("Nenhum lançamento elegível para baixa");
+
+  await Promise.all(elegíveis.map(r =>
+    prisma.recebivel.update({
+      where: { id: r.id },
+      data: {
+        status: "PAGO",
+        data_pagamento: new Date(data.data_pagamento),
+        valor_pago: r.valor,
+        forma_pagamento: data.forma_pagamento,
+        conta_bancaria_id: data.conta_bancaria_id || null,
+      },
+    })
+  ));
+
+  await registrar({ recurso: "recebiveis", acao: "baixar_lote", detalhes: { ids: elegíveis.map(r => r.id), qtd: elegíveis.length } });
+  revalidatePath("/financeiro/recebiveis");
+  revalidatePath("/financeiro");
+  return { data: { qtd: elegíveis.length } };
 }
 
 export async function editarRecebivel(id: string, input: InputCreate) {

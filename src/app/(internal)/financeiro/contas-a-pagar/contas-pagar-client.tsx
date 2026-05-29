@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Plus, ArrowUpCircle, Trash2, CheckCircle } from "lucide-react";
+import { Plus, ArrowUpCircle, Trash2, CheckCircle, Undo2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,14 +16,15 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { criarContaPagar, baixarContaPagar, excluirContaPagar } from "@/actions/contas-pagar";
+import { criarContaPagar, baixarContaPagar, excluirContaPagar, estornarContaPagar, baixarLoteContasPagar } from "@/actions/contas-pagar";
 
-type Status = "PENDENTE" | "PAGO" | "VENCIDO" | "CANCELADO";
+type Status = "PENDENTE" | "PARCIAL" | "PAGO" | "VENCIDO" | "CANCELADO";
 
 const STATUS_CONFIG: Record<Status, { label: string; variant: "default" | "secondary" | "outline" | "destructive" }> = {
-  PENDENTE: { label: "Pendente", variant: "secondary" },
-  PAGO: { label: "Pago", variant: "default" },
-  VENCIDO: { label: "Vencido", variant: "destructive" },
+  PENDENTE:  { label: "Pendente",  variant: "secondary" },
+  PARCIAL:   { label: "Parcial",   variant: "outline" },
+  PAGO:      { label: "Pago",      variant: "default" },
+  VENCIDO:   { label: "Vencido",   variant: "destructive" },
   CANCELADO: { label: "Cancelado", variant: "outline" },
 };
 
@@ -79,6 +80,9 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
   const [modalBaixar, setModalBaixar] = useState<ContaPagar | null>(null);
   const [excluindo, setExcluindo] = useState<ContaPagar | null>(null);
   const [isPending, startTransition] = useTransition();
+  const [selecionados, setSelecionados] = useState<Set<string>>(new Set());
+  const [modalLote, setModalLote] = useState(false);
+  const [formLoteData, setFormLoteData] = useState({ data_pagamento: new Date().toISOString().split("T")[0], forma_pagamento: "", conta_bancaria_id: "" });
   const [filtroDe, setFiltroDe] = useState(de);
   const [filtroAte, setFiltroAte] = useState(ate);
 
@@ -109,7 +113,8 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
     startTransition(async () => {
       try {
         await baixarContaPagar(modalBaixar.id, { ...data, valor_pago: Number(data.valor_pago) });
-        setContas((prev) => prev.map((c) => c.id === modalBaixar.id ? { ...c, status: "PAGO", data_pagamento: new Date(data.data_pagamento), valor_pago: data.valor_pago, forma_pagamento: data.forma_pagamento } : c));
+        const novoStatus: Status = Number(data.valor_pago) < Number(modalBaixar.valor) ? "PARCIAL" : "PAGO";
+        setContas((prev) => prev.map((c) => c.id === modalBaixar.id ? { ...c, status: novoStatus, data_pagamento: new Date(data.data_pagamento), valor_pago: data.valor_pago, forma_pagamento: data.forma_pagamento } : c));
         toast.success("Conta baixada");
         setModalBaixar(null);
         formBaixar.reset();
@@ -129,9 +134,47 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
     });
   };
 
+  const handleEstornar = (id: string) => {
+    startTransition(async () => {
+      try {
+        const res = await estornarContaPagar(id);
+        setContas(prev => prev.map(c => c.id === id ? { ...c, status: res.data.status as Status, data_pagamento: null, valor_pago: null, forma_pagamento: null } : c));
+        toast.success("Estorno realizado");
+      } catch (e: unknown) { toast.error(e instanceof Error ? e.message : "Erro ao estornar"); }
+    });
+  };
+
+  const handleBaixarLote = () => {
+    if (!formLoteData.forma_pagamento) { toast.error("Informe a forma de pagamento"); return; }
+    startTransition(async () => {
+      try {
+        const res = await baixarLoteContasPagar(Array.from(selecionados), {
+          data_pagamento: formLoteData.data_pagamento,
+          forma_pagamento: formLoteData.forma_pagamento,
+          conta_bancaria_id: formLoteData.conta_bancaria_id || undefined,
+        });
+        setContas(prev => prev.map(c =>
+          selecionados.has(c.id) ? { ...c, status: "PAGO" as Status, forma_pagamento: formLoteData.forma_pagamento } : c
+        ));
+        setSelecionados(new Set());
+        setModalLote(false);
+        toast.success(`${res.data.qtd} conta(s) baixada(s)`);
+      } catch (e: unknown) { toast.error(e instanceof Error ? e.message : "Erro na baixa em lote"); }
+    });
+  };
+
+  const toggleSelecionado = (id: string) => setSelecionados(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
+  const elegiveisLote = filtradas.filter(c => c.status === "PENDENTE" || c.status === "VENCIDO" || c.status === "PARCIAL");
+  const todosElegivelsSelecionados = elegiveisLote.length > 0 && elegiveisLote.every(c => selecionados.has(c.id));
+  const toggleTodos = () => {
+    if (todosElegivelsSelecionados) setSelecionados(new Set());
+    else setSelecionados(new Set(elegiveisLote.map(c => c.id)));
+  };
+
   const tabs = [
     { key: "TODOS", label: "Todos" }, { key: "PENDENTE", label: "Pendente" },
-    { key: "VENCIDO", label: "Vencido" }, { key: "PAGO", label: "Pago" }, { key: "CANCELADO", label: "Cancelado" },
+    { key: "PARCIAL", label: "Parcial" }, { key: "VENCIDO", label: "Vencido" },
+    { key: "PAGO", label: "Pago" }, { key: "CANCELADO", label: "Cancelado" },
   ];
 
   return (
@@ -172,10 +215,24 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
         ))}
       </div>
 
+      {/* Toolbar lote */}
+      {selecionados.size > 0 && (
+        <div className="flex items-center gap-3 px-4 py-2 bg-primary/5 border border-primary/20 rounded-lg">
+          <span className="text-sm font-medium text-primary">{selecionados.size} selecionada(s)</span>
+          <Button size="sm" className="h-7 text-xs" onClick={() => setModalLote(true)}>
+            <CheckCircle className="size-3 mr-1" /> Baixar selecionadas
+          </Button>
+          <button className="text-xs text-muted-foreground hover:text-foreground ml-auto" onClick={() => setSelecionados(new Set())}>Limpar seleção</button>
+        </div>
+      )}
+
       <div className="rounded-lg border bg-card overflow-hidden">
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead className="w-8">
+                <input type="checkbox" className="accent-primary" checked={todosElegivelsSelecionados} onChange={toggleTodos} disabled={elegiveisLote.length === 0} />
+              </TableHead>
               <TableHead>Descrição</TableHead>
               <TableHead>Fornecedor</TableHead>
               <TableHead>Categoria</TableHead>
@@ -183,20 +240,24 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
               <TableHead>Vencimento</TableHead>
               <TableHead>Status</TableHead>
               <TableHead>Forma</TableHead>
-              <TableHead className="w-20" />
+              <TableHead className="w-24" />
             </TableRow>
           </TableHeader>
           <TableBody>
             {filtradas.length === 0 && (
               <TableRow>
-                <TableCell colSpan={8} className="text-center text-muted-foreground py-10">Nenhuma conta encontrada</TableCell>
+                <TableCell colSpan={9} className="text-center text-muted-foreground py-10">Nenhuma conta encontrada</TableCell>
               </TableRow>
             )}
             {filtradas.map((c) => {
               const vencido = isVencido(c.data_vencimento, c.status);
               const cfg = STATUS_CONFIG[vencido ? "VENCIDO" : c.status];
+              const elegivel = c.status === "PENDENTE" || c.status === "VENCIDO" || c.status === "PARCIAL";
               return (
-                <TableRow key={c.id}>
+                <TableRow key={c.id} className={selecionados.has(c.id) ? "bg-primary/5" : ""}>
+                  <TableCell>
+                    {elegivel && <input type="checkbox" className="accent-primary" checked={selecionados.has(c.id)} onChange={() => toggleSelecionado(c.id)} />}
+                  </TableCell>
                   <TableCell className="font-medium">{c.descricao}</TableCell>
                   <TableCell className="text-muted-foreground text-sm">{c.fornecedor ?? "—"}</TableCell>
                   <TableCell className="text-muted-foreground text-sm">{c.plano_contas?.nome ?? "—"}</TableCell>
@@ -204,14 +265,21 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
                   <TableCell className={`text-sm ${vencido ? "text-destructive font-medium" : "text-muted-foreground"}`}>
                     {new Date(c.data_vencimento).toLocaleDateString("pt-BR")}
                   </TableCell>
-                  <TableCell><Badge variant={cfg.variant}>{cfg.label}</Badge></TableCell>
+                  <TableCell>
+                    <Badge variant={cfg.variant} className={c.status === "PARCIAL" ? "border-amber-400 text-amber-700" : ""}>{cfg.label}</Badge>
+                  </TableCell>
                   <TableCell className="text-muted-foreground text-sm">{c.forma_pagamento ?? "—"}</TableCell>
                   <TableCell>
                     <div className="flex gap-1">
-                      {c.status === "PENDENTE" && (
+                      {(c.status === "PENDENTE" || c.status === "PARCIAL") && (
                         <Button size="icon" variant="ghost" className="size-7 text-primary hover:text-primary" title="Baixar"
                           onClick={() => { formBaixar.setValue("valor_pago", String(Number(c.valor).toFixed(2))); formBaixar.setValue("data_pagamento", new Date().toISOString().split("T")[0]); setModalBaixar(c); }}>
                           <CheckCircle className="size-3.5" />
+                        </Button>
+                      )}
+                      {(c.status === "PAGO" || c.status === "PARCIAL") && (
+                        <Button size="icon" variant="ghost" className="size-7 text-amber-600 hover:text-amber-600" title="Estornar" onClick={() => handleEstornar(c.id)}>
+                          <Undo2 className="size-3.5" />
                         </Button>
                       )}
                       {c.status !== "PAGO" && (
@@ -227,6 +295,43 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
           </TableBody>
         </Table>
       </div>
+
+      {/* Modal baixa em lote */}
+      <Dialog open={modalLote} onOpenChange={setModalLote}>
+        <DialogContent className="max-w-sm">
+          <DialogHeader><DialogTitle>Baixar {selecionados.size} conta(s)</DialogTitle></DialogHeader>
+          <div className="space-y-3 py-2">
+            <p className="text-sm text-muted-foreground">Cada conta será baixada pelo seu valor integral.</p>
+            <div className="space-y-1">
+              <Label>Data de pagamento *</Label>
+              <Input type="date" value={formLoteData.data_pagamento} onChange={e => setFormLoteData(p => ({ ...p, data_pagamento: e.target.value }))} />
+            </div>
+            <div className="space-y-1">
+              <Label>Forma de pagamento *</Label>
+              <Select value={formLoteData.forma_pagamento} onValueChange={v => setFormLoteData(p => ({ ...p, forma_pagamento: v ?? "" }))}>
+                <SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
+                <SelectContent>
+                  {["PIX","Transferência","Boleto","Cartão","Dinheiro","Cheque"].map(f => <SelectItem key={f} value={f}>{f}</SelectItem>)}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="space-y-1">
+              <Label>Conta bancária</Label>
+              <Select value={formLoteData.conta_bancaria_id || "_none"} onValueChange={v => setFormLoteData(p => ({ ...p, conta_bancaria_id: !v || v === "_none" ? "" : v }))}>
+                <SelectTrigger><SelectValue placeholder="Nenhuma" /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="_none">Nenhuma</SelectItem>
+                  {contasBancarias.map(c => <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>)}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setModalLote(false)}>Cancelar</Button>
+            <Button onClick={handleBaixarLote} disabled={isPending}>Confirmar baixa</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       {/* Modal nova conta */}
       <Dialog open={modalNovo} onOpenChange={setModalNovo}>

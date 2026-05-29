@@ -708,6 +708,7 @@ exports.TipoConta = exports.$Enums.TipoConta = {
 
 exports.StatusRecebivel = exports.$Enums.StatusRecebivel = {
   PENDENTE: 'PENDENTE',
+  PARCIAL: 'PARCIAL',
   PAGO: 'PAGO',
   VENCIDO: 'VENCIDO',
   CANCELADO: 'CANCELADO'
@@ -715,6 +716,7 @@ exports.StatusRecebivel = exports.$Enums.StatusRecebivel = {
 
 exports.StatusContaPagar = exports.$Enums.StatusContaPagar = {
   PENDENTE: 'PENDENTE',
+  PARCIAL: 'PARCIAL',
   PAGO: 'PAGO',
   VENCIDO: 'VENCIDO',
   CANCELADO: 'CANCELADO'

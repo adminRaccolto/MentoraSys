@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Plus, ArrowDownCircle, Trash2, CheckCircle, Receipt } from "lucide-react";
+import { Plus, ArrowDownCircle, Trash2, CheckCircle, Receipt, Undo2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,15 +16,16 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { criarRecebivel, baixarRecebivel, excluirRecebivel, gerarParcelasContrato } from "@/actions/recebiveis";
+import { criarRecebivel, baixarRecebivel, excluirRecebivel, gerarParcelasContrato, estornarRecebivel, baixarLoteRecebiveis } from "@/actions/recebiveis";
 
-type Status = "PENDENTE" | "PAGO" | "VENCIDO" | "CANCELADO";
+type Status = "PENDENTE" | "PARCIAL" | "PAGO" | "VENCIDO" | "CANCELADO";
 
 const STATUS_CONFIG: Record<Status, { label: string; variant: "default" | "secondary" | "outline" | "destructive" }> = {
   PENDENTE: { label: "Pendente", variant: "secondary" },
-  PAGO: { label: "Pago", variant: "default" },
-  VENCIDO: { label: "Vencido", variant: "destructive" },
-  CANCELADO: { label: "Cancelado", variant: "outline" },
+  PARCIAL:  { label: "Parcial",  variant: "outline" },
+  PAGO:     { label: "Pago",     variant: "default" },
+  VENCIDO:  { label: "Vencido",  variant: "destructive" },
+  CANCELADO:{ label: "Cancelado",variant: "outline" },
 };
 
 const FORMAS = ["Dinheiro", "PIX", "TED", "Boleto", "Cartão de Crédito", "Cartão de Débito", "Cheque"];
@@ -106,6 +107,9 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
   const [modalRecibo, setModalRecibo] = useState<Recebivel | null>(null);
   const [excluindo, setExcluindo] = useState<Recebivel | null>(null);
   const [isPending, startTransition] = useTransition();
+  const [selecionados, setSelecionados] = useState<Set<string>>(new Set());
+  const [modalLote, setModalLote] = useState(false);
+  const [formLoteData, setFormLoteData] = useState({ data_pagamento: new Date().toISOString().split("T")[0], forma_pagamento: "", conta_bancaria_id: "" });
   const [filtroDe, setFiltroDe] = useState(de);
   const [filtroAte, setFiltroAte] = useState(ate);
 
@@ -139,7 +143,8 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
     startTransition(async () => {
       try {
         await baixarRecebivel(modalBaixar.id, { ...data, valor_pago: Number(data.valor_pago) });
-        setRecebiveis((prev) => prev.map((r) => r.id === modalBaixar.id ? { ...r, status: "PAGO", data_pagamento: new Date(data.data_pagamento), valor_pago: data.valor_pago, forma_pagamento: data.forma_pagamento } : r));
+        const novoStatus: Status = Number(data.valor_pago) < Number(modalBaixar.valor) ? "PARCIAL" : "PAGO";
+        setRecebiveis((prev) => prev.map((r) => r.id === modalBaixar.id ? { ...r, status: novoStatus, data_pagamento: new Date(data.data_pagamento), valor_pago: data.valor_pago, forma_pagamento: data.forma_pagamento } : r));
         toast.success("Baixa registrada");
         setModalBaixar(null);
         formBaixar.reset();
@@ -186,9 +191,47 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
     });
   };
 
+  const handleEstornar = (id: string) => {
+    startTransition(async () => {
+      try {
+        const res = await estornarRecebivel(id);
+        setRecebiveis(prev => prev.map(r => r.id === id ? { ...r, status: res.data.status as Status, data_pagamento: null, valor_pago: null, forma_pagamento: null } : r));
+        toast.success("Estorno realizado");
+      } catch (e: unknown) { toast.error(e instanceof Error ? e.message : "Erro ao estornar"); }
+    });
+  };
+
+  const handleBaixarLote = () => {
+    if (!formLoteData.forma_pagamento) { toast.error("Informe a forma de pagamento"); return; }
+    startTransition(async () => {
+      try {
+        const res = await baixarLoteRecebiveis(Array.from(selecionados), {
+          data_pagamento: formLoteData.data_pagamento,
+          forma_pagamento: formLoteData.forma_pagamento,
+          conta_bancaria_id: formLoteData.conta_bancaria_id || undefined,
+        });
+        setRecebiveis(prev => prev.map(r =>
+          selecionados.has(r.id) ? { ...r, status: "PAGO" as Status, forma_pagamento: formLoteData.forma_pagamento } : r
+        ));
+        setSelecionados(new Set());
+        setModalLote(false);
+        toast.success(`${res.data.qtd} lançamento(s) baixado(s)`);
+      } catch (e: unknown) { toast.error(e instanceof Error ? e.message : "Erro na baixa em lote"); }
+    });
+  };
+
+  const toggleSelecionado = (id: string) => setSelecionados(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
+  const elegiveisLote = statusFiltrados.filter(r => r.status === "PENDENTE" || r.status === "VENCIDO" || r.status === "PARCIAL");
+  const todosElegivelsSelecionados = elegiveisLote.length > 0 && elegiveisLote.every(r => selecionados.has(r.id));
+  const toggleTodos = () => {
+    if (todosElegivelsSelecionados) setSelecionados(new Set());
+    else setSelecionados(new Set(elegiveisLote.map(r => r.id)));
+  };
+
   const tabs: { key: string; label: string }[] = [
     { key: "TODOS", label: "Todos" },
     { key: "PENDENTE", label: "Pendente" },
+    { key: "PARCIAL", label: "Parcial" },
     { key: "VENCIDO", label: "Vencido" },
     { key: "PAGO", label: "Pago" },
     { key: "CANCELADO", label: "Cancelado" },
@@ -243,11 +286,27 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
         ))}
       </div>
 
+      {/* Toolbar de lote */}
+      {selecionados.size > 0 && (
+        <div className="flex items-center gap-3 px-4 py-2 bg-primary/5 border border-primary/20 rounded-lg">
+          <span className="text-sm font-medium text-primary">{selecionados.size} selecionado(s)</span>
+          <Button size="sm" className="h-7 text-xs" onClick={() => setModalLote(true)}>
+            <CheckCircle className="size-3 mr-1" /> Baixar selecionados
+          </Button>
+          <button className="text-xs text-muted-foreground hover:text-foreground ml-auto" onClick={() => setSelecionados(new Set())}>
+            Limpar seleção
+          </button>
+        </div>
+      )}
+
       {/* Tabela */}
       <div className="rounded-lg border bg-card overflow-hidden">
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead className="w-8">
+                <input type="checkbox" className="accent-primary" checked={todosElegivelsSelecionados} onChange={toggleTodos} disabled={elegiveisLote.length === 0} />
+              </TableHead>
               <TableHead>Descrição</TableHead>
               <TableHead>Cliente</TableHead>
               <TableHead>Contrato</TableHead>
@@ -255,13 +314,13 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
               <TableHead>Vencimento</TableHead>
               <TableHead>Status</TableHead>
               <TableHead>Forma</TableHead>
-              <TableHead className="w-20" />
+              <TableHead className="w-24" />
             </TableRow>
           </TableHeader>
           <TableBody>
             {statusFiltrados.length === 0 && (
               <TableRow>
-                <TableCell colSpan={8} className="text-center text-muted-foreground py-10">
+                <TableCell colSpan={9} className="text-center text-muted-foreground py-10">
                   Nenhum recebível encontrado
                 </TableCell>
               </TableRow>
@@ -269,8 +328,14 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
             {statusFiltrados.map((r) => {
               const vencido = isVencido(r.data_vencimento, r.status);
               const cfg = STATUS_CONFIG[vencido ? "VENCIDO" : r.status];
+              const elegivel = r.status === "PENDENTE" || r.status === "VENCIDO" || r.status === "PARCIAL";
               return (
-                <TableRow key={r.id}>
+                <TableRow key={r.id} className={selecionados.has(r.id) ? "bg-primary/5" : ""}>
+                  <TableCell>
+                    {elegivel && (
+                      <input type="checkbox" className="accent-primary" checked={selecionados.has(r.id)} onChange={() => toggleSelecionado(r.id)} />
+                    )}
+                  </TableCell>
                   <TableCell className="font-medium max-w-[220px]">
                     <span className="block truncate" title={r.descricao}>{r.descricao}</span>
                     {r.numero_parcela && r.total_parcelas && (
@@ -287,17 +352,28 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
                   <TableCell className={`text-sm ${vencido ? "text-destructive font-medium" : "text-muted-foreground"}`}>
                     {new Date(r.data_vencimento).toLocaleDateString("pt-BR")}
                   </TableCell>
-                  <TableCell><Badge variant={cfg.variant}>{cfg.label}</Badge></TableCell>
+                  <TableCell>
+                    <Badge variant={cfg.variant} className={r.status === "PARCIAL" ? "border-amber-400 text-amber-700" : ""}>{cfg.label}</Badge>
+                  </TableCell>
                   <TableCell className="text-muted-foreground text-sm">{r.forma_pagamento ?? "—"}</TableCell>
                   <TableCell>
                     <div className="flex gap-1">
-                      {r.status === "PENDENTE" && (
+                      {(r.status === "PENDENTE" || r.status === "PARCIAL") && (
                         <Button
                           size="icon" variant="ghost" className="size-7 text-primary hover:text-primary"
-                          title="Baixar pagamento"
+                          title="Registrar baixa"
                           onClick={() => { formBaixar.setValue("valor_pago", String(Number(r.valor).toFixed(2))); formBaixar.setValue("data_pagamento", new Date().toISOString().split("T")[0]); setModalBaixar(r); }}
                         >
                           <CheckCircle className="size-3.5" />
+                        </Button>
+                      )}
+                      {(r.status === "PAGO" || r.status === "PARCIAL") && (
+                        <Button
+                          size="icon" variant="ghost" className="size-7 text-amber-600 hover:text-amber-600"
+                          title="Estornar"
+                          onClick={() => handleEstornar(r.id)}
+                        >
+                          <Undo2 className="size-3.5" />
                         </Button>
                       )}
                       {r.status === "PAGO" && modelosRecibo.length > 0 && (
@@ -325,6 +401,43 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
           </TableBody>
         </Table>
       </div>
+
+      {/* Modal baixa em lote */}
+      <Dialog open={modalLote} onOpenChange={setModalLote}>
+        <DialogContent className="max-w-sm">
+          <DialogHeader><DialogTitle>Baixar {selecionados.size} lançamento(s)</DialogTitle></DialogHeader>
+          <div className="space-y-3 py-2">
+            <p className="text-sm text-muted-foreground">Cada item será baixado pelo seu valor integral.</p>
+            <div className="space-y-1">
+              <Label>Data de pagamento *</Label>
+              <Input type="date" value={formLoteData.data_pagamento} onChange={e => setFormLoteData(p => ({ ...p, data_pagamento: e.target.value }))} />
+            </div>
+            <div className="space-y-1">
+              <Label>Forma de pagamento *</Label>
+              <Select value={formLoteData.forma_pagamento} onValueChange={v => setFormLoteData(p => ({ ...p, forma_pagamento: v ?? "" }))}>
+                <SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
+                <SelectContent>
+                  {["PIX","Transferência","Boleto","Cartão","Dinheiro","Cheque"].map(f => <SelectItem key={f} value={f}>{f}</SelectItem>)}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="space-y-1">
+              <Label>Conta bancária</Label>
+              <Select value={formLoteData.conta_bancaria_id || "_none"} onValueChange={v => setFormLoteData(p => ({ ...p, conta_bancaria_id: !v || v === "_none" ? "" : v }))}>
+                <SelectTrigger><SelectValue placeholder="Nenhuma" /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="_none">Nenhuma</SelectItem>
+                  {contasBancarias.map(c => <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>)}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setModalLote(false)}>Cancelar</Button>
+            <Button onClick={handleBaixarLote} disabled={isPending}>Confirmar baixa</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       {/* Modal novo recebível */}
       <Dialog open={modalNovo} onOpenChange={setModalNovo}>
