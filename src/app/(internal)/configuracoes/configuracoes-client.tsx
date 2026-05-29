@@ -35,7 +35,7 @@ import {
   uploadLogoAction,
   uploadAvatarAction,
 } from "@/actions/configuracoes";
-import { convidarMembro, removerMembro, alterarPerfilMembro, cancelarConvite } from "@/actions/equipe";
+import { convidarMembro, removerMembro, alterarPerfilMembro, cancelarConvite, criarUsuarioDireto } from "@/actions/equipe";
 import { criarPerfil, editarPerfil, excluirPerfil } from "@/actions/perfis";
 import { criarEmpresa } from "@/actions/empresas";
 
@@ -300,6 +300,13 @@ export default function ConfiguracoesClient({ empresa, usuario, membros: membros
   const [enviandoConvite, setEnviandoConvite] = useState(false);
   const [erroConvite, setErroConvite] = useState<string | null>(null);
   const [linkConviteGerado, setLinkConviteGerado] = useState<string | null>(null);
+  const [abaEquipe, setAbaEquipe] = useState<"convite" | "direto">("direto");
+  const [criando, setCriando] = useState(false);
+  const [erroCriar, setErroCriar] = useState<string | null>(null);
+  const [novoNome, setNovoNome] = useState("");
+  const [novoEmail, setNovoEmail] = useState("");
+  const [novaSenha, setNovaSenha] = useState("");
+  const [novoPerfilId, setNovoPerfilId] = useState(perfisInicial[0]?.id ?? "");
 
   // Perfis de Acesso
   const [perfis, setPerfis] = useState(perfisInicial);
@@ -647,78 +654,158 @@ export default function ConfiguracoesClient({ empresa, usuario, membros: membros
 
           <Separator />
 
-          {/* Convidar novo membro */}
+          {/* Adicionar membro */}
           <div className="space-y-3">
-            <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Convidar novo membro</p>
-            <div className="flex gap-2">
-              <Input
-                type="email"
-                placeholder="email@exemplo.com"
-                value={conviteEmail}
-                onChange={(e) => setConviteEmail(e.target.value)}
-                className="h-9 text-sm flex-1"
-              />
-              <Select value={convitePerfilId} onValueChange={(v) => { if (v) setConvitePerfilId(v); }}>
-                <SelectTrigger className="h-9 text-sm w-36">
-                  <SelectValue placeholder="Perfil" />
-                </SelectTrigger>
-                <SelectContent>
-                  {perfis.map((p) => (
-                    <SelectItem key={p.id} value={p.id} className="text-sm">{p.nome}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <Button
-                size="sm"
-                className="h-9 gap-1.5 shrink-0"
-                disabled={enviandoConvite || !conviteEmail || !convitePerfilId}
-                onClick={async () => {
-                  setErroConvite(null);
-                  setLinkConviteGerado(null);
-                  setEnviandoConvite(true);
-                  try {
-                    const res = await convidarMembro({ email: conviteEmail, perfil_id: convitePerfilId });
-                    if (res.ok) {
-                      const expira = new Date();
-                      expira.setDate(expira.getDate() + 7);
-                      setConvitesPendentes(prev => [...prev, {
-                        id: Date.now().toString(),
-                        email: conviteEmail,
-                        criado_em: new Date().toISOString(),
-                        expira_em: expira.toISOString(),
-                      }]);
-                      setConviteEmail("");
-                      if (res.emailEnviado) {
-                        toast.success(`Convite enviado por e-mail para ${conviteEmail}`);
-                      } else {
-                        setLinkConviteGerado(res.link ?? null);
-                        setErroConvite(`E-mail não pôde ser enviado (${res.emailErro ?? "RESEND_EMAIL_API_KEY não configurada"}). Compartilhe o link abaixo:`);
-                        toast.info("Convite criado — copie o link de acesso.");
-                      }
-                    } else {
-                      setErroConvite(res.error);
-                    }
-                  } catch (e: unknown) {
-                    setErroConvite(e instanceof Error ? e.message : "Erro ao enviar convite");
-                  } finally {
-                    setEnviandoConvite(false);
-                  }
-                }}
-              >
-                <UserPlus className="size-3.5" />
-                {enviandoConvite ? "Enviando..." : "Convidar"}
-              </Button>
-            </div>
-            {erroConvite && <p className="text-xs text-destructive">{erroConvite}</p>}
-            {linkConviteGerado && (
-              <div className="flex items-center gap-2 p-2 rounded bg-muted border text-xs">
-                <span className="truncate flex-1 font-mono text-muted-foreground">{linkConviteGerado}</span>
+            <div className="flex gap-1 border-b">
+              {([
+                { key: "direto", label: "Criar usuário" },
+                { key: "convite", label: "Enviar convite" },
+              ] as { key: "direto" | "convite"; label: string }[]).map(a => (
                 <button
-                  className="shrink-0 text-primary hover:underline font-medium"
-                  onClick={() => { navigator.clipboard.writeText(linkConviteGerado); toast.success("Link copiado!"); }}
+                  key={a.key}
+                  onClick={() => setAbaEquipe(a.key)}
+                  className={`px-3 py-2 text-xs font-medium border-b-2 -mb-px transition-colors ${
+                    abaEquipe === a.key ? "border-primary text-primary" : "border-transparent text-muted-foreground hover:text-foreground"
+                  }`}
                 >
-                  Copiar
+                  {a.label}
                 </button>
+              ))}
+            </div>
+
+            {/* Criar usuário diretamente */}
+            {abaEquipe === "direto" && (
+              <div className="space-y-3">
+                <p className="text-xs text-muted-foreground">Cria a conta imediatamente. O usuário já pode fazer login com as credenciais definidas.</p>
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="space-y-1">
+                    <label className="text-xs font-medium">Nome *</label>
+                    <Input placeholder="Nome completo" value={novoNome} onChange={e => setNovoNome(e.target.value)} className="h-9 text-sm" />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-xs font-medium">E-mail *</label>
+                    <Input type="email" placeholder="email@exemplo.com" value={novoEmail} onChange={e => setNovoEmail(e.target.value)} className="h-9 text-sm" />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-xs font-medium">Senha inicial *</label>
+                    <Input type="password" placeholder="Mínimo 8 caracteres" value={novaSenha} onChange={e => setNovaSenha(e.target.value)} className="h-9 text-sm" />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-xs font-medium">Perfil *</label>
+                    <Select value={novoPerfilId} onValueChange={v => { if (v) setNovoPerfilId(v); }}>
+                      <SelectTrigger className="h-9 text-sm"><SelectValue placeholder="Selecione" /></SelectTrigger>
+                      <SelectContent>
+                        {perfis.map(p => <SelectItem key={p.id} value={p.id} className="text-sm">{p.nome}</SelectItem>)}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Button
+                    size="sm"
+                    className="gap-1.5"
+                    disabled={criando || !novoNome || !novoEmail || !novaSenha || !novoPerfilId}
+                    onClick={async () => {
+                      setErroCriar(null);
+                      setCriando(true);
+                      try {
+                        const res = await criarUsuarioDireto({ nome: novoNome, email: novoEmail, senha: novaSenha, perfil_id: novoPerfilId });
+                        if (res.ok) {
+                          toast.success(`Usuário ${novoEmail} criado com sucesso`);
+                          setNovoNome(""); setNovoEmail(""); setNovaSenha("");
+                        } else {
+                          setErroCriar(res.error);
+                        }
+                      } catch (e: unknown) {
+                        setErroCriar(e instanceof Error ? e.message : "Erro ao criar usuário");
+                      } finally {
+                        setCriando(false);
+                      }
+                    }}
+                  >
+                    <UserPlus className="size-3.5" />
+                    {criando ? "Criando..." : "Criar usuário"}
+                  </Button>
+                  {erroCriar && <p className="text-xs text-destructive">{erroCriar}</p>}
+                </div>
+              </div>
+            )}
+
+            {/* Convidar por link/email */}
+            {abaEquipe === "convite" && (
+              <div className="space-y-3">
+                <p className="text-xs text-muted-foreground">Gera um link de convite válido por 7 dias. O usuário define a própria senha ao aceitar.</p>
+                <div className="flex gap-2">
+                  <Input
+                    type="email"
+                    placeholder="email@exemplo.com"
+                    value={conviteEmail}
+                    onChange={(e) => setConviteEmail(e.target.value)}
+                    className="h-9 text-sm flex-1"
+                  />
+                  <Select value={convitePerfilId} onValueChange={(v) => { if (v) setConvitePerfilId(v); }}>
+                    <SelectTrigger className="h-9 text-sm w-36">
+                      <SelectValue placeholder="Perfil" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {perfis.map((p) => (
+                        <SelectItem key={p.id} value={p.id} className="text-sm">{p.nome}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <Button
+                    size="sm"
+                    className="h-9 gap-1.5 shrink-0"
+                    disabled={enviandoConvite || !conviteEmail || !convitePerfilId}
+                    onClick={async () => {
+                      setErroConvite(null);
+                      setLinkConviteGerado(null);
+                      setEnviandoConvite(true);
+                      try {
+                        const res = await convidarMembro({ email: conviteEmail, perfil_id: convitePerfilId });
+                        if (res.ok) {
+                          const expira = new Date();
+                          expira.setDate(expira.getDate() + 7);
+                          setConvitesPendentes(prev => [...prev, {
+                            id: Date.now().toString(),
+                            email: conviteEmail,
+                            criado_em: new Date().toISOString(),
+                            expira_em: expira.toISOString(),
+                          }]);
+                          setConviteEmail("");
+                          if (res.emailEnviado) {
+                            toast.success(`Convite enviado por e-mail para ${conviteEmail}`);
+                          } else {
+                            setLinkConviteGerado(res.link ?? null);
+                            setErroConvite(`E-mail não pôde ser enviado (${res.emailErro ?? "RESEND_EMAIL_API_KEY não configurada"}). Compartilhe o link abaixo:`);
+                            toast.info("Convite criado — copie o link de acesso.");
+                          }
+                        } else {
+                          setErroConvite(res.error);
+                        }
+                      } catch (e: unknown) {
+                        setErroConvite(e instanceof Error ? e.message : "Erro ao enviar convite");
+                      } finally {
+                        setEnviandoConvite(false);
+                      }
+                    }}
+                  >
+                    <UserPlus className="size-3.5" />
+                    {enviandoConvite ? "Enviando..." : "Convidar"}
+                  </Button>
+                </div>
+                {erroConvite && <p className="text-xs text-destructive">{erroConvite}</p>}
+                {linkConviteGerado && (
+                  <div className="flex items-center gap-2 p-2 rounded bg-muted border text-xs">
+                    <span className="truncate flex-1 font-mono text-muted-foreground">{linkConviteGerado}</span>
+                    <button
+                      className="shrink-0 text-primary hover:underline font-medium"
+                      onClick={() => { navigator.clipboard.writeText(linkConviteGerado); toast.success("Link copiado!"); }}
+                    >
+                      Copiar
+                    </button>
+                  </div>
+                )}
               </div>
             )}
           </div>

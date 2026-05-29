@@ -134,6 +134,66 @@ export async function alterarPerfilMembro(membroId: string, perfilId: string) {
   return { ok: true as const };
 }
 
+// ─── Criar usuário diretamente (sem convite) ─────────────────────────────────
+
+const schemaCriarUsuario = z.object({
+  nome:      z.string().min(2, "Nome obrigatório"),
+  email:     z.string().email("E-mail inválido"),
+  senha:     z.string().min(8, "Senha deve ter no mínimo 8 caracteres"),
+  perfil_id: z.string().min(1, "Perfil obrigatório"),
+});
+
+export async function criarUsuarioDireto(input: z.input<typeof schemaCriarUsuario>) {
+  await verificarPermissao("configuracoes", "criar");
+  const empresaId = await obterEmpresaAtiva();
+  const data = schemaCriarUsuario.parse(input);
+
+  // Verifica se já é membro
+  const jaMembro = await prisma.membroEmpresa.findFirst({
+    where: { empresa_id: empresaId, usuario: { email: data.email } },
+  });
+  if (jaMembro) return { ok: false as const, error: "Este e-mail já é membro da empresa" };
+
+  const admin = adminClient();
+
+  // Verifica se já existe no Supabase Auth
+  const { data: listData } = await admin.auth.admin.listUsers();
+  const existente = listData?.users?.find((u) => u.email === data.email);
+
+  let userId: string;
+
+  if (existente) {
+    userId = existente.id;
+  } else {
+    const { data: newUser, error } = await admin.auth.admin.createUser({
+      email: data.email,
+      password: data.senha,
+      email_confirm: true,
+    });
+    if (error || !newUser.user) {
+      return { ok: false as const, error: error?.message ?? "Erro ao criar usuário no Supabase" };
+    }
+    userId = newUser.user.id;
+  }
+
+  await prisma.$transaction(async (tx) => {
+    await tx.usuario.upsert({
+      where: { id: userId },
+      update: { nome: data.nome },
+      create: { id: userId, nome: data.nome, email: data.email },
+    });
+
+    await tx.membroEmpresa.upsert({
+      where: { usuario_id_empresa_id: { usuario_id: userId, empresa_id: empresaId } },
+      update: { perfil_id: data.perfil_id, ativo: true },
+      create: { usuario_id: userId, empresa_id: empresaId, perfil_id: data.perfil_id, ativo: true },
+    });
+  });
+
+  revalidatePath("/configuracoes");
+  return { ok: true as const, userId };
+}
+
 // ─── Cancelar convite ─────────────────────────────────────────────────────────
 
 export async function cancelarConvite(conviteId: string) {
