@@ -931,6 +931,9 @@ enum TipoDiagnostico {
   SWOT
   CANVAS
   CINCO_W_DOIS_H
+  ORGANOGRAMA
+  MAPA_PROCESSO
+  GANTT
 }
 
 model Diagnostico {

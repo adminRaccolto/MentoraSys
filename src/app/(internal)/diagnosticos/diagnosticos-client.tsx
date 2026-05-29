@@ -28,7 +28,7 @@ import { criarDiagnostico, excluirDiagnostico } from "@/actions/diagnosticos";
 
 interface Diagnostico {
   id: string;
-  tipo: "SWOT" | "CANVAS" | "CINCO_W_DOIS_H";
+  tipo: "SWOT" | "CANVAS" | "CINCO_W_DOIS_H" | "ORGANOGRAMA" | "MAPA_PROCESSO" | "GANTT";
   titulo: string;
   atualizado_em: string;
   cliente: { id: string; nome: string } | null;
@@ -42,7 +42,7 @@ interface Props {
 }
 
 const schema = z.object({
-  tipo: z.enum(["SWOT", "CANVAS", "CINCO_W_DOIS_H"]),
+  tipo: z.enum(["SWOT", "CANVAS", "CINCO_W_DOIS_H", "ORGANOGRAMA", "MAPA_PROCESSO", "GANTT"]),
   titulo: z.string().min(1, "Título obrigatório"),
   cliente_id: z.string().optional(),
   projeto_id: z.string().optional(),
@@ -50,22 +50,31 @@ const schema = z.object({
 type FormData = z.input<typeof schema>;
 
 const TIPO_LABEL: Record<string, string> = {
-  SWOT: "SWOT",
-  CANVAS: "Business Canvas",
+  SWOT:           "SWOT",
+  CANVAS:         "Business Canvas",
   CINCO_W_DOIS_H: "5W2H",
+  ORGANOGRAMA:    "Organograma",
+  MAPA_PROCESSO:  "Mapa de Processos",
+  GANTT:          "Cronograma Gantt",
 };
 
 const TIPO_COLOR: Record<string, string> = {
-  SWOT: "bg-blue-100 text-blue-700",
-  CANVAS: "bg-purple-100 text-purple-700",
+  SWOT:           "bg-blue-100 text-blue-700",
+  CANVAS:         "bg-purple-100 text-purple-700",
   CINCO_W_DOIS_H: "bg-amber-100 text-amber-700",
+  ORGANOGRAMA:    "bg-green-100 text-green-700",
+  MAPA_PROCESSO:  "bg-orange-100 text-orange-700",
+  GANTT:          "bg-sky-100 text-sky-700",
 };
 
 const TABS = [
-  { label: "Todos", value: "TODOS" },
-  { label: "SWOT", value: "SWOT" },
-  { label: "Business Canvas", value: "CANVAS" },
-  { label: "5W2H", value: "CINCO_W_DOIS_H" },
+  { label: "Todos",        value: "TODOS" },
+  { label: "SWOT",         value: "SWOT" },
+  { label: "Canvas",       value: "CANVAS" },
+  { label: "5W2H",         value: "CINCO_W_DOIS_H" },
+  { label: "Organograma",  value: "ORGANOGRAMA" },
+  { label: "Processos",    value: "MAPA_PROCESSO" },
+  { label: "Gantt",        value: "GANTT" },
 ] as const;
 
 export default function DiagnosticosClient({ diagnosticos, clientes, projetos }: Props) {
@@ -213,7 +222,7 @@ export default function DiagnosticosClient({ diagnosticos, clientes, projetos }:
               <Label>Tipo *</Label>
               <Select
                 value={form.watch("tipo")}
-                onValueChange={(v) => form.setValue("tipo", v as "SWOT" | "CANVAS" | "CINCO_W_DOIS_H")}
+                onValueChange={(v) => form.setValue("tipo", v as "SWOT" | "CANVAS" | "CINCO_W_DOIS_H" | "ORGANOGRAMA" | "MAPA_PROCESSO" | "GANTT")}
               >
                 <SelectTrigger>
                   <SelectValue />
@@ -221,7 +230,10 @@ export default function DiagnosticosClient({ diagnosticos, clientes, projetos }:
                 <SelectContent>
                   <SelectItem value="SWOT">Análise SWOT</SelectItem>
                   <SelectItem value="CANVAS">Business Model Canvas</SelectItem>
-                  <SelectItem value="CINCO_W_DOIS_H">5W2H</SelectItem>
+                  <SelectItem value="CINCO_W_DOIS_H">5W2H (5 Porquês + 2H)</SelectItem>
+                  <SelectItem value="ORGANOGRAMA">Organograma</SelectItem>
+                  <SelectItem value="MAPA_PROCESSO">Mapa de Processos</SelectItem>
+                  <SelectItem value="GANTT">Cronograma Gantt</SelectItem>
                 </SelectContent>
               </Select>
             </div>

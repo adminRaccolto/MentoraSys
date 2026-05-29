@@ -777,7 +777,10 @@ exports.StatusNota = exports.$Enums.StatusNota = {
 exports.TipoDiagnostico = exports.$Enums.TipoDiagnostico = {
   SWOT: 'SWOT',
   CANVAS: 'CANVAS',
-  CINCO_W_DOIS_H: 'CINCO_W_DOIS_H'
+  CINCO_W_DOIS_H: 'CINCO_W_DOIS_H',
+  ORGANOGRAMA: 'ORGANOGRAMA',
+  MAPA_PROCESSO: 'MAPA_PROCESSO',
+  GANTT: 'GANTT'
 };
 
 exports.Prisma.ModelName = {

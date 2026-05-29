@@ -4,6 +4,9 @@ import { obterEmpresaAtiva } from "@/lib/permissoes";
 import EditorSwot from "./editor-swot";
 import EditorCanvas from "./editor-canvas";
 import EditorCincoW from "./editor-cinco-w";
+import EditorOrganograma from "./editor-organograma";
+import EditorMapaProcesso from "./editor-mapa-processo";
+import EditorGantt from "./editor-gantt";
 
 export default async function DiagnosticoEditorPage({
   params,
@@ -32,7 +35,10 @@ export default async function DiagnosticoEditorPage({
     projeto: diagnostico.projeto,
   };
 
-  if (diagnostico.tipo === "SWOT") return <EditorSwot {...base} />;
-  if (diagnostico.tipo === "CANVAS") return <EditorCanvas {...base} />;
+  if (diagnostico.tipo === "SWOT")          return <EditorSwot {...base} />;
+  if (diagnostico.tipo === "CANVAS")        return <EditorCanvas {...base} />;
+  if (diagnostico.tipo === "ORGANOGRAMA")   return <EditorOrganograma {...base} />;
+  if (diagnostico.tipo === "MAPA_PROCESSO") return <EditorMapaProcesso {...base} />;
+  if (diagnostico.tipo === "GANTT")         return <EditorGantt {...base} />;
   return <EditorCincoW {...base} />;
 }

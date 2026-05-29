@@ -9,7 +9,7 @@ import { registrar } from "@/lib/auditoria";
 import { TipoDiagnostico } from "@/lib/generated/prisma";
 
 const schemaCreate = z.object({
-  tipo: z.enum(["SWOT", "CANVAS", "CINCO_W_DOIS_H"]),
+  tipo: z.enum(["SWOT", "CANVAS", "CINCO_W_DOIS_H", "ORGANOGRAMA", "MAPA_PROCESSO", "GANTT"]),
   titulo: z.string().min(1, "Título obrigatório"),
   cliente_id: z.string().optional(),
   projeto_id: z.string().optional(),

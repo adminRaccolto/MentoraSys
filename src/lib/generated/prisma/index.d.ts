@@ -357,7 +357,10 @@ export type StatusNota = (typeof StatusNota)[keyof typeof StatusNota]
 export const TipoDiagnostico: {
   SWOT: 'SWOT',
   CANVAS: 'CANVAS',
-  CINCO_W_DOIS_H: 'CINCO_W_DOIS_H'
+  CINCO_W_DOIS_H: 'CINCO_W_DOIS_H',
+  ORGANOGRAMA: 'ORGANOGRAMA',
+  MAPA_PROCESSO: 'MAPA_PROCESSO',
+  GANTT: 'GANTT'
 };
 
 export type TipoDiagnostico = (typeof TipoDiagnostico)[keyof typeof TipoDiagnostico]
