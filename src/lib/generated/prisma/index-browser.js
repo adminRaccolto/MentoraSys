@@ -457,6 +457,17 @@ exports.Prisma.ContaBancariaScalarFieldEnum = {
   atualizado_em: 'atualizado_em'
 };
 
+exports.Prisma.TransferenciaTesourariaScalarFieldEnum = {
+  id: 'id',
+  empresa_id: 'empresa_id',
+  conta_origem_id: 'conta_origem_id',
+  conta_destino_id: 'conta_destino_id',
+  valor: 'valor',
+  data: 'data',
+  descricao: 'descricao',
+  criado_em: 'criado_em'
+};
+
 exports.Prisma.RecebivelScalarFieldEnum = {
   id: 'id',
   empresa_id: 'empresa_id',
@@ -767,6 +778,7 @@ exports.Prisma.ModelName = {
   PlanoDeContas: 'PlanoDeContas',
   Banco: 'Banco',
   ContaBancaria: 'ContaBancaria',
+  TransferenciaTesouraria: 'TransferenciaTesouraria',
   Recebivel: 'Recebivel',
   ContaPagar: 'ContaPagar',
   ModeloDocumento: 'ModeloDocumento',

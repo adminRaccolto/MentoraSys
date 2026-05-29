@@ -25,6 +25,7 @@ import {
   Receipt,
   FileBarChart2,
   ListTree,
+  ArrowLeftRight,
   Settings,
 } from "lucide-react";
 import NotificacoesBell from "@/components/notificacoes-bell";
@@ -61,6 +62,7 @@ const NAV_FINANCEIRO = [
   { label: "Contas a Receber", href: "/financeiro/recebiveis",     icon: ArrowDownCircle },
   { label: "Contas a Pagar", href: "/financeiro/contas-a-pagar",  icon: ArrowUpCircle },
   { label: "Fluxo de Caixa", href: "/financeiro/fluxo-de-caixa",  icon: BarChart2 },
+  { label: "Tesouraria",    href: "/financeiro/tesouraria",       icon: ArrowLeftRight },
   { label: "Plano de Contas", href: "/plano-contas",              icon: ListTree },
 ];
 

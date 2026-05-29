@@ -134,6 +134,11 @@ export type Banco = $Result.DefaultSelection<Prisma.$BancoPayload>
  */
 export type ContaBancaria = $Result.DefaultSelection<Prisma.$ContaBancariaPayload>
 /**
+ * Model TransferenciaTesouraria
+ * 
+ */
+export type TransferenciaTesouraria = $Result.DefaultSelection<Prisma.$TransferenciaTesourariaPayload>
+/**
  * Model Recebivel
  * 
  */
@@ -784,6 +789,16 @@ export class PrismaClient<
   get contaBancaria(): Prisma.ContaBancariaDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.transferenciaTesouraria`: Exposes CRUD operations for the **TransferenciaTesouraria** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TransferenciaTesourarias
+    * const transferenciaTesourarias = await prisma.transferenciaTesouraria.findMany()
+    * ```
+    */
+  get transferenciaTesouraria(): Prisma.TransferenciaTesourariaDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.recebivel`: Exposes CRUD operations for the **Recebivel** model.
     * Example usage:
     * ```ts
@@ -1330,6 +1345,7 @@ export namespace Prisma {
     PlanoDeContas: 'PlanoDeContas',
     Banco: 'Banco',
     ContaBancaria: 'ContaBancaria',
+    TransferenciaTesouraria: 'TransferenciaTesouraria',
     Recebivel: 'Recebivel',
     ContaPagar: 'ContaPagar',
     ModeloDocumento: 'ModeloDocumento',
@@ -1354,7 +1370,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "lead" | "atividadeCRM" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "projeto" | "etapa" | "tarefa" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "recebivel" | "contaPagar" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "diagnostico" | "tokenPortal"
+      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "lead" | "atividadeCRM" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "projeto" | "etapa" | "tarefa" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "recebivel" | "contaPagar" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "diagnostico" | "tokenPortal"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3134,6 +3150,80 @@ export namespace Prisma {
           }
         }
       }
+      TransferenciaTesouraria: {
+        payload: Prisma.$TransferenciaTesourariaPayload<ExtArgs>
+        fields: Prisma.TransferenciaTesourariaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TransferenciaTesourariaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransferenciaTesourariaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TransferenciaTesourariaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransferenciaTesourariaPayload>
+          }
+          findFirst: {
+            args: Prisma.TransferenciaTesourariaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransferenciaTesourariaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TransferenciaTesourariaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransferenciaTesourariaPayload>
+          }
+          findMany: {
+            args: Prisma.TransferenciaTesourariaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransferenciaTesourariaPayload>[]
+          }
+          create: {
+            args: Prisma.TransferenciaTesourariaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransferenciaTesourariaPayload>
+          }
+          createMany: {
+            args: Prisma.TransferenciaTesourariaCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TransferenciaTesourariaCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransferenciaTesourariaPayload>[]
+          }
+          delete: {
+            args: Prisma.TransferenciaTesourariaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransferenciaTesourariaPayload>
+          }
+          update: {
+            args: Prisma.TransferenciaTesourariaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransferenciaTesourariaPayload>
+          }
+          deleteMany: {
+            args: Prisma.TransferenciaTesourariaDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TransferenciaTesourariaUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TransferenciaTesourariaUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransferenciaTesourariaPayload>[]
+          }
+          upsert: {
+            args: Prisma.TransferenciaTesourariaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransferenciaTesourariaPayload>
+          }
+          aggregate: {
+            args: Prisma.TransferenciaTesourariaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTransferenciaTesouraria>
+          }
+          groupBy: {
+            args: Prisma.TransferenciaTesourariaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TransferenciaTesourariaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TransferenciaTesourariaCountArgs<ExtArgs>
+            result: $Utils.Optional<TransferenciaTesourariaCountAggregateOutputType> | number
+          }
+        }
+      }
       Recebivel: {
         payload: Prisma.$RecebivelPayload<ExtArgs>
         fields: Prisma.RecebivelFieldRefs
@@ -3932,6 +4022,7 @@ export namespace Prisma {
     planoDeContas?: PlanoDeContasOmit
     banco?: BancoOmit
     contaBancaria?: ContaBancariaOmit
+    transferenciaTesouraria?: TransferenciaTesourariaOmit
     recebivel?: RecebivelOmit
     contaPagar?: ContaPagarOmit
     modeloDocumento?: ModeloDocumentoOmit
@@ -4034,6 +4125,7 @@ export namespace Prisma {
     documentos: number
     plano_contas: number
     contas_bancarias: number
+    transferencias_tesouraria: number
     recebiveis: number
     contas_pagar: number
     modelos_documento: number
@@ -4058,6 +4150,7 @@ export namespace Prisma {
     documentos?: boolean | EmpresaCountOutputTypeCountDocumentosArgs
     plano_contas?: boolean | EmpresaCountOutputTypeCountPlano_contasArgs
     contas_bancarias?: boolean | EmpresaCountOutputTypeCountContas_bancariasArgs
+    transferencias_tesouraria?: boolean | EmpresaCountOutputTypeCountTransferencias_tesourariaArgs
     recebiveis?: boolean | EmpresaCountOutputTypeCountRecebiveisArgs
     contas_pagar?: boolean | EmpresaCountOutputTypeCountContas_pagarArgs
     modelos_documento?: boolean | EmpresaCountOutputTypeCountModelos_documentoArgs
@@ -4168,6 +4261,13 @@ export namespace Prisma {
    */
   export type EmpresaCountOutputTypeCountContas_bancariasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ContaBancariaWhereInput
+  }
+
+  /**
+   * EmpresaCountOutputType without action
+   */
+  export type EmpresaCountOutputTypeCountTransferencias_tesourariaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TransferenciaTesourariaWhereInput
   }
 
   /**
@@ -4921,11 +5021,15 @@ export namespace Prisma {
   export type ContaBancariaCountOutputType = {
     recebiveis: number
     contas_pagar: number
+    transferencias_origem: number
+    transferencias_destino: number
   }
 
   export type ContaBancariaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     recebiveis?: boolean | ContaBancariaCountOutputTypeCountRecebiveisArgs
     contas_pagar?: boolean | ContaBancariaCountOutputTypeCountContas_pagarArgs
+    transferencias_origem?: boolean | ContaBancariaCountOutputTypeCountTransferencias_origemArgs
+    transferencias_destino?: boolean | ContaBancariaCountOutputTypeCountTransferencias_destinoArgs
   }
 
   // Custom InputTypes
@@ -4951,6 +5055,20 @@ export namespace Prisma {
    */
   export type ContaBancariaCountOutputTypeCountContas_pagarArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ContaPagarWhereInput
+  }
+
+  /**
+   * ContaBancariaCountOutputType without action
+   */
+  export type ContaBancariaCountOutputTypeCountTransferencias_origemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TransferenciaTesourariaWhereInput
+  }
+
+  /**
+   * ContaBancariaCountOutputType without action
+   */
+  export type ContaBancariaCountOutputTypeCountTransferencias_destinoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TransferenciaTesourariaWhereInput
   }
 
 
@@ -5171,6 +5289,7 @@ export namespace Prisma {
     documentos?: boolean | Empresa$documentosArgs<ExtArgs>
     plano_contas?: boolean | Empresa$plano_contasArgs<ExtArgs>
     contas_bancarias?: boolean | Empresa$contas_bancariasArgs<ExtArgs>
+    transferencias_tesouraria?: boolean | Empresa$transferencias_tesourariaArgs<ExtArgs>
     recebiveis?: boolean | Empresa$recebiveisArgs<ExtArgs>
     contas_pagar?: boolean | Empresa$contas_pagarArgs<ExtArgs>
     modelos_documento?: boolean | Empresa$modelos_documentoArgs<ExtArgs>
@@ -5236,6 +5355,7 @@ export namespace Prisma {
     documentos?: boolean | Empresa$documentosArgs<ExtArgs>
     plano_contas?: boolean | Empresa$plano_contasArgs<ExtArgs>
     contas_bancarias?: boolean | Empresa$contas_bancariasArgs<ExtArgs>
+    transferencias_tesouraria?: boolean | Empresa$transferencias_tesourariaArgs<ExtArgs>
     recebiveis?: boolean | Empresa$recebiveisArgs<ExtArgs>
     contas_pagar?: boolean | Empresa$contas_pagarArgs<ExtArgs>
     modelos_documento?: boolean | Empresa$modelos_documentoArgs<ExtArgs>
@@ -5265,6 +5385,7 @@ export namespace Prisma {
       documentos: Prisma.$DocumentoPayload<ExtArgs>[]
       plano_contas: Prisma.$PlanoDeContasPayload<ExtArgs>[]
       contas_bancarias: Prisma.$ContaBancariaPayload<ExtArgs>[]
+      transferencias_tesouraria: Prisma.$TransferenciaTesourariaPayload<ExtArgs>[]
       recebiveis: Prisma.$RecebivelPayload<ExtArgs>[]
       contas_pagar: Prisma.$ContaPagarPayload<ExtArgs>[]
       modelos_documento: Prisma.$ModeloDocumentoPayload<ExtArgs>[]
@@ -5692,6 +5813,7 @@ export namespace Prisma {
     documentos<T extends Empresa$documentosArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$documentosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DocumentoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     plano_contas<T extends Empresa$plano_contasArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$plano_contasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlanoDeContasPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     contas_bancarias<T extends Empresa$contas_bancariasArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$contas_bancariasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContaBancariaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    transferencias_tesouraria<T extends Empresa$transferencias_tesourariaArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$transferencias_tesourariaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransferenciaTesourariaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     recebiveis<T extends Empresa$recebiveisArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$recebiveisArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RecebivelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     contas_pagar<T extends Empresa$contas_pagarArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$contas_pagarArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContaPagarPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     modelos_documento<T extends Empresa$modelos_documentoArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$modelos_documentoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ModeloDocumentoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -6441,6 +6563,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ContaBancariaScalarFieldEnum | ContaBancariaScalarFieldEnum[]
+  }
+
+  /**
+   * Empresa.transferencias_tesouraria
+   */
+  export type Empresa$transferencias_tesourariaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransferenciaTesouraria
+     */
+    select?: TransferenciaTesourariaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransferenciaTesouraria
+     */
+    omit?: TransferenciaTesourariaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransferenciaTesourariaInclude<ExtArgs> | null
+    where?: TransferenciaTesourariaWhereInput
+    orderBy?: TransferenciaTesourariaOrderByWithRelationInput | TransferenciaTesourariaOrderByWithRelationInput[]
+    cursor?: TransferenciaTesourariaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TransferenciaTesourariaScalarFieldEnum | TransferenciaTesourariaScalarFieldEnum[]
   }
 
   /**
@@ -34298,6 +34444,8 @@ export namespace Prisma {
     banco_ref?: boolean | ContaBancaria$banco_refArgs<ExtArgs>
     recebiveis?: boolean | ContaBancaria$recebiveisArgs<ExtArgs>
     contas_pagar?: boolean | ContaBancaria$contas_pagarArgs<ExtArgs>
+    transferencias_origem?: boolean | ContaBancaria$transferencias_origemArgs<ExtArgs>
+    transferencias_destino?: boolean | ContaBancaria$transferencias_destinoArgs<ExtArgs>
     _count?: boolean | ContaBancariaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["contaBancaria"]>
 
@@ -34362,6 +34510,8 @@ export namespace Prisma {
     banco_ref?: boolean | ContaBancaria$banco_refArgs<ExtArgs>
     recebiveis?: boolean | ContaBancaria$recebiveisArgs<ExtArgs>
     contas_pagar?: boolean | ContaBancaria$contas_pagarArgs<ExtArgs>
+    transferencias_origem?: boolean | ContaBancaria$transferencias_origemArgs<ExtArgs>
+    transferencias_destino?: boolean | ContaBancaria$transferencias_destinoArgs<ExtArgs>
     _count?: boolean | ContaBancariaCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ContaBancariaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -34380,6 +34530,8 @@ export namespace Prisma {
       banco_ref: Prisma.$BancoPayload<ExtArgs> | null
       recebiveis: Prisma.$RecebivelPayload<ExtArgs>[]
       contas_pagar: Prisma.$ContaPagarPayload<ExtArgs>[]
+      transferencias_origem: Prisma.$TransferenciaTesourariaPayload<ExtArgs>[]
+      transferencias_destino: Prisma.$TransferenciaTesourariaPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -34794,6 +34946,8 @@ export namespace Prisma {
     banco_ref<T extends ContaBancaria$banco_refArgs<ExtArgs> = {}>(args?: Subset<T, ContaBancaria$banco_refArgs<ExtArgs>>): Prisma__BancoClient<$Result.GetResult<Prisma.$BancoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     recebiveis<T extends ContaBancaria$recebiveisArgs<ExtArgs> = {}>(args?: Subset<T, ContaBancaria$recebiveisArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RecebivelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     contas_pagar<T extends ContaBancaria$contas_pagarArgs<ExtArgs> = {}>(args?: Subset<T, ContaBancaria$contas_pagarArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContaPagarPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    transferencias_origem<T extends ContaBancaria$transferencias_origemArgs<ExtArgs> = {}>(args?: Subset<T, ContaBancaria$transferencias_origemArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransferenciaTesourariaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    transferencias_destino<T extends ContaBancaria$transferencias_destinoArgs<ExtArgs> = {}>(args?: Subset<T, ContaBancaria$transferencias_destinoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransferenciaTesourariaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -35305,6 +35459,54 @@ export namespace Prisma {
   }
 
   /**
+   * ContaBancaria.transferencias_origem
+   */
+  export type ContaBancaria$transferencias_origemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransferenciaTesouraria
+     */
+    select?: TransferenciaTesourariaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransferenciaTesouraria
+     */
+    omit?: TransferenciaTesourariaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransferenciaTesourariaInclude<ExtArgs> | null
+    where?: TransferenciaTesourariaWhereInput
+    orderBy?: TransferenciaTesourariaOrderByWithRelationInput | TransferenciaTesourariaOrderByWithRelationInput[]
+    cursor?: TransferenciaTesourariaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TransferenciaTesourariaScalarFieldEnum | TransferenciaTesourariaScalarFieldEnum[]
+  }
+
+  /**
+   * ContaBancaria.transferencias_destino
+   */
+  export type ContaBancaria$transferencias_destinoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransferenciaTesouraria
+     */
+    select?: TransferenciaTesourariaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransferenciaTesouraria
+     */
+    omit?: TransferenciaTesourariaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransferenciaTesourariaInclude<ExtArgs> | null
+    where?: TransferenciaTesourariaWhereInput
+    orderBy?: TransferenciaTesourariaOrderByWithRelationInput | TransferenciaTesourariaOrderByWithRelationInput[]
+    cursor?: TransferenciaTesourariaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TransferenciaTesourariaScalarFieldEnum | TransferenciaTesourariaScalarFieldEnum[]
+  }
+
+  /**
    * ContaBancaria without action
    */
   export type ContaBancariaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -35320,6 +35522,1158 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ContaBancariaInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TransferenciaTesouraria
+   */
+
+  export type AggregateTransferenciaTesouraria = {
+    _count: TransferenciaTesourariaCountAggregateOutputType | null
+    _avg: TransferenciaTesourariaAvgAggregateOutputType | null
+    _sum: TransferenciaTesourariaSumAggregateOutputType | null
+    _min: TransferenciaTesourariaMinAggregateOutputType | null
+    _max: TransferenciaTesourariaMaxAggregateOutputType | null
+  }
+
+  export type TransferenciaTesourariaAvgAggregateOutputType = {
+    valor: Decimal | null
+  }
+
+  export type TransferenciaTesourariaSumAggregateOutputType = {
+    valor: Decimal | null
+  }
+
+  export type TransferenciaTesourariaMinAggregateOutputType = {
+    id: string | null
+    empresa_id: string | null
+    conta_origem_id: string | null
+    conta_destino_id: string | null
+    valor: Decimal | null
+    data: Date | null
+    descricao: string | null
+    criado_em: Date | null
+  }
+
+  export type TransferenciaTesourariaMaxAggregateOutputType = {
+    id: string | null
+    empresa_id: string | null
+    conta_origem_id: string | null
+    conta_destino_id: string | null
+    valor: Decimal | null
+    data: Date | null
+    descricao: string | null
+    criado_em: Date | null
+  }
+
+  export type TransferenciaTesourariaCountAggregateOutputType = {
+    id: number
+    empresa_id: number
+    conta_origem_id: number
+    conta_destino_id: number
+    valor: number
+    data: number
+    descricao: number
+    criado_em: number
+    _all: number
+  }
+
+
+  export type TransferenciaTesourariaAvgAggregateInputType = {
+    valor?: true
+  }
+
+  export type TransferenciaTesourariaSumAggregateInputType = {
+    valor?: true
+  }
+
+  export type TransferenciaTesourariaMinAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    conta_origem_id?: true
+    conta_destino_id?: true
+    valor?: true
+    data?: true
+    descricao?: true
+    criado_em?: true
+  }
+
+  export type TransferenciaTesourariaMaxAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    conta_origem_id?: true
+    conta_destino_id?: true
+    valor?: true
+    data?: true
+    descricao?: true
+    criado_em?: true
+  }
+
+  export type TransferenciaTesourariaCountAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    conta_origem_id?: true
+    conta_destino_id?: true
+    valor?: true
+    data?: true
+    descricao?: true
+    criado_em?: true
+    _all?: true
+  }
+
+  export type TransferenciaTesourariaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TransferenciaTesouraria to aggregate.
+     */
+    where?: TransferenciaTesourariaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TransferenciaTesourarias to fetch.
+     */
+    orderBy?: TransferenciaTesourariaOrderByWithRelationInput | TransferenciaTesourariaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TransferenciaTesourariaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TransferenciaTesourarias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TransferenciaTesourarias.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TransferenciaTesourarias
+    **/
+    _count?: true | TransferenciaTesourariaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TransferenciaTesourariaAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TransferenciaTesourariaSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TransferenciaTesourariaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TransferenciaTesourariaMaxAggregateInputType
+  }
+
+  export type GetTransferenciaTesourariaAggregateType<T extends TransferenciaTesourariaAggregateArgs> = {
+        [P in keyof T & keyof AggregateTransferenciaTesouraria]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTransferenciaTesouraria[P]>
+      : GetScalarType<T[P], AggregateTransferenciaTesouraria[P]>
+  }
+
+
+
+
+  export type TransferenciaTesourariaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TransferenciaTesourariaWhereInput
+    orderBy?: TransferenciaTesourariaOrderByWithAggregationInput | TransferenciaTesourariaOrderByWithAggregationInput[]
+    by: TransferenciaTesourariaScalarFieldEnum[] | TransferenciaTesourariaScalarFieldEnum
+    having?: TransferenciaTesourariaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TransferenciaTesourariaCountAggregateInputType | true
+    _avg?: TransferenciaTesourariaAvgAggregateInputType
+    _sum?: TransferenciaTesourariaSumAggregateInputType
+    _min?: TransferenciaTesourariaMinAggregateInputType
+    _max?: TransferenciaTesourariaMaxAggregateInputType
+  }
+
+  export type TransferenciaTesourariaGroupByOutputType = {
+    id: string
+    empresa_id: string
+    conta_origem_id: string
+    conta_destino_id: string
+    valor: Decimal
+    data: Date
+    descricao: string | null
+    criado_em: Date
+    _count: TransferenciaTesourariaCountAggregateOutputType | null
+    _avg: TransferenciaTesourariaAvgAggregateOutputType | null
+    _sum: TransferenciaTesourariaSumAggregateOutputType | null
+    _min: TransferenciaTesourariaMinAggregateOutputType | null
+    _max: TransferenciaTesourariaMaxAggregateOutputType | null
+  }
+
+  type GetTransferenciaTesourariaGroupByPayload<T extends TransferenciaTesourariaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TransferenciaTesourariaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TransferenciaTesourariaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TransferenciaTesourariaGroupByOutputType[P]>
+            : GetScalarType<T[P], TransferenciaTesourariaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TransferenciaTesourariaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    conta_origem_id?: boolean
+    conta_destino_id?: boolean
+    valor?: boolean
+    data?: boolean
+    descricao?: boolean
+    criado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    conta_origem?: boolean | ContaBancariaDefaultArgs<ExtArgs>
+    conta_destino?: boolean | ContaBancariaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["transferenciaTesouraria"]>
+
+  export type TransferenciaTesourariaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    conta_origem_id?: boolean
+    conta_destino_id?: boolean
+    valor?: boolean
+    data?: boolean
+    descricao?: boolean
+    criado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    conta_origem?: boolean | ContaBancariaDefaultArgs<ExtArgs>
+    conta_destino?: boolean | ContaBancariaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["transferenciaTesouraria"]>
+
+  export type TransferenciaTesourariaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    conta_origem_id?: boolean
+    conta_destino_id?: boolean
+    valor?: boolean
+    data?: boolean
+    descricao?: boolean
+    criado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    conta_origem?: boolean | ContaBancariaDefaultArgs<ExtArgs>
+    conta_destino?: boolean | ContaBancariaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["transferenciaTesouraria"]>
+
+  export type TransferenciaTesourariaSelectScalar = {
+    id?: boolean
+    empresa_id?: boolean
+    conta_origem_id?: boolean
+    conta_destino_id?: boolean
+    valor?: boolean
+    data?: boolean
+    descricao?: boolean
+    criado_em?: boolean
+  }
+
+  export type TransferenciaTesourariaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "conta_origem_id" | "conta_destino_id" | "valor" | "data" | "descricao" | "criado_em", ExtArgs["result"]["transferenciaTesouraria"]>
+  export type TransferenciaTesourariaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    conta_origem?: boolean | ContaBancariaDefaultArgs<ExtArgs>
+    conta_destino?: boolean | ContaBancariaDefaultArgs<ExtArgs>
+  }
+  export type TransferenciaTesourariaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    conta_origem?: boolean | ContaBancariaDefaultArgs<ExtArgs>
+    conta_destino?: boolean | ContaBancariaDefaultArgs<ExtArgs>
+  }
+  export type TransferenciaTesourariaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    conta_origem?: boolean | ContaBancariaDefaultArgs<ExtArgs>
+    conta_destino?: boolean | ContaBancariaDefaultArgs<ExtArgs>
+  }
+
+  export type $TransferenciaTesourariaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TransferenciaTesouraria"
+    objects: {
+      empresa: Prisma.$EmpresaPayload<ExtArgs>
+      conta_origem: Prisma.$ContaBancariaPayload<ExtArgs>
+      conta_destino: Prisma.$ContaBancariaPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      empresa_id: string
+      conta_origem_id: string
+      conta_destino_id: string
+      valor: Prisma.Decimal
+      data: Date
+      descricao: string | null
+      criado_em: Date
+    }, ExtArgs["result"]["transferenciaTesouraria"]>
+    composites: {}
+  }
+
+  type TransferenciaTesourariaGetPayload<S extends boolean | null | undefined | TransferenciaTesourariaDefaultArgs> = $Result.GetResult<Prisma.$TransferenciaTesourariaPayload, S>
+
+  type TransferenciaTesourariaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TransferenciaTesourariaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TransferenciaTesourariaCountAggregateInputType | true
+    }
+
+  export interface TransferenciaTesourariaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TransferenciaTesouraria'], meta: { name: 'TransferenciaTesouraria' } }
+    /**
+     * Find zero or one TransferenciaTesouraria that matches the filter.
+     * @param {TransferenciaTesourariaFindUniqueArgs} args - Arguments to find a TransferenciaTesouraria
+     * @example
+     * // Get one TransferenciaTesouraria
+     * const transferenciaTesouraria = await prisma.transferenciaTesouraria.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TransferenciaTesourariaFindUniqueArgs>(args: SelectSubset<T, TransferenciaTesourariaFindUniqueArgs<ExtArgs>>): Prisma__TransferenciaTesourariaClient<$Result.GetResult<Prisma.$TransferenciaTesourariaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TransferenciaTesouraria that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TransferenciaTesourariaFindUniqueOrThrowArgs} args - Arguments to find a TransferenciaTesouraria
+     * @example
+     * // Get one TransferenciaTesouraria
+     * const transferenciaTesouraria = await prisma.transferenciaTesouraria.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TransferenciaTesourariaFindUniqueOrThrowArgs>(args: SelectSubset<T, TransferenciaTesourariaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TransferenciaTesourariaClient<$Result.GetResult<Prisma.$TransferenciaTesourariaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TransferenciaTesouraria that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransferenciaTesourariaFindFirstArgs} args - Arguments to find a TransferenciaTesouraria
+     * @example
+     * // Get one TransferenciaTesouraria
+     * const transferenciaTesouraria = await prisma.transferenciaTesouraria.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TransferenciaTesourariaFindFirstArgs>(args?: SelectSubset<T, TransferenciaTesourariaFindFirstArgs<ExtArgs>>): Prisma__TransferenciaTesourariaClient<$Result.GetResult<Prisma.$TransferenciaTesourariaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TransferenciaTesouraria that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransferenciaTesourariaFindFirstOrThrowArgs} args - Arguments to find a TransferenciaTesouraria
+     * @example
+     * // Get one TransferenciaTesouraria
+     * const transferenciaTesouraria = await prisma.transferenciaTesouraria.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TransferenciaTesourariaFindFirstOrThrowArgs>(args?: SelectSubset<T, TransferenciaTesourariaFindFirstOrThrowArgs<ExtArgs>>): Prisma__TransferenciaTesourariaClient<$Result.GetResult<Prisma.$TransferenciaTesourariaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TransferenciaTesourarias that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransferenciaTesourariaFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TransferenciaTesourarias
+     * const transferenciaTesourarias = await prisma.transferenciaTesouraria.findMany()
+     * 
+     * // Get first 10 TransferenciaTesourarias
+     * const transferenciaTesourarias = await prisma.transferenciaTesouraria.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const transferenciaTesourariaWithIdOnly = await prisma.transferenciaTesouraria.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TransferenciaTesourariaFindManyArgs>(args?: SelectSubset<T, TransferenciaTesourariaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransferenciaTesourariaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TransferenciaTesouraria.
+     * @param {TransferenciaTesourariaCreateArgs} args - Arguments to create a TransferenciaTesouraria.
+     * @example
+     * // Create one TransferenciaTesouraria
+     * const TransferenciaTesouraria = await prisma.transferenciaTesouraria.create({
+     *   data: {
+     *     // ... data to create a TransferenciaTesouraria
+     *   }
+     * })
+     * 
+     */
+    create<T extends TransferenciaTesourariaCreateArgs>(args: SelectSubset<T, TransferenciaTesourariaCreateArgs<ExtArgs>>): Prisma__TransferenciaTesourariaClient<$Result.GetResult<Prisma.$TransferenciaTesourariaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TransferenciaTesourarias.
+     * @param {TransferenciaTesourariaCreateManyArgs} args - Arguments to create many TransferenciaTesourarias.
+     * @example
+     * // Create many TransferenciaTesourarias
+     * const transferenciaTesouraria = await prisma.transferenciaTesouraria.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TransferenciaTesourariaCreateManyArgs>(args?: SelectSubset<T, TransferenciaTesourariaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TransferenciaTesourarias and returns the data saved in the database.
+     * @param {TransferenciaTesourariaCreateManyAndReturnArgs} args - Arguments to create many TransferenciaTesourarias.
+     * @example
+     * // Create many TransferenciaTesourarias
+     * const transferenciaTesouraria = await prisma.transferenciaTesouraria.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TransferenciaTesourarias and only return the `id`
+     * const transferenciaTesourariaWithIdOnly = await prisma.transferenciaTesouraria.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TransferenciaTesourariaCreateManyAndReturnArgs>(args?: SelectSubset<T, TransferenciaTesourariaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransferenciaTesourariaPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TransferenciaTesouraria.
+     * @param {TransferenciaTesourariaDeleteArgs} args - Arguments to delete one TransferenciaTesouraria.
+     * @example
+     * // Delete one TransferenciaTesouraria
+     * const TransferenciaTesouraria = await prisma.transferenciaTesouraria.delete({
+     *   where: {
+     *     // ... filter to delete one TransferenciaTesouraria
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TransferenciaTesourariaDeleteArgs>(args: SelectSubset<T, TransferenciaTesourariaDeleteArgs<ExtArgs>>): Prisma__TransferenciaTesourariaClient<$Result.GetResult<Prisma.$TransferenciaTesourariaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TransferenciaTesouraria.
+     * @param {TransferenciaTesourariaUpdateArgs} args - Arguments to update one TransferenciaTesouraria.
+     * @example
+     * // Update one TransferenciaTesouraria
+     * const transferenciaTesouraria = await prisma.transferenciaTesouraria.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TransferenciaTesourariaUpdateArgs>(args: SelectSubset<T, TransferenciaTesourariaUpdateArgs<ExtArgs>>): Prisma__TransferenciaTesourariaClient<$Result.GetResult<Prisma.$TransferenciaTesourariaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TransferenciaTesourarias.
+     * @param {TransferenciaTesourariaDeleteManyArgs} args - Arguments to filter TransferenciaTesourarias to delete.
+     * @example
+     * // Delete a few TransferenciaTesourarias
+     * const { count } = await prisma.transferenciaTesouraria.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TransferenciaTesourariaDeleteManyArgs>(args?: SelectSubset<T, TransferenciaTesourariaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TransferenciaTesourarias.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransferenciaTesourariaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TransferenciaTesourarias
+     * const transferenciaTesouraria = await prisma.transferenciaTesouraria.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TransferenciaTesourariaUpdateManyArgs>(args: SelectSubset<T, TransferenciaTesourariaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TransferenciaTesourarias and returns the data updated in the database.
+     * @param {TransferenciaTesourariaUpdateManyAndReturnArgs} args - Arguments to update many TransferenciaTesourarias.
+     * @example
+     * // Update many TransferenciaTesourarias
+     * const transferenciaTesouraria = await prisma.transferenciaTesouraria.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TransferenciaTesourarias and only return the `id`
+     * const transferenciaTesourariaWithIdOnly = await prisma.transferenciaTesouraria.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TransferenciaTesourariaUpdateManyAndReturnArgs>(args: SelectSubset<T, TransferenciaTesourariaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransferenciaTesourariaPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TransferenciaTesouraria.
+     * @param {TransferenciaTesourariaUpsertArgs} args - Arguments to update or create a TransferenciaTesouraria.
+     * @example
+     * // Update or create a TransferenciaTesouraria
+     * const transferenciaTesouraria = await prisma.transferenciaTesouraria.upsert({
+     *   create: {
+     *     // ... data to create a TransferenciaTesouraria
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TransferenciaTesouraria we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TransferenciaTesourariaUpsertArgs>(args: SelectSubset<T, TransferenciaTesourariaUpsertArgs<ExtArgs>>): Prisma__TransferenciaTesourariaClient<$Result.GetResult<Prisma.$TransferenciaTesourariaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TransferenciaTesourarias.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransferenciaTesourariaCountArgs} args - Arguments to filter TransferenciaTesourarias to count.
+     * @example
+     * // Count the number of TransferenciaTesourarias
+     * const count = await prisma.transferenciaTesouraria.count({
+     *   where: {
+     *     // ... the filter for the TransferenciaTesourarias we want to count
+     *   }
+     * })
+    **/
+    count<T extends TransferenciaTesourariaCountArgs>(
+      args?: Subset<T, TransferenciaTesourariaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TransferenciaTesourariaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TransferenciaTesouraria.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransferenciaTesourariaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TransferenciaTesourariaAggregateArgs>(args: Subset<T, TransferenciaTesourariaAggregateArgs>): Prisma.PrismaPromise<GetTransferenciaTesourariaAggregateType<T>>
+
+    /**
+     * Group by TransferenciaTesouraria.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransferenciaTesourariaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TransferenciaTesourariaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TransferenciaTesourariaGroupByArgs['orderBy'] }
+        : { orderBy?: TransferenciaTesourariaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TransferenciaTesourariaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTransferenciaTesourariaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TransferenciaTesouraria model
+   */
+  readonly fields: TransferenciaTesourariaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TransferenciaTesouraria.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TransferenciaTesourariaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    empresa<T extends EmpresaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmpresaDefaultArgs<ExtArgs>>): Prisma__EmpresaClient<$Result.GetResult<Prisma.$EmpresaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    conta_origem<T extends ContaBancariaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ContaBancariaDefaultArgs<ExtArgs>>): Prisma__ContaBancariaClient<$Result.GetResult<Prisma.$ContaBancariaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    conta_destino<T extends ContaBancariaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ContaBancariaDefaultArgs<ExtArgs>>): Prisma__ContaBancariaClient<$Result.GetResult<Prisma.$ContaBancariaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TransferenciaTesouraria model
+   */
+  interface TransferenciaTesourariaFieldRefs {
+    readonly id: FieldRef<"TransferenciaTesouraria", 'String'>
+    readonly empresa_id: FieldRef<"TransferenciaTesouraria", 'String'>
+    readonly conta_origem_id: FieldRef<"TransferenciaTesouraria", 'String'>
+    readonly conta_destino_id: FieldRef<"TransferenciaTesouraria", 'String'>
+    readonly valor: FieldRef<"TransferenciaTesouraria", 'Decimal'>
+    readonly data: FieldRef<"TransferenciaTesouraria", 'DateTime'>
+    readonly descricao: FieldRef<"TransferenciaTesouraria", 'String'>
+    readonly criado_em: FieldRef<"TransferenciaTesouraria", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TransferenciaTesouraria findUnique
+   */
+  export type TransferenciaTesourariaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransferenciaTesouraria
+     */
+    select?: TransferenciaTesourariaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransferenciaTesouraria
+     */
+    omit?: TransferenciaTesourariaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransferenciaTesourariaInclude<ExtArgs> | null
+    /**
+     * Filter, which TransferenciaTesouraria to fetch.
+     */
+    where: TransferenciaTesourariaWhereUniqueInput
+  }
+
+  /**
+   * TransferenciaTesouraria findUniqueOrThrow
+   */
+  export type TransferenciaTesourariaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransferenciaTesouraria
+     */
+    select?: TransferenciaTesourariaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransferenciaTesouraria
+     */
+    omit?: TransferenciaTesourariaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransferenciaTesourariaInclude<ExtArgs> | null
+    /**
+     * Filter, which TransferenciaTesouraria to fetch.
+     */
+    where: TransferenciaTesourariaWhereUniqueInput
+  }
+
+  /**
+   * TransferenciaTesouraria findFirst
+   */
+  export type TransferenciaTesourariaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransferenciaTesouraria
+     */
+    select?: TransferenciaTesourariaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransferenciaTesouraria
+     */
+    omit?: TransferenciaTesourariaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransferenciaTesourariaInclude<ExtArgs> | null
+    /**
+     * Filter, which TransferenciaTesouraria to fetch.
+     */
+    where?: TransferenciaTesourariaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TransferenciaTesourarias to fetch.
+     */
+    orderBy?: TransferenciaTesourariaOrderByWithRelationInput | TransferenciaTesourariaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TransferenciaTesourarias.
+     */
+    cursor?: TransferenciaTesourariaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TransferenciaTesourarias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TransferenciaTesourarias.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TransferenciaTesourarias.
+     */
+    distinct?: TransferenciaTesourariaScalarFieldEnum | TransferenciaTesourariaScalarFieldEnum[]
+  }
+
+  /**
+   * TransferenciaTesouraria findFirstOrThrow
+   */
+  export type TransferenciaTesourariaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransferenciaTesouraria
+     */
+    select?: TransferenciaTesourariaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransferenciaTesouraria
+     */
+    omit?: TransferenciaTesourariaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransferenciaTesourariaInclude<ExtArgs> | null
+    /**
+     * Filter, which TransferenciaTesouraria to fetch.
+     */
+    where?: TransferenciaTesourariaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TransferenciaTesourarias to fetch.
+     */
+    orderBy?: TransferenciaTesourariaOrderByWithRelationInput | TransferenciaTesourariaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TransferenciaTesourarias.
+     */
+    cursor?: TransferenciaTesourariaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TransferenciaTesourarias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TransferenciaTesourarias.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TransferenciaTesourarias.
+     */
+    distinct?: TransferenciaTesourariaScalarFieldEnum | TransferenciaTesourariaScalarFieldEnum[]
+  }
+
+  /**
+   * TransferenciaTesouraria findMany
+   */
+  export type TransferenciaTesourariaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransferenciaTesouraria
+     */
+    select?: TransferenciaTesourariaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransferenciaTesouraria
+     */
+    omit?: TransferenciaTesourariaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransferenciaTesourariaInclude<ExtArgs> | null
+    /**
+     * Filter, which TransferenciaTesourarias to fetch.
+     */
+    where?: TransferenciaTesourariaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TransferenciaTesourarias to fetch.
+     */
+    orderBy?: TransferenciaTesourariaOrderByWithRelationInput | TransferenciaTesourariaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TransferenciaTesourarias.
+     */
+    cursor?: TransferenciaTesourariaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TransferenciaTesourarias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TransferenciaTesourarias.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TransferenciaTesourarias.
+     */
+    distinct?: TransferenciaTesourariaScalarFieldEnum | TransferenciaTesourariaScalarFieldEnum[]
+  }
+
+  /**
+   * TransferenciaTesouraria create
+   */
+  export type TransferenciaTesourariaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransferenciaTesouraria
+     */
+    select?: TransferenciaTesourariaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransferenciaTesouraria
+     */
+    omit?: TransferenciaTesourariaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransferenciaTesourariaInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TransferenciaTesouraria.
+     */
+    data: XOR<TransferenciaTesourariaCreateInput, TransferenciaTesourariaUncheckedCreateInput>
+  }
+
+  /**
+   * TransferenciaTesouraria createMany
+   */
+  export type TransferenciaTesourariaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TransferenciaTesourarias.
+     */
+    data: TransferenciaTesourariaCreateManyInput | TransferenciaTesourariaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TransferenciaTesouraria createManyAndReturn
+   */
+  export type TransferenciaTesourariaCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransferenciaTesouraria
+     */
+    select?: TransferenciaTesourariaSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransferenciaTesouraria
+     */
+    omit?: TransferenciaTesourariaOmit<ExtArgs> | null
+    /**
+     * The data used to create many TransferenciaTesourarias.
+     */
+    data: TransferenciaTesourariaCreateManyInput | TransferenciaTesourariaCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransferenciaTesourariaIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TransferenciaTesouraria update
+   */
+  export type TransferenciaTesourariaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransferenciaTesouraria
+     */
+    select?: TransferenciaTesourariaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransferenciaTesouraria
+     */
+    omit?: TransferenciaTesourariaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransferenciaTesourariaInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TransferenciaTesouraria.
+     */
+    data: XOR<TransferenciaTesourariaUpdateInput, TransferenciaTesourariaUncheckedUpdateInput>
+    /**
+     * Choose, which TransferenciaTesouraria to update.
+     */
+    where: TransferenciaTesourariaWhereUniqueInput
+  }
+
+  /**
+   * TransferenciaTesouraria updateMany
+   */
+  export type TransferenciaTesourariaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TransferenciaTesourarias.
+     */
+    data: XOR<TransferenciaTesourariaUpdateManyMutationInput, TransferenciaTesourariaUncheckedUpdateManyInput>
+    /**
+     * Filter which TransferenciaTesourarias to update
+     */
+    where?: TransferenciaTesourariaWhereInput
+    /**
+     * Limit how many TransferenciaTesourarias to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TransferenciaTesouraria updateManyAndReturn
+   */
+  export type TransferenciaTesourariaUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransferenciaTesouraria
+     */
+    select?: TransferenciaTesourariaSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransferenciaTesouraria
+     */
+    omit?: TransferenciaTesourariaOmit<ExtArgs> | null
+    /**
+     * The data used to update TransferenciaTesourarias.
+     */
+    data: XOR<TransferenciaTesourariaUpdateManyMutationInput, TransferenciaTesourariaUncheckedUpdateManyInput>
+    /**
+     * Filter which TransferenciaTesourarias to update
+     */
+    where?: TransferenciaTesourariaWhereInput
+    /**
+     * Limit how many TransferenciaTesourarias to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransferenciaTesourariaIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TransferenciaTesouraria upsert
+   */
+  export type TransferenciaTesourariaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransferenciaTesouraria
+     */
+    select?: TransferenciaTesourariaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransferenciaTesouraria
+     */
+    omit?: TransferenciaTesourariaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransferenciaTesourariaInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TransferenciaTesouraria to update in case it exists.
+     */
+    where: TransferenciaTesourariaWhereUniqueInput
+    /**
+     * In case the TransferenciaTesouraria found by the `where` argument doesn't exist, create a new TransferenciaTesouraria with this data.
+     */
+    create: XOR<TransferenciaTesourariaCreateInput, TransferenciaTesourariaUncheckedCreateInput>
+    /**
+     * In case the TransferenciaTesouraria was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TransferenciaTesourariaUpdateInput, TransferenciaTesourariaUncheckedUpdateInput>
+  }
+
+  /**
+   * TransferenciaTesouraria delete
+   */
+  export type TransferenciaTesourariaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransferenciaTesouraria
+     */
+    select?: TransferenciaTesourariaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransferenciaTesouraria
+     */
+    omit?: TransferenciaTesourariaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransferenciaTesourariaInclude<ExtArgs> | null
+    /**
+     * Filter which TransferenciaTesouraria to delete.
+     */
+    where: TransferenciaTesourariaWhereUniqueInput
+  }
+
+  /**
+   * TransferenciaTesouraria deleteMany
+   */
+  export type TransferenciaTesourariaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TransferenciaTesourarias to delete
+     */
+    where?: TransferenciaTesourariaWhereInput
+    /**
+     * Limit how many TransferenciaTesourarias to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TransferenciaTesouraria without action
+   */
+  export type TransferenciaTesourariaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransferenciaTesouraria
+     */
+    select?: TransferenciaTesourariaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransferenciaTesouraria
+     */
+    omit?: TransferenciaTesourariaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransferenciaTesourariaInclude<ExtArgs> | null
   }
 
 
@@ -46715,6 +48069,20 @@ export namespace Prisma {
   export type ContaBancariaScalarFieldEnum = (typeof ContaBancariaScalarFieldEnum)[keyof typeof ContaBancariaScalarFieldEnum]
 
 
+  export const TransferenciaTesourariaScalarFieldEnum: {
+    id: 'id',
+    empresa_id: 'empresa_id',
+    conta_origem_id: 'conta_origem_id',
+    conta_destino_id: 'conta_destino_id',
+    valor: 'valor',
+    data: 'data',
+    descricao: 'descricao',
+    criado_em: 'criado_em'
+  };
+
+  export type TransferenciaTesourariaScalarFieldEnum = (typeof TransferenciaTesourariaScalarFieldEnum)[keyof typeof TransferenciaTesourariaScalarFieldEnum]
+
+
   export const RecebivelScalarFieldEnum: {
     id: 'id',
     empresa_id: 'empresa_id',
@@ -47291,6 +48659,7 @@ export namespace Prisma {
     documentos?: DocumentoListRelationFilter
     plano_contas?: PlanoDeContasListRelationFilter
     contas_bancarias?: ContaBancariaListRelationFilter
+    transferencias_tesouraria?: TransferenciaTesourariaListRelationFilter
     recebiveis?: RecebivelListRelationFilter
     contas_pagar?: ContaPagarListRelationFilter
     modelos_documento?: ModeloDocumentoListRelationFilter
@@ -47325,6 +48694,7 @@ export namespace Prisma {
     documentos?: DocumentoOrderByRelationAggregateInput
     plano_contas?: PlanoDeContasOrderByRelationAggregateInput
     contas_bancarias?: ContaBancariaOrderByRelationAggregateInput
+    transferencias_tesouraria?: TransferenciaTesourariaOrderByRelationAggregateInput
     recebiveis?: RecebivelOrderByRelationAggregateInput
     contas_pagar?: ContaPagarOrderByRelationAggregateInput
     modelos_documento?: ModeloDocumentoOrderByRelationAggregateInput
@@ -47362,6 +48732,7 @@ export namespace Prisma {
     documentos?: DocumentoListRelationFilter
     plano_contas?: PlanoDeContasListRelationFilter
     contas_bancarias?: ContaBancariaListRelationFilter
+    transferencias_tesouraria?: TransferenciaTesourariaListRelationFilter
     recebiveis?: RecebivelListRelationFilter
     contas_pagar?: ContaPagarListRelationFilter
     modelos_documento?: ModeloDocumentoListRelationFilter
@@ -49535,6 +50906,8 @@ export namespace Prisma {
     banco_ref?: XOR<BancoNullableScalarRelationFilter, BancoWhereInput> | null
     recebiveis?: RecebivelListRelationFilter
     contas_pagar?: ContaPagarListRelationFilter
+    transferencias_origem?: TransferenciaTesourariaListRelationFilter
+    transferencias_destino?: TransferenciaTesourariaListRelationFilter
   }
 
   export type ContaBancariaOrderByWithRelationInput = {
@@ -49556,6 +50929,8 @@ export namespace Prisma {
     banco_ref?: BancoOrderByWithRelationInput
     recebiveis?: RecebivelOrderByRelationAggregateInput
     contas_pagar?: ContaPagarOrderByRelationAggregateInput
+    transferencias_origem?: TransferenciaTesourariaOrderByRelationAggregateInput
+    transferencias_destino?: TransferenciaTesourariaOrderByRelationAggregateInput
   }
 
   export type ContaBancariaWhereUniqueInput = Prisma.AtLeast<{
@@ -49580,6 +50955,8 @@ export namespace Prisma {
     banco_ref?: XOR<BancoNullableScalarRelationFilter, BancoWhereInput> | null
     recebiveis?: RecebivelListRelationFilter
     contas_pagar?: ContaPagarListRelationFilter
+    transferencias_origem?: TransferenciaTesourariaListRelationFilter
+    transferencias_destino?: TransferenciaTesourariaListRelationFilter
   }, "id">
 
   export type ContaBancariaOrderByWithAggregationInput = {
@@ -49622,6 +50999,84 @@ export namespace Prisma {
     ativo?: BoolWithAggregatesFilter<"ContaBancaria"> | boolean
     criado_em?: DateTimeWithAggregatesFilter<"ContaBancaria"> | Date | string
     atualizado_em?: DateTimeWithAggregatesFilter<"ContaBancaria"> | Date | string
+  }
+
+  export type TransferenciaTesourariaWhereInput = {
+    AND?: TransferenciaTesourariaWhereInput | TransferenciaTesourariaWhereInput[]
+    OR?: TransferenciaTesourariaWhereInput[]
+    NOT?: TransferenciaTesourariaWhereInput | TransferenciaTesourariaWhereInput[]
+    id?: StringFilter<"TransferenciaTesouraria"> | string
+    empresa_id?: StringFilter<"TransferenciaTesouraria"> | string
+    conta_origem_id?: StringFilter<"TransferenciaTesouraria"> | string
+    conta_destino_id?: StringFilter<"TransferenciaTesouraria"> | string
+    valor?: DecimalFilter<"TransferenciaTesouraria"> | Decimal | DecimalJsLike | number | string
+    data?: DateTimeFilter<"TransferenciaTesouraria"> | Date | string
+    descricao?: StringNullableFilter<"TransferenciaTesouraria"> | string | null
+    criado_em?: DateTimeFilter<"TransferenciaTesouraria"> | Date | string
+    empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
+    conta_origem?: XOR<ContaBancariaScalarRelationFilter, ContaBancariaWhereInput>
+    conta_destino?: XOR<ContaBancariaScalarRelationFilter, ContaBancariaWhereInput>
+  }
+
+  export type TransferenciaTesourariaOrderByWithRelationInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    conta_origem_id?: SortOrder
+    conta_destino_id?: SortOrder
+    valor?: SortOrder
+    data?: SortOrder
+    descricao?: SortOrderInput | SortOrder
+    criado_em?: SortOrder
+    empresa?: EmpresaOrderByWithRelationInput
+    conta_origem?: ContaBancariaOrderByWithRelationInput
+    conta_destino?: ContaBancariaOrderByWithRelationInput
+  }
+
+  export type TransferenciaTesourariaWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: TransferenciaTesourariaWhereInput | TransferenciaTesourariaWhereInput[]
+    OR?: TransferenciaTesourariaWhereInput[]
+    NOT?: TransferenciaTesourariaWhereInput | TransferenciaTesourariaWhereInput[]
+    empresa_id?: StringFilter<"TransferenciaTesouraria"> | string
+    conta_origem_id?: StringFilter<"TransferenciaTesouraria"> | string
+    conta_destino_id?: StringFilter<"TransferenciaTesouraria"> | string
+    valor?: DecimalFilter<"TransferenciaTesouraria"> | Decimal | DecimalJsLike | number | string
+    data?: DateTimeFilter<"TransferenciaTesouraria"> | Date | string
+    descricao?: StringNullableFilter<"TransferenciaTesouraria"> | string | null
+    criado_em?: DateTimeFilter<"TransferenciaTesouraria"> | Date | string
+    empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
+    conta_origem?: XOR<ContaBancariaScalarRelationFilter, ContaBancariaWhereInput>
+    conta_destino?: XOR<ContaBancariaScalarRelationFilter, ContaBancariaWhereInput>
+  }, "id">
+
+  export type TransferenciaTesourariaOrderByWithAggregationInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    conta_origem_id?: SortOrder
+    conta_destino_id?: SortOrder
+    valor?: SortOrder
+    data?: SortOrder
+    descricao?: SortOrderInput | SortOrder
+    criado_em?: SortOrder
+    _count?: TransferenciaTesourariaCountOrderByAggregateInput
+    _avg?: TransferenciaTesourariaAvgOrderByAggregateInput
+    _max?: TransferenciaTesourariaMaxOrderByAggregateInput
+    _min?: TransferenciaTesourariaMinOrderByAggregateInput
+    _sum?: TransferenciaTesourariaSumOrderByAggregateInput
+  }
+
+  export type TransferenciaTesourariaScalarWhereWithAggregatesInput = {
+    AND?: TransferenciaTesourariaScalarWhereWithAggregatesInput | TransferenciaTesourariaScalarWhereWithAggregatesInput[]
+    OR?: TransferenciaTesourariaScalarWhereWithAggregatesInput[]
+    NOT?: TransferenciaTesourariaScalarWhereWithAggregatesInput | TransferenciaTesourariaScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"TransferenciaTesouraria"> | string
+    empresa_id?: StringWithAggregatesFilter<"TransferenciaTesouraria"> | string
+    conta_origem_id?: StringWithAggregatesFilter<"TransferenciaTesouraria"> | string
+    conta_destino_id?: StringWithAggregatesFilter<"TransferenciaTesouraria"> | string
+    valor?: DecimalWithAggregatesFilter<"TransferenciaTesouraria"> | Decimal | DecimalJsLike | number | string
+    data?: DateTimeWithAggregatesFilter<"TransferenciaTesouraria"> | Date | string
+    descricao?: StringNullableWithAggregatesFilter<"TransferenciaTesouraria"> | string | null
+    criado_em?: DateTimeWithAggregatesFilter<"TransferenciaTesouraria"> | Date | string
   }
 
   export type RecebivelWhereInput = {
@@ -50524,6 +51979,7 @@ export namespace Prisma {
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
@@ -50558,6 +52014,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -50592,6 +52049,7 @@ export namespace Prisma {
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -50626,6 +52084,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -52996,6 +54455,8 @@ export namespace Prisma {
     banco_ref?: BancoCreateNestedOneWithoutContas_bancariasInput
     recebiveis?: RecebivelCreateNestedManyWithoutConta_bancariaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutConta_bancariaInput
+    transferencias_origem?: TransferenciaTesourariaCreateNestedManyWithoutConta_origemInput
+    transferencias_destino?: TransferenciaTesourariaCreateNestedManyWithoutConta_destinoInput
   }
 
   export type ContaBancariaUncheckedCreateInput = {
@@ -53015,6 +54476,8 @@ export namespace Prisma {
     atualizado_em?: Date | string
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutConta_bancariaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutConta_bancariaInput
+    transferencias_origem?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutConta_origemInput
+    transferencias_destino?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutConta_destinoInput
   }
 
   export type ContaBancariaUpdateInput = {
@@ -53034,6 +54497,8 @@ export namespace Prisma {
     banco_ref?: BancoUpdateOneWithoutContas_bancariasNestedInput
     recebiveis?: RecebivelUpdateManyWithoutConta_bancariaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutConta_bancariaNestedInput
+    transferencias_origem?: TransferenciaTesourariaUpdateManyWithoutConta_origemNestedInput
+    transferencias_destino?: TransferenciaTesourariaUpdateManyWithoutConta_destinoNestedInput
   }
 
   export type ContaBancariaUncheckedUpdateInput = {
@@ -53053,6 +54518,8 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     recebiveis?: RecebivelUncheckedUpdateManyWithoutConta_bancariaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutConta_bancariaNestedInput
+    transferencias_origem?: TransferenciaTesourariaUncheckedUpdateManyWithoutConta_origemNestedInput
+    transferencias_destino?: TransferenciaTesourariaUncheckedUpdateManyWithoutConta_destinoNestedInput
   }
 
   export type ContaBancariaCreateManyInput = {
@@ -53102,6 +54569,80 @@ export namespace Prisma {
     ativo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransferenciaTesourariaCreateInput = {
+    id?: string
+    valor: Decimal | DecimalJsLike | number | string
+    data: Date | string
+    descricao?: string | null
+    criado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutTransferencias_tesourariaInput
+    conta_origem: ContaBancariaCreateNestedOneWithoutTransferencias_origemInput
+    conta_destino: ContaBancariaCreateNestedOneWithoutTransferencias_destinoInput
+  }
+
+  export type TransferenciaTesourariaUncheckedCreateInput = {
+    id?: string
+    empresa_id: string
+    conta_origem_id: string
+    conta_destino_id: string
+    valor: Decimal | DecimalJsLike | number | string
+    data: Date | string
+    descricao?: string | null
+    criado_em?: Date | string
+  }
+
+  export type TransferenciaTesourariaUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    data?: DateTimeFieldUpdateOperationsInput | Date | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutTransferencias_tesourariaNestedInput
+    conta_origem?: ContaBancariaUpdateOneRequiredWithoutTransferencias_origemNestedInput
+    conta_destino?: ContaBancariaUpdateOneRequiredWithoutTransferencias_destinoNestedInput
+  }
+
+  export type TransferenciaTesourariaUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    conta_origem_id?: StringFieldUpdateOperationsInput | string
+    conta_destino_id?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    data?: DateTimeFieldUpdateOperationsInput | Date | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransferenciaTesourariaCreateManyInput = {
+    id?: string
+    empresa_id: string
+    conta_origem_id: string
+    conta_destino_id: string
+    valor: Decimal | DecimalJsLike | number | string
+    data: Date | string
+    descricao?: string | null
+    criado_em?: Date | string
+  }
+
+  export type TransferenciaTesourariaUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    data?: DateTimeFieldUpdateOperationsInput | Date | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransferenciaTesourariaUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    conta_origem_id?: StringFieldUpdateOperationsInput | string
+    conta_destino_id?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    data?: DateTimeFieldUpdateOperationsInput | Date | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type RecebivelCreateInput = {
@@ -54194,6 +55735,12 @@ export namespace Prisma {
     none?: ContaBancariaWhereInput
   }
 
+  export type TransferenciaTesourariaListRelationFilter = {
+    every?: TransferenciaTesourariaWhereInput
+    some?: TransferenciaTesourariaWhereInput
+    none?: TransferenciaTesourariaWhereInput
+  }
+
   export type RecebivelListRelationFilter = {
     every?: RecebivelWhereInput
     some?: RecebivelWhereInput
@@ -54296,6 +55843,10 @@ export namespace Prisma {
   }
 
   export type ContaBancariaOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TransferenciaTesourariaOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -56093,6 +57644,52 @@ export namespace Prisma {
     _max?: NestedEnumTipoContaFilter<$PrismaModel>
   }
 
+  export type ContaBancariaScalarRelationFilter = {
+    is?: ContaBancariaWhereInput
+    isNot?: ContaBancariaWhereInput
+  }
+
+  export type TransferenciaTesourariaCountOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    conta_origem_id?: SortOrder
+    conta_destino_id?: SortOrder
+    valor?: SortOrder
+    data?: SortOrder
+    descricao?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type TransferenciaTesourariaAvgOrderByAggregateInput = {
+    valor?: SortOrder
+  }
+
+  export type TransferenciaTesourariaMaxOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    conta_origem_id?: SortOrder
+    conta_destino_id?: SortOrder
+    valor?: SortOrder
+    data?: SortOrder
+    descricao?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type TransferenciaTesourariaMinOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    conta_origem_id?: SortOrder
+    conta_destino_id?: SortOrder
+    valor?: SortOrder
+    data?: SortOrder
+    descricao?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type TransferenciaTesourariaSumOrderByAggregateInput = {
+    valor?: SortOrder
+  }
+
   export type EnumStatusRecebivelFilter<$PrismaModel = never> = {
     equals?: $Enums.StatusRecebivel | EnumStatusRecebivelFieldRefInput<$PrismaModel>
     in?: $Enums.StatusRecebivel[] | ListEnumStatusRecebivelFieldRefInput<$PrismaModel>
@@ -56721,6 +58318,13 @@ export namespace Prisma {
     connect?: ContaBancariaWhereUniqueInput | ContaBancariaWhereUniqueInput[]
   }
 
+  export type TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput = {
+    create?: XOR<TransferenciaTesourariaCreateWithoutEmpresaInput, TransferenciaTesourariaUncheckedCreateWithoutEmpresaInput> | TransferenciaTesourariaCreateWithoutEmpresaInput[] | TransferenciaTesourariaUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: TransferenciaTesourariaCreateOrConnectWithoutEmpresaInput | TransferenciaTesourariaCreateOrConnectWithoutEmpresaInput[]
+    createMany?: TransferenciaTesourariaCreateManyEmpresaInputEnvelope
+    connect?: TransferenciaTesourariaWhereUniqueInput | TransferenciaTesourariaWhereUniqueInput[]
+  }
+
   export type RecebivelCreateNestedManyWithoutEmpresaInput = {
     create?: XOR<RecebivelCreateWithoutEmpresaInput, RecebivelUncheckedCreateWithoutEmpresaInput> | RecebivelCreateWithoutEmpresaInput[] | RecebivelUncheckedCreateWithoutEmpresaInput[]
     connectOrCreate?: RecebivelCreateOrConnectWithoutEmpresaInput | RecebivelCreateOrConnectWithoutEmpresaInput[]
@@ -56866,6 +58470,13 @@ export namespace Prisma {
     connectOrCreate?: ContaBancariaCreateOrConnectWithoutEmpresaInput | ContaBancariaCreateOrConnectWithoutEmpresaInput[]
     createMany?: ContaBancariaCreateManyEmpresaInputEnvelope
     connect?: ContaBancariaWhereUniqueInput | ContaBancariaWhereUniqueInput[]
+  }
+
+  export type TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput = {
+    create?: XOR<TransferenciaTesourariaCreateWithoutEmpresaInput, TransferenciaTesourariaUncheckedCreateWithoutEmpresaInput> | TransferenciaTesourariaCreateWithoutEmpresaInput[] | TransferenciaTesourariaUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: TransferenciaTesourariaCreateOrConnectWithoutEmpresaInput | TransferenciaTesourariaCreateOrConnectWithoutEmpresaInput[]
+    createMany?: TransferenciaTesourariaCreateManyEmpresaInputEnvelope
+    connect?: TransferenciaTesourariaWhereUniqueInput | TransferenciaTesourariaWhereUniqueInput[]
   }
 
   export type RecebivelUncheckedCreateNestedManyWithoutEmpresaInput = {
@@ -57124,6 +58735,20 @@ export namespace Prisma {
     update?: ContaBancariaUpdateWithWhereUniqueWithoutEmpresaInput | ContaBancariaUpdateWithWhereUniqueWithoutEmpresaInput[]
     updateMany?: ContaBancariaUpdateManyWithWhereWithoutEmpresaInput | ContaBancariaUpdateManyWithWhereWithoutEmpresaInput[]
     deleteMany?: ContaBancariaScalarWhereInput | ContaBancariaScalarWhereInput[]
+  }
+
+  export type TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput = {
+    create?: XOR<TransferenciaTesourariaCreateWithoutEmpresaInput, TransferenciaTesourariaUncheckedCreateWithoutEmpresaInput> | TransferenciaTesourariaCreateWithoutEmpresaInput[] | TransferenciaTesourariaUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: TransferenciaTesourariaCreateOrConnectWithoutEmpresaInput | TransferenciaTesourariaCreateOrConnectWithoutEmpresaInput[]
+    upsert?: TransferenciaTesourariaUpsertWithWhereUniqueWithoutEmpresaInput | TransferenciaTesourariaUpsertWithWhereUniqueWithoutEmpresaInput[]
+    createMany?: TransferenciaTesourariaCreateManyEmpresaInputEnvelope
+    set?: TransferenciaTesourariaWhereUniqueInput | TransferenciaTesourariaWhereUniqueInput[]
+    disconnect?: TransferenciaTesourariaWhereUniqueInput | TransferenciaTesourariaWhereUniqueInput[]
+    delete?: TransferenciaTesourariaWhereUniqueInput | TransferenciaTesourariaWhereUniqueInput[]
+    connect?: TransferenciaTesourariaWhereUniqueInput | TransferenciaTesourariaWhereUniqueInput[]
+    update?: TransferenciaTesourariaUpdateWithWhereUniqueWithoutEmpresaInput | TransferenciaTesourariaUpdateWithWhereUniqueWithoutEmpresaInput[]
+    updateMany?: TransferenciaTesourariaUpdateManyWithWhereWithoutEmpresaInput | TransferenciaTesourariaUpdateManyWithWhereWithoutEmpresaInput[]
+    deleteMany?: TransferenciaTesourariaScalarWhereInput | TransferenciaTesourariaScalarWhereInput[]
   }
 
   export type RecebivelUpdateManyWithoutEmpresaNestedInput = {
@@ -57418,6 +59043,20 @@ export namespace Prisma {
     update?: ContaBancariaUpdateWithWhereUniqueWithoutEmpresaInput | ContaBancariaUpdateWithWhereUniqueWithoutEmpresaInput[]
     updateMany?: ContaBancariaUpdateManyWithWhereWithoutEmpresaInput | ContaBancariaUpdateManyWithWhereWithoutEmpresaInput[]
     deleteMany?: ContaBancariaScalarWhereInput | ContaBancariaScalarWhereInput[]
+  }
+
+  export type TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput = {
+    create?: XOR<TransferenciaTesourariaCreateWithoutEmpresaInput, TransferenciaTesourariaUncheckedCreateWithoutEmpresaInput> | TransferenciaTesourariaCreateWithoutEmpresaInput[] | TransferenciaTesourariaUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: TransferenciaTesourariaCreateOrConnectWithoutEmpresaInput | TransferenciaTesourariaCreateOrConnectWithoutEmpresaInput[]
+    upsert?: TransferenciaTesourariaUpsertWithWhereUniqueWithoutEmpresaInput | TransferenciaTesourariaUpsertWithWhereUniqueWithoutEmpresaInput[]
+    createMany?: TransferenciaTesourariaCreateManyEmpresaInputEnvelope
+    set?: TransferenciaTesourariaWhereUniqueInput | TransferenciaTesourariaWhereUniqueInput[]
+    disconnect?: TransferenciaTesourariaWhereUniqueInput | TransferenciaTesourariaWhereUniqueInput[]
+    delete?: TransferenciaTesourariaWhereUniqueInput | TransferenciaTesourariaWhereUniqueInput[]
+    connect?: TransferenciaTesourariaWhereUniqueInput | TransferenciaTesourariaWhereUniqueInput[]
+    update?: TransferenciaTesourariaUpdateWithWhereUniqueWithoutEmpresaInput | TransferenciaTesourariaUpdateWithWhereUniqueWithoutEmpresaInput[]
+    updateMany?: TransferenciaTesourariaUpdateManyWithWhereWithoutEmpresaInput | TransferenciaTesourariaUpdateManyWithWhereWithoutEmpresaInput[]
+    deleteMany?: TransferenciaTesourariaScalarWhereInput | TransferenciaTesourariaScalarWhereInput[]
   }
 
   export type RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput = {
@@ -60388,6 +62027,20 @@ export namespace Prisma {
     connect?: ContaPagarWhereUniqueInput | ContaPagarWhereUniqueInput[]
   }
 
+  export type TransferenciaTesourariaCreateNestedManyWithoutConta_origemInput = {
+    create?: XOR<TransferenciaTesourariaCreateWithoutConta_origemInput, TransferenciaTesourariaUncheckedCreateWithoutConta_origemInput> | TransferenciaTesourariaCreateWithoutConta_origemInput[] | TransferenciaTesourariaUncheckedCreateWithoutConta_origemInput[]
+    connectOrCreate?: TransferenciaTesourariaCreateOrConnectWithoutConta_origemInput | TransferenciaTesourariaCreateOrConnectWithoutConta_origemInput[]
+    createMany?: TransferenciaTesourariaCreateManyConta_origemInputEnvelope
+    connect?: TransferenciaTesourariaWhereUniqueInput | TransferenciaTesourariaWhereUniqueInput[]
+  }
+
+  export type TransferenciaTesourariaCreateNestedManyWithoutConta_destinoInput = {
+    create?: XOR<TransferenciaTesourariaCreateWithoutConta_destinoInput, TransferenciaTesourariaUncheckedCreateWithoutConta_destinoInput> | TransferenciaTesourariaCreateWithoutConta_destinoInput[] | TransferenciaTesourariaUncheckedCreateWithoutConta_destinoInput[]
+    connectOrCreate?: TransferenciaTesourariaCreateOrConnectWithoutConta_destinoInput | TransferenciaTesourariaCreateOrConnectWithoutConta_destinoInput[]
+    createMany?: TransferenciaTesourariaCreateManyConta_destinoInputEnvelope
+    connect?: TransferenciaTesourariaWhereUniqueInput | TransferenciaTesourariaWhereUniqueInput[]
+  }
+
   export type RecebivelUncheckedCreateNestedManyWithoutConta_bancariaInput = {
     create?: XOR<RecebivelCreateWithoutConta_bancariaInput, RecebivelUncheckedCreateWithoutConta_bancariaInput> | RecebivelCreateWithoutConta_bancariaInput[] | RecebivelUncheckedCreateWithoutConta_bancariaInput[]
     connectOrCreate?: RecebivelCreateOrConnectWithoutConta_bancariaInput | RecebivelCreateOrConnectWithoutConta_bancariaInput[]
@@ -60400,6 +62053,20 @@ export namespace Prisma {
     connectOrCreate?: ContaPagarCreateOrConnectWithoutConta_bancariaInput | ContaPagarCreateOrConnectWithoutConta_bancariaInput[]
     createMany?: ContaPagarCreateManyConta_bancariaInputEnvelope
     connect?: ContaPagarWhereUniqueInput | ContaPagarWhereUniqueInput[]
+  }
+
+  export type TransferenciaTesourariaUncheckedCreateNestedManyWithoutConta_origemInput = {
+    create?: XOR<TransferenciaTesourariaCreateWithoutConta_origemInput, TransferenciaTesourariaUncheckedCreateWithoutConta_origemInput> | TransferenciaTesourariaCreateWithoutConta_origemInput[] | TransferenciaTesourariaUncheckedCreateWithoutConta_origemInput[]
+    connectOrCreate?: TransferenciaTesourariaCreateOrConnectWithoutConta_origemInput | TransferenciaTesourariaCreateOrConnectWithoutConta_origemInput[]
+    createMany?: TransferenciaTesourariaCreateManyConta_origemInputEnvelope
+    connect?: TransferenciaTesourariaWhereUniqueInput | TransferenciaTesourariaWhereUniqueInput[]
+  }
+
+  export type TransferenciaTesourariaUncheckedCreateNestedManyWithoutConta_destinoInput = {
+    create?: XOR<TransferenciaTesourariaCreateWithoutConta_destinoInput, TransferenciaTesourariaUncheckedCreateWithoutConta_destinoInput> | TransferenciaTesourariaCreateWithoutConta_destinoInput[] | TransferenciaTesourariaUncheckedCreateWithoutConta_destinoInput[]
+    connectOrCreate?: TransferenciaTesourariaCreateOrConnectWithoutConta_destinoInput | TransferenciaTesourariaCreateOrConnectWithoutConta_destinoInput[]
+    createMany?: TransferenciaTesourariaCreateManyConta_destinoInputEnvelope
+    connect?: TransferenciaTesourariaWhereUniqueInput | TransferenciaTesourariaWhereUniqueInput[]
   }
 
   export type EnumTipoContaFieldUpdateOperationsInput = {
@@ -60452,6 +62119,34 @@ export namespace Prisma {
     deleteMany?: ContaPagarScalarWhereInput | ContaPagarScalarWhereInput[]
   }
 
+  export type TransferenciaTesourariaUpdateManyWithoutConta_origemNestedInput = {
+    create?: XOR<TransferenciaTesourariaCreateWithoutConta_origemInput, TransferenciaTesourariaUncheckedCreateWithoutConta_origemInput> | TransferenciaTesourariaCreateWithoutConta_origemInput[] | TransferenciaTesourariaUncheckedCreateWithoutConta_origemInput[]
+    connectOrCreate?: TransferenciaTesourariaCreateOrConnectWithoutConta_origemInput | TransferenciaTesourariaCreateOrConnectWithoutConta_origemInput[]
+    upsert?: TransferenciaTesourariaUpsertWithWhereUniqueWithoutConta_origemInput | TransferenciaTesourariaUpsertWithWhereUniqueWithoutConta_origemInput[]
+    createMany?: TransferenciaTesourariaCreateManyConta_origemInputEnvelope
+    set?: TransferenciaTesourariaWhereUniqueInput | TransferenciaTesourariaWhereUniqueInput[]
+    disconnect?: TransferenciaTesourariaWhereUniqueInput | TransferenciaTesourariaWhereUniqueInput[]
+    delete?: TransferenciaTesourariaWhereUniqueInput | TransferenciaTesourariaWhereUniqueInput[]
+    connect?: TransferenciaTesourariaWhereUniqueInput | TransferenciaTesourariaWhereUniqueInput[]
+    update?: TransferenciaTesourariaUpdateWithWhereUniqueWithoutConta_origemInput | TransferenciaTesourariaUpdateWithWhereUniqueWithoutConta_origemInput[]
+    updateMany?: TransferenciaTesourariaUpdateManyWithWhereWithoutConta_origemInput | TransferenciaTesourariaUpdateManyWithWhereWithoutConta_origemInput[]
+    deleteMany?: TransferenciaTesourariaScalarWhereInput | TransferenciaTesourariaScalarWhereInput[]
+  }
+
+  export type TransferenciaTesourariaUpdateManyWithoutConta_destinoNestedInput = {
+    create?: XOR<TransferenciaTesourariaCreateWithoutConta_destinoInput, TransferenciaTesourariaUncheckedCreateWithoutConta_destinoInput> | TransferenciaTesourariaCreateWithoutConta_destinoInput[] | TransferenciaTesourariaUncheckedCreateWithoutConta_destinoInput[]
+    connectOrCreate?: TransferenciaTesourariaCreateOrConnectWithoutConta_destinoInput | TransferenciaTesourariaCreateOrConnectWithoutConta_destinoInput[]
+    upsert?: TransferenciaTesourariaUpsertWithWhereUniqueWithoutConta_destinoInput | TransferenciaTesourariaUpsertWithWhereUniqueWithoutConta_destinoInput[]
+    createMany?: TransferenciaTesourariaCreateManyConta_destinoInputEnvelope
+    set?: TransferenciaTesourariaWhereUniqueInput | TransferenciaTesourariaWhereUniqueInput[]
+    disconnect?: TransferenciaTesourariaWhereUniqueInput | TransferenciaTesourariaWhereUniqueInput[]
+    delete?: TransferenciaTesourariaWhereUniqueInput | TransferenciaTesourariaWhereUniqueInput[]
+    connect?: TransferenciaTesourariaWhereUniqueInput | TransferenciaTesourariaWhereUniqueInput[]
+    update?: TransferenciaTesourariaUpdateWithWhereUniqueWithoutConta_destinoInput | TransferenciaTesourariaUpdateWithWhereUniqueWithoutConta_destinoInput[]
+    updateMany?: TransferenciaTesourariaUpdateManyWithWhereWithoutConta_destinoInput | TransferenciaTesourariaUpdateManyWithWhereWithoutConta_destinoInput[]
+    deleteMany?: TransferenciaTesourariaScalarWhereInput | TransferenciaTesourariaScalarWhereInput[]
+  }
+
   export type RecebivelUncheckedUpdateManyWithoutConta_bancariaNestedInput = {
     create?: XOR<RecebivelCreateWithoutConta_bancariaInput, RecebivelUncheckedCreateWithoutConta_bancariaInput> | RecebivelCreateWithoutConta_bancariaInput[] | RecebivelUncheckedCreateWithoutConta_bancariaInput[]
     connectOrCreate?: RecebivelCreateOrConnectWithoutConta_bancariaInput | RecebivelCreateOrConnectWithoutConta_bancariaInput[]
@@ -60478,6 +62173,76 @@ export namespace Prisma {
     update?: ContaPagarUpdateWithWhereUniqueWithoutConta_bancariaInput | ContaPagarUpdateWithWhereUniqueWithoutConta_bancariaInput[]
     updateMany?: ContaPagarUpdateManyWithWhereWithoutConta_bancariaInput | ContaPagarUpdateManyWithWhereWithoutConta_bancariaInput[]
     deleteMany?: ContaPagarScalarWhereInput | ContaPagarScalarWhereInput[]
+  }
+
+  export type TransferenciaTesourariaUncheckedUpdateManyWithoutConta_origemNestedInput = {
+    create?: XOR<TransferenciaTesourariaCreateWithoutConta_origemInput, TransferenciaTesourariaUncheckedCreateWithoutConta_origemInput> | TransferenciaTesourariaCreateWithoutConta_origemInput[] | TransferenciaTesourariaUncheckedCreateWithoutConta_origemInput[]
+    connectOrCreate?: TransferenciaTesourariaCreateOrConnectWithoutConta_origemInput | TransferenciaTesourariaCreateOrConnectWithoutConta_origemInput[]
+    upsert?: TransferenciaTesourariaUpsertWithWhereUniqueWithoutConta_origemInput | TransferenciaTesourariaUpsertWithWhereUniqueWithoutConta_origemInput[]
+    createMany?: TransferenciaTesourariaCreateManyConta_origemInputEnvelope
+    set?: TransferenciaTesourariaWhereUniqueInput | TransferenciaTesourariaWhereUniqueInput[]
+    disconnect?: TransferenciaTesourariaWhereUniqueInput | TransferenciaTesourariaWhereUniqueInput[]
+    delete?: TransferenciaTesourariaWhereUniqueInput | TransferenciaTesourariaWhereUniqueInput[]
+    connect?: TransferenciaTesourariaWhereUniqueInput | TransferenciaTesourariaWhereUniqueInput[]
+    update?: TransferenciaTesourariaUpdateWithWhereUniqueWithoutConta_origemInput | TransferenciaTesourariaUpdateWithWhereUniqueWithoutConta_origemInput[]
+    updateMany?: TransferenciaTesourariaUpdateManyWithWhereWithoutConta_origemInput | TransferenciaTesourariaUpdateManyWithWhereWithoutConta_origemInput[]
+    deleteMany?: TransferenciaTesourariaScalarWhereInput | TransferenciaTesourariaScalarWhereInput[]
+  }
+
+  export type TransferenciaTesourariaUncheckedUpdateManyWithoutConta_destinoNestedInput = {
+    create?: XOR<TransferenciaTesourariaCreateWithoutConta_destinoInput, TransferenciaTesourariaUncheckedCreateWithoutConta_destinoInput> | TransferenciaTesourariaCreateWithoutConta_destinoInput[] | TransferenciaTesourariaUncheckedCreateWithoutConta_destinoInput[]
+    connectOrCreate?: TransferenciaTesourariaCreateOrConnectWithoutConta_destinoInput | TransferenciaTesourariaCreateOrConnectWithoutConta_destinoInput[]
+    upsert?: TransferenciaTesourariaUpsertWithWhereUniqueWithoutConta_destinoInput | TransferenciaTesourariaUpsertWithWhereUniqueWithoutConta_destinoInput[]
+    createMany?: TransferenciaTesourariaCreateManyConta_destinoInputEnvelope
+    set?: TransferenciaTesourariaWhereUniqueInput | TransferenciaTesourariaWhereUniqueInput[]
+    disconnect?: TransferenciaTesourariaWhereUniqueInput | TransferenciaTesourariaWhereUniqueInput[]
+    delete?: TransferenciaTesourariaWhereUniqueInput | TransferenciaTesourariaWhereUniqueInput[]
+    connect?: TransferenciaTesourariaWhereUniqueInput | TransferenciaTesourariaWhereUniqueInput[]
+    update?: TransferenciaTesourariaUpdateWithWhereUniqueWithoutConta_destinoInput | TransferenciaTesourariaUpdateWithWhereUniqueWithoutConta_destinoInput[]
+    updateMany?: TransferenciaTesourariaUpdateManyWithWhereWithoutConta_destinoInput | TransferenciaTesourariaUpdateManyWithWhereWithoutConta_destinoInput[]
+    deleteMany?: TransferenciaTesourariaScalarWhereInput | TransferenciaTesourariaScalarWhereInput[]
+  }
+
+  export type EmpresaCreateNestedOneWithoutTransferencias_tesourariaInput = {
+    create?: XOR<EmpresaCreateWithoutTransferencias_tesourariaInput, EmpresaUncheckedCreateWithoutTransferencias_tesourariaInput>
+    connectOrCreate?: EmpresaCreateOrConnectWithoutTransferencias_tesourariaInput
+    connect?: EmpresaWhereUniqueInput
+  }
+
+  export type ContaBancariaCreateNestedOneWithoutTransferencias_origemInput = {
+    create?: XOR<ContaBancariaCreateWithoutTransferencias_origemInput, ContaBancariaUncheckedCreateWithoutTransferencias_origemInput>
+    connectOrCreate?: ContaBancariaCreateOrConnectWithoutTransferencias_origemInput
+    connect?: ContaBancariaWhereUniqueInput
+  }
+
+  export type ContaBancariaCreateNestedOneWithoutTransferencias_destinoInput = {
+    create?: XOR<ContaBancariaCreateWithoutTransferencias_destinoInput, ContaBancariaUncheckedCreateWithoutTransferencias_destinoInput>
+    connectOrCreate?: ContaBancariaCreateOrConnectWithoutTransferencias_destinoInput
+    connect?: ContaBancariaWhereUniqueInput
+  }
+
+  export type EmpresaUpdateOneRequiredWithoutTransferencias_tesourariaNestedInput = {
+    create?: XOR<EmpresaCreateWithoutTransferencias_tesourariaInput, EmpresaUncheckedCreateWithoutTransferencias_tesourariaInput>
+    connectOrCreate?: EmpresaCreateOrConnectWithoutTransferencias_tesourariaInput
+    upsert?: EmpresaUpsertWithoutTransferencias_tesourariaInput
+    connect?: EmpresaWhereUniqueInput
+    update?: XOR<XOR<EmpresaUpdateToOneWithWhereWithoutTransferencias_tesourariaInput, EmpresaUpdateWithoutTransferencias_tesourariaInput>, EmpresaUncheckedUpdateWithoutTransferencias_tesourariaInput>
+  }
+
+  export type ContaBancariaUpdateOneRequiredWithoutTransferencias_origemNestedInput = {
+    create?: XOR<ContaBancariaCreateWithoutTransferencias_origemInput, ContaBancariaUncheckedCreateWithoutTransferencias_origemInput>
+    connectOrCreate?: ContaBancariaCreateOrConnectWithoutTransferencias_origemInput
+    upsert?: ContaBancariaUpsertWithoutTransferencias_origemInput
+    connect?: ContaBancariaWhereUniqueInput
+    update?: XOR<XOR<ContaBancariaUpdateToOneWithWhereWithoutTransferencias_origemInput, ContaBancariaUpdateWithoutTransferencias_origemInput>, ContaBancariaUncheckedUpdateWithoutTransferencias_origemInput>
+  }
+
+  export type ContaBancariaUpdateOneRequiredWithoutTransferencias_destinoNestedInput = {
+    create?: XOR<ContaBancariaCreateWithoutTransferencias_destinoInput, ContaBancariaUncheckedCreateWithoutTransferencias_destinoInput>
+    connectOrCreate?: ContaBancariaCreateOrConnectWithoutTransferencias_destinoInput
+    upsert?: ContaBancariaUpsertWithoutTransferencias_destinoInput
+    connect?: ContaBancariaWhereUniqueInput
+    update?: XOR<XOR<ContaBancariaUpdateToOneWithWhereWithoutTransferencias_destinoInput, ContaBancariaUpdateWithoutTransferencias_destinoInput>, ContaBancariaUncheckedUpdateWithoutTransferencias_destinoInput>
   }
 
   export type EmpresaCreateNestedOneWithoutRecebiveisInput = {
@@ -62068,6 +63833,8 @@ export namespace Prisma {
     banco_ref?: BancoCreateNestedOneWithoutContas_bancariasInput
     recebiveis?: RecebivelCreateNestedManyWithoutConta_bancariaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutConta_bancariaInput
+    transferencias_origem?: TransferenciaTesourariaCreateNestedManyWithoutConta_origemInput
+    transferencias_destino?: TransferenciaTesourariaCreateNestedManyWithoutConta_destinoInput
   }
 
   export type ContaBancariaUncheckedCreateWithoutEmpresaInput = {
@@ -62086,6 +63853,8 @@ export namespace Prisma {
     atualizado_em?: Date | string
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutConta_bancariaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutConta_bancariaInput
+    transferencias_origem?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutConta_origemInput
+    transferencias_destino?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutConta_destinoInput
   }
 
   export type ContaBancariaCreateOrConnectWithoutEmpresaInput = {
@@ -62095,6 +63864,36 @@ export namespace Prisma {
 
   export type ContaBancariaCreateManyEmpresaInputEnvelope = {
     data: ContaBancariaCreateManyEmpresaInput | ContaBancariaCreateManyEmpresaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TransferenciaTesourariaCreateWithoutEmpresaInput = {
+    id?: string
+    valor: Decimal | DecimalJsLike | number | string
+    data: Date | string
+    descricao?: string | null
+    criado_em?: Date | string
+    conta_origem: ContaBancariaCreateNestedOneWithoutTransferencias_origemInput
+    conta_destino: ContaBancariaCreateNestedOneWithoutTransferencias_destinoInput
+  }
+
+  export type TransferenciaTesourariaUncheckedCreateWithoutEmpresaInput = {
+    id?: string
+    conta_origem_id: string
+    conta_destino_id: string
+    valor: Decimal | DecimalJsLike | number | string
+    data: Date | string
+    descricao?: string | null
+    criado_em?: Date | string
+  }
+
+  export type TransferenciaTesourariaCreateOrConnectWithoutEmpresaInput = {
+    where: TransferenciaTesourariaWhereUniqueInput
+    create: XOR<TransferenciaTesourariaCreateWithoutEmpresaInput, TransferenciaTesourariaUncheckedCreateWithoutEmpresaInput>
+  }
+
+  export type TransferenciaTesourariaCreateManyEmpresaInputEnvelope = {
+    data: TransferenciaTesourariaCreateManyEmpresaInput | TransferenciaTesourariaCreateManyEmpresaInput[]
     skipDuplicates?: boolean
   }
 
@@ -62889,6 +64688,36 @@ export namespace Prisma {
     ativo?: BoolFilter<"ContaBancaria"> | boolean
     criado_em?: DateTimeFilter<"ContaBancaria"> | Date | string
     atualizado_em?: DateTimeFilter<"ContaBancaria"> | Date | string
+  }
+
+  export type TransferenciaTesourariaUpsertWithWhereUniqueWithoutEmpresaInput = {
+    where: TransferenciaTesourariaWhereUniqueInput
+    update: XOR<TransferenciaTesourariaUpdateWithoutEmpresaInput, TransferenciaTesourariaUncheckedUpdateWithoutEmpresaInput>
+    create: XOR<TransferenciaTesourariaCreateWithoutEmpresaInput, TransferenciaTesourariaUncheckedCreateWithoutEmpresaInput>
+  }
+
+  export type TransferenciaTesourariaUpdateWithWhereUniqueWithoutEmpresaInput = {
+    where: TransferenciaTesourariaWhereUniqueInput
+    data: XOR<TransferenciaTesourariaUpdateWithoutEmpresaInput, TransferenciaTesourariaUncheckedUpdateWithoutEmpresaInput>
+  }
+
+  export type TransferenciaTesourariaUpdateManyWithWhereWithoutEmpresaInput = {
+    where: TransferenciaTesourariaScalarWhereInput
+    data: XOR<TransferenciaTesourariaUpdateManyMutationInput, TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaInput>
+  }
+
+  export type TransferenciaTesourariaScalarWhereInput = {
+    AND?: TransferenciaTesourariaScalarWhereInput | TransferenciaTesourariaScalarWhereInput[]
+    OR?: TransferenciaTesourariaScalarWhereInput[]
+    NOT?: TransferenciaTesourariaScalarWhereInput | TransferenciaTesourariaScalarWhereInput[]
+    id?: StringFilter<"TransferenciaTesouraria"> | string
+    empresa_id?: StringFilter<"TransferenciaTesouraria"> | string
+    conta_origem_id?: StringFilter<"TransferenciaTesouraria"> | string
+    conta_destino_id?: StringFilter<"TransferenciaTesouraria"> | string
+    valor?: DecimalFilter<"TransferenciaTesouraria"> | Decimal | DecimalJsLike | number | string
+    data?: DateTimeFilter<"TransferenciaTesouraria"> | Date | string
+    descricao?: StringNullableFilter<"TransferenciaTesouraria"> | string | null
+    criado_em?: DateTimeFilter<"TransferenciaTesouraria"> | Date | string
   }
 
   export type RecebivelUpsertWithWhereUniqueWithoutEmpresaInput = {
@@ -64285,6 +66114,7 @@ export namespace Prisma {
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
@@ -64318,6 +66148,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -64449,6 +66280,7 @@ export namespace Prisma {
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -64482,6 +66314,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -64546,6 +66379,7 @@ export namespace Prisma {
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
@@ -64579,6 +66413,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -64672,6 +66507,7 @@ export namespace Prisma {
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -64705,6 +66541,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -64912,6 +66749,7 @@ export namespace Prisma {
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
@@ -64945,6 +66783,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -65045,6 +66884,7 @@ export namespace Prisma {
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -65078,6 +66918,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -65168,6 +67009,7 @@ export namespace Prisma {
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
@@ -65201,6 +67043,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -65380,6 +67223,7 @@ export namespace Prisma {
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -65413,6 +67257,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -65588,6 +67433,7 @@ export namespace Prisma {
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
@@ -65621,6 +67467,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -66201,6 +68048,7 @@ export namespace Prisma {
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -66234,6 +68082,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -66649,6 +68498,7 @@ export namespace Prisma {
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
@@ -66682,6 +68532,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -66796,6 +68647,7 @@ export namespace Prisma {
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -66829,6 +68681,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -66933,6 +68786,7 @@ export namespace Prisma {
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
@@ -66966,6 +68820,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -67247,6 +69102,7 @@ export namespace Prisma {
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -67280,6 +69136,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -67695,6 +69552,7 @@ export namespace Prisma {
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
@@ -67728,6 +69586,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -68154,6 +70013,7 @@ export namespace Prisma {
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -68187,6 +70047,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -68974,6 +70835,7 @@ export namespace Prisma {
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
@@ -69007,6 +70869,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -69493,6 +71356,7 @@ export namespace Prisma {
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -69526,6 +71390,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -69932,6 +71797,7 @@ export namespace Prisma {
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
@@ -69965,6 +71831,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -70421,6 +72288,7 @@ export namespace Prisma {
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -70454,6 +72322,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -71234,6 +73103,7 @@ export namespace Prisma {
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
@@ -71267,6 +73137,7 @@ export namespace Prisma {
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -71410,6 +73281,7 @@ export namespace Prisma {
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -71443,6 +73315,7 @@ export namespace Prisma {
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -71582,6 +73455,7 @@ export namespace Prisma {
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
@@ -71615,6 +73489,7 @@ export namespace Prisma {
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -71871,6 +73746,7 @@ export namespace Prisma {
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -71904,6 +73780,7 @@ export namespace Prisma {
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -72035,6 +73912,8 @@ export namespace Prisma {
     empresa: EmpresaCreateNestedOneWithoutContas_bancariasInput
     recebiveis?: RecebivelCreateNestedManyWithoutConta_bancariaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutConta_bancariaInput
+    transferencias_origem?: TransferenciaTesourariaCreateNestedManyWithoutConta_origemInput
+    transferencias_destino?: TransferenciaTesourariaCreateNestedManyWithoutConta_destinoInput
   }
 
   export type ContaBancariaUncheckedCreateWithoutBanco_refInput = {
@@ -72053,6 +73932,8 @@ export namespace Prisma {
     atualizado_em?: Date | string
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutConta_bancariaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutConta_bancariaInput
+    transferencias_origem?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutConta_origemInput
+    transferencias_destino?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutConta_destinoInput
   }
 
   export type ContaBancariaCreateOrConnectWithoutBanco_refInput = {
@@ -72104,6 +73985,7 @@ export namespace Prisma {
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
@@ -72137,6 +74019,7 @@ export namespace Prisma {
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -72269,6 +74152,66 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type TransferenciaTesourariaCreateWithoutConta_origemInput = {
+    id?: string
+    valor: Decimal | DecimalJsLike | number | string
+    data: Date | string
+    descricao?: string | null
+    criado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutTransferencias_tesourariaInput
+    conta_destino: ContaBancariaCreateNestedOneWithoutTransferencias_destinoInput
+  }
+
+  export type TransferenciaTesourariaUncheckedCreateWithoutConta_origemInput = {
+    id?: string
+    empresa_id: string
+    conta_destino_id: string
+    valor: Decimal | DecimalJsLike | number | string
+    data: Date | string
+    descricao?: string | null
+    criado_em?: Date | string
+  }
+
+  export type TransferenciaTesourariaCreateOrConnectWithoutConta_origemInput = {
+    where: TransferenciaTesourariaWhereUniqueInput
+    create: XOR<TransferenciaTesourariaCreateWithoutConta_origemInput, TransferenciaTesourariaUncheckedCreateWithoutConta_origemInput>
+  }
+
+  export type TransferenciaTesourariaCreateManyConta_origemInputEnvelope = {
+    data: TransferenciaTesourariaCreateManyConta_origemInput | TransferenciaTesourariaCreateManyConta_origemInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TransferenciaTesourariaCreateWithoutConta_destinoInput = {
+    id?: string
+    valor: Decimal | DecimalJsLike | number | string
+    data: Date | string
+    descricao?: string | null
+    criado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutTransferencias_tesourariaInput
+    conta_origem: ContaBancariaCreateNestedOneWithoutTransferencias_origemInput
+  }
+
+  export type TransferenciaTesourariaUncheckedCreateWithoutConta_destinoInput = {
+    id?: string
+    empresa_id: string
+    conta_origem_id: string
+    valor: Decimal | DecimalJsLike | number | string
+    data: Date | string
+    descricao?: string | null
+    criado_em?: Date | string
+  }
+
+  export type TransferenciaTesourariaCreateOrConnectWithoutConta_destinoInput = {
+    where: TransferenciaTesourariaWhereUniqueInput
+    create: XOR<TransferenciaTesourariaCreateWithoutConta_destinoInput, TransferenciaTesourariaUncheckedCreateWithoutConta_destinoInput>
+  }
+
+  export type TransferenciaTesourariaCreateManyConta_destinoInputEnvelope = {
+    data: TransferenciaTesourariaCreateManyConta_destinoInput | TransferenciaTesourariaCreateManyConta_destinoInput[]
+    skipDuplicates?: boolean
+  }
+
   export type EmpresaUpsertWithoutContas_bancariasInput = {
     update: XOR<EmpresaUpdateWithoutContas_bancariasInput, EmpresaUncheckedUpdateWithoutContas_bancariasInput>
     create: XOR<EmpresaCreateWithoutContas_bancariasInput, EmpresaUncheckedCreateWithoutContas_bancariasInput>
@@ -72303,6 +74246,7 @@ export namespace Prisma {
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -72336,6 +74280,7 @@ export namespace Prisma {
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -72403,6 +74348,382 @@ export namespace Prisma {
     data: XOR<ContaPagarUpdateManyMutationInput, ContaPagarUncheckedUpdateManyWithoutConta_bancariaInput>
   }
 
+  export type TransferenciaTesourariaUpsertWithWhereUniqueWithoutConta_origemInput = {
+    where: TransferenciaTesourariaWhereUniqueInput
+    update: XOR<TransferenciaTesourariaUpdateWithoutConta_origemInput, TransferenciaTesourariaUncheckedUpdateWithoutConta_origemInput>
+    create: XOR<TransferenciaTesourariaCreateWithoutConta_origemInput, TransferenciaTesourariaUncheckedCreateWithoutConta_origemInput>
+  }
+
+  export type TransferenciaTesourariaUpdateWithWhereUniqueWithoutConta_origemInput = {
+    where: TransferenciaTesourariaWhereUniqueInput
+    data: XOR<TransferenciaTesourariaUpdateWithoutConta_origemInput, TransferenciaTesourariaUncheckedUpdateWithoutConta_origemInput>
+  }
+
+  export type TransferenciaTesourariaUpdateManyWithWhereWithoutConta_origemInput = {
+    where: TransferenciaTesourariaScalarWhereInput
+    data: XOR<TransferenciaTesourariaUpdateManyMutationInput, TransferenciaTesourariaUncheckedUpdateManyWithoutConta_origemInput>
+  }
+
+  export type TransferenciaTesourariaUpsertWithWhereUniqueWithoutConta_destinoInput = {
+    where: TransferenciaTesourariaWhereUniqueInput
+    update: XOR<TransferenciaTesourariaUpdateWithoutConta_destinoInput, TransferenciaTesourariaUncheckedUpdateWithoutConta_destinoInput>
+    create: XOR<TransferenciaTesourariaCreateWithoutConta_destinoInput, TransferenciaTesourariaUncheckedCreateWithoutConta_destinoInput>
+  }
+
+  export type TransferenciaTesourariaUpdateWithWhereUniqueWithoutConta_destinoInput = {
+    where: TransferenciaTesourariaWhereUniqueInput
+    data: XOR<TransferenciaTesourariaUpdateWithoutConta_destinoInput, TransferenciaTesourariaUncheckedUpdateWithoutConta_destinoInput>
+  }
+
+  export type TransferenciaTesourariaUpdateManyWithWhereWithoutConta_destinoInput = {
+    where: TransferenciaTesourariaScalarWhereInput
+    data: XOR<TransferenciaTesourariaUpdateManyMutationInput, TransferenciaTesourariaUncheckedUpdateManyWithoutConta_destinoInput>
+  }
+
+  export type EmpresaCreateWithoutTransferencias_tesourariaInput = {
+    id?: string
+    nome: string
+    slug: string
+    cnpj?: string | null
+    logo_url?: string | null
+    plano?: $Enums.PlanoTipo
+    status?: $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
+    perfis?: PerfilCreateNestedManyWithoutEmpresaInput
+    convites?: ConviteEmpresaCreateNestedManyWithoutEmpresaInput
+    convites_cliente?: ConviteClienteCreateNestedManyWithoutEmpresaInput
+    clientes?: ClienteCreateNestedManyWithoutEmpresaInput
+    servicos?: ServicoCreateNestedManyWithoutEmpresaInput
+    leads?: LeadCreateNestedManyWithoutEmpresaInput
+    propostas?: PropostaCreateNestedManyWithoutEmpresaInput
+    contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
+    documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
+    contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
+    contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
+    eventos?: EventoCreateNestedManyWithoutEmpresaInput
+    registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
+    notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
+    notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
+    diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+  }
+
+  export type EmpresaUncheckedCreateWithoutTransferencias_tesourariaInput = {
+    id?: string
+    nome: string
+    slug: string
+    cnpj?: string | null
+    logo_url?: string | null
+    plano?: $Enums.PlanoTipo
+    status?: $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
+    perfis?: PerfilUncheckedCreateNestedManyWithoutEmpresaInput
+    convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
+    convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutEmpresaInput
+    clientes?: ClienteUncheckedCreateNestedManyWithoutEmpresaInput
+    servicos?: ServicoUncheckedCreateNestedManyWithoutEmpresaInput
+    leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
+    propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
+    contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
+    contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
+    contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
+    registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
+    notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
+    notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+  }
+
+  export type EmpresaCreateOrConnectWithoutTransferencias_tesourariaInput = {
+    where: EmpresaWhereUniqueInput
+    create: XOR<EmpresaCreateWithoutTransferencias_tesourariaInput, EmpresaUncheckedCreateWithoutTransferencias_tesourariaInput>
+  }
+
+  export type ContaBancariaCreateWithoutTransferencias_origemInput = {
+    id?: string
+    nome: string
+    banco?: string | null
+    agencia?: string | null
+    conta?: string | null
+    digito?: string | null
+    pix_chave?: string | null
+    tipo?: $Enums.TipoConta
+    saldo_inicial?: Decimal | DecimalJsLike | number | string
+    ativo?: boolean
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutContas_bancariasInput
+    banco_ref?: BancoCreateNestedOneWithoutContas_bancariasInput
+    recebiveis?: RecebivelCreateNestedManyWithoutConta_bancariaInput
+    contas_pagar?: ContaPagarCreateNestedManyWithoutConta_bancariaInput
+    transferencias_destino?: TransferenciaTesourariaCreateNestedManyWithoutConta_destinoInput
+  }
+
+  export type ContaBancariaUncheckedCreateWithoutTransferencias_origemInput = {
+    id?: string
+    empresa_id: string
+    nome: string
+    banco_id?: string | null
+    banco?: string | null
+    agencia?: string | null
+    conta?: string | null
+    digito?: string | null
+    pix_chave?: string | null
+    tipo?: $Enums.TipoConta
+    saldo_inicial?: Decimal | DecimalJsLike | number | string
+    ativo?: boolean
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    recebiveis?: RecebivelUncheckedCreateNestedManyWithoutConta_bancariaInput
+    contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutConta_bancariaInput
+    transferencias_destino?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutConta_destinoInput
+  }
+
+  export type ContaBancariaCreateOrConnectWithoutTransferencias_origemInput = {
+    where: ContaBancariaWhereUniqueInput
+    create: XOR<ContaBancariaCreateWithoutTransferencias_origemInput, ContaBancariaUncheckedCreateWithoutTransferencias_origemInput>
+  }
+
+  export type ContaBancariaCreateWithoutTransferencias_destinoInput = {
+    id?: string
+    nome: string
+    banco?: string | null
+    agencia?: string | null
+    conta?: string | null
+    digito?: string | null
+    pix_chave?: string | null
+    tipo?: $Enums.TipoConta
+    saldo_inicial?: Decimal | DecimalJsLike | number | string
+    ativo?: boolean
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutContas_bancariasInput
+    banco_ref?: BancoCreateNestedOneWithoutContas_bancariasInput
+    recebiveis?: RecebivelCreateNestedManyWithoutConta_bancariaInput
+    contas_pagar?: ContaPagarCreateNestedManyWithoutConta_bancariaInput
+    transferencias_origem?: TransferenciaTesourariaCreateNestedManyWithoutConta_origemInput
+  }
+
+  export type ContaBancariaUncheckedCreateWithoutTransferencias_destinoInput = {
+    id?: string
+    empresa_id: string
+    nome: string
+    banco_id?: string | null
+    banco?: string | null
+    agencia?: string | null
+    conta?: string | null
+    digito?: string | null
+    pix_chave?: string | null
+    tipo?: $Enums.TipoConta
+    saldo_inicial?: Decimal | DecimalJsLike | number | string
+    ativo?: boolean
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    recebiveis?: RecebivelUncheckedCreateNestedManyWithoutConta_bancariaInput
+    contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutConta_bancariaInput
+    transferencias_origem?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutConta_origemInput
+  }
+
+  export type ContaBancariaCreateOrConnectWithoutTransferencias_destinoInput = {
+    where: ContaBancariaWhereUniqueInput
+    create: XOR<ContaBancariaCreateWithoutTransferencias_destinoInput, ContaBancariaUncheckedCreateWithoutTransferencias_destinoInput>
+  }
+
+  export type EmpresaUpsertWithoutTransferencias_tesourariaInput = {
+    update: XOR<EmpresaUpdateWithoutTransferencias_tesourariaInput, EmpresaUncheckedUpdateWithoutTransferencias_tesourariaInput>
+    create: XOR<EmpresaCreateWithoutTransferencias_tesourariaInput, EmpresaUncheckedCreateWithoutTransferencias_tesourariaInput>
+    where?: EmpresaWhereInput
+  }
+
+  export type EmpresaUpdateToOneWithWhereWithoutTransferencias_tesourariaInput = {
+    where?: EmpresaWhereInput
+    data: XOR<EmpresaUpdateWithoutTransferencias_tesourariaInput, EmpresaUncheckedUpdateWithoutTransferencias_tesourariaInput>
+  }
+
+  export type EmpresaUpdateWithoutTransferencias_tesourariaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    logo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
+    status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
+    perfis?: PerfilUpdateManyWithoutEmpresaNestedInput
+    convites?: ConviteEmpresaUpdateManyWithoutEmpresaNestedInput
+    convites_cliente?: ConviteClienteUpdateManyWithoutEmpresaNestedInput
+    clientes?: ClienteUpdateManyWithoutEmpresaNestedInput
+    servicos?: ServicoUpdateManyWithoutEmpresaNestedInput
+    leads?: LeadUpdateManyWithoutEmpresaNestedInput
+    propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
+    contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
+    documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
+    contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
+    contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
+    eventos?: EventoUpdateManyWithoutEmpresaNestedInput
+    registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
+    notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
+    notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
+    diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+  }
+
+  export type EmpresaUncheckedUpdateWithoutTransferencias_tesourariaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    logo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
+    status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
+    perfis?: PerfilUncheckedUpdateManyWithoutEmpresaNestedInput
+    convites?: ConviteEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
+    convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutEmpresaNestedInput
+    clientes?: ClienteUncheckedUpdateManyWithoutEmpresaNestedInput
+    servicos?: ServicoUncheckedUpdateManyWithoutEmpresaNestedInput
+    leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
+    propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
+    contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
+    contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
+    contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
+    registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
+    notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
+    notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+  }
+
+  export type ContaBancariaUpsertWithoutTransferencias_origemInput = {
+    update: XOR<ContaBancariaUpdateWithoutTransferencias_origemInput, ContaBancariaUncheckedUpdateWithoutTransferencias_origemInput>
+    create: XOR<ContaBancariaCreateWithoutTransferencias_origemInput, ContaBancariaUncheckedCreateWithoutTransferencias_origemInput>
+    where?: ContaBancariaWhereInput
+  }
+
+  export type ContaBancariaUpdateToOneWithWhereWithoutTransferencias_origemInput = {
+    where?: ContaBancariaWhereInput
+    data: XOR<ContaBancariaUpdateWithoutTransferencias_origemInput, ContaBancariaUncheckedUpdateWithoutTransferencias_origemInput>
+  }
+
+  export type ContaBancariaUpdateWithoutTransferencias_origemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    banco?: NullableStringFieldUpdateOperationsInput | string | null
+    agencia?: NullableStringFieldUpdateOperationsInput | string | null
+    conta?: NullableStringFieldUpdateOperationsInput | string | null
+    digito?: NullableStringFieldUpdateOperationsInput | string | null
+    pix_chave?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo?: EnumTipoContaFieldUpdateOperationsInput | $Enums.TipoConta
+    saldo_inicial?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutContas_bancariasNestedInput
+    banco_ref?: BancoUpdateOneWithoutContas_bancariasNestedInput
+    recebiveis?: RecebivelUpdateManyWithoutConta_bancariaNestedInput
+    contas_pagar?: ContaPagarUpdateManyWithoutConta_bancariaNestedInput
+    transferencias_destino?: TransferenciaTesourariaUpdateManyWithoutConta_destinoNestedInput
+  }
+
+  export type ContaBancariaUncheckedUpdateWithoutTransferencias_origemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    banco_id?: NullableStringFieldUpdateOperationsInput | string | null
+    banco?: NullableStringFieldUpdateOperationsInput | string | null
+    agencia?: NullableStringFieldUpdateOperationsInput | string | null
+    conta?: NullableStringFieldUpdateOperationsInput | string | null
+    digito?: NullableStringFieldUpdateOperationsInput | string | null
+    pix_chave?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo?: EnumTipoContaFieldUpdateOperationsInput | $Enums.TipoConta
+    saldo_inicial?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    recebiveis?: RecebivelUncheckedUpdateManyWithoutConta_bancariaNestedInput
+    contas_pagar?: ContaPagarUncheckedUpdateManyWithoutConta_bancariaNestedInput
+    transferencias_destino?: TransferenciaTesourariaUncheckedUpdateManyWithoutConta_destinoNestedInput
+  }
+
+  export type ContaBancariaUpsertWithoutTransferencias_destinoInput = {
+    update: XOR<ContaBancariaUpdateWithoutTransferencias_destinoInput, ContaBancariaUncheckedUpdateWithoutTransferencias_destinoInput>
+    create: XOR<ContaBancariaCreateWithoutTransferencias_destinoInput, ContaBancariaUncheckedCreateWithoutTransferencias_destinoInput>
+    where?: ContaBancariaWhereInput
+  }
+
+  export type ContaBancariaUpdateToOneWithWhereWithoutTransferencias_destinoInput = {
+    where?: ContaBancariaWhereInput
+    data: XOR<ContaBancariaUpdateWithoutTransferencias_destinoInput, ContaBancariaUncheckedUpdateWithoutTransferencias_destinoInput>
+  }
+
+  export type ContaBancariaUpdateWithoutTransferencias_destinoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    banco?: NullableStringFieldUpdateOperationsInput | string | null
+    agencia?: NullableStringFieldUpdateOperationsInput | string | null
+    conta?: NullableStringFieldUpdateOperationsInput | string | null
+    digito?: NullableStringFieldUpdateOperationsInput | string | null
+    pix_chave?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo?: EnumTipoContaFieldUpdateOperationsInput | $Enums.TipoConta
+    saldo_inicial?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutContas_bancariasNestedInput
+    banco_ref?: BancoUpdateOneWithoutContas_bancariasNestedInput
+    recebiveis?: RecebivelUpdateManyWithoutConta_bancariaNestedInput
+    contas_pagar?: ContaPagarUpdateManyWithoutConta_bancariaNestedInput
+    transferencias_origem?: TransferenciaTesourariaUpdateManyWithoutConta_origemNestedInput
+  }
+
+  export type ContaBancariaUncheckedUpdateWithoutTransferencias_destinoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    banco_id?: NullableStringFieldUpdateOperationsInput | string | null
+    banco?: NullableStringFieldUpdateOperationsInput | string | null
+    agencia?: NullableStringFieldUpdateOperationsInput | string | null
+    conta?: NullableStringFieldUpdateOperationsInput | string | null
+    digito?: NullableStringFieldUpdateOperationsInput | string | null
+    pix_chave?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo?: EnumTipoContaFieldUpdateOperationsInput | $Enums.TipoConta
+    saldo_inicial?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    recebiveis?: RecebivelUncheckedUpdateManyWithoutConta_bancariaNestedInput
+    contas_pagar?: ContaPagarUncheckedUpdateManyWithoutConta_bancariaNestedInput
+    transferencias_origem?: TransferenciaTesourariaUncheckedUpdateManyWithoutConta_origemNestedInput
+  }
+
   export type EmpresaCreateWithoutRecebiveisInput = {
     id?: string
     nome: string
@@ -72427,6 +74748,7 @@ export namespace Prisma {
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
@@ -72460,6 +74782,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -72695,6 +75018,8 @@ export namespace Prisma {
     empresa: EmpresaCreateNestedOneWithoutContas_bancariasInput
     banco_ref?: BancoCreateNestedOneWithoutContas_bancariasInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutConta_bancariaInput
+    transferencias_origem?: TransferenciaTesourariaCreateNestedManyWithoutConta_origemInput
+    transferencias_destino?: TransferenciaTesourariaCreateNestedManyWithoutConta_destinoInput
   }
 
   export type ContaBancariaUncheckedCreateWithoutRecebiveisInput = {
@@ -72713,6 +75038,8 @@ export namespace Prisma {
     criado_em?: Date | string
     atualizado_em?: Date | string
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutConta_bancariaInput
+    transferencias_origem?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutConta_origemInput
+    transferencias_destino?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutConta_destinoInput
   }
 
   export type ContaBancariaCreateOrConnectWithoutRecebiveisInput = {
@@ -72806,6 +75133,7 @@ export namespace Prisma {
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
@@ -72839,6 +75167,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -73098,6 +75427,8 @@ export namespace Prisma {
     empresa?: EmpresaUpdateOneRequiredWithoutContas_bancariasNestedInput
     banco_ref?: BancoUpdateOneWithoutContas_bancariasNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutConta_bancariaNestedInput
+    transferencias_origem?: TransferenciaTesourariaUpdateManyWithoutConta_origemNestedInput
+    transferencias_destino?: TransferenciaTesourariaUpdateManyWithoutConta_destinoNestedInput
   }
 
   export type ContaBancariaUncheckedUpdateWithoutRecebiveisInput = {
@@ -73116,6 +75447,8 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutConta_bancariaNestedInput
+    transferencias_origem?: TransferenciaTesourariaUncheckedUpdateManyWithoutConta_origemNestedInput
+    transferencias_destino?: TransferenciaTesourariaUncheckedUpdateManyWithoutConta_destinoNestedInput
   }
 
   export type UsuarioUpsertWithoutRecebiveis_criadosInput = {
@@ -73199,6 +75532,7 @@ export namespace Prisma {
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
@@ -73232,6 +75566,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -73297,6 +75632,8 @@ export namespace Prisma {
     empresa: EmpresaCreateNestedOneWithoutContas_bancariasInput
     banco_ref?: BancoCreateNestedOneWithoutContas_bancariasInput
     recebiveis?: RecebivelCreateNestedManyWithoutConta_bancariaInput
+    transferencias_origem?: TransferenciaTesourariaCreateNestedManyWithoutConta_origemInput
+    transferencias_destino?: TransferenciaTesourariaCreateNestedManyWithoutConta_destinoInput
   }
 
   export type ContaBancariaUncheckedCreateWithoutContas_pagarInput = {
@@ -73315,6 +75652,8 @@ export namespace Prisma {
     criado_em?: Date | string
     atualizado_em?: Date | string
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutConta_bancariaInput
+    transferencias_origem?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutConta_origemInput
+    transferencias_destino?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutConta_destinoInput
   }
 
   export type ContaBancariaCreateOrConnectWithoutContas_pagarInput = {
@@ -73408,6 +75747,7 @@ export namespace Prisma {
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
@@ -73441,6 +75781,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -73518,6 +75859,8 @@ export namespace Prisma {
     empresa?: EmpresaUpdateOneRequiredWithoutContas_bancariasNestedInput
     banco_ref?: BancoUpdateOneWithoutContas_bancariasNestedInput
     recebiveis?: RecebivelUpdateManyWithoutConta_bancariaNestedInput
+    transferencias_origem?: TransferenciaTesourariaUpdateManyWithoutConta_origemNestedInput
+    transferencias_destino?: TransferenciaTesourariaUpdateManyWithoutConta_destinoNestedInput
   }
 
   export type ContaBancariaUncheckedUpdateWithoutContas_pagarInput = {
@@ -73536,6 +75879,8 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     recebiveis?: RecebivelUncheckedUpdateManyWithoutConta_bancariaNestedInput
+    transferencias_origem?: TransferenciaTesourariaUncheckedUpdateManyWithoutConta_origemNestedInput
+    transferencias_destino?: TransferenciaTesourariaUncheckedUpdateManyWithoutConta_destinoNestedInput
   }
 
   export type UsuarioUpsertWithoutContas_pagar_criadasInput = {
@@ -73619,6 +75964,7 @@ export namespace Prisma {
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
@@ -73652,6 +75998,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -73701,6 +76048,7 @@ export namespace Prisma {
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
@@ -73734,6 +76082,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -73767,6 +76116,7 @@ export namespace Prisma {
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
@@ -73800,6 +76150,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -74113,6 +76464,7 @@ export namespace Prisma {
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -74146,6 +76498,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -74467,6 +76820,7 @@ export namespace Prisma {
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
@@ -74500,6 +76854,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -74549,6 +76904,7 @@ export namespace Prisma {
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -74582,6 +76938,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -74615,6 +76972,7 @@ export namespace Prisma {
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
@@ -74648,6 +77006,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -74697,6 +77056,7 @@ export namespace Prisma {
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -74730,6 +77090,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -74763,6 +77124,7 @@ export namespace Prisma {
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
@@ -74796,6 +77158,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -75015,6 +77378,7 @@ export namespace Prisma {
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -75048,6 +77412,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -75263,6 +77628,7 @@ export namespace Prisma {
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
@@ -75296,6 +77662,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -75467,6 +77834,7 @@ export namespace Prisma {
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -75500,6 +77868,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -76020,6 +78389,16 @@ export namespace Prisma {
     ativo?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
+  }
+
+  export type TransferenciaTesourariaCreateManyEmpresaInput = {
+    id?: string
+    conta_origem_id: string
+    conta_destino_id: string
+    valor: Decimal | DecimalJsLike | number | string
+    data: Date | string
+    descricao?: string | null
+    criado_em?: Date | string
   }
 
   export type RecebivelCreateManyEmpresaInput = {
@@ -76818,6 +79197,8 @@ export namespace Prisma {
     banco_ref?: BancoUpdateOneWithoutContas_bancariasNestedInput
     recebiveis?: RecebivelUpdateManyWithoutConta_bancariaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutConta_bancariaNestedInput
+    transferencias_origem?: TransferenciaTesourariaUpdateManyWithoutConta_origemNestedInput
+    transferencias_destino?: TransferenciaTesourariaUpdateManyWithoutConta_destinoNestedInput
   }
 
   export type ContaBancariaUncheckedUpdateWithoutEmpresaInput = {
@@ -76836,6 +79217,8 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     recebiveis?: RecebivelUncheckedUpdateManyWithoutConta_bancariaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutConta_bancariaNestedInput
+    transferencias_origem?: TransferenciaTesourariaUncheckedUpdateManyWithoutConta_origemNestedInput
+    transferencias_destino?: TransferenciaTesourariaUncheckedUpdateManyWithoutConta_destinoNestedInput
   }
 
   export type ContaBancariaUncheckedUpdateManyWithoutEmpresaInput = {
@@ -76852,6 +79235,36 @@ export namespace Prisma {
     ativo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransferenciaTesourariaUpdateWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    data?: DateTimeFieldUpdateOperationsInput | Date | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    conta_origem?: ContaBancariaUpdateOneRequiredWithoutTransferencias_origemNestedInput
+    conta_destino?: ContaBancariaUpdateOneRequiredWithoutTransferencias_destinoNestedInput
+  }
+
+  export type TransferenciaTesourariaUncheckedUpdateWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    conta_origem_id?: StringFieldUpdateOperationsInput | string
+    conta_destino_id?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    data?: DateTimeFieldUpdateOperationsInput | Date | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    conta_origem_id?: StringFieldUpdateOperationsInput | string
+    conta_destino_id?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    data?: DateTimeFieldUpdateOperationsInput | Date | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type RecebivelUpdateWithoutEmpresaInput = {
@@ -80367,6 +82780,8 @@ export namespace Prisma {
     empresa?: EmpresaUpdateOneRequiredWithoutContas_bancariasNestedInput
     recebiveis?: RecebivelUpdateManyWithoutConta_bancariaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutConta_bancariaNestedInput
+    transferencias_origem?: TransferenciaTesourariaUpdateManyWithoutConta_origemNestedInput
+    transferencias_destino?: TransferenciaTesourariaUpdateManyWithoutConta_destinoNestedInput
   }
 
   export type ContaBancariaUncheckedUpdateWithoutBanco_refInput = {
@@ -80385,6 +82800,8 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     recebiveis?: RecebivelUncheckedUpdateManyWithoutConta_bancariaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutConta_bancariaNestedInput
+    transferencias_origem?: TransferenciaTesourariaUncheckedUpdateManyWithoutConta_origemNestedInput
+    transferencias_destino?: TransferenciaTesourariaUncheckedUpdateManyWithoutConta_destinoNestedInput
   }
 
   export type ContaBancariaUncheckedUpdateManyWithoutBanco_refInput = {
@@ -80440,6 +82857,26 @@ export namespace Prisma {
     observacoes?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
+  }
+
+  export type TransferenciaTesourariaCreateManyConta_origemInput = {
+    id?: string
+    empresa_id: string
+    conta_destino_id: string
+    valor: Decimal | DecimalJsLike | number | string
+    data: Date | string
+    descricao?: string | null
+    criado_em?: Date | string
+  }
+
+  export type TransferenciaTesourariaCreateManyConta_destinoInput = {
+    id?: string
+    empresa_id: string
+    conta_origem_id: string
+    valor: Decimal | DecimalJsLike | number | string
+    data: Date | string
+    descricao?: string | null
+    criado_em?: Date | string
   }
 
   export type RecebivelUpdateWithoutConta_bancariaInput = {
@@ -80557,6 +82994,66 @@ export namespace Prisma {
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransferenciaTesourariaUpdateWithoutConta_origemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    data?: DateTimeFieldUpdateOperationsInput | Date | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutTransferencias_tesourariaNestedInput
+    conta_destino?: ContaBancariaUpdateOneRequiredWithoutTransferencias_destinoNestedInput
+  }
+
+  export type TransferenciaTesourariaUncheckedUpdateWithoutConta_origemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    conta_destino_id?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    data?: DateTimeFieldUpdateOperationsInput | Date | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransferenciaTesourariaUncheckedUpdateManyWithoutConta_origemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    conta_destino_id?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    data?: DateTimeFieldUpdateOperationsInput | Date | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransferenciaTesourariaUpdateWithoutConta_destinoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    data?: DateTimeFieldUpdateOperationsInput | Date | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutTransferencias_tesourariaNestedInput
+    conta_origem?: ContaBancariaUpdateOneRequiredWithoutTransferencias_origemNestedInput
+  }
+
+  export type TransferenciaTesourariaUncheckedUpdateWithoutConta_destinoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    conta_origem_id?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    data?: DateTimeFieldUpdateOperationsInput | Date | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransferenciaTesourariaUncheckedUpdateManyWithoutConta_destinoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    conta_origem_id?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    data?: DateTimeFieldUpdateOperationsInput | Date | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
