@@ -542,7 +542,7 @@ export default function FluxoCaixaClient({ lancamentos, de, ate, saldoAnterior }
 
       {/* ─── MODAL GERENCIAR SIMULAÇÕES ─────────────────── */}
       <Dialog open={modalGerenciar} onOpenChange={v => { if (!v) { setModalGerenciar(false); cancelarEdicao(); } }}>
-        <DialogContent className="max-w-3xl">
+        <DialogContent className="max-w-5xl w-[90vw]">
           <DialogHeader>
             <div className="flex items-center justify-between pr-8">
               <DialogTitle className="flex items-center gap-2">
@@ -567,18 +567,18 @@ export default function FluxoCaixaClient({ lancamentos, de, ate, saldoAnterior }
           </DialogHeader>
 
           {/* Formulário inline */}
-          <div className="space-y-2 border rounded-lg p-3 bg-muted/20">
+          <div className="space-y-3 border rounded-lg p-4 bg-muted/20">
             <p className="text-xs font-semibold text-primary">
               {editandoId ? "Editando simulação" : "+ Nova simulação"}
             </p>
-            <div className="grid grid-cols-[1fr_1fr_auto_auto_auto_auto] gap-2 items-end">
+            <div className="grid grid-cols-[2fr_2fr_1fr_1fr_1fr_auto] gap-3 items-end">
               <div className="space-y-1">
                 <Label className="text-xs">Descrição</Label>
                 <Input
                   value={form.descricao}
                   onChange={e => setForm(p => ({ ...p, descricao: e.target.value }))}
                   placeholder="Ex: Recebimento Bunge"
-                  className="h-8 text-sm"
+                  className="h-9"
                 />
               </div>
               <div className="space-y-1">
@@ -587,7 +587,7 @@ export default function FluxoCaixaClient({ lancamentos, de, ate, saldoAnterior }
                   value={form.referencia}
                   onChange={e => setForm(p => ({ ...p, referencia: e.target.value }))}
                   placeholder="Empresa ou pessoa"
-                  className="h-8 text-sm"
+                  className="h-9"
                 />
               </div>
               <div className="space-y-1">
@@ -597,7 +597,7 @@ export default function FluxoCaixaClient({ lancamentos, de, ate, saldoAnterior }
                   value={form.valor}
                   onChange={e => setForm(p => ({ ...p, valor: e.target.value }))}
                   placeholder="0,00"
-                  className="h-8 text-sm w-28"
+                  className="h-9"
                 />
               </div>
               <div className="space-y-1">
@@ -606,13 +606,13 @@ export default function FluxoCaixaClient({ lancamentos, de, ate, saldoAnterior }
                   type="date"
                   value={form.data}
                   onChange={e => setForm(p => ({ ...p, data: e.target.value }))}
-                  className="h-8 text-sm w-36"
+                  className="h-9"
                 />
               </div>
               <div className="space-y-1">
                 <Label className="text-xs">Tipo</Label>
                 <Select value={form.tipo} onValueChange={v => setForm(p => ({ ...p, tipo: v as "ENTRADA" | "SAIDA" }))}>
-                  <SelectTrigger className="h-8 text-sm w-28"><SelectValue /></SelectTrigger>
+                  <SelectTrigger className="h-9"><SelectValue /></SelectTrigger>
                   <SelectContent>
                     <SelectItem value="ENTRADA">Entrada</SelectItem>
                     <SelectItem value="SAIDA">Saída</SelectItem>
@@ -621,16 +621,15 @@ export default function FluxoCaixaClient({ lancamentos, de, ate, saldoAnterior }
               </div>
               <div className="flex gap-1 self-end">
                 <Button
-                  size="sm"
-                  className="h-8"
+                  className="h-9 px-5"
                   disabled={!form.descricao || !form.valor}
                   onClick={salvarForm}
                 >
                   {editandoId ? "Salvar" : "+ Adicionar"}
                 </Button>
                 {editandoId && (
-                  <Button size="sm" variant="outline" className="h-8" onClick={cancelarEdicao}>
-                    <X className="size-3" />
+                  <Button variant="outline" className="h-9" onClick={cancelarEdicao}>
+                    <X className="size-3.5" />
                   </Button>
                 )}
               </div>
