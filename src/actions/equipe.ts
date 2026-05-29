@@ -156,23 +156,29 @@ export async function criarUsuarioDireto(input: z.input<typeof schemaCriarUsuari
 
   const admin = adminClient();
 
-  // Verifica se já existe no Supabase Auth
-  const { data: listData } = await admin.auth.admin.listUsers();
-  const existente = listData?.users?.find((u) => u.email === data.email);
-
+  // Tenta criar o usuário; se já existe no Supabase, busca pelo email no BD local
   let userId: string;
 
-  if (existente) {
-    userId = existente.id;
-  } else {
-    const { data: newUser, error } = await admin.auth.admin.createUser({
-      email: data.email,
-      password: data.senha,
-      email_confirm: true,
-    });
-    if (error || !newUser.user) {
-      return { ok: false as const, error: error?.message ?? "Erro ao criar usuário no Supabase" };
+  const { data: newUser, error: createError } = await admin.auth.admin.createUser({
+    email: data.email,
+    password: data.senha,
+    email_confirm: true,
+  });
+
+  if (createError) {
+    // Se o usuário já existe no Auth, tenta encontrá-lo pelo BD local
+    if (createError.message?.toLowerCase().includes("already") || createError.status === 422) {
+      const usuarioExistente = await prisma.usuario.findFirst({ where: { email: data.email } });
+      if (!usuarioExistente) {
+        return { ok: false as const, error: "Usuário já existe no sistema de autenticação mas não no banco. Contate o suporte." };
+      }
+      userId = usuarioExistente.id;
+    } else {
+      return { ok: false as const, error: createError.message ?? "Erro ao criar usuário" };
     }
+  } else if (!newUser.user) {
+    return { ok: false as const, error: "Erro ao criar usuário no Supabase" };
+  } else {
     userId = newUser.user.id;
   }
 
@@ -227,23 +233,26 @@ export async function aceitarConvite(token: string, input: z.input<typeof schema
   const data = schemaAceitar.parse(input);
   const admin = adminClient();
 
-  // Verifica se usuário já existe no Supabase
-  const { data: listData } = await admin.auth.admin.listUsers();
-  const existente = listData?.users?.find((u) => u.email === convite.email);
-
   let userId: string;
 
-  if (existente) {
-    userId = existente.id;
-  } else {
-    const { data: newUser, error } = await admin.auth.admin.createUser({
-      email: convite.email,
-      password: data.senha,
-      email_confirm: true,
-    });
-    if (error || !newUser.user) {
-      return { ok: false as const, error: error?.message ?? "Erro ao criar usuário" };
+  // Tenta criar; se já existe no Auth, busca o id pelo email no BD local
+  const { data: newUser, error: createError } = await admin.auth.admin.createUser({
+    email: convite.email,
+    password: data.senha,
+    email_confirm: true,
+  });
+
+  if (createError) {
+    if (createError.message?.toLowerCase().includes("already") || createError.status === 422) {
+      const usuarioExistente = await prisma.usuario.findFirst({ where: { email: convite.email } });
+      if (!usuarioExistente) return { ok: false as const, error: "Usuário existe no Auth mas não no banco. Contate o suporte." };
+      userId = usuarioExistente.id;
+    } else {
+      return { ok: false as const, error: createError.message ?? "Erro ao criar usuário" };
     }
+  } else if (!newUser.user) {
+    return { ok: false as const, error: "Erro ao criar usuário" };
+  } else {
     userId = newUser.user.id;
   }
 
