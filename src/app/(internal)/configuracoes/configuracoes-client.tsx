@@ -299,6 +299,7 @@ export default function ConfiguracoesClient({ empresa, usuario, membros: membros
   const [convitePerfilId, setConvitePerfilId] = useState(perfisInicial[0]?.id ?? "");
   const [enviandoConvite, setEnviandoConvite] = useState(false);
   const [erroConvite, setErroConvite] = useState<string | null>(null);
+  const [linkConviteGerado, setLinkConviteGerado] = useState<string | null>(null);
 
   // Perfis de Acesso
   const [perfis, setPerfis] = useState(perfisInicial);
@@ -673,11 +674,11 @@ export default function ConfiguracoesClient({ empresa, usuario, membros: membros
                 disabled={enviandoConvite || !conviteEmail || !convitePerfilId}
                 onClick={async () => {
                   setErroConvite(null);
+                  setLinkConviteGerado(null);
                   setEnviandoConvite(true);
                   try {
                     const res = await convidarMembro({ email: conviteEmail, perfil_id: convitePerfilId });
                     if (res.ok) {
-                      toast.success(`Convite enviado para ${conviteEmail}`);
                       const expira = new Date();
                       expira.setDate(expira.getDate() + 7);
                       setConvitesPendentes(prev => [...prev, {
@@ -687,11 +688,18 @@ export default function ConfiguracoesClient({ empresa, usuario, membros: membros
                         expira_em: expira.toISOString(),
                       }]);
                       setConviteEmail("");
+                      if (res.emailEnviado) {
+                        toast.success(`Convite enviado por e-mail para ${conviteEmail}`);
+                      } else {
+                        setLinkConviteGerado(res.link ?? null);
+                        setErroConvite(`E-mail não pôde ser enviado (${res.emailErro ?? "RESEND_EMAIL_API_KEY não configurada"}). Compartilhe o link abaixo:`);
+                        toast.info("Convite criado — copie o link de acesso.");
+                      }
                     } else {
                       setErroConvite(res.error);
                     }
-                  } catch {
-                    setErroConvite("Erro ao enviar convite");
+                  } catch (e: unknown) {
+                    setErroConvite(e instanceof Error ? e.message : "Erro ao enviar convite");
                   } finally {
                     setEnviandoConvite(false);
                   }
@@ -702,6 +710,17 @@ export default function ConfiguracoesClient({ empresa, usuario, membros: membros
               </Button>
             </div>
             {erroConvite && <p className="text-xs text-destructive">{erroConvite}</p>}
+            {linkConviteGerado && (
+              <div className="flex items-center gap-2 p-2 rounded bg-muted border text-xs">
+                <span className="truncate flex-1 font-mono text-muted-foreground">{linkConviteGerado}</span>
+                <button
+                  className="shrink-0 text-primary hover:underline font-medium"
+                  onClick={() => { navigator.clipboard.writeText(linkConviteGerado); toast.success("Link copiado!"); }}
+                >
+                  Copiar
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </section>

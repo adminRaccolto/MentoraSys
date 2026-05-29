@@ -74,15 +74,27 @@ export async function convidarMembro(input: z.input<typeof schemaConvite>) {
     },
   });
 
-  await enviarConviteEquipe(
-    data.email,
-    empresa?.nome ?? "a empresa",
-    convidador?.nome ?? "Um colega",
-    convite.token,
-  );
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL
+    ?? (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+  const linkConvite = `${baseUrl}/membro/${convite.token}`;
+
+  let emailEnviado = false;
+  let emailErro: string | undefined;
+
+  try {
+    await enviarConviteEquipe(
+      data.email,
+      empresa?.nome ?? "a empresa",
+      convidador?.nome ?? "Um colega",
+      convite.token,
+    );
+    emailEnviado = true;
+  } catch (err: unknown) {
+    emailErro = err instanceof Error ? err.message : "Erro ao enviar e-mail";
+  }
 
   revalidatePath("/configuracoes");
-  return { ok: true as const };
+  return { ok: true as const, emailEnviado, emailErro, link: linkConvite };
 }
 
 // ─── Remover membro ───────────────────────────────────────────────────────────
