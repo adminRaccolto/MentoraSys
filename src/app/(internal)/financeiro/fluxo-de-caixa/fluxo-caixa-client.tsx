@@ -542,7 +542,7 @@ export default function FluxoCaixaClient({ lancamentos, de, ate, saldoAnterior }
 
       {/* ─── MODAL GERENCIAR SIMULAÇÕES ─────────────────── */}
       <Dialog open={modalGerenciar} onOpenChange={v => { if (!v) { setModalGerenciar(false); cancelarEdicao(); } }}>
-        <DialogContent className="max-w-5xl w-[90vw]">
+        <DialogContent className="sm:max-w-5xl w-[90vw]">
           <DialogHeader>
             <div className="flex items-center justify-between pr-8">
               <DialogTitle className="flex items-center gap-2">
