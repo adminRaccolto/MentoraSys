@@ -45,8 +45,8 @@ export default function NotificacoesBell({ iniciais, empresaId, usuarioId }: Pro
   return (
     <Popover open={aberto} onOpenChange={setAberto}>
       <PopoverTrigger>
-        <span className="relative p-1.5 rounded-md text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground transition-colors inline-flex">
-          <Bell className="size-4" />
+        <span className="relative p-1.5 rounded-md hover:bg-sidebar-accent transition-colors inline-flex">
+          <Bell className="size-5 text-primary" />
           {naoLidas > 0 && (
             <span className="absolute -top-0.5 -right-0.5 flex items-center justify-center w-4 h-4 text-[10px] font-bold bg-rose-500 text-white rounded-full leading-none">
               {naoLidas > 9 ? "9+" : naoLidas}
