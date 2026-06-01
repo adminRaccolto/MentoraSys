@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Plus, Pencil, Trash2, Users, Building2, Phone, Mail, MapPin, Link2, Copy } from "lucide-react";
+import { Plus, Pencil, Trash2, XCircle, Users, Building2, Phone, Mail, MapPin, Link2, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,7 +14,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { criarCliente, editarCliente, excluirCliente } from "@/actions/clientes";
+import { criarCliente, editarCliente, excluirCliente, deletarCliente } from "@/actions/clientes";
 import { gerarConviteCliente } from "@/actions/convites";
 
 // ─── Schema ──────────────────────────────────────────────────────────────────
@@ -131,6 +131,7 @@ export default function ClientesClient({ clientes: inicial }: { clientes: Client
   const [modalAberto, setModalAberto] = useState(false);
   const [clienteEditando, setClienteEditando] = useState<Cliente | null>(null);
   const [clienteExcluindo, setClienteExcluindo] = useState<Cliente | null>(null);
+  const [clienteDeletando, setClienteDeletando] = useState<Cliente | null>(null);
   const [loadingCep, setLoadingCep] = useState(false);
   const [busca, setBusca] = useState("");
   const [filtroStatus, setFiltroStatus] = useState("");
@@ -268,6 +269,21 @@ export default function ClientesClient({ clientes: inicial }: { clientes: Client
     });
   };
 
+  const confirmarDeletar = () => {
+    if (!clienteDeletando) return;
+    startTransition(async () => {
+      try {
+        await deletarCliente(clienteDeletando.id);
+        setClientes((prev) => prev.filter((c) => c.id !== clienteDeletando.id));
+        toast.success("Cliente excluído permanentemente");
+        setClienteDeletando(null);
+      } catch (e: unknown) {
+        toast.error(e instanceof Error ? e.message : "Erro ao excluir cliente");
+        setClienteDeletando(null);
+      }
+    });
+  };
+
   const statusTabs = [
     { value: "", label: "Todos", count: clientes.length },
     { value: "ATIVO", label: "Ativos", count: clientes.filter((c) => c.status === "ATIVO").length },
@@ -390,12 +406,20 @@ export default function ClientesClient({ clientes: inicial }: { clientes: Client
                       <Pencil className="size-3.5" />
                     </Button>
                     <Button
-                      size="icon"
-                      variant="ghost"
-                      className="size-7 text-destructive hover:text-destructive"
+                      size="icon" variant="ghost"
+                      className="size-7 text-orange-500 hover:text-orange-600"
+                      title="Desativar cliente"
                       onClick={() => setClienteExcluindo(c)}
                     >
                       <Trash2 className="size-3.5" />
+                    </Button>
+                    <Button
+                      size="icon" variant="ghost"
+                      className="size-7 text-destructive hover:text-destructive"
+                      title="Excluir permanentemente"
+                      onClick={() => setClienteDeletando(c)}
+                    >
+                      <XCircle className="size-3.5" />
                     </Button>
                   </div>
                 </TableCell>
@@ -615,6 +639,32 @@ export default function ClientesClient({ clientes: inicial }: { clientes: Client
             <AlertDialogCancel>Cancelar</AlertDialogCancel>
             <AlertDialogAction onClick={confirmarExcluir} className="bg-destructive text-white hover:bg-destructive/90">
               Desativar
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* Confirmar exclusão permanente */}
+      <AlertDialog open={!!clienteDeletando} onOpenChange={(v) => !v && setClienteDeletando(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Excluir cliente permanentemente?</AlertDialogTitle>
+            <AlertDialogDescription className="space-y-2">
+              <span className="block">
+                O cliente <strong>{clienteDeletando?.nome}</strong> será removido do banco de dados e esta ação <strong>não pode ser desfeita</strong>.
+              </span>
+              <span className="block text-xs text-muted-foreground">
+                Se o cliente possuir contratos, propostas, recebíveis ou leads vinculados, a exclusão será bloqueada — desative-o em vez de excluir.
+              </span>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={confirmarDeletar}
+              className="bg-destructive text-white hover:bg-destructive/90"
+            >
+              Excluir permanentemente
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
