@@ -98,6 +98,20 @@ export async function excluirCliente(id: string) {
   return { data: null };
 }
 
+export async function reativarCliente(id: string) {
+  await verificarPermissao("clientes", "editar");
+  const empresaId = await obterEmpresaAtiva();
+
+  const existente = await prisma.cliente.findFirst({ where: { id, empresa_id: empresaId } });
+  if (!existente) throw new Error("Cliente não encontrado");
+
+  await prisma.cliente.update({ where: { id }, data: { status: "ATIVO" } });
+
+  await registrar({ recurso: "clientes", acao: "reativar", registroId: id });
+  revalidatePath("/clientes");
+  return { data: null };
+}
+
 export async function deletarCliente(id: string) {
   await verificarPermissao("clientes", "excluir");
   const empresaId = await obterEmpresaAtiva();

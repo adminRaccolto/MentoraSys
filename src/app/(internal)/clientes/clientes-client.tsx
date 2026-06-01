@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Plus, Pencil, Trash2, XCircle, Users, Building2, Phone, Mail, MapPin, Link2, Copy } from "lucide-react";
+import { Plus, Pencil, Trash2, XCircle, RotateCcw, Users, Building2, Phone, Mail, MapPin, Link2, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,7 +14,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { criarCliente, editarCliente, excluirCliente, deletarCliente } from "@/actions/clientes";
+import { criarCliente, editarCliente, excluirCliente, deletarCliente, reativarCliente } from "@/actions/clientes";
 import { gerarConviteCliente } from "@/actions/convites";
 
 // ─── Schema ──────────────────────────────────────────────────────────────────
@@ -283,6 +283,18 @@ export default function ClientesClient({ clientes: inicial }: { clientes: Client
     });
   };
 
+  const handleReativar = (id: string) => {
+    startTransition(async () => {
+      try {
+        await reativarCliente(id);
+        setClientes((prev) => prev.map((c) => c.id === id ? { ...c, status: "ATIVO" as const } : c));
+        toast.success("Cliente reativado");
+      } catch {
+        toast.error("Erro ao reativar cliente");
+      }
+    });
+  };
+
   const statusTabs = [
     { value: "", label: "Todos", count: clientes.length },
     { value: "ATIVO", label: "Ativos", count: clientes.filter((c) => c.status === "ATIVO").length },
@@ -404,14 +416,26 @@ export default function ClientesClient({ clientes: inicial }: { clientes: Client
                     <Button size="icon" variant="ghost" className="size-7" onClick={() => abrirEditar(c)}>
                       <Pencil className="size-3.5" />
                     </Button>
-                    <Button
-                      size="icon" variant="ghost"
-                      className="size-7 text-orange-500 hover:text-orange-600"
-                      title="Desativar cliente"
-                      onClick={() => setClienteExcluindo(c)}
-                    >
-                      <Trash2 className="size-3.5" />
-                    </Button>
+                    {c.status === "INATIVO" ? (
+                      <Button
+                        size="icon" variant="ghost"
+                        className="size-7 text-green-600 hover:text-green-700"
+                        title="Reativar cliente"
+                        onClick={() => handleReativar(c.id)}
+                        disabled={isPending}
+                      >
+                        <RotateCcw className="size-3.5" />
+                      </Button>
+                    ) : (
+                      <Button
+                        size="icon" variant="ghost"
+                        className="size-7 text-orange-500 hover:text-orange-600"
+                        title="Desativar cliente"
+                        onClick={() => setClienteExcluindo(c)}
+                      >
+                        <Trash2 className="size-3.5" />
+                      </Button>
+                    )}
                     <Button
                       size="icon" variant="ghost"
                       className="size-7 text-destructive hover:text-destructive"
