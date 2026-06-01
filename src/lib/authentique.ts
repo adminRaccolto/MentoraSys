@@ -71,7 +71,7 @@ export async function criarDocumentoAuthentique(params: {
 
   const signers = signatarios.map((s) => ({
     email: s.email,
-    display_name: s.nome,
+    name: s.nome,
     action: "SIGN",
   }));
 
@@ -81,7 +81,6 @@ export async function criarDocumentoAuthentique(params: {
       document: {
         name: nome,
         message: mensagem ?? `Por favor, assine o documento: ${nome}`,
-        sandbox,
       },
       signers,
       file: null,
