@@ -37,6 +37,31 @@ export async function gerarConviteCliente() {
   };
 }
 
+// ─── Listar links gerados (admin) ────────────────────────────────────────────
+
+export async function listarConvitesCliente() {
+  await verificarPermissao("clientes", "criar");
+  const empresaId = await obterEmpresaAtiva();
+
+  return prisma.conviteCliente.findMany({
+    where: { empresa_id: empresaId },
+    select: {
+      id: true, token: true, criado_em: true, expira_em: true, usado_em: true,
+      cliente: { select: { id: true, nome: true } },
+    },
+    orderBy: { criado_em: "desc" },
+    take: 20,
+  });
+}
+
+export async function invalidarConvite(id: string) {
+  await verificarPermissao("clientes", "criar");
+  const empresaId = await obterEmpresaAtiva();
+  await prisma.conviteCliente.deleteMany({ where: { id, empresa_id: empresaId } });
+  revalidatePath("/clientes");
+  return { ok: true };
+}
+
 // ─── Obter dados da empresa pelo token (público, sem auth) ───────────────────
 
 export async function obterConvitePublico(token: string) {
@@ -132,20 +157,24 @@ export async function submeterCadastroConvite(token: string, input: CadastroInpu
     },
   });
 
-  // Marcar convite como usado e vincular ao cliente
-  await prisma.conviteCliente.update({
-    where: { token },
-    data: { usado_em: new Date(), cliente_id: cliente.id },
-  });
+  // Marcar convite como usado e vincular ao cliente (dentro de transação)
+  await prisma.$transaction([
+    prisma.conviteCliente.update({
+      where: { token },
+      data: { usado_em: new Date(), cliente_id: cliente.id },
+    }),
+  ]);
 
-  // Notificar todos os membros da empresa
-  await criarNotificacao({
-    empresa_id: empresaId,
-    tipo: "novo_cliente",
-    titulo: "Novo cliente cadastrado",
-    mensagem: `${data.nome} preencheu o formulário de cadastro.`,
-    url: `/clientes`,
-  });
+  // Notificar — não-crítico, não deve travar o cadastro
+  try {
+    await criarNotificacao({
+      empresa_id: empresaId,
+      tipo: "novo_cliente",
+      titulo: "Novo cliente cadastrado",
+      mensagem: `${data.nome} preencheu o formulário de cadastro.`,
+      url: `/clientes`,
+    });
+  } catch { /* ignora falha de notificação */ }
 
   revalidatePath("/clientes");
   return { ok: true } as const;

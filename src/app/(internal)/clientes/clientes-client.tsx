@@ -703,19 +703,17 @@ export default function ClientesClient({ clientes: inicial }: { clientes: Client
             </DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
+            <div className="rounded-md bg-amber-50 border border-amber-200 px-3 py-2 text-xs text-amber-800">
+              ⚠️ Este link é de <strong>uso único</strong> — quando o cliente preencher o formulário ele expira. Gere um novo link se precisar enviar para outra pessoa.
+            </div>
             <p className="text-sm text-muted-foreground">
-              Envie este link pelo WhatsApp ou e-mail. O cliente preenche os dados e o cadastro é criado automaticamente. Válido por 30 dias.
+              Envie pelo WhatsApp ou e-mail. O cliente preenche os dados e o cadastro é criado automaticamente. Válido por 30 dias.
             </p>
             <div className="flex items-center gap-2 bg-muted rounded-lg px-3 py-2.5">
               <p className="text-xs text-slate-600 flex-1 break-all font-mono">{linkConvite}</p>
               <Button
-                size="sm"
-                variant="ghost"
-                className="shrink-0"
-                onClick={() => {
-                  navigator.clipboard.writeText(linkConvite ?? "");
-                  toast.success("Link copiado!");
-                }}
+                size="sm" variant="ghost" className="shrink-0"
+                onClick={() => { navigator.clipboard.writeText(linkConvite ?? ""); toast.success("Link copiado!"); }}
               >
                 <Copy className="size-4" />
               </Button>
