@@ -110,19 +110,20 @@ export async function deletarCliente(id: string) {
       },
     },
   });
-  if (!existente) throw new Error("Cliente não encontrado");
+  if (!existente) return { ok: false as const, error: "Cliente não encontrado" };
 
   const total = existente._count.contratos + existente._count.propostas
     + existente._count.recebiveis + existente._count.leads;
 
   if (total > 0) {
-    throw new Error(
-      `Não é possível excluir: este cliente possui ${total} registro(s) vinculado(s) (contratos, propostas, recebíveis ou leads). Desative-o em vez de excluir.`
-    );
+    return {
+      ok: false as const,
+      error: `Não é possível excluir: este cliente possui ${total} registro(s) vinculado(s) (contratos, propostas, recebíveis ou leads). Desative-o em vez de excluir.`,
+    };
   }
 
   await prisma.cliente.delete({ where: { id } });
   await registrar({ recurso: "clientes", acao: "excluir_definitivo", registroId: id });
   revalidatePath("/clientes");
-  return { data: null };
+  return { ok: true as const };
 }

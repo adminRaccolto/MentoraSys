@@ -272,15 +272,14 @@ export default function ClientesClient({ clientes: inicial }: { clientes: Client
   const confirmarDeletar = () => {
     if (!clienteDeletando) return;
     startTransition(async () => {
-      try {
-        await deletarCliente(clienteDeletando.id);
+      const res = await deletarCliente(clienteDeletando.id);
+      if (res.ok) {
         setClientes((prev) => prev.filter((c) => c.id !== clienteDeletando.id));
         toast.success("Cliente excluído permanentemente");
-        setClienteDeletando(null);
-      } catch (e: unknown) {
-        toast.error(e instanceof Error ? e.message : "Erro ao excluir cliente");
-        setClienteDeletando(null);
+      } else {
+        toast.error(res.error);
       }
+      setClienteDeletando(null);
     });
   };
 
