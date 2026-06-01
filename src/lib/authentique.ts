@@ -28,7 +28,7 @@ const CREATE_DOCUMENT_MUTATION = `
       signatures {
         public_id
         email
-        link
+        link { short_link }
         action { name }
       }
     }
@@ -49,7 +49,7 @@ const GET_DOCUMENT_QUERY = `
       signatures {
         public_id
         email
-        link
+        link { short_link }
         signed
         action { name }
       }
@@ -114,9 +114,9 @@ export async function criarDocumentoAuthentique(params: {
 
   return {
     id: doc.id,
-    signatarios: (doc.signatures ?? []).map((s: { email: string; link: string }) => ({
+    signatarios: (doc.signatures ?? []).map((s: { email: string; link: { short_link: string } | string }) => ({
       email: s.email,
-      link: s.link,
+      link: typeof s.link === "string" ? s.link : s.link?.short_link ?? "",
     })),
   };
 }
