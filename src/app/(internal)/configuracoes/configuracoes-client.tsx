@@ -427,8 +427,8 @@ export default function ConfiguracoesClient({ empresa, usuario, membros: membros
       try {
         await atualizarPerfil(data);
         toast.success("Perfil atualizado");
-      } catch {
-        toast.error("Erro ao salvar perfil");
+      } catch (e: unknown) {
+        toast.error(e instanceof Error ? e.message : "Erro ao salvar perfil");
       }
     });
   });

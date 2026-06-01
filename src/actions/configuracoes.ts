@@ -144,9 +144,10 @@ export async function atualizarPerfil(input: PerfilInput) {
 
   const data = schemaPerfil.parse(input);
 
-  await prisma.usuario.update({
+  await prisma.usuario.upsert({
     where: { id: user.id },
-    data: { nome: data.nome },
+    update: { nome: data.nome },
+    create: { id: user.id, nome: data.nome, email: user.email ?? "" },
   });
 
   revalidatePath("/configuracoes");
