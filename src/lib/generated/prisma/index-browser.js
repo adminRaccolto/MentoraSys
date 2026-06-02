@@ -403,18 +403,84 @@ exports.Prisma.TarefaScalarFieldEnum = {
   titulo: 'titulo',
   descricao: 'descricao',
   status: 'status',
+  prioridade: 'prioridade',
+  ordem: 'ordem',
   data_prazo: 'data_prazo',
   concluida_em: 'concluida_em',
   criado_em: 'criado_em',
   atualizado_em: 'atualizado_em'
 };
 
+exports.Prisma.ComentarioTarefaScalarFieldEnum = {
+  id: 'id',
+  tarefa_id: 'tarefa_id',
+  autor_id: 'autor_id',
+  conteudo: 'conteudo',
+  criado_em: 'criado_em',
+  atualizado_em: 'atualizado_em'
+};
+
+exports.Prisma.AnexoTarefaScalarFieldEnum = {
+  id: 'id',
+  tarefa_id: 'tarefa_id',
+  criado_por: 'criado_por',
+  nome: 'nome',
+  arquivo_url: 'arquivo_url',
+  arquivo_tamanho: 'arquivo_tamanho',
+  mime_type: 'mime_type',
+  criado_em: 'criado_em'
+};
+
+exports.Prisma.AtividadeTarefaScalarFieldEnum = {
+  id: 'id',
+  tarefa_id: 'tarefa_id',
+  autor_id: 'autor_id',
+  descricao: 'descricao',
+  criado_em: 'criado_em'
+};
+
+exports.Prisma.AprovacaoTarefaScalarFieldEnum = {
+  id: 'id',
+  tarefa_id: 'tarefa_id',
+  solicitante_id: 'solicitante_id',
+  aprovador_id: 'aprovador_id',
+  status: 'status',
+  comentario: 'comentario',
+  criado_em: 'criado_em',
+  decidido_em: 'decidido_em'
+};
+
+exports.Prisma.ItemChecklistScalarFieldEnum = {
+  id: 'id',
+  tarefa_id: 'tarefa_id',
+  texto: 'texto',
+  concluido: 'concluido',
+  ordem: 'ordem',
+  criado_em: 'criado_em'
+};
+
+exports.Prisma.EtiquetaTarefaScalarFieldEnum = {
+  id: 'id',
+  empresa_id: 'empresa_id',
+  nome: 'nome',
+  cor: 'cor'
+};
+
+exports.Prisma.TarefaEtiquetaScalarFieldEnum = {
+  tarefa_id: 'tarefa_id',
+  etiqueta_id: 'etiqueta_id'
+};
+
 exports.Prisma.DocumentoScalarFieldEnum = {
   id: 'id',
   empresa_id: 'empresa_id',
   projeto_id: 'projeto_id',
+  cliente_id: 'cliente_id',
+  contrato_id: 'contrato_id',
   criado_por: 'criado_por',
   titulo: 'titulo',
+  descricao: 'descricao',
+  categoria: 'categoria',
   arquivo_url: 'arquivo_url',
   arquivo_nome: 'arquivo_nome',
   arquivo_tamanho: 'arquivo_tamanho',
@@ -730,6 +796,28 @@ exports.StatusTarefa = exports.$Enums.StatusTarefa = {
   CANCELADA: 'CANCELADA'
 };
 
+exports.PrioridadeTarefa = exports.$Enums.PrioridadeTarefa = {
+  BAIXA: 'BAIXA',
+  MEDIA: 'MEDIA',
+  ALTA: 'ALTA',
+  URGENTE: 'URGENTE'
+};
+
+exports.StatusAprovacao = exports.$Enums.StatusAprovacao = {
+  PENDENTE: 'PENDENTE',
+  APROVADO: 'APROVADO',
+  REPROVADO: 'REPROVADO'
+};
+
+exports.CategoriaDocumento = exports.$Enums.CategoriaDocumento = {
+  CONTRATO: 'CONTRATO',
+  PROPOSTA: 'PROPOSTA',
+  PROJETO: 'PROJETO',
+  FINANCEIRO: 'FINANCEIRO',
+  INTERNO: 'INTERNO',
+  OUTROS: 'OUTROS'
+};
+
 exports.TipoPlanoContas = exports.$Enums.TipoPlanoContas = {
   RECEITA: 'RECEITA',
   CUSTO: 'CUSTO',
@@ -805,6 +893,13 @@ exports.Prisma.ModelName = {
   Projeto: 'Projeto',
   Etapa: 'Etapa',
   Tarefa: 'Tarefa',
+  ComentarioTarefa: 'ComentarioTarefa',
+  AnexoTarefa: 'AnexoTarefa',
+  AtividadeTarefa: 'AtividadeTarefa',
+  AprovacaoTarefa: 'AprovacaoTarefa',
+  ItemChecklist: 'ItemChecklist',
+  EtiquetaTarefa: 'EtiquetaTarefa',
+  TarefaEtiqueta: 'TarefaEtiqueta',
   Documento: 'Documento',
   PlanoDeContas: 'PlanoDeContas',
   Banco: 'Banco',

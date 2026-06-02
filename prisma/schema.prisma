@@ -58,6 +58,7 @@ model Empresa {
   notificacoes         Notificacao[]
   notas_fiscais        NotaFiscal[]
   diagnosticos         Diagnostico[]
+  etiquetas_tarefa     EtiquetaTarefa[]
 
   @@map("empresas")
 }
@@ -87,6 +88,11 @@ model Usuario {
   propostas_responsavel  Proposta[]   @relation("PropostasResponsavel")
   contratos_responsavel  Contrato[]   @relation("ContratosResponsavel")
   convites_cliente       ConviteCliente[]
+  comentarios_tarefa     ComentarioTarefa[]
+  anexos_tarefa          AnexoTarefa[]
+  atividades_tarefa      AtividadeTarefa[]
+  aprovacoes_solicitadas AprovacaoTarefa[]  @relation("AprovacaoSolicitante")
+  aprovacoes_recebidas   AprovacaoTarefa[]  @relation("AprovacaoAprovador")
 
   @@map("usuarios")
 }
@@ -268,6 +274,7 @@ model Cliente {
   notas_fiscais NotaFiscal[]
   diagnosticos  Diagnostico[]
   convite       ConviteCliente?
+  documentos    Documento[]
 
   @@map("clientes")
 }
@@ -476,6 +483,7 @@ model Contrato {
   recebiveis    Recebivel[]
   eventos       Evento[]
   notas_fiscais NotaFiscal[]
+  documentos    Documento[]
 
   @@map("contratos")
 }
@@ -501,6 +509,28 @@ enum StatusTarefa {
   EM_ANDAMENTO
   CONCLUIDA
   CANCELADA
+}
+
+enum PrioridadeTarefa {
+  BAIXA
+  MEDIA
+  ALTA
+  URGENTE
+}
+
+enum StatusAprovacao {
+  PENDENTE
+  APROVADO
+  REPROVADO
+}
+
+enum CategoriaDocumento {
+  CONTRATO
+  PROPOSTA
+  PROJETO
+  FINANCEIRO
+  INTERNO
+  OUTROS
 }
 
 // ─── PROJETOS ─────────────────────────────────────────────────────────────────
@@ -551,42 +581,153 @@ model Etapa {
 }
 
 model Tarefa {
-  id            String       @id @default(cuid())
-  etapa_id      String
-  projeto_id    String
+  id             String           @id @default(cuid())
+  etapa_id       String
+  projeto_id     String
   responsavel_id String?
-  titulo        String
-  descricao     String?
-  status        StatusTarefa @default(PENDENTE)
-  data_prazo    DateTime?
-  concluida_em  DateTime?
-  criado_em     DateTime     @default(now())
-  atualizado_em DateTime     @updatedAt
+  titulo         String
+  descricao      String?
+  status         StatusTarefa     @default(PENDENTE)
+  prioridade     PrioridadeTarefa @default(MEDIA)
+  ordem          Int              @default(0)
+  data_prazo     DateTime?
+  concluida_em   DateTime?
+  criado_em      DateTime         @default(now())
+  atualizado_em  DateTime         @updatedAt
 
   etapa       Etapa    @relation(fields: [etapa_id], references: [id], onDelete: Cascade)
   projeto     Projeto  @relation(fields: [projeto_id], references: [id], onDelete: Cascade)
   responsavel Usuario? @relation(fields: [responsavel_id], references: [id])
 
+  comentarios  ComentarioTarefa[]
+  anexos       AnexoTarefa[]
+  atividades   AtividadeTarefa[]
+  aprovacoes   AprovacaoTarefa[]
+  checklist    ItemChecklist[]
+  etiquetas    TarefaEtiqueta[]
+
   @@map("tarefas")
+}
+
+model ComentarioTarefa {
+  id            String   @id @default(cuid())
+  tarefa_id     String
+  autor_id      String?
+  conteudo      String
+  criado_em     DateTime @default(now())
+  atualizado_em DateTime @updatedAt
+
+  tarefa Tarefa   @relation(fields: [tarefa_id], references: [id], onDelete: Cascade)
+  autor  Usuario? @relation(fields: [autor_id], references: [id])
+
+  @@map("comentarios_tarefa")
+}
+
+model AnexoTarefa {
+  id              String   @id @default(cuid())
+  tarefa_id       String
+  criado_por      String?
+  nome            String
+  arquivo_url     String
+  arquivo_tamanho Int      @default(0)
+  mime_type       String   @default("application/octet-stream")
+  criado_em       DateTime @default(now())
+
+  tarefa  Tarefa   @relation(fields: [tarefa_id], references: [id], onDelete: Cascade)
+  criador Usuario? @relation(fields: [criado_por], references: [id])
+
+  @@map("anexos_tarefa")
+}
+
+model AtividadeTarefa {
+  id        String   @id @default(cuid())
+  tarefa_id String
+  autor_id  String?
+  descricao String
+  criado_em DateTime @default(now())
+
+  tarefa Tarefa   @relation(fields: [tarefa_id], references: [id], onDelete: Cascade)
+  autor  Usuario? @relation(fields: [autor_id], references: [id])
+
+  @@map("atividades_tarefa")
+}
+
+model AprovacaoTarefa {
+  id            String          @id @default(cuid())
+  tarefa_id     String
+  solicitante_id String?
+  aprovador_id  String?
+  status        StatusAprovacao @default(PENDENTE)
+  comentario    String?
+  criado_em     DateTime        @default(now())
+  decidido_em   DateTime?
+
+  tarefa      Tarefa   @relation(fields: [tarefa_id], references: [id], onDelete: Cascade)
+  solicitante Usuario? @relation("AprovacaoSolicitante", fields: [solicitante_id], references: [id])
+  aprovador   Usuario? @relation("AprovacaoAprovador",   fields: [aprovador_id],   references: [id])
+
+  @@map("aprovacoes_tarefa")
+}
+
+model ItemChecklist {
+  id        String   @id @default(cuid())
+  tarefa_id String
+  texto     String
+  concluido Boolean  @default(false)
+  ordem     Int      @default(0)
+  criado_em DateTime @default(now())
+
+  tarefa Tarefa @relation(fields: [tarefa_id], references: [id], onDelete: Cascade)
+
+  @@map("checklist_tarefa")
+}
+
+model EtiquetaTarefa {
+  id         String @id @default(cuid())
+  empresa_id String
+  nome       String
+  cor        String @default("#64748B")
+
+  empresa  Empresa          @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  tarefas  TarefaEtiqueta[]
+
+  @@map("etiquetas_tarefa")
+}
+
+model TarefaEtiqueta {
+  tarefa_id   String
+  etiqueta_id String
+
+  tarefa   Tarefa         @relation(fields: [tarefa_id],   references: [id], onDelete: Cascade)
+  etiqueta EtiquetaTarefa @relation(fields: [etiqueta_id], references: [id], onDelete: Cascade)
+
+  @@id([tarefa_id, etiqueta_id])
+  @@map("tarefas_etiquetas")
 }
 
 // ─── DOCUMENTOS ───────────────────────────────────────────────────────────────
 
 model Documento {
-  id              String   @id @default(cuid())
+  id              String             @id @default(cuid())
   empresa_id      String
-  projeto_id      String
+  projeto_id      String?
+  cliente_id      String?
+  contrato_id     String?
   criado_por      String?
   titulo          String
+  descricao       String?
+  categoria       CategoriaDocumento @default(INTERNO)
   arquivo_url     String
   arquivo_nome    String
-  arquivo_tamanho Int      @default(0)
-  mime_type       String   @default("application/octet-stream")
-  criado_em       DateTime @default(now())
+  arquivo_tamanho Int                @default(0)
+  mime_type       String             @default("application/octet-stream")
+  criado_em       DateTime           @default(now())
 
-  empresa Empresa  @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
-  projeto Projeto  @relation(fields: [projeto_id], references: [id], onDelete: Cascade)
-  criador Usuario? @relation(fields: [criado_por], references: [id])
+  empresa   Empresa   @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  projeto   Projeto?  @relation(fields: [projeto_id],  references: [id])
+  cliente   Cliente?  @relation(fields: [cliente_id],  references: [id])
+  contrato  Contrato? @relation(fields: [contrato_id], references: [id])
+  criador   Usuario?  @relation(fields: [criado_por],  references: [id])
 
   @@map("documentos")
 }

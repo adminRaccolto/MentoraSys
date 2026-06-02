@@ -239,7 +239,7 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros }: Prop
   const removerDocumento = (docId: string) => {
     startTransition(async () => {
       try {
-        await excluirDocumento(docId, projeto.id);
+        await excluirDocumento(docId);
         setProjeto((p) => ({ ...p, documentos: p.documentos.filter((d) => d.id !== docId) }));
         toast.success("Documento removido");
       } catch { toast.error("Erro ao remover documento"); }

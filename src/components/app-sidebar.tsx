@@ -13,6 +13,7 @@ import {
   FileText,
   FileSignature,
   FolderKanban,
+  FolderOpen,
   FileEdit,
   DollarSign,
   ArrowDownCircle,
@@ -45,6 +46,7 @@ const NAV_COMERCIAL = [
 
 const NAV_OPERACIONAL = [
   { label: "Projetos", href: "/projetos", icon: FolderKanban },
+  { label: "Documentos", href: "/documentos", icon: FolderOpen },
   { label: "Modelos", href: "/modelos", icon: FileEdit },
   { label: "Agenda", href: "/agenda", icon: Calendar },
   { label: "Diagnósticos", href: "/diagnosticos", icon: BarChart2 },

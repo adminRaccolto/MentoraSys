@@ -114,6 +114,41 @@ export type Etapa = $Result.DefaultSelection<Prisma.$EtapaPayload>
  */
 export type Tarefa = $Result.DefaultSelection<Prisma.$TarefaPayload>
 /**
+ * Model ComentarioTarefa
+ * 
+ */
+export type ComentarioTarefa = $Result.DefaultSelection<Prisma.$ComentarioTarefaPayload>
+/**
+ * Model AnexoTarefa
+ * 
+ */
+export type AnexoTarefa = $Result.DefaultSelection<Prisma.$AnexoTarefaPayload>
+/**
+ * Model AtividadeTarefa
+ * 
+ */
+export type AtividadeTarefa = $Result.DefaultSelection<Prisma.$AtividadeTarefaPayload>
+/**
+ * Model AprovacaoTarefa
+ * 
+ */
+export type AprovacaoTarefa = $Result.DefaultSelection<Prisma.$AprovacaoTarefaPayload>
+/**
+ * Model ItemChecklist
+ * 
+ */
+export type ItemChecklist = $Result.DefaultSelection<Prisma.$ItemChecklistPayload>
+/**
+ * Model EtiquetaTarefa
+ * 
+ */
+export type EtiquetaTarefa = $Result.DefaultSelection<Prisma.$EtiquetaTarefaPayload>
+/**
+ * Model TarefaEtiqueta
+ * 
+ */
+export type TarefaEtiqueta = $Result.DefaultSelection<Prisma.$TarefaEtiquetaPayload>
+/**
  * Model Documento
  * 
  */
@@ -291,6 +326,37 @@ export const StatusTarefa: {
 export type StatusTarefa = (typeof StatusTarefa)[keyof typeof StatusTarefa]
 
 
+export const PrioridadeTarefa: {
+  BAIXA: 'BAIXA',
+  MEDIA: 'MEDIA',
+  ALTA: 'ALTA',
+  URGENTE: 'URGENTE'
+};
+
+export type PrioridadeTarefa = (typeof PrioridadeTarefa)[keyof typeof PrioridadeTarefa]
+
+
+export const StatusAprovacao: {
+  PENDENTE: 'PENDENTE',
+  APROVADO: 'APROVADO',
+  REPROVADO: 'REPROVADO'
+};
+
+export type StatusAprovacao = (typeof StatusAprovacao)[keyof typeof StatusAprovacao]
+
+
+export const CategoriaDocumento: {
+  CONTRATO: 'CONTRATO',
+  PROPOSTA: 'PROPOSTA',
+  PROJETO: 'PROJETO',
+  FINANCEIRO: 'FINANCEIRO',
+  INTERNO: 'INTERNO',
+  OUTROS: 'OUTROS'
+};
+
+export type CategoriaDocumento = (typeof CategoriaDocumento)[keyof typeof CategoriaDocumento]
+
+
 export const TipoConta: {
   CORRENTE: 'CORRENTE',
   POUPANCA: 'POUPANCA',
@@ -406,6 +472,18 @@ export const StatusEtapa: typeof $Enums.StatusEtapa
 export type StatusTarefa = $Enums.StatusTarefa
 
 export const StatusTarefa: typeof $Enums.StatusTarefa
+
+export type PrioridadeTarefa = $Enums.PrioridadeTarefa
+
+export const PrioridadeTarefa: typeof $Enums.PrioridadeTarefa
+
+export type StatusAprovacao = $Enums.StatusAprovacao
+
+export const StatusAprovacao: typeof $Enums.StatusAprovacao
+
+export type CategoriaDocumento = $Enums.CategoriaDocumento
+
+export const CategoriaDocumento: typeof $Enums.CategoriaDocumento
 
 export type TipoConta = $Enums.TipoConta
 
@@ -755,6 +833,76 @@ export class PrismaClient<
     * ```
     */
   get tarefa(): Prisma.TarefaDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.comentarioTarefa`: Exposes CRUD operations for the **ComentarioTarefa** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ComentarioTarefas
+    * const comentarioTarefas = await prisma.comentarioTarefa.findMany()
+    * ```
+    */
+  get comentarioTarefa(): Prisma.ComentarioTarefaDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.anexoTarefa`: Exposes CRUD operations for the **AnexoTarefa** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AnexoTarefas
+    * const anexoTarefas = await prisma.anexoTarefa.findMany()
+    * ```
+    */
+  get anexoTarefa(): Prisma.AnexoTarefaDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.atividadeTarefa`: Exposes CRUD operations for the **AtividadeTarefa** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AtividadeTarefas
+    * const atividadeTarefas = await prisma.atividadeTarefa.findMany()
+    * ```
+    */
+  get atividadeTarefa(): Prisma.AtividadeTarefaDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.aprovacaoTarefa`: Exposes CRUD operations for the **AprovacaoTarefa** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AprovacaoTarefas
+    * const aprovacaoTarefas = await prisma.aprovacaoTarefa.findMany()
+    * ```
+    */
+  get aprovacaoTarefa(): Prisma.AprovacaoTarefaDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.itemChecklist`: Exposes CRUD operations for the **ItemChecklist** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ItemChecklists
+    * const itemChecklists = await prisma.itemChecklist.findMany()
+    * ```
+    */
+  get itemChecklist(): Prisma.ItemChecklistDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.etiquetaTarefa`: Exposes CRUD operations for the **EtiquetaTarefa** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EtiquetaTarefas
+    * const etiquetaTarefas = await prisma.etiquetaTarefa.findMany()
+    * ```
+    */
+  get etiquetaTarefa(): Prisma.EtiquetaTarefaDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.tarefaEtiqueta`: Exposes CRUD operations for the **TarefaEtiqueta** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TarefaEtiquetas
+    * const tarefaEtiquetas = await prisma.tarefaEtiqueta.findMany()
+    * ```
+    */
+  get tarefaEtiqueta(): Prisma.TarefaEtiquetaDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.documento`: Exposes CRUD operations for the **Documento** model.
@@ -1359,6 +1507,13 @@ export namespace Prisma {
     Projeto: 'Projeto',
     Etapa: 'Etapa',
     Tarefa: 'Tarefa',
+    ComentarioTarefa: 'ComentarioTarefa',
+    AnexoTarefa: 'AnexoTarefa',
+    AtividadeTarefa: 'AtividadeTarefa',
+    AprovacaoTarefa: 'AprovacaoTarefa',
+    ItemChecklist: 'ItemChecklist',
+    EtiquetaTarefa: 'EtiquetaTarefa',
+    TarefaEtiqueta: 'TarefaEtiqueta',
     Documento: 'Documento',
     PlanoDeContas: 'PlanoDeContas',
     Banco: 'Banco',
@@ -1389,7 +1544,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "lead" | "atividadeCRM" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "projeto" | "etapa" | "tarefa" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "recebivel" | "contaPagar" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "boleto" | "diagnostico" | "tokenPortal"
+      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "lead" | "atividadeCRM" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "projeto" | "etapa" | "tarefa" | "comentarioTarefa" | "anexoTarefa" | "atividadeTarefa" | "aprovacaoTarefa" | "itemChecklist" | "etiquetaTarefa" | "tarefaEtiqueta" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "recebivel" | "contaPagar" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "boleto" | "diagnostico" | "tokenPortal"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2873,6 +3028,524 @@ export namespace Prisma {
           }
         }
       }
+      ComentarioTarefa: {
+        payload: Prisma.$ComentarioTarefaPayload<ExtArgs>
+        fields: Prisma.ComentarioTarefaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ComentarioTarefaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComentarioTarefaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ComentarioTarefaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComentarioTarefaPayload>
+          }
+          findFirst: {
+            args: Prisma.ComentarioTarefaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComentarioTarefaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ComentarioTarefaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComentarioTarefaPayload>
+          }
+          findMany: {
+            args: Prisma.ComentarioTarefaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComentarioTarefaPayload>[]
+          }
+          create: {
+            args: Prisma.ComentarioTarefaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComentarioTarefaPayload>
+          }
+          createMany: {
+            args: Prisma.ComentarioTarefaCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ComentarioTarefaCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComentarioTarefaPayload>[]
+          }
+          delete: {
+            args: Prisma.ComentarioTarefaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComentarioTarefaPayload>
+          }
+          update: {
+            args: Prisma.ComentarioTarefaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComentarioTarefaPayload>
+          }
+          deleteMany: {
+            args: Prisma.ComentarioTarefaDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ComentarioTarefaUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ComentarioTarefaUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComentarioTarefaPayload>[]
+          }
+          upsert: {
+            args: Prisma.ComentarioTarefaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComentarioTarefaPayload>
+          }
+          aggregate: {
+            args: Prisma.ComentarioTarefaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateComentarioTarefa>
+          }
+          groupBy: {
+            args: Prisma.ComentarioTarefaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ComentarioTarefaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ComentarioTarefaCountArgs<ExtArgs>
+            result: $Utils.Optional<ComentarioTarefaCountAggregateOutputType> | number
+          }
+        }
+      }
+      AnexoTarefa: {
+        payload: Prisma.$AnexoTarefaPayload<ExtArgs>
+        fields: Prisma.AnexoTarefaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AnexoTarefaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnexoTarefaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AnexoTarefaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnexoTarefaPayload>
+          }
+          findFirst: {
+            args: Prisma.AnexoTarefaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnexoTarefaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AnexoTarefaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnexoTarefaPayload>
+          }
+          findMany: {
+            args: Prisma.AnexoTarefaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnexoTarefaPayload>[]
+          }
+          create: {
+            args: Prisma.AnexoTarefaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnexoTarefaPayload>
+          }
+          createMany: {
+            args: Prisma.AnexoTarefaCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AnexoTarefaCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnexoTarefaPayload>[]
+          }
+          delete: {
+            args: Prisma.AnexoTarefaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnexoTarefaPayload>
+          }
+          update: {
+            args: Prisma.AnexoTarefaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnexoTarefaPayload>
+          }
+          deleteMany: {
+            args: Prisma.AnexoTarefaDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AnexoTarefaUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AnexoTarefaUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnexoTarefaPayload>[]
+          }
+          upsert: {
+            args: Prisma.AnexoTarefaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnexoTarefaPayload>
+          }
+          aggregate: {
+            args: Prisma.AnexoTarefaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAnexoTarefa>
+          }
+          groupBy: {
+            args: Prisma.AnexoTarefaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AnexoTarefaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AnexoTarefaCountArgs<ExtArgs>
+            result: $Utils.Optional<AnexoTarefaCountAggregateOutputType> | number
+          }
+        }
+      }
+      AtividadeTarefa: {
+        payload: Prisma.$AtividadeTarefaPayload<ExtArgs>
+        fields: Prisma.AtividadeTarefaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AtividadeTarefaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtividadeTarefaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AtividadeTarefaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtividadeTarefaPayload>
+          }
+          findFirst: {
+            args: Prisma.AtividadeTarefaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtividadeTarefaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AtividadeTarefaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtividadeTarefaPayload>
+          }
+          findMany: {
+            args: Prisma.AtividadeTarefaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtividadeTarefaPayload>[]
+          }
+          create: {
+            args: Prisma.AtividadeTarefaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtividadeTarefaPayload>
+          }
+          createMany: {
+            args: Prisma.AtividadeTarefaCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AtividadeTarefaCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtividadeTarefaPayload>[]
+          }
+          delete: {
+            args: Prisma.AtividadeTarefaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtividadeTarefaPayload>
+          }
+          update: {
+            args: Prisma.AtividadeTarefaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtividadeTarefaPayload>
+          }
+          deleteMany: {
+            args: Prisma.AtividadeTarefaDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AtividadeTarefaUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AtividadeTarefaUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtividadeTarefaPayload>[]
+          }
+          upsert: {
+            args: Prisma.AtividadeTarefaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AtividadeTarefaPayload>
+          }
+          aggregate: {
+            args: Prisma.AtividadeTarefaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAtividadeTarefa>
+          }
+          groupBy: {
+            args: Prisma.AtividadeTarefaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AtividadeTarefaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AtividadeTarefaCountArgs<ExtArgs>
+            result: $Utils.Optional<AtividadeTarefaCountAggregateOutputType> | number
+          }
+        }
+      }
+      AprovacaoTarefa: {
+        payload: Prisma.$AprovacaoTarefaPayload<ExtArgs>
+        fields: Prisma.AprovacaoTarefaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AprovacaoTarefaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AprovacaoTarefaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AprovacaoTarefaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AprovacaoTarefaPayload>
+          }
+          findFirst: {
+            args: Prisma.AprovacaoTarefaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AprovacaoTarefaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AprovacaoTarefaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AprovacaoTarefaPayload>
+          }
+          findMany: {
+            args: Prisma.AprovacaoTarefaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AprovacaoTarefaPayload>[]
+          }
+          create: {
+            args: Prisma.AprovacaoTarefaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AprovacaoTarefaPayload>
+          }
+          createMany: {
+            args: Prisma.AprovacaoTarefaCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AprovacaoTarefaCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AprovacaoTarefaPayload>[]
+          }
+          delete: {
+            args: Prisma.AprovacaoTarefaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AprovacaoTarefaPayload>
+          }
+          update: {
+            args: Prisma.AprovacaoTarefaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AprovacaoTarefaPayload>
+          }
+          deleteMany: {
+            args: Prisma.AprovacaoTarefaDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AprovacaoTarefaUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AprovacaoTarefaUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AprovacaoTarefaPayload>[]
+          }
+          upsert: {
+            args: Prisma.AprovacaoTarefaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AprovacaoTarefaPayload>
+          }
+          aggregate: {
+            args: Prisma.AprovacaoTarefaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAprovacaoTarefa>
+          }
+          groupBy: {
+            args: Prisma.AprovacaoTarefaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AprovacaoTarefaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AprovacaoTarefaCountArgs<ExtArgs>
+            result: $Utils.Optional<AprovacaoTarefaCountAggregateOutputType> | number
+          }
+        }
+      }
+      ItemChecklist: {
+        payload: Prisma.$ItemChecklistPayload<ExtArgs>
+        fields: Prisma.ItemChecklistFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ItemChecklistFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItemChecklistPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ItemChecklistFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItemChecklistPayload>
+          }
+          findFirst: {
+            args: Prisma.ItemChecklistFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItemChecklistPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ItemChecklistFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItemChecklistPayload>
+          }
+          findMany: {
+            args: Prisma.ItemChecklistFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItemChecklistPayload>[]
+          }
+          create: {
+            args: Prisma.ItemChecklistCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItemChecklistPayload>
+          }
+          createMany: {
+            args: Prisma.ItemChecklistCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ItemChecklistCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItemChecklistPayload>[]
+          }
+          delete: {
+            args: Prisma.ItemChecklistDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItemChecklistPayload>
+          }
+          update: {
+            args: Prisma.ItemChecklistUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItemChecklistPayload>
+          }
+          deleteMany: {
+            args: Prisma.ItemChecklistDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ItemChecklistUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ItemChecklistUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItemChecklistPayload>[]
+          }
+          upsert: {
+            args: Prisma.ItemChecklistUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItemChecklistPayload>
+          }
+          aggregate: {
+            args: Prisma.ItemChecklistAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateItemChecklist>
+          }
+          groupBy: {
+            args: Prisma.ItemChecklistGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ItemChecklistGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ItemChecklistCountArgs<ExtArgs>
+            result: $Utils.Optional<ItemChecklistCountAggregateOutputType> | number
+          }
+        }
+      }
+      EtiquetaTarefa: {
+        payload: Prisma.$EtiquetaTarefaPayload<ExtArgs>
+        fields: Prisma.EtiquetaTarefaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EtiquetaTarefaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EtiquetaTarefaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EtiquetaTarefaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EtiquetaTarefaPayload>
+          }
+          findFirst: {
+            args: Prisma.EtiquetaTarefaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EtiquetaTarefaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EtiquetaTarefaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EtiquetaTarefaPayload>
+          }
+          findMany: {
+            args: Prisma.EtiquetaTarefaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EtiquetaTarefaPayload>[]
+          }
+          create: {
+            args: Prisma.EtiquetaTarefaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EtiquetaTarefaPayload>
+          }
+          createMany: {
+            args: Prisma.EtiquetaTarefaCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EtiquetaTarefaCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EtiquetaTarefaPayload>[]
+          }
+          delete: {
+            args: Prisma.EtiquetaTarefaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EtiquetaTarefaPayload>
+          }
+          update: {
+            args: Prisma.EtiquetaTarefaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EtiquetaTarefaPayload>
+          }
+          deleteMany: {
+            args: Prisma.EtiquetaTarefaDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EtiquetaTarefaUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EtiquetaTarefaUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EtiquetaTarefaPayload>[]
+          }
+          upsert: {
+            args: Prisma.EtiquetaTarefaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EtiquetaTarefaPayload>
+          }
+          aggregate: {
+            args: Prisma.EtiquetaTarefaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEtiquetaTarefa>
+          }
+          groupBy: {
+            args: Prisma.EtiquetaTarefaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EtiquetaTarefaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EtiquetaTarefaCountArgs<ExtArgs>
+            result: $Utils.Optional<EtiquetaTarefaCountAggregateOutputType> | number
+          }
+        }
+      }
+      TarefaEtiqueta: {
+        payload: Prisma.$TarefaEtiquetaPayload<ExtArgs>
+        fields: Prisma.TarefaEtiquetaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TarefaEtiquetaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaEtiquetaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TarefaEtiquetaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaEtiquetaPayload>
+          }
+          findFirst: {
+            args: Prisma.TarefaEtiquetaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaEtiquetaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TarefaEtiquetaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaEtiquetaPayload>
+          }
+          findMany: {
+            args: Prisma.TarefaEtiquetaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaEtiquetaPayload>[]
+          }
+          create: {
+            args: Prisma.TarefaEtiquetaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaEtiquetaPayload>
+          }
+          createMany: {
+            args: Prisma.TarefaEtiquetaCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TarefaEtiquetaCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaEtiquetaPayload>[]
+          }
+          delete: {
+            args: Prisma.TarefaEtiquetaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaEtiquetaPayload>
+          }
+          update: {
+            args: Prisma.TarefaEtiquetaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaEtiquetaPayload>
+          }
+          deleteMany: {
+            args: Prisma.TarefaEtiquetaDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TarefaEtiquetaUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TarefaEtiquetaUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaEtiquetaPayload>[]
+          }
+          upsert: {
+            args: Prisma.TarefaEtiquetaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaEtiquetaPayload>
+          }
+          aggregate: {
+            args: Prisma.TarefaEtiquetaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTarefaEtiqueta>
+          }
+          groupBy: {
+            args: Prisma.TarefaEtiquetaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TarefaEtiquetaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TarefaEtiquetaCountArgs<ExtArgs>
+            result: $Utils.Optional<TarefaEtiquetaCountAggregateOutputType> | number
+          }
+        }
+      }
       Documento: {
         payload: Prisma.$DocumentoPayload<ExtArgs>
         fields: Prisma.DocumentoFieldRefs
@@ -4111,6 +4784,13 @@ export namespace Prisma {
     projeto?: ProjetoOmit
     etapa?: EtapaOmit
     tarefa?: TarefaOmit
+    comentarioTarefa?: ComentarioTarefaOmit
+    anexoTarefa?: AnexoTarefaOmit
+    atividadeTarefa?: AtividadeTarefaOmit
+    aprovacaoTarefa?: AprovacaoTarefaOmit
+    itemChecklist?: ItemChecklistOmit
+    etiquetaTarefa?: EtiquetaTarefaOmit
+    tarefaEtiqueta?: TarefaEtiquetaOmit
     documento?: DocumentoOmit
     planoDeContas?: PlanoDeContasOmit
     banco?: BancoOmit
@@ -4229,6 +4909,7 @@ export namespace Prisma {
     notificacoes: number
     notas_fiscais: number
     diagnosticos: number
+    etiquetas_tarefa: number
   }
 
   export type EmpresaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4255,6 +4936,7 @@ export namespace Prisma {
     notificacoes?: boolean | EmpresaCountOutputTypeCountNotificacoesArgs
     notas_fiscais?: boolean | EmpresaCountOutputTypeCountNotas_fiscaisArgs
     diagnosticos?: boolean | EmpresaCountOutputTypeCountDiagnosticosArgs
+    etiquetas_tarefa?: boolean | EmpresaCountOutputTypeCountEtiquetas_tarefaArgs
   }
 
   // Custom InputTypes
@@ -4429,6 +5111,13 @@ export namespace Prisma {
     where?: DiagnosticoWhereInput
   }
 
+  /**
+   * EmpresaCountOutputType without action
+   */
+  export type EmpresaCountOutputTypeCountEtiquetas_tarefaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EtiquetaTarefaWhereInput
+  }
+
 
   /**
    * Count Type UsuarioCountOutputType
@@ -4450,6 +5139,11 @@ export namespace Prisma {
     propostas_responsavel: number
     contratos_responsavel: number
     convites_cliente: number
+    comentarios_tarefa: number
+    anexos_tarefa: number
+    atividades_tarefa: number
+    aprovacoes_solicitadas: number
+    aprovacoes_recebidas: number
   }
 
   export type UsuarioCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4468,6 +5162,11 @@ export namespace Prisma {
     propostas_responsavel?: boolean | UsuarioCountOutputTypeCountPropostas_responsavelArgs
     contratos_responsavel?: boolean | UsuarioCountOutputTypeCountContratos_responsavelArgs
     convites_cliente?: boolean | UsuarioCountOutputTypeCountConvites_clienteArgs
+    comentarios_tarefa?: boolean | UsuarioCountOutputTypeCountComentarios_tarefaArgs
+    anexos_tarefa?: boolean | UsuarioCountOutputTypeCountAnexos_tarefaArgs
+    atividades_tarefa?: boolean | UsuarioCountOutputTypeCountAtividades_tarefaArgs
+    aprovacoes_solicitadas?: boolean | UsuarioCountOutputTypeCountAprovacoes_solicitadasArgs
+    aprovacoes_recebidas?: boolean | UsuarioCountOutputTypeCountAprovacoes_recebidasArgs
   }
 
   // Custom InputTypes
@@ -4586,6 +5285,41 @@ export namespace Prisma {
     where?: ConviteClienteWhereInput
   }
 
+  /**
+   * UsuarioCountOutputType without action
+   */
+  export type UsuarioCountOutputTypeCountComentarios_tarefaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ComentarioTarefaWhereInput
+  }
+
+  /**
+   * UsuarioCountOutputType without action
+   */
+  export type UsuarioCountOutputTypeCountAnexos_tarefaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AnexoTarefaWhereInput
+  }
+
+  /**
+   * UsuarioCountOutputType without action
+   */
+  export type UsuarioCountOutputTypeCountAtividades_tarefaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AtividadeTarefaWhereInput
+  }
+
+  /**
+   * UsuarioCountOutputType without action
+   */
+  export type UsuarioCountOutputTypeCountAprovacoes_solicitadasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AprovacaoTarefaWhereInput
+  }
+
+  /**
+   * UsuarioCountOutputType without action
+   */
+  export type UsuarioCountOutputTypeCountAprovacoes_recebidasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AprovacaoTarefaWhereInput
+  }
+
 
   /**
    * Count Type PerfilCountOutputType
@@ -4674,6 +5408,7 @@ export namespace Prisma {
     eventos: number
     notas_fiscais: number
     diagnosticos: number
+    documentos: number
   }
 
   export type ClienteCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4688,6 +5423,7 @@ export namespace Prisma {
     eventos?: boolean | ClienteCountOutputTypeCountEventosArgs
     notas_fiscais?: boolean | ClienteCountOutputTypeCountNotas_fiscaisArgs
     diagnosticos?: boolean | ClienteCountOutputTypeCountDiagnosticosArgs
+    documentos?: boolean | ClienteCountOutputTypeCountDocumentosArgs
   }
 
   // Custom InputTypes
@@ -4776,6 +5512,13 @@ export namespace Prisma {
    */
   export type ClienteCountOutputTypeCountDiagnosticosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: DiagnosticoWhereInput
+  }
+
+  /**
+   * ClienteCountOutputType without action
+   */
+  export type ClienteCountOutputTypeCountDocumentosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DocumentoWhereInput
   }
 
 
@@ -4898,12 +5641,14 @@ export namespace Prisma {
     recebiveis: number
     eventos: number
     notas_fiscais: number
+    documentos: number
   }
 
   export type ContratoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     recebiveis?: boolean | ContratoCountOutputTypeCountRecebiveisArgs
     eventos?: boolean | ContratoCountOutputTypeCountEventosArgs
     notas_fiscais?: boolean | ContratoCountOutputTypeCountNotas_fiscaisArgs
+    documentos?: boolean | ContratoCountOutputTypeCountDocumentosArgs
   }
 
   // Custom InputTypes
@@ -4936,6 +5681,13 @@ export namespace Prisma {
    */
   export type ContratoCountOutputTypeCountNotas_fiscaisArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: NotaFiscalWhereInput
+  }
+
+  /**
+   * ContratoCountOutputType without action
+   */
+  export type ContratoCountOutputTypeCountDocumentosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DocumentoWhereInput
   }
 
 
@@ -5034,6 +5786,113 @@ export namespace Prisma {
    */
   export type EtapaCountOutputTypeCountTarefasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TarefaWhereInput
+  }
+
+
+  /**
+   * Count Type TarefaCountOutputType
+   */
+
+  export type TarefaCountOutputType = {
+    comentarios: number
+    anexos: number
+    atividades: number
+    aprovacoes: number
+    checklist: number
+    etiquetas: number
+  }
+
+  export type TarefaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    comentarios?: boolean | TarefaCountOutputTypeCountComentariosArgs
+    anexos?: boolean | TarefaCountOutputTypeCountAnexosArgs
+    atividades?: boolean | TarefaCountOutputTypeCountAtividadesArgs
+    aprovacoes?: boolean | TarefaCountOutputTypeCountAprovacoesArgs
+    checklist?: boolean | TarefaCountOutputTypeCountChecklistArgs
+    etiquetas?: boolean | TarefaCountOutputTypeCountEtiquetasArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * TarefaCountOutputType without action
+   */
+  export type TarefaCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TarefaCountOutputType
+     */
+    select?: TarefaCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * TarefaCountOutputType without action
+   */
+  export type TarefaCountOutputTypeCountComentariosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ComentarioTarefaWhereInput
+  }
+
+  /**
+   * TarefaCountOutputType without action
+   */
+  export type TarefaCountOutputTypeCountAnexosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AnexoTarefaWhereInput
+  }
+
+  /**
+   * TarefaCountOutputType without action
+   */
+  export type TarefaCountOutputTypeCountAtividadesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AtividadeTarefaWhereInput
+  }
+
+  /**
+   * TarefaCountOutputType without action
+   */
+  export type TarefaCountOutputTypeCountAprovacoesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AprovacaoTarefaWhereInput
+  }
+
+  /**
+   * TarefaCountOutputType without action
+   */
+  export type TarefaCountOutputTypeCountChecklistArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ItemChecklistWhereInput
+  }
+
+  /**
+   * TarefaCountOutputType without action
+   */
+  export type TarefaCountOutputTypeCountEtiquetasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TarefaEtiquetaWhereInput
+  }
+
+
+  /**
+   * Count Type EtiquetaTarefaCountOutputType
+   */
+
+  export type EtiquetaTarefaCountOutputType = {
+    tarefas: number
+  }
+
+  export type EtiquetaTarefaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tarefas?: boolean | EtiquetaTarefaCountOutputTypeCountTarefasArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * EtiquetaTarefaCountOutputType without action
+   */
+  export type EtiquetaTarefaCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EtiquetaTarefaCountOutputType
+     */
+    select?: EtiquetaTarefaCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * EtiquetaTarefaCountOutputType without action
+   */
+  export type EtiquetaTarefaCountOutputTypeCountTarefasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TarefaEtiquetaWhereInput
   }
 
 
@@ -5411,6 +6270,7 @@ export namespace Prisma {
     notificacoes?: boolean | Empresa$notificacoesArgs<ExtArgs>
     notas_fiscais?: boolean | Empresa$notas_fiscaisArgs<ExtArgs>
     diagnosticos?: boolean | Empresa$diagnosticosArgs<ExtArgs>
+    etiquetas_tarefa?: boolean | Empresa$etiquetas_tarefaArgs<ExtArgs>
     _count?: boolean | EmpresaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["empresa"]>
 
@@ -5478,6 +6338,7 @@ export namespace Prisma {
     notificacoes?: boolean | Empresa$notificacoesArgs<ExtArgs>
     notas_fiscais?: boolean | Empresa$notas_fiscaisArgs<ExtArgs>
     diagnosticos?: boolean | Empresa$diagnosticosArgs<ExtArgs>
+    etiquetas_tarefa?: boolean | Empresa$etiquetas_tarefaArgs<ExtArgs>
     _count?: boolean | EmpresaCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EmpresaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -5509,6 +6370,7 @@ export namespace Prisma {
       notificacoes: Prisma.$NotificacaoPayload<ExtArgs>[]
       notas_fiscais: Prisma.$NotaFiscalPayload<ExtArgs>[]
       diagnosticos: Prisma.$DiagnosticoPayload<ExtArgs>[]
+      etiquetas_tarefa: Prisma.$EtiquetaTarefaPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5938,6 +6800,7 @@ export namespace Prisma {
     notificacoes<T extends Empresa$notificacoesArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$notificacoesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificacaoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     notas_fiscais<T extends Empresa$notas_fiscaisArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$notas_fiscaisArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotaFiscalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     diagnosticos<T extends Empresa$diagnosticosArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$diagnosticosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiagnosticoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    etiquetas_tarefa<T extends Empresa$etiquetas_tarefaArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$etiquetas_tarefaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EtiquetaTarefaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6922,6 +7785,30 @@ export namespace Prisma {
   }
 
   /**
+   * Empresa.etiquetas_tarefa
+   */
+  export type Empresa$etiquetas_tarefaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EtiquetaTarefa
+     */
+    select?: EtiquetaTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EtiquetaTarefa
+     */
+    omit?: EtiquetaTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EtiquetaTarefaInclude<ExtArgs> | null
+    where?: EtiquetaTarefaWhereInput
+    orderBy?: EtiquetaTarefaOrderByWithRelationInput | EtiquetaTarefaOrderByWithRelationInput[]
+    cursor?: EtiquetaTarefaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EtiquetaTarefaScalarFieldEnum | EtiquetaTarefaScalarFieldEnum[]
+  }
+
+  /**
    * Empresa without action
    */
   export type EmpresaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7127,6 +8014,11 @@ export namespace Prisma {
     propostas_responsavel?: boolean | Usuario$propostas_responsavelArgs<ExtArgs>
     contratos_responsavel?: boolean | Usuario$contratos_responsavelArgs<ExtArgs>
     convites_cliente?: boolean | Usuario$convites_clienteArgs<ExtArgs>
+    comentarios_tarefa?: boolean | Usuario$comentarios_tarefaArgs<ExtArgs>
+    anexos_tarefa?: boolean | Usuario$anexos_tarefaArgs<ExtArgs>
+    atividades_tarefa?: boolean | Usuario$atividades_tarefaArgs<ExtArgs>
+    aprovacoes_solicitadas?: boolean | Usuario$aprovacoes_solicitadasArgs<ExtArgs>
+    aprovacoes_recebidas?: boolean | Usuario$aprovacoes_recebidasArgs<ExtArgs>
     _count?: boolean | UsuarioCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["usuario"]>
 
@@ -7174,6 +8066,11 @@ export namespace Prisma {
     propostas_responsavel?: boolean | Usuario$propostas_responsavelArgs<ExtArgs>
     contratos_responsavel?: boolean | Usuario$contratos_responsavelArgs<ExtArgs>
     convites_cliente?: boolean | Usuario$convites_clienteArgs<ExtArgs>
+    comentarios_tarefa?: boolean | Usuario$comentarios_tarefaArgs<ExtArgs>
+    anexos_tarefa?: boolean | Usuario$anexos_tarefaArgs<ExtArgs>
+    atividades_tarefa?: boolean | Usuario$atividades_tarefaArgs<ExtArgs>
+    aprovacoes_solicitadas?: boolean | Usuario$aprovacoes_solicitadasArgs<ExtArgs>
+    aprovacoes_recebidas?: boolean | Usuario$aprovacoes_recebidasArgs<ExtArgs>
     _count?: boolean | UsuarioCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UsuarioIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -7197,6 +8094,11 @@ export namespace Prisma {
       propostas_responsavel: Prisma.$PropostaPayload<ExtArgs>[]
       contratos_responsavel: Prisma.$ContratoPayload<ExtArgs>[]
       convites_cliente: Prisma.$ConviteClientePayload<ExtArgs>[]
+      comentarios_tarefa: Prisma.$ComentarioTarefaPayload<ExtArgs>[]
+      anexos_tarefa: Prisma.$AnexoTarefaPayload<ExtArgs>[]
+      atividades_tarefa: Prisma.$AtividadeTarefaPayload<ExtArgs>[]
+      aprovacoes_solicitadas: Prisma.$AprovacaoTarefaPayload<ExtArgs>[]
+      aprovacoes_recebidas: Prisma.$AprovacaoTarefaPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7614,6 +8516,11 @@ export namespace Prisma {
     propostas_responsavel<T extends Usuario$propostas_responsavelArgs<ExtArgs> = {}>(args?: Subset<T, Usuario$propostas_responsavelArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PropostaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     contratos_responsavel<T extends Usuario$contratos_responsavelArgs<ExtArgs> = {}>(args?: Subset<T, Usuario$contratos_responsavelArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContratoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     convites_cliente<T extends Usuario$convites_clienteArgs<ExtArgs> = {}>(args?: Subset<T, Usuario$convites_clienteArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConviteClientePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    comentarios_tarefa<T extends Usuario$comentarios_tarefaArgs<ExtArgs> = {}>(args?: Subset<T, Usuario$comentarios_tarefaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComentarioTarefaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    anexos_tarefa<T extends Usuario$anexos_tarefaArgs<ExtArgs> = {}>(args?: Subset<T, Usuario$anexos_tarefaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnexoTarefaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    atividades_tarefa<T extends Usuario$atividades_tarefaArgs<ExtArgs> = {}>(args?: Subset<T, Usuario$atividades_tarefaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AtividadeTarefaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    aprovacoes_solicitadas<T extends Usuario$aprovacoes_solicitadasArgs<ExtArgs> = {}>(args?: Subset<T, Usuario$aprovacoes_solicitadasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AprovacaoTarefaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    aprovacoes_recebidas<T extends Usuario$aprovacoes_recebidasArgs<ExtArgs> = {}>(args?: Subset<T, Usuario$aprovacoes_recebidasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AprovacaoTarefaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8399,6 +9306,126 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ConviteClienteScalarFieldEnum | ConviteClienteScalarFieldEnum[]
+  }
+
+  /**
+   * Usuario.comentarios_tarefa
+   */
+  export type Usuario$comentarios_tarefaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ComentarioTarefa
+     */
+    select?: ComentarioTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ComentarioTarefa
+     */
+    omit?: ComentarioTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComentarioTarefaInclude<ExtArgs> | null
+    where?: ComentarioTarefaWhereInput
+    orderBy?: ComentarioTarefaOrderByWithRelationInput | ComentarioTarefaOrderByWithRelationInput[]
+    cursor?: ComentarioTarefaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ComentarioTarefaScalarFieldEnum | ComentarioTarefaScalarFieldEnum[]
+  }
+
+  /**
+   * Usuario.anexos_tarefa
+   */
+  export type Usuario$anexos_tarefaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnexoTarefa
+     */
+    select?: AnexoTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnexoTarefa
+     */
+    omit?: AnexoTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnexoTarefaInclude<ExtArgs> | null
+    where?: AnexoTarefaWhereInput
+    orderBy?: AnexoTarefaOrderByWithRelationInput | AnexoTarefaOrderByWithRelationInput[]
+    cursor?: AnexoTarefaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AnexoTarefaScalarFieldEnum | AnexoTarefaScalarFieldEnum[]
+  }
+
+  /**
+   * Usuario.atividades_tarefa
+   */
+  export type Usuario$atividades_tarefaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AtividadeTarefa
+     */
+    select?: AtividadeTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AtividadeTarefa
+     */
+    omit?: AtividadeTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AtividadeTarefaInclude<ExtArgs> | null
+    where?: AtividadeTarefaWhereInput
+    orderBy?: AtividadeTarefaOrderByWithRelationInput | AtividadeTarefaOrderByWithRelationInput[]
+    cursor?: AtividadeTarefaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AtividadeTarefaScalarFieldEnum | AtividadeTarefaScalarFieldEnum[]
+  }
+
+  /**
+   * Usuario.aprovacoes_solicitadas
+   */
+  export type Usuario$aprovacoes_solicitadasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AprovacaoTarefa
+     */
+    select?: AprovacaoTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AprovacaoTarefa
+     */
+    omit?: AprovacaoTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AprovacaoTarefaInclude<ExtArgs> | null
+    where?: AprovacaoTarefaWhereInput
+    orderBy?: AprovacaoTarefaOrderByWithRelationInput | AprovacaoTarefaOrderByWithRelationInput[]
+    cursor?: AprovacaoTarefaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AprovacaoTarefaScalarFieldEnum | AprovacaoTarefaScalarFieldEnum[]
+  }
+
+  /**
+   * Usuario.aprovacoes_recebidas
+   */
+  export type Usuario$aprovacoes_recebidasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AprovacaoTarefa
+     */
+    select?: AprovacaoTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AprovacaoTarefa
+     */
+    omit?: AprovacaoTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AprovacaoTarefaInclude<ExtArgs> | null
+    where?: AprovacaoTarefaWhereInput
+    orderBy?: AprovacaoTarefaOrderByWithRelationInput | AprovacaoTarefaOrderByWithRelationInput[]
+    cursor?: AprovacaoTarefaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AprovacaoTarefaScalarFieldEnum | AprovacaoTarefaScalarFieldEnum[]
   }
 
   /**
@@ -15424,6 +16451,7 @@ export namespace Prisma {
     notas_fiscais?: boolean | Cliente$notas_fiscaisArgs<ExtArgs>
     diagnosticos?: boolean | Cliente$diagnosticosArgs<ExtArgs>
     convite?: boolean | Cliente$conviteArgs<ExtArgs>
+    documentos?: boolean | Cliente$documentosArgs<ExtArgs>
     _count?: boolean | ClienteCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["cliente"]>
 
@@ -15525,6 +16553,7 @@ export namespace Prisma {
     notas_fiscais?: boolean | Cliente$notas_fiscaisArgs<ExtArgs>
     diagnosticos?: boolean | Cliente$diagnosticosArgs<ExtArgs>
     convite?: boolean | Cliente$conviteArgs<ExtArgs>
+    documentos?: boolean | Cliente$documentosArgs<ExtArgs>
     _count?: boolean | ClienteCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ClienteIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -15550,6 +16579,7 @@ export namespace Prisma {
       notas_fiscais: Prisma.$NotaFiscalPayload<ExtArgs>[]
       diagnosticos: Prisma.$DiagnosticoPayload<ExtArgs>[]
       convite: Prisma.$ConviteClientePayload<ExtArgs> | null
+      documentos: Prisma.$DocumentoPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -15983,6 +17013,7 @@ export namespace Prisma {
     notas_fiscais<T extends Cliente$notas_fiscaisArgs<ExtArgs> = {}>(args?: Subset<T, Cliente$notas_fiscaisArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotaFiscalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     diagnosticos<T extends Cliente$diagnosticosArgs<ExtArgs> = {}>(args?: Subset<T, Cliente$diagnosticosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiagnosticoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     convite<T extends Cliente$conviteArgs<ExtArgs> = {}>(args?: Subset<T, Cliente$conviteArgs<ExtArgs>>): Prisma__ConviteClienteClient<$Result.GetResult<Prisma.$ConviteClientePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    documentos<T extends Cliente$documentosArgs<ExtArgs> = {}>(args?: Subset<T, Cliente$documentosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DocumentoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -16717,6 +17748,30 @@ export namespace Prisma {
      */
     include?: ConviteClienteInclude<ExtArgs> | null
     where?: ConviteClienteWhereInput
+  }
+
+  /**
+   * Cliente.documentos
+   */
+  export type Cliente$documentosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Documento
+     */
+    select?: DocumentoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Documento
+     */
+    omit?: DocumentoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DocumentoInclude<ExtArgs> | null
+    where?: DocumentoWhereInput
+    orderBy?: DocumentoOrderByWithRelationInput | DocumentoOrderByWithRelationInput[]
+    cursor?: DocumentoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DocumentoScalarFieldEnum | DocumentoScalarFieldEnum[]
   }
 
   /**
@@ -25857,6 +26912,7 @@ export namespace Prisma {
     recebiveis?: boolean | Contrato$recebiveisArgs<ExtArgs>
     eventos?: boolean | Contrato$eventosArgs<ExtArgs>
     notas_fiscais?: boolean | Contrato$notas_fiscaisArgs<ExtArgs>
+    documentos?: boolean | Contrato$documentosArgs<ExtArgs>
     _count?: boolean | ContratoCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["contrato"]>
 
@@ -26004,6 +27060,7 @@ export namespace Prisma {
     recebiveis?: boolean | Contrato$recebiveisArgs<ExtArgs>
     eventos?: boolean | Contrato$eventosArgs<ExtArgs>
     notas_fiscais?: boolean | Contrato$notas_fiscaisArgs<ExtArgs>
+    documentos?: boolean | Contrato$documentosArgs<ExtArgs>
     _count?: boolean | ContratoCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ContratoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -26033,6 +27090,7 @@ export namespace Prisma {
       recebiveis: Prisma.$RecebivelPayload<ExtArgs>[]
       eventos: Prisma.$EventoPayload<ExtArgs>[]
       notas_fiscais: Prisma.$NotaFiscalPayload<ExtArgs>[]
+      documentos: Prisma.$DocumentoPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -26476,6 +27534,7 @@ export namespace Prisma {
     recebiveis<T extends Contrato$recebiveisArgs<ExtArgs> = {}>(args?: Subset<T, Contrato$recebiveisArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RecebivelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     eventos<T extends Contrato$eventosArgs<ExtArgs> = {}>(args?: Subset<T, Contrato$eventosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     notas_fiscais<T extends Contrato$notas_fiscaisArgs<ExtArgs> = {}>(args?: Subset<T, Contrato$notas_fiscaisArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotaFiscalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    documentos<T extends Contrato$documentosArgs<ExtArgs> = {}>(args?: Subset<T, Contrato$documentosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DocumentoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -27089,6 +28148,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: NotaFiscalScalarFieldEnum | NotaFiscalScalarFieldEnum[]
+  }
+
+  /**
+   * Contrato.documentos
+   */
+  export type Contrato$documentosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Documento
+     */
+    select?: DocumentoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Documento
+     */
+    omit?: DocumentoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DocumentoInclude<ExtArgs> | null
+    where?: DocumentoWhereInput
+    orderBy?: DocumentoOrderByWithRelationInput | DocumentoOrderByWithRelationInput[]
+    cursor?: DocumentoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DocumentoScalarFieldEnum | DocumentoScalarFieldEnum[]
   }
 
   /**
@@ -29666,8 +30749,18 @@ export namespace Prisma {
 
   export type AggregateTarefa = {
     _count: TarefaCountAggregateOutputType | null
+    _avg: TarefaAvgAggregateOutputType | null
+    _sum: TarefaSumAggregateOutputType | null
     _min: TarefaMinAggregateOutputType | null
     _max: TarefaMaxAggregateOutputType | null
+  }
+
+  export type TarefaAvgAggregateOutputType = {
+    ordem: number | null
+  }
+
+  export type TarefaSumAggregateOutputType = {
+    ordem: number | null
   }
 
   export type TarefaMinAggregateOutputType = {
@@ -29678,6 +30771,8 @@ export namespace Prisma {
     titulo: string | null
     descricao: string | null
     status: $Enums.StatusTarefa | null
+    prioridade: $Enums.PrioridadeTarefa | null
+    ordem: number | null
     data_prazo: Date | null
     concluida_em: Date | null
     criado_em: Date | null
@@ -29692,6 +30787,8 @@ export namespace Prisma {
     titulo: string | null
     descricao: string | null
     status: $Enums.StatusTarefa | null
+    prioridade: $Enums.PrioridadeTarefa | null
+    ordem: number | null
     data_prazo: Date | null
     concluida_em: Date | null
     criado_em: Date | null
@@ -29706,6 +30803,8 @@ export namespace Prisma {
     titulo: number
     descricao: number
     status: number
+    prioridade: number
+    ordem: number
     data_prazo: number
     concluida_em: number
     criado_em: number
@@ -29713,6 +30812,14 @@ export namespace Prisma {
     _all: number
   }
 
+
+  export type TarefaAvgAggregateInputType = {
+    ordem?: true
+  }
+
+  export type TarefaSumAggregateInputType = {
+    ordem?: true
+  }
 
   export type TarefaMinAggregateInputType = {
     id?: true
@@ -29722,6 +30829,8 @@ export namespace Prisma {
     titulo?: true
     descricao?: true
     status?: true
+    prioridade?: true
+    ordem?: true
     data_prazo?: true
     concluida_em?: true
     criado_em?: true
@@ -29736,6 +30845,8 @@ export namespace Prisma {
     titulo?: true
     descricao?: true
     status?: true
+    prioridade?: true
+    ordem?: true
     data_prazo?: true
     concluida_em?: true
     criado_em?: true
@@ -29750,6 +30861,8 @@ export namespace Prisma {
     titulo?: true
     descricao?: true
     status?: true
+    prioridade?: true
+    ordem?: true
     data_prazo?: true
     concluida_em?: true
     criado_em?: true
@@ -29795,6 +30908,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: TarefaAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TarefaSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: TarefaMinAggregateInputType
@@ -29825,6 +30950,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: TarefaCountAggregateInputType | true
+    _avg?: TarefaAvgAggregateInputType
+    _sum?: TarefaSumAggregateInputType
     _min?: TarefaMinAggregateInputType
     _max?: TarefaMaxAggregateInputType
   }
@@ -29837,11 +30964,15 @@ export namespace Prisma {
     titulo: string
     descricao: string | null
     status: $Enums.StatusTarefa
+    prioridade: $Enums.PrioridadeTarefa
+    ordem: number
     data_prazo: Date | null
     concluida_em: Date | null
     criado_em: Date
     atualizado_em: Date
     _count: TarefaCountAggregateOutputType | null
+    _avg: TarefaAvgAggregateOutputType | null
+    _sum: TarefaSumAggregateOutputType | null
     _min: TarefaMinAggregateOutputType | null
     _max: TarefaMaxAggregateOutputType | null
   }
@@ -29868,6 +30999,8 @@ export namespace Prisma {
     titulo?: boolean
     descricao?: boolean
     status?: boolean
+    prioridade?: boolean
+    ordem?: boolean
     data_prazo?: boolean
     concluida_em?: boolean
     criado_em?: boolean
@@ -29875,6 +31008,13 @@ export namespace Prisma {
     etapa?: boolean | EtapaDefaultArgs<ExtArgs>
     projeto?: boolean | ProjetoDefaultArgs<ExtArgs>
     responsavel?: boolean | Tarefa$responsavelArgs<ExtArgs>
+    comentarios?: boolean | Tarefa$comentariosArgs<ExtArgs>
+    anexos?: boolean | Tarefa$anexosArgs<ExtArgs>
+    atividades?: boolean | Tarefa$atividadesArgs<ExtArgs>
+    aprovacoes?: boolean | Tarefa$aprovacoesArgs<ExtArgs>
+    checklist?: boolean | Tarefa$checklistArgs<ExtArgs>
+    etiquetas?: boolean | Tarefa$etiquetasArgs<ExtArgs>
+    _count?: boolean | TarefaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["tarefa"]>
 
   export type TarefaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -29885,6 +31025,8 @@ export namespace Prisma {
     titulo?: boolean
     descricao?: boolean
     status?: boolean
+    prioridade?: boolean
+    ordem?: boolean
     data_prazo?: boolean
     concluida_em?: boolean
     criado_em?: boolean
@@ -29902,6 +31044,8 @@ export namespace Prisma {
     titulo?: boolean
     descricao?: boolean
     status?: boolean
+    prioridade?: boolean
+    ordem?: boolean
     data_prazo?: boolean
     concluida_em?: boolean
     criado_em?: boolean
@@ -29919,17 +31063,26 @@ export namespace Prisma {
     titulo?: boolean
     descricao?: boolean
     status?: boolean
+    prioridade?: boolean
+    ordem?: boolean
     data_prazo?: boolean
     concluida_em?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
   }
 
-  export type TarefaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "etapa_id" | "projeto_id" | "responsavel_id" | "titulo" | "descricao" | "status" | "data_prazo" | "concluida_em" | "criado_em" | "atualizado_em", ExtArgs["result"]["tarefa"]>
+  export type TarefaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "etapa_id" | "projeto_id" | "responsavel_id" | "titulo" | "descricao" | "status" | "prioridade" | "ordem" | "data_prazo" | "concluida_em" | "criado_em" | "atualizado_em", ExtArgs["result"]["tarefa"]>
   export type TarefaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     etapa?: boolean | EtapaDefaultArgs<ExtArgs>
     projeto?: boolean | ProjetoDefaultArgs<ExtArgs>
     responsavel?: boolean | Tarefa$responsavelArgs<ExtArgs>
+    comentarios?: boolean | Tarefa$comentariosArgs<ExtArgs>
+    anexos?: boolean | Tarefa$anexosArgs<ExtArgs>
+    atividades?: boolean | Tarefa$atividadesArgs<ExtArgs>
+    aprovacoes?: boolean | Tarefa$aprovacoesArgs<ExtArgs>
+    checklist?: boolean | Tarefa$checklistArgs<ExtArgs>
+    etiquetas?: boolean | Tarefa$etiquetasArgs<ExtArgs>
+    _count?: boolean | TarefaCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type TarefaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     etapa?: boolean | EtapaDefaultArgs<ExtArgs>
@@ -29948,6 +31101,12 @@ export namespace Prisma {
       etapa: Prisma.$EtapaPayload<ExtArgs>
       projeto: Prisma.$ProjetoPayload<ExtArgs>
       responsavel: Prisma.$UsuarioPayload<ExtArgs> | null
+      comentarios: Prisma.$ComentarioTarefaPayload<ExtArgs>[]
+      anexos: Prisma.$AnexoTarefaPayload<ExtArgs>[]
+      atividades: Prisma.$AtividadeTarefaPayload<ExtArgs>[]
+      aprovacoes: Prisma.$AprovacaoTarefaPayload<ExtArgs>[]
+      checklist: Prisma.$ItemChecklistPayload<ExtArgs>[]
+      etiquetas: Prisma.$TarefaEtiquetaPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -29957,6 +31116,8 @@ export namespace Prisma {
       titulo: string
       descricao: string | null
       status: $Enums.StatusTarefa
+      prioridade: $Enums.PrioridadeTarefa
+      ordem: number
       data_prazo: Date | null
       concluida_em: Date | null
       criado_em: Date
@@ -30358,6 +31519,12 @@ export namespace Prisma {
     etapa<T extends EtapaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EtapaDefaultArgs<ExtArgs>>): Prisma__EtapaClient<$Result.GetResult<Prisma.$EtapaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     projeto<T extends ProjetoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjetoDefaultArgs<ExtArgs>>): Prisma__ProjetoClient<$Result.GetResult<Prisma.$ProjetoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     responsavel<T extends Tarefa$responsavelArgs<ExtArgs> = {}>(args?: Subset<T, Tarefa$responsavelArgs<ExtArgs>>): Prisma__UsuarioClient<$Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    comentarios<T extends Tarefa$comentariosArgs<ExtArgs> = {}>(args?: Subset<T, Tarefa$comentariosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComentarioTarefaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    anexos<T extends Tarefa$anexosArgs<ExtArgs> = {}>(args?: Subset<T, Tarefa$anexosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnexoTarefaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    atividades<T extends Tarefa$atividadesArgs<ExtArgs> = {}>(args?: Subset<T, Tarefa$atividadesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AtividadeTarefaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    aprovacoes<T extends Tarefa$aprovacoesArgs<ExtArgs> = {}>(args?: Subset<T, Tarefa$aprovacoesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AprovacaoTarefaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    checklist<T extends Tarefa$checklistArgs<ExtArgs> = {}>(args?: Subset<T, Tarefa$checklistArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItemChecklistPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    etiquetas<T extends Tarefa$etiquetasArgs<ExtArgs> = {}>(args?: Subset<T, Tarefa$etiquetasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TarefaEtiquetaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -30394,6 +31561,8 @@ export namespace Prisma {
     readonly titulo: FieldRef<"Tarefa", 'String'>
     readonly descricao: FieldRef<"Tarefa", 'String'>
     readonly status: FieldRef<"Tarefa", 'StatusTarefa'>
+    readonly prioridade: FieldRef<"Tarefa", 'PrioridadeTarefa'>
+    readonly ordem: FieldRef<"Tarefa", 'Int'>
     readonly data_prazo: FieldRef<"Tarefa", 'DateTime'>
     readonly concluida_em: FieldRef<"Tarefa", 'DateTime'>
     readonly criado_em: FieldRef<"Tarefa", 'DateTime'>
@@ -30818,6 +31987,150 @@ export namespace Prisma {
   }
 
   /**
+   * Tarefa.comentarios
+   */
+  export type Tarefa$comentariosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ComentarioTarefa
+     */
+    select?: ComentarioTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ComentarioTarefa
+     */
+    omit?: ComentarioTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComentarioTarefaInclude<ExtArgs> | null
+    where?: ComentarioTarefaWhereInput
+    orderBy?: ComentarioTarefaOrderByWithRelationInput | ComentarioTarefaOrderByWithRelationInput[]
+    cursor?: ComentarioTarefaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ComentarioTarefaScalarFieldEnum | ComentarioTarefaScalarFieldEnum[]
+  }
+
+  /**
+   * Tarefa.anexos
+   */
+  export type Tarefa$anexosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnexoTarefa
+     */
+    select?: AnexoTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnexoTarefa
+     */
+    omit?: AnexoTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnexoTarefaInclude<ExtArgs> | null
+    where?: AnexoTarefaWhereInput
+    orderBy?: AnexoTarefaOrderByWithRelationInput | AnexoTarefaOrderByWithRelationInput[]
+    cursor?: AnexoTarefaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AnexoTarefaScalarFieldEnum | AnexoTarefaScalarFieldEnum[]
+  }
+
+  /**
+   * Tarefa.atividades
+   */
+  export type Tarefa$atividadesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AtividadeTarefa
+     */
+    select?: AtividadeTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AtividadeTarefa
+     */
+    omit?: AtividadeTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AtividadeTarefaInclude<ExtArgs> | null
+    where?: AtividadeTarefaWhereInput
+    orderBy?: AtividadeTarefaOrderByWithRelationInput | AtividadeTarefaOrderByWithRelationInput[]
+    cursor?: AtividadeTarefaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AtividadeTarefaScalarFieldEnum | AtividadeTarefaScalarFieldEnum[]
+  }
+
+  /**
+   * Tarefa.aprovacoes
+   */
+  export type Tarefa$aprovacoesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AprovacaoTarefa
+     */
+    select?: AprovacaoTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AprovacaoTarefa
+     */
+    omit?: AprovacaoTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AprovacaoTarefaInclude<ExtArgs> | null
+    where?: AprovacaoTarefaWhereInput
+    orderBy?: AprovacaoTarefaOrderByWithRelationInput | AprovacaoTarefaOrderByWithRelationInput[]
+    cursor?: AprovacaoTarefaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AprovacaoTarefaScalarFieldEnum | AprovacaoTarefaScalarFieldEnum[]
+  }
+
+  /**
+   * Tarefa.checklist
+   */
+  export type Tarefa$checklistArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ItemChecklist
+     */
+    select?: ItemChecklistSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ItemChecklist
+     */
+    omit?: ItemChecklistOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ItemChecklistInclude<ExtArgs> | null
+    where?: ItemChecklistWhereInput
+    orderBy?: ItemChecklistOrderByWithRelationInput | ItemChecklistOrderByWithRelationInput[]
+    cursor?: ItemChecklistWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ItemChecklistScalarFieldEnum | ItemChecklistScalarFieldEnum[]
+  }
+
+  /**
+   * Tarefa.etiquetas
+   */
+  export type Tarefa$etiquetasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TarefaEtiqueta
+     */
+    select?: TarefaEtiquetaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TarefaEtiqueta
+     */
+    omit?: TarefaEtiquetaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaEtiquetaInclude<ExtArgs> | null
+    where?: TarefaEtiquetaWhereInput
+    orderBy?: TarefaEtiquetaOrderByWithRelationInput | TarefaEtiquetaOrderByWithRelationInput[]
+    cursor?: TarefaEtiquetaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TarefaEtiquetaScalarFieldEnum | TarefaEtiquetaScalarFieldEnum[]
+  }
+
+  /**
    * Tarefa without action
    */
   export type TarefaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -30833,6 +32146,7740 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: TarefaInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ComentarioTarefa
+   */
+
+  export type AggregateComentarioTarefa = {
+    _count: ComentarioTarefaCountAggregateOutputType | null
+    _min: ComentarioTarefaMinAggregateOutputType | null
+    _max: ComentarioTarefaMaxAggregateOutputType | null
+  }
+
+  export type ComentarioTarefaMinAggregateOutputType = {
+    id: string | null
+    tarefa_id: string | null
+    autor_id: string | null
+    conteudo: string | null
+    criado_em: Date | null
+    atualizado_em: Date | null
+  }
+
+  export type ComentarioTarefaMaxAggregateOutputType = {
+    id: string | null
+    tarefa_id: string | null
+    autor_id: string | null
+    conteudo: string | null
+    criado_em: Date | null
+    atualizado_em: Date | null
+  }
+
+  export type ComentarioTarefaCountAggregateOutputType = {
+    id: number
+    tarefa_id: number
+    autor_id: number
+    conteudo: number
+    criado_em: number
+    atualizado_em: number
+    _all: number
+  }
+
+
+  export type ComentarioTarefaMinAggregateInputType = {
+    id?: true
+    tarefa_id?: true
+    autor_id?: true
+    conteudo?: true
+    criado_em?: true
+    atualizado_em?: true
+  }
+
+  export type ComentarioTarefaMaxAggregateInputType = {
+    id?: true
+    tarefa_id?: true
+    autor_id?: true
+    conteudo?: true
+    criado_em?: true
+    atualizado_em?: true
+  }
+
+  export type ComentarioTarefaCountAggregateInputType = {
+    id?: true
+    tarefa_id?: true
+    autor_id?: true
+    conteudo?: true
+    criado_em?: true
+    atualizado_em?: true
+    _all?: true
+  }
+
+  export type ComentarioTarefaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ComentarioTarefa to aggregate.
+     */
+    where?: ComentarioTarefaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ComentarioTarefas to fetch.
+     */
+    orderBy?: ComentarioTarefaOrderByWithRelationInput | ComentarioTarefaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ComentarioTarefaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ComentarioTarefas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ComentarioTarefas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ComentarioTarefas
+    **/
+    _count?: true | ComentarioTarefaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ComentarioTarefaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ComentarioTarefaMaxAggregateInputType
+  }
+
+  export type GetComentarioTarefaAggregateType<T extends ComentarioTarefaAggregateArgs> = {
+        [P in keyof T & keyof AggregateComentarioTarefa]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateComentarioTarefa[P]>
+      : GetScalarType<T[P], AggregateComentarioTarefa[P]>
+  }
+
+
+
+
+  export type ComentarioTarefaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ComentarioTarefaWhereInput
+    orderBy?: ComentarioTarefaOrderByWithAggregationInput | ComentarioTarefaOrderByWithAggregationInput[]
+    by: ComentarioTarefaScalarFieldEnum[] | ComentarioTarefaScalarFieldEnum
+    having?: ComentarioTarefaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ComentarioTarefaCountAggregateInputType | true
+    _min?: ComentarioTarefaMinAggregateInputType
+    _max?: ComentarioTarefaMaxAggregateInputType
+  }
+
+  export type ComentarioTarefaGroupByOutputType = {
+    id: string
+    tarefa_id: string
+    autor_id: string | null
+    conteudo: string
+    criado_em: Date
+    atualizado_em: Date
+    _count: ComentarioTarefaCountAggregateOutputType | null
+    _min: ComentarioTarefaMinAggregateOutputType | null
+    _max: ComentarioTarefaMaxAggregateOutputType | null
+  }
+
+  type GetComentarioTarefaGroupByPayload<T extends ComentarioTarefaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ComentarioTarefaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ComentarioTarefaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ComentarioTarefaGroupByOutputType[P]>
+            : GetScalarType<T[P], ComentarioTarefaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ComentarioTarefaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tarefa_id?: boolean
+    autor_id?: boolean
+    conteudo?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    autor?: boolean | ComentarioTarefa$autorArgs<ExtArgs>
+  }, ExtArgs["result"]["comentarioTarefa"]>
+
+  export type ComentarioTarefaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tarefa_id?: boolean
+    autor_id?: boolean
+    conteudo?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    autor?: boolean | ComentarioTarefa$autorArgs<ExtArgs>
+  }, ExtArgs["result"]["comentarioTarefa"]>
+
+  export type ComentarioTarefaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tarefa_id?: boolean
+    autor_id?: boolean
+    conteudo?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    autor?: boolean | ComentarioTarefa$autorArgs<ExtArgs>
+  }, ExtArgs["result"]["comentarioTarefa"]>
+
+  export type ComentarioTarefaSelectScalar = {
+    id?: boolean
+    tarefa_id?: boolean
+    autor_id?: boolean
+    conteudo?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+  }
+
+  export type ComentarioTarefaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tarefa_id" | "autor_id" | "conteudo" | "criado_em" | "atualizado_em", ExtArgs["result"]["comentarioTarefa"]>
+  export type ComentarioTarefaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    autor?: boolean | ComentarioTarefa$autorArgs<ExtArgs>
+  }
+  export type ComentarioTarefaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    autor?: boolean | ComentarioTarefa$autorArgs<ExtArgs>
+  }
+  export type ComentarioTarefaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    autor?: boolean | ComentarioTarefa$autorArgs<ExtArgs>
+  }
+
+  export type $ComentarioTarefaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ComentarioTarefa"
+    objects: {
+      tarefa: Prisma.$TarefaPayload<ExtArgs>
+      autor: Prisma.$UsuarioPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tarefa_id: string
+      autor_id: string | null
+      conteudo: string
+      criado_em: Date
+      atualizado_em: Date
+    }, ExtArgs["result"]["comentarioTarefa"]>
+    composites: {}
+  }
+
+  type ComentarioTarefaGetPayload<S extends boolean | null | undefined | ComentarioTarefaDefaultArgs> = $Result.GetResult<Prisma.$ComentarioTarefaPayload, S>
+
+  type ComentarioTarefaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ComentarioTarefaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ComentarioTarefaCountAggregateInputType | true
+    }
+
+  export interface ComentarioTarefaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ComentarioTarefa'], meta: { name: 'ComentarioTarefa' } }
+    /**
+     * Find zero or one ComentarioTarefa that matches the filter.
+     * @param {ComentarioTarefaFindUniqueArgs} args - Arguments to find a ComentarioTarefa
+     * @example
+     * // Get one ComentarioTarefa
+     * const comentarioTarefa = await prisma.comentarioTarefa.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ComentarioTarefaFindUniqueArgs>(args: SelectSubset<T, ComentarioTarefaFindUniqueArgs<ExtArgs>>): Prisma__ComentarioTarefaClient<$Result.GetResult<Prisma.$ComentarioTarefaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ComentarioTarefa that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ComentarioTarefaFindUniqueOrThrowArgs} args - Arguments to find a ComentarioTarefa
+     * @example
+     * // Get one ComentarioTarefa
+     * const comentarioTarefa = await prisma.comentarioTarefa.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ComentarioTarefaFindUniqueOrThrowArgs>(args: SelectSubset<T, ComentarioTarefaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ComentarioTarefaClient<$Result.GetResult<Prisma.$ComentarioTarefaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ComentarioTarefa that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ComentarioTarefaFindFirstArgs} args - Arguments to find a ComentarioTarefa
+     * @example
+     * // Get one ComentarioTarefa
+     * const comentarioTarefa = await prisma.comentarioTarefa.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ComentarioTarefaFindFirstArgs>(args?: SelectSubset<T, ComentarioTarefaFindFirstArgs<ExtArgs>>): Prisma__ComentarioTarefaClient<$Result.GetResult<Prisma.$ComentarioTarefaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ComentarioTarefa that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ComentarioTarefaFindFirstOrThrowArgs} args - Arguments to find a ComentarioTarefa
+     * @example
+     * // Get one ComentarioTarefa
+     * const comentarioTarefa = await prisma.comentarioTarefa.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ComentarioTarefaFindFirstOrThrowArgs>(args?: SelectSubset<T, ComentarioTarefaFindFirstOrThrowArgs<ExtArgs>>): Prisma__ComentarioTarefaClient<$Result.GetResult<Prisma.$ComentarioTarefaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ComentarioTarefas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ComentarioTarefaFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ComentarioTarefas
+     * const comentarioTarefas = await prisma.comentarioTarefa.findMany()
+     * 
+     * // Get first 10 ComentarioTarefas
+     * const comentarioTarefas = await prisma.comentarioTarefa.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const comentarioTarefaWithIdOnly = await prisma.comentarioTarefa.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ComentarioTarefaFindManyArgs>(args?: SelectSubset<T, ComentarioTarefaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComentarioTarefaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ComentarioTarefa.
+     * @param {ComentarioTarefaCreateArgs} args - Arguments to create a ComentarioTarefa.
+     * @example
+     * // Create one ComentarioTarefa
+     * const ComentarioTarefa = await prisma.comentarioTarefa.create({
+     *   data: {
+     *     // ... data to create a ComentarioTarefa
+     *   }
+     * })
+     * 
+     */
+    create<T extends ComentarioTarefaCreateArgs>(args: SelectSubset<T, ComentarioTarefaCreateArgs<ExtArgs>>): Prisma__ComentarioTarefaClient<$Result.GetResult<Prisma.$ComentarioTarefaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ComentarioTarefas.
+     * @param {ComentarioTarefaCreateManyArgs} args - Arguments to create many ComentarioTarefas.
+     * @example
+     * // Create many ComentarioTarefas
+     * const comentarioTarefa = await prisma.comentarioTarefa.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ComentarioTarefaCreateManyArgs>(args?: SelectSubset<T, ComentarioTarefaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ComentarioTarefas and returns the data saved in the database.
+     * @param {ComentarioTarefaCreateManyAndReturnArgs} args - Arguments to create many ComentarioTarefas.
+     * @example
+     * // Create many ComentarioTarefas
+     * const comentarioTarefa = await prisma.comentarioTarefa.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ComentarioTarefas and only return the `id`
+     * const comentarioTarefaWithIdOnly = await prisma.comentarioTarefa.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ComentarioTarefaCreateManyAndReturnArgs>(args?: SelectSubset<T, ComentarioTarefaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComentarioTarefaPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ComentarioTarefa.
+     * @param {ComentarioTarefaDeleteArgs} args - Arguments to delete one ComentarioTarefa.
+     * @example
+     * // Delete one ComentarioTarefa
+     * const ComentarioTarefa = await prisma.comentarioTarefa.delete({
+     *   where: {
+     *     // ... filter to delete one ComentarioTarefa
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ComentarioTarefaDeleteArgs>(args: SelectSubset<T, ComentarioTarefaDeleteArgs<ExtArgs>>): Prisma__ComentarioTarefaClient<$Result.GetResult<Prisma.$ComentarioTarefaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ComentarioTarefa.
+     * @param {ComentarioTarefaUpdateArgs} args - Arguments to update one ComentarioTarefa.
+     * @example
+     * // Update one ComentarioTarefa
+     * const comentarioTarefa = await prisma.comentarioTarefa.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ComentarioTarefaUpdateArgs>(args: SelectSubset<T, ComentarioTarefaUpdateArgs<ExtArgs>>): Prisma__ComentarioTarefaClient<$Result.GetResult<Prisma.$ComentarioTarefaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ComentarioTarefas.
+     * @param {ComentarioTarefaDeleteManyArgs} args - Arguments to filter ComentarioTarefas to delete.
+     * @example
+     * // Delete a few ComentarioTarefas
+     * const { count } = await prisma.comentarioTarefa.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ComentarioTarefaDeleteManyArgs>(args?: SelectSubset<T, ComentarioTarefaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ComentarioTarefas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ComentarioTarefaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ComentarioTarefas
+     * const comentarioTarefa = await prisma.comentarioTarefa.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ComentarioTarefaUpdateManyArgs>(args: SelectSubset<T, ComentarioTarefaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ComentarioTarefas and returns the data updated in the database.
+     * @param {ComentarioTarefaUpdateManyAndReturnArgs} args - Arguments to update many ComentarioTarefas.
+     * @example
+     * // Update many ComentarioTarefas
+     * const comentarioTarefa = await prisma.comentarioTarefa.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ComentarioTarefas and only return the `id`
+     * const comentarioTarefaWithIdOnly = await prisma.comentarioTarefa.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ComentarioTarefaUpdateManyAndReturnArgs>(args: SelectSubset<T, ComentarioTarefaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComentarioTarefaPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ComentarioTarefa.
+     * @param {ComentarioTarefaUpsertArgs} args - Arguments to update or create a ComentarioTarefa.
+     * @example
+     * // Update or create a ComentarioTarefa
+     * const comentarioTarefa = await prisma.comentarioTarefa.upsert({
+     *   create: {
+     *     // ... data to create a ComentarioTarefa
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ComentarioTarefa we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ComentarioTarefaUpsertArgs>(args: SelectSubset<T, ComentarioTarefaUpsertArgs<ExtArgs>>): Prisma__ComentarioTarefaClient<$Result.GetResult<Prisma.$ComentarioTarefaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ComentarioTarefas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ComentarioTarefaCountArgs} args - Arguments to filter ComentarioTarefas to count.
+     * @example
+     * // Count the number of ComentarioTarefas
+     * const count = await prisma.comentarioTarefa.count({
+     *   where: {
+     *     // ... the filter for the ComentarioTarefas we want to count
+     *   }
+     * })
+    **/
+    count<T extends ComentarioTarefaCountArgs>(
+      args?: Subset<T, ComentarioTarefaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ComentarioTarefaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ComentarioTarefa.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ComentarioTarefaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ComentarioTarefaAggregateArgs>(args: Subset<T, ComentarioTarefaAggregateArgs>): Prisma.PrismaPromise<GetComentarioTarefaAggregateType<T>>
+
+    /**
+     * Group by ComentarioTarefa.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ComentarioTarefaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ComentarioTarefaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ComentarioTarefaGroupByArgs['orderBy'] }
+        : { orderBy?: ComentarioTarefaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ComentarioTarefaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetComentarioTarefaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ComentarioTarefa model
+   */
+  readonly fields: ComentarioTarefaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ComentarioTarefa.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ComentarioTarefaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tarefa<T extends TarefaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TarefaDefaultArgs<ExtArgs>>): Prisma__TarefaClient<$Result.GetResult<Prisma.$TarefaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    autor<T extends ComentarioTarefa$autorArgs<ExtArgs> = {}>(args?: Subset<T, ComentarioTarefa$autorArgs<ExtArgs>>): Prisma__UsuarioClient<$Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ComentarioTarefa model
+   */
+  interface ComentarioTarefaFieldRefs {
+    readonly id: FieldRef<"ComentarioTarefa", 'String'>
+    readonly tarefa_id: FieldRef<"ComentarioTarefa", 'String'>
+    readonly autor_id: FieldRef<"ComentarioTarefa", 'String'>
+    readonly conteudo: FieldRef<"ComentarioTarefa", 'String'>
+    readonly criado_em: FieldRef<"ComentarioTarefa", 'DateTime'>
+    readonly atualizado_em: FieldRef<"ComentarioTarefa", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ComentarioTarefa findUnique
+   */
+  export type ComentarioTarefaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ComentarioTarefa
+     */
+    select?: ComentarioTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ComentarioTarefa
+     */
+    omit?: ComentarioTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComentarioTarefaInclude<ExtArgs> | null
+    /**
+     * Filter, which ComentarioTarefa to fetch.
+     */
+    where: ComentarioTarefaWhereUniqueInput
+  }
+
+  /**
+   * ComentarioTarefa findUniqueOrThrow
+   */
+  export type ComentarioTarefaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ComentarioTarefa
+     */
+    select?: ComentarioTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ComentarioTarefa
+     */
+    omit?: ComentarioTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComentarioTarefaInclude<ExtArgs> | null
+    /**
+     * Filter, which ComentarioTarefa to fetch.
+     */
+    where: ComentarioTarefaWhereUniqueInput
+  }
+
+  /**
+   * ComentarioTarefa findFirst
+   */
+  export type ComentarioTarefaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ComentarioTarefa
+     */
+    select?: ComentarioTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ComentarioTarefa
+     */
+    omit?: ComentarioTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComentarioTarefaInclude<ExtArgs> | null
+    /**
+     * Filter, which ComentarioTarefa to fetch.
+     */
+    where?: ComentarioTarefaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ComentarioTarefas to fetch.
+     */
+    orderBy?: ComentarioTarefaOrderByWithRelationInput | ComentarioTarefaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ComentarioTarefas.
+     */
+    cursor?: ComentarioTarefaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ComentarioTarefas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ComentarioTarefas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ComentarioTarefas.
+     */
+    distinct?: ComentarioTarefaScalarFieldEnum | ComentarioTarefaScalarFieldEnum[]
+  }
+
+  /**
+   * ComentarioTarefa findFirstOrThrow
+   */
+  export type ComentarioTarefaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ComentarioTarefa
+     */
+    select?: ComentarioTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ComentarioTarefa
+     */
+    omit?: ComentarioTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComentarioTarefaInclude<ExtArgs> | null
+    /**
+     * Filter, which ComentarioTarefa to fetch.
+     */
+    where?: ComentarioTarefaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ComentarioTarefas to fetch.
+     */
+    orderBy?: ComentarioTarefaOrderByWithRelationInput | ComentarioTarefaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ComentarioTarefas.
+     */
+    cursor?: ComentarioTarefaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ComentarioTarefas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ComentarioTarefas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ComentarioTarefas.
+     */
+    distinct?: ComentarioTarefaScalarFieldEnum | ComentarioTarefaScalarFieldEnum[]
+  }
+
+  /**
+   * ComentarioTarefa findMany
+   */
+  export type ComentarioTarefaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ComentarioTarefa
+     */
+    select?: ComentarioTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ComentarioTarefa
+     */
+    omit?: ComentarioTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComentarioTarefaInclude<ExtArgs> | null
+    /**
+     * Filter, which ComentarioTarefas to fetch.
+     */
+    where?: ComentarioTarefaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ComentarioTarefas to fetch.
+     */
+    orderBy?: ComentarioTarefaOrderByWithRelationInput | ComentarioTarefaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ComentarioTarefas.
+     */
+    cursor?: ComentarioTarefaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ComentarioTarefas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ComentarioTarefas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ComentarioTarefas.
+     */
+    distinct?: ComentarioTarefaScalarFieldEnum | ComentarioTarefaScalarFieldEnum[]
+  }
+
+  /**
+   * ComentarioTarefa create
+   */
+  export type ComentarioTarefaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ComentarioTarefa
+     */
+    select?: ComentarioTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ComentarioTarefa
+     */
+    omit?: ComentarioTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComentarioTarefaInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ComentarioTarefa.
+     */
+    data: XOR<ComentarioTarefaCreateInput, ComentarioTarefaUncheckedCreateInput>
+  }
+
+  /**
+   * ComentarioTarefa createMany
+   */
+  export type ComentarioTarefaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ComentarioTarefas.
+     */
+    data: ComentarioTarefaCreateManyInput | ComentarioTarefaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ComentarioTarefa createManyAndReturn
+   */
+  export type ComentarioTarefaCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ComentarioTarefa
+     */
+    select?: ComentarioTarefaSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ComentarioTarefa
+     */
+    omit?: ComentarioTarefaOmit<ExtArgs> | null
+    /**
+     * The data used to create many ComentarioTarefas.
+     */
+    data: ComentarioTarefaCreateManyInput | ComentarioTarefaCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComentarioTarefaIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ComentarioTarefa update
+   */
+  export type ComentarioTarefaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ComentarioTarefa
+     */
+    select?: ComentarioTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ComentarioTarefa
+     */
+    omit?: ComentarioTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComentarioTarefaInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ComentarioTarefa.
+     */
+    data: XOR<ComentarioTarefaUpdateInput, ComentarioTarefaUncheckedUpdateInput>
+    /**
+     * Choose, which ComentarioTarefa to update.
+     */
+    where: ComentarioTarefaWhereUniqueInput
+  }
+
+  /**
+   * ComentarioTarefa updateMany
+   */
+  export type ComentarioTarefaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ComentarioTarefas.
+     */
+    data: XOR<ComentarioTarefaUpdateManyMutationInput, ComentarioTarefaUncheckedUpdateManyInput>
+    /**
+     * Filter which ComentarioTarefas to update
+     */
+    where?: ComentarioTarefaWhereInput
+    /**
+     * Limit how many ComentarioTarefas to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ComentarioTarefa updateManyAndReturn
+   */
+  export type ComentarioTarefaUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ComentarioTarefa
+     */
+    select?: ComentarioTarefaSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ComentarioTarefa
+     */
+    omit?: ComentarioTarefaOmit<ExtArgs> | null
+    /**
+     * The data used to update ComentarioTarefas.
+     */
+    data: XOR<ComentarioTarefaUpdateManyMutationInput, ComentarioTarefaUncheckedUpdateManyInput>
+    /**
+     * Filter which ComentarioTarefas to update
+     */
+    where?: ComentarioTarefaWhereInput
+    /**
+     * Limit how many ComentarioTarefas to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComentarioTarefaIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ComentarioTarefa upsert
+   */
+  export type ComentarioTarefaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ComentarioTarefa
+     */
+    select?: ComentarioTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ComentarioTarefa
+     */
+    omit?: ComentarioTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComentarioTarefaInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ComentarioTarefa to update in case it exists.
+     */
+    where: ComentarioTarefaWhereUniqueInput
+    /**
+     * In case the ComentarioTarefa found by the `where` argument doesn't exist, create a new ComentarioTarefa with this data.
+     */
+    create: XOR<ComentarioTarefaCreateInput, ComentarioTarefaUncheckedCreateInput>
+    /**
+     * In case the ComentarioTarefa was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ComentarioTarefaUpdateInput, ComentarioTarefaUncheckedUpdateInput>
+  }
+
+  /**
+   * ComentarioTarefa delete
+   */
+  export type ComentarioTarefaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ComentarioTarefa
+     */
+    select?: ComentarioTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ComentarioTarefa
+     */
+    omit?: ComentarioTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComentarioTarefaInclude<ExtArgs> | null
+    /**
+     * Filter which ComentarioTarefa to delete.
+     */
+    where: ComentarioTarefaWhereUniqueInput
+  }
+
+  /**
+   * ComentarioTarefa deleteMany
+   */
+  export type ComentarioTarefaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ComentarioTarefas to delete
+     */
+    where?: ComentarioTarefaWhereInput
+    /**
+     * Limit how many ComentarioTarefas to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ComentarioTarefa.autor
+   */
+  export type ComentarioTarefa$autorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Usuario
+     */
+    select?: UsuarioSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Usuario
+     */
+    omit?: UsuarioOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsuarioInclude<ExtArgs> | null
+    where?: UsuarioWhereInput
+  }
+
+  /**
+   * ComentarioTarefa without action
+   */
+  export type ComentarioTarefaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ComentarioTarefa
+     */
+    select?: ComentarioTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ComentarioTarefa
+     */
+    omit?: ComentarioTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComentarioTarefaInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AnexoTarefa
+   */
+
+  export type AggregateAnexoTarefa = {
+    _count: AnexoTarefaCountAggregateOutputType | null
+    _avg: AnexoTarefaAvgAggregateOutputType | null
+    _sum: AnexoTarefaSumAggregateOutputType | null
+    _min: AnexoTarefaMinAggregateOutputType | null
+    _max: AnexoTarefaMaxAggregateOutputType | null
+  }
+
+  export type AnexoTarefaAvgAggregateOutputType = {
+    arquivo_tamanho: number | null
+  }
+
+  export type AnexoTarefaSumAggregateOutputType = {
+    arquivo_tamanho: number | null
+  }
+
+  export type AnexoTarefaMinAggregateOutputType = {
+    id: string | null
+    tarefa_id: string | null
+    criado_por: string | null
+    nome: string | null
+    arquivo_url: string | null
+    arquivo_tamanho: number | null
+    mime_type: string | null
+    criado_em: Date | null
+  }
+
+  export type AnexoTarefaMaxAggregateOutputType = {
+    id: string | null
+    tarefa_id: string | null
+    criado_por: string | null
+    nome: string | null
+    arquivo_url: string | null
+    arquivo_tamanho: number | null
+    mime_type: string | null
+    criado_em: Date | null
+  }
+
+  export type AnexoTarefaCountAggregateOutputType = {
+    id: number
+    tarefa_id: number
+    criado_por: number
+    nome: number
+    arquivo_url: number
+    arquivo_tamanho: number
+    mime_type: number
+    criado_em: number
+    _all: number
+  }
+
+
+  export type AnexoTarefaAvgAggregateInputType = {
+    arquivo_tamanho?: true
+  }
+
+  export type AnexoTarefaSumAggregateInputType = {
+    arquivo_tamanho?: true
+  }
+
+  export type AnexoTarefaMinAggregateInputType = {
+    id?: true
+    tarefa_id?: true
+    criado_por?: true
+    nome?: true
+    arquivo_url?: true
+    arquivo_tamanho?: true
+    mime_type?: true
+    criado_em?: true
+  }
+
+  export type AnexoTarefaMaxAggregateInputType = {
+    id?: true
+    tarefa_id?: true
+    criado_por?: true
+    nome?: true
+    arquivo_url?: true
+    arquivo_tamanho?: true
+    mime_type?: true
+    criado_em?: true
+  }
+
+  export type AnexoTarefaCountAggregateInputType = {
+    id?: true
+    tarefa_id?: true
+    criado_por?: true
+    nome?: true
+    arquivo_url?: true
+    arquivo_tamanho?: true
+    mime_type?: true
+    criado_em?: true
+    _all?: true
+  }
+
+  export type AnexoTarefaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AnexoTarefa to aggregate.
+     */
+    where?: AnexoTarefaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AnexoTarefas to fetch.
+     */
+    orderBy?: AnexoTarefaOrderByWithRelationInput | AnexoTarefaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AnexoTarefaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AnexoTarefas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AnexoTarefas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AnexoTarefas
+    **/
+    _count?: true | AnexoTarefaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AnexoTarefaAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AnexoTarefaSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AnexoTarefaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AnexoTarefaMaxAggregateInputType
+  }
+
+  export type GetAnexoTarefaAggregateType<T extends AnexoTarefaAggregateArgs> = {
+        [P in keyof T & keyof AggregateAnexoTarefa]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAnexoTarefa[P]>
+      : GetScalarType<T[P], AggregateAnexoTarefa[P]>
+  }
+
+
+
+
+  export type AnexoTarefaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AnexoTarefaWhereInput
+    orderBy?: AnexoTarefaOrderByWithAggregationInput | AnexoTarefaOrderByWithAggregationInput[]
+    by: AnexoTarefaScalarFieldEnum[] | AnexoTarefaScalarFieldEnum
+    having?: AnexoTarefaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AnexoTarefaCountAggregateInputType | true
+    _avg?: AnexoTarefaAvgAggregateInputType
+    _sum?: AnexoTarefaSumAggregateInputType
+    _min?: AnexoTarefaMinAggregateInputType
+    _max?: AnexoTarefaMaxAggregateInputType
+  }
+
+  export type AnexoTarefaGroupByOutputType = {
+    id: string
+    tarefa_id: string
+    criado_por: string | null
+    nome: string
+    arquivo_url: string
+    arquivo_tamanho: number
+    mime_type: string
+    criado_em: Date
+    _count: AnexoTarefaCountAggregateOutputType | null
+    _avg: AnexoTarefaAvgAggregateOutputType | null
+    _sum: AnexoTarefaSumAggregateOutputType | null
+    _min: AnexoTarefaMinAggregateOutputType | null
+    _max: AnexoTarefaMaxAggregateOutputType | null
+  }
+
+  type GetAnexoTarefaGroupByPayload<T extends AnexoTarefaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AnexoTarefaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AnexoTarefaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AnexoTarefaGroupByOutputType[P]>
+            : GetScalarType<T[P], AnexoTarefaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AnexoTarefaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tarefa_id?: boolean
+    criado_por?: boolean
+    nome?: boolean
+    arquivo_url?: boolean
+    arquivo_tamanho?: boolean
+    mime_type?: boolean
+    criado_em?: boolean
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    criador?: boolean | AnexoTarefa$criadorArgs<ExtArgs>
+  }, ExtArgs["result"]["anexoTarefa"]>
+
+  export type AnexoTarefaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tarefa_id?: boolean
+    criado_por?: boolean
+    nome?: boolean
+    arquivo_url?: boolean
+    arquivo_tamanho?: boolean
+    mime_type?: boolean
+    criado_em?: boolean
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    criador?: boolean | AnexoTarefa$criadorArgs<ExtArgs>
+  }, ExtArgs["result"]["anexoTarefa"]>
+
+  export type AnexoTarefaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tarefa_id?: boolean
+    criado_por?: boolean
+    nome?: boolean
+    arquivo_url?: boolean
+    arquivo_tamanho?: boolean
+    mime_type?: boolean
+    criado_em?: boolean
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    criador?: boolean | AnexoTarefa$criadorArgs<ExtArgs>
+  }, ExtArgs["result"]["anexoTarefa"]>
+
+  export type AnexoTarefaSelectScalar = {
+    id?: boolean
+    tarefa_id?: boolean
+    criado_por?: boolean
+    nome?: boolean
+    arquivo_url?: boolean
+    arquivo_tamanho?: boolean
+    mime_type?: boolean
+    criado_em?: boolean
+  }
+
+  export type AnexoTarefaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tarefa_id" | "criado_por" | "nome" | "arquivo_url" | "arquivo_tamanho" | "mime_type" | "criado_em", ExtArgs["result"]["anexoTarefa"]>
+  export type AnexoTarefaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    criador?: boolean | AnexoTarefa$criadorArgs<ExtArgs>
+  }
+  export type AnexoTarefaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    criador?: boolean | AnexoTarefa$criadorArgs<ExtArgs>
+  }
+  export type AnexoTarefaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    criador?: boolean | AnexoTarefa$criadorArgs<ExtArgs>
+  }
+
+  export type $AnexoTarefaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AnexoTarefa"
+    objects: {
+      tarefa: Prisma.$TarefaPayload<ExtArgs>
+      criador: Prisma.$UsuarioPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tarefa_id: string
+      criado_por: string | null
+      nome: string
+      arquivo_url: string
+      arquivo_tamanho: number
+      mime_type: string
+      criado_em: Date
+    }, ExtArgs["result"]["anexoTarefa"]>
+    composites: {}
+  }
+
+  type AnexoTarefaGetPayload<S extends boolean | null | undefined | AnexoTarefaDefaultArgs> = $Result.GetResult<Prisma.$AnexoTarefaPayload, S>
+
+  type AnexoTarefaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AnexoTarefaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AnexoTarefaCountAggregateInputType | true
+    }
+
+  export interface AnexoTarefaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AnexoTarefa'], meta: { name: 'AnexoTarefa' } }
+    /**
+     * Find zero or one AnexoTarefa that matches the filter.
+     * @param {AnexoTarefaFindUniqueArgs} args - Arguments to find a AnexoTarefa
+     * @example
+     * // Get one AnexoTarefa
+     * const anexoTarefa = await prisma.anexoTarefa.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AnexoTarefaFindUniqueArgs>(args: SelectSubset<T, AnexoTarefaFindUniqueArgs<ExtArgs>>): Prisma__AnexoTarefaClient<$Result.GetResult<Prisma.$AnexoTarefaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AnexoTarefa that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AnexoTarefaFindUniqueOrThrowArgs} args - Arguments to find a AnexoTarefa
+     * @example
+     * // Get one AnexoTarefa
+     * const anexoTarefa = await prisma.anexoTarefa.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AnexoTarefaFindUniqueOrThrowArgs>(args: SelectSubset<T, AnexoTarefaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AnexoTarefaClient<$Result.GetResult<Prisma.$AnexoTarefaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AnexoTarefa that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnexoTarefaFindFirstArgs} args - Arguments to find a AnexoTarefa
+     * @example
+     * // Get one AnexoTarefa
+     * const anexoTarefa = await prisma.anexoTarefa.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AnexoTarefaFindFirstArgs>(args?: SelectSubset<T, AnexoTarefaFindFirstArgs<ExtArgs>>): Prisma__AnexoTarefaClient<$Result.GetResult<Prisma.$AnexoTarefaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AnexoTarefa that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnexoTarefaFindFirstOrThrowArgs} args - Arguments to find a AnexoTarefa
+     * @example
+     * // Get one AnexoTarefa
+     * const anexoTarefa = await prisma.anexoTarefa.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AnexoTarefaFindFirstOrThrowArgs>(args?: SelectSubset<T, AnexoTarefaFindFirstOrThrowArgs<ExtArgs>>): Prisma__AnexoTarefaClient<$Result.GetResult<Prisma.$AnexoTarefaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AnexoTarefas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnexoTarefaFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AnexoTarefas
+     * const anexoTarefas = await prisma.anexoTarefa.findMany()
+     * 
+     * // Get first 10 AnexoTarefas
+     * const anexoTarefas = await prisma.anexoTarefa.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const anexoTarefaWithIdOnly = await prisma.anexoTarefa.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AnexoTarefaFindManyArgs>(args?: SelectSubset<T, AnexoTarefaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnexoTarefaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AnexoTarefa.
+     * @param {AnexoTarefaCreateArgs} args - Arguments to create a AnexoTarefa.
+     * @example
+     * // Create one AnexoTarefa
+     * const AnexoTarefa = await prisma.anexoTarefa.create({
+     *   data: {
+     *     // ... data to create a AnexoTarefa
+     *   }
+     * })
+     * 
+     */
+    create<T extends AnexoTarefaCreateArgs>(args: SelectSubset<T, AnexoTarefaCreateArgs<ExtArgs>>): Prisma__AnexoTarefaClient<$Result.GetResult<Prisma.$AnexoTarefaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AnexoTarefas.
+     * @param {AnexoTarefaCreateManyArgs} args - Arguments to create many AnexoTarefas.
+     * @example
+     * // Create many AnexoTarefas
+     * const anexoTarefa = await prisma.anexoTarefa.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AnexoTarefaCreateManyArgs>(args?: SelectSubset<T, AnexoTarefaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AnexoTarefas and returns the data saved in the database.
+     * @param {AnexoTarefaCreateManyAndReturnArgs} args - Arguments to create many AnexoTarefas.
+     * @example
+     * // Create many AnexoTarefas
+     * const anexoTarefa = await prisma.anexoTarefa.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AnexoTarefas and only return the `id`
+     * const anexoTarefaWithIdOnly = await prisma.anexoTarefa.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AnexoTarefaCreateManyAndReturnArgs>(args?: SelectSubset<T, AnexoTarefaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnexoTarefaPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AnexoTarefa.
+     * @param {AnexoTarefaDeleteArgs} args - Arguments to delete one AnexoTarefa.
+     * @example
+     * // Delete one AnexoTarefa
+     * const AnexoTarefa = await prisma.anexoTarefa.delete({
+     *   where: {
+     *     // ... filter to delete one AnexoTarefa
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AnexoTarefaDeleteArgs>(args: SelectSubset<T, AnexoTarefaDeleteArgs<ExtArgs>>): Prisma__AnexoTarefaClient<$Result.GetResult<Prisma.$AnexoTarefaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AnexoTarefa.
+     * @param {AnexoTarefaUpdateArgs} args - Arguments to update one AnexoTarefa.
+     * @example
+     * // Update one AnexoTarefa
+     * const anexoTarefa = await prisma.anexoTarefa.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AnexoTarefaUpdateArgs>(args: SelectSubset<T, AnexoTarefaUpdateArgs<ExtArgs>>): Prisma__AnexoTarefaClient<$Result.GetResult<Prisma.$AnexoTarefaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AnexoTarefas.
+     * @param {AnexoTarefaDeleteManyArgs} args - Arguments to filter AnexoTarefas to delete.
+     * @example
+     * // Delete a few AnexoTarefas
+     * const { count } = await prisma.anexoTarefa.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AnexoTarefaDeleteManyArgs>(args?: SelectSubset<T, AnexoTarefaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AnexoTarefas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnexoTarefaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AnexoTarefas
+     * const anexoTarefa = await prisma.anexoTarefa.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AnexoTarefaUpdateManyArgs>(args: SelectSubset<T, AnexoTarefaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AnexoTarefas and returns the data updated in the database.
+     * @param {AnexoTarefaUpdateManyAndReturnArgs} args - Arguments to update many AnexoTarefas.
+     * @example
+     * // Update many AnexoTarefas
+     * const anexoTarefa = await prisma.anexoTarefa.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AnexoTarefas and only return the `id`
+     * const anexoTarefaWithIdOnly = await prisma.anexoTarefa.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AnexoTarefaUpdateManyAndReturnArgs>(args: SelectSubset<T, AnexoTarefaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnexoTarefaPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AnexoTarefa.
+     * @param {AnexoTarefaUpsertArgs} args - Arguments to update or create a AnexoTarefa.
+     * @example
+     * // Update or create a AnexoTarefa
+     * const anexoTarefa = await prisma.anexoTarefa.upsert({
+     *   create: {
+     *     // ... data to create a AnexoTarefa
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AnexoTarefa we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AnexoTarefaUpsertArgs>(args: SelectSubset<T, AnexoTarefaUpsertArgs<ExtArgs>>): Prisma__AnexoTarefaClient<$Result.GetResult<Prisma.$AnexoTarefaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AnexoTarefas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnexoTarefaCountArgs} args - Arguments to filter AnexoTarefas to count.
+     * @example
+     * // Count the number of AnexoTarefas
+     * const count = await prisma.anexoTarefa.count({
+     *   where: {
+     *     // ... the filter for the AnexoTarefas we want to count
+     *   }
+     * })
+    **/
+    count<T extends AnexoTarefaCountArgs>(
+      args?: Subset<T, AnexoTarefaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AnexoTarefaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AnexoTarefa.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnexoTarefaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AnexoTarefaAggregateArgs>(args: Subset<T, AnexoTarefaAggregateArgs>): Prisma.PrismaPromise<GetAnexoTarefaAggregateType<T>>
+
+    /**
+     * Group by AnexoTarefa.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnexoTarefaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AnexoTarefaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AnexoTarefaGroupByArgs['orderBy'] }
+        : { orderBy?: AnexoTarefaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AnexoTarefaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAnexoTarefaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AnexoTarefa model
+   */
+  readonly fields: AnexoTarefaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AnexoTarefa.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AnexoTarefaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tarefa<T extends TarefaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TarefaDefaultArgs<ExtArgs>>): Prisma__TarefaClient<$Result.GetResult<Prisma.$TarefaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    criador<T extends AnexoTarefa$criadorArgs<ExtArgs> = {}>(args?: Subset<T, AnexoTarefa$criadorArgs<ExtArgs>>): Prisma__UsuarioClient<$Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AnexoTarefa model
+   */
+  interface AnexoTarefaFieldRefs {
+    readonly id: FieldRef<"AnexoTarefa", 'String'>
+    readonly tarefa_id: FieldRef<"AnexoTarefa", 'String'>
+    readonly criado_por: FieldRef<"AnexoTarefa", 'String'>
+    readonly nome: FieldRef<"AnexoTarefa", 'String'>
+    readonly arquivo_url: FieldRef<"AnexoTarefa", 'String'>
+    readonly arquivo_tamanho: FieldRef<"AnexoTarefa", 'Int'>
+    readonly mime_type: FieldRef<"AnexoTarefa", 'String'>
+    readonly criado_em: FieldRef<"AnexoTarefa", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AnexoTarefa findUnique
+   */
+  export type AnexoTarefaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnexoTarefa
+     */
+    select?: AnexoTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnexoTarefa
+     */
+    omit?: AnexoTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnexoTarefaInclude<ExtArgs> | null
+    /**
+     * Filter, which AnexoTarefa to fetch.
+     */
+    where: AnexoTarefaWhereUniqueInput
+  }
+
+  /**
+   * AnexoTarefa findUniqueOrThrow
+   */
+  export type AnexoTarefaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnexoTarefa
+     */
+    select?: AnexoTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnexoTarefa
+     */
+    omit?: AnexoTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnexoTarefaInclude<ExtArgs> | null
+    /**
+     * Filter, which AnexoTarefa to fetch.
+     */
+    where: AnexoTarefaWhereUniqueInput
+  }
+
+  /**
+   * AnexoTarefa findFirst
+   */
+  export type AnexoTarefaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnexoTarefa
+     */
+    select?: AnexoTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnexoTarefa
+     */
+    omit?: AnexoTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnexoTarefaInclude<ExtArgs> | null
+    /**
+     * Filter, which AnexoTarefa to fetch.
+     */
+    where?: AnexoTarefaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AnexoTarefas to fetch.
+     */
+    orderBy?: AnexoTarefaOrderByWithRelationInput | AnexoTarefaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AnexoTarefas.
+     */
+    cursor?: AnexoTarefaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AnexoTarefas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AnexoTarefas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AnexoTarefas.
+     */
+    distinct?: AnexoTarefaScalarFieldEnum | AnexoTarefaScalarFieldEnum[]
+  }
+
+  /**
+   * AnexoTarefa findFirstOrThrow
+   */
+  export type AnexoTarefaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnexoTarefa
+     */
+    select?: AnexoTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnexoTarefa
+     */
+    omit?: AnexoTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnexoTarefaInclude<ExtArgs> | null
+    /**
+     * Filter, which AnexoTarefa to fetch.
+     */
+    where?: AnexoTarefaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AnexoTarefas to fetch.
+     */
+    orderBy?: AnexoTarefaOrderByWithRelationInput | AnexoTarefaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AnexoTarefas.
+     */
+    cursor?: AnexoTarefaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AnexoTarefas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AnexoTarefas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AnexoTarefas.
+     */
+    distinct?: AnexoTarefaScalarFieldEnum | AnexoTarefaScalarFieldEnum[]
+  }
+
+  /**
+   * AnexoTarefa findMany
+   */
+  export type AnexoTarefaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnexoTarefa
+     */
+    select?: AnexoTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnexoTarefa
+     */
+    omit?: AnexoTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnexoTarefaInclude<ExtArgs> | null
+    /**
+     * Filter, which AnexoTarefas to fetch.
+     */
+    where?: AnexoTarefaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AnexoTarefas to fetch.
+     */
+    orderBy?: AnexoTarefaOrderByWithRelationInput | AnexoTarefaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AnexoTarefas.
+     */
+    cursor?: AnexoTarefaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AnexoTarefas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AnexoTarefas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AnexoTarefas.
+     */
+    distinct?: AnexoTarefaScalarFieldEnum | AnexoTarefaScalarFieldEnum[]
+  }
+
+  /**
+   * AnexoTarefa create
+   */
+  export type AnexoTarefaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnexoTarefa
+     */
+    select?: AnexoTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnexoTarefa
+     */
+    omit?: AnexoTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnexoTarefaInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AnexoTarefa.
+     */
+    data: XOR<AnexoTarefaCreateInput, AnexoTarefaUncheckedCreateInput>
+  }
+
+  /**
+   * AnexoTarefa createMany
+   */
+  export type AnexoTarefaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AnexoTarefas.
+     */
+    data: AnexoTarefaCreateManyInput | AnexoTarefaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AnexoTarefa createManyAndReturn
+   */
+  export type AnexoTarefaCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnexoTarefa
+     */
+    select?: AnexoTarefaSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnexoTarefa
+     */
+    omit?: AnexoTarefaOmit<ExtArgs> | null
+    /**
+     * The data used to create many AnexoTarefas.
+     */
+    data: AnexoTarefaCreateManyInput | AnexoTarefaCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnexoTarefaIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AnexoTarefa update
+   */
+  export type AnexoTarefaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnexoTarefa
+     */
+    select?: AnexoTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnexoTarefa
+     */
+    omit?: AnexoTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnexoTarefaInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AnexoTarefa.
+     */
+    data: XOR<AnexoTarefaUpdateInput, AnexoTarefaUncheckedUpdateInput>
+    /**
+     * Choose, which AnexoTarefa to update.
+     */
+    where: AnexoTarefaWhereUniqueInput
+  }
+
+  /**
+   * AnexoTarefa updateMany
+   */
+  export type AnexoTarefaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AnexoTarefas.
+     */
+    data: XOR<AnexoTarefaUpdateManyMutationInput, AnexoTarefaUncheckedUpdateManyInput>
+    /**
+     * Filter which AnexoTarefas to update
+     */
+    where?: AnexoTarefaWhereInput
+    /**
+     * Limit how many AnexoTarefas to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AnexoTarefa updateManyAndReturn
+   */
+  export type AnexoTarefaUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnexoTarefa
+     */
+    select?: AnexoTarefaSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnexoTarefa
+     */
+    omit?: AnexoTarefaOmit<ExtArgs> | null
+    /**
+     * The data used to update AnexoTarefas.
+     */
+    data: XOR<AnexoTarefaUpdateManyMutationInput, AnexoTarefaUncheckedUpdateManyInput>
+    /**
+     * Filter which AnexoTarefas to update
+     */
+    where?: AnexoTarefaWhereInput
+    /**
+     * Limit how many AnexoTarefas to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnexoTarefaIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AnexoTarefa upsert
+   */
+  export type AnexoTarefaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnexoTarefa
+     */
+    select?: AnexoTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnexoTarefa
+     */
+    omit?: AnexoTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnexoTarefaInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AnexoTarefa to update in case it exists.
+     */
+    where: AnexoTarefaWhereUniqueInput
+    /**
+     * In case the AnexoTarefa found by the `where` argument doesn't exist, create a new AnexoTarefa with this data.
+     */
+    create: XOR<AnexoTarefaCreateInput, AnexoTarefaUncheckedCreateInput>
+    /**
+     * In case the AnexoTarefa was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AnexoTarefaUpdateInput, AnexoTarefaUncheckedUpdateInput>
+  }
+
+  /**
+   * AnexoTarefa delete
+   */
+  export type AnexoTarefaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnexoTarefa
+     */
+    select?: AnexoTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnexoTarefa
+     */
+    omit?: AnexoTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnexoTarefaInclude<ExtArgs> | null
+    /**
+     * Filter which AnexoTarefa to delete.
+     */
+    where: AnexoTarefaWhereUniqueInput
+  }
+
+  /**
+   * AnexoTarefa deleteMany
+   */
+  export type AnexoTarefaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AnexoTarefas to delete
+     */
+    where?: AnexoTarefaWhereInput
+    /**
+     * Limit how many AnexoTarefas to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AnexoTarefa.criador
+   */
+  export type AnexoTarefa$criadorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Usuario
+     */
+    select?: UsuarioSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Usuario
+     */
+    omit?: UsuarioOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsuarioInclude<ExtArgs> | null
+    where?: UsuarioWhereInput
+  }
+
+  /**
+   * AnexoTarefa without action
+   */
+  export type AnexoTarefaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnexoTarefa
+     */
+    select?: AnexoTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnexoTarefa
+     */
+    omit?: AnexoTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnexoTarefaInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AtividadeTarefa
+   */
+
+  export type AggregateAtividadeTarefa = {
+    _count: AtividadeTarefaCountAggregateOutputType | null
+    _min: AtividadeTarefaMinAggregateOutputType | null
+    _max: AtividadeTarefaMaxAggregateOutputType | null
+  }
+
+  export type AtividadeTarefaMinAggregateOutputType = {
+    id: string | null
+    tarefa_id: string | null
+    autor_id: string | null
+    descricao: string | null
+    criado_em: Date | null
+  }
+
+  export type AtividadeTarefaMaxAggregateOutputType = {
+    id: string | null
+    tarefa_id: string | null
+    autor_id: string | null
+    descricao: string | null
+    criado_em: Date | null
+  }
+
+  export type AtividadeTarefaCountAggregateOutputType = {
+    id: number
+    tarefa_id: number
+    autor_id: number
+    descricao: number
+    criado_em: number
+    _all: number
+  }
+
+
+  export type AtividadeTarefaMinAggregateInputType = {
+    id?: true
+    tarefa_id?: true
+    autor_id?: true
+    descricao?: true
+    criado_em?: true
+  }
+
+  export type AtividadeTarefaMaxAggregateInputType = {
+    id?: true
+    tarefa_id?: true
+    autor_id?: true
+    descricao?: true
+    criado_em?: true
+  }
+
+  export type AtividadeTarefaCountAggregateInputType = {
+    id?: true
+    tarefa_id?: true
+    autor_id?: true
+    descricao?: true
+    criado_em?: true
+    _all?: true
+  }
+
+  export type AtividadeTarefaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AtividadeTarefa to aggregate.
+     */
+    where?: AtividadeTarefaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AtividadeTarefas to fetch.
+     */
+    orderBy?: AtividadeTarefaOrderByWithRelationInput | AtividadeTarefaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AtividadeTarefaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AtividadeTarefas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AtividadeTarefas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AtividadeTarefas
+    **/
+    _count?: true | AtividadeTarefaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AtividadeTarefaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AtividadeTarefaMaxAggregateInputType
+  }
+
+  export type GetAtividadeTarefaAggregateType<T extends AtividadeTarefaAggregateArgs> = {
+        [P in keyof T & keyof AggregateAtividadeTarefa]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAtividadeTarefa[P]>
+      : GetScalarType<T[P], AggregateAtividadeTarefa[P]>
+  }
+
+
+
+
+  export type AtividadeTarefaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AtividadeTarefaWhereInput
+    orderBy?: AtividadeTarefaOrderByWithAggregationInput | AtividadeTarefaOrderByWithAggregationInput[]
+    by: AtividadeTarefaScalarFieldEnum[] | AtividadeTarefaScalarFieldEnum
+    having?: AtividadeTarefaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AtividadeTarefaCountAggregateInputType | true
+    _min?: AtividadeTarefaMinAggregateInputType
+    _max?: AtividadeTarefaMaxAggregateInputType
+  }
+
+  export type AtividadeTarefaGroupByOutputType = {
+    id: string
+    tarefa_id: string
+    autor_id: string | null
+    descricao: string
+    criado_em: Date
+    _count: AtividadeTarefaCountAggregateOutputType | null
+    _min: AtividadeTarefaMinAggregateOutputType | null
+    _max: AtividadeTarefaMaxAggregateOutputType | null
+  }
+
+  type GetAtividadeTarefaGroupByPayload<T extends AtividadeTarefaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AtividadeTarefaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AtividadeTarefaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AtividadeTarefaGroupByOutputType[P]>
+            : GetScalarType<T[P], AtividadeTarefaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AtividadeTarefaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tarefa_id?: boolean
+    autor_id?: boolean
+    descricao?: boolean
+    criado_em?: boolean
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    autor?: boolean | AtividadeTarefa$autorArgs<ExtArgs>
+  }, ExtArgs["result"]["atividadeTarefa"]>
+
+  export type AtividadeTarefaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tarefa_id?: boolean
+    autor_id?: boolean
+    descricao?: boolean
+    criado_em?: boolean
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    autor?: boolean | AtividadeTarefa$autorArgs<ExtArgs>
+  }, ExtArgs["result"]["atividadeTarefa"]>
+
+  export type AtividadeTarefaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tarefa_id?: boolean
+    autor_id?: boolean
+    descricao?: boolean
+    criado_em?: boolean
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    autor?: boolean | AtividadeTarefa$autorArgs<ExtArgs>
+  }, ExtArgs["result"]["atividadeTarefa"]>
+
+  export type AtividadeTarefaSelectScalar = {
+    id?: boolean
+    tarefa_id?: boolean
+    autor_id?: boolean
+    descricao?: boolean
+    criado_em?: boolean
+  }
+
+  export type AtividadeTarefaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tarefa_id" | "autor_id" | "descricao" | "criado_em", ExtArgs["result"]["atividadeTarefa"]>
+  export type AtividadeTarefaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    autor?: boolean | AtividadeTarefa$autorArgs<ExtArgs>
+  }
+  export type AtividadeTarefaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    autor?: boolean | AtividadeTarefa$autorArgs<ExtArgs>
+  }
+  export type AtividadeTarefaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    autor?: boolean | AtividadeTarefa$autorArgs<ExtArgs>
+  }
+
+  export type $AtividadeTarefaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AtividadeTarefa"
+    objects: {
+      tarefa: Prisma.$TarefaPayload<ExtArgs>
+      autor: Prisma.$UsuarioPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tarefa_id: string
+      autor_id: string | null
+      descricao: string
+      criado_em: Date
+    }, ExtArgs["result"]["atividadeTarefa"]>
+    composites: {}
+  }
+
+  type AtividadeTarefaGetPayload<S extends boolean | null | undefined | AtividadeTarefaDefaultArgs> = $Result.GetResult<Prisma.$AtividadeTarefaPayload, S>
+
+  type AtividadeTarefaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AtividadeTarefaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AtividadeTarefaCountAggregateInputType | true
+    }
+
+  export interface AtividadeTarefaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AtividadeTarefa'], meta: { name: 'AtividadeTarefa' } }
+    /**
+     * Find zero or one AtividadeTarefa that matches the filter.
+     * @param {AtividadeTarefaFindUniqueArgs} args - Arguments to find a AtividadeTarefa
+     * @example
+     * // Get one AtividadeTarefa
+     * const atividadeTarefa = await prisma.atividadeTarefa.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AtividadeTarefaFindUniqueArgs>(args: SelectSubset<T, AtividadeTarefaFindUniqueArgs<ExtArgs>>): Prisma__AtividadeTarefaClient<$Result.GetResult<Prisma.$AtividadeTarefaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AtividadeTarefa that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AtividadeTarefaFindUniqueOrThrowArgs} args - Arguments to find a AtividadeTarefa
+     * @example
+     * // Get one AtividadeTarefa
+     * const atividadeTarefa = await prisma.atividadeTarefa.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AtividadeTarefaFindUniqueOrThrowArgs>(args: SelectSubset<T, AtividadeTarefaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AtividadeTarefaClient<$Result.GetResult<Prisma.$AtividadeTarefaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AtividadeTarefa that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AtividadeTarefaFindFirstArgs} args - Arguments to find a AtividadeTarefa
+     * @example
+     * // Get one AtividadeTarefa
+     * const atividadeTarefa = await prisma.atividadeTarefa.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AtividadeTarefaFindFirstArgs>(args?: SelectSubset<T, AtividadeTarefaFindFirstArgs<ExtArgs>>): Prisma__AtividadeTarefaClient<$Result.GetResult<Prisma.$AtividadeTarefaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AtividadeTarefa that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AtividadeTarefaFindFirstOrThrowArgs} args - Arguments to find a AtividadeTarefa
+     * @example
+     * // Get one AtividadeTarefa
+     * const atividadeTarefa = await prisma.atividadeTarefa.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AtividadeTarefaFindFirstOrThrowArgs>(args?: SelectSubset<T, AtividadeTarefaFindFirstOrThrowArgs<ExtArgs>>): Prisma__AtividadeTarefaClient<$Result.GetResult<Prisma.$AtividadeTarefaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AtividadeTarefas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AtividadeTarefaFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AtividadeTarefas
+     * const atividadeTarefas = await prisma.atividadeTarefa.findMany()
+     * 
+     * // Get first 10 AtividadeTarefas
+     * const atividadeTarefas = await prisma.atividadeTarefa.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const atividadeTarefaWithIdOnly = await prisma.atividadeTarefa.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AtividadeTarefaFindManyArgs>(args?: SelectSubset<T, AtividadeTarefaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AtividadeTarefaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AtividadeTarefa.
+     * @param {AtividadeTarefaCreateArgs} args - Arguments to create a AtividadeTarefa.
+     * @example
+     * // Create one AtividadeTarefa
+     * const AtividadeTarefa = await prisma.atividadeTarefa.create({
+     *   data: {
+     *     // ... data to create a AtividadeTarefa
+     *   }
+     * })
+     * 
+     */
+    create<T extends AtividadeTarefaCreateArgs>(args: SelectSubset<T, AtividadeTarefaCreateArgs<ExtArgs>>): Prisma__AtividadeTarefaClient<$Result.GetResult<Prisma.$AtividadeTarefaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AtividadeTarefas.
+     * @param {AtividadeTarefaCreateManyArgs} args - Arguments to create many AtividadeTarefas.
+     * @example
+     * // Create many AtividadeTarefas
+     * const atividadeTarefa = await prisma.atividadeTarefa.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AtividadeTarefaCreateManyArgs>(args?: SelectSubset<T, AtividadeTarefaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AtividadeTarefas and returns the data saved in the database.
+     * @param {AtividadeTarefaCreateManyAndReturnArgs} args - Arguments to create many AtividadeTarefas.
+     * @example
+     * // Create many AtividadeTarefas
+     * const atividadeTarefa = await prisma.atividadeTarefa.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AtividadeTarefas and only return the `id`
+     * const atividadeTarefaWithIdOnly = await prisma.atividadeTarefa.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AtividadeTarefaCreateManyAndReturnArgs>(args?: SelectSubset<T, AtividadeTarefaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AtividadeTarefaPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AtividadeTarefa.
+     * @param {AtividadeTarefaDeleteArgs} args - Arguments to delete one AtividadeTarefa.
+     * @example
+     * // Delete one AtividadeTarefa
+     * const AtividadeTarefa = await prisma.atividadeTarefa.delete({
+     *   where: {
+     *     // ... filter to delete one AtividadeTarefa
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AtividadeTarefaDeleteArgs>(args: SelectSubset<T, AtividadeTarefaDeleteArgs<ExtArgs>>): Prisma__AtividadeTarefaClient<$Result.GetResult<Prisma.$AtividadeTarefaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AtividadeTarefa.
+     * @param {AtividadeTarefaUpdateArgs} args - Arguments to update one AtividadeTarefa.
+     * @example
+     * // Update one AtividadeTarefa
+     * const atividadeTarefa = await prisma.atividadeTarefa.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AtividadeTarefaUpdateArgs>(args: SelectSubset<T, AtividadeTarefaUpdateArgs<ExtArgs>>): Prisma__AtividadeTarefaClient<$Result.GetResult<Prisma.$AtividadeTarefaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AtividadeTarefas.
+     * @param {AtividadeTarefaDeleteManyArgs} args - Arguments to filter AtividadeTarefas to delete.
+     * @example
+     * // Delete a few AtividadeTarefas
+     * const { count } = await prisma.atividadeTarefa.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AtividadeTarefaDeleteManyArgs>(args?: SelectSubset<T, AtividadeTarefaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AtividadeTarefas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AtividadeTarefaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AtividadeTarefas
+     * const atividadeTarefa = await prisma.atividadeTarefa.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AtividadeTarefaUpdateManyArgs>(args: SelectSubset<T, AtividadeTarefaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AtividadeTarefas and returns the data updated in the database.
+     * @param {AtividadeTarefaUpdateManyAndReturnArgs} args - Arguments to update many AtividadeTarefas.
+     * @example
+     * // Update many AtividadeTarefas
+     * const atividadeTarefa = await prisma.atividadeTarefa.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AtividadeTarefas and only return the `id`
+     * const atividadeTarefaWithIdOnly = await prisma.atividadeTarefa.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AtividadeTarefaUpdateManyAndReturnArgs>(args: SelectSubset<T, AtividadeTarefaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AtividadeTarefaPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AtividadeTarefa.
+     * @param {AtividadeTarefaUpsertArgs} args - Arguments to update or create a AtividadeTarefa.
+     * @example
+     * // Update or create a AtividadeTarefa
+     * const atividadeTarefa = await prisma.atividadeTarefa.upsert({
+     *   create: {
+     *     // ... data to create a AtividadeTarefa
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AtividadeTarefa we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AtividadeTarefaUpsertArgs>(args: SelectSubset<T, AtividadeTarefaUpsertArgs<ExtArgs>>): Prisma__AtividadeTarefaClient<$Result.GetResult<Prisma.$AtividadeTarefaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AtividadeTarefas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AtividadeTarefaCountArgs} args - Arguments to filter AtividadeTarefas to count.
+     * @example
+     * // Count the number of AtividadeTarefas
+     * const count = await prisma.atividadeTarefa.count({
+     *   where: {
+     *     // ... the filter for the AtividadeTarefas we want to count
+     *   }
+     * })
+    **/
+    count<T extends AtividadeTarefaCountArgs>(
+      args?: Subset<T, AtividadeTarefaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AtividadeTarefaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AtividadeTarefa.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AtividadeTarefaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AtividadeTarefaAggregateArgs>(args: Subset<T, AtividadeTarefaAggregateArgs>): Prisma.PrismaPromise<GetAtividadeTarefaAggregateType<T>>
+
+    /**
+     * Group by AtividadeTarefa.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AtividadeTarefaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AtividadeTarefaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AtividadeTarefaGroupByArgs['orderBy'] }
+        : { orderBy?: AtividadeTarefaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AtividadeTarefaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAtividadeTarefaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AtividadeTarefa model
+   */
+  readonly fields: AtividadeTarefaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AtividadeTarefa.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AtividadeTarefaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tarefa<T extends TarefaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TarefaDefaultArgs<ExtArgs>>): Prisma__TarefaClient<$Result.GetResult<Prisma.$TarefaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    autor<T extends AtividadeTarefa$autorArgs<ExtArgs> = {}>(args?: Subset<T, AtividadeTarefa$autorArgs<ExtArgs>>): Prisma__UsuarioClient<$Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AtividadeTarefa model
+   */
+  interface AtividadeTarefaFieldRefs {
+    readonly id: FieldRef<"AtividadeTarefa", 'String'>
+    readonly tarefa_id: FieldRef<"AtividadeTarefa", 'String'>
+    readonly autor_id: FieldRef<"AtividadeTarefa", 'String'>
+    readonly descricao: FieldRef<"AtividadeTarefa", 'String'>
+    readonly criado_em: FieldRef<"AtividadeTarefa", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AtividadeTarefa findUnique
+   */
+  export type AtividadeTarefaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AtividadeTarefa
+     */
+    select?: AtividadeTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AtividadeTarefa
+     */
+    omit?: AtividadeTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AtividadeTarefaInclude<ExtArgs> | null
+    /**
+     * Filter, which AtividadeTarefa to fetch.
+     */
+    where: AtividadeTarefaWhereUniqueInput
+  }
+
+  /**
+   * AtividadeTarefa findUniqueOrThrow
+   */
+  export type AtividadeTarefaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AtividadeTarefa
+     */
+    select?: AtividadeTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AtividadeTarefa
+     */
+    omit?: AtividadeTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AtividadeTarefaInclude<ExtArgs> | null
+    /**
+     * Filter, which AtividadeTarefa to fetch.
+     */
+    where: AtividadeTarefaWhereUniqueInput
+  }
+
+  /**
+   * AtividadeTarefa findFirst
+   */
+  export type AtividadeTarefaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AtividadeTarefa
+     */
+    select?: AtividadeTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AtividadeTarefa
+     */
+    omit?: AtividadeTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AtividadeTarefaInclude<ExtArgs> | null
+    /**
+     * Filter, which AtividadeTarefa to fetch.
+     */
+    where?: AtividadeTarefaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AtividadeTarefas to fetch.
+     */
+    orderBy?: AtividadeTarefaOrderByWithRelationInput | AtividadeTarefaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AtividadeTarefas.
+     */
+    cursor?: AtividadeTarefaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AtividadeTarefas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AtividadeTarefas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AtividadeTarefas.
+     */
+    distinct?: AtividadeTarefaScalarFieldEnum | AtividadeTarefaScalarFieldEnum[]
+  }
+
+  /**
+   * AtividadeTarefa findFirstOrThrow
+   */
+  export type AtividadeTarefaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AtividadeTarefa
+     */
+    select?: AtividadeTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AtividadeTarefa
+     */
+    omit?: AtividadeTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AtividadeTarefaInclude<ExtArgs> | null
+    /**
+     * Filter, which AtividadeTarefa to fetch.
+     */
+    where?: AtividadeTarefaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AtividadeTarefas to fetch.
+     */
+    orderBy?: AtividadeTarefaOrderByWithRelationInput | AtividadeTarefaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AtividadeTarefas.
+     */
+    cursor?: AtividadeTarefaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AtividadeTarefas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AtividadeTarefas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AtividadeTarefas.
+     */
+    distinct?: AtividadeTarefaScalarFieldEnum | AtividadeTarefaScalarFieldEnum[]
+  }
+
+  /**
+   * AtividadeTarefa findMany
+   */
+  export type AtividadeTarefaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AtividadeTarefa
+     */
+    select?: AtividadeTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AtividadeTarefa
+     */
+    omit?: AtividadeTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AtividadeTarefaInclude<ExtArgs> | null
+    /**
+     * Filter, which AtividadeTarefas to fetch.
+     */
+    where?: AtividadeTarefaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AtividadeTarefas to fetch.
+     */
+    orderBy?: AtividadeTarefaOrderByWithRelationInput | AtividadeTarefaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AtividadeTarefas.
+     */
+    cursor?: AtividadeTarefaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AtividadeTarefas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AtividadeTarefas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AtividadeTarefas.
+     */
+    distinct?: AtividadeTarefaScalarFieldEnum | AtividadeTarefaScalarFieldEnum[]
+  }
+
+  /**
+   * AtividadeTarefa create
+   */
+  export type AtividadeTarefaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AtividadeTarefa
+     */
+    select?: AtividadeTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AtividadeTarefa
+     */
+    omit?: AtividadeTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AtividadeTarefaInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AtividadeTarefa.
+     */
+    data: XOR<AtividadeTarefaCreateInput, AtividadeTarefaUncheckedCreateInput>
+  }
+
+  /**
+   * AtividadeTarefa createMany
+   */
+  export type AtividadeTarefaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AtividadeTarefas.
+     */
+    data: AtividadeTarefaCreateManyInput | AtividadeTarefaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AtividadeTarefa createManyAndReturn
+   */
+  export type AtividadeTarefaCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AtividadeTarefa
+     */
+    select?: AtividadeTarefaSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AtividadeTarefa
+     */
+    omit?: AtividadeTarefaOmit<ExtArgs> | null
+    /**
+     * The data used to create many AtividadeTarefas.
+     */
+    data: AtividadeTarefaCreateManyInput | AtividadeTarefaCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AtividadeTarefaIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AtividadeTarefa update
+   */
+  export type AtividadeTarefaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AtividadeTarefa
+     */
+    select?: AtividadeTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AtividadeTarefa
+     */
+    omit?: AtividadeTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AtividadeTarefaInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AtividadeTarefa.
+     */
+    data: XOR<AtividadeTarefaUpdateInput, AtividadeTarefaUncheckedUpdateInput>
+    /**
+     * Choose, which AtividadeTarefa to update.
+     */
+    where: AtividadeTarefaWhereUniqueInput
+  }
+
+  /**
+   * AtividadeTarefa updateMany
+   */
+  export type AtividadeTarefaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AtividadeTarefas.
+     */
+    data: XOR<AtividadeTarefaUpdateManyMutationInput, AtividadeTarefaUncheckedUpdateManyInput>
+    /**
+     * Filter which AtividadeTarefas to update
+     */
+    where?: AtividadeTarefaWhereInput
+    /**
+     * Limit how many AtividadeTarefas to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AtividadeTarefa updateManyAndReturn
+   */
+  export type AtividadeTarefaUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AtividadeTarefa
+     */
+    select?: AtividadeTarefaSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AtividadeTarefa
+     */
+    omit?: AtividadeTarefaOmit<ExtArgs> | null
+    /**
+     * The data used to update AtividadeTarefas.
+     */
+    data: XOR<AtividadeTarefaUpdateManyMutationInput, AtividadeTarefaUncheckedUpdateManyInput>
+    /**
+     * Filter which AtividadeTarefas to update
+     */
+    where?: AtividadeTarefaWhereInput
+    /**
+     * Limit how many AtividadeTarefas to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AtividadeTarefaIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AtividadeTarefa upsert
+   */
+  export type AtividadeTarefaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AtividadeTarefa
+     */
+    select?: AtividadeTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AtividadeTarefa
+     */
+    omit?: AtividadeTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AtividadeTarefaInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AtividadeTarefa to update in case it exists.
+     */
+    where: AtividadeTarefaWhereUniqueInput
+    /**
+     * In case the AtividadeTarefa found by the `where` argument doesn't exist, create a new AtividadeTarefa with this data.
+     */
+    create: XOR<AtividadeTarefaCreateInput, AtividadeTarefaUncheckedCreateInput>
+    /**
+     * In case the AtividadeTarefa was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AtividadeTarefaUpdateInput, AtividadeTarefaUncheckedUpdateInput>
+  }
+
+  /**
+   * AtividadeTarefa delete
+   */
+  export type AtividadeTarefaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AtividadeTarefa
+     */
+    select?: AtividadeTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AtividadeTarefa
+     */
+    omit?: AtividadeTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AtividadeTarefaInclude<ExtArgs> | null
+    /**
+     * Filter which AtividadeTarefa to delete.
+     */
+    where: AtividadeTarefaWhereUniqueInput
+  }
+
+  /**
+   * AtividadeTarefa deleteMany
+   */
+  export type AtividadeTarefaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AtividadeTarefas to delete
+     */
+    where?: AtividadeTarefaWhereInput
+    /**
+     * Limit how many AtividadeTarefas to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AtividadeTarefa.autor
+   */
+  export type AtividadeTarefa$autorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Usuario
+     */
+    select?: UsuarioSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Usuario
+     */
+    omit?: UsuarioOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsuarioInclude<ExtArgs> | null
+    where?: UsuarioWhereInput
+  }
+
+  /**
+   * AtividadeTarefa without action
+   */
+  export type AtividadeTarefaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AtividadeTarefa
+     */
+    select?: AtividadeTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AtividadeTarefa
+     */
+    omit?: AtividadeTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AtividadeTarefaInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AprovacaoTarefa
+   */
+
+  export type AggregateAprovacaoTarefa = {
+    _count: AprovacaoTarefaCountAggregateOutputType | null
+    _min: AprovacaoTarefaMinAggregateOutputType | null
+    _max: AprovacaoTarefaMaxAggregateOutputType | null
+  }
+
+  export type AprovacaoTarefaMinAggregateOutputType = {
+    id: string | null
+    tarefa_id: string | null
+    solicitante_id: string | null
+    aprovador_id: string | null
+    status: $Enums.StatusAprovacao | null
+    comentario: string | null
+    criado_em: Date | null
+    decidido_em: Date | null
+  }
+
+  export type AprovacaoTarefaMaxAggregateOutputType = {
+    id: string | null
+    tarefa_id: string | null
+    solicitante_id: string | null
+    aprovador_id: string | null
+    status: $Enums.StatusAprovacao | null
+    comentario: string | null
+    criado_em: Date | null
+    decidido_em: Date | null
+  }
+
+  export type AprovacaoTarefaCountAggregateOutputType = {
+    id: number
+    tarefa_id: number
+    solicitante_id: number
+    aprovador_id: number
+    status: number
+    comentario: number
+    criado_em: number
+    decidido_em: number
+    _all: number
+  }
+
+
+  export type AprovacaoTarefaMinAggregateInputType = {
+    id?: true
+    tarefa_id?: true
+    solicitante_id?: true
+    aprovador_id?: true
+    status?: true
+    comentario?: true
+    criado_em?: true
+    decidido_em?: true
+  }
+
+  export type AprovacaoTarefaMaxAggregateInputType = {
+    id?: true
+    tarefa_id?: true
+    solicitante_id?: true
+    aprovador_id?: true
+    status?: true
+    comentario?: true
+    criado_em?: true
+    decidido_em?: true
+  }
+
+  export type AprovacaoTarefaCountAggregateInputType = {
+    id?: true
+    tarefa_id?: true
+    solicitante_id?: true
+    aprovador_id?: true
+    status?: true
+    comentario?: true
+    criado_em?: true
+    decidido_em?: true
+    _all?: true
+  }
+
+  export type AprovacaoTarefaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AprovacaoTarefa to aggregate.
+     */
+    where?: AprovacaoTarefaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AprovacaoTarefas to fetch.
+     */
+    orderBy?: AprovacaoTarefaOrderByWithRelationInput | AprovacaoTarefaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AprovacaoTarefaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AprovacaoTarefas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AprovacaoTarefas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AprovacaoTarefas
+    **/
+    _count?: true | AprovacaoTarefaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AprovacaoTarefaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AprovacaoTarefaMaxAggregateInputType
+  }
+
+  export type GetAprovacaoTarefaAggregateType<T extends AprovacaoTarefaAggregateArgs> = {
+        [P in keyof T & keyof AggregateAprovacaoTarefa]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAprovacaoTarefa[P]>
+      : GetScalarType<T[P], AggregateAprovacaoTarefa[P]>
+  }
+
+
+
+
+  export type AprovacaoTarefaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AprovacaoTarefaWhereInput
+    orderBy?: AprovacaoTarefaOrderByWithAggregationInput | AprovacaoTarefaOrderByWithAggregationInput[]
+    by: AprovacaoTarefaScalarFieldEnum[] | AprovacaoTarefaScalarFieldEnum
+    having?: AprovacaoTarefaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AprovacaoTarefaCountAggregateInputType | true
+    _min?: AprovacaoTarefaMinAggregateInputType
+    _max?: AprovacaoTarefaMaxAggregateInputType
+  }
+
+  export type AprovacaoTarefaGroupByOutputType = {
+    id: string
+    tarefa_id: string
+    solicitante_id: string | null
+    aprovador_id: string | null
+    status: $Enums.StatusAprovacao
+    comentario: string | null
+    criado_em: Date
+    decidido_em: Date | null
+    _count: AprovacaoTarefaCountAggregateOutputType | null
+    _min: AprovacaoTarefaMinAggregateOutputType | null
+    _max: AprovacaoTarefaMaxAggregateOutputType | null
+  }
+
+  type GetAprovacaoTarefaGroupByPayload<T extends AprovacaoTarefaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AprovacaoTarefaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AprovacaoTarefaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AprovacaoTarefaGroupByOutputType[P]>
+            : GetScalarType<T[P], AprovacaoTarefaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AprovacaoTarefaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tarefa_id?: boolean
+    solicitante_id?: boolean
+    aprovador_id?: boolean
+    status?: boolean
+    comentario?: boolean
+    criado_em?: boolean
+    decidido_em?: boolean
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    solicitante?: boolean | AprovacaoTarefa$solicitanteArgs<ExtArgs>
+    aprovador?: boolean | AprovacaoTarefa$aprovadorArgs<ExtArgs>
+  }, ExtArgs["result"]["aprovacaoTarefa"]>
+
+  export type AprovacaoTarefaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tarefa_id?: boolean
+    solicitante_id?: boolean
+    aprovador_id?: boolean
+    status?: boolean
+    comentario?: boolean
+    criado_em?: boolean
+    decidido_em?: boolean
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    solicitante?: boolean | AprovacaoTarefa$solicitanteArgs<ExtArgs>
+    aprovador?: boolean | AprovacaoTarefa$aprovadorArgs<ExtArgs>
+  }, ExtArgs["result"]["aprovacaoTarefa"]>
+
+  export type AprovacaoTarefaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tarefa_id?: boolean
+    solicitante_id?: boolean
+    aprovador_id?: boolean
+    status?: boolean
+    comentario?: boolean
+    criado_em?: boolean
+    decidido_em?: boolean
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    solicitante?: boolean | AprovacaoTarefa$solicitanteArgs<ExtArgs>
+    aprovador?: boolean | AprovacaoTarefa$aprovadorArgs<ExtArgs>
+  }, ExtArgs["result"]["aprovacaoTarefa"]>
+
+  export type AprovacaoTarefaSelectScalar = {
+    id?: boolean
+    tarefa_id?: boolean
+    solicitante_id?: boolean
+    aprovador_id?: boolean
+    status?: boolean
+    comentario?: boolean
+    criado_em?: boolean
+    decidido_em?: boolean
+  }
+
+  export type AprovacaoTarefaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tarefa_id" | "solicitante_id" | "aprovador_id" | "status" | "comentario" | "criado_em" | "decidido_em", ExtArgs["result"]["aprovacaoTarefa"]>
+  export type AprovacaoTarefaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    solicitante?: boolean | AprovacaoTarefa$solicitanteArgs<ExtArgs>
+    aprovador?: boolean | AprovacaoTarefa$aprovadorArgs<ExtArgs>
+  }
+  export type AprovacaoTarefaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    solicitante?: boolean | AprovacaoTarefa$solicitanteArgs<ExtArgs>
+    aprovador?: boolean | AprovacaoTarefa$aprovadorArgs<ExtArgs>
+  }
+  export type AprovacaoTarefaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    solicitante?: boolean | AprovacaoTarefa$solicitanteArgs<ExtArgs>
+    aprovador?: boolean | AprovacaoTarefa$aprovadorArgs<ExtArgs>
+  }
+
+  export type $AprovacaoTarefaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AprovacaoTarefa"
+    objects: {
+      tarefa: Prisma.$TarefaPayload<ExtArgs>
+      solicitante: Prisma.$UsuarioPayload<ExtArgs> | null
+      aprovador: Prisma.$UsuarioPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tarefa_id: string
+      solicitante_id: string | null
+      aprovador_id: string | null
+      status: $Enums.StatusAprovacao
+      comentario: string | null
+      criado_em: Date
+      decidido_em: Date | null
+    }, ExtArgs["result"]["aprovacaoTarefa"]>
+    composites: {}
+  }
+
+  type AprovacaoTarefaGetPayload<S extends boolean | null | undefined | AprovacaoTarefaDefaultArgs> = $Result.GetResult<Prisma.$AprovacaoTarefaPayload, S>
+
+  type AprovacaoTarefaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AprovacaoTarefaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AprovacaoTarefaCountAggregateInputType | true
+    }
+
+  export interface AprovacaoTarefaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AprovacaoTarefa'], meta: { name: 'AprovacaoTarefa' } }
+    /**
+     * Find zero or one AprovacaoTarefa that matches the filter.
+     * @param {AprovacaoTarefaFindUniqueArgs} args - Arguments to find a AprovacaoTarefa
+     * @example
+     * // Get one AprovacaoTarefa
+     * const aprovacaoTarefa = await prisma.aprovacaoTarefa.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AprovacaoTarefaFindUniqueArgs>(args: SelectSubset<T, AprovacaoTarefaFindUniqueArgs<ExtArgs>>): Prisma__AprovacaoTarefaClient<$Result.GetResult<Prisma.$AprovacaoTarefaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AprovacaoTarefa that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AprovacaoTarefaFindUniqueOrThrowArgs} args - Arguments to find a AprovacaoTarefa
+     * @example
+     * // Get one AprovacaoTarefa
+     * const aprovacaoTarefa = await prisma.aprovacaoTarefa.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AprovacaoTarefaFindUniqueOrThrowArgs>(args: SelectSubset<T, AprovacaoTarefaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AprovacaoTarefaClient<$Result.GetResult<Prisma.$AprovacaoTarefaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AprovacaoTarefa that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AprovacaoTarefaFindFirstArgs} args - Arguments to find a AprovacaoTarefa
+     * @example
+     * // Get one AprovacaoTarefa
+     * const aprovacaoTarefa = await prisma.aprovacaoTarefa.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AprovacaoTarefaFindFirstArgs>(args?: SelectSubset<T, AprovacaoTarefaFindFirstArgs<ExtArgs>>): Prisma__AprovacaoTarefaClient<$Result.GetResult<Prisma.$AprovacaoTarefaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AprovacaoTarefa that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AprovacaoTarefaFindFirstOrThrowArgs} args - Arguments to find a AprovacaoTarefa
+     * @example
+     * // Get one AprovacaoTarefa
+     * const aprovacaoTarefa = await prisma.aprovacaoTarefa.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AprovacaoTarefaFindFirstOrThrowArgs>(args?: SelectSubset<T, AprovacaoTarefaFindFirstOrThrowArgs<ExtArgs>>): Prisma__AprovacaoTarefaClient<$Result.GetResult<Prisma.$AprovacaoTarefaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AprovacaoTarefas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AprovacaoTarefaFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AprovacaoTarefas
+     * const aprovacaoTarefas = await prisma.aprovacaoTarefa.findMany()
+     * 
+     * // Get first 10 AprovacaoTarefas
+     * const aprovacaoTarefas = await prisma.aprovacaoTarefa.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aprovacaoTarefaWithIdOnly = await prisma.aprovacaoTarefa.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AprovacaoTarefaFindManyArgs>(args?: SelectSubset<T, AprovacaoTarefaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AprovacaoTarefaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AprovacaoTarefa.
+     * @param {AprovacaoTarefaCreateArgs} args - Arguments to create a AprovacaoTarefa.
+     * @example
+     * // Create one AprovacaoTarefa
+     * const AprovacaoTarefa = await prisma.aprovacaoTarefa.create({
+     *   data: {
+     *     // ... data to create a AprovacaoTarefa
+     *   }
+     * })
+     * 
+     */
+    create<T extends AprovacaoTarefaCreateArgs>(args: SelectSubset<T, AprovacaoTarefaCreateArgs<ExtArgs>>): Prisma__AprovacaoTarefaClient<$Result.GetResult<Prisma.$AprovacaoTarefaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AprovacaoTarefas.
+     * @param {AprovacaoTarefaCreateManyArgs} args - Arguments to create many AprovacaoTarefas.
+     * @example
+     * // Create many AprovacaoTarefas
+     * const aprovacaoTarefa = await prisma.aprovacaoTarefa.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AprovacaoTarefaCreateManyArgs>(args?: SelectSubset<T, AprovacaoTarefaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AprovacaoTarefas and returns the data saved in the database.
+     * @param {AprovacaoTarefaCreateManyAndReturnArgs} args - Arguments to create many AprovacaoTarefas.
+     * @example
+     * // Create many AprovacaoTarefas
+     * const aprovacaoTarefa = await prisma.aprovacaoTarefa.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AprovacaoTarefas and only return the `id`
+     * const aprovacaoTarefaWithIdOnly = await prisma.aprovacaoTarefa.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AprovacaoTarefaCreateManyAndReturnArgs>(args?: SelectSubset<T, AprovacaoTarefaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AprovacaoTarefaPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AprovacaoTarefa.
+     * @param {AprovacaoTarefaDeleteArgs} args - Arguments to delete one AprovacaoTarefa.
+     * @example
+     * // Delete one AprovacaoTarefa
+     * const AprovacaoTarefa = await prisma.aprovacaoTarefa.delete({
+     *   where: {
+     *     // ... filter to delete one AprovacaoTarefa
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AprovacaoTarefaDeleteArgs>(args: SelectSubset<T, AprovacaoTarefaDeleteArgs<ExtArgs>>): Prisma__AprovacaoTarefaClient<$Result.GetResult<Prisma.$AprovacaoTarefaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AprovacaoTarefa.
+     * @param {AprovacaoTarefaUpdateArgs} args - Arguments to update one AprovacaoTarefa.
+     * @example
+     * // Update one AprovacaoTarefa
+     * const aprovacaoTarefa = await prisma.aprovacaoTarefa.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AprovacaoTarefaUpdateArgs>(args: SelectSubset<T, AprovacaoTarefaUpdateArgs<ExtArgs>>): Prisma__AprovacaoTarefaClient<$Result.GetResult<Prisma.$AprovacaoTarefaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AprovacaoTarefas.
+     * @param {AprovacaoTarefaDeleteManyArgs} args - Arguments to filter AprovacaoTarefas to delete.
+     * @example
+     * // Delete a few AprovacaoTarefas
+     * const { count } = await prisma.aprovacaoTarefa.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AprovacaoTarefaDeleteManyArgs>(args?: SelectSubset<T, AprovacaoTarefaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AprovacaoTarefas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AprovacaoTarefaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AprovacaoTarefas
+     * const aprovacaoTarefa = await prisma.aprovacaoTarefa.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AprovacaoTarefaUpdateManyArgs>(args: SelectSubset<T, AprovacaoTarefaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AprovacaoTarefas and returns the data updated in the database.
+     * @param {AprovacaoTarefaUpdateManyAndReturnArgs} args - Arguments to update many AprovacaoTarefas.
+     * @example
+     * // Update many AprovacaoTarefas
+     * const aprovacaoTarefa = await prisma.aprovacaoTarefa.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AprovacaoTarefas and only return the `id`
+     * const aprovacaoTarefaWithIdOnly = await prisma.aprovacaoTarefa.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AprovacaoTarefaUpdateManyAndReturnArgs>(args: SelectSubset<T, AprovacaoTarefaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AprovacaoTarefaPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AprovacaoTarefa.
+     * @param {AprovacaoTarefaUpsertArgs} args - Arguments to update or create a AprovacaoTarefa.
+     * @example
+     * // Update or create a AprovacaoTarefa
+     * const aprovacaoTarefa = await prisma.aprovacaoTarefa.upsert({
+     *   create: {
+     *     // ... data to create a AprovacaoTarefa
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AprovacaoTarefa we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AprovacaoTarefaUpsertArgs>(args: SelectSubset<T, AprovacaoTarefaUpsertArgs<ExtArgs>>): Prisma__AprovacaoTarefaClient<$Result.GetResult<Prisma.$AprovacaoTarefaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AprovacaoTarefas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AprovacaoTarefaCountArgs} args - Arguments to filter AprovacaoTarefas to count.
+     * @example
+     * // Count the number of AprovacaoTarefas
+     * const count = await prisma.aprovacaoTarefa.count({
+     *   where: {
+     *     // ... the filter for the AprovacaoTarefas we want to count
+     *   }
+     * })
+    **/
+    count<T extends AprovacaoTarefaCountArgs>(
+      args?: Subset<T, AprovacaoTarefaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AprovacaoTarefaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AprovacaoTarefa.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AprovacaoTarefaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AprovacaoTarefaAggregateArgs>(args: Subset<T, AprovacaoTarefaAggregateArgs>): Prisma.PrismaPromise<GetAprovacaoTarefaAggregateType<T>>
+
+    /**
+     * Group by AprovacaoTarefa.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AprovacaoTarefaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AprovacaoTarefaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AprovacaoTarefaGroupByArgs['orderBy'] }
+        : { orderBy?: AprovacaoTarefaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AprovacaoTarefaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAprovacaoTarefaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AprovacaoTarefa model
+   */
+  readonly fields: AprovacaoTarefaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AprovacaoTarefa.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AprovacaoTarefaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tarefa<T extends TarefaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TarefaDefaultArgs<ExtArgs>>): Prisma__TarefaClient<$Result.GetResult<Prisma.$TarefaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    solicitante<T extends AprovacaoTarefa$solicitanteArgs<ExtArgs> = {}>(args?: Subset<T, AprovacaoTarefa$solicitanteArgs<ExtArgs>>): Prisma__UsuarioClient<$Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    aprovador<T extends AprovacaoTarefa$aprovadorArgs<ExtArgs> = {}>(args?: Subset<T, AprovacaoTarefa$aprovadorArgs<ExtArgs>>): Prisma__UsuarioClient<$Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AprovacaoTarefa model
+   */
+  interface AprovacaoTarefaFieldRefs {
+    readonly id: FieldRef<"AprovacaoTarefa", 'String'>
+    readonly tarefa_id: FieldRef<"AprovacaoTarefa", 'String'>
+    readonly solicitante_id: FieldRef<"AprovacaoTarefa", 'String'>
+    readonly aprovador_id: FieldRef<"AprovacaoTarefa", 'String'>
+    readonly status: FieldRef<"AprovacaoTarefa", 'StatusAprovacao'>
+    readonly comentario: FieldRef<"AprovacaoTarefa", 'String'>
+    readonly criado_em: FieldRef<"AprovacaoTarefa", 'DateTime'>
+    readonly decidido_em: FieldRef<"AprovacaoTarefa", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AprovacaoTarefa findUnique
+   */
+  export type AprovacaoTarefaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AprovacaoTarefa
+     */
+    select?: AprovacaoTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AprovacaoTarefa
+     */
+    omit?: AprovacaoTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AprovacaoTarefaInclude<ExtArgs> | null
+    /**
+     * Filter, which AprovacaoTarefa to fetch.
+     */
+    where: AprovacaoTarefaWhereUniqueInput
+  }
+
+  /**
+   * AprovacaoTarefa findUniqueOrThrow
+   */
+  export type AprovacaoTarefaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AprovacaoTarefa
+     */
+    select?: AprovacaoTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AprovacaoTarefa
+     */
+    omit?: AprovacaoTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AprovacaoTarefaInclude<ExtArgs> | null
+    /**
+     * Filter, which AprovacaoTarefa to fetch.
+     */
+    where: AprovacaoTarefaWhereUniqueInput
+  }
+
+  /**
+   * AprovacaoTarefa findFirst
+   */
+  export type AprovacaoTarefaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AprovacaoTarefa
+     */
+    select?: AprovacaoTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AprovacaoTarefa
+     */
+    omit?: AprovacaoTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AprovacaoTarefaInclude<ExtArgs> | null
+    /**
+     * Filter, which AprovacaoTarefa to fetch.
+     */
+    where?: AprovacaoTarefaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AprovacaoTarefas to fetch.
+     */
+    orderBy?: AprovacaoTarefaOrderByWithRelationInput | AprovacaoTarefaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AprovacaoTarefas.
+     */
+    cursor?: AprovacaoTarefaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AprovacaoTarefas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AprovacaoTarefas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AprovacaoTarefas.
+     */
+    distinct?: AprovacaoTarefaScalarFieldEnum | AprovacaoTarefaScalarFieldEnum[]
+  }
+
+  /**
+   * AprovacaoTarefa findFirstOrThrow
+   */
+  export type AprovacaoTarefaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AprovacaoTarefa
+     */
+    select?: AprovacaoTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AprovacaoTarefa
+     */
+    omit?: AprovacaoTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AprovacaoTarefaInclude<ExtArgs> | null
+    /**
+     * Filter, which AprovacaoTarefa to fetch.
+     */
+    where?: AprovacaoTarefaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AprovacaoTarefas to fetch.
+     */
+    orderBy?: AprovacaoTarefaOrderByWithRelationInput | AprovacaoTarefaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AprovacaoTarefas.
+     */
+    cursor?: AprovacaoTarefaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AprovacaoTarefas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AprovacaoTarefas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AprovacaoTarefas.
+     */
+    distinct?: AprovacaoTarefaScalarFieldEnum | AprovacaoTarefaScalarFieldEnum[]
+  }
+
+  /**
+   * AprovacaoTarefa findMany
+   */
+  export type AprovacaoTarefaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AprovacaoTarefa
+     */
+    select?: AprovacaoTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AprovacaoTarefa
+     */
+    omit?: AprovacaoTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AprovacaoTarefaInclude<ExtArgs> | null
+    /**
+     * Filter, which AprovacaoTarefas to fetch.
+     */
+    where?: AprovacaoTarefaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AprovacaoTarefas to fetch.
+     */
+    orderBy?: AprovacaoTarefaOrderByWithRelationInput | AprovacaoTarefaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AprovacaoTarefas.
+     */
+    cursor?: AprovacaoTarefaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AprovacaoTarefas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AprovacaoTarefas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AprovacaoTarefas.
+     */
+    distinct?: AprovacaoTarefaScalarFieldEnum | AprovacaoTarefaScalarFieldEnum[]
+  }
+
+  /**
+   * AprovacaoTarefa create
+   */
+  export type AprovacaoTarefaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AprovacaoTarefa
+     */
+    select?: AprovacaoTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AprovacaoTarefa
+     */
+    omit?: AprovacaoTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AprovacaoTarefaInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AprovacaoTarefa.
+     */
+    data: XOR<AprovacaoTarefaCreateInput, AprovacaoTarefaUncheckedCreateInput>
+  }
+
+  /**
+   * AprovacaoTarefa createMany
+   */
+  export type AprovacaoTarefaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AprovacaoTarefas.
+     */
+    data: AprovacaoTarefaCreateManyInput | AprovacaoTarefaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AprovacaoTarefa createManyAndReturn
+   */
+  export type AprovacaoTarefaCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AprovacaoTarefa
+     */
+    select?: AprovacaoTarefaSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AprovacaoTarefa
+     */
+    omit?: AprovacaoTarefaOmit<ExtArgs> | null
+    /**
+     * The data used to create many AprovacaoTarefas.
+     */
+    data: AprovacaoTarefaCreateManyInput | AprovacaoTarefaCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AprovacaoTarefaIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AprovacaoTarefa update
+   */
+  export type AprovacaoTarefaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AprovacaoTarefa
+     */
+    select?: AprovacaoTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AprovacaoTarefa
+     */
+    omit?: AprovacaoTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AprovacaoTarefaInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AprovacaoTarefa.
+     */
+    data: XOR<AprovacaoTarefaUpdateInput, AprovacaoTarefaUncheckedUpdateInput>
+    /**
+     * Choose, which AprovacaoTarefa to update.
+     */
+    where: AprovacaoTarefaWhereUniqueInput
+  }
+
+  /**
+   * AprovacaoTarefa updateMany
+   */
+  export type AprovacaoTarefaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AprovacaoTarefas.
+     */
+    data: XOR<AprovacaoTarefaUpdateManyMutationInput, AprovacaoTarefaUncheckedUpdateManyInput>
+    /**
+     * Filter which AprovacaoTarefas to update
+     */
+    where?: AprovacaoTarefaWhereInput
+    /**
+     * Limit how many AprovacaoTarefas to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AprovacaoTarefa updateManyAndReturn
+   */
+  export type AprovacaoTarefaUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AprovacaoTarefa
+     */
+    select?: AprovacaoTarefaSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AprovacaoTarefa
+     */
+    omit?: AprovacaoTarefaOmit<ExtArgs> | null
+    /**
+     * The data used to update AprovacaoTarefas.
+     */
+    data: XOR<AprovacaoTarefaUpdateManyMutationInput, AprovacaoTarefaUncheckedUpdateManyInput>
+    /**
+     * Filter which AprovacaoTarefas to update
+     */
+    where?: AprovacaoTarefaWhereInput
+    /**
+     * Limit how many AprovacaoTarefas to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AprovacaoTarefaIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AprovacaoTarefa upsert
+   */
+  export type AprovacaoTarefaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AprovacaoTarefa
+     */
+    select?: AprovacaoTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AprovacaoTarefa
+     */
+    omit?: AprovacaoTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AprovacaoTarefaInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AprovacaoTarefa to update in case it exists.
+     */
+    where: AprovacaoTarefaWhereUniqueInput
+    /**
+     * In case the AprovacaoTarefa found by the `where` argument doesn't exist, create a new AprovacaoTarefa with this data.
+     */
+    create: XOR<AprovacaoTarefaCreateInput, AprovacaoTarefaUncheckedCreateInput>
+    /**
+     * In case the AprovacaoTarefa was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AprovacaoTarefaUpdateInput, AprovacaoTarefaUncheckedUpdateInput>
+  }
+
+  /**
+   * AprovacaoTarefa delete
+   */
+  export type AprovacaoTarefaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AprovacaoTarefa
+     */
+    select?: AprovacaoTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AprovacaoTarefa
+     */
+    omit?: AprovacaoTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AprovacaoTarefaInclude<ExtArgs> | null
+    /**
+     * Filter which AprovacaoTarefa to delete.
+     */
+    where: AprovacaoTarefaWhereUniqueInput
+  }
+
+  /**
+   * AprovacaoTarefa deleteMany
+   */
+  export type AprovacaoTarefaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AprovacaoTarefas to delete
+     */
+    where?: AprovacaoTarefaWhereInput
+    /**
+     * Limit how many AprovacaoTarefas to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AprovacaoTarefa.solicitante
+   */
+  export type AprovacaoTarefa$solicitanteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Usuario
+     */
+    select?: UsuarioSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Usuario
+     */
+    omit?: UsuarioOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsuarioInclude<ExtArgs> | null
+    where?: UsuarioWhereInput
+  }
+
+  /**
+   * AprovacaoTarefa.aprovador
+   */
+  export type AprovacaoTarefa$aprovadorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Usuario
+     */
+    select?: UsuarioSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Usuario
+     */
+    omit?: UsuarioOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsuarioInclude<ExtArgs> | null
+    where?: UsuarioWhereInput
+  }
+
+  /**
+   * AprovacaoTarefa without action
+   */
+  export type AprovacaoTarefaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AprovacaoTarefa
+     */
+    select?: AprovacaoTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AprovacaoTarefa
+     */
+    omit?: AprovacaoTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AprovacaoTarefaInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ItemChecklist
+   */
+
+  export type AggregateItemChecklist = {
+    _count: ItemChecklistCountAggregateOutputType | null
+    _avg: ItemChecklistAvgAggregateOutputType | null
+    _sum: ItemChecklistSumAggregateOutputType | null
+    _min: ItemChecklistMinAggregateOutputType | null
+    _max: ItemChecklistMaxAggregateOutputType | null
+  }
+
+  export type ItemChecklistAvgAggregateOutputType = {
+    ordem: number | null
+  }
+
+  export type ItemChecklistSumAggregateOutputType = {
+    ordem: number | null
+  }
+
+  export type ItemChecklistMinAggregateOutputType = {
+    id: string | null
+    tarefa_id: string | null
+    texto: string | null
+    concluido: boolean | null
+    ordem: number | null
+    criado_em: Date | null
+  }
+
+  export type ItemChecklistMaxAggregateOutputType = {
+    id: string | null
+    tarefa_id: string | null
+    texto: string | null
+    concluido: boolean | null
+    ordem: number | null
+    criado_em: Date | null
+  }
+
+  export type ItemChecklistCountAggregateOutputType = {
+    id: number
+    tarefa_id: number
+    texto: number
+    concluido: number
+    ordem: number
+    criado_em: number
+    _all: number
+  }
+
+
+  export type ItemChecklistAvgAggregateInputType = {
+    ordem?: true
+  }
+
+  export type ItemChecklistSumAggregateInputType = {
+    ordem?: true
+  }
+
+  export type ItemChecklistMinAggregateInputType = {
+    id?: true
+    tarefa_id?: true
+    texto?: true
+    concluido?: true
+    ordem?: true
+    criado_em?: true
+  }
+
+  export type ItemChecklistMaxAggregateInputType = {
+    id?: true
+    tarefa_id?: true
+    texto?: true
+    concluido?: true
+    ordem?: true
+    criado_em?: true
+  }
+
+  export type ItemChecklistCountAggregateInputType = {
+    id?: true
+    tarefa_id?: true
+    texto?: true
+    concluido?: true
+    ordem?: true
+    criado_em?: true
+    _all?: true
+  }
+
+  export type ItemChecklistAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ItemChecklist to aggregate.
+     */
+    where?: ItemChecklistWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ItemChecklists to fetch.
+     */
+    orderBy?: ItemChecklistOrderByWithRelationInput | ItemChecklistOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ItemChecklistWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ItemChecklists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ItemChecklists.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ItemChecklists
+    **/
+    _count?: true | ItemChecklistCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ItemChecklistAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ItemChecklistSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ItemChecklistMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ItemChecklistMaxAggregateInputType
+  }
+
+  export type GetItemChecklistAggregateType<T extends ItemChecklistAggregateArgs> = {
+        [P in keyof T & keyof AggregateItemChecklist]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateItemChecklist[P]>
+      : GetScalarType<T[P], AggregateItemChecklist[P]>
+  }
+
+
+
+
+  export type ItemChecklistGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ItemChecklistWhereInput
+    orderBy?: ItemChecklistOrderByWithAggregationInput | ItemChecklistOrderByWithAggregationInput[]
+    by: ItemChecklistScalarFieldEnum[] | ItemChecklistScalarFieldEnum
+    having?: ItemChecklistScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ItemChecklistCountAggregateInputType | true
+    _avg?: ItemChecklistAvgAggregateInputType
+    _sum?: ItemChecklistSumAggregateInputType
+    _min?: ItemChecklistMinAggregateInputType
+    _max?: ItemChecklistMaxAggregateInputType
+  }
+
+  export type ItemChecklistGroupByOutputType = {
+    id: string
+    tarefa_id: string
+    texto: string
+    concluido: boolean
+    ordem: number
+    criado_em: Date
+    _count: ItemChecklistCountAggregateOutputType | null
+    _avg: ItemChecklistAvgAggregateOutputType | null
+    _sum: ItemChecklistSumAggregateOutputType | null
+    _min: ItemChecklistMinAggregateOutputType | null
+    _max: ItemChecklistMaxAggregateOutputType | null
+  }
+
+  type GetItemChecklistGroupByPayload<T extends ItemChecklistGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ItemChecklistGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ItemChecklistGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ItemChecklistGroupByOutputType[P]>
+            : GetScalarType<T[P], ItemChecklistGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ItemChecklistSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tarefa_id?: boolean
+    texto?: boolean
+    concluido?: boolean
+    ordem?: boolean
+    criado_em?: boolean
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["itemChecklist"]>
+
+  export type ItemChecklistSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tarefa_id?: boolean
+    texto?: boolean
+    concluido?: boolean
+    ordem?: boolean
+    criado_em?: boolean
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["itemChecklist"]>
+
+  export type ItemChecklistSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tarefa_id?: boolean
+    texto?: boolean
+    concluido?: boolean
+    ordem?: boolean
+    criado_em?: boolean
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["itemChecklist"]>
+
+  export type ItemChecklistSelectScalar = {
+    id?: boolean
+    tarefa_id?: boolean
+    texto?: boolean
+    concluido?: boolean
+    ordem?: boolean
+    criado_em?: boolean
+  }
+
+  export type ItemChecklistOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tarefa_id" | "texto" | "concluido" | "ordem" | "criado_em", ExtArgs["result"]["itemChecklist"]>
+  export type ItemChecklistInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+  }
+  export type ItemChecklistIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+  }
+  export type ItemChecklistIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+  }
+
+  export type $ItemChecklistPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ItemChecklist"
+    objects: {
+      tarefa: Prisma.$TarefaPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tarefa_id: string
+      texto: string
+      concluido: boolean
+      ordem: number
+      criado_em: Date
+    }, ExtArgs["result"]["itemChecklist"]>
+    composites: {}
+  }
+
+  type ItemChecklistGetPayload<S extends boolean | null | undefined | ItemChecklistDefaultArgs> = $Result.GetResult<Prisma.$ItemChecklistPayload, S>
+
+  type ItemChecklistCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ItemChecklistFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ItemChecklistCountAggregateInputType | true
+    }
+
+  export interface ItemChecklistDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ItemChecklist'], meta: { name: 'ItemChecklist' } }
+    /**
+     * Find zero or one ItemChecklist that matches the filter.
+     * @param {ItemChecklistFindUniqueArgs} args - Arguments to find a ItemChecklist
+     * @example
+     * // Get one ItemChecklist
+     * const itemChecklist = await prisma.itemChecklist.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ItemChecklistFindUniqueArgs>(args: SelectSubset<T, ItemChecklistFindUniqueArgs<ExtArgs>>): Prisma__ItemChecklistClient<$Result.GetResult<Prisma.$ItemChecklistPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ItemChecklist that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ItemChecklistFindUniqueOrThrowArgs} args - Arguments to find a ItemChecklist
+     * @example
+     * // Get one ItemChecklist
+     * const itemChecklist = await prisma.itemChecklist.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ItemChecklistFindUniqueOrThrowArgs>(args: SelectSubset<T, ItemChecklistFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ItemChecklistClient<$Result.GetResult<Prisma.$ItemChecklistPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ItemChecklist that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ItemChecklistFindFirstArgs} args - Arguments to find a ItemChecklist
+     * @example
+     * // Get one ItemChecklist
+     * const itemChecklist = await prisma.itemChecklist.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ItemChecklistFindFirstArgs>(args?: SelectSubset<T, ItemChecklistFindFirstArgs<ExtArgs>>): Prisma__ItemChecklistClient<$Result.GetResult<Prisma.$ItemChecklistPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ItemChecklist that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ItemChecklistFindFirstOrThrowArgs} args - Arguments to find a ItemChecklist
+     * @example
+     * // Get one ItemChecklist
+     * const itemChecklist = await prisma.itemChecklist.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ItemChecklistFindFirstOrThrowArgs>(args?: SelectSubset<T, ItemChecklistFindFirstOrThrowArgs<ExtArgs>>): Prisma__ItemChecklistClient<$Result.GetResult<Prisma.$ItemChecklistPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ItemChecklists that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ItemChecklistFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ItemChecklists
+     * const itemChecklists = await prisma.itemChecklist.findMany()
+     * 
+     * // Get first 10 ItemChecklists
+     * const itemChecklists = await prisma.itemChecklist.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const itemChecklistWithIdOnly = await prisma.itemChecklist.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ItemChecklistFindManyArgs>(args?: SelectSubset<T, ItemChecklistFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItemChecklistPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ItemChecklist.
+     * @param {ItemChecklistCreateArgs} args - Arguments to create a ItemChecklist.
+     * @example
+     * // Create one ItemChecklist
+     * const ItemChecklist = await prisma.itemChecklist.create({
+     *   data: {
+     *     // ... data to create a ItemChecklist
+     *   }
+     * })
+     * 
+     */
+    create<T extends ItemChecklistCreateArgs>(args: SelectSubset<T, ItemChecklistCreateArgs<ExtArgs>>): Prisma__ItemChecklistClient<$Result.GetResult<Prisma.$ItemChecklistPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ItemChecklists.
+     * @param {ItemChecklistCreateManyArgs} args - Arguments to create many ItemChecklists.
+     * @example
+     * // Create many ItemChecklists
+     * const itemChecklist = await prisma.itemChecklist.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ItemChecklistCreateManyArgs>(args?: SelectSubset<T, ItemChecklistCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ItemChecklists and returns the data saved in the database.
+     * @param {ItemChecklistCreateManyAndReturnArgs} args - Arguments to create many ItemChecklists.
+     * @example
+     * // Create many ItemChecklists
+     * const itemChecklist = await prisma.itemChecklist.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ItemChecklists and only return the `id`
+     * const itemChecklistWithIdOnly = await prisma.itemChecklist.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ItemChecklistCreateManyAndReturnArgs>(args?: SelectSubset<T, ItemChecklistCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItemChecklistPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ItemChecklist.
+     * @param {ItemChecklistDeleteArgs} args - Arguments to delete one ItemChecklist.
+     * @example
+     * // Delete one ItemChecklist
+     * const ItemChecklist = await prisma.itemChecklist.delete({
+     *   where: {
+     *     // ... filter to delete one ItemChecklist
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ItemChecklistDeleteArgs>(args: SelectSubset<T, ItemChecklistDeleteArgs<ExtArgs>>): Prisma__ItemChecklistClient<$Result.GetResult<Prisma.$ItemChecklistPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ItemChecklist.
+     * @param {ItemChecklistUpdateArgs} args - Arguments to update one ItemChecklist.
+     * @example
+     * // Update one ItemChecklist
+     * const itemChecklist = await prisma.itemChecklist.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ItemChecklistUpdateArgs>(args: SelectSubset<T, ItemChecklistUpdateArgs<ExtArgs>>): Prisma__ItemChecklistClient<$Result.GetResult<Prisma.$ItemChecklistPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ItemChecklists.
+     * @param {ItemChecklistDeleteManyArgs} args - Arguments to filter ItemChecklists to delete.
+     * @example
+     * // Delete a few ItemChecklists
+     * const { count } = await prisma.itemChecklist.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ItemChecklistDeleteManyArgs>(args?: SelectSubset<T, ItemChecklistDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ItemChecklists.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ItemChecklistUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ItemChecklists
+     * const itemChecklist = await prisma.itemChecklist.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ItemChecklistUpdateManyArgs>(args: SelectSubset<T, ItemChecklistUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ItemChecklists and returns the data updated in the database.
+     * @param {ItemChecklistUpdateManyAndReturnArgs} args - Arguments to update many ItemChecklists.
+     * @example
+     * // Update many ItemChecklists
+     * const itemChecklist = await prisma.itemChecklist.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ItemChecklists and only return the `id`
+     * const itemChecklistWithIdOnly = await prisma.itemChecklist.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ItemChecklistUpdateManyAndReturnArgs>(args: SelectSubset<T, ItemChecklistUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItemChecklistPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ItemChecklist.
+     * @param {ItemChecklistUpsertArgs} args - Arguments to update or create a ItemChecklist.
+     * @example
+     * // Update or create a ItemChecklist
+     * const itemChecklist = await prisma.itemChecklist.upsert({
+     *   create: {
+     *     // ... data to create a ItemChecklist
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ItemChecklist we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ItemChecklistUpsertArgs>(args: SelectSubset<T, ItemChecklistUpsertArgs<ExtArgs>>): Prisma__ItemChecklistClient<$Result.GetResult<Prisma.$ItemChecklistPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ItemChecklists.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ItemChecklistCountArgs} args - Arguments to filter ItemChecklists to count.
+     * @example
+     * // Count the number of ItemChecklists
+     * const count = await prisma.itemChecklist.count({
+     *   where: {
+     *     // ... the filter for the ItemChecklists we want to count
+     *   }
+     * })
+    **/
+    count<T extends ItemChecklistCountArgs>(
+      args?: Subset<T, ItemChecklistCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ItemChecklistCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ItemChecklist.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ItemChecklistAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ItemChecklistAggregateArgs>(args: Subset<T, ItemChecklistAggregateArgs>): Prisma.PrismaPromise<GetItemChecklistAggregateType<T>>
+
+    /**
+     * Group by ItemChecklist.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ItemChecklistGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ItemChecklistGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ItemChecklistGroupByArgs['orderBy'] }
+        : { orderBy?: ItemChecklistGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ItemChecklistGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetItemChecklistGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ItemChecklist model
+   */
+  readonly fields: ItemChecklistFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ItemChecklist.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ItemChecklistClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tarefa<T extends TarefaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TarefaDefaultArgs<ExtArgs>>): Prisma__TarefaClient<$Result.GetResult<Prisma.$TarefaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ItemChecklist model
+   */
+  interface ItemChecklistFieldRefs {
+    readonly id: FieldRef<"ItemChecklist", 'String'>
+    readonly tarefa_id: FieldRef<"ItemChecklist", 'String'>
+    readonly texto: FieldRef<"ItemChecklist", 'String'>
+    readonly concluido: FieldRef<"ItemChecklist", 'Boolean'>
+    readonly ordem: FieldRef<"ItemChecklist", 'Int'>
+    readonly criado_em: FieldRef<"ItemChecklist", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ItemChecklist findUnique
+   */
+  export type ItemChecklistFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ItemChecklist
+     */
+    select?: ItemChecklistSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ItemChecklist
+     */
+    omit?: ItemChecklistOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ItemChecklistInclude<ExtArgs> | null
+    /**
+     * Filter, which ItemChecklist to fetch.
+     */
+    where: ItemChecklistWhereUniqueInput
+  }
+
+  /**
+   * ItemChecklist findUniqueOrThrow
+   */
+  export type ItemChecklistFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ItemChecklist
+     */
+    select?: ItemChecklistSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ItemChecklist
+     */
+    omit?: ItemChecklistOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ItemChecklistInclude<ExtArgs> | null
+    /**
+     * Filter, which ItemChecklist to fetch.
+     */
+    where: ItemChecklistWhereUniqueInput
+  }
+
+  /**
+   * ItemChecklist findFirst
+   */
+  export type ItemChecklistFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ItemChecklist
+     */
+    select?: ItemChecklistSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ItemChecklist
+     */
+    omit?: ItemChecklistOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ItemChecklistInclude<ExtArgs> | null
+    /**
+     * Filter, which ItemChecklist to fetch.
+     */
+    where?: ItemChecklistWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ItemChecklists to fetch.
+     */
+    orderBy?: ItemChecklistOrderByWithRelationInput | ItemChecklistOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ItemChecklists.
+     */
+    cursor?: ItemChecklistWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ItemChecklists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ItemChecklists.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ItemChecklists.
+     */
+    distinct?: ItemChecklistScalarFieldEnum | ItemChecklistScalarFieldEnum[]
+  }
+
+  /**
+   * ItemChecklist findFirstOrThrow
+   */
+  export type ItemChecklistFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ItemChecklist
+     */
+    select?: ItemChecklistSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ItemChecklist
+     */
+    omit?: ItemChecklistOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ItemChecklistInclude<ExtArgs> | null
+    /**
+     * Filter, which ItemChecklist to fetch.
+     */
+    where?: ItemChecklistWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ItemChecklists to fetch.
+     */
+    orderBy?: ItemChecklistOrderByWithRelationInput | ItemChecklistOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ItemChecklists.
+     */
+    cursor?: ItemChecklistWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ItemChecklists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ItemChecklists.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ItemChecklists.
+     */
+    distinct?: ItemChecklistScalarFieldEnum | ItemChecklistScalarFieldEnum[]
+  }
+
+  /**
+   * ItemChecklist findMany
+   */
+  export type ItemChecklistFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ItemChecklist
+     */
+    select?: ItemChecklistSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ItemChecklist
+     */
+    omit?: ItemChecklistOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ItemChecklistInclude<ExtArgs> | null
+    /**
+     * Filter, which ItemChecklists to fetch.
+     */
+    where?: ItemChecklistWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ItemChecklists to fetch.
+     */
+    orderBy?: ItemChecklistOrderByWithRelationInput | ItemChecklistOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ItemChecklists.
+     */
+    cursor?: ItemChecklistWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ItemChecklists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ItemChecklists.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ItemChecklists.
+     */
+    distinct?: ItemChecklistScalarFieldEnum | ItemChecklistScalarFieldEnum[]
+  }
+
+  /**
+   * ItemChecklist create
+   */
+  export type ItemChecklistCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ItemChecklist
+     */
+    select?: ItemChecklistSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ItemChecklist
+     */
+    omit?: ItemChecklistOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ItemChecklistInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ItemChecklist.
+     */
+    data: XOR<ItemChecklistCreateInput, ItemChecklistUncheckedCreateInput>
+  }
+
+  /**
+   * ItemChecklist createMany
+   */
+  export type ItemChecklistCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ItemChecklists.
+     */
+    data: ItemChecklistCreateManyInput | ItemChecklistCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ItemChecklist createManyAndReturn
+   */
+  export type ItemChecklistCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ItemChecklist
+     */
+    select?: ItemChecklistSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ItemChecklist
+     */
+    omit?: ItemChecklistOmit<ExtArgs> | null
+    /**
+     * The data used to create many ItemChecklists.
+     */
+    data: ItemChecklistCreateManyInput | ItemChecklistCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ItemChecklistIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ItemChecklist update
+   */
+  export type ItemChecklistUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ItemChecklist
+     */
+    select?: ItemChecklistSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ItemChecklist
+     */
+    omit?: ItemChecklistOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ItemChecklistInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ItemChecklist.
+     */
+    data: XOR<ItemChecklistUpdateInput, ItemChecklistUncheckedUpdateInput>
+    /**
+     * Choose, which ItemChecklist to update.
+     */
+    where: ItemChecklistWhereUniqueInput
+  }
+
+  /**
+   * ItemChecklist updateMany
+   */
+  export type ItemChecklistUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ItemChecklists.
+     */
+    data: XOR<ItemChecklistUpdateManyMutationInput, ItemChecklistUncheckedUpdateManyInput>
+    /**
+     * Filter which ItemChecklists to update
+     */
+    where?: ItemChecklistWhereInput
+    /**
+     * Limit how many ItemChecklists to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ItemChecklist updateManyAndReturn
+   */
+  export type ItemChecklistUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ItemChecklist
+     */
+    select?: ItemChecklistSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ItemChecklist
+     */
+    omit?: ItemChecklistOmit<ExtArgs> | null
+    /**
+     * The data used to update ItemChecklists.
+     */
+    data: XOR<ItemChecklistUpdateManyMutationInput, ItemChecklistUncheckedUpdateManyInput>
+    /**
+     * Filter which ItemChecklists to update
+     */
+    where?: ItemChecklistWhereInput
+    /**
+     * Limit how many ItemChecklists to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ItemChecklistIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ItemChecklist upsert
+   */
+  export type ItemChecklistUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ItemChecklist
+     */
+    select?: ItemChecklistSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ItemChecklist
+     */
+    omit?: ItemChecklistOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ItemChecklistInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ItemChecklist to update in case it exists.
+     */
+    where: ItemChecklistWhereUniqueInput
+    /**
+     * In case the ItemChecklist found by the `where` argument doesn't exist, create a new ItemChecklist with this data.
+     */
+    create: XOR<ItemChecklistCreateInput, ItemChecklistUncheckedCreateInput>
+    /**
+     * In case the ItemChecklist was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ItemChecklistUpdateInput, ItemChecklistUncheckedUpdateInput>
+  }
+
+  /**
+   * ItemChecklist delete
+   */
+  export type ItemChecklistDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ItemChecklist
+     */
+    select?: ItemChecklistSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ItemChecklist
+     */
+    omit?: ItemChecklistOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ItemChecklistInclude<ExtArgs> | null
+    /**
+     * Filter which ItemChecklist to delete.
+     */
+    where: ItemChecklistWhereUniqueInput
+  }
+
+  /**
+   * ItemChecklist deleteMany
+   */
+  export type ItemChecklistDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ItemChecklists to delete
+     */
+    where?: ItemChecklistWhereInput
+    /**
+     * Limit how many ItemChecklists to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ItemChecklist without action
+   */
+  export type ItemChecklistDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ItemChecklist
+     */
+    select?: ItemChecklistSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ItemChecklist
+     */
+    omit?: ItemChecklistOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ItemChecklistInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model EtiquetaTarefa
+   */
+
+  export type AggregateEtiquetaTarefa = {
+    _count: EtiquetaTarefaCountAggregateOutputType | null
+    _min: EtiquetaTarefaMinAggregateOutputType | null
+    _max: EtiquetaTarefaMaxAggregateOutputType | null
+  }
+
+  export type EtiquetaTarefaMinAggregateOutputType = {
+    id: string | null
+    empresa_id: string | null
+    nome: string | null
+    cor: string | null
+  }
+
+  export type EtiquetaTarefaMaxAggregateOutputType = {
+    id: string | null
+    empresa_id: string | null
+    nome: string | null
+    cor: string | null
+  }
+
+  export type EtiquetaTarefaCountAggregateOutputType = {
+    id: number
+    empresa_id: number
+    nome: number
+    cor: number
+    _all: number
+  }
+
+
+  export type EtiquetaTarefaMinAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    nome?: true
+    cor?: true
+  }
+
+  export type EtiquetaTarefaMaxAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    nome?: true
+    cor?: true
+  }
+
+  export type EtiquetaTarefaCountAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    nome?: true
+    cor?: true
+    _all?: true
+  }
+
+  export type EtiquetaTarefaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EtiquetaTarefa to aggregate.
+     */
+    where?: EtiquetaTarefaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EtiquetaTarefas to fetch.
+     */
+    orderBy?: EtiquetaTarefaOrderByWithRelationInput | EtiquetaTarefaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EtiquetaTarefaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EtiquetaTarefas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EtiquetaTarefas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EtiquetaTarefas
+    **/
+    _count?: true | EtiquetaTarefaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EtiquetaTarefaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EtiquetaTarefaMaxAggregateInputType
+  }
+
+  export type GetEtiquetaTarefaAggregateType<T extends EtiquetaTarefaAggregateArgs> = {
+        [P in keyof T & keyof AggregateEtiquetaTarefa]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEtiquetaTarefa[P]>
+      : GetScalarType<T[P], AggregateEtiquetaTarefa[P]>
+  }
+
+
+
+
+  export type EtiquetaTarefaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EtiquetaTarefaWhereInput
+    orderBy?: EtiquetaTarefaOrderByWithAggregationInput | EtiquetaTarefaOrderByWithAggregationInput[]
+    by: EtiquetaTarefaScalarFieldEnum[] | EtiquetaTarefaScalarFieldEnum
+    having?: EtiquetaTarefaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EtiquetaTarefaCountAggregateInputType | true
+    _min?: EtiquetaTarefaMinAggregateInputType
+    _max?: EtiquetaTarefaMaxAggregateInputType
+  }
+
+  export type EtiquetaTarefaGroupByOutputType = {
+    id: string
+    empresa_id: string
+    nome: string
+    cor: string
+    _count: EtiquetaTarefaCountAggregateOutputType | null
+    _min: EtiquetaTarefaMinAggregateOutputType | null
+    _max: EtiquetaTarefaMaxAggregateOutputType | null
+  }
+
+  type GetEtiquetaTarefaGroupByPayload<T extends EtiquetaTarefaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EtiquetaTarefaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EtiquetaTarefaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EtiquetaTarefaGroupByOutputType[P]>
+            : GetScalarType<T[P], EtiquetaTarefaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EtiquetaTarefaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    nome?: boolean
+    cor?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    tarefas?: boolean | EtiquetaTarefa$tarefasArgs<ExtArgs>
+    _count?: boolean | EtiquetaTarefaCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["etiquetaTarefa"]>
+
+  export type EtiquetaTarefaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    nome?: boolean
+    cor?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["etiquetaTarefa"]>
+
+  export type EtiquetaTarefaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    nome?: boolean
+    cor?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["etiquetaTarefa"]>
+
+  export type EtiquetaTarefaSelectScalar = {
+    id?: boolean
+    empresa_id?: boolean
+    nome?: boolean
+    cor?: boolean
+  }
+
+  export type EtiquetaTarefaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "nome" | "cor", ExtArgs["result"]["etiquetaTarefa"]>
+  export type EtiquetaTarefaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    tarefas?: boolean | EtiquetaTarefa$tarefasArgs<ExtArgs>
+    _count?: boolean | EtiquetaTarefaCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type EtiquetaTarefaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }
+  export type EtiquetaTarefaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }
+
+  export type $EtiquetaTarefaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EtiquetaTarefa"
+    objects: {
+      empresa: Prisma.$EmpresaPayload<ExtArgs>
+      tarefas: Prisma.$TarefaEtiquetaPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      empresa_id: string
+      nome: string
+      cor: string
+    }, ExtArgs["result"]["etiquetaTarefa"]>
+    composites: {}
+  }
+
+  type EtiquetaTarefaGetPayload<S extends boolean | null | undefined | EtiquetaTarefaDefaultArgs> = $Result.GetResult<Prisma.$EtiquetaTarefaPayload, S>
+
+  type EtiquetaTarefaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EtiquetaTarefaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EtiquetaTarefaCountAggregateInputType | true
+    }
+
+  export interface EtiquetaTarefaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EtiquetaTarefa'], meta: { name: 'EtiquetaTarefa' } }
+    /**
+     * Find zero or one EtiquetaTarefa that matches the filter.
+     * @param {EtiquetaTarefaFindUniqueArgs} args - Arguments to find a EtiquetaTarefa
+     * @example
+     * // Get one EtiquetaTarefa
+     * const etiquetaTarefa = await prisma.etiquetaTarefa.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EtiquetaTarefaFindUniqueArgs>(args: SelectSubset<T, EtiquetaTarefaFindUniqueArgs<ExtArgs>>): Prisma__EtiquetaTarefaClient<$Result.GetResult<Prisma.$EtiquetaTarefaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EtiquetaTarefa that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EtiquetaTarefaFindUniqueOrThrowArgs} args - Arguments to find a EtiquetaTarefa
+     * @example
+     * // Get one EtiquetaTarefa
+     * const etiquetaTarefa = await prisma.etiquetaTarefa.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EtiquetaTarefaFindUniqueOrThrowArgs>(args: SelectSubset<T, EtiquetaTarefaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EtiquetaTarefaClient<$Result.GetResult<Prisma.$EtiquetaTarefaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EtiquetaTarefa that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EtiquetaTarefaFindFirstArgs} args - Arguments to find a EtiquetaTarefa
+     * @example
+     * // Get one EtiquetaTarefa
+     * const etiquetaTarefa = await prisma.etiquetaTarefa.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EtiquetaTarefaFindFirstArgs>(args?: SelectSubset<T, EtiquetaTarefaFindFirstArgs<ExtArgs>>): Prisma__EtiquetaTarefaClient<$Result.GetResult<Prisma.$EtiquetaTarefaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EtiquetaTarefa that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EtiquetaTarefaFindFirstOrThrowArgs} args - Arguments to find a EtiquetaTarefa
+     * @example
+     * // Get one EtiquetaTarefa
+     * const etiquetaTarefa = await prisma.etiquetaTarefa.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EtiquetaTarefaFindFirstOrThrowArgs>(args?: SelectSubset<T, EtiquetaTarefaFindFirstOrThrowArgs<ExtArgs>>): Prisma__EtiquetaTarefaClient<$Result.GetResult<Prisma.$EtiquetaTarefaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EtiquetaTarefas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EtiquetaTarefaFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EtiquetaTarefas
+     * const etiquetaTarefas = await prisma.etiquetaTarefa.findMany()
+     * 
+     * // Get first 10 EtiquetaTarefas
+     * const etiquetaTarefas = await prisma.etiquetaTarefa.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const etiquetaTarefaWithIdOnly = await prisma.etiquetaTarefa.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EtiquetaTarefaFindManyArgs>(args?: SelectSubset<T, EtiquetaTarefaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EtiquetaTarefaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EtiquetaTarefa.
+     * @param {EtiquetaTarefaCreateArgs} args - Arguments to create a EtiquetaTarefa.
+     * @example
+     * // Create one EtiquetaTarefa
+     * const EtiquetaTarefa = await prisma.etiquetaTarefa.create({
+     *   data: {
+     *     // ... data to create a EtiquetaTarefa
+     *   }
+     * })
+     * 
+     */
+    create<T extends EtiquetaTarefaCreateArgs>(args: SelectSubset<T, EtiquetaTarefaCreateArgs<ExtArgs>>): Prisma__EtiquetaTarefaClient<$Result.GetResult<Prisma.$EtiquetaTarefaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EtiquetaTarefas.
+     * @param {EtiquetaTarefaCreateManyArgs} args - Arguments to create many EtiquetaTarefas.
+     * @example
+     * // Create many EtiquetaTarefas
+     * const etiquetaTarefa = await prisma.etiquetaTarefa.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EtiquetaTarefaCreateManyArgs>(args?: SelectSubset<T, EtiquetaTarefaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many EtiquetaTarefas and returns the data saved in the database.
+     * @param {EtiquetaTarefaCreateManyAndReturnArgs} args - Arguments to create many EtiquetaTarefas.
+     * @example
+     * // Create many EtiquetaTarefas
+     * const etiquetaTarefa = await prisma.etiquetaTarefa.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many EtiquetaTarefas and only return the `id`
+     * const etiquetaTarefaWithIdOnly = await prisma.etiquetaTarefa.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EtiquetaTarefaCreateManyAndReturnArgs>(args?: SelectSubset<T, EtiquetaTarefaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EtiquetaTarefaPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a EtiquetaTarefa.
+     * @param {EtiquetaTarefaDeleteArgs} args - Arguments to delete one EtiquetaTarefa.
+     * @example
+     * // Delete one EtiquetaTarefa
+     * const EtiquetaTarefa = await prisma.etiquetaTarefa.delete({
+     *   where: {
+     *     // ... filter to delete one EtiquetaTarefa
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EtiquetaTarefaDeleteArgs>(args: SelectSubset<T, EtiquetaTarefaDeleteArgs<ExtArgs>>): Prisma__EtiquetaTarefaClient<$Result.GetResult<Prisma.$EtiquetaTarefaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EtiquetaTarefa.
+     * @param {EtiquetaTarefaUpdateArgs} args - Arguments to update one EtiquetaTarefa.
+     * @example
+     * // Update one EtiquetaTarefa
+     * const etiquetaTarefa = await prisma.etiquetaTarefa.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EtiquetaTarefaUpdateArgs>(args: SelectSubset<T, EtiquetaTarefaUpdateArgs<ExtArgs>>): Prisma__EtiquetaTarefaClient<$Result.GetResult<Prisma.$EtiquetaTarefaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EtiquetaTarefas.
+     * @param {EtiquetaTarefaDeleteManyArgs} args - Arguments to filter EtiquetaTarefas to delete.
+     * @example
+     * // Delete a few EtiquetaTarefas
+     * const { count } = await prisma.etiquetaTarefa.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EtiquetaTarefaDeleteManyArgs>(args?: SelectSubset<T, EtiquetaTarefaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EtiquetaTarefas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EtiquetaTarefaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EtiquetaTarefas
+     * const etiquetaTarefa = await prisma.etiquetaTarefa.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EtiquetaTarefaUpdateManyArgs>(args: SelectSubset<T, EtiquetaTarefaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EtiquetaTarefas and returns the data updated in the database.
+     * @param {EtiquetaTarefaUpdateManyAndReturnArgs} args - Arguments to update many EtiquetaTarefas.
+     * @example
+     * // Update many EtiquetaTarefas
+     * const etiquetaTarefa = await prisma.etiquetaTarefa.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more EtiquetaTarefas and only return the `id`
+     * const etiquetaTarefaWithIdOnly = await prisma.etiquetaTarefa.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EtiquetaTarefaUpdateManyAndReturnArgs>(args: SelectSubset<T, EtiquetaTarefaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EtiquetaTarefaPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one EtiquetaTarefa.
+     * @param {EtiquetaTarefaUpsertArgs} args - Arguments to update or create a EtiquetaTarefa.
+     * @example
+     * // Update or create a EtiquetaTarefa
+     * const etiquetaTarefa = await prisma.etiquetaTarefa.upsert({
+     *   create: {
+     *     // ... data to create a EtiquetaTarefa
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EtiquetaTarefa we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EtiquetaTarefaUpsertArgs>(args: SelectSubset<T, EtiquetaTarefaUpsertArgs<ExtArgs>>): Prisma__EtiquetaTarefaClient<$Result.GetResult<Prisma.$EtiquetaTarefaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of EtiquetaTarefas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EtiquetaTarefaCountArgs} args - Arguments to filter EtiquetaTarefas to count.
+     * @example
+     * // Count the number of EtiquetaTarefas
+     * const count = await prisma.etiquetaTarefa.count({
+     *   where: {
+     *     // ... the filter for the EtiquetaTarefas we want to count
+     *   }
+     * })
+    **/
+    count<T extends EtiquetaTarefaCountArgs>(
+      args?: Subset<T, EtiquetaTarefaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EtiquetaTarefaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EtiquetaTarefa.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EtiquetaTarefaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EtiquetaTarefaAggregateArgs>(args: Subset<T, EtiquetaTarefaAggregateArgs>): Prisma.PrismaPromise<GetEtiquetaTarefaAggregateType<T>>
+
+    /**
+     * Group by EtiquetaTarefa.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EtiquetaTarefaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EtiquetaTarefaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EtiquetaTarefaGroupByArgs['orderBy'] }
+        : { orderBy?: EtiquetaTarefaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EtiquetaTarefaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEtiquetaTarefaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EtiquetaTarefa model
+   */
+  readonly fields: EtiquetaTarefaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EtiquetaTarefa.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EtiquetaTarefaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    empresa<T extends EmpresaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmpresaDefaultArgs<ExtArgs>>): Prisma__EmpresaClient<$Result.GetResult<Prisma.$EmpresaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    tarefas<T extends EtiquetaTarefa$tarefasArgs<ExtArgs> = {}>(args?: Subset<T, EtiquetaTarefa$tarefasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TarefaEtiquetaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EtiquetaTarefa model
+   */
+  interface EtiquetaTarefaFieldRefs {
+    readonly id: FieldRef<"EtiquetaTarefa", 'String'>
+    readonly empresa_id: FieldRef<"EtiquetaTarefa", 'String'>
+    readonly nome: FieldRef<"EtiquetaTarefa", 'String'>
+    readonly cor: FieldRef<"EtiquetaTarefa", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EtiquetaTarefa findUnique
+   */
+  export type EtiquetaTarefaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EtiquetaTarefa
+     */
+    select?: EtiquetaTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EtiquetaTarefa
+     */
+    omit?: EtiquetaTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EtiquetaTarefaInclude<ExtArgs> | null
+    /**
+     * Filter, which EtiquetaTarefa to fetch.
+     */
+    where: EtiquetaTarefaWhereUniqueInput
+  }
+
+  /**
+   * EtiquetaTarefa findUniqueOrThrow
+   */
+  export type EtiquetaTarefaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EtiquetaTarefa
+     */
+    select?: EtiquetaTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EtiquetaTarefa
+     */
+    omit?: EtiquetaTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EtiquetaTarefaInclude<ExtArgs> | null
+    /**
+     * Filter, which EtiquetaTarefa to fetch.
+     */
+    where: EtiquetaTarefaWhereUniqueInput
+  }
+
+  /**
+   * EtiquetaTarefa findFirst
+   */
+  export type EtiquetaTarefaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EtiquetaTarefa
+     */
+    select?: EtiquetaTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EtiquetaTarefa
+     */
+    omit?: EtiquetaTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EtiquetaTarefaInclude<ExtArgs> | null
+    /**
+     * Filter, which EtiquetaTarefa to fetch.
+     */
+    where?: EtiquetaTarefaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EtiquetaTarefas to fetch.
+     */
+    orderBy?: EtiquetaTarefaOrderByWithRelationInput | EtiquetaTarefaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EtiquetaTarefas.
+     */
+    cursor?: EtiquetaTarefaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EtiquetaTarefas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EtiquetaTarefas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EtiquetaTarefas.
+     */
+    distinct?: EtiquetaTarefaScalarFieldEnum | EtiquetaTarefaScalarFieldEnum[]
+  }
+
+  /**
+   * EtiquetaTarefa findFirstOrThrow
+   */
+  export type EtiquetaTarefaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EtiquetaTarefa
+     */
+    select?: EtiquetaTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EtiquetaTarefa
+     */
+    omit?: EtiquetaTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EtiquetaTarefaInclude<ExtArgs> | null
+    /**
+     * Filter, which EtiquetaTarefa to fetch.
+     */
+    where?: EtiquetaTarefaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EtiquetaTarefas to fetch.
+     */
+    orderBy?: EtiquetaTarefaOrderByWithRelationInput | EtiquetaTarefaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EtiquetaTarefas.
+     */
+    cursor?: EtiquetaTarefaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EtiquetaTarefas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EtiquetaTarefas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EtiquetaTarefas.
+     */
+    distinct?: EtiquetaTarefaScalarFieldEnum | EtiquetaTarefaScalarFieldEnum[]
+  }
+
+  /**
+   * EtiquetaTarefa findMany
+   */
+  export type EtiquetaTarefaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EtiquetaTarefa
+     */
+    select?: EtiquetaTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EtiquetaTarefa
+     */
+    omit?: EtiquetaTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EtiquetaTarefaInclude<ExtArgs> | null
+    /**
+     * Filter, which EtiquetaTarefas to fetch.
+     */
+    where?: EtiquetaTarefaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EtiquetaTarefas to fetch.
+     */
+    orderBy?: EtiquetaTarefaOrderByWithRelationInput | EtiquetaTarefaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EtiquetaTarefas.
+     */
+    cursor?: EtiquetaTarefaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EtiquetaTarefas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EtiquetaTarefas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EtiquetaTarefas.
+     */
+    distinct?: EtiquetaTarefaScalarFieldEnum | EtiquetaTarefaScalarFieldEnum[]
+  }
+
+  /**
+   * EtiquetaTarefa create
+   */
+  export type EtiquetaTarefaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EtiquetaTarefa
+     */
+    select?: EtiquetaTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EtiquetaTarefa
+     */
+    omit?: EtiquetaTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EtiquetaTarefaInclude<ExtArgs> | null
+    /**
+     * The data needed to create a EtiquetaTarefa.
+     */
+    data: XOR<EtiquetaTarefaCreateInput, EtiquetaTarefaUncheckedCreateInput>
+  }
+
+  /**
+   * EtiquetaTarefa createMany
+   */
+  export type EtiquetaTarefaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EtiquetaTarefas.
+     */
+    data: EtiquetaTarefaCreateManyInput | EtiquetaTarefaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EtiquetaTarefa createManyAndReturn
+   */
+  export type EtiquetaTarefaCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EtiquetaTarefa
+     */
+    select?: EtiquetaTarefaSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EtiquetaTarefa
+     */
+    omit?: EtiquetaTarefaOmit<ExtArgs> | null
+    /**
+     * The data used to create many EtiquetaTarefas.
+     */
+    data: EtiquetaTarefaCreateManyInput | EtiquetaTarefaCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EtiquetaTarefaIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EtiquetaTarefa update
+   */
+  export type EtiquetaTarefaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EtiquetaTarefa
+     */
+    select?: EtiquetaTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EtiquetaTarefa
+     */
+    omit?: EtiquetaTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EtiquetaTarefaInclude<ExtArgs> | null
+    /**
+     * The data needed to update a EtiquetaTarefa.
+     */
+    data: XOR<EtiquetaTarefaUpdateInput, EtiquetaTarefaUncheckedUpdateInput>
+    /**
+     * Choose, which EtiquetaTarefa to update.
+     */
+    where: EtiquetaTarefaWhereUniqueInput
+  }
+
+  /**
+   * EtiquetaTarefa updateMany
+   */
+  export type EtiquetaTarefaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EtiquetaTarefas.
+     */
+    data: XOR<EtiquetaTarefaUpdateManyMutationInput, EtiquetaTarefaUncheckedUpdateManyInput>
+    /**
+     * Filter which EtiquetaTarefas to update
+     */
+    where?: EtiquetaTarefaWhereInput
+    /**
+     * Limit how many EtiquetaTarefas to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EtiquetaTarefa updateManyAndReturn
+   */
+  export type EtiquetaTarefaUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EtiquetaTarefa
+     */
+    select?: EtiquetaTarefaSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EtiquetaTarefa
+     */
+    omit?: EtiquetaTarefaOmit<ExtArgs> | null
+    /**
+     * The data used to update EtiquetaTarefas.
+     */
+    data: XOR<EtiquetaTarefaUpdateManyMutationInput, EtiquetaTarefaUncheckedUpdateManyInput>
+    /**
+     * Filter which EtiquetaTarefas to update
+     */
+    where?: EtiquetaTarefaWhereInput
+    /**
+     * Limit how many EtiquetaTarefas to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EtiquetaTarefaIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EtiquetaTarefa upsert
+   */
+  export type EtiquetaTarefaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EtiquetaTarefa
+     */
+    select?: EtiquetaTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EtiquetaTarefa
+     */
+    omit?: EtiquetaTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EtiquetaTarefaInclude<ExtArgs> | null
+    /**
+     * The filter to search for the EtiquetaTarefa to update in case it exists.
+     */
+    where: EtiquetaTarefaWhereUniqueInput
+    /**
+     * In case the EtiquetaTarefa found by the `where` argument doesn't exist, create a new EtiquetaTarefa with this data.
+     */
+    create: XOR<EtiquetaTarefaCreateInput, EtiquetaTarefaUncheckedCreateInput>
+    /**
+     * In case the EtiquetaTarefa was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EtiquetaTarefaUpdateInput, EtiquetaTarefaUncheckedUpdateInput>
+  }
+
+  /**
+   * EtiquetaTarefa delete
+   */
+  export type EtiquetaTarefaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EtiquetaTarefa
+     */
+    select?: EtiquetaTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EtiquetaTarefa
+     */
+    omit?: EtiquetaTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EtiquetaTarefaInclude<ExtArgs> | null
+    /**
+     * Filter which EtiquetaTarefa to delete.
+     */
+    where: EtiquetaTarefaWhereUniqueInput
+  }
+
+  /**
+   * EtiquetaTarefa deleteMany
+   */
+  export type EtiquetaTarefaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EtiquetaTarefas to delete
+     */
+    where?: EtiquetaTarefaWhereInput
+    /**
+     * Limit how many EtiquetaTarefas to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EtiquetaTarefa.tarefas
+   */
+  export type EtiquetaTarefa$tarefasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TarefaEtiqueta
+     */
+    select?: TarefaEtiquetaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TarefaEtiqueta
+     */
+    omit?: TarefaEtiquetaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaEtiquetaInclude<ExtArgs> | null
+    where?: TarefaEtiquetaWhereInput
+    orderBy?: TarefaEtiquetaOrderByWithRelationInput | TarefaEtiquetaOrderByWithRelationInput[]
+    cursor?: TarefaEtiquetaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TarefaEtiquetaScalarFieldEnum | TarefaEtiquetaScalarFieldEnum[]
+  }
+
+  /**
+   * EtiquetaTarefa without action
+   */
+  export type EtiquetaTarefaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EtiquetaTarefa
+     */
+    select?: EtiquetaTarefaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EtiquetaTarefa
+     */
+    omit?: EtiquetaTarefaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EtiquetaTarefaInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TarefaEtiqueta
+   */
+
+  export type AggregateTarefaEtiqueta = {
+    _count: TarefaEtiquetaCountAggregateOutputType | null
+    _min: TarefaEtiquetaMinAggregateOutputType | null
+    _max: TarefaEtiquetaMaxAggregateOutputType | null
+  }
+
+  export type TarefaEtiquetaMinAggregateOutputType = {
+    tarefa_id: string | null
+    etiqueta_id: string | null
+  }
+
+  export type TarefaEtiquetaMaxAggregateOutputType = {
+    tarefa_id: string | null
+    etiqueta_id: string | null
+  }
+
+  export type TarefaEtiquetaCountAggregateOutputType = {
+    tarefa_id: number
+    etiqueta_id: number
+    _all: number
+  }
+
+
+  export type TarefaEtiquetaMinAggregateInputType = {
+    tarefa_id?: true
+    etiqueta_id?: true
+  }
+
+  export type TarefaEtiquetaMaxAggregateInputType = {
+    tarefa_id?: true
+    etiqueta_id?: true
+  }
+
+  export type TarefaEtiquetaCountAggregateInputType = {
+    tarefa_id?: true
+    etiqueta_id?: true
+    _all?: true
+  }
+
+  export type TarefaEtiquetaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TarefaEtiqueta to aggregate.
+     */
+    where?: TarefaEtiquetaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TarefaEtiquetas to fetch.
+     */
+    orderBy?: TarefaEtiquetaOrderByWithRelationInput | TarefaEtiquetaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TarefaEtiquetaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TarefaEtiquetas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TarefaEtiquetas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TarefaEtiquetas
+    **/
+    _count?: true | TarefaEtiquetaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TarefaEtiquetaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TarefaEtiquetaMaxAggregateInputType
+  }
+
+  export type GetTarefaEtiquetaAggregateType<T extends TarefaEtiquetaAggregateArgs> = {
+        [P in keyof T & keyof AggregateTarefaEtiqueta]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTarefaEtiqueta[P]>
+      : GetScalarType<T[P], AggregateTarefaEtiqueta[P]>
+  }
+
+
+
+
+  export type TarefaEtiquetaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TarefaEtiquetaWhereInput
+    orderBy?: TarefaEtiquetaOrderByWithAggregationInput | TarefaEtiquetaOrderByWithAggregationInput[]
+    by: TarefaEtiquetaScalarFieldEnum[] | TarefaEtiquetaScalarFieldEnum
+    having?: TarefaEtiquetaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TarefaEtiquetaCountAggregateInputType | true
+    _min?: TarefaEtiquetaMinAggregateInputType
+    _max?: TarefaEtiquetaMaxAggregateInputType
+  }
+
+  export type TarefaEtiquetaGroupByOutputType = {
+    tarefa_id: string
+    etiqueta_id: string
+    _count: TarefaEtiquetaCountAggregateOutputType | null
+    _min: TarefaEtiquetaMinAggregateOutputType | null
+    _max: TarefaEtiquetaMaxAggregateOutputType | null
+  }
+
+  type GetTarefaEtiquetaGroupByPayload<T extends TarefaEtiquetaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TarefaEtiquetaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TarefaEtiquetaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TarefaEtiquetaGroupByOutputType[P]>
+            : GetScalarType<T[P], TarefaEtiquetaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TarefaEtiquetaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    tarefa_id?: boolean
+    etiqueta_id?: boolean
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    etiqueta?: boolean | EtiquetaTarefaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tarefaEtiqueta"]>
+
+  export type TarefaEtiquetaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    tarefa_id?: boolean
+    etiqueta_id?: boolean
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    etiqueta?: boolean | EtiquetaTarefaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tarefaEtiqueta"]>
+
+  export type TarefaEtiquetaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    tarefa_id?: boolean
+    etiqueta_id?: boolean
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    etiqueta?: boolean | EtiquetaTarefaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tarefaEtiqueta"]>
+
+  export type TarefaEtiquetaSelectScalar = {
+    tarefa_id?: boolean
+    etiqueta_id?: boolean
+  }
+
+  export type TarefaEtiquetaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"tarefa_id" | "etiqueta_id", ExtArgs["result"]["tarefaEtiqueta"]>
+  export type TarefaEtiquetaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    etiqueta?: boolean | EtiquetaTarefaDefaultArgs<ExtArgs>
+  }
+  export type TarefaEtiquetaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    etiqueta?: boolean | EtiquetaTarefaDefaultArgs<ExtArgs>
+  }
+  export type TarefaEtiquetaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    etiqueta?: boolean | EtiquetaTarefaDefaultArgs<ExtArgs>
+  }
+
+  export type $TarefaEtiquetaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TarefaEtiqueta"
+    objects: {
+      tarefa: Prisma.$TarefaPayload<ExtArgs>
+      etiqueta: Prisma.$EtiquetaTarefaPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      tarefa_id: string
+      etiqueta_id: string
+    }, ExtArgs["result"]["tarefaEtiqueta"]>
+    composites: {}
+  }
+
+  type TarefaEtiquetaGetPayload<S extends boolean | null | undefined | TarefaEtiquetaDefaultArgs> = $Result.GetResult<Prisma.$TarefaEtiquetaPayload, S>
+
+  type TarefaEtiquetaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TarefaEtiquetaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TarefaEtiquetaCountAggregateInputType | true
+    }
+
+  export interface TarefaEtiquetaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TarefaEtiqueta'], meta: { name: 'TarefaEtiqueta' } }
+    /**
+     * Find zero or one TarefaEtiqueta that matches the filter.
+     * @param {TarefaEtiquetaFindUniqueArgs} args - Arguments to find a TarefaEtiqueta
+     * @example
+     * // Get one TarefaEtiqueta
+     * const tarefaEtiqueta = await prisma.tarefaEtiqueta.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TarefaEtiquetaFindUniqueArgs>(args: SelectSubset<T, TarefaEtiquetaFindUniqueArgs<ExtArgs>>): Prisma__TarefaEtiquetaClient<$Result.GetResult<Prisma.$TarefaEtiquetaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TarefaEtiqueta that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TarefaEtiquetaFindUniqueOrThrowArgs} args - Arguments to find a TarefaEtiqueta
+     * @example
+     * // Get one TarefaEtiqueta
+     * const tarefaEtiqueta = await prisma.tarefaEtiqueta.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TarefaEtiquetaFindUniqueOrThrowArgs>(args: SelectSubset<T, TarefaEtiquetaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TarefaEtiquetaClient<$Result.GetResult<Prisma.$TarefaEtiquetaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TarefaEtiqueta that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TarefaEtiquetaFindFirstArgs} args - Arguments to find a TarefaEtiqueta
+     * @example
+     * // Get one TarefaEtiqueta
+     * const tarefaEtiqueta = await prisma.tarefaEtiqueta.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TarefaEtiquetaFindFirstArgs>(args?: SelectSubset<T, TarefaEtiquetaFindFirstArgs<ExtArgs>>): Prisma__TarefaEtiquetaClient<$Result.GetResult<Prisma.$TarefaEtiquetaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TarefaEtiqueta that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TarefaEtiquetaFindFirstOrThrowArgs} args - Arguments to find a TarefaEtiqueta
+     * @example
+     * // Get one TarefaEtiqueta
+     * const tarefaEtiqueta = await prisma.tarefaEtiqueta.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TarefaEtiquetaFindFirstOrThrowArgs>(args?: SelectSubset<T, TarefaEtiquetaFindFirstOrThrowArgs<ExtArgs>>): Prisma__TarefaEtiquetaClient<$Result.GetResult<Prisma.$TarefaEtiquetaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TarefaEtiquetas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TarefaEtiquetaFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TarefaEtiquetas
+     * const tarefaEtiquetas = await prisma.tarefaEtiqueta.findMany()
+     * 
+     * // Get first 10 TarefaEtiquetas
+     * const tarefaEtiquetas = await prisma.tarefaEtiqueta.findMany({ take: 10 })
+     * 
+     * // Only select the `tarefa_id`
+     * const tarefaEtiquetaWithTarefa_idOnly = await prisma.tarefaEtiqueta.findMany({ select: { tarefa_id: true } })
+     * 
+     */
+    findMany<T extends TarefaEtiquetaFindManyArgs>(args?: SelectSubset<T, TarefaEtiquetaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TarefaEtiquetaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TarefaEtiqueta.
+     * @param {TarefaEtiquetaCreateArgs} args - Arguments to create a TarefaEtiqueta.
+     * @example
+     * // Create one TarefaEtiqueta
+     * const TarefaEtiqueta = await prisma.tarefaEtiqueta.create({
+     *   data: {
+     *     // ... data to create a TarefaEtiqueta
+     *   }
+     * })
+     * 
+     */
+    create<T extends TarefaEtiquetaCreateArgs>(args: SelectSubset<T, TarefaEtiquetaCreateArgs<ExtArgs>>): Prisma__TarefaEtiquetaClient<$Result.GetResult<Prisma.$TarefaEtiquetaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TarefaEtiquetas.
+     * @param {TarefaEtiquetaCreateManyArgs} args - Arguments to create many TarefaEtiquetas.
+     * @example
+     * // Create many TarefaEtiquetas
+     * const tarefaEtiqueta = await prisma.tarefaEtiqueta.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TarefaEtiquetaCreateManyArgs>(args?: SelectSubset<T, TarefaEtiquetaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TarefaEtiquetas and returns the data saved in the database.
+     * @param {TarefaEtiquetaCreateManyAndReturnArgs} args - Arguments to create many TarefaEtiquetas.
+     * @example
+     * // Create many TarefaEtiquetas
+     * const tarefaEtiqueta = await prisma.tarefaEtiqueta.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TarefaEtiquetas and only return the `tarefa_id`
+     * const tarefaEtiquetaWithTarefa_idOnly = await prisma.tarefaEtiqueta.createManyAndReturn({
+     *   select: { tarefa_id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TarefaEtiquetaCreateManyAndReturnArgs>(args?: SelectSubset<T, TarefaEtiquetaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TarefaEtiquetaPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TarefaEtiqueta.
+     * @param {TarefaEtiquetaDeleteArgs} args - Arguments to delete one TarefaEtiqueta.
+     * @example
+     * // Delete one TarefaEtiqueta
+     * const TarefaEtiqueta = await prisma.tarefaEtiqueta.delete({
+     *   where: {
+     *     // ... filter to delete one TarefaEtiqueta
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TarefaEtiquetaDeleteArgs>(args: SelectSubset<T, TarefaEtiquetaDeleteArgs<ExtArgs>>): Prisma__TarefaEtiquetaClient<$Result.GetResult<Prisma.$TarefaEtiquetaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TarefaEtiqueta.
+     * @param {TarefaEtiquetaUpdateArgs} args - Arguments to update one TarefaEtiqueta.
+     * @example
+     * // Update one TarefaEtiqueta
+     * const tarefaEtiqueta = await prisma.tarefaEtiqueta.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TarefaEtiquetaUpdateArgs>(args: SelectSubset<T, TarefaEtiquetaUpdateArgs<ExtArgs>>): Prisma__TarefaEtiquetaClient<$Result.GetResult<Prisma.$TarefaEtiquetaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TarefaEtiquetas.
+     * @param {TarefaEtiquetaDeleteManyArgs} args - Arguments to filter TarefaEtiquetas to delete.
+     * @example
+     * // Delete a few TarefaEtiquetas
+     * const { count } = await prisma.tarefaEtiqueta.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TarefaEtiquetaDeleteManyArgs>(args?: SelectSubset<T, TarefaEtiquetaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TarefaEtiquetas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TarefaEtiquetaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TarefaEtiquetas
+     * const tarefaEtiqueta = await prisma.tarefaEtiqueta.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TarefaEtiquetaUpdateManyArgs>(args: SelectSubset<T, TarefaEtiquetaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TarefaEtiquetas and returns the data updated in the database.
+     * @param {TarefaEtiquetaUpdateManyAndReturnArgs} args - Arguments to update many TarefaEtiquetas.
+     * @example
+     * // Update many TarefaEtiquetas
+     * const tarefaEtiqueta = await prisma.tarefaEtiqueta.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TarefaEtiquetas and only return the `tarefa_id`
+     * const tarefaEtiquetaWithTarefa_idOnly = await prisma.tarefaEtiqueta.updateManyAndReturn({
+     *   select: { tarefa_id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TarefaEtiquetaUpdateManyAndReturnArgs>(args: SelectSubset<T, TarefaEtiquetaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TarefaEtiquetaPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TarefaEtiqueta.
+     * @param {TarefaEtiquetaUpsertArgs} args - Arguments to update or create a TarefaEtiqueta.
+     * @example
+     * // Update or create a TarefaEtiqueta
+     * const tarefaEtiqueta = await prisma.tarefaEtiqueta.upsert({
+     *   create: {
+     *     // ... data to create a TarefaEtiqueta
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TarefaEtiqueta we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TarefaEtiquetaUpsertArgs>(args: SelectSubset<T, TarefaEtiquetaUpsertArgs<ExtArgs>>): Prisma__TarefaEtiquetaClient<$Result.GetResult<Prisma.$TarefaEtiquetaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TarefaEtiquetas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TarefaEtiquetaCountArgs} args - Arguments to filter TarefaEtiquetas to count.
+     * @example
+     * // Count the number of TarefaEtiquetas
+     * const count = await prisma.tarefaEtiqueta.count({
+     *   where: {
+     *     // ... the filter for the TarefaEtiquetas we want to count
+     *   }
+     * })
+    **/
+    count<T extends TarefaEtiquetaCountArgs>(
+      args?: Subset<T, TarefaEtiquetaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TarefaEtiquetaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TarefaEtiqueta.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TarefaEtiquetaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TarefaEtiquetaAggregateArgs>(args: Subset<T, TarefaEtiquetaAggregateArgs>): Prisma.PrismaPromise<GetTarefaEtiquetaAggregateType<T>>
+
+    /**
+     * Group by TarefaEtiqueta.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TarefaEtiquetaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TarefaEtiquetaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TarefaEtiquetaGroupByArgs['orderBy'] }
+        : { orderBy?: TarefaEtiquetaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TarefaEtiquetaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTarefaEtiquetaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TarefaEtiqueta model
+   */
+  readonly fields: TarefaEtiquetaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TarefaEtiqueta.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TarefaEtiquetaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tarefa<T extends TarefaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TarefaDefaultArgs<ExtArgs>>): Prisma__TarefaClient<$Result.GetResult<Prisma.$TarefaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    etiqueta<T extends EtiquetaTarefaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EtiquetaTarefaDefaultArgs<ExtArgs>>): Prisma__EtiquetaTarefaClient<$Result.GetResult<Prisma.$EtiquetaTarefaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TarefaEtiqueta model
+   */
+  interface TarefaEtiquetaFieldRefs {
+    readonly tarefa_id: FieldRef<"TarefaEtiqueta", 'String'>
+    readonly etiqueta_id: FieldRef<"TarefaEtiqueta", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TarefaEtiqueta findUnique
+   */
+  export type TarefaEtiquetaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TarefaEtiqueta
+     */
+    select?: TarefaEtiquetaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TarefaEtiqueta
+     */
+    omit?: TarefaEtiquetaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaEtiquetaInclude<ExtArgs> | null
+    /**
+     * Filter, which TarefaEtiqueta to fetch.
+     */
+    where: TarefaEtiquetaWhereUniqueInput
+  }
+
+  /**
+   * TarefaEtiqueta findUniqueOrThrow
+   */
+  export type TarefaEtiquetaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TarefaEtiqueta
+     */
+    select?: TarefaEtiquetaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TarefaEtiqueta
+     */
+    omit?: TarefaEtiquetaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaEtiquetaInclude<ExtArgs> | null
+    /**
+     * Filter, which TarefaEtiqueta to fetch.
+     */
+    where: TarefaEtiquetaWhereUniqueInput
+  }
+
+  /**
+   * TarefaEtiqueta findFirst
+   */
+  export type TarefaEtiquetaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TarefaEtiqueta
+     */
+    select?: TarefaEtiquetaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TarefaEtiqueta
+     */
+    omit?: TarefaEtiquetaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaEtiquetaInclude<ExtArgs> | null
+    /**
+     * Filter, which TarefaEtiqueta to fetch.
+     */
+    where?: TarefaEtiquetaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TarefaEtiquetas to fetch.
+     */
+    orderBy?: TarefaEtiquetaOrderByWithRelationInput | TarefaEtiquetaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TarefaEtiquetas.
+     */
+    cursor?: TarefaEtiquetaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TarefaEtiquetas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TarefaEtiquetas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TarefaEtiquetas.
+     */
+    distinct?: TarefaEtiquetaScalarFieldEnum | TarefaEtiquetaScalarFieldEnum[]
+  }
+
+  /**
+   * TarefaEtiqueta findFirstOrThrow
+   */
+  export type TarefaEtiquetaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TarefaEtiqueta
+     */
+    select?: TarefaEtiquetaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TarefaEtiqueta
+     */
+    omit?: TarefaEtiquetaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaEtiquetaInclude<ExtArgs> | null
+    /**
+     * Filter, which TarefaEtiqueta to fetch.
+     */
+    where?: TarefaEtiquetaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TarefaEtiquetas to fetch.
+     */
+    orderBy?: TarefaEtiquetaOrderByWithRelationInput | TarefaEtiquetaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TarefaEtiquetas.
+     */
+    cursor?: TarefaEtiquetaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TarefaEtiquetas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TarefaEtiquetas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TarefaEtiquetas.
+     */
+    distinct?: TarefaEtiquetaScalarFieldEnum | TarefaEtiquetaScalarFieldEnum[]
+  }
+
+  /**
+   * TarefaEtiqueta findMany
+   */
+  export type TarefaEtiquetaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TarefaEtiqueta
+     */
+    select?: TarefaEtiquetaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TarefaEtiqueta
+     */
+    omit?: TarefaEtiquetaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaEtiquetaInclude<ExtArgs> | null
+    /**
+     * Filter, which TarefaEtiquetas to fetch.
+     */
+    where?: TarefaEtiquetaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TarefaEtiquetas to fetch.
+     */
+    orderBy?: TarefaEtiquetaOrderByWithRelationInput | TarefaEtiquetaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TarefaEtiquetas.
+     */
+    cursor?: TarefaEtiquetaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TarefaEtiquetas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TarefaEtiquetas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TarefaEtiquetas.
+     */
+    distinct?: TarefaEtiquetaScalarFieldEnum | TarefaEtiquetaScalarFieldEnum[]
+  }
+
+  /**
+   * TarefaEtiqueta create
+   */
+  export type TarefaEtiquetaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TarefaEtiqueta
+     */
+    select?: TarefaEtiquetaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TarefaEtiqueta
+     */
+    omit?: TarefaEtiquetaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaEtiquetaInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TarefaEtiqueta.
+     */
+    data: XOR<TarefaEtiquetaCreateInput, TarefaEtiquetaUncheckedCreateInput>
+  }
+
+  /**
+   * TarefaEtiqueta createMany
+   */
+  export type TarefaEtiquetaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TarefaEtiquetas.
+     */
+    data: TarefaEtiquetaCreateManyInput | TarefaEtiquetaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TarefaEtiqueta createManyAndReturn
+   */
+  export type TarefaEtiquetaCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TarefaEtiqueta
+     */
+    select?: TarefaEtiquetaSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TarefaEtiqueta
+     */
+    omit?: TarefaEtiquetaOmit<ExtArgs> | null
+    /**
+     * The data used to create many TarefaEtiquetas.
+     */
+    data: TarefaEtiquetaCreateManyInput | TarefaEtiquetaCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaEtiquetaIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TarefaEtiqueta update
+   */
+  export type TarefaEtiquetaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TarefaEtiqueta
+     */
+    select?: TarefaEtiquetaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TarefaEtiqueta
+     */
+    omit?: TarefaEtiquetaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaEtiquetaInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TarefaEtiqueta.
+     */
+    data: XOR<TarefaEtiquetaUpdateInput, TarefaEtiquetaUncheckedUpdateInput>
+    /**
+     * Choose, which TarefaEtiqueta to update.
+     */
+    where: TarefaEtiquetaWhereUniqueInput
+  }
+
+  /**
+   * TarefaEtiqueta updateMany
+   */
+  export type TarefaEtiquetaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TarefaEtiquetas.
+     */
+    data: XOR<TarefaEtiquetaUpdateManyMutationInput, TarefaEtiquetaUncheckedUpdateManyInput>
+    /**
+     * Filter which TarefaEtiquetas to update
+     */
+    where?: TarefaEtiquetaWhereInput
+    /**
+     * Limit how many TarefaEtiquetas to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TarefaEtiqueta updateManyAndReturn
+   */
+  export type TarefaEtiquetaUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TarefaEtiqueta
+     */
+    select?: TarefaEtiquetaSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TarefaEtiqueta
+     */
+    omit?: TarefaEtiquetaOmit<ExtArgs> | null
+    /**
+     * The data used to update TarefaEtiquetas.
+     */
+    data: XOR<TarefaEtiquetaUpdateManyMutationInput, TarefaEtiquetaUncheckedUpdateManyInput>
+    /**
+     * Filter which TarefaEtiquetas to update
+     */
+    where?: TarefaEtiquetaWhereInput
+    /**
+     * Limit how many TarefaEtiquetas to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaEtiquetaIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TarefaEtiqueta upsert
+   */
+  export type TarefaEtiquetaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TarefaEtiqueta
+     */
+    select?: TarefaEtiquetaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TarefaEtiqueta
+     */
+    omit?: TarefaEtiquetaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaEtiquetaInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TarefaEtiqueta to update in case it exists.
+     */
+    where: TarefaEtiquetaWhereUniqueInput
+    /**
+     * In case the TarefaEtiqueta found by the `where` argument doesn't exist, create a new TarefaEtiqueta with this data.
+     */
+    create: XOR<TarefaEtiquetaCreateInput, TarefaEtiquetaUncheckedCreateInput>
+    /**
+     * In case the TarefaEtiqueta was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TarefaEtiquetaUpdateInput, TarefaEtiquetaUncheckedUpdateInput>
+  }
+
+  /**
+   * TarefaEtiqueta delete
+   */
+  export type TarefaEtiquetaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TarefaEtiqueta
+     */
+    select?: TarefaEtiquetaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TarefaEtiqueta
+     */
+    omit?: TarefaEtiquetaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaEtiquetaInclude<ExtArgs> | null
+    /**
+     * Filter which TarefaEtiqueta to delete.
+     */
+    where: TarefaEtiquetaWhereUniqueInput
+  }
+
+  /**
+   * TarefaEtiqueta deleteMany
+   */
+  export type TarefaEtiquetaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TarefaEtiquetas to delete
+     */
+    where?: TarefaEtiquetaWhereInput
+    /**
+     * Limit how many TarefaEtiquetas to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TarefaEtiqueta without action
+   */
+  export type TarefaEtiquetaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TarefaEtiqueta
+     */
+    select?: TarefaEtiquetaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TarefaEtiqueta
+     */
+    omit?: TarefaEtiquetaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaEtiquetaInclude<ExtArgs> | null
   }
 
 
@@ -30860,8 +39907,12 @@ export namespace Prisma {
     id: string | null
     empresa_id: string | null
     projeto_id: string | null
+    cliente_id: string | null
+    contrato_id: string | null
     criado_por: string | null
     titulo: string | null
+    descricao: string | null
+    categoria: $Enums.CategoriaDocumento | null
     arquivo_url: string | null
     arquivo_nome: string | null
     arquivo_tamanho: number | null
@@ -30873,8 +39924,12 @@ export namespace Prisma {
     id: string | null
     empresa_id: string | null
     projeto_id: string | null
+    cliente_id: string | null
+    contrato_id: string | null
     criado_por: string | null
     titulo: string | null
+    descricao: string | null
+    categoria: $Enums.CategoriaDocumento | null
     arquivo_url: string | null
     arquivo_nome: string | null
     arquivo_tamanho: number | null
@@ -30886,8 +39941,12 @@ export namespace Prisma {
     id: number
     empresa_id: number
     projeto_id: number
+    cliente_id: number
+    contrato_id: number
     criado_por: number
     titulo: number
+    descricao: number
+    categoria: number
     arquivo_url: number
     arquivo_nome: number
     arquivo_tamanho: number
@@ -30909,8 +39968,12 @@ export namespace Prisma {
     id?: true
     empresa_id?: true
     projeto_id?: true
+    cliente_id?: true
+    contrato_id?: true
     criado_por?: true
     titulo?: true
+    descricao?: true
+    categoria?: true
     arquivo_url?: true
     arquivo_nome?: true
     arquivo_tamanho?: true
@@ -30922,8 +39985,12 @@ export namespace Prisma {
     id?: true
     empresa_id?: true
     projeto_id?: true
+    cliente_id?: true
+    contrato_id?: true
     criado_por?: true
     titulo?: true
+    descricao?: true
+    categoria?: true
     arquivo_url?: true
     arquivo_nome?: true
     arquivo_tamanho?: true
@@ -30935,8 +40002,12 @@ export namespace Prisma {
     id?: true
     empresa_id?: true
     projeto_id?: true
+    cliente_id?: true
+    contrato_id?: true
     criado_por?: true
     titulo?: true
+    descricao?: true
+    categoria?: true
     arquivo_url?: true
     arquivo_nome?: true
     arquivo_tamanho?: true
@@ -31034,9 +40105,13 @@ export namespace Prisma {
   export type DocumentoGroupByOutputType = {
     id: string
     empresa_id: string
-    projeto_id: string
+    projeto_id: string | null
+    cliente_id: string | null
+    contrato_id: string | null
     criado_por: string | null
     titulo: string
+    descricao: string | null
+    categoria: $Enums.CategoriaDocumento
     arquivo_url: string
     arquivo_nome: string
     arquivo_tamanho: number
@@ -31067,15 +40142,21 @@ export namespace Prisma {
     id?: boolean
     empresa_id?: boolean
     projeto_id?: boolean
+    cliente_id?: boolean
+    contrato_id?: boolean
     criado_por?: boolean
     titulo?: boolean
+    descricao?: boolean
+    categoria?: boolean
     arquivo_url?: boolean
     arquivo_nome?: boolean
     arquivo_tamanho?: boolean
     mime_type?: boolean
     criado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
-    projeto?: boolean | ProjetoDefaultArgs<ExtArgs>
+    projeto?: boolean | Documento$projetoArgs<ExtArgs>
+    cliente?: boolean | Documento$clienteArgs<ExtArgs>
+    contrato?: boolean | Documento$contratoArgs<ExtArgs>
     criador?: boolean | Documento$criadorArgs<ExtArgs>
   }, ExtArgs["result"]["documento"]>
 
@@ -31083,15 +40164,21 @@ export namespace Prisma {
     id?: boolean
     empresa_id?: boolean
     projeto_id?: boolean
+    cliente_id?: boolean
+    contrato_id?: boolean
     criado_por?: boolean
     titulo?: boolean
+    descricao?: boolean
+    categoria?: boolean
     arquivo_url?: boolean
     arquivo_nome?: boolean
     arquivo_tamanho?: boolean
     mime_type?: boolean
     criado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
-    projeto?: boolean | ProjetoDefaultArgs<ExtArgs>
+    projeto?: boolean | Documento$projetoArgs<ExtArgs>
+    cliente?: boolean | Documento$clienteArgs<ExtArgs>
+    contrato?: boolean | Documento$contratoArgs<ExtArgs>
     criador?: boolean | Documento$criadorArgs<ExtArgs>
   }, ExtArgs["result"]["documento"]>
 
@@ -31099,15 +40186,21 @@ export namespace Prisma {
     id?: boolean
     empresa_id?: boolean
     projeto_id?: boolean
+    cliente_id?: boolean
+    contrato_id?: boolean
     criado_por?: boolean
     titulo?: boolean
+    descricao?: boolean
+    categoria?: boolean
     arquivo_url?: boolean
     arquivo_nome?: boolean
     arquivo_tamanho?: boolean
     mime_type?: boolean
     criado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
-    projeto?: boolean | ProjetoDefaultArgs<ExtArgs>
+    projeto?: boolean | Documento$projetoArgs<ExtArgs>
+    cliente?: boolean | Documento$clienteArgs<ExtArgs>
+    contrato?: boolean | Documento$contratoArgs<ExtArgs>
     criador?: boolean | Documento$criadorArgs<ExtArgs>
   }, ExtArgs["result"]["documento"]>
 
@@ -31115,8 +40208,12 @@ export namespace Prisma {
     id?: boolean
     empresa_id?: boolean
     projeto_id?: boolean
+    cliente_id?: boolean
+    contrato_id?: boolean
     criado_por?: boolean
     titulo?: boolean
+    descricao?: boolean
+    categoria?: boolean
     arquivo_url?: boolean
     arquivo_nome?: boolean
     arquivo_tamanho?: boolean
@@ -31124,20 +40221,26 @@ export namespace Prisma {
     criado_em?: boolean
   }
 
-  export type DocumentoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "projeto_id" | "criado_por" | "titulo" | "arquivo_url" | "arquivo_nome" | "arquivo_tamanho" | "mime_type" | "criado_em", ExtArgs["result"]["documento"]>
+  export type DocumentoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "projeto_id" | "cliente_id" | "contrato_id" | "criado_por" | "titulo" | "descricao" | "categoria" | "arquivo_url" | "arquivo_nome" | "arquivo_tamanho" | "mime_type" | "criado_em", ExtArgs["result"]["documento"]>
   export type DocumentoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
-    projeto?: boolean | ProjetoDefaultArgs<ExtArgs>
+    projeto?: boolean | Documento$projetoArgs<ExtArgs>
+    cliente?: boolean | Documento$clienteArgs<ExtArgs>
+    contrato?: boolean | Documento$contratoArgs<ExtArgs>
     criador?: boolean | Documento$criadorArgs<ExtArgs>
   }
   export type DocumentoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
-    projeto?: boolean | ProjetoDefaultArgs<ExtArgs>
+    projeto?: boolean | Documento$projetoArgs<ExtArgs>
+    cliente?: boolean | Documento$clienteArgs<ExtArgs>
+    contrato?: boolean | Documento$contratoArgs<ExtArgs>
     criador?: boolean | Documento$criadorArgs<ExtArgs>
   }
   export type DocumentoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
-    projeto?: boolean | ProjetoDefaultArgs<ExtArgs>
+    projeto?: boolean | Documento$projetoArgs<ExtArgs>
+    cliente?: boolean | Documento$clienteArgs<ExtArgs>
+    contrato?: boolean | Documento$contratoArgs<ExtArgs>
     criador?: boolean | Documento$criadorArgs<ExtArgs>
   }
 
@@ -31145,15 +40248,21 @@ export namespace Prisma {
     name: "Documento"
     objects: {
       empresa: Prisma.$EmpresaPayload<ExtArgs>
-      projeto: Prisma.$ProjetoPayload<ExtArgs>
+      projeto: Prisma.$ProjetoPayload<ExtArgs> | null
+      cliente: Prisma.$ClientePayload<ExtArgs> | null
+      contrato: Prisma.$ContratoPayload<ExtArgs> | null
       criador: Prisma.$UsuarioPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       empresa_id: string
-      projeto_id: string
+      projeto_id: string | null
+      cliente_id: string | null
+      contrato_id: string | null
       criado_por: string | null
       titulo: string
+      descricao: string | null
+      categoria: $Enums.CategoriaDocumento
       arquivo_url: string
       arquivo_nome: string
       arquivo_tamanho: number
@@ -31554,7 +40663,9 @@ export namespace Prisma {
   export interface Prisma__DocumentoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     empresa<T extends EmpresaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmpresaDefaultArgs<ExtArgs>>): Prisma__EmpresaClient<$Result.GetResult<Prisma.$EmpresaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    projeto<T extends ProjetoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjetoDefaultArgs<ExtArgs>>): Prisma__ProjetoClient<$Result.GetResult<Prisma.$ProjetoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    projeto<T extends Documento$projetoArgs<ExtArgs> = {}>(args?: Subset<T, Documento$projetoArgs<ExtArgs>>): Prisma__ProjetoClient<$Result.GetResult<Prisma.$ProjetoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    cliente<T extends Documento$clienteArgs<ExtArgs> = {}>(args?: Subset<T, Documento$clienteArgs<ExtArgs>>): Prisma__ClienteClient<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    contrato<T extends Documento$contratoArgs<ExtArgs> = {}>(args?: Subset<T, Documento$contratoArgs<ExtArgs>>): Prisma__ContratoClient<$Result.GetResult<Prisma.$ContratoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     criador<T extends Documento$criadorArgs<ExtArgs> = {}>(args?: Subset<T, Documento$criadorArgs<ExtArgs>>): Prisma__UsuarioClient<$Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -31588,8 +40699,12 @@ export namespace Prisma {
     readonly id: FieldRef<"Documento", 'String'>
     readonly empresa_id: FieldRef<"Documento", 'String'>
     readonly projeto_id: FieldRef<"Documento", 'String'>
+    readonly cliente_id: FieldRef<"Documento", 'String'>
+    readonly contrato_id: FieldRef<"Documento", 'String'>
     readonly criado_por: FieldRef<"Documento", 'String'>
     readonly titulo: FieldRef<"Documento", 'String'>
+    readonly descricao: FieldRef<"Documento", 'String'>
+    readonly categoria: FieldRef<"Documento", 'CategoriaDocumento'>
     readonly arquivo_url: FieldRef<"Documento", 'String'>
     readonly arquivo_nome: FieldRef<"Documento", 'String'>
     readonly arquivo_tamanho: FieldRef<"Documento", 'Int'>
@@ -31993,6 +41108,63 @@ export namespace Prisma {
      * Limit how many Documentos to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Documento.projeto
+   */
+  export type Documento$projetoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Projeto
+     */
+    select?: ProjetoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Projeto
+     */
+    omit?: ProjetoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjetoInclude<ExtArgs> | null
+    where?: ProjetoWhereInput
+  }
+
+  /**
+   * Documento.cliente
+   */
+  export type Documento$clienteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cliente
+     */
+    select?: ClienteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Cliente
+     */
+    omit?: ClienteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClienteInclude<ExtArgs> | null
+    where?: ClienteWhereInput
+  }
+
+  /**
+   * Documento.contrato
+   */
+  export type Documento$contratoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contrato
+     */
+    select?: ContratoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Contrato
+     */
+    omit?: ContratoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratoInclude<ExtArgs> | null
+    where?: ContratoWhereInput
   }
 
   /**
@@ -49587,6 +58759,8 @@ export namespace Prisma {
     titulo: 'titulo',
     descricao: 'descricao',
     status: 'status',
+    prioridade: 'prioridade',
+    ordem: 'ordem',
     data_prazo: 'data_prazo',
     concluida_em: 'concluida_em',
     criado_em: 'criado_em',
@@ -49596,12 +58770,97 @@ export namespace Prisma {
   export type TarefaScalarFieldEnum = (typeof TarefaScalarFieldEnum)[keyof typeof TarefaScalarFieldEnum]
 
 
+  export const ComentarioTarefaScalarFieldEnum: {
+    id: 'id',
+    tarefa_id: 'tarefa_id',
+    autor_id: 'autor_id',
+    conteudo: 'conteudo',
+    criado_em: 'criado_em',
+    atualizado_em: 'atualizado_em'
+  };
+
+  export type ComentarioTarefaScalarFieldEnum = (typeof ComentarioTarefaScalarFieldEnum)[keyof typeof ComentarioTarefaScalarFieldEnum]
+
+
+  export const AnexoTarefaScalarFieldEnum: {
+    id: 'id',
+    tarefa_id: 'tarefa_id',
+    criado_por: 'criado_por',
+    nome: 'nome',
+    arquivo_url: 'arquivo_url',
+    arquivo_tamanho: 'arquivo_tamanho',
+    mime_type: 'mime_type',
+    criado_em: 'criado_em'
+  };
+
+  export type AnexoTarefaScalarFieldEnum = (typeof AnexoTarefaScalarFieldEnum)[keyof typeof AnexoTarefaScalarFieldEnum]
+
+
+  export const AtividadeTarefaScalarFieldEnum: {
+    id: 'id',
+    tarefa_id: 'tarefa_id',
+    autor_id: 'autor_id',
+    descricao: 'descricao',
+    criado_em: 'criado_em'
+  };
+
+  export type AtividadeTarefaScalarFieldEnum = (typeof AtividadeTarefaScalarFieldEnum)[keyof typeof AtividadeTarefaScalarFieldEnum]
+
+
+  export const AprovacaoTarefaScalarFieldEnum: {
+    id: 'id',
+    tarefa_id: 'tarefa_id',
+    solicitante_id: 'solicitante_id',
+    aprovador_id: 'aprovador_id',
+    status: 'status',
+    comentario: 'comentario',
+    criado_em: 'criado_em',
+    decidido_em: 'decidido_em'
+  };
+
+  export type AprovacaoTarefaScalarFieldEnum = (typeof AprovacaoTarefaScalarFieldEnum)[keyof typeof AprovacaoTarefaScalarFieldEnum]
+
+
+  export const ItemChecklistScalarFieldEnum: {
+    id: 'id',
+    tarefa_id: 'tarefa_id',
+    texto: 'texto',
+    concluido: 'concluido',
+    ordem: 'ordem',
+    criado_em: 'criado_em'
+  };
+
+  export type ItemChecklistScalarFieldEnum = (typeof ItemChecklistScalarFieldEnum)[keyof typeof ItemChecklistScalarFieldEnum]
+
+
+  export const EtiquetaTarefaScalarFieldEnum: {
+    id: 'id',
+    empresa_id: 'empresa_id',
+    nome: 'nome',
+    cor: 'cor'
+  };
+
+  export type EtiquetaTarefaScalarFieldEnum = (typeof EtiquetaTarefaScalarFieldEnum)[keyof typeof EtiquetaTarefaScalarFieldEnum]
+
+
+  export const TarefaEtiquetaScalarFieldEnum: {
+    tarefa_id: 'tarefa_id',
+    etiqueta_id: 'etiqueta_id'
+  };
+
+  export type TarefaEtiquetaScalarFieldEnum = (typeof TarefaEtiquetaScalarFieldEnum)[keyof typeof TarefaEtiquetaScalarFieldEnum]
+
+
   export const DocumentoScalarFieldEnum: {
     id: 'id',
     empresa_id: 'empresa_id',
     projeto_id: 'projeto_id',
+    cliente_id: 'cliente_id',
+    contrato_id: 'contrato_id',
     criado_por: 'criado_por',
     titulo: 'titulo',
+    descricao: 'descricao',
+    categoria: 'categoria',
     arquivo_url: 'arquivo_url',
     arquivo_nome: 'arquivo_nome',
     arquivo_tamanho: 'arquivo_tamanho',
@@ -50136,6 +59395,48 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'PrioridadeTarefa'
+   */
+  export type EnumPrioridadeTarefaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PrioridadeTarefa'>
+    
+
+
+  /**
+   * Reference to a field of type 'PrioridadeTarefa[]'
+   */
+  export type ListEnumPrioridadeTarefaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PrioridadeTarefa[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'StatusAprovacao'
+   */
+  export type EnumStatusAprovacaoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StatusAprovacao'>
+    
+
+
+  /**
+   * Reference to a field of type 'StatusAprovacao[]'
+   */
+  export type ListEnumStatusAprovacaoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StatusAprovacao[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'CategoriaDocumento'
+   */
+  export type EnumCategoriaDocumentoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CategoriaDocumento'>
+    
+
+
+  /**
+   * Reference to a field of type 'CategoriaDocumento[]'
+   */
+  export type ListEnumCategoriaDocumentoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CategoriaDocumento[]'>
+    
+
+
+  /**
    * Reference to a field of type 'TipoPlanoContas'
    */
   export type EnumTipoPlanoContasFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TipoPlanoContas'>
@@ -50287,6 +59588,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoListRelationFilter
     notas_fiscais?: NotaFiscalListRelationFilter
     diagnosticos?: DiagnosticoListRelationFilter
+    etiquetas_tarefa?: EtiquetaTarefaListRelationFilter
   }
 
   export type EmpresaOrderByWithRelationInput = {
@@ -50323,6 +59625,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoOrderByRelationAggregateInput
     notas_fiscais?: NotaFiscalOrderByRelationAggregateInput
     diagnosticos?: DiagnosticoOrderByRelationAggregateInput
+    etiquetas_tarefa?: EtiquetaTarefaOrderByRelationAggregateInput
   }
 
   export type EmpresaWhereUniqueInput = Prisma.AtLeast<{
@@ -50362,6 +59665,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoListRelationFilter
     notas_fiscais?: NotaFiscalListRelationFilter
     diagnosticos?: DiagnosticoListRelationFilter
+    etiquetas_tarefa?: EtiquetaTarefaListRelationFilter
   }, "id" | "slug" | "cnpj">
 
   export type EmpresaOrderByWithAggregationInput = {
@@ -50421,6 +59725,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaListRelationFilter
     contratos_responsavel?: ContratoListRelationFilter
     convites_cliente?: ConviteClienteListRelationFilter
+    comentarios_tarefa?: ComentarioTarefaListRelationFilter
+    anexos_tarefa?: AnexoTarefaListRelationFilter
+    atividades_tarefa?: AtividadeTarefaListRelationFilter
+    aprovacoes_solicitadas?: AprovacaoTarefaListRelationFilter
+    aprovacoes_recebidas?: AprovacaoTarefaListRelationFilter
   }
 
   export type UsuarioOrderByWithRelationInput = {
@@ -50445,6 +59754,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaOrderByRelationAggregateInput
     contratos_responsavel?: ContratoOrderByRelationAggregateInput
     convites_cliente?: ConviteClienteOrderByRelationAggregateInput
+    comentarios_tarefa?: ComentarioTarefaOrderByRelationAggregateInput
+    anexos_tarefa?: AnexoTarefaOrderByRelationAggregateInput
+    atividades_tarefa?: AtividadeTarefaOrderByRelationAggregateInput
+    aprovacoes_solicitadas?: AprovacaoTarefaOrderByRelationAggregateInput
+    aprovacoes_recebidas?: AprovacaoTarefaOrderByRelationAggregateInput
   }
 
   export type UsuarioWhereUniqueInput = Prisma.AtLeast<{
@@ -50472,6 +59786,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaListRelationFilter
     contratos_responsavel?: ContratoListRelationFilter
     convites_cliente?: ConviteClienteListRelationFilter
+    comentarios_tarefa?: ComentarioTarefaListRelationFilter
+    anexos_tarefa?: AnexoTarefaListRelationFilter
+    atividades_tarefa?: AtividadeTarefaListRelationFilter
+    aprovacoes_solicitadas?: AprovacaoTarefaListRelationFilter
+    aprovacoes_recebidas?: AprovacaoTarefaListRelationFilter
   }, "id" | "email">
 
   export type UsuarioOrderByWithAggregationInput = {
@@ -50922,6 +60241,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalListRelationFilter
     diagnosticos?: DiagnosticoListRelationFilter
     convite?: XOR<ConviteClienteNullableScalarRelationFilter, ConviteClienteWhereInput> | null
+    documentos?: DocumentoListRelationFilter
   }
 
   export type ClienteOrderByWithRelationInput = {
@@ -50962,6 +60282,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalOrderByRelationAggregateInput
     diagnosticos?: DiagnosticoOrderByRelationAggregateInput
     convite?: ConviteClienteOrderByWithRelationInput
+    documentos?: DocumentoOrderByRelationAggregateInput
   }
 
   export type ClienteWhereUniqueInput = Prisma.AtLeast<{
@@ -51005,6 +60326,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalListRelationFilter
     diagnosticos?: DiagnosticoListRelationFilter
     convite?: XOR<ConviteClienteNullableScalarRelationFilter, ConviteClienteWhereInput> | null
+    documentos?: DocumentoListRelationFilter
   }, "id">
 
   export type ClienteOrderByWithAggregationInput = {
@@ -51800,6 +61122,7 @@ export namespace Prisma {
     recebiveis?: RecebivelListRelationFilter
     eventos?: EventoListRelationFilter
     notas_fiscais?: NotaFiscalListRelationFilter
+    documentos?: DocumentoListRelationFilter
   }
 
   export type ContratoOrderByWithRelationInput = {
@@ -51850,6 +61173,7 @@ export namespace Prisma {
     recebiveis?: RecebivelOrderByRelationAggregateInput
     eventos?: EventoOrderByRelationAggregateInput
     notas_fiscais?: NotaFiscalOrderByRelationAggregateInput
+    documentos?: DocumentoOrderByRelationAggregateInput
   }
 
   export type ContratoWhereUniqueInput = Prisma.AtLeast<{
@@ -51903,6 +61227,7 @@ export namespace Prisma {
     recebiveis?: RecebivelListRelationFilter
     eventos?: EventoListRelationFilter
     notas_fiscais?: NotaFiscalListRelationFilter
+    documentos?: DocumentoListRelationFilter
   }, "id" | "proposta_id">
 
   export type ContratoOrderByWithAggregationInput = {
@@ -52205,6 +61530,8 @@ export namespace Prisma {
     titulo?: StringFilter<"Tarefa"> | string
     descricao?: StringNullableFilter<"Tarefa"> | string | null
     status?: EnumStatusTarefaFilter<"Tarefa"> | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaFilter<"Tarefa"> | $Enums.PrioridadeTarefa
+    ordem?: IntFilter<"Tarefa"> | number
     data_prazo?: DateTimeNullableFilter<"Tarefa"> | Date | string | null
     concluida_em?: DateTimeNullableFilter<"Tarefa"> | Date | string | null
     criado_em?: DateTimeFilter<"Tarefa"> | Date | string
@@ -52212,6 +61539,12 @@ export namespace Prisma {
     etapa?: XOR<EtapaScalarRelationFilter, EtapaWhereInput>
     projeto?: XOR<ProjetoScalarRelationFilter, ProjetoWhereInput>
     responsavel?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
+    comentarios?: ComentarioTarefaListRelationFilter
+    anexos?: AnexoTarefaListRelationFilter
+    atividades?: AtividadeTarefaListRelationFilter
+    aprovacoes?: AprovacaoTarefaListRelationFilter
+    checklist?: ItemChecklistListRelationFilter
+    etiquetas?: TarefaEtiquetaListRelationFilter
   }
 
   export type TarefaOrderByWithRelationInput = {
@@ -52222,6 +61555,8 @@ export namespace Prisma {
     titulo?: SortOrder
     descricao?: SortOrderInput | SortOrder
     status?: SortOrder
+    prioridade?: SortOrder
+    ordem?: SortOrder
     data_prazo?: SortOrderInput | SortOrder
     concluida_em?: SortOrderInput | SortOrder
     criado_em?: SortOrder
@@ -52229,6 +61564,12 @@ export namespace Prisma {
     etapa?: EtapaOrderByWithRelationInput
     projeto?: ProjetoOrderByWithRelationInput
     responsavel?: UsuarioOrderByWithRelationInput
+    comentarios?: ComentarioTarefaOrderByRelationAggregateInput
+    anexos?: AnexoTarefaOrderByRelationAggregateInput
+    atividades?: AtividadeTarefaOrderByRelationAggregateInput
+    aprovacoes?: AprovacaoTarefaOrderByRelationAggregateInput
+    checklist?: ItemChecklistOrderByRelationAggregateInput
+    etiquetas?: TarefaEtiquetaOrderByRelationAggregateInput
   }
 
   export type TarefaWhereUniqueInput = Prisma.AtLeast<{
@@ -52242,6 +61583,8 @@ export namespace Prisma {
     titulo?: StringFilter<"Tarefa"> | string
     descricao?: StringNullableFilter<"Tarefa"> | string | null
     status?: EnumStatusTarefaFilter<"Tarefa"> | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaFilter<"Tarefa"> | $Enums.PrioridadeTarefa
+    ordem?: IntFilter<"Tarefa"> | number
     data_prazo?: DateTimeNullableFilter<"Tarefa"> | Date | string | null
     concluida_em?: DateTimeNullableFilter<"Tarefa"> | Date | string | null
     criado_em?: DateTimeFilter<"Tarefa"> | Date | string
@@ -52249,6 +61592,12 @@ export namespace Prisma {
     etapa?: XOR<EtapaScalarRelationFilter, EtapaWhereInput>
     projeto?: XOR<ProjetoScalarRelationFilter, ProjetoWhereInput>
     responsavel?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
+    comentarios?: ComentarioTarefaListRelationFilter
+    anexos?: AnexoTarefaListRelationFilter
+    atividades?: AtividadeTarefaListRelationFilter
+    aprovacoes?: AprovacaoTarefaListRelationFilter
+    checklist?: ItemChecklistListRelationFilter
+    etiquetas?: TarefaEtiquetaListRelationFilter
   }, "id">
 
   export type TarefaOrderByWithAggregationInput = {
@@ -52259,13 +61608,17 @@ export namespace Prisma {
     titulo?: SortOrder
     descricao?: SortOrderInput | SortOrder
     status?: SortOrder
+    prioridade?: SortOrder
+    ordem?: SortOrder
     data_prazo?: SortOrderInput | SortOrder
     concluida_em?: SortOrderInput | SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     _count?: TarefaCountOrderByAggregateInput
+    _avg?: TarefaAvgOrderByAggregateInput
     _max?: TarefaMaxOrderByAggregateInput
     _min?: TarefaMinOrderByAggregateInput
+    _sum?: TarefaSumOrderByAggregateInput
   }
 
   export type TarefaScalarWhereWithAggregatesInput = {
@@ -52279,10 +61632,443 @@ export namespace Prisma {
     titulo?: StringWithAggregatesFilter<"Tarefa"> | string
     descricao?: StringNullableWithAggregatesFilter<"Tarefa"> | string | null
     status?: EnumStatusTarefaWithAggregatesFilter<"Tarefa"> | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaWithAggregatesFilter<"Tarefa"> | $Enums.PrioridadeTarefa
+    ordem?: IntWithAggregatesFilter<"Tarefa"> | number
     data_prazo?: DateTimeNullableWithAggregatesFilter<"Tarefa"> | Date | string | null
     concluida_em?: DateTimeNullableWithAggregatesFilter<"Tarefa"> | Date | string | null
     criado_em?: DateTimeWithAggregatesFilter<"Tarefa"> | Date | string
     atualizado_em?: DateTimeWithAggregatesFilter<"Tarefa"> | Date | string
+  }
+
+  export type ComentarioTarefaWhereInput = {
+    AND?: ComentarioTarefaWhereInput | ComentarioTarefaWhereInput[]
+    OR?: ComentarioTarefaWhereInput[]
+    NOT?: ComentarioTarefaWhereInput | ComentarioTarefaWhereInput[]
+    id?: StringFilter<"ComentarioTarefa"> | string
+    tarefa_id?: StringFilter<"ComentarioTarefa"> | string
+    autor_id?: StringNullableFilter<"ComentarioTarefa"> | string | null
+    conteudo?: StringFilter<"ComentarioTarefa"> | string
+    criado_em?: DateTimeFilter<"ComentarioTarefa"> | Date | string
+    atualizado_em?: DateTimeFilter<"ComentarioTarefa"> | Date | string
+    tarefa?: XOR<TarefaScalarRelationFilter, TarefaWhereInput>
+    autor?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
+  }
+
+  export type ComentarioTarefaOrderByWithRelationInput = {
+    id?: SortOrder
+    tarefa_id?: SortOrder
+    autor_id?: SortOrderInput | SortOrder
+    conteudo?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+    tarefa?: TarefaOrderByWithRelationInput
+    autor?: UsuarioOrderByWithRelationInput
+  }
+
+  export type ComentarioTarefaWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ComentarioTarefaWhereInput | ComentarioTarefaWhereInput[]
+    OR?: ComentarioTarefaWhereInput[]
+    NOT?: ComentarioTarefaWhereInput | ComentarioTarefaWhereInput[]
+    tarefa_id?: StringFilter<"ComentarioTarefa"> | string
+    autor_id?: StringNullableFilter<"ComentarioTarefa"> | string | null
+    conteudo?: StringFilter<"ComentarioTarefa"> | string
+    criado_em?: DateTimeFilter<"ComentarioTarefa"> | Date | string
+    atualizado_em?: DateTimeFilter<"ComentarioTarefa"> | Date | string
+    tarefa?: XOR<TarefaScalarRelationFilter, TarefaWhereInput>
+    autor?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
+  }, "id">
+
+  export type ComentarioTarefaOrderByWithAggregationInput = {
+    id?: SortOrder
+    tarefa_id?: SortOrder
+    autor_id?: SortOrderInput | SortOrder
+    conteudo?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+    _count?: ComentarioTarefaCountOrderByAggregateInput
+    _max?: ComentarioTarefaMaxOrderByAggregateInput
+    _min?: ComentarioTarefaMinOrderByAggregateInput
+  }
+
+  export type ComentarioTarefaScalarWhereWithAggregatesInput = {
+    AND?: ComentarioTarefaScalarWhereWithAggregatesInput | ComentarioTarefaScalarWhereWithAggregatesInput[]
+    OR?: ComentarioTarefaScalarWhereWithAggregatesInput[]
+    NOT?: ComentarioTarefaScalarWhereWithAggregatesInput | ComentarioTarefaScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ComentarioTarefa"> | string
+    tarefa_id?: StringWithAggregatesFilter<"ComentarioTarefa"> | string
+    autor_id?: StringNullableWithAggregatesFilter<"ComentarioTarefa"> | string | null
+    conteudo?: StringWithAggregatesFilter<"ComentarioTarefa"> | string
+    criado_em?: DateTimeWithAggregatesFilter<"ComentarioTarefa"> | Date | string
+    atualizado_em?: DateTimeWithAggregatesFilter<"ComentarioTarefa"> | Date | string
+  }
+
+  export type AnexoTarefaWhereInput = {
+    AND?: AnexoTarefaWhereInput | AnexoTarefaWhereInput[]
+    OR?: AnexoTarefaWhereInput[]
+    NOT?: AnexoTarefaWhereInput | AnexoTarefaWhereInput[]
+    id?: StringFilter<"AnexoTarefa"> | string
+    tarefa_id?: StringFilter<"AnexoTarefa"> | string
+    criado_por?: StringNullableFilter<"AnexoTarefa"> | string | null
+    nome?: StringFilter<"AnexoTarefa"> | string
+    arquivo_url?: StringFilter<"AnexoTarefa"> | string
+    arquivo_tamanho?: IntFilter<"AnexoTarefa"> | number
+    mime_type?: StringFilter<"AnexoTarefa"> | string
+    criado_em?: DateTimeFilter<"AnexoTarefa"> | Date | string
+    tarefa?: XOR<TarefaScalarRelationFilter, TarefaWhereInput>
+    criador?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
+  }
+
+  export type AnexoTarefaOrderByWithRelationInput = {
+    id?: SortOrder
+    tarefa_id?: SortOrder
+    criado_por?: SortOrderInput | SortOrder
+    nome?: SortOrder
+    arquivo_url?: SortOrder
+    arquivo_tamanho?: SortOrder
+    mime_type?: SortOrder
+    criado_em?: SortOrder
+    tarefa?: TarefaOrderByWithRelationInput
+    criador?: UsuarioOrderByWithRelationInput
+  }
+
+  export type AnexoTarefaWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AnexoTarefaWhereInput | AnexoTarefaWhereInput[]
+    OR?: AnexoTarefaWhereInput[]
+    NOT?: AnexoTarefaWhereInput | AnexoTarefaWhereInput[]
+    tarefa_id?: StringFilter<"AnexoTarefa"> | string
+    criado_por?: StringNullableFilter<"AnexoTarefa"> | string | null
+    nome?: StringFilter<"AnexoTarefa"> | string
+    arquivo_url?: StringFilter<"AnexoTarefa"> | string
+    arquivo_tamanho?: IntFilter<"AnexoTarefa"> | number
+    mime_type?: StringFilter<"AnexoTarefa"> | string
+    criado_em?: DateTimeFilter<"AnexoTarefa"> | Date | string
+    tarefa?: XOR<TarefaScalarRelationFilter, TarefaWhereInput>
+    criador?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
+  }, "id">
+
+  export type AnexoTarefaOrderByWithAggregationInput = {
+    id?: SortOrder
+    tarefa_id?: SortOrder
+    criado_por?: SortOrderInput | SortOrder
+    nome?: SortOrder
+    arquivo_url?: SortOrder
+    arquivo_tamanho?: SortOrder
+    mime_type?: SortOrder
+    criado_em?: SortOrder
+    _count?: AnexoTarefaCountOrderByAggregateInput
+    _avg?: AnexoTarefaAvgOrderByAggregateInput
+    _max?: AnexoTarefaMaxOrderByAggregateInput
+    _min?: AnexoTarefaMinOrderByAggregateInput
+    _sum?: AnexoTarefaSumOrderByAggregateInput
+  }
+
+  export type AnexoTarefaScalarWhereWithAggregatesInput = {
+    AND?: AnexoTarefaScalarWhereWithAggregatesInput | AnexoTarefaScalarWhereWithAggregatesInput[]
+    OR?: AnexoTarefaScalarWhereWithAggregatesInput[]
+    NOT?: AnexoTarefaScalarWhereWithAggregatesInput | AnexoTarefaScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AnexoTarefa"> | string
+    tarefa_id?: StringWithAggregatesFilter<"AnexoTarefa"> | string
+    criado_por?: StringNullableWithAggregatesFilter<"AnexoTarefa"> | string | null
+    nome?: StringWithAggregatesFilter<"AnexoTarefa"> | string
+    arquivo_url?: StringWithAggregatesFilter<"AnexoTarefa"> | string
+    arquivo_tamanho?: IntWithAggregatesFilter<"AnexoTarefa"> | number
+    mime_type?: StringWithAggregatesFilter<"AnexoTarefa"> | string
+    criado_em?: DateTimeWithAggregatesFilter<"AnexoTarefa"> | Date | string
+  }
+
+  export type AtividadeTarefaWhereInput = {
+    AND?: AtividadeTarefaWhereInput | AtividadeTarefaWhereInput[]
+    OR?: AtividadeTarefaWhereInput[]
+    NOT?: AtividadeTarefaWhereInput | AtividadeTarefaWhereInput[]
+    id?: StringFilter<"AtividadeTarefa"> | string
+    tarefa_id?: StringFilter<"AtividadeTarefa"> | string
+    autor_id?: StringNullableFilter<"AtividadeTarefa"> | string | null
+    descricao?: StringFilter<"AtividadeTarefa"> | string
+    criado_em?: DateTimeFilter<"AtividadeTarefa"> | Date | string
+    tarefa?: XOR<TarefaScalarRelationFilter, TarefaWhereInput>
+    autor?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
+  }
+
+  export type AtividadeTarefaOrderByWithRelationInput = {
+    id?: SortOrder
+    tarefa_id?: SortOrder
+    autor_id?: SortOrderInput | SortOrder
+    descricao?: SortOrder
+    criado_em?: SortOrder
+    tarefa?: TarefaOrderByWithRelationInput
+    autor?: UsuarioOrderByWithRelationInput
+  }
+
+  export type AtividadeTarefaWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AtividadeTarefaWhereInput | AtividadeTarefaWhereInput[]
+    OR?: AtividadeTarefaWhereInput[]
+    NOT?: AtividadeTarefaWhereInput | AtividadeTarefaWhereInput[]
+    tarefa_id?: StringFilter<"AtividadeTarefa"> | string
+    autor_id?: StringNullableFilter<"AtividadeTarefa"> | string | null
+    descricao?: StringFilter<"AtividadeTarefa"> | string
+    criado_em?: DateTimeFilter<"AtividadeTarefa"> | Date | string
+    tarefa?: XOR<TarefaScalarRelationFilter, TarefaWhereInput>
+    autor?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
+  }, "id">
+
+  export type AtividadeTarefaOrderByWithAggregationInput = {
+    id?: SortOrder
+    tarefa_id?: SortOrder
+    autor_id?: SortOrderInput | SortOrder
+    descricao?: SortOrder
+    criado_em?: SortOrder
+    _count?: AtividadeTarefaCountOrderByAggregateInput
+    _max?: AtividadeTarefaMaxOrderByAggregateInput
+    _min?: AtividadeTarefaMinOrderByAggregateInput
+  }
+
+  export type AtividadeTarefaScalarWhereWithAggregatesInput = {
+    AND?: AtividadeTarefaScalarWhereWithAggregatesInput | AtividadeTarefaScalarWhereWithAggregatesInput[]
+    OR?: AtividadeTarefaScalarWhereWithAggregatesInput[]
+    NOT?: AtividadeTarefaScalarWhereWithAggregatesInput | AtividadeTarefaScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AtividadeTarefa"> | string
+    tarefa_id?: StringWithAggregatesFilter<"AtividadeTarefa"> | string
+    autor_id?: StringNullableWithAggregatesFilter<"AtividadeTarefa"> | string | null
+    descricao?: StringWithAggregatesFilter<"AtividadeTarefa"> | string
+    criado_em?: DateTimeWithAggregatesFilter<"AtividadeTarefa"> | Date | string
+  }
+
+  export type AprovacaoTarefaWhereInput = {
+    AND?: AprovacaoTarefaWhereInput | AprovacaoTarefaWhereInput[]
+    OR?: AprovacaoTarefaWhereInput[]
+    NOT?: AprovacaoTarefaWhereInput | AprovacaoTarefaWhereInput[]
+    id?: StringFilter<"AprovacaoTarefa"> | string
+    tarefa_id?: StringFilter<"AprovacaoTarefa"> | string
+    solicitante_id?: StringNullableFilter<"AprovacaoTarefa"> | string | null
+    aprovador_id?: StringNullableFilter<"AprovacaoTarefa"> | string | null
+    status?: EnumStatusAprovacaoFilter<"AprovacaoTarefa"> | $Enums.StatusAprovacao
+    comentario?: StringNullableFilter<"AprovacaoTarefa"> | string | null
+    criado_em?: DateTimeFilter<"AprovacaoTarefa"> | Date | string
+    decidido_em?: DateTimeNullableFilter<"AprovacaoTarefa"> | Date | string | null
+    tarefa?: XOR<TarefaScalarRelationFilter, TarefaWhereInput>
+    solicitante?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
+    aprovador?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
+  }
+
+  export type AprovacaoTarefaOrderByWithRelationInput = {
+    id?: SortOrder
+    tarefa_id?: SortOrder
+    solicitante_id?: SortOrderInput | SortOrder
+    aprovador_id?: SortOrderInput | SortOrder
+    status?: SortOrder
+    comentario?: SortOrderInput | SortOrder
+    criado_em?: SortOrder
+    decidido_em?: SortOrderInput | SortOrder
+    tarefa?: TarefaOrderByWithRelationInput
+    solicitante?: UsuarioOrderByWithRelationInput
+    aprovador?: UsuarioOrderByWithRelationInput
+  }
+
+  export type AprovacaoTarefaWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AprovacaoTarefaWhereInput | AprovacaoTarefaWhereInput[]
+    OR?: AprovacaoTarefaWhereInput[]
+    NOT?: AprovacaoTarefaWhereInput | AprovacaoTarefaWhereInput[]
+    tarefa_id?: StringFilter<"AprovacaoTarefa"> | string
+    solicitante_id?: StringNullableFilter<"AprovacaoTarefa"> | string | null
+    aprovador_id?: StringNullableFilter<"AprovacaoTarefa"> | string | null
+    status?: EnumStatusAprovacaoFilter<"AprovacaoTarefa"> | $Enums.StatusAprovacao
+    comentario?: StringNullableFilter<"AprovacaoTarefa"> | string | null
+    criado_em?: DateTimeFilter<"AprovacaoTarefa"> | Date | string
+    decidido_em?: DateTimeNullableFilter<"AprovacaoTarefa"> | Date | string | null
+    tarefa?: XOR<TarefaScalarRelationFilter, TarefaWhereInput>
+    solicitante?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
+    aprovador?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
+  }, "id">
+
+  export type AprovacaoTarefaOrderByWithAggregationInput = {
+    id?: SortOrder
+    tarefa_id?: SortOrder
+    solicitante_id?: SortOrderInput | SortOrder
+    aprovador_id?: SortOrderInput | SortOrder
+    status?: SortOrder
+    comentario?: SortOrderInput | SortOrder
+    criado_em?: SortOrder
+    decidido_em?: SortOrderInput | SortOrder
+    _count?: AprovacaoTarefaCountOrderByAggregateInput
+    _max?: AprovacaoTarefaMaxOrderByAggregateInput
+    _min?: AprovacaoTarefaMinOrderByAggregateInput
+  }
+
+  export type AprovacaoTarefaScalarWhereWithAggregatesInput = {
+    AND?: AprovacaoTarefaScalarWhereWithAggregatesInput | AprovacaoTarefaScalarWhereWithAggregatesInput[]
+    OR?: AprovacaoTarefaScalarWhereWithAggregatesInput[]
+    NOT?: AprovacaoTarefaScalarWhereWithAggregatesInput | AprovacaoTarefaScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AprovacaoTarefa"> | string
+    tarefa_id?: StringWithAggregatesFilter<"AprovacaoTarefa"> | string
+    solicitante_id?: StringNullableWithAggregatesFilter<"AprovacaoTarefa"> | string | null
+    aprovador_id?: StringNullableWithAggregatesFilter<"AprovacaoTarefa"> | string | null
+    status?: EnumStatusAprovacaoWithAggregatesFilter<"AprovacaoTarefa"> | $Enums.StatusAprovacao
+    comentario?: StringNullableWithAggregatesFilter<"AprovacaoTarefa"> | string | null
+    criado_em?: DateTimeWithAggregatesFilter<"AprovacaoTarefa"> | Date | string
+    decidido_em?: DateTimeNullableWithAggregatesFilter<"AprovacaoTarefa"> | Date | string | null
+  }
+
+  export type ItemChecklistWhereInput = {
+    AND?: ItemChecklistWhereInput | ItemChecklistWhereInput[]
+    OR?: ItemChecklistWhereInput[]
+    NOT?: ItemChecklistWhereInput | ItemChecklistWhereInput[]
+    id?: StringFilter<"ItemChecklist"> | string
+    tarefa_id?: StringFilter<"ItemChecklist"> | string
+    texto?: StringFilter<"ItemChecklist"> | string
+    concluido?: BoolFilter<"ItemChecklist"> | boolean
+    ordem?: IntFilter<"ItemChecklist"> | number
+    criado_em?: DateTimeFilter<"ItemChecklist"> | Date | string
+    tarefa?: XOR<TarefaScalarRelationFilter, TarefaWhereInput>
+  }
+
+  export type ItemChecklistOrderByWithRelationInput = {
+    id?: SortOrder
+    tarefa_id?: SortOrder
+    texto?: SortOrder
+    concluido?: SortOrder
+    ordem?: SortOrder
+    criado_em?: SortOrder
+    tarefa?: TarefaOrderByWithRelationInput
+  }
+
+  export type ItemChecklistWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ItemChecklistWhereInput | ItemChecklistWhereInput[]
+    OR?: ItemChecklistWhereInput[]
+    NOT?: ItemChecklistWhereInput | ItemChecklistWhereInput[]
+    tarefa_id?: StringFilter<"ItemChecklist"> | string
+    texto?: StringFilter<"ItemChecklist"> | string
+    concluido?: BoolFilter<"ItemChecklist"> | boolean
+    ordem?: IntFilter<"ItemChecklist"> | number
+    criado_em?: DateTimeFilter<"ItemChecklist"> | Date | string
+    tarefa?: XOR<TarefaScalarRelationFilter, TarefaWhereInput>
+  }, "id">
+
+  export type ItemChecklistOrderByWithAggregationInput = {
+    id?: SortOrder
+    tarefa_id?: SortOrder
+    texto?: SortOrder
+    concluido?: SortOrder
+    ordem?: SortOrder
+    criado_em?: SortOrder
+    _count?: ItemChecklistCountOrderByAggregateInput
+    _avg?: ItemChecklistAvgOrderByAggregateInput
+    _max?: ItemChecklistMaxOrderByAggregateInput
+    _min?: ItemChecklistMinOrderByAggregateInput
+    _sum?: ItemChecklistSumOrderByAggregateInput
+  }
+
+  export type ItemChecklistScalarWhereWithAggregatesInput = {
+    AND?: ItemChecklistScalarWhereWithAggregatesInput | ItemChecklistScalarWhereWithAggregatesInput[]
+    OR?: ItemChecklistScalarWhereWithAggregatesInput[]
+    NOT?: ItemChecklistScalarWhereWithAggregatesInput | ItemChecklistScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ItemChecklist"> | string
+    tarefa_id?: StringWithAggregatesFilter<"ItemChecklist"> | string
+    texto?: StringWithAggregatesFilter<"ItemChecklist"> | string
+    concluido?: BoolWithAggregatesFilter<"ItemChecklist"> | boolean
+    ordem?: IntWithAggregatesFilter<"ItemChecklist"> | number
+    criado_em?: DateTimeWithAggregatesFilter<"ItemChecklist"> | Date | string
+  }
+
+  export type EtiquetaTarefaWhereInput = {
+    AND?: EtiquetaTarefaWhereInput | EtiquetaTarefaWhereInput[]
+    OR?: EtiquetaTarefaWhereInput[]
+    NOT?: EtiquetaTarefaWhereInput | EtiquetaTarefaWhereInput[]
+    id?: StringFilter<"EtiquetaTarefa"> | string
+    empresa_id?: StringFilter<"EtiquetaTarefa"> | string
+    nome?: StringFilter<"EtiquetaTarefa"> | string
+    cor?: StringFilter<"EtiquetaTarefa"> | string
+    empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
+    tarefas?: TarefaEtiquetaListRelationFilter
+  }
+
+  export type EtiquetaTarefaOrderByWithRelationInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    nome?: SortOrder
+    cor?: SortOrder
+    empresa?: EmpresaOrderByWithRelationInput
+    tarefas?: TarefaEtiquetaOrderByRelationAggregateInput
+  }
+
+  export type EtiquetaTarefaWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: EtiquetaTarefaWhereInput | EtiquetaTarefaWhereInput[]
+    OR?: EtiquetaTarefaWhereInput[]
+    NOT?: EtiquetaTarefaWhereInput | EtiquetaTarefaWhereInput[]
+    empresa_id?: StringFilter<"EtiquetaTarefa"> | string
+    nome?: StringFilter<"EtiquetaTarefa"> | string
+    cor?: StringFilter<"EtiquetaTarefa"> | string
+    empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
+    tarefas?: TarefaEtiquetaListRelationFilter
+  }, "id">
+
+  export type EtiquetaTarefaOrderByWithAggregationInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    nome?: SortOrder
+    cor?: SortOrder
+    _count?: EtiquetaTarefaCountOrderByAggregateInput
+    _max?: EtiquetaTarefaMaxOrderByAggregateInput
+    _min?: EtiquetaTarefaMinOrderByAggregateInput
+  }
+
+  export type EtiquetaTarefaScalarWhereWithAggregatesInput = {
+    AND?: EtiquetaTarefaScalarWhereWithAggregatesInput | EtiquetaTarefaScalarWhereWithAggregatesInput[]
+    OR?: EtiquetaTarefaScalarWhereWithAggregatesInput[]
+    NOT?: EtiquetaTarefaScalarWhereWithAggregatesInput | EtiquetaTarefaScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"EtiquetaTarefa"> | string
+    empresa_id?: StringWithAggregatesFilter<"EtiquetaTarefa"> | string
+    nome?: StringWithAggregatesFilter<"EtiquetaTarefa"> | string
+    cor?: StringWithAggregatesFilter<"EtiquetaTarefa"> | string
+  }
+
+  export type TarefaEtiquetaWhereInput = {
+    AND?: TarefaEtiquetaWhereInput | TarefaEtiquetaWhereInput[]
+    OR?: TarefaEtiquetaWhereInput[]
+    NOT?: TarefaEtiquetaWhereInput | TarefaEtiquetaWhereInput[]
+    tarefa_id?: StringFilter<"TarefaEtiqueta"> | string
+    etiqueta_id?: StringFilter<"TarefaEtiqueta"> | string
+    tarefa?: XOR<TarefaScalarRelationFilter, TarefaWhereInput>
+    etiqueta?: XOR<EtiquetaTarefaScalarRelationFilter, EtiquetaTarefaWhereInput>
+  }
+
+  export type TarefaEtiquetaOrderByWithRelationInput = {
+    tarefa_id?: SortOrder
+    etiqueta_id?: SortOrder
+    tarefa?: TarefaOrderByWithRelationInput
+    etiqueta?: EtiquetaTarefaOrderByWithRelationInput
+  }
+
+  export type TarefaEtiquetaWhereUniqueInput = Prisma.AtLeast<{
+    tarefa_id_etiqueta_id?: TarefaEtiquetaTarefa_idEtiqueta_idCompoundUniqueInput
+    AND?: TarefaEtiquetaWhereInput | TarefaEtiquetaWhereInput[]
+    OR?: TarefaEtiquetaWhereInput[]
+    NOT?: TarefaEtiquetaWhereInput | TarefaEtiquetaWhereInput[]
+    tarefa_id?: StringFilter<"TarefaEtiqueta"> | string
+    etiqueta_id?: StringFilter<"TarefaEtiqueta"> | string
+    tarefa?: XOR<TarefaScalarRelationFilter, TarefaWhereInput>
+    etiqueta?: XOR<EtiquetaTarefaScalarRelationFilter, EtiquetaTarefaWhereInput>
+  }, "tarefa_id_etiqueta_id">
+
+  export type TarefaEtiquetaOrderByWithAggregationInput = {
+    tarefa_id?: SortOrder
+    etiqueta_id?: SortOrder
+    _count?: TarefaEtiquetaCountOrderByAggregateInput
+    _max?: TarefaEtiquetaMaxOrderByAggregateInput
+    _min?: TarefaEtiquetaMinOrderByAggregateInput
+  }
+
+  export type TarefaEtiquetaScalarWhereWithAggregatesInput = {
+    AND?: TarefaEtiquetaScalarWhereWithAggregatesInput | TarefaEtiquetaScalarWhereWithAggregatesInput[]
+    OR?: TarefaEtiquetaScalarWhereWithAggregatesInput[]
+    NOT?: TarefaEtiquetaScalarWhereWithAggregatesInput | TarefaEtiquetaScalarWhereWithAggregatesInput[]
+    tarefa_id?: StringWithAggregatesFilter<"TarefaEtiqueta"> | string
+    etiqueta_id?: StringWithAggregatesFilter<"TarefaEtiqueta"> | string
   }
 
   export type DocumentoWhereInput = {
@@ -52291,25 +62077,35 @@ export namespace Prisma {
     NOT?: DocumentoWhereInput | DocumentoWhereInput[]
     id?: StringFilter<"Documento"> | string
     empresa_id?: StringFilter<"Documento"> | string
-    projeto_id?: StringFilter<"Documento"> | string
+    projeto_id?: StringNullableFilter<"Documento"> | string | null
+    cliente_id?: StringNullableFilter<"Documento"> | string | null
+    contrato_id?: StringNullableFilter<"Documento"> | string | null
     criado_por?: StringNullableFilter<"Documento"> | string | null
     titulo?: StringFilter<"Documento"> | string
+    descricao?: StringNullableFilter<"Documento"> | string | null
+    categoria?: EnumCategoriaDocumentoFilter<"Documento"> | $Enums.CategoriaDocumento
     arquivo_url?: StringFilter<"Documento"> | string
     arquivo_nome?: StringFilter<"Documento"> | string
     arquivo_tamanho?: IntFilter<"Documento"> | number
     mime_type?: StringFilter<"Documento"> | string
     criado_em?: DateTimeFilter<"Documento"> | Date | string
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
-    projeto?: XOR<ProjetoScalarRelationFilter, ProjetoWhereInput>
+    projeto?: XOR<ProjetoNullableScalarRelationFilter, ProjetoWhereInput> | null
+    cliente?: XOR<ClienteNullableScalarRelationFilter, ClienteWhereInput> | null
+    contrato?: XOR<ContratoNullableScalarRelationFilter, ContratoWhereInput> | null
     criador?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
   }
 
   export type DocumentoOrderByWithRelationInput = {
     id?: SortOrder
     empresa_id?: SortOrder
-    projeto_id?: SortOrder
+    projeto_id?: SortOrderInput | SortOrder
+    cliente_id?: SortOrderInput | SortOrder
+    contrato_id?: SortOrderInput | SortOrder
     criado_por?: SortOrderInput | SortOrder
     titulo?: SortOrder
+    descricao?: SortOrderInput | SortOrder
+    categoria?: SortOrder
     arquivo_url?: SortOrder
     arquivo_nome?: SortOrder
     arquivo_tamanho?: SortOrder
@@ -52317,6 +62113,8 @@ export namespace Prisma {
     criado_em?: SortOrder
     empresa?: EmpresaOrderByWithRelationInput
     projeto?: ProjetoOrderByWithRelationInput
+    cliente?: ClienteOrderByWithRelationInput
+    contrato?: ContratoOrderByWithRelationInput
     criador?: UsuarioOrderByWithRelationInput
   }
 
@@ -52326,25 +62124,35 @@ export namespace Prisma {
     OR?: DocumentoWhereInput[]
     NOT?: DocumentoWhereInput | DocumentoWhereInput[]
     empresa_id?: StringFilter<"Documento"> | string
-    projeto_id?: StringFilter<"Documento"> | string
+    projeto_id?: StringNullableFilter<"Documento"> | string | null
+    cliente_id?: StringNullableFilter<"Documento"> | string | null
+    contrato_id?: StringNullableFilter<"Documento"> | string | null
     criado_por?: StringNullableFilter<"Documento"> | string | null
     titulo?: StringFilter<"Documento"> | string
+    descricao?: StringNullableFilter<"Documento"> | string | null
+    categoria?: EnumCategoriaDocumentoFilter<"Documento"> | $Enums.CategoriaDocumento
     arquivo_url?: StringFilter<"Documento"> | string
     arquivo_nome?: StringFilter<"Documento"> | string
     arquivo_tamanho?: IntFilter<"Documento"> | number
     mime_type?: StringFilter<"Documento"> | string
     criado_em?: DateTimeFilter<"Documento"> | Date | string
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
-    projeto?: XOR<ProjetoScalarRelationFilter, ProjetoWhereInput>
+    projeto?: XOR<ProjetoNullableScalarRelationFilter, ProjetoWhereInput> | null
+    cliente?: XOR<ClienteNullableScalarRelationFilter, ClienteWhereInput> | null
+    contrato?: XOR<ContratoNullableScalarRelationFilter, ContratoWhereInput> | null
     criador?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
   }, "id">
 
   export type DocumentoOrderByWithAggregationInput = {
     id?: SortOrder
     empresa_id?: SortOrder
-    projeto_id?: SortOrder
+    projeto_id?: SortOrderInput | SortOrder
+    cliente_id?: SortOrderInput | SortOrder
+    contrato_id?: SortOrderInput | SortOrder
     criado_por?: SortOrderInput | SortOrder
     titulo?: SortOrder
+    descricao?: SortOrderInput | SortOrder
+    categoria?: SortOrder
     arquivo_url?: SortOrder
     arquivo_nome?: SortOrder
     arquivo_tamanho?: SortOrder
@@ -52363,9 +62171,13 @@ export namespace Prisma {
     NOT?: DocumentoScalarWhereWithAggregatesInput | DocumentoScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Documento"> | string
     empresa_id?: StringWithAggregatesFilter<"Documento"> | string
-    projeto_id?: StringWithAggregatesFilter<"Documento"> | string
+    projeto_id?: StringNullableWithAggregatesFilter<"Documento"> | string | null
+    cliente_id?: StringNullableWithAggregatesFilter<"Documento"> | string | null
+    contrato_id?: StringNullableWithAggregatesFilter<"Documento"> | string | null
     criado_por?: StringNullableWithAggregatesFilter<"Documento"> | string | null
     titulo?: StringWithAggregatesFilter<"Documento"> | string
+    descricao?: StringNullableWithAggregatesFilter<"Documento"> | string | null
+    categoria?: EnumCategoriaDocumentoWithAggregatesFilter<"Documento"> | $Enums.CategoriaDocumento
     arquivo_url?: StringWithAggregatesFilter<"Documento"> | string
     arquivo_nome?: StringWithAggregatesFilter<"Documento"> | string
     arquivo_tamanho?: IntWithAggregatesFilter<"Documento"> | number
@@ -53779,6 +63591,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateInput = {
@@ -53815,6 +63628,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUpdateInput = {
@@ -53851,6 +63665,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateInput = {
@@ -53887,6 +63702,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateManyInput = {
@@ -53950,6 +63766,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaCreateNestedManyWithoutResponsavelInput
     contratos_responsavel?: ContratoCreateNestedManyWithoutResponsavelInput
     convites_cliente?: ConviteClienteCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioUncheckedCreateInput = {
@@ -53974,6 +63795,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUncheckedCreateNestedManyWithoutResponsavelInput
     contratos_responsavel?: ContratoUncheckedCreateNestedManyWithoutResponsavelInput
     convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaUncheckedCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioUpdateInput = {
@@ -53998,6 +63824,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUpdateManyWithoutResponsavelNestedInput
     contratos_responsavel?: ContratoUpdateManyWithoutResponsavelNestedInput
     convites_cliente?: ConviteClienteUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
   }
 
   export type UsuarioUncheckedUpdateInput = {
@@ -54022,6 +63853,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUncheckedUpdateManyWithoutResponsavelNestedInput
     contratos_responsavel?: ContratoUncheckedUpdateManyWithoutResponsavelNestedInput
     convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUncheckedUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
   }
 
   export type UsuarioCreateManyInput = {
@@ -54461,6 +64297,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutClienteInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
+    documentos?: DocumentoCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateInput = {
@@ -54500,6 +64337,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutClienteInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUpdateInput = {
@@ -54539,6 +64377,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutClienteNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
+    documentos?: DocumentoUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateInput = {
@@ -54578,6 +64417,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutClienteNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteCreateManyInput = {
@@ -55439,6 +65279,7 @@ export namespace Prisma {
     recebiveis?: RecebivelCreateNestedManyWithoutContratoInput
     eventos?: EventoCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutContratoInput
+    documentos?: DocumentoCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoUncheckedCreateInput = {
@@ -55484,6 +65325,7 @@ export namespace Prisma {
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutContratoInput
     eventos?: EventoUncheckedCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutContratoInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoUpdateInput = {
@@ -55529,6 +65371,7 @@ export namespace Prisma {
     recebiveis?: RecebivelUpdateManyWithoutContratoNestedInput
     eventos?: EventoUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutContratoNestedInput
+    documentos?: DocumentoUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoUncheckedUpdateInput = {
@@ -55574,6 +65417,7 @@ export namespace Prisma {
     recebiveis?: RecebivelUncheckedUpdateManyWithoutContratoNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutContratoNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoCreateManyInput = {
@@ -55914,6 +65758,8 @@ export namespace Prisma {
     titulo: string
     descricao?: string | null
     status?: $Enums.StatusTarefa
+    prioridade?: $Enums.PrioridadeTarefa
+    ordem?: number
     data_prazo?: Date | string | null
     concluida_em?: Date | string | null
     criado_em?: Date | string
@@ -55921,6 +65767,12 @@ export namespace Prisma {
     etapa: EtapaCreateNestedOneWithoutTarefasInput
     projeto: ProjetoCreateNestedOneWithoutTarefasInput
     responsavel?: UsuarioCreateNestedOneWithoutTarefasInput
+    comentarios?: ComentarioTarefaCreateNestedManyWithoutTarefaInput
+    anexos?: AnexoTarefaCreateNestedManyWithoutTarefaInput
+    atividades?: AtividadeTarefaCreateNestedManyWithoutTarefaInput
+    aprovacoes?: AprovacaoTarefaCreateNestedManyWithoutTarefaInput
+    checklist?: ItemChecklistCreateNestedManyWithoutTarefaInput
+    etiquetas?: TarefaEtiquetaCreateNestedManyWithoutTarefaInput
   }
 
   export type TarefaUncheckedCreateInput = {
@@ -55931,10 +65783,18 @@ export namespace Prisma {
     titulo: string
     descricao?: string | null
     status?: $Enums.StatusTarefa
+    prioridade?: $Enums.PrioridadeTarefa
+    ordem?: number
     data_prazo?: Date | string | null
     concluida_em?: Date | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
+    comentarios?: ComentarioTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    anexos?: AnexoTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    atividades?: AtividadeTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    aprovacoes?: AprovacaoTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    checklist?: ItemChecklistUncheckedCreateNestedManyWithoutTarefaInput
+    etiquetas?: TarefaEtiquetaUncheckedCreateNestedManyWithoutTarefaInput
   }
 
   export type TarefaUpdateInput = {
@@ -55942,6 +65802,8 @@ export namespace Prisma {
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusTarefaFieldUpdateOperationsInput | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaFieldUpdateOperationsInput | $Enums.PrioridadeTarefa
+    ordem?: IntFieldUpdateOperationsInput | number
     data_prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -55949,6 +65811,12 @@ export namespace Prisma {
     etapa?: EtapaUpdateOneRequiredWithoutTarefasNestedInput
     projeto?: ProjetoUpdateOneRequiredWithoutTarefasNestedInput
     responsavel?: UsuarioUpdateOneWithoutTarefasNestedInput
+    comentarios?: ComentarioTarefaUpdateManyWithoutTarefaNestedInput
+    anexos?: AnexoTarefaUpdateManyWithoutTarefaNestedInput
+    atividades?: AtividadeTarefaUpdateManyWithoutTarefaNestedInput
+    aprovacoes?: AprovacaoTarefaUpdateManyWithoutTarefaNestedInput
+    checklist?: ItemChecklistUpdateManyWithoutTarefaNestedInput
+    etiquetas?: TarefaEtiquetaUpdateManyWithoutTarefaNestedInput
   }
 
   export type TarefaUncheckedUpdateInput = {
@@ -55959,10 +65827,18 @@ export namespace Prisma {
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusTarefaFieldUpdateOperationsInput | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaFieldUpdateOperationsInput | $Enums.PrioridadeTarefa
+    ordem?: IntFieldUpdateOperationsInput | number
     data_prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    comentarios?: ComentarioTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    anexos?: AnexoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    atividades?: AtividadeTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    aprovacoes?: AprovacaoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    checklist?: ItemChecklistUncheckedUpdateManyWithoutTarefaNestedInput
+    etiquetas?: TarefaEtiquetaUncheckedUpdateManyWithoutTarefaNestedInput
   }
 
   export type TarefaCreateManyInput = {
@@ -55973,6 +65849,8 @@ export namespace Prisma {
     titulo: string
     descricao?: string | null
     status?: $Enums.StatusTarefa
+    prioridade?: $Enums.PrioridadeTarefa
+    ordem?: number
     data_prazo?: Date | string | null
     concluida_em?: Date | string | null
     criado_em?: Date | string
@@ -55984,6 +65862,8 @@ export namespace Prisma {
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusTarefaFieldUpdateOperationsInput | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaFieldUpdateOperationsInput | $Enums.PrioridadeTarefa
+    ordem?: IntFieldUpdateOperationsInput | number
     data_prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -55998,31 +65878,453 @@ export namespace Prisma {
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusTarefaFieldUpdateOperationsInput | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaFieldUpdateOperationsInput | $Enums.PrioridadeTarefa
+    ordem?: IntFieldUpdateOperationsInput | number
     data_prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ComentarioTarefaCreateInput = {
+    id?: string
+    conteudo: string
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    tarefa: TarefaCreateNestedOneWithoutComentariosInput
+    autor?: UsuarioCreateNestedOneWithoutComentarios_tarefaInput
+  }
+
+  export type ComentarioTarefaUncheckedCreateInput = {
+    id?: string
+    tarefa_id: string
+    autor_id?: string | null
+    conteudo: string
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type ComentarioTarefaUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    conteudo?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    tarefa?: TarefaUpdateOneRequiredWithoutComentariosNestedInput
+    autor?: UsuarioUpdateOneWithoutComentarios_tarefaNestedInput
+  }
+
+  export type ComentarioTarefaUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tarefa_id?: StringFieldUpdateOperationsInput | string
+    autor_id?: NullableStringFieldUpdateOperationsInput | string | null
+    conteudo?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ComentarioTarefaCreateManyInput = {
+    id?: string
+    tarefa_id: string
+    autor_id?: string | null
+    conteudo: string
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type ComentarioTarefaUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    conteudo?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ComentarioTarefaUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tarefa_id?: StringFieldUpdateOperationsInput | string
+    autor_id?: NullableStringFieldUpdateOperationsInput | string | null
+    conteudo?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnexoTarefaCreateInput = {
+    id?: string
+    nome: string
+    arquivo_url: string
+    arquivo_tamanho?: number
+    mime_type?: string
+    criado_em?: Date | string
+    tarefa: TarefaCreateNestedOneWithoutAnexosInput
+    criador?: UsuarioCreateNestedOneWithoutAnexos_tarefaInput
+  }
+
+  export type AnexoTarefaUncheckedCreateInput = {
+    id?: string
+    tarefa_id: string
+    criado_por?: string | null
+    nome: string
+    arquivo_url: string
+    arquivo_tamanho?: number
+    mime_type?: string
+    criado_em?: Date | string
+  }
+
+  export type AnexoTarefaUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    arquivo_url?: StringFieldUpdateOperationsInput | string
+    arquivo_tamanho?: IntFieldUpdateOperationsInput | number
+    mime_type?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    tarefa?: TarefaUpdateOneRequiredWithoutAnexosNestedInput
+    criador?: UsuarioUpdateOneWithoutAnexos_tarefaNestedInput
+  }
+
+  export type AnexoTarefaUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tarefa_id?: StringFieldUpdateOperationsInput | string
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    nome?: StringFieldUpdateOperationsInput | string
+    arquivo_url?: StringFieldUpdateOperationsInput | string
+    arquivo_tamanho?: IntFieldUpdateOperationsInput | number
+    mime_type?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnexoTarefaCreateManyInput = {
+    id?: string
+    tarefa_id: string
+    criado_por?: string | null
+    nome: string
+    arquivo_url: string
+    arquivo_tamanho?: number
+    mime_type?: string
+    criado_em?: Date | string
+  }
+
+  export type AnexoTarefaUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    arquivo_url?: StringFieldUpdateOperationsInput | string
+    arquivo_tamanho?: IntFieldUpdateOperationsInput | number
+    mime_type?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnexoTarefaUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tarefa_id?: StringFieldUpdateOperationsInput | string
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    nome?: StringFieldUpdateOperationsInput | string
+    arquivo_url?: StringFieldUpdateOperationsInput | string
+    arquivo_tamanho?: IntFieldUpdateOperationsInput | number
+    mime_type?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AtividadeTarefaCreateInput = {
+    id?: string
+    descricao: string
+    criado_em?: Date | string
+    tarefa: TarefaCreateNestedOneWithoutAtividadesInput
+    autor?: UsuarioCreateNestedOneWithoutAtividades_tarefaInput
+  }
+
+  export type AtividadeTarefaUncheckedCreateInput = {
+    id?: string
+    tarefa_id: string
+    autor_id?: string | null
+    descricao: string
+    criado_em?: Date | string
+  }
+
+  export type AtividadeTarefaUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    descricao?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    tarefa?: TarefaUpdateOneRequiredWithoutAtividadesNestedInput
+    autor?: UsuarioUpdateOneWithoutAtividades_tarefaNestedInput
+  }
+
+  export type AtividadeTarefaUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tarefa_id?: StringFieldUpdateOperationsInput | string
+    autor_id?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AtividadeTarefaCreateManyInput = {
+    id?: string
+    tarefa_id: string
+    autor_id?: string | null
+    descricao: string
+    criado_em?: Date | string
+  }
+
+  export type AtividadeTarefaUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    descricao?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AtividadeTarefaUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tarefa_id?: StringFieldUpdateOperationsInput | string
+    autor_id?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AprovacaoTarefaCreateInput = {
+    id?: string
+    status?: $Enums.StatusAprovacao
+    comentario?: string | null
+    criado_em?: Date | string
+    decidido_em?: Date | string | null
+    tarefa: TarefaCreateNestedOneWithoutAprovacoesInput
+    solicitante?: UsuarioCreateNestedOneWithoutAprovacoes_solicitadasInput
+    aprovador?: UsuarioCreateNestedOneWithoutAprovacoes_recebidasInput
+  }
+
+  export type AprovacaoTarefaUncheckedCreateInput = {
+    id?: string
+    tarefa_id: string
+    solicitante_id?: string | null
+    aprovador_id?: string | null
+    status?: $Enums.StatusAprovacao
+    comentario?: string | null
+    criado_em?: Date | string
+    decidido_em?: Date | string | null
+  }
+
+  export type AprovacaoTarefaUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusAprovacaoFieldUpdateOperationsInput | $Enums.StatusAprovacao
+    comentario?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    decidido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tarefa?: TarefaUpdateOneRequiredWithoutAprovacoesNestedInput
+    solicitante?: UsuarioUpdateOneWithoutAprovacoes_solicitadasNestedInput
+    aprovador?: UsuarioUpdateOneWithoutAprovacoes_recebidasNestedInput
+  }
+
+  export type AprovacaoTarefaUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tarefa_id?: StringFieldUpdateOperationsInput | string
+    solicitante_id?: NullableStringFieldUpdateOperationsInput | string | null
+    aprovador_id?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusAprovacaoFieldUpdateOperationsInput | $Enums.StatusAprovacao
+    comentario?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    decidido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type AprovacaoTarefaCreateManyInput = {
+    id?: string
+    tarefa_id: string
+    solicitante_id?: string | null
+    aprovador_id?: string | null
+    status?: $Enums.StatusAprovacao
+    comentario?: string | null
+    criado_em?: Date | string
+    decidido_em?: Date | string | null
+  }
+
+  export type AprovacaoTarefaUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusAprovacaoFieldUpdateOperationsInput | $Enums.StatusAprovacao
+    comentario?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    decidido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type AprovacaoTarefaUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tarefa_id?: StringFieldUpdateOperationsInput | string
+    solicitante_id?: NullableStringFieldUpdateOperationsInput | string | null
+    aprovador_id?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusAprovacaoFieldUpdateOperationsInput | $Enums.StatusAprovacao
+    comentario?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    decidido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ItemChecklistCreateInput = {
+    id?: string
+    texto: string
+    concluido?: boolean
+    ordem?: number
+    criado_em?: Date | string
+    tarefa: TarefaCreateNestedOneWithoutChecklistInput
+  }
+
+  export type ItemChecklistUncheckedCreateInput = {
+    id?: string
+    tarefa_id: string
+    texto: string
+    concluido?: boolean
+    ordem?: number
+    criado_em?: Date | string
+  }
+
+  export type ItemChecklistUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    texto?: StringFieldUpdateOperationsInput | string
+    concluido?: BoolFieldUpdateOperationsInput | boolean
+    ordem?: IntFieldUpdateOperationsInput | number
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    tarefa?: TarefaUpdateOneRequiredWithoutChecklistNestedInput
+  }
+
+  export type ItemChecklistUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tarefa_id?: StringFieldUpdateOperationsInput | string
+    texto?: StringFieldUpdateOperationsInput | string
+    concluido?: BoolFieldUpdateOperationsInput | boolean
+    ordem?: IntFieldUpdateOperationsInput | number
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ItemChecklistCreateManyInput = {
+    id?: string
+    tarefa_id: string
+    texto: string
+    concluido?: boolean
+    ordem?: number
+    criado_em?: Date | string
+  }
+
+  export type ItemChecklistUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    texto?: StringFieldUpdateOperationsInput | string
+    concluido?: BoolFieldUpdateOperationsInput | boolean
+    ordem?: IntFieldUpdateOperationsInput | number
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ItemChecklistUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tarefa_id?: StringFieldUpdateOperationsInput | string
+    texto?: StringFieldUpdateOperationsInput | string
+    concluido?: BoolFieldUpdateOperationsInput | boolean
+    ordem?: IntFieldUpdateOperationsInput | number
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EtiquetaTarefaCreateInput = {
+    id?: string
+    nome: string
+    cor?: string
+    empresa: EmpresaCreateNestedOneWithoutEtiquetas_tarefaInput
+    tarefas?: TarefaEtiquetaCreateNestedManyWithoutEtiquetaInput
+  }
+
+  export type EtiquetaTarefaUncheckedCreateInput = {
+    id?: string
+    empresa_id: string
+    nome: string
+    cor?: string
+    tarefas?: TarefaEtiquetaUncheckedCreateNestedManyWithoutEtiquetaInput
+  }
+
+  export type EtiquetaTarefaUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cor?: StringFieldUpdateOperationsInput | string
+    empresa?: EmpresaUpdateOneRequiredWithoutEtiquetas_tarefaNestedInput
+    tarefas?: TarefaEtiquetaUpdateManyWithoutEtiquetaNestedInput
+  }
+
+  export type EtiquetaTarefaUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cor?: StringFieldUpdateOperationsInput | string
+    tarefas?: TarefaEtiquetaUncheckedUpdateManyWithoutEtiquetaNestedInput
+  }
+
+  export type EtiquetaTarefaCreateManyInput = {
+    id?: string
+    empresa_id: string
+    nome: string
+    cor?: string
+  }
+
+  export type EtiquetaTarefaUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cor?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EtiquetaTarefaUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cor?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TarefaEtiquetaCreateInput = {
+    tarefa: TarefaCreateNestedOneWithoutEtiquetasInput
+    etiqueta: EtiquetaTarefaCreateNestedOneWithoutTarefasInput
+  }
+
+  export type TarefaEtiquetaUncheckedCreateInput = {
+    tarefa_id: string
+    etiqueta_id: string
+  }
+
+  export type TarefaEtiquetaUpdateInput = {
+    tarefa?: TarefaUpdateOneRequiredWithoutEtiquetasNestedInput
+    etiqueta?: EtiquetaTarefaUpdateOneRequiredWithoutTarefasNestedInput
+  }
+
+  export type TarefaEtiquetaUncheckedUpdateInput = {
+    tarefa_id?: StringFieldUpdateOperationsInput | string
+    etiqueta_id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TarefaEtiquetaCreateManyInput = {
+    tarefa_id: string
+    etiqueta_id: string
+  }
+
+  export type TarefaEtiquetaUpdateManyMutationInput = {
+
+  }
+
+  export type TarefaEtiquetaUncheckedUpdateManyInput = {
+    tarefa_id?: StringFieldUpdateOperationsInput | string
+    etiqueta_id?: StringFieldUpdateOperationsInput | string
+  }
+
   export type DocumentoCreateInput = {
     id?: string
     titulo: string
+    descricao?: string | null
+    categoria?: $Enums.CategoriaDocumento
     arquivo_url: string
     arquivo_nome: string
     arquivo_tamanho?: number
     mime_type?: string
     criado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutDocumentosInput
-    projeto: ProjetoCreateNestedOneWithoutDocumentosInput
+    projeto?: ProjetoCreateNestedOneWithoutDocumentosInput
+    cliente?: ClienteCreateNestedOneWithoutDocumentosInput
+    contrato?: ContratoCreateNestedOneWithoutDocumentosInput
     criador?: UsuarioCreateNestedOneWithoutDocumentos_criadosInput
   }
 
   export type DocumentoUncheckedCreateInput = {
     id?: string
     empresa_id: string
-    projeto_id: string
+    projeto_id?: string | null
+    cliente_id?: string | null
+    contrato_id?: string | null
     criado_por?: string | null
     titulo: string
+    descricao?: string | null
+    categoria?: $Enums.CategoriaDocumento
     arquivo_url: string
     arquivo_nome: string
     arquivo_tamanho?: number
@@ -56033,22 +66335,30 @@ export namespace Prisma {
   export type DocumentoUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: EnumCategoriaDocumentoFieldUpdateOperationsInput | $Enums.CategoriaDocumento
     arquivo_url?: StringFieldUpdateOperationsInput | string
     arquivo_nome?: StringFieldUpdateOperationsInput | string
     arquivo_tamanho?: IntFieldUpdateOperationsInput | number
     mime_type?: StringFieldUpdateOperationsInput | string
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutDocumentosNestedInput
-    projeto?: ProjetoUpdateOneRequiredWithoutDocumentosNestedInput
+    projeto?: ProjetoUpdateOneWithoutDocumentosNestedInput
+    cliente?: ClienteUpdateOneWithoutDocumentosNestedInput
+    contrato?: ContratoUpdateOneWithoutDocumentosNestedInput
     criador?: UsuarioUpdateOneWithoutDocumentos_criadosNestedInput
   }
 
   export type DocumentoUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     empresa_id?: StringFieldUpdateOperationsInput | string
-    projeto_id?: StringFieldUpdateOperationsInput | string
+    projeto_id?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: EnumCategoriaDocumentoFieldUpdateOperationsInput | $Enums.CategoriaDocumento
     arquivo_url?: StringFieldUpdateOperationsInput | string
     arquivo_nome?: StringFieldUpdateOperationsInput | string
     arquivo_tamanho?: IntFieldUpdateOperationsInput | number
@@ -56059,9 +66369,13 @@ export namespace Prisma {
   export type DocumentoCreateManyInput = {
     id?: string
     empresa_id: string
-    projeto_id: string
+    projeto_id?: string | null
+    cliente_id?: string | null
+    contrato_id?: string | null
     criado_por?: string | null
     titulo: string
+    descricao?: string | null
+    categoria?: $Enums.CategoriaDocumento
     arquivo_url: string
     arquivo_nome: string
     arquivo_tamanho?: number
@@ -56072,6 +66386,8 @@ export namespace Prisma {
   export type DocumentoUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: EnumCategoriaDocumentoFieldUpdateOperationsInput | $Enums.CategoriaDocumento
     arquivo_url?: StringFieldUpdateOperationsInput | string
     arquivo_nome?: StringFieldUpdateOperationsInput | string
     arquivo_tamanho?: IntFieldUpdateOperationsInput | number
@@ -56082,9 +66398,13 @@ export namespace Prisma {
   export type DocumentoUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     empresa_id?: StringFieldUpdateOperationsInput | string
-    projeto_id?: StringFieldUpdateOperationsInput | string
+    projeto_id?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: EnumCategoriaDocumentoFieldUpdateOperationsInput | $Enums.CategoriaDocumento
     arquivo_url?: StringFieldUpdateOperationsInput | string
     arquivo_nome?: StringFieldUpdateOperationsInput | string
     arquivo_tamanho?: IntFieldUpdateOperationsInput | number
@@ -57790,6 +68110,12 @@ export namespace Prisma {
     none?: DiagnosticoWhereInput
   }
 
+  export type EtiquetaTarefaListRelationFilter = {
+    every?: EtiquetaTarefaWhereInput
+    some?: EtiquetaTarefaWhereInput
+    none?: EtiquetaTarefaWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -57884,6 +68210,10 @@ export namespace Prisma {
   }
 
   export type DiagnosticoOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type EtiquetaTarefaOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -58032,11 +68362,51 @@ export namespace Prisma {
     none?: TarefaWhereInput
   }
 
+  export type ComentarioTarefaListRelationFilter = {
+    every?: ComentarioTarefaWhereInput
+    some?: ComentarioTarefaWhereInput
+    none?: ComentarioTarefaWhereInput
+  }
+
+  export type AnexoTarefaListRelationFilter = {
+    every?: AnexoTarefaWhereInput
+    some?: AnexoTarefaWhereInput
+    none?: AnexoTarefaWhereInput
+  }
+
+  export type AtividadeTarefaListRelationFilter = {
+    every?: AtividadeTarefaWhereInput
+    some?: AtividadeTarefaWhereInput
+    none?: AtividadeTarefaWhereInput
+  }
+
+  export type AprovacaoTarefaListRelationFilter = {
+    every?: AprovacaoTarefaWhereInput
+    some?: AprovacaoTarefaWhereInput
+    none?: AprovacaoTarefaWhereInput
+  }
+
   export type AtividadeCRMOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type TarefaOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ComentarioTarefaOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AnexoTarefaOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AtividadeTarefaOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AprovacaoTarefaOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -59393,9 +69763,36 @@ export namespace Prisma {
     not?: NestedEnumStatusTarefaFilter<$PrismaModel> | $Enums.StatusTarefa
   }
 
+  export type EnumPrioridadeTarefaFilter<$PrismaModel = never> = {
+    equals?: $Enums.PrioridadeTarefa | EnumPrioridadeTarefaFieldRefInput<$PrismaModel>
+    in?: $Enums.PrioridadeTarefa[] | ListEnumPrioridadeTarefaFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PrioridadeTarefa[] | ListEnumPrioridadeTarefaFieldRefInput<$PrismaModel>
+    not?: NestedEnumPrioridadeTarefaFilter<$PrismaModel> | $Enums.PrioridadeTarefa
+  }
+
   export type EtapaScalarRelationFilter = {
     is?: EtapaWhereInput
     isNot?: EtapaWhereInput
+  }
+
+  export type ItemChecklistListRelationFilter = {
+    every?: ItemChecklistWhereInput
+    some?: ItemChecklistWhereInput
+    none?: ItemChecklistWhereInput
+  }
+
+  export type TarefaEtiquetaListRelationFilter = {
+    every?: TarefaEtiquetaWhereInput
+    some?: TarefaEtiquetaWhereInput
+    none?: TarefaEtiquetaWhereInput
+  }
+
+  export type ItemChecklistOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TarefaEtiquetaOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type TarefaCountOrderByAggregateInput = {
@@ -59406,10 +69803,16 @@ export namespace Prisma {
     titulo?: SortOrder
     descricao?: SortOrder
     status?: SortOrder
+    prioridade?: SortOrder
+    ordem?: SortOrder
     data_prazo?: SortOrder
     concluida_em?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
+  }
+
+  export type TarefaAvgOrderByAggregateInput = {
+    ordem?: SortOrder
   }
 
   export type TarefaMaxOrderByAggregateInput = {
@@ -59420,6 +69823,8 @@ export namespace Prisma {
     titulo?: SortOrder
     descricao?: SortOrder
     status?: SortOrder
+    prioridade?: SortOrder
+    ordem?: SortOrder
     data_prazo?: SortOrder
     concluida_em?: SortOrder
     criado_em?: SortOrder
@@ -59434,10 +69839,16 @@ export namespace Prisma {
     titulo?: SortOrder
     descricao?: SortOrder
     status?: SortOrder
+    prioridade?: SortOrder
+    ordem?: SortOrder
     data_prazo?: SortOrder
     concluida_em?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
+  }
+
+  export type TarefaSumOrderByAggregateInput = {
+    ordem?: SortOrder
   }
 
   export type EnumStatusTarefaWithAggregatesFilter<$PrismaModel = never> = {
@@ -59450,12 +69861,261 @@ export namespace Prisma {
     _max?: NestedEnumStatusTarefaFilter<$PrismaModel>
   }
 
+  export type EnumPrioridadeTarefaWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PrioridadeTarefa | EnumPrioridadeTarefaFieldRefInput<$PrismaModel>
+    in?: $Enums.PrioridadeTarefa[] | ListEnumPrioridadeTarefaFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PrioridadeTarefa[] | ListEnumPrioridadeTarefaFieldRefInput<$PrismaModel>
+    not?: NestedEnumPrioridadeTarefaWithAggregatesFilter<$PrismaModel> | $Enums.PrioridadeTarefa
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPrioridadeTarefaFilter<$PrismaModel>
+    _max?: NestedEnumPrioridadeTarefaFilter<$PrismaModel>
+  }
+
+  export type TarefaScalarRelationFilter = {
+    is?: TarefaWhereInput
+    isNot?: TarefaWhereInput
+  }
+
+  export type ComentarioTarefaCountOrderByAggregateInput = {
+    id?: SortOrder
+    tarefa_id?: SortOrder
+    autor_id?: SortOrder
+    conteudo?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+  }
+
+  export type ComentarioTarefaMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tarefa_id?: SortOrder
+    autor_id?: SortOrder
+    conteudo?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+  }
+
+  export type ComentarioTarefaMinOrderByAggregateInput = {
+    id?: SortOrder
+    tarefa_id?: SortOrder
+    autor_id?: SortOrder
+    conteudo?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+  }
+
+  export type AnexoTarefaCountOrderByAggregateInput = {
+    id?: SortOrder
+    tarefa_id?: SortOrder
+    criado_por?: SortOrder
+    nome?: SortOrder
+    arquivo_url?: SortOrder
+    arquivo_tamanho?: SortOrder
+    mime_type?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type AnexoTarefaAvgOrderByAggregateInput = {
+    arquivo_tamanho?: SortOrder
+  }
+
+  export type AnexoTarefaMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tarefa_id?: SortOrder
+    criado_por?: SortOrder
+    nome?: SortOrder
+    arquivo_url?: SortOrder
+    arquivo_tamanho?: SortOrder
+    mime_type?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type AnexoTarefaMinOrderByAggregateInput = {
+    id?: SortOrder
+    tarefa_id?: SortOrder
+    criado_por?: SortOrder
+    nome?: SortOrder
+    arquivo_url?: SortOrder
+    arquivo_tamanho?: SortOrder
+    mime_type?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type AnexoTarefaSumOrderByAggregateInput = {
+    arquivo_tamanho?: SortOrder
+  }
+
+  export type AtividadeTarefaCountOrderByAggregateInput = {
+    id?: SortOrder
+    tarefa_id?: SortOrder
+    autor_id?: SortOrder
+    descricao?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type AtividadeTarefaMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tarefa_id?: SortOrder
+    autor_id?: SortOrder
+    descricao?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type AtividadeTarefaMinOrderByAggregateInput = {
+    id?: SortOrder
+    tarefa_id?: SortOrder
+    autor_id?: SortOrder
+    descricao?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type EnumStatusAprovacaoFilter<$PrismaModel = never> = {
+    equals?: $Enums.StatusAprovacao | EnumStatusAprovacaoFieldRefInput<$PrismaModel>
+    in?: $Enums.StatusAprovacao[] | ListEnumStatusAprovacaoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.StatusAprovacao[] | ListEnumStatusAprovacaoFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusAprovacaoFilter<$PrismaModel> | $Enums.StatusAprovacao
+  }
+
+  export type AprovacaoTarefaCountOrderByAggregateInput = {
+    id?: SortOrder
+    tarefa_id?: SortOrder
+    solicitante_id?: SortOrder
+    aprovador_id?: SortOrder
+    status?: SortOrder
+    comentario?: SortOrder
+    criado_em?: SortOrder
+    decidido_em?: SortOrder
+  }
+
+  export type AprovacaoTarefaMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tarefa_id?: SortOrder
+    solicitante_id?: SortOrder
+    aprovador_id?: SortOrder
+    status?: SortOrder
+    comentario?: SortOrder
+    criado_em?: SortOrder
+    decidido_em?: SortOrder
+  }
+
+  export type AprovacaoTarefaMinOrderByAggregateInput = {
+    id?: SortOrder
+    tarefa_id?: SortOrder
+    solicitante_id?: SortOrder
+    aprovador_id?: SortOrder
+    status?: SortOrder
+    comentario?: SortOrder
+    criado_em?: SortOrder
+    decidido_em?: SortOrder
+  }
+
+  export type EnumStatusAprovacaoWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.StatusAprovacao | EnumStatusAprovacaoFieldRefInput<$PrismaModel>
+    in?: $Enums.StatusAprovacao[] | ListEnumStatusAprovacaoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.StatusAprovacao[] | ListEnumStatusAprovacaoFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusAprovacaoWithAggregatesFilter<$PrismaModel> | $Enums.StatusAprovacao
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStatusAprovacaoFilter<$PrismaModel>
+    _max?: NestedEnumStatusAprovacaoFilter<$PrismaModel>
+  }
+
+  export type ItemChecklistCountOrderByAggregateInput = {
+    id?: SortOrder
+    tarefa_id?: SortOrder
+    texto?: SortOrder
+    concluido?: SortOrder
+    ordem?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type ItemChecklistAvgOrderByAggregateInput = {
+    ordem?: SortOrder
+  }
+
+  export type ItemChecklistMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tarefa_id?: SortOrder
+    texto?: SortOrder
+    concluido?: SortOrder
+    ordem?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type ItemChecklistMinOrderByAggregateInput = {
+    id?: SortOrder
+    tarefa_id?: SortOrder
+    texto?: SortOrder
+    concluido?: SortOrder
+    ordem?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type ItemChecklistSumOrderByAggregateInput = {
+    ordem?: SortOrder
+  }
+
+  export type EtiquetaTarefaCountOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    nome?: SortOrder
+    cor?: SortOrder
+  }
+
+  export type EtiquetaTarefaMaxOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    nome?: SortOrder
+    cor?: SortOrder
+  }
+
+  export type EtiquetaTarefaMinOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    nome?: SortOrder
+    cor?: SortOrder
+  }
+
+  export type EtiquetaTarefaScalarRelationFilter = {
+    is?: EtiquetaTarefaWhereInput
+    isNot?: EtiquetaTarefaWhereInput
+  }
+
+  export type TarefaEtiquetaTarefa_idEtiqueta_idCompoundUniqueInput = {
+    tarefa_id: string
+    etiqueta_id: string
+  }
+
+  export type TarefaEtiquetaCountOrderByAggregateInput = {
+    tarefa_id?: SortOrder
+    etiqueta_id?: SortOrder
+  }
+
+  export type TarefaEtiquetaMaxOrderByAggregateInput = {
+    tarefa_id?: SortOrder
+    etiqueta_id?: SortOrder
+  }
+
+  export type TarefaEtiquetaMinOrderByAggregateInput = {
+    tarefa_id?: SortOrder
+    etiqueta_id?: SortOrder
+  }
+
+  export type EnumCategoriaDocumentoFilter<$PrismaModel = never> = {
+    equals?: $Enums.CategoriaDocumento | EnumCategoriaDocumentoFieldRefInput<$PrismaModel>
+    in?: $Enums.CategoriaDocumento[] | ListEnumCategoriaDocumentoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CategoriaDocumento[] | ListEnumCategoriaDocumentoFieldRefInput<$PrismaModel>
+    not?: NestedEnumCategoriaDocumentoFilter<$PrismaModel> | $Enums.CategoriaDocumento
+  }
+
   export type DocumentoCountOrderByAggregateInput = {
     id?: SortOrder
     empresa_id?: SortOrder
     projeto_id?: SortOrder
+    cliente_id?: SortOrder
+    contrato_id?: SortOrder
     criado_por?: SortOrder
     titulo?: SortOrder
+    descricao?: SortOrder
+    categoria?: SortOrder
     arquivo_url?: SortOrder
     arquivo_nome?: SortOrder
     arquivo_tamanho?: SortOrder
@@ -59471,8 +70131,12 @@ export namespace Prisma {
     id?: SortOrder
     empresa_id?: SortOrder
     projeto_id?: SortOrder
+    cliente_id?: SortOrder
+    contrato_id?: SortOrder
     criado_por?: SortOrder
     titulo?: SortOrder
+    descricao?: SortOrder
+    categoria?: SortOrder
     arquivo_url?: SortOrder
     arquivo_nome?: SortOrder
     arquivo_tamanho?: SortOrder
@@ -59484,8 +70148,12 @@ export namespace Prisma {
     id?: SortOrder
     empresa_id?: SortOrder
     projeto_id?: SortOrder
+    cliente_id?: SortOrder
+    contrato_id?: SortOrder
     criado_por?: SortOrder
     titulo?: SortOrder
+    descricao?: SortOrder
+    categoria?: SortOrder
     arquivo_url?: SortOrder
     arquivo_nome?: SortOrder
     arquivo_tamanho?: SortOrder
@@ -59495,6 +70163,16 @@ export namespace Prisma {
 
   export type DocumentoSumOrderByAggregateInput = {
     arquivo_tamanho?: SortOrder
+  }
+
+  export type EnumCategoriaDocumentoWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CategoriaDocumento | EnumCategoriaDocumentoFieldRefInput<$PrismaModel>
+    in?: $Enums.CategoriaDocumento[] | ListEnumCategoriaDocumentoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CategoriaDocumento[] | ListEnumCategoriaDocumentoFieldRefInput<$PrismaModel>
+    not?: NestedEnumCategoriaDocumentoWithAggregatesFilter<$PrismaModel> | $Enums.CategoriaDocumento
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCategoriaDocumentoFilter<$PrismaModel>
+    _max?: NestedEnumCategoriaDocumentoFilter<$PrismaModel>
   }
 
   export type EnumTipoPlanoContasFilter<$PrismaModel = never> = {
@@ -60497,6 +71175,13 @@ export namespace Prisma {
     connect?: DiagnosticoWhereUniqueInput | DiagnosticoWhereUniqueInput[]
   }
 
+  export type EtiquetaTarefaCreateNestedManyWithoutEmpresaInput = {
+    create?: XOR<EtiquetaTarefaCreateWithoutEmpresaInput, EtiquetaTarefaUncheckedCreateWithoutEmpresaInput> | EtiquetaTarefaCreateWithoutEmpresaInput[] | EtiquetaTarefaUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: EtiquetaTarefaCreateOrConnectWithoutEmpresaInput | EtiquetaTarefaCreateOrConnectWithoutEmpresaInput[]
+    createMany?: EtiquetaTarefaCreateManyEmpresaInputEnvelope
+    connect?: EtiquetaTarefaWhereUniqueInput | EtiquetaTarefaWhereUniqueInput[]
+  }
+
   export type MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput = {
     create?: XOR<MembroEmpresaCreateWithoutEmpresaInput, MembroEmpresaUncheckedCreateWithoutEmpresaInput> | MembroEmpresaCreateWithoutEmpresaInput[] | MembroEmpresaUncheckedCreateWithoutEmpresaInput[]
     connectOrCreate?: MembroEmpresaCreateOrConnectWithoutEmpresaInput | MembroEmpresaCreateOrConnectWithoutEmpresaInput[]
@@ -60656,6 +71341,13 @@ export namespace Prisma {
     connectOrCreate?: DiagnosticoCreateOrConnectWithoutEmpresaInput | DiagnosticoCreateOrConnectWithoutEmpresaInput[]
     createMany?: DiagnosticoCreateManyEmpresaInputEnvelope
     connect?: DiagnosticoWhereUniqueInput | DiagnosticoWhereUniqueInput[]
+  }
+
+  export type EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput = {
+    create?: XOR<EtiquetaTarefaCreateWithoutEmpresaInput, EtiquetaTarefaUncheckedCreateWithoutEmpresaInput> | EtiquetaTarefaCreateWithoutEmpresaInput[] | EtiquetaTarefaUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: EtiquetaTarefaCreateOrConnectWithoutEmpresaInput | EtiquetaTarefaCreateOrConnectWithoutEmpresaInput[]
+    createMany?: EtiquetaTarefaCreateManyEmpresaInputEnvelope
+    connect?: EtiquetaTarefaWhereUniqueInput | EtiquetaTarefaWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -61000,6 +71692,20 @@ export namespace Prisma {
     deleteMany?: DiagnosticoScalarWhereInput | DiagnosticoScalarWhereInput[]
   }
 
+  export type EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput = {
+    create?: XOR<EtiquetaTarefaCreateWithoutEmpresaInput, EtiquetaTarefaUncheckedCreateWithoutEmpresaInput> | EtiquetaTarefaCreateWithoutEmpresaInput[] | EtiquetaTarefaUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: EtiquetaTarefaCreateOrConnectWithoutEmpresaInput | EtiquetaTarefaCreateOrConnectWithoutEmpresaInput[]
+    upsert?: EtiquetaTarefaUpsertWithWhereUniqueWithoutEmpresaInput | EtiquetaTarefaUpsertWithWhereUniqueWithoutEmpresaInput[]
+    createMany?: EtiquetaTarefaCreateManyEmpresaInputEnvelope
+    set?: EtiquetaTarefaWhereUniqueInput | EtiquetaTarefaWhereUniqueInput[]
+    disconnect?: EtiquetaTarefaWhereUniqueInput | EtiquetaTarefaWhereUniqueInput[]
+    delete?: EtiquetaTarefaWhereUniqueInput | EtiquetaTarefaWhereUniqueInput[]
+    connect?: EtiquetaTarefaWhereUniqueInput | EtiquetaTarefaWhereUniqueInput[]
+    update?: EtiquetaTarefaUpdateWithWhereUniqueWithoutEmpresaInput | EtiquetaTarefaUpdateWithWhereUniqueWithoutEmpresaInput[]
+    updateMany?: EtiquetaTarefaUpdateManyWithWhereWithoutEmpresaInput | EtiquetaTarefaUpdateManyWithWhereWithoutEmpresaInput[]
+    deleteMany?: EtiquetaTarefaScalarWhereInput | EtiquetaTarefaScalarWhereInput[]
+  }
+
   export type MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput = {
     create?: XOR<MembroEmpresaCreateWithoutEmpresaInput, MembroEmpresaUncheckedCreateWithoutEmpresaInput> | MembroEmpresaCreateWithoutEmpresaInput[] | MembroEmpresaUncheckedCreateWithoutEmpresaInput[]
     connectOrCreate?: MembroEmpresaCreateOrConnectWithoutEmpresaInput | MembroEmpresaCreateOrConnectWithoutEmpresaInput[]
@@ -61322,6 +72028,20 @@ export namespace Prisma {
     deleteMany?: DiagnosticoScalarWhereInput | DiagnosticoScalarWhereInput[]
   }
 
+  export type EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput = {
+    create?: XOR<EtiquetaTarefaCreateWithoutEmpresaInput, EtiquetaTarefaUncheckedCreateWithoutEmpresaInput> | EtiquetaTarefaCreateWithoutEmpresaInput[] | EtiquetaTarefaUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: EtiquetaTarefaCreateOrConnectWithoutEmpresaInput | EtiquetaTarefaCreateOrConnectWithoutEmpresaInput[]
+    upsert?: EtiquetaTarefaUpsertWithWhereUniqueWithoutEmpresaInput | EtiquetaTarefaUpsertWithWhereUniqueWithoutEmpresaInput[]
+    createMany?: EtiquetaTarefaCreateManyEmpresaInputEnvelope
+    set?: EtiquetaTarefaWhereUniqueInput | EtiquetaTarefaWhereUniqueInput[]
+    disconnect?: EtiquetaTarefaWhereUniqueInput | EtiquetaTarefaWhereUniqueInput[]
+    delete?: EtiquetaTarefaWhereUniqueInput | EtiquetaTarefaWhereUniqueInput[]
+    connect?: EtiquetaTarefaWhereUniqueInput | EtiquetaTarefaWhereUniqueInput[]
+    update?: EtiquetaTarefaUpdateWithWhereUniqueWithoutEmpresaInput | EtiquetaTarefaUpdateWithWhereUniqueWithoutEmpresaInput[]
+    updateMany?: EtiquetaTarefaUpdateManyWithWhereWithoutEmpresaInput | EtiquetaTarefaUpdateManyWithWhereWithoutEmpresaInput[]
+    deleteMany?: EtiquetaTarefaScalarWhereInput | EtiquetaTarefaScalarWhereInput[]
+  }
+
   export type MembroEmpresaCreateNestedManyWithoutUsuarioInput = {
     create?: XOR<MembroEmpresaCreateWithoutUsuarioInput, MembroEmpresaUncheckedCreateWithoutUsuarioInput> | MembroEmpresaCreateWithoutUsuarioInput[] | MembroEmpresaUncheckedCreateWithoutUsuarioInput[]
     connectOrCreate?: MembroEmpresaCreateOrConnectWithoutUsuarioInput | MembroEmpresaCreateOrConnectWithoutUsuarioInput[]
@@ -61427,6 +72147,41 @@ export namespace Prisma {
     connect?: ConviteClienteWhereUniqueInput | ConviteClienteWhereUniqueInput[]
   }
 
+  export type ComentarioTarefaCreateNestedManyWithoutAutorInput = {
+    create?: XOR<ComentarioTarefaCreateWithoutAutorInput, ComentarioTarefaUncheckedCreateWithoutAutorInput> | ComentarioTarefaCreateWithoutAutorInput[] | ComentarioTarefaUncheckedCreateWithoutAutorInput[]
+    connectOrCreate?: ComentarioTarefaCreateOrConnectWithoutAutorInput | ComentarioTarefaCreateOrConnectWithoutAutorInput[]
+    createMany?: ComentarioTarefaCreateManyAutorInputEnvelope
+    connect?: ComentarioTarefaWhereUniqueInput | ComentarioTarefaWhereUniqueInput[]
+  }
+
+  export type AnexoTarefaCreateNestedManyWithoutCriadorInput = {
+    create?: XOR<AnexoTarefaCreateWithoutCriadorInput, AnexoTarefaUncheckedCreateWithoutCriadorInput> | AnexoTarefaCreateWithoutCriadorInput[] | AnexoTarefaUncheckedCreateWithoutCriadorInput[]
+    connectOrCreate?: AnexoTarefaCreateOrConnectWithoutCriadorInput | AnexoTarefaCreateOrConnectWithoutCriadorInput[]
+    createMany?: AnexoTarefaCreateManyCriadorInputEnvelope
+    connect?: AnexoTarefaWhereUniqueInput | AnexoTarefaWhereUniqueInput[]
+  }
+
+  export type AtividadeTarefaCreateNestedManyWithoutAutorInput = {
+    create?: XOR<AtividadeTarefaCreateWithoutAutorInput, AtividadeTarefaUncheckedCreateWithoutAutorInput> | AtividadeTarefaCreateWithoutAutorInput[] | AtividadeTarefaUncheckedCreateWithoutAutorInput[]
+    connectOrCreate?: AtividadeTarefaCreateOrConnectWithoutAutorInput | AtividadeTarefaCreateOrConnectWithoutAutorInput[]
+    createMany?: AtividadeTarefaCreateManyAutorInputEnvelope
+    connect?: AtividadeTarefaWhereUniqueInput | AtividadeTarefaWhereUniqueInput[]
+  }
+
+  export type AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput = {
+    create?: XOR<AprovacaoTarefaCreateWithoutSolicitanteInput, AprovacaoTarefaUncheckedCreateWithoutSolicitanteInput> | AprovacaoTarefaCreateWithoutSolicitanteInput[] | AprovacaoTarefaUncheckedCreateWithoutSolicitanteInput[]
+    connectOrCreate?: AprovacaoTarefaCreateOrConnectWithoutSolicitanteInput | AprovacaoTarefaCreateOrConnectWithoutSolicitanteInput[]
+    createMany?: AprovacaoTarefaCreateManySolicitanteInputEnvelope
+    connect?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
+  }
+
+  export type AprovacaoTarefaCreateNestedManyWithoutAprovadorInput = {
+    create?: XOR<AprovacaoTarefaCreateWithoutAprovadorInput, AprovacaoTarefaUncheckedCreateWithoutAprovadorInput> | AprovacaoTarefaCreateWithoutAprovadorInput[] | AprovacaoTarefaUncheckedCreateWithoutAprovadorInput[]
+    connectOrCreate?: AprovacaoTarefaCreateOrConnectWithoutAprovadorInput | AprovacaoTarefaCreateOrConnectWithoutAprovadorInput[]
+    createMany?: AprovacaoTarefaCreateManyAprovadorInputEnvelope
+    connect?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
+  }
+
   export type MembroEmpresaUncheckedCreateNestedManyWithoutUsuarioInput = {
     create?: XOR<MembroEmpresaCreateWithoutUsuarioInput, MembroEmpresaUncheckedCreateWithoutUsuarioInput> | MembroEmpresaCreateWithoutUsuarioInput[] | MembroEmpresaUncheckedCreateWithoutUsuarioInput[]
     connectOrCreate?: MembroEmpresaCreateOrConnectWithoutUsuarioInput | MembroEmpresaCreateOrConnectWithoutUsuarioInput[]
@@ -61530,6 +72285,41 @@ export namespace Prisma {
     connectOrCreate?: ConviteClienteCreateOrConnectWithoutCriadorInput | ConviteClienteCreateOrConnectWithoutCriadorInput[]
     createMany?: ConviteClienteCreateManyCriadorInputEnvelope
     connect?: ConviteClienteWhereUniqueInput | ConviteClienteWhereUniqueInput[]
+  }
+
+  export type ComentarioTarefaUncheckedCreateNestedManyWithoutAutorInput = {
+    create?: XOR<ComentarioTarefaCreateWithoutAutorInput, ComentarioTarefaUncheckedCreateWithoutAutorInput> | ComentarioTarefaCreateWithoutAutorInput[] | ComentarioTarefaUncheckedCreateWithoutAutorInput[]
+    connectOrCreate?: ComentarioTarefaCreateOrConnectWithoutAutorInput | ComentarioTarefaCreateOrConnectWithoutAutorInput[]
+    createMany?: ComentarioTarefaCreateManyAutorInputEnvelope
+    connect?: ComentarioTarefaWhereUniqueInput | ComentarioTarefaWhereUniqueInput[]
+  }
+
+  export type AnexoTarefaUncheckedCreateNestedManyWithoutCriadorInput = {
+    create?: XOR<AnexoTarefaCreateWithoutCriadorInput, AnexoTarefaUncheckedCreateWithoutCriadorInput> | AnexoTarefaCreateWithoutCriadorInput[] | AnexoTarefaUncheckedCreateWithoutCriadorInput[]
+    connectOrCreate?: AnexoTarefaCreateOrConnectWithoutCriadorInput | AnexoTarefaCreateOrConnectWithoutCriadorInput[]
+    createMany?: AnexoTarefaCreateManyCriadorInputEnvelope
+    connect?: AnexoTarefaWhereUniqueInput | AnexoTarefaWhereUniqueInput[]
+  }
+
+  export type AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput = {
+    create?: XOR<AtividadeTarefaCreateWithoutAutorInput, AtividadeTarefaUncheckedCreateWithoutAutorInput> | AtividadeTarefaCreateWithoutAutorInput[] | AtividadeTarefaUncheckedCreateWithoutAutorInput[]
+    connectOrCreate?: AtividadeTarefaCreateOrConnectWithoutAutorInput | AtividadeTarefaCreateOrConnectWithoutAutorInput[]
+    createMany?: AtividadeTarefaCreateManyAutorInputEnvelope
+    connect?: AtividadeTarefaWhereUniqueInput | AtividadeTarefaWhereUniqueInput[]
+  }
+
+  export type AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput = {
+    create?: XOR<AprovacaoTarefaCreateWithoutSolicitanteInput, AprovacaoTarefaUncheckedCreateWithoutSolicitanteInput> | AprovacaoTarefaCreateWithoutSolicitanteInput[] | AprovacaoTarefaUncheckedCreateWithoutSolicitanteInput[]
+    connectOrCreate?: AprovacaoTarefaCreateOrConnectWithoutSolicitanteInput | AprovacaoTarefaCreateOrConnectWithoutSolicitanteInput[]
+    createMany?: AprovacaoTarefaCreateManySolicitanteInputEnvelope
+    connect?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
+  }
+
+  export type AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput = {
+    create?: XOR<AprovacaoTarefaCreateWithoutAprovadorInput, AprovacaoTarefaUncheckedCreateWithoutAprovadorInput> | AprovacaoTarefaCreateWithoutAprovadorInput[] | AprovacaoTarefaUncheckedCreateWithoutAprovadorInput[]
+    connectOrCreate?: AprovacaoTarefaCreateOrConnectWithoutAprovadorInput | AprovacaoTarefaCreateOrConnectWithoutAprovadorInput[]
+    createMany?: AprovacaoTarefaCreateManyAprovadorInputEnvelope
+    connect?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
   }
 
   export type MembroEmpresaUpdateManyWithoutUsuarioNestedInput = {
@@ -61742,6 +72532,76 @@ export namespace Prisma {
     deleteMany?: ConviteClienteScalarWhereInput | ConviteClienteScalarWhereInput[]
   }
 
+  export type ComentarioTarefaUpdateManyWithoutAutorNestedInput = {
+    create?: XOR<ComentarioTarefaCreateWithoutAutorInput, ComentarioTarefaUncheckedCreateWithoutAutorInput> | ComentarioTarefaCreateWithoutAutorInput[] | ComentarioTarefaUncheckedCreateWithoutAutorInput[]
+    connectOrCreate?: ComentarioTarefaCreateOrConnectWithoutAutorInput | ComentarioTarefaCreateOrConnectWithoutAutorInput[]
+    upsert?: ComentarioTarefaUpsertWithWhereUniqueWithoutAutorInput | ComentarioTarefaUpsertWithWhereUniqueWithoutAutorInput[]
+    createMany?: ComentarioTarefaCreateManyAutorInputEnvelope
+    set?: ComentarioTarefaWhereUniqueInput | ComentarioTarefaWhereUniqueInput[]
+    disconnect?: ComentarioTarefaWhereUniqueInput | ComentarioTarefaWhereUniqueInput[]
+    delete?: ComentarioTarefaWhereUniqueInput | ComentarioTarefaWhereUniqueInput[]
+    connect?: ComentarioTarefaWhereUniqueInput | ComentarioTarefaWhereUniqueInput[]
+    update?: ComentarioTarefaUpdateWithWhereUniqueWithoutAutorInput | ComentarioTarefaUpdateWithWhereUniqueWithoutAutorInput[]
+    updateMany?: ComentarioTarefaUpdateManyWithWhereWithoutAutorInput | ComentarioTarefaUpdateManyWithWhereWithoutAutorInput[]
+    deleteMany?: ComentarioTarefaScalarWhereInput | ComentarioTarefaScalarWhereInput[]
+  }
+
+  export type AnexoTarefaUpdateManyWithoutCriadorNestedInput = {
+    create?: XOR<AnexoTarefaCreateWithoutCriadorInput, AnexoTarefaUncheckedCreateWithoutCriadorInput> | AnexoTarefaCreateWithoutCriadorInput[] | AnexoTarefaUncheckedCreateWithoutCriadorInput[]
+    connectOrCreate?: AnexoTarefaCreateOrConnectWithoutCriadorInput | AnexoTarefaCreateOrConnectWithoutCriadorInput[]
+    upsert?: AnexoTarefaUpsertWithWhereUniqueWithoutCriadorInput | AnexoTarefaUpsertWithWhereUniqueWithoutCriadorInput[]
+    createMany?: AnexoTarefaCreateManyCriadorInputEnvelope
+    set?: AnexoTarefaWhereUniqueInput | AnexoTarefaWhereUniqueInput[]
+    disconnect?: AnexoTarefaWhereUniqueInput | AnexoTarefaWhereUniqueInput[]
+    delete?: AnexoTarefaWhereUniqueInput | AnexoTarefaWhereUniqueInput[]
+    connect?: AnexoTarefaWhereUniqueInput | AnexoTarefaWhereUniqueInput[]
+    update?: AnexoTarefaUpdateWithWhereUniqueWithoutCriadorInput | AnexoTarefaUpdateWithWhereUniqueWithoutCriadorInput[]
+    updateMany?: AnexoTarefaUpdateManyWithWhereWithoutCriadorInput | AnexoTarefaUpdateManyWithWhereWithoutCriadorInput[]
+    deleteMany?: AnexoTarefaScalarWhereInput | AnexoTarefaScalarWhereInput[]
+  }
+
+  export type AtividadeTarefaUpdateManyWithoutAutorNestedInput = {
+    create?: XOR<AtividadeTarefaCreateWithoutAutorInput, AtividadeTarefaUncheckedCreateWithoutAutorInput> | AtividadeTarefaCreateWithoutAutorInput[] | AtividadeTarefaUncheckedCreateWithoutAutorInput[]
+    connectOrCreate?: AtividadeTarefaCreateOrConnectWithoutAutorInput | AtividadeTarefaCreateOrConnectWithoutAutorInput[]
+    upsert?: AtividadeTarefaUpsertWithWhereUniqueWithoutAutorInput | AtividadeTarefaUpsertWithWhereUniqueWithoutAutorInput[]
+    createMany?: AtividadeTarefaCreateManyAutorInputEnvelope
+    set?: AtividadeTarefaWhereUniqueInput | AtividadeTarefaWhereUniqueInput[]
+    disconnect?: AtividadeTarefaWhereUniqueInput | AtividadeTarefaWhereUniqueInput[]
+    delete?: AtividadeTarefaWhereUniqueInput | AtividadeTarefaWhereUniqueInput[]
+    connect?: AtividadeTarefaWhereUniqueInput | AtividadeTarefaWhereUniqueInput[]
+    update?: AtividadeTarefaUpdateWithWhereUniqueWithoutAutorInput | AtividadeTarefaUpdateWithWhereUniqueWithoutAutorInput[]
+    updateMany?: AtividadeTarefaUpdateManyWithWhereWithoutAutorInput | AtividadeTarefaUpdateManyWithWhereWithoutAutorInput[]
+    deleteMany?: AtividadeTarefaScalarWhereInput | AtividadeTarefaScalarWhereInput[]
+  }
+
+  export type AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput = {
+    create?: XOR<AprovacaoTarefaCreateWithoutSolicitanteInput, AprovacaoTarefaUncheckedCreateWithoutSolicitanteInput> | AprovacaoTarefaCreateWithoutSolicitanteInput[] | AprovacaoTarefaUncheckedCreateWithoutSolicitanteInput[]
+    connectOrCreate?: AprovacaoTarefaCreateOrConnectWithoutSolicitanteInput | AprovacaoTarefaCreateOrConnectWithoutSolicitanteInput[]
+    upsert?: AprovacaoTarefaUpsertWithWhereUniqueWithoutSolicitanteInput | AprovacaoTarefaUpsertWithWhereUniqueWithoutSolicitanteInput[]
+    createMany?: AprovacaoTarefaCreateManySolicitanteInputEnvelope
+    set?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
+    disconnect?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
+    delete?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
+    connect?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
+    update?: AprovacaoTarefaUpdateWithWhereUniqueWithoutSolicitanteInput | AprovacaoTarefaUpdateWithWhereUniqueWithoutSolicitanteInput[]
+    updateMany?: AprovacaoTarefaUpdateManyWithWhereWithoutSolicitanteInput | AprovacaoTarefaUpdateManyWithWhereWithoutSolicitanteInput[]
+    deleteMany?: AprovacaoTarefaScalarWhereInput | AprovacaoTarefaScalarWhereInput[]
+  }
+
+  export type AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput = {
+    create?: XOR<AprovacaoTarefaCreateWithoutAprovadorInput, AprovacaoTarefaUncheckedCreateWithoutAprovadorInput> | AprovacaoTarefaCreateWithoutAprovadorInput[] | AprovacaoTarefaUncheckedCreateWithoutAprovadorInput[]
+    connectOrCreate?: AprovacaoTarefaCreateOrConnectWithoutAprovadorInput | AprovacaoTarefaCreateOrConnectWithoutAprovadorInput[]
+    upsert?: AprovacaoTarefaUpsertWithWhereUniqueWithoutAprovadorInput | AprovacaoTarefaUpsertWithWhereUniqueWithoutAprovadorInput[]
+    createMany?: AprovacaoTarefaCreateManyAprovadorInputEnvelope
+    set?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
+    disconnect?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
+    delete?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
+    connect?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
+    update?: AprovacaoTarefaUpdateWithWhereUniqueWithoutAprovadorInput | AprovacaoTarefaUpdateWithWhereUniqueWithoutAprovadorInput[]
+    updateMany?: AprovacaoTarefaUpdateManyWithWhereWithoutAprovadorInput | AprovacaoTarefaUpdateManyWithWhereWithoutAprovadorInput[]
+    deleteMany?: AprovacaoTarefaScalarWhereInput | AprovacaoTarefaScalarWhereInput[]
+  }
+
   export type MembroEmpresaUncheckedUpdateManyWithoutUsuarioNestedInput = {
     create?: XOR<MembroEmpresaCreateWithoutUsuarioInput, MembroEmpresaUncheckedCreateWithoutUsuarioInput> | MembroEmpresaCreateWithoutUsuarioInput[] | MembroEmpresaUncheckedCreateWithoutUsuarioInput[]
     connectOrCreate?: MembroEmpresaCreateOrConnectWithoutUsuarioInput | MembroEmpresaCreateOrConnectWithoutUsuarioInput[]
@@ -61950,6 +72810,76 @@ export namespace Prisma {
     update?: ConviteClienteUpdateWithWhereUniqueWithoutCriadorInput | ConviteClienteUpdateWithWhereUniqueWithoutCriadorInput[]
     updateMany?: ConviteClienteUpdateManyWithWhereWithoutCriadorInput | ConviteClienteUpdateManyWithWhereWithoutCriadorInput[]
     deleteMany?: ConviteClienteScalarWhereInput | ConviteClienteScalarWhereInput[]
+  }
+
+  export type ComentarioTarefaUncheckedUpdateManyWithoutAutorNestedInput = {
+    create?: XOR<ComentarioTarefaCreateWithoutAutorInput, ComentarioTarefaUncheckedCreateWithoutAutorInput> | ComentarioTarefaCreateWithoutAutorInput[] | ComentarioTarefaUncheckedCreateWithoutAutorInput[]
+    connectOrCreate?: ComentarioTarefaCreateOrConnectWithoutAutorInput | ComentarioTarefaCreateOrConnectWithoutAutorInput[]
+    upsert?: ComentarioTarefaUpsertWithWhereUniqueWithoutAutorInput | ComentarioTarefaUpsertWithWhereUniqueWithoutAutorInput[]
+    createMany?: ComentarioTarefaCreateManyAutorInputEnvelope
+    set?: ComentarioTarefaWhereUniqueInput | ComentarioTarefaWhereUniqueInput[]
+    disconnect?: ComentarioTarefaWhereUniqueInput | ComentarioTarefaWhereUniqueInput[]
+    delete?: ComentarioTarefaWhereUniqueInput | ComentarioTarefaWhereUniqueInput[]
+    connect?: ComentarioTarefaWhereUniqueInput | ComentarioTarefaWhereUniqueInput[]
+    update?: ComentarioTarefaUpdateWithWhereUniqueWithoutAutorInput | ComentarioTarefaUpdateWithWhereUniqueWithoutAutorInput[]
+    updateMany?: ComentarioTarefaUpdateManyWithWhereWithoutAutorInput | ComentarioTarefaUpdateManyWithWhereWithoutAutorInput[]
+    deleteMany?: ComentarioTarefaScalarWhereInput | ComentarioTarefaScalarWhereInput[]
+  }
+
+  export type AnexoTarefaUncheckedUpdateManyWithoutCriadorNestedInput = {
+    create?: XOR<AnexoTarefaCreateWithoutCriadorInput, AnexoTarefaUncheckedCreateWithoutCriadorInput> | AnexoTarefaCreateWithoutCriadorInput[] | AnexoTarefaUncheckedCreateWithoutCriadorInput[]
+    connectOrCreate?: AnexoTarefaCreateOrConnectWithoutCriadorInput | AnexoTarefaCreateOrConnectWithoutCriadorInput[]
+    upsert?: AnexoTarefaUpsertWithWhereUniqueWithoutCriadorInput | AnexoTarefaUpsertWithWhereUniqueWithoutCriadorInput[]
+    createMany?: AnexoTarefaCreateManyCriadorInputEnvelope
+    set?: AnexoTarefaWhereUniqueInput | AnexoTarefaWhereUniqueInput[]
+    disconnect?: AnexoTarefaWhereUniqueInput | AnexoTarefaWhereUniqueInput[]
+    delete?: AnexoTarefaWhereUniqueInput | AnexoTarefaWhereUniqueInput[]
+    connect?: AnexoTarefaWhereUniqueInput | AnexoTarefaWhereUniqueInput[]
+    update?: AnexoTarefaUpdateWithWhereUniqueWithoutCriadorInput | AnexoTarefaUpdateWithWhereUniqueWithoutCriadorInput[]
+    updateMany?: AnexoTarefaUpdateManyWithWhereWithoutCriadorInput | AnexoTarefaUpdateManyWithWhereWithoutCriadorInput[]
+    deleteMany?: AnexoTarefaScalarWhereInput | AnexoTarefaScalarWhereInput[]
+  }
+
+  export type AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput = {
+    create?: XOR<AtividadeTarefaCreateWithoutAutorInput, AtividadeTarefaUncheckedCreateWithoutAutorInput> | AtividadeTarefaCreateWithoutAutorInput[] | AtividadeTarefaUncheckedCreateWithoutAutorInput[]
+    connectOrCreate?: AtividadeTarefaCreateOrConnectWithoutAutorInput | AtividadeTarefaCreateOrConnectWithoutAutorInput[]
+    upsert?: AtividadeTarefaUpsertWithWhereUniqueWithoutAutorInput | AtividadeTarefaUpsertWithWhereUniqueWithoutAutorInput[]
+    createMany?: AtividadeTarefaCreateManyAutorInputEnvelope
+    set?: AtividadeTarefaWhereUniqueInput | AtividadeTarefaWhereUniqueInput[]
+    disconnect?: AtividadeTarefaWhereUniqueInput | AtividadeTarefaWhereUniqueInput[]
+    delete?: AtividadeTarefaWhereUniqueInput | AtividadeTarefaWhereUniqueInput[]
+    connect?: AtividadeTarefaWhereUniqueInput | AtividadeTarefaWhereUniqueInput[]
+    update?: AtividadeTarefaUpdateWithWhereUniqueWithoutAutorInput | AtividadeTarefaUpdateWithWhereUniqueWithoutAutorInput[]
+    updateMany?: AtividadeTarefaUpdateManyWithWhereWithoutAutorInput | AtividadeTarefaUpdateManyWithWhereWithoutAutorInput[]
+    deleteMany?: AtividadeTarefaScalarWhereInput | AtividadeTarefaScalarWhereInput[]
+  }
+
+  export type AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput = {
+    create?: XOR<AprovacaoTarefaCreateWithoutSolicitanteInput, AprovacaoTarefaUncheckedCreateWithoutSolicitanteInput> | AprovacaoTarefaCreateWithoutSolicitanteInput[] | AprovacaoTarefaUncheckedCreateWithoutSolicitanteInput[]
+    connectOrCreate?: AprovacaoTarefaCreateOrConnectWithoutSolicitanteInput | AprovacaoTarefaCreateOrConnectWithoutSolicitanteInput[]
+    upsert?: AprovacaoTarefaUpsertWithWhereUniqueWithoutSolicitanteInput | AprovacaoTarefaUpsertWithWhereUniqueWithoutSolicitanteInput[]
+    createMany?: AprovacaoTarefaCreateManySolicitanteInputEnvelope
+    set?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
+    disconnect?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
+    delete?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
+    connect?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
+    update?: AprovacaoTarefaUpdateWithWhereUniqueWithoutSolicitanteInput | AprovacaoTarefaUpdateWithWhereUniqueWithoutSolicitanteInput[]
+    updateMany?: AprovacaoTarefaUpdateManyWithWhereWithoutSolicitanteInput | AprovacaoTarefaUpdateManyWithWhereWithoutSolicitanteInput[]
+    deleteMany?: AprovacaoTarefaScalarWhereInput | AprovacaoTarefaScalarWhereInput[]
+  }
+
+  export type AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput = {
+    create?: XOR<AprovacaoTarefaCreateWithoutAprovadorInput, AprovacaoTarefaUncheckedCreateWithoutAprovadorInput> | AprovacaoTarefaCreateWithoutAprovadorInput[] | AprovacaoTarefaUncheckedCreateWithoutAprovadorInput[]
+    connectOrCreate?: AprovacaoTarefaCreateOrConnectWithoutAprovadorInput | AprovacaoTarefaCreateOrConnectWithoutAprovadorInput[]
+    upsert?: AprovacaoTarefaUpsertWithWhereUniqueWithoutAprovadorInput | AprovacaoTarefaUpsertWithWhereUniqueWithoutAprovadorInput[]
+    createMany?: AprovacaoTarefaCreateManyAprovadorInputEnvelope
+    set?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
+    disconnect?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
+    delete?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
+    connect?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
+    update?: AprovacaoTarefaUpdateWithWhereUniqueWithoutAprovadorInput | AprovacaoTarefaUpdateWithWhereUniqueWithoutAprovadorInput[]
+    updateMany?: AprovacaoTarefaUpdateManyWithWhereWithoutAprovadorInput | AprovacaoTarefaUpdateManyWithWhereWithoutAprovadorInput[]
+    deleteMany?: AprovacaoTarefaScalarWhereInput | AprovacaoTarefaScalarWhereInput[]
   }
 
   export type UsuarioCreateNestedOneWithoutMembrosInput = {
@@ -62337,6 +73267,13 @@ export namespace Prisma {
     connect?: ConviteClienteWhereUniqueInput
   }
 
+  export type DocumentoCreateNestedManyWithoutClienteInput = {
+    create?: XOR<DocumentoCreateWithoutClienteInput, DocumentoUncheckedCreateWithoutClienteInput> | DocumentoCreateWithoutClienteInput[] | DocumentoUncheckedCreateWithoutClienteInput[]
+    connectOrCreate?: DocumentoCreateOrConnectWithoutClienteInput | DocumentoCreateOrConnectWithoutClienteInput[]
+    createMany?: DocumentoCreateManyClienteInputEnvelope
+    connect?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+  }
+
   export type ContatoUncheckedCreateNestedManyWithoutClienteInput = {
     create?: XOR<ContatoCreateWithoutClienteInput, ContatoUncheckedCreateWithoutClienteInput> | ContatoCreateWithoutClienteInput[] | ContatoUncheckedCreateWithoutClienteInput[]
     connectOrCreate?: ContatoCreateOrConnectWithoutClienteInput | ContatoCreateOrConnectWithoutClienteInput[]
@@ -62418,6 +73355,13 @@ export namespace Prisma {
     create?: XOR<ConviteClienteCreateWithoutClienteInput, ConviteClienteUncheckedCreateWithoutClienteInput>
     connectOrCreate?: ConviteClienteCreateOrConnectWithoutClienteInput
     connect?: ConviteClienteWhereUniqueInput
+  }
+
+  export type DocumentoUncheckedCreateNestedManyWithoutClienteInput = {
+    create?: XOR<DocumentoCreateWithoutClienteInput, DocumentoUncheckedCreateWithoutClienteInput> | DocumentoCreateWithoutClienteInput[] | DocumentoUncheckedCreateWithoutClienteInput[]
+    connectOrCreate?: DocumentoCreateOrConnectWithoutClienteInput | DocumentoCreateOrConnectWithoutClienteInput[]
+    createMany?: DocumentoCreateManyClienteInputEnvelope
+    connect?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
   }
 
   export type EnumTipoClienteFieldUpdateOperationsInput = {
@@ -62608,6 +73552,20 @@ export namespace Prisma {
     update?: XOR<XOR<ConviteClienteUpdateToOneWithWhereWithoutClienteInput, ConviteClienteUpdateWithoutClienteInput>, ConviteClienteUncheckedUpdateWithoutClienteInput>
   }
 
+  export type DocumentoUpdateManyWithoutClienteNestedInput = {
+    create?: XOR<DocumentoCreateWithoutClienteInput, DocumentoUncheckedCreateWithoutClienteInput> | DocumentoCreateWithoutClienteInput[] | DocumentoUncheckedCreateWithoutClienteInput[]
+    connectOrCreate?: DocumentoCreateOrConnectWithoutClienteInput | DocumentoCreateOrConnectWithoutClienteInput[]
+    upsert?: DocumentoUpsertWithWhereUniqueWithoutClienteInput | DocumentoUpsertWithWhereUniqueWithoutClienteInput[]
+    createMany?: DocumentoCreateManyClienteInputEnvelope
+    set?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+    disconnect?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+    delete?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+    connect?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+    update?: DocumentoUpdateWithWhereUniqueWithoutClienteInput | DocumentoUpdateWithWhereUniqueWithoutClienteInput[]
+    updateMany?: DocumentoUpdateManyWithWhereWithoutClienteInput | DocumentoUpdateManyWithWhereWithoutClienteInput[]
+    deleteMany?: DocumentoScalarWhereInput | DocumentoScalarWhereInput[]
+  }
+
   export type ContatoUncheckedUpdateManyWithoutClienteNestedInput = {
     create?: XOR<ContatoCreateWithoutClienteInput, ContatoUncheckedCreateWithoutClienteInput> | ContatoCreateWithoutClienteInput[] | ContatoUncheckedCreateWithoutClienteInput[]
     connectOrCreate?: ContatoCreateOrConnectWithoutClienteInput | ContatoCreateOrConnectWithoutClienteInput[]
@@ -62770,6 +73728,20 @@ export namespace Prisma {
     delete?: ConviteClienteWhereInput | boolean
     connect?: ConviteClienteWhereUniqueInput
     update?: XOR<XOR<ConviteClienteUpdateToOneWithWhereWithoutClienteInput, ConviteClienteUpdateWithoutClienteInput>, ConviteClienteUncheckedUpdateWithoutClienteInput>
+  }
+
+  export type DocumentoUncheckedUpdateManyWithoutClienteNestedInput = {
+    create?: XOR<DocumentoCreateWithoutClienteInput, DocumentoUncheckedCreateWithoutClienteInput> | DocumentoCreateWithoutClienteInput[] | DocumentoUncheckedCreateWithoutClienteInput[]
+    connectOrCreate?: DocumentoCreateOrConnectWithoutClienteInput | DocumentoCreateOrConnectWithoutClienteInput[]
+    upsert?: DocumentoUpsertWithWhereUniqueWithoutClienteInput | DocumentoUpsertWithWhereUniqueWithoutClienteInput[]
+    createMany?: DocumentoCreateManyClienteInputEnvelope
+    set?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+    disconnect?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+    delete?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+    connect?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+    update?: DocumentoUpdateWithWhereUniqueWithoutClienteInput | DocumentoUpdateWithWhereUniqueWithoutClienteInput[]
+    updateMany?: DocumentoUpdateManyWithWhereWithoutClienteInput | DocumentoUpdateManyWithWhereWithoutClienteInput[]
+    deleteMany?: DocumentoScalarWhereInput | DocumentoScalarWhereInput[]
   }
 
   export type ClienteCreateNestedOneWithoutContatosInput = {
@@ -63343,6 +74315,13 @@ export namespace Prisma {
     connect?: NotaFiscalWhereUniqueInput | NotaFiscalWhereUniqueInput[]
   }
 
+  export type DocumentoCreateNestedManyWithoutContratoInput = {
+    create?: XOR<DocumentoCreateWithoutContratoInput, DocumentoUncheckedCreateWithoutContratoInput> | DocumentoCreateWithoutContratoInput[] | DocumentoUncheckedCreateWithoutContratoInput[]
+    connectOrCreate?: DocumentoCreateOrConnectWithoutContratoInput | DocumentoCreateOrConnectWithoutContratoInput[]
+    createMany?: DocumentoCreateManyContratoInputEnvelope
+    connect?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+  }
+
   export type ProjetoUncheckedCreateNestedOneWithoutContratoInput = {
     create?: XOR<ProjetoCreateWithoutContratoInput, ProjetoUncheckedCreateWithoutContratoInput>
     connectOrCreate?: ProjetoCreateOrConnectWithoutContratoInput
@@ -63368,6 +74347,13 @@ export namespace Prisma {
     connectOrCreate?: NotaFiscalCreateOrConnectWithoutContratoInput | NotaFiscalCreateOrConnectWithoutContratoInput[]
     createMany?: NotaFiscalCreateManyContratoInputEnvelope
     connect?: NotaFiscalWhereUniqueInput | NotaFiscalWhereUniqueInput[]
+  }
+
+  export type DocumentoUncheckedCreateNestedManyWithoutContratoInput = {
+    create?: XOR<DocumentoCreateWithoutContratoInput, DocumentoUncheckedCreateWithoutContratoInput> | DocumentoCreateWithoutContratoInput[] | DocumentoUncheckedCreateWithoutContratoInput[]
+    connectOrCreate?: DocumentoCreateOrConnectWithoutContratoInput | DocumentoCreateOrConnectWithoutContratoInput[]
+    createMany?: DocumentoCreateManyContratoInputEnvelope
+    connect?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
   }
 
   export type EnumStatusContratoFieldUpdateOperationsInput = {
@@ -63472,6 +74458,20 @@ export namespace Prisma {
     deleteMany?: NotaFiscalScalarWhereInput | NotaFiscalScalarWhereInput[]
   }
 
+  export type DocumentoUpdateManyWithoutContratoNestedInput = {
+    create?: XOR<DocumentoCreateWithoutContratoInput, DocumentoUncheckedCreateWithoutContratoInput> | DocumentoCreateWithoutContratoInput[] | DocumentoUncheckedCreateWithoutContratoInput[]
+    connectOrCreate?: DocumentoCreateOrConnectWithoutContratoInput | DocumentoCreateOrConnectWithoutContratoInput[]
+    upsert?: DocumentoUpsertWithWhereUniqueWithoutContratoInput | DocumentoUpsertWithWhereUniqueWithoutContratoInput[]
+    createMany?: DocumentoCreateManyContratoInputEnvelope
+    set?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+    disconnect?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+    delete?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+    connect?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+    update?: DocumentoUpdateWithWhereUniqueWithoutContratoInput | DocumentoUpdateWithWhereUniqueWithoutContratoInput[]
+    updateMany?: DocumentoUpdateManyWithWhereWithoutContratoInput | DocumentoUpdateManyWithWhereWithoutContratoInput[]
+    deleteMany?: DocumentoScalarWhereInput | DocumentoScalarWhereInput[]
+  }
+
   export type ProjetoUncheckedUpdateOneWithoutContratoNestedInput = {
     create?: XOR<ProjetoCreateWithoutContratoInput, ProjetoUncheckedCreateWithoutContratoInput>
     connectOrCreate?: ProjetoCreateOrConnectWithoutContratoInput
@@ -63522,6 +74522,20 @@ export namespace Prisma {
     update?: NotaFiscalUpdateWithWhereUniqueWithoutContratoInput | NotaFiscalUpdateWithWhereUniqueWithoutContratoInput[]
     updateMany?: NotaFiscalUpdateManyWithWhereWithoutContratoInput | NotaFiscalUpdateManyWithWhereWithoutContratoInput[]
     deleteMany?: NotaFiscalScalarWhereInput | NotaFiscalScalarWhereInput[]
+  }
+
+  export type DocumentoUncheckedUpdateManyWithoutContratoNestedInput = {
+    create?: XOR<DocumentoCreateWithoutContratoInput, DocumentoUncheckedCreateWithoutContratoInput> | DocumentoCreateWithoutContratoInput[] | DocumentoUncheckedCreateWithoutContratoInput[]
+    connectOrCreate?: DocumentoCreateOrConnectWithoutContratoInput | DocumentoCreateOrConnectWithoutContratoInput[]
+    upsert?: DocumentoUpsertWithWhereUniqueWithoutContratoInput | DocumentoUpsertWithWhereUniqueWithoutContratoInput[]
+    createMany?: DocumentoCreateManyContratoInputEnvelope
+    set?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+    disconnect?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+    delete?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+    connect?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+    update?: DocumentoUpdateWithWhereUniqueWithoutContratoInput | DocumentoUpdateWithWhereUniqueWithoutContratoInput[]
+    updateMany?: DocumentoUpdateManyWithWhereWithoutContratoInput | DocumentoUpdateManyWithWhereWithoutContratoInput[]
+    deleteMany?: DocumentoScalarWhereInput | DocumentoScalarWhereInput[]
   }
 
   export type EmpresaCreateNestedOneWithoutProjetosInput = {
@@ -63876,8 +74890,96 @@ export namespace Prisma {
     connect?: UsuarioWhereUniqueInput
   }
 
+  export type ComentarioTarefaCreateNestedManyWithoutTarefaInput = {
+    create?: XOR<ComentarioTarefaCreateWithoutTarefaInput, ComentarioTarefaUncheckedCreateWithoutTarefaInput> | ComentarioTarefaCreateWithoutTarefaInput[] | ComentarioTarefaUncheckedCreateWithoutTarefaInput[]
+    connectOrCreate?: ComentarioTarefaCreateOrConnectWithoutTarefaInput | ComentarioTarefaCreateOrConnectWithoutTarefaInput[]
+    createMany?: ComentarioTarefaCreateManyTarefaInputEnvelope
+    connect?: ComentarioTarefaWhereUniqueInput | ComentarioTarefaWhereUniqueInput[]
+  }
+
+  export type AnexoTarefaCreateNestedManyWithoutTarefaInput = {
+    create?: XOR<AnexoTarefaCreateWithoutTarefaInput, AnexoTarefaUncheckedCreateWithoutTarefaInput> | AnexoTarefaCreateWithoutTarefaInput[] | AnexoTarefaUncheckedCreateWithoutTarefaInput[]
+    connectOrCreate?: AnexoTarefaCreateOrConnectWithoutTarefaInput | AnexoTarefaCreateOrConnectWithoutTarefaInput[]
+    createMany?: AnexoTarefaCreateManyTarefaInputEnvelope
+    connect?: AnexoTarefaWhereUniqueInput | AnexoTarefaWhereUniqueInput[]
+  }
+
+  export type AtividadeTarefaCreateNestedManyWithoutTarefaInput = {
+    create?: XOR<AtividadeTarefaCreateWithoutTarefaInput, AtividadeTarefaUncheckedCreateWithoutTarefaInput> | AtividadeTarefaCreateWithoutTarefaInput[] | AtividadeTarefaUncheckedCreateWithoutTarefaInput[]
+    connectOrCreate?: AtividadeTarefaCreateOrConnectWithoutTarefaInput | AtividadeTarefaCreateOrConnectWithoutTarefaInput[]
+    createMany?: AtividadeTarefaCreateManyTarefaInputEnvelope
+    connect?: AtividadeTarefaWhereUniqueInput | AtividadeTarefaWhereUniqueInput[]
+  }
+
+  export type AprovacaoTarefaCreateNestedManyWithoutTarefaInput = {
+    create?: XOR<AprovacaoTarefaCreateWithoutTarefaInput, AprovacaoTarefaUncheckedCreateWithoutTarefaInput> | AprovacaoTarefaCreateWithoutTarefaInput[] | AprovacaoTarefaUncheckedCreateWithoutTarefaInput[]
+    connectOrCreate?: AprovacaoTarefaCreateOrConnectWithoutTarefaInput | AprovacaoTarefaCreateOrConnectWithoutTarefaInput[]
+    createMany?: AprovacaoTarefaCreateManyTarefaInputEnvelope
+    connect?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
+  }
+
+  export type ItemChecklistCreateNestedManyWithoutTarefaInput = {
+    create?: XOR<ItemChecklistCreateWithoutTarefaInput, ItemChecklistUncheckedCreateWithoutTarefaInput> | ItemChecklistCreateWithoutTarefaInput[] | ItemChecklistUncheckedCreateWithoutTarefaInput[]
+    connectOrCreate?: ItemChecklistCreateOrConnectWithoutTarefaInput | ItemChecklistCreateOrConnectWithoutTarefaInput[]
+    createMany?: ItemChecklistCreateManyTarefaInputEnvelope
+    connect?: ItemChecklistWhereUniqueInput | ItemChecklistWhereUniqueInput[]
+  }
+
+  export type TarefaEtiquetaCreateNestedManyWithoutTarefaInput = {
+    create?: XOR<TarefaEtiquetaCreateWithoutTarefaInput, TarefaEtiquetaUncheckedCreateWithoutTarefaInput> | TarefaEtiquetaCreateWithoutTarefaInput[] | TarefaEtiquetaUncheckedCreateWithoutTarefaInput[]
+    connectOrCreate?: TarefaEtiquetaCreateOrConnectWithoutTarefaInput | TarefaEtiquetaCreateOrConnectWithoutTarefaInput[]
+    createMany?: TarefaEtiquetaCreateManyTarefaInputEnvelope
+    connect?: TarefaEtiquetaWhereUniqueInput | TarefaEtiquetaWhereUniqueInput[]
+  }
+
+  export type ComentarioTarefaUncheckedCreateNestedManyWithoutTarefaInput = {
+    create?: XOR<ComentarioTarefaCreateWithoutTarefaInput, ComentarioTarefaUncheckedCreateWithoutTarefaInput> | ComentarioTarefaCreateWithoutTarefaInput[] | ComentarioTarefaUncheckedCreateWithoutTarefaInput[]
+    connectOrCreate?: ComentarioTarefaCreateOrConnectWithoutTarefaInput | ComentarioTarefaCreateOrConnectWithoutTarefaInput[]
+    createMany?: ComentarioTarefaCreateManyTarefaInputEnvelope
+    connect?: ComentarioTarefaWhereUniqueInput | ComentarioTarefaWhereUniqueInput[]
+  }
+
+  export type AnexoTarefaUncheckedCreateNestedManyWithoutTarefaInput = {
+    create?: XOR<AnexoTarefaCreateWithoutTarefaInput, AnexoTarefaUncheckedCreateWithoutTarefaInput> | AnexoTarefaCreateWithoutTarefaInput[] | AnexoTarefaUncheckedCreateWithoutTarefaInput[]
+    connectOrCreate?: AnexoTarefaCreateOrConnectWithoutTarefaInput | AnexoTarefaCreateOrConnectWithoutTarefaInput[]
+    createMany?: AnexoTarefaCreateManyTarefaInputEnvelope
+    connect?: AnexoTarefaWhereUniqueInput | AnexoTarefaWhereUniqueInput[]
+  }
+
+  export type AtividadeTarefaUncheckedCreateNestedManyWithoutTarefaInput = {
+    create?: XOR<AtividadeTarefaCreateWithoutTarefaInput, AtividadeTarefaUncheckedCreateWithoutTarefaInput> | AtividadeTarefaCreateWithoutTarefaInput[] | AtividadeTarefaUncheckedCreateWithoutTarefaInput[]
+    connectOrCreate?: AtividadeTarefaCreateOrConnectWithoutTarefaInput | AtividadeTarefaCreateOrConnectWithoutTarefaInput[]
+    createMany?: AtividadeTarefaCreateManyTarefaInputEnvelope
+    connect?: AtividadeTarefaWhereUniqueInput | AtividadeTarefaWhereUniqueInput[]
+  }
+
+  export type AprovacaoTarefaUncheckedCreateNestedManyWithoutTarefaInput = {
+    create?: XOR<AprovacaoTarefaCreateWithoutTarefaInput, AprovacaoTarefaUncheckedCreateWithoutTarefaInput> | AprovacaoTarefaCreateWithoutTarefaInput[] | AprovacaoTarefaUncheckedCreateWithoutTarefaInput[]
+    connectOrCreate?: AprovacaoTarefaCreateOrConnectWithoutTarefaInput | AprovacaoTarefaCreateOrConnectWithoutTarefaInput[]
+    createMany?: AprovacaoTarefaCreateManyTarefaInputEnvelope
+    connect?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
+  }
+
+  export type ItemChecklistUncheckedCreateNestedManyWithoutTarefaInput = {
+    create?: XOR<ItemChecklistCreateWithoutTarefaInput, ItemChecklistUncheckedCreateWithoutTarefaInput> | ItemChecklistCreateWithoutTarefaInput[] | ItemChecklistUncheckedCreateWithoutTarefaInput[]
+    connectOrCreate?: ItemChecklistCreateOrConnectWithoutTarefaInput | ItemChecklistCreateOrConnectWithoutTarefaInput[]
+    createMany?: ItemChecklistCreateManyTarefaInputEnvelope
+    connect?: ItemChecklistWhereUniqueInput | ItemChecklistWhereUniqueInput[]
+  }
+
+  export type TarefaEtiquetaUncheckedCreateNestedManyWithoutTarefaInput = {
+    create?: XOR<TarefaEtiquetaCreateWithoutTarefaInput, TarefaEtiquetaUncheckedCreateWithoutTarefaInput> | TarefaEtiquetaCreateWithoutTarefaInput[] | TarefaEtiquetaUncheckedCreateWithoutTarefaInput[]
+    connectOrCreate?: TarefaEtiquetaCreateOrConnectWithoutTarefaInput | TarefaEtiquetaCreateOrConnectWithoutTarefaInput[]
+    createMany?: TarefaEtiquetaCreateManyTarefaInputEnvelope
+    connect?: TarefaEtiquetaWhereUniqueInput | TarefaEtiquetaWhereUniqueInput[]
+  }
+
   export type EnumStatusTarefaFieldUpdateOperationsInput = {
     set?: $Enums.StatusTarefa
+  }
+
+  export type EnumPrioridadeTarefaFieldUpdateOperationsInput = {
+    set?: $Enums.PrioridadeTarefa
   }
 
   export type EtapaUpdateOneRequiredWithoutTarefasNestedInput = {
@@ -63906,6 +75008,412 @@ export namespace Prisma {
     update?: XOR<XOR<UsuarioUpdateToOneWithWhereWithoutTarefasInput, UsuarioUpdateWithoutTarefasInput>, UsuarioUncheckedUpdateWithoutTarefasInput>
   }
 
+  export type ComentarioTarefaUpdateManyWithoutTarefaNestedInput = {
+    create?: XOR<ComentarioTarefaCreateWithoutTarefaInput, ComentarioTarefaUncheckedCreateWithoutTarefaInput> | ComentarioTarefaCreateWithoutTarefaInput[] | ComentarioTarefaUncheckedCreateWithoutTarefaInput[]
+    connectOrCreate?: ComentarioTarefaCreateOrConnectWithoutTarefaInput | ComentarioTarefaCreateOrConnectWithoutTarefaInput[]
+    upsert?: ComentarioTarefaUpsertWithWhereUniqueWithoutTarefaInput | ComentarioTarefaUpsertWithWhereUniqueWithoutTarefaInput[]
+    createMany?: ComentarioTarefaCreateManyTarefaInputEnvelope
+    set?: ComentarioTarefaWhereUniqueInput | ComentarioTarefaWhereUniqueInput[]
+    disconnect?: ComentarioTarefaWhereUniqueInput | ComentarioTarefaWhereUniqueInput[]
+    delete?: ComentarioTarefaWhereUniqueInput | ComentarioTarefaWhereUniqueInput[]
+    connect?: ComentarioTarefaWhereUniqueInput | ComentarioTarefaWhereUniqueInput[]
+    update?: ComentarioTarefaUpdateWithWhereUniqueWithoutTarefaInput | ComentarioTarefaUpdateWithWhereUniqueWithoutTarefaInput[]
+    updateMany?: ComentarioTarefaUpdateManyWithWhereWithoutTarefaInput | ComentarioTarefaUpdateManyWithWhereWithoutTarefaInput[]
+    deleteMany?: ComentarioTarefaScalarWhereInput | ComentarioTarefaScalarWhereInput[]
+  }
+
+  export type AnexoTarefaUpdateManyWithoutTarefaNestedInput = {
+    create?: XOR<AnexoTarefaCreateWithoutTarefaInput, AnexoTarefaUncheckedCreateWithoutTarefaInput> | AnexoTarefaCreateWithoutTarefaInput[] | AnexoTarefaUncheckedCreateWithoutTarefaInput[]
+    connectOrCreate?: AnexoTarefaCreateOrConnectWithoutTarefaInput | AnexoTarefaCreateOrConnectWithoutTarefaInput[]
+    upsert?: AnexoTarefaUpsertWithWhereUniqueWithoutTarefaInput | AnexoTarefaUpsertWithWhereUniqueWithoutTarefaInput[]
+    createMany?: AnexoTarefaCreateManyTarefaInputEnvelope
+    set?: AnexoTarefaWhereUniqueInput | AnexoTarefaWhereUniqueInput[]
+    disconnect?: AnexoTarefaWhereUniqueInput | AnexoTarefaWhereUniqueInput[]
+    delete?: AnexoTarefaWhereUniqueInput | AnexoTarefaWhereUniqueInput[]
+    connect?: AnexoTarefaWhereUniqueInput | AnexoTarefaWhereUniqueInput[]
+    update?: AnexoTarefaUpdateWithWhereUniqueWithoutTarefaInput | AnexoTarefaUpdateWithWhereUniqueWithoutTarefaInput[]
+    updateMany?: AnexoTarefaUpdateManyWithWhereWithoutTarefaInput | AnexoTarefaUpdateManyWithWhereWithoutTarefaInput[]
+    deleteMany?: AnexoTarefaScalarWhereInput | AnexoTarefaScalarWhereInput[]
+  }
+
+  export type AtividadeTarefaUpdateManyWithoutTarefaNestedInput = {
+    create?: XOR<AtividadeTarefaCreateWithoutTarefaInput, AtividadeTarefaUncheckedCreateWithoutTarefaInput> | AtividadeTarefaCreateWithoutTarefaInput[] | AtividadeTarefaUncheckedCreateWithoutTarefaInput[]
+    connectOrCreate?: AtividadeTarefaCreateOrConnectWithoutTarefaInput | AtividadeTarefaCreateOrConnectWithoutTarefaInput[]
+    upsert?: AtividadeTarefaUpsertWithWhereUniqueWithoutTarefaInput | AtividadeTarefaUpsertWithWhereUniqueWithoutTarefaInput[]
+    createMany?: AtividadeTarefaCreateManyTarefaInputEnvelope
+    set?: AtividadeTarefaWhereUniqueInput | AtividadeTarefaWhereUniqueInput[]
+    disconnect?: AtividadeTarefaWhereUniqueInput | AtividadeTarefaWhereUniqueInput[]
+    delete?: AtividadeTarefaWhereUniqueInput | AtividadeTarefaWhereUniqueInput[]
+    connect?: AtividadeTarefaWhereUniqueInput | AtividadeTarefaWhereUniqueInput[]
+    update?: AtividadeTarefaUpdateWithWhereUniqueWithoutTarefaInput | AtividadeTarefaUpdateWithWhereUniqueWithoutTarefaInput[]
+    updateMany?: AtividadeTarefaUpdateManyWithWhereWithoutTarefaInput | AtividadeTarefaUpdateManyWithWhereWithoutTarefaInput[]
+    deleteMany?: AtividadeTarefaScalarWhereInput | AtividadeTarefaScalarWhereInput[]
+  }
+
+  export type AprovacaoTarefaUpdateManyWithoutTarefaNestedInput = {
+    create?: XOR<AprovacaoTarefaCreateWithoutTarefaInput, AprovacaoTarefaUncheckedCreateWithoutTarefaInput> | AprovacaoTarefaCreateWithoutTarefaInput[] | AprovacaoTarefaUncheckedCreateWithoutTarefaInput[]
+    connectOrCreate?: AprovacaoTarefaCreateOrConnectWithoutTarefaInput | AprovacaoTarefaCreateOrConnectWithoutTarefaInput[]
+    upsert?: AprovacaoTarefaUpsertWithWhereUniqueWithoutTarefaInput | AprovacaoTarefaUpsertWithWhereUniqueWithoutTarefaInput[]
+    createMany?: AprovacaoTarefaCreateManyTarefaInputEnvelope
+    set?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
+    disconnect?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
+    delete?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
+    connect?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
+    update?: AprovacaoTarefaUpdateWithWhereUniqueWithoutTarefaInput | AprovacaoTarefaUpdateWithWhereUniqueWithoutTarefaInput[]
+    updateMany?: AprovacaoTarefaUpdateManyWithWhereWithoutTarefaInput | AprovacaoTarefaUpdateManyWithWhereWithoutTarefaInput[]
+    deleteMany?: AprovacaoTarefaScalarWhereInput | AprovacaoTarefaScalarWhereInput[]
+  }
+
+  export type ItemChecklistUpdateManyWithoutTarefaNestedInput = {
+    create?: XOR<ItemChecklistCreateWithoutTarefaInput, ItemChecklistUncheckedCreateWithoutTarefaInput> | ItemChecklistCreateWithoutTarefaInput[] | ItemChecklistUncheckedCreateWithoutTarefaInput[]
+    connectOrCreate?: ItemChecklistCreateOrConnectWithoutTarefaInput | ItemChecklistCreateOrConnectWithoutTarefaInput[]
+    upsert?: ItemChecklistUpsertWithWhereUniqueWithoutTarefaInput | ItemChecklistUpsertWithWhereUniqueWithoutTarefaInput[]
+    createMany?: ItemChecklistCreateManyTarefaInputEnvelope
+    set?: ItemChecklistWhereUniqueInput | ItemChecklistWhereUniqueInput[]
+    disconnect?: ItemChecklistWhereUniqueInput | ItemChecklistWhereUniqueInput[]
+    delete?: ItemChecklistWhereUniqueInput | ItemChecklistWhereUniqueInput[]
+    connect?: ItemChecklistWhereUniqueInput | ItemChecklistWhereUniqueInput[]
+    update?: ItemChecklistUpdateWithWhereUniqueWithoutTarefaInput | ItemChecklistUpdateWithWhereUniqueWithoutTarefaInput[]
+    updateMany?: ItemChecklistUpdateManyWithWhereWithoutTarefaInput | ItemChecklistUpdateManyWithWhereWithoutTarefaInput[]
+    deleteMany?: ItemChecklistScalarWhereInput | ItemChecklistScalarWhereInput[]
+  }
+
+  export type TarefaEtiquetaUpdateManyWithoutTarefaNestedInput = {
+    create?: XOR<TarefaEtiquetaCreateWithoutTarefaInput, TarefaEtiquetaUncheckedCreateWithoutTarefaInput> | TarefaEtiquetaCreateWithoutTarefaInput[] | TarefaEtiquetaUncheckedCreateWithoutTarefaInput[]
+    connectOrCreate?: TarefaEtiquetaCreateOrConnectWithoutTarefaInput | TarefaEtiquetaCreateOrConnectWithoutTarefaInput[]
+    upsert?: TarefaEtiquetaUpsertWithWhereUniqueWithoutTarefaInput | TarefaEtiquetaUpsertWithWhereUniqueWithoutTarefaInput[]
+    createMany?: TarefaEtiquetaCreateManyTarefaInputEnvelope
+    set?: TarefaEtiquetaWhereUniqueInput | TarefaEtiquetaWhereUniqueInput[]
+    disconnect?: TarefaEtiquetaWhereUniqueInput | TarefaEtiquetaWhereUniqueInput[]
+    delete?: TarefaEtiquetaWhereUniqueInput | TarefaEtiquetaWhereUniqueInput[]
+    connect?: TarefaEtiquetaWhereUniqueInput | TarefaEtiquetaWhereUniqueInput[]
+    update?: TarefaEtiquetaUpdateWithWhereUniqueWithoutTarefaInput | TarefaEtiquetaUpdateWithWhereUniqueWithoutTarefaInput[]
+    updateMany?: TarefaEtiquetaUpdateManyWithWhereWithoutTarefaInput | TarefaEtiquetaUpdateManyWithWhereWithoutTarefaInput[]
+    deleteMany?: TarefaEtiquetaScalarWhereInput | TarefaEtiquetaScalarWhereInput[]
+  }
+
+  export type ComentarioTarefaUncheckedUpdateManyWithoutTarefaNestedInput = {
+    create?: XOR<ComentarioTarefaCreateWithoutTarefaInput, ComentarioTarefaUncheckedCreateWithoutTarefaInput> | ComentarioTarefaCreateWithoutTarefaInput[] | ComentarioTarefaUncheckedCreateWithoutTarefaInput[]
+    connectOrCreate?: ComentarioTarefaCreateOrConnectWithoutTarefaInput | ComentarioTarefaCreateOrConnectWithoutTarefaInput[]
+    upsert?: ComentarioTarefaUpsertWithWhereUniqueWithoutTarefaInput | ComentarioTarefaUpsertWithWhereUniqueWithoutTarefaInput[]
+    createMany?: ComentarioTarefaCreateManyTarefaInputEnvelope
+    set?: ComentarioTarefaWhereUniqueInput | ComentarioTarefaWhereUniqueInput[]
+    disconnect?: ComentarioTarefaWhereUniqueInput | ComentarioTarefaWhereUniqueInput[]
+    delete?: ComentarioTarefaWhereUniqueInput | ComentarioTarefaWhereUniqueInput[]
+    connect?: ComentarioTarefaWhereUniqueInput | ComentarioTarefaWhereUniqueInput[]
+    update?: ComentarioTarefaUpdateWithWhereUniqueWithoutTarefaInput | ComentarioTarefaUpdateWithWhereUniqueWithoutTarefaInput[]
+    updateMany?: ComentarioTarefaUpdateManyWithWhereWithoutTarefaInput | ComentarioTarefaUpdateManyWithWhereWithoutTarefaInput[]
+    deleteMany?: ComentarioTarefaScalarWhereInput | ComentarioTarefaScalarWhereInput[]
+  }
+
+  export type AnexoTarefaUncheckedUpdateManyWithoutTarefaNestedInput = {
+    create?: XOR<AnexoTarefaCreateWithoutTarefaInput, AnexoTarefaUncheckedCreateWithoutTarefaInput> | AnexoTarefaCreateWithoutTarefaInput[] | AnexoTarefaUncheckedCreateWithoutTarefaInput[]
+    connectOrCreate?: AnexoTarefaCreateOrConnectWithoutTarefaInput | AnexoTarefaCreateOrConnectWithoutTarefaInput[]
+    upsert?: AnexoTarefaUpsertWithWhereUniqueWithoutTarefaInput | AnexoTarefaUpsertWithWhereUniqueWithoutTarefaInput[]
+    createMany?: AnexoTarefaCreateManyTarefaInputEnvelope
+    set?: AnexoTarefaWhereUniqueInput | AnexoTarefaWhereUniqueInput[]
+    disconnect?: AnexoTarefaWhereUniqueInput | AnexoTarefaWhereUniqueInput[]
+    delete?: AnexoTarefaWhereUniqueInput | AnexoTarefaWhereUniqueInput[]
+    connect?: AnexoTarefaWhereUniqueInput | AnexoTarefaWhereUniqueInput[]
+    update?: AnexoTarefaUpdateWithWhereUniqueWithoutTarefaInput | AnexoTarefaUpdateWithWhereUniqueWithoutTarefaInput[]
+    updateMany?: AnexoTarefaUpdateManyWithWhereWithoutTarefaInput | AnexoTarefaUpdateManyWithWhereWithoutTarefaInput[]
+    deleteMany?: AnexoTarefaScalarWhereInput | AnexoTarefaScalarWhereInput[]
+  }
+
+  export type AtividadeTarefaUncheckedUpdateManyWithoutTarefaNestedInput = {
+    create?: XOR<AtividadeTarefaCreateWithoutTarefaInput, AtividadeTarefaUncheckedCreateWithoutTarefaInput> | AtividadeTarefaCreateWithoutTarefaInput[] | AtividadeTarefaUncheckedCreateWithoutTarefaInput[]
+    connectOrCreate?: AtividadeTarefaCreateOrConnectWithoutTarefaInput | AtividadeTarefaCreateOrConnectWithoutTarefaInput[]
+    upsert?: AtividadeTarefaUpsertWithWhereUniqueWithoutTarefaInput | AtividadeTarefaUpsertWithWhereUniqueWithoutTarefaInput[]
+    createMany?: AtividadeTarefaCreateManyTarefaInputEnvelope
+    set?: AtividadeTarefaWhereUniqueInput | AtividadeTarefaWhereUniqueInput[]
+    disconnect?: AtividadeTarefaWhereUniqueInput | AtividadeTarefaWhereUniqueInput[]
+    delete?: AtividadeTarefaWhereUniqueInput | AtividadeTarefaWhereUniqueInput[]
+    connect?: AtividadeTarefaWhereUniqueInput | AtividadeTarefaWhereUniqueInput[]
+    update?: AtividadeTarefaUpdateWithWhereUniqueWithoutTarefaInput | AtividadeTarefaUpdateWithWhereUniqueWithoutTarefaInput[]
+    updateMany?: AtividadeTarefaUpdateManyWithWhereWithoutTarefaInput | AtividadeTarefaUpdateManyWithWhereWithoutTarefaInput[]
+    deleteMany?: AtividadeTarefaScalarWhereInput | AtividadeTarefaScalarWhereInput[]
+  }
+
+  export type AprovacaoTarefaUncheckedUpdateManyWithoutTarefaNestedInput = {
+    create?: XOR<AprovacaoTarefaCreateWithoutTarefaInput, AprovacaoTarefaUncheckedCreateWithoutTarefaInput> | AprovacaoTarefaCreateWithoutTarefaInput[] | AprovacaoTarefaUncheckedCreateWithoutTarefaInput[]
+    connectOrCreate?: AprovacaoTarefaCreateOrConnectWithoutTarefaInput | AprovacaoTarefaCreateOrConnectWithoutTarefaInput[]
+    upsert?: AprovacaoTarefaUpsertWithWhereUniqueWithoutTarefaInput | AprovacaoTarefaUpsertWithWhereUniqueWithoutTarefaInput[]
+    createMany?: AprovacaoTarefaCreateManyTarefaInputEnvelope
+    set?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
+    disconnect?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
+    delete?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
+    connect?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
+    update?: AprovacaoTarefaUpdateWithWhereUniqueWithoutTarefaInput | AprovacaoTarefaUpdateWithWhereUniqueWithoutTarefaInput[]
+    updateMany?: AprovacaoTarefaUpdateManyWithWhereWithoutTarefaInput | AprovacaoTarefaUpdateManyWithWhereWithoutTarefaInput[]
+    deleteMany?: AprovacaoTarefaScalarWhereInput | AprovacaoTarefaScalarWhereInput[]
+  }
+
+  export type ItemChecklistUncheckedUpdateManyWithoutTarefaNestedInput = {
+    create?: XOR<ItemChecklistCreateWithoutTarefaInput, ItemChecklistUncheckedCreateWithoutTarefaInput> | ItemChecklistCreateWithoutTarefaInput[] | ItemChecklistUncheckedCreateWithoutTarefaInput[]
+    connectOrCreate?: ItemChecklistCreateOrConnectWithoutTarefaInput | ItemChecklistCreateOrConnectWithoutTarefaInput[]
+    upsert?: ItemChecklistUpsertWithWhereUniqueWithoutTarefaInput | ItemChecklistUpsertWithWhereUniqueWithoutTarefaInput[]
+    createMany?: ItemChecklistCreateManyTarefaInputEnvelope
+    set?: ItemChecklistWhereUniqueInput | ItemChecklistWhereUniqueInput[]
+    disconnect?: ItemChecklistWhereUniqueInput | ItemChecklistWhereUniqueInput[]
+    delete?: ItemChecklistWhereUniqueInput | ItemChecklistWhereUniqueInput[]
+    connect?: ItemChecklistWhereUniqueInput | ItemChecklistWhereUniqueInput[]
+    update?: ItemChecklistUpdateWithWhereUniqueWithoutTarefaInput | ItemChecklistUpdateWithWhereUniqueWithoutTarefaInput[]
+    updateMany?: ItemChecklistUpdateManyWithWhereWithoutTarefaInput | ItemChecklistUpdateManyWithWhereWithoutTarefaInput[]
+    deleteMany?: ItemChecklistScalarWhereInput | ItemChecklistScalarWhereInput[]
+  }
+
+  export type TarefaEtiquetaUncheckedUpdateManyWithoutTarefaNestedInput = {
+    create?: XOR<TarefaEtiquetaCreateWithoutTarefaInput, TarefaEtiquetaUncheckedCreateWithoutTarefaInput> | TarefaEtiquetaCreateWithoutTarefaInput[] | TarefaEtiquetaUncheckedCreateWithoutTarefaInput[]
+    connectOrCreate?: TarefaEtiquetaCreateOrConnectWithoutTarefaInput | TarefaEtiquetaCreateOrConnectWithoutTarefaInput[]
+    upsert?: TarefaEtiquetaUpsertWithWhereUniqueWithoutTarefaInput | TarefaEtiquetaUpsertWithWhereUniqueWithoutTarefaInput[]
+    createMany?: TarefaEtiquetaCreateManyTarefaInputEnvelope
+    set?: TarefaEtiquetaWhereUniqueInput | TarefaEtiquetaWhereUniqueInput[]
+    disconnect?: TarefaEtiquetaWhereUniqueInput | TarefaEtiquetaWhereUniqueInput[]
+    delete?: TarefaEtiquetaWhereUniqueInput | TarefaEtiquetaWhereUniqueInput[]
+    connect?: TarefaEtiquetaWhereUniqueInput | TarefaEtiquetaWhereUniqueInput[]
+    update?: TarefaEtiquetaUpdateWithWhereUniqueWithoutTarefaInput | TarefaEtiquetaUpdateWithWhereUniqueWithoutTarefaInput[]
+    updateMany?: TarefaEtiquetaUpdateManyWithWhereWithoutTarefaInput | TarefaEtiquetaUpdateManyWithWhereWithoutTarefaInput[]
+    deleteMany?: TarefaEtiquetaScalarWhereInput | TarefaEtiquetaScalarWhereInput[]
+  }
+
+  export type TarefaCreateNestedOneWithoutComentariosInput = {
+    create?: XOR<TarefaCreateWithoutComentariosInput, TarefaUncheckedCreateWithoutComentariosInput>
+    connectOrCreate?: TarefaCreateOrConnectWithoutComentariosInput
+    connect?: TarefaWhereUniqueInput
+  }
+
+  export type UsuarioCreateNestedOneWithoutComentarios_tarefaInput = {
+    create?: XOR<UsuarioCreateWithoutComentarios_tarefaInput, UsuarioUncheckedCreateWithoutComentarios_tarefaInput>
+    connectOrCreate?: UsuarioCreateOrConnectWithoutComentarios_tarefaInput
+    connect?: UsuarioWhereUniqueInput
+  }
+
+  export type TarefaUpdateOneRequiredWithoutComentariosNestedInput = {
+    create?: XOR<TarefaCreateWithoutComentariosInput, TarefaUncheckedCreateWithoutComentariosInput>
+    connectOrCreate?: TarefaCreateOrConnectWithoutComentariosInput
+    upsert?: TarefaUpsertWithoutComentariosInput
+    connect?: TarefaWhereUniqueInput
+    update?: XOR<XOR<TarefaUpdateToOneWithWhereWithoutComentariosInput, TarefaUpdateWithoutComentariosInput>, TarefaUncheckedUpdateWithoutComentariosInput>
+  }
+
+  export type UsuarioUpdateOneWithoutComentarios_tarefaNestedInput = {
+    create?: XOR<UsuarioCreateWithoutComentarios_tarefaInput, UsuarioUncheckedCreateWithoutComentarios_tarefaInput>
+    connectOrCreate?: UsuarioCreateOrConnectWithoutComentarios_tarefaInput
+    upsert?: UsuarioUpsertWithoutComentarios_tarefaInput
+    disconnect?: UsuarioWhereInput | boolean
+    delete?: UsuarioWhereInput | boolean
+    connect?: UsuarioWhereUniqueInput
+    update?: XOR<XOR<UsuarioUpdateToOneWithWhereWithoutComentarios_tarefaInput, UsuarioUpdateWithoutComentarios_tarefaInput>, UsuarioUncheckedUpdateWithoutComentarios_tarefaInput>
+  }
+
+  export type TarefaCreateNestedOneWithoutAnexosInput = {
+    create?: XOR<TarefaCreateWithoutAnexosInput, TarefaUncheckedCreateWithoutAnexosInput>
+    connectOrCreate?: TarefaCreateOrConnectWithoutAnexosInput
+    connect?: TarefaWhereUniqueInput
+  }
+
+  export type UsuarioCreateNestedOneWithoutAnexos_tarefaInput = {
+    create?: XOR<UsuarioCreateWithoutAnexos_tarefaInput, UsuarioUncheckedCreateWithoutAnexos_tarefaInput>
+    connectOrCreate?: UsuarioCreateOrConnectWithoutAnexos_tarefaInput
+    connect?: UsuarioWhereUniqueInput
+  }
+
+  export type TarefaUpdateOneRequiredWithoutAnexosNestedInput = {
+    create?: XOR<TarefaCreateWithoutAnexosInput, TarefaUncheckedCreateWithoutAnexosInput>
+    connectOrCreate?: TarefaCreateOrConnectWithoutAnexosInput
+    upsert?: TarefaUpsertWithoutAnexosInput
+    connect?: TarefaWhereUniqueInput
+    update?: XOR<XOR<TarefaUpdateToOneWithWhereWithoutAnexosInput, TarefaUpdateWithoutAnexosInput>, TarefaUncheckedUpdateWithoutAnexosInput>
+  }
+
+  export type UsuarioUpdateOneWithoutAnexos_tarefaNestedInput = {
+    create?: XOR<UsuarioCreateWithoutAnexos_tarefaInput, UsuarioUncheckedCreateWithoutAnexos_tarefaInput>
+    connectOrCreate?: UsuarioCreateOrConnectWithoutAnexos_tarefaInput
+    upsert?: UsuarioUpsertWithoutAnexos_tarefaInput
+    disconnect?: UsuarioWhereInput | boolean
+    delete?: UsuarioWhereInput | boolean
+    connect?: UsuarioWhereUniqueInput
+    update?: XOR<XOR<UsuarioUpdateToOneWithWhereWithoutAnexos_tarefaInput, UsuarioUpdateWithoutAnexos_tarefaInput>, UsuarioUncheckedUpdateWithoutAnexos_tarefaInput>
+  }
+
+  export type TarefaCreateNestedOneWithoutAtividadesInput = {
+    create?: XOR<TarefaCreateWithoutAtividadesInput, TarefaUncheckedCreateWithoutAtividadesInput>
+    connectOrCreate?: TarefaCreateOrConnectWithoutAtividadesInput
+    connect?: TarefaWhereUniqueInput
+  }
+
+  export type UsuarioCreateNestedOneWithoutAtividades_tarefaInput = {
+    create?: XOR<UsuarioCreateWithoutAtividades_tarefaInput, UsuarioUncheckedCreateWithoutAtividades_tarefaInput>
+    connectOrCreate?: UsuarioCreateOrConnectWithoutAtividades_tarefaInput
+    connect?: UsuarioWhereUniqueInput
+  }
+
+  export type TarefaUpdateOneRequiredWithoutAtividadesNestedInput = {
+    create?: XOR<TarefaCreateWithoutAtividadesInput, TarefaUncheckedCreateWithoutAtividadesInput>
+    connectOrCreate?: TarefaCreateOrConnectWithoutAtividadesInput
+    upsert?: TarefaUpsertWithoutAtividadesInput
+    connect?: TarefaWhereUniqueInput
+    update?: XOR<XOR<TarefaUpdateToOneWithWhereWithoutAtividadesInput, TarefaUpdateWithoutAtividadesInput>, TarefaUncheckedUpdateWithoutAtividadesInput>
+  }
+
+  export type UsuarioUpdateOneWithoutAtividades_tarefaNestedInput = {
+    create?: XOR<UsuarioCreateWithoutAtividades_tarefaInput, UsuarioUncheckedCreateWithoutAtividades_tarefaInput>
+    connectOrCreate?: UsuarioCreateOrConnectWithoutAtividades_tarefaInput
+    upsert?: UsuarioUpsertWithoutAtividades_tarefaInput
+    disconnect?: UsuarioWhereInput | boolean
+    delete?: UsuarioWhereInput | boolean
+    connect?: UsuarioWhereUniqueInput
+    update?: XOR<XOR<UsuarioUpdateToOneWithWhereWithoutAtividades_tarefaInput, UsuarioUpdateWithoutAtividades_tarefaInput>, UsuarioUncheckedUpdateWithoutAtividades_tarefaInput>
+  }
+
+  export type TarefaCreateNestedOneWithoutAprovacoesInput = {
+    create?: XOR<TarefaCreateWithoutAprovacoesInput, TarefaUncheckedCreateWithoutAprovacoesInput>
+    connectOrCreate?: TarefaCreateOrConnectWithoutAprovacoesInput
+    connect?: TarefaWhereUniqueInput
+  }
+
+  export type UsuarioCreateNestedOneWithoutAprovacoes_solicitadasInput = {
+    create?: XOR<UsuarioCreateWithoutAprovacoes_solicitadasInput, UsuarioUncheckedCreateWithoutAprovacoes_solicitadasInput>
+    connectOrCreate?: UsuarioCreateOrConnectWithoutAprovacoes_solicitadasInput
+    connect?: UsuarioWhereUniqueInput
+  }
+
+  export type UsuarioCreateNestedOneWithoutAprovacoes_recebidasInput = {
+    create?: XOR<UsuarioCreateWithoutAprovacoes_recebidasInput, UsuarioUncheckedCreateWithoutAprovacoes_recebidasInput>
+    connectOrCreate?: UsuarioCreateOrConnectWithoutAprovacoes_recebidasInput
+    connect?: UsuarioWhereUniqueInput
+  }
+
+  export type EnumStatusAprovacaoFieldUpdateOperationsInput = {
+    set?: $Enums.StatusAprovacao
+  }
+
+  export type TarefaUpdateOneRequiredWithoutAprovacoesNestedInput = {
+    create?: XOR<TarefaCreateWithoutAprovacoesInput, TarefaUncheckedCreateWithoutAprovacoesInput>
+    connectOrCreate?: TarefaCreateOrConnectWithoutAprovacoesInput
+    upsert?: TarefaUpsertWithoutAprovacoesInput
+    connect?: TarefaWhereUniqueInput
+    update?: XOR<XOR<TarefaUpdateToOneWithWhereWithoutAprovacoesInput, TarefaUpdateWithoutAprovacoesInput>, TarefaUncheckedUpdateWithoutAprovacoesInput>
+  }
+
+  export type UsuarioUpdateOneWithoutAprovacoes_solicitadasNestedInput = {
+    create?: XOR<UsuarioCreateWithoutAprovacoes_solicitadasInput, UsuarioUncheckedCreateWithoutAprovacoes_solicitadasInput>
+    connectOrCreate?: UsuarioCreateOrConnectWithoutAprovacoes_solicitadasInput
+    upsert?: UsuarioUpsertWithoutAprovacoes_solicitadasInput
+    disconnect?: UsuarioWhereInput | boolean
+    delete?: UsuarioWhereInput | boolean
+    connect?: UsuarioWhereUniqueInput
+    update?: XOR<XOR<UsuarioUpdateToOneWithWhereWithoutAprovacoes_solicitadasInput, UsuarioUpdateWithoutAprovacoes_solicitadasInput>, UsuarioUncheckedUpdateWithoutAprovacoes_solicitadasInput>
+  }
+
+  export type UsuarioUpdateOneWithoutAprovacoes_recebidasNestedInput = {
+    create?: XOR<UsuarioCreateWithoutAprovacoes_recebidasInput, UsuarioUncheckedCreateWithoutAprovacoes_recebidasInput>
+    connectOrCreate?: UsuarioCreateOrConnectWithoutAprovacoes_recebidasInput
+    upsert?: UsuarioUpsertWithoutAprovacoes_recebidasInput
+    disconnect?: UsuarioWhereInput | boolean
+    delete?: UsuarioWhereInput | boolean
+    connect?: UsuarioWhereUniqueInput
+    update?: XOR<XOR<UsuarioUpdateToOneWithWhereWithoutAprovacoes_recebidasInput, UsuarioUpdateWithoutAprovacoes_recebidasInput>, UsuarioUncheckedUpdateWithoutAprovacoes_recebidasInput>
+  }
+
+  export type TarefaCreateNestedOneWithoutChecklistInput = {
+    create?: XOR<TarefaCreateWithoutChecklistInput, TarefaUncheckedCreateWithoutChecklistInput>
+    connectOrCreate?: TarefaCreateOrConnectWithoutChecklistInput
+    connect?: TarefaWhereUniqueInput
+  }
+
+  export type TarefaUpdateOneRequiredWithoutChecklistNestedInput = {
+    create?: XOR<TarefaCreateWithoutChecklistInput, TarefaUncheckedCreateWithoutChecklistInput>
+    connectOrCreate?: TarefaCreateOrConnectWithoutChecklistInput
+    upsert?: TarefaUpsertWithoutChecklistInput
+    connect?: TarefaWhereUniqueInput
+    update?: XOR<XOR<TarefaUpdateToOneWithWhereWithoutChecklistInput, TarefaUpdateWithoutChecklistInput>, TarefaUncheckedUpdateWithoutChecklistInput>
+  }
+
+  export type EmpresaCreateNestedOneWithoutEtiquetas_tarefaInput = {
+    create?: XOR<EmpresaCreateWithoutEtiquetas_tarefaInput, EmpresaUncheckedCreateWithoutEtiquetas_tarefaInput>
+    connectOrCreate?: EmpresaCreateOrConnectWithoutEtiquetas_tarefaInput
+    connect?: EmpresaWhereUniqueInput
+  }
+
+  export type TarefaEtiquetaCreateNestedManyWithoutEtiquetaInput = {
+    create?: XOR<TarefaEtiquetaCreateWithoutEtiquetaInput, TarefaEtiquetaUncheckedCreateWithoutEtiquetaInput> | TarefaEtiquetaCreateWithoutEtiquetaInput[] | TarefaEtiquetaUncheckedCreateWithoutEtiquetaInput[]
+    connectOrCreate?: TarefaEtiquetaCreateOrConnectWithoutEtiquetaInput | TarefaEtiquetaCreateOrConnectWithoutEtiquetaInput[]
+    createMany?: TarefaEtiquetaCreateManyEtiquetaInputEnvelope
+    connect?: TarefaEtiquetaWhereUniqueInput | TarefaEtiquetaWhereUniqueInput[]
+  }
+
+  export type TarefaEtiquetaUncheckedCreateNestedManyWithoutEtiquetaInput = {
+    create?: XOR<TarefaEtiquetaCreateWithoutEtiquetaInput, TarefaEtiquetaUncheckedCreateWithoutEtiquetaInput> | TarefaEtiquetaCreateWithoutEtiquetaInput[] | TarefaEtiquetaUncheckedCreateWithoutEtiquetaInput[]
+    connectOrCreate?: TarefaEtiquetaCreateOrConnectWithoutEtiquetaInput | TarefaEtiquetaCreateOrConnectWithoutEtiquetaInput[]
+    createMany?: TarefaEtiquetaCreateManyEtiquetaInputEnvelope
+    connect?: TarefaEtiquetaWhereUniqueInput | TarefaEtiquetaWhereUniqueInput[]
+  }
+
+  export type EmpresaUpdateOneRequiredWithoutEtiquetas_tarefaNestedInput = {
+    create?: XOR<EmpresaCreateWithoutEtiquetas_tarefaInput, EmpresaUncheckedCreateWithoutEtiquetas_tarefaInput>
+    connectOrCreate?: EmpresaCreateOrConnectWithoutEtiquetas_tarefaInput
+    upsert?: EmpresaUpsertWithoutEtiquetas_tarefaInput
+    connect?: EmpresaWhereUniqueInput
+    update?: XOR<XOR<EmpresaUpdateToOneWithWhereWithoutEtiquetas_tarefaInput, EmpresaUpdateWithoutEtiquetas_tarefaInput>, EmpresaUncheckedUpdateWithoutEtiquetas_tarefaInput>
+  }
+
+  export type TarefaEtiquetaUpdateManyWithoutEtiquetaNestedInput = {
+    create?: XOR<TarefaEtiquetaCreateWithoutEtiquetaInput, TarefaEtiquetaUncheckedCreateWithoutEtiquetaInput> | TarefaEtiquetaCreateWithoutEtiquetaInput[] | TarefaEtiquetaUncheckedCreateWithoutEtiquetaInput[]
+    connectOrCreate?: TarefaEtiquetaCreateOrConnectWithoutEtiquetaInput | TarefaEtiquetaCreateOrConnectWithoutEtiquetaInput[]
+    upsert?: TarefaEtiquetaUpsertWithWhereUniqueWithoutEtiquetaInput | TarefaEtiquetaUpsertWithWhereUniqueWithoutEtiquetaInput[]
+    createMany?: TarefaEtiquetaCreateManyEtiquetaInputEnvelope
+    set?: TarefaEtiquetaWhereUniqueInput | TarefaEtiquetaWhereUniqueInput[]
+    disconnect?: TarefaEtiquetaWhereUniqueInput | TarefaEtiquetaWhereUniqueInput[]
+    delete?: TarefaEtiquetaWhereUniqueInput | TarefaEtiquetaWhereUniqueInput[]
+    connect?: TarefaEtiquetaWhereUniqueInput | TarefaEtiquetaWhereUniqueInput[]
+    update?: TarefaEtiquetaUpdateWithWhereUniqueWithoutEtiquetaInput | TarefaEtiquetaUpdateWithWhereUniqueWithoutEtiquetaInput[]
+    updateMany?: TarefaEtiquetaUpdateManyWithWhereWithoutEtiquetaInput | TarefaEtiquetaUpdateManyWithWhereWithoutEtiquetaInput[]
+    deleteMany?: TarefaEtiquetaScalarWhereInput | TarefaEtiquetaScalarWhereInput[]
+  }
+
+  export type TarefaEtiquetaUncheckedUpdateManyWithoutEtiquetaNestedInput = {
+    create?: XOR<TarefaEtiquetaCreateWithoutEtiquetaInput, TarefaEtiquetaUncheckedCreateWithoutEtiquetaInput> | TarefaEtiquetaCreateWithoutEtiquetaInput[] | TarefaEtiquetaUncheckedCreateWithoutEtiquetaInput[]
+    connectOrCreate?: TarefaEtiquetaCreateOrConnectWithoutEtiquetaInput | TarefaEtiquetaCreateOrConnectWithoutEtiquetaInput[]
+    upsert?: TarefaEtiquetaUpsertWithWhereUniqueWithoutEtiquetaInput | TarefaEtiquetaUpsertWithWhereUniqueWithoutEtiquetaInput[]
+    createMany?: TarefaEtiquetaCreateManyEtiquetaInputEnvelope
+    set?: TarefaEtiquetaWhereUniqueInput | TarefaEtiquetaWhereUniqueInput[]
+    disconnect?: TarefaEtiquetaWhereUniqueInput | TarefaEtiquetaWhereUniqueInput[]
+    delete?: TarefaEtiquetaWhereUniqueInput | TarefaEtiquetaWhereUniqueInput[]
+    connect?: TarefaEtiquetaWhereUniqueInput | TarefaEtiquetaWhereUniqueInput[]
+    update?: TarefaEtiquetaUpdateWithWhereUniqueWithoutEtiquetaInput | TarefaEtiquetaUpdateWithWhereUniqueWithoutEtiquetaInput[]
+    updateMany?: TarefaEtiquetaUpdateManyWithWhereWithoutEtiquetaInput | TarefaEtiquetaUpdateManyWithWhereWithoutEtiquetaInput[]
+    deleteMany?: TarefaEtiquetaScalarWhereInput | TarefaEtiquetaScalarWhereInput[]
+  }
+
+  export type TarefaCreateNestedOneWithoutEtiquetasInput = {
+    create?: XOR<TarefaCreateWithoutEtiquetasInput, TarefaUncheckedCreateWithoutEtiquetasInput>
+    connectOrCreate?: TarefaCreateOrConnectWithoutEtiquetasInput
+    connect?: TarefaWhereUniqueInput
+  }
+
+  export type EtiquetaTarefaCreateNestedOneWithoutTarefasInput = {
+    create?: XOR<EtiquetaTarefaCreateWithoutTarefasInput, EtiquetaTarefaUncheckedCreateWithoutTarefasInput>
+    connectOrCreate?: EtiquetaTarefaCreateOrConnectWithoutTarefasInput
+    connect?: EtiquetaTarefaWhereUniqueInput
+  }
+
+  export type TarefaUpdateOneRequiredWithoutEtiquetasNestedInput = {
+    create?: XOR<TarefaCreateWithoutEtiquetasInput, TarefaUncheckedCreateWithoutEtiquetasInput>
+    connectOrCreate?: TarefaCreateOrConnectWithoutEtiquetasInput
+    upsert?: TarefaUpsertWithoutEtiquetasInput
+    connect?: TarefaWhereUniqueInput
+    update?: XOR<XOR<TarefaUpdateToOneWithWhereWithoutEtiquetasInput, TarefaUpdateWithoutEtiquetasInput>, TarefaUncheckedUpdateWithoutEtiquetasInput>
+  }
+
+  export type EtiquetaTarefaUpdateOneRequiredWithoutTarefasNestedInput = {
+    create?: XOR<EtiquetaTarefaCreateWithoutTarefasInput, EtiquetaTarefaUncheckedCreateWithoutTarefasInput>
+    connectOrCreate?: EtiquetaTarefaCreateOrConnectWithoutTarefasInput
+    upsert?: EtiquetaTarefaUpsertWithoutTarefasInput
+    connect?: EtiquetaTarefaWhereUniqueInput
+    update?: XOR<XOR<EtiquetaTarefaUpdateToOneWithWhereWithoutTarefasInput, EtiquetaTarefaUpdateWithoutTarefasInput>, EtiquetaTarefaUncheckedUpdateWithoutTarefasInput>
+  }
+
   export type EmpresaCreateNestedOneWithoutDocumentosInput = {
     create?: XOR<EmpresaCreateWithoutDocumentosInput, EmpresaUncheckedCreateWithoutDocumentosInput>
     connectOrCreate?: EmpresaCreateOrConnectWithoutDocumentosInput
@@ -63918,10 +75426,26 @@ export namespace Prisma {
     connect?: ProjetoWhereUniqueInput
   }
 
+  export type ClienteCreateNestedOneWithoutDocumentosInput = {
+    create?: XOR<ClienteCreateWithoutDocumentosInput, ClienteUncheckedCreateWithoutDocumentosInput>
+    connectOrCreate?: ClienteCreateOrConnectWithoutDocumentosInput
+    connect?: ClienteWhereUniqueInput
+  }
+
+  export type ContratoCreateNestedOneWithoutDocumentosInput = {
+    create?: XOR<ContratoCreateWithoutDocumentosInput, ContratoUncheckedCreateWithoutDocumentosInput>
+    connectOrCreate?: ContratoCreateOrConnectWithoutDocumentosInput
+    connect?: ContratoWhereUniqueInput
+  }
+
   export type UsuarioCreateNestedOneWithoutDocumentos_criadosInput = {
     create?: XOR<UsuarioCreateWithoutDocumentos_criadosInput, UsuarioUncheckedCreateWithoutDocumentos_criadosInput>
     connectOrCreate?: UsuarioCreateOrConnectWithoutDocumentos_criadosInput
     connect?: UsuarioWhereUniqueInput
+  }
+
+  export type EnumCategoriaDocumentoFieldUpdateOperationsInput = {
+    set?: $Enums.CategoriaDocumento
   }
 
   export type EmpresaUpdateOneRequiredWithoutDocumentosNestedInput = {
@@ -63932,12 +75456,34 @@ export namespace Prisma {
     update?: XOR<XOR<EmpresaUpdateToOneWithWhereWithoutDocumentosInput, EmpresaUpdateWithoutDocumentosInput>, EmpresaUncheckedUpdateWithoutDocumentosInput>
   }
 
-  export type ProjetoUpdateOneRequiredWithoutDocumentosNestedInput = {
+  export type ProjetoUpdateOneWithoutDocumentosNestedInput = {
     create?: XOR<ProjetoCreateWithoutDocumentosInput, ProjetoUncheckedCreateWithoutDocumentosInput>
     connectOrCreate?: ProjetoCreateOrConnectWithoutDocumentosInput
     upsert?: ProjetoUpsertWithoutDocumentosInput
+    disconnect?: ProjetoWhereInput | boolean
+    delete?: ProjetoWhereInput | boolean
     connect?: ProjetoWhereUniqueInput
     update?: XOR<XOR<ProjetoUpdateToOneWithWhereWithoutDocumentosInput, ProjetoUpdateWithoutDocumentosInput>, ProjetoUncheckedUpdateWithoutDocumentosInput>
+  }
+
+  export type ClienteUpdateOneWithoutDocumentosNestedInput = {
+    create?: XOR<ClienteCreateWithoutDocumentosInput, ClienteUncheckedCreateWithoutDocumentosInput>
+    connectOrCreate?: ClienteCreateOrConnectWithoutDocumentosInput
+    upsert?: ClienteUpsertWithoutDocumentosInput
+    disconnect?: ClienteWhereInput | boolean
+    delete?: ClienteWhereInput | boolean
+    connect?: ClienteWhereUniqueInput
+    update?: XOR<XOR<ClienteUpdateToOneWithWhereWithoutDocumentosInput, ClienteUpdateWithoutDocumentosInput>, ClienteUncheckedUpdateWithoutDocumentosInput>
+  }
+
+  export type ContratoUpdateOneWithoutDocumentosNestedInput = {
+    create?: XOR<ContratoCreateWithoutDocumentosInput, ContratoUncheckedCreateWithoutDocumentosInput>
+    connectOrCreate?: ContratoCreateOrConnectWithoutDocumentosInput
+    upsert?: ContratoUpsertWithoutDocumentosInput
+    disconnect?: ContratoWhereInput | boolean
+    delete?: ContratoWhereInput | boolean
+    connect?: ContratoWhereUniqueInput
+    update?: XOR<XOR<ContratoUpdateToOneWithWhereWithoutDocumentosInput, ContratoUpdateWithoutDocumentosInput>, ContratoUncheckedUpdateWithoutDocumentosInput>
   }
 
   export type UsuarioUpdateOneWithoutDocumentos_criadosNestedInput = {
@@ -65375,6 +76921,13 @@ export namespace Prisma {
     not?: NestedEnumStatusTarefaFilter<$PrismaModel> | $Enums.StatusTarefa
   }
 
+  export type NestedEnumPrioridadeTarefaFilter<$PrismaModel = never> = {
+    equals?: $Enums.PrioridadeTarefa | EnumPrioridadeTarefaFieldRefInput<$PrismaModel>
+    in?: $Enums.PrioridadeTarefa[] | ListEnumPrioridadeTarefaFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PrioridadeTarefa[] | ListEnumPrioridadeTarefaFieldRefInput<$PrismaModel>
+    not?: NestedEnumPrioridadeTarefaFilter<$PrismaModel> | $Enums.PrioridadeTarefa
+  }
+
   export type NestedEnumStatusTarefaWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.StatusTarefa | EnumStatusTarefaFieldRefInput<$PrismaModel>
     in?: $Enums.StatusTarefa[] | ListEnumStatusTarefaFieldRefInput<$PrismaModel>
@@ -65383,6 +76936,50 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumStatusTarefaFilter<$PrismaModel>
     _max?: NestedEnumStatusTarefaFilter<$PrismaModel>
+  }
+
+  export type NestedEnumPrioridadeTarefaWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PrioridadeTarefa | EnumPrioridadeTarefaFieldRefInput<$PrismaModel>
+    in?: $Enums.PrioridadeTarefa[] | ListEnumPrioridadeTarefaFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PrioridadeTarefa[] | ListEnumPrioridadeTarefaFieldRefInput<$PrismaModel>
+    not?: NestedEnumPrioridadeTarefaWithAggregatesFilter<$PrismaModel> | $Enums.PrioridadeTarefa
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPrioridadeTarefaFilter<$PrismaModel>
+    _max?: NestedEnumPrioridadeTarefaFilter<$PrismaModel>
+  }
+
+  export type NestedEnumStatusAprovacaoFilter<$PrismaModel = never> = {
+    equals?: $Enums.StatusAprovacao | EnumStatusAprovacaoFieldRefInput<$PrismaModel>
+    in?: $Enums.StatusAprovacao[] | ListEnumStatusAprovacaoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.StatusAprovacao[] | ListEnumStatusAprovacaoFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusAprovacaoFilter<$PrismaModel> | $Enums.StatusAprovacao
+  }
+
+  export type NestedEnumStatusAprovacaoWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.StatusAprovacao | EnumStatusAprovacaoFieldRefInput<$PrismaModel>
+    in?: $Enums.StatusAprovacao[] | ListEnumStatusAprovacaoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.StatusAprovacao[] | ListEnumStatusAprovacaoFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusAprovacaoWithAggregatesFilter<$PrismaModel> | $Enums.StatusAprovacao
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStatusAprovacaoFilter<$PrismaModel>
+    _max?: NestedEnumStatusAprovacaoFilter<$PrismaModel>
+  }
+
+  export type NestedEnumCategoriaDocumentoFilter<$PrismaModel = never> = {
+    equals?: $Enums.CategoriaDocumento | EnumCategoriaDocumentoFieldRefInput<$PrismaModel>
+    in?: $Enums.CategoriaDocumento[] | ListEnumCategoriaDocumentoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CategoriaDocumento[] | ListEnumCategoriaDocumentoFieldRefInput<$PrismaModel>
+    not?: NestedEnumCategoriaDocumentoFilter<$PrismaModel> | $Enums.CategoriaDocumento
+  }
+
+  export type NestedEnumCategoriaDocumentoWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CategoriaDocumento | EnumCategoriaDocumentoFieldRefInput<$PrismaModel>
+    in?: $Enums.CategoriaDocumento[] | ListEnumCategoriaDocumentoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CategoriaDocumento[] | ListEnumCategoriaDocumentoFieldRefInput<$PrismaModel>
+    not?: NestedEnumCategoriaDocumentoWithAggregatesFilter<$PrismaModel> | $Enums.CategoriaDocumento
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCategoriaDocumentoFilter<$PrismaModel>
+    _max?: NestedEnumCategoriaDocumentoFilter<$PrismaModel>
   }
 
   export type NestedEnumTipoPlanoContasFilter<$PrismaModel = never> = {
@@ -65658,6 +77255,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutClienteInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
+    documentos?: DocumentoCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutEmpresaInput = {
@@ -65696,6 +77294,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutClienteInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutEmpresaInput = {
@@ -65912,6 +77511,7 @@ export namespace Prisma {
     recebiveis?: RecebivelCreateNestedManyWithoutContratoInput
     eventos?: EventoCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutContratoInput
+    documentos?: DocumentoCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoUncheckedCreateWithoutEmpresaInput = {
@@ -65956,6 +77556,7 @@ export namespace Prisma {
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutContratoInput
     eventos?: EventoUncheckedCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutContratoInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoCreateOrConnectWithoutEmpresaInput = {
@@ -66019,20 +77620,28 @@ export namespace Prisma {
   export type DocumentoCreateWithoutEmpresaInput = {
     id?: string
     titulo: string
+    descricao?: string | null
+    categoria?: $Enums.CategoriaDocumento
     arquivo_url: string
     arquivo_nome: string
     arquivo_tamanho?: number
     mime_type?: string
     criado_em?: Date | string
-    projeto: ProjetoCreateNestedOneWithoutDocumentosInput
+    projeto?: ProjetoCreateNestedOneWithoutDocumentosInput
+    cliente?: ClienteCreateNestedOneWithoutDocumentosInput
+    contrato?: ContratoCreateNestedOneWithoutDocumentosInput
     criador?: UsuarioCreateNestedOneWithoutDocumentos_criadosInput
   }
 
   export type DocumentoUncheckedCreateWithoutEmpresaInput = {
     id?: string
-    projeto_id: string
+    projeto_id?: string | null
+    cliente_id?: string | null
+    contrato_id?: string | null
     criado_por?: string | null
     titulo: string
+    descricao?: string | null
+    categoria?: $Enums.CategoriaDocumento
     arquivo_url: string
     arquivo_nome: string
     arquivo_tamanho?: number
@@ -66552,6 +78161,30 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type EtiquetaTarefaCreateWithoutEmpresaInput = {
+    id?: string
+    nome: string
+    cor?: string
+    tarefas?: TarefaEtiquetaCreateNestedManyWithoutEtiquetaInput
+  }
+
+  export type EtiquetaTarefaUncheckedCreateWithoutEmpresaInput = {
+    id?: string
+    nome: string
+    cor?: string
+    tarefas?: TarefaEtiquetaUncheckedCreateNestedManyWithoutEtiquetaInput
+  }
+
+  export type EtiquetaTarefaCreateOrConnectWithoutEmpresaInput = {
+    where: EtiquetaTarefaWhereUniqueInput
+    create: XOR<EtiquetaTarefaCreateWithoutEmpresaInput, EtiquetaTarefaUncheckedCreateWithoutEmpresaInput>
+  }
+
+  export type EtiquetaTarefaCreateManyEmpresaInputEnvelope = {
+    data: EtiquetaTarefaCreateManyEmpresaInput | EtiquetaTarefaCreateManyEmpresaInput[]
+    skipDuplicates?: boolean
+  }
+
   export type MembroEmpresaUpsertWithWhereUniqueWithoutEmpresaInput = {
     where: MembroEmpresaWhereUniqueInput
     update: XOR<MembroEmpresaUpdateWithoutEmpresaInput, MembroEmpresaUncheckedUpdateWithoutEmpresaInput>
@@ -66951,9 +78584,13 @@ export namespace Prisma {
     NOT?: DocumentoScalarWhereInput | DocumentoScalarWhereInput[]
     id?: StringFilter<"Documento"> | string
     empresa_id?: StringFilter<"Documento"> | string
-    projeto_id?: StringFilter<"Documento"> | string
+    projeto_id?: StringNullableFilter<"Documento"> | string | null
+    cliente_id?: StringNullableFilter<"Documento"> | string | null
+    contrato_id?: StringNullableFilter<"Documento"> | string | null
     criado_por?: StringNullableFilter<"Documento"> | string | null
     titulo?: StringFilter<"Documento"> | string
+    descricao?: StringNullableFilter<"Documento"> | string | null
+    categoria?: EnumCategoriaDocumentoFilter<"Documento"> | $Enums.CategoriaDocumento
     arquivo_url?: StringFilter<"Documento"> | string
     arquivo_nome?: StringFilter<"Documento"> | string
     arquivo_tamanho?: IntFilter<"Documento"> | number
@@ -67383,6 +79020,32 @@ export namespace Prisma {
     atualizado_em?: DateTimeFilter<"Diagnostico"> | Date | string
   }
 
+  export type EtiquetaTarefaUpsertWithWhereUniqueWithoutEmpresaInput = {
+    where: EtiquetaTarefaWhereUniqueInput
+    update: XOR<EtiquetaTarefaUpdateWithoutEmpresaInput, EtiquetaTarefaUncheckedUpdateWithoutEmpresaInput>
+    create: XOR<EtiquetaTarefaCreateWithoutEmpresaInput, EtiquetaTarefaUncheckedCreateWithoutEmpresaInput>
+  }
+
+  export type EtiquetaTarefaUpdateWithWhereUniqueWithoutEmpresaInput = {
+    where: EtiquetaTarefaWhereUniqueInput
+    data: XOR<EtiquetaTarefaUpdateWithoutEmpresaInput, EtiquetaTarefaUncheckedUpdateWithoutEmpresaInput>
+  }
+
+  export type EtiquetaTarefaUpdateManyWithWhereWithoutEmpresaInput = {
+    where: EtiquetaTarefaScalarWhereInput
+    data: XOR<EtiquetaTarefaUpdateManyMutationInput, EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaInput>
+  }
+
+  export type EtiquetaTarefaScalarWhereInput = {
+    AND?: EtiquetaTarefaScalarWhereInput | EtiquetaTarefaScalarWhereInput[]
+    OR?: EtiquetaTarefaScalarWhereInput[]
+    NOT?: EtiquetaTarefaScalarWhereInput | EtiquetaTarefaScalarWhereInput[]
+    id?: StringFilter<"EtiquetaTarefa"> | string
+    empresa_id?: StringFilter<"EtiquetaTarefa"> | string
+    nome?: StringFilter<"EtiquetaTarefa"> | string
+    cor?: StringFilter<"EtiquetaTarefa"> | string
+  }
+
   export type MembroEmpresaCreateWithoutUsuarioInput = {
     id?: string
     ativo?: boolean
@@ -67637,6 +79300,7 @@ export namespace Prisma {
     recebiveis?: RecebivelCreateNestedManyWithoutContratoInput
     eventos?: EventoCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutContratoInput
+    documentos?: DocumentoCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoUncheckedCreateWithoutCriadorInput = {
@@ -67681,6 +79345,7 @@ export namespace Prisma {
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutContratoInput
     eventos?: EventoUncheckedCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutContratoInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoCreateOrConnectWithoutCriadorInput = {
@@ -67746,12 +79411,20 @@ export namespace Prisma {
     titulo: string
     descricao?: string | null
     status?: $Enums.StatusTarefa
+    prioridade?: $Enums.PrioridadeTarefa
+    ordem?: number
     data_prazo?: Date | string | null
     concluida_em?: Date | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     etapa: EtapaCreateNestedOneWithoutTarefasInput
     projeto: ProjetoCreateNestedOneWithoutTarefasInput
+    comentarios?: ComentarioTarefaCreateNestedManyWithoutTarefaInput
+    anexos?: AnexoTarefaCreateNestedManyWithoutTarefaInput
+    atividades?: AtividadeTarefaCreateNestedManyWithoutTarefaInput
+    aprovacoes?: AprovacaoTarefaCreateNestedManyWithoutTarefaInput
+    checklist?: ItemChecklistCreateNestedManyWithoutTarefaInput
+    etiquetas?: TarefaEtiquetaCreateNestedManyWithoutTarefaInput
   }
 
   export type TarefaUncheckedCreateWithoutResponsavelInput = {
@@ -67761,10 +79434,18 @@ export namespace Prisma {
     titulo: string
     descricao?: string | null
     status?: $Enums.StatusTarefa
+    prioridade?: $Enums.PrioridadeTarefa
+    ordem?: number
     data_prazo?: Date | string | null
     concluida_em?: Date | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
+    comentarios?: ComentarioTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    anexos?: AnexoTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    atividades?: AtividadeTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    aprovacoes?: AprovacaoTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    checklist?: ItemChecklistUncheckedCreateNestedManyWithoutTarefaInput
+    etiquetas?: TarefaEtiquetaUncheckedCreateNestedManyWithoutTarefaInput
   }
 
   export type TarefaCreateOrConnectWithoutResponsavelInput = {
@@ -67780,20 +79461,28 @@ export namespace Prisma {
   export type DocumentoCreateWithoutCriadorInput = {
     id?: string
     titulo: string
+    descricao?: string | null
+    categoria?: $Enums.CategoriaDocumento
     arquivo_url: string
     arquivo_nome: string
     arquivo_tamanho?: number
     mime_type?: string
     criado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutDocumentosInput
-    projeto: ProjetoCreateNestedOneWithoutDocumentosInput
+    projeto?: ProjetoCreateNestedOneWithoutDocumentosInput
+    cliente?: ClienteCreateNestedOneWithoutDocumentosInput
+    contrato?: ContratoCreateNestedOneWithoutDocumentosInput
   }
 
   export type DocumentoUncheckedCreateWithoutCriadorInput = {
     id?: string
     empresa_id: string
-    projeto_id: string
+    projeto_id?: string | null
+    cliente_id?: string | null
+    contrato_id?: string | null
     titulo: string
+    descricao?: string | null
+    categoria?: $Enums.CategoriaDocumento
     arquivo_url: string
     arquivo_nome: string
     arquivo_tamanho?: number
@@ -68075,6 +79764,7 @@ export namespace Prisma {
     recebiveis?: RecebivelCreateNestedManyWithoutContratoInput
     eventos?: EventoCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutContratoInput
+    documentos?: DocumentoCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoUncheckedCreateWithoutResponsavelInput = {
@@ -68119,6 +79809,7 @@ export namespace Prisma {
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutContratoInput
     eventos?: EventoUncheckedCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutContratoInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoCreateOrConnectWithoutResponsavelInput = {
@@ -68158,6 +79849,146 @@ export namespace Prisma {
 
   export type ConviteClienteCreateManyCriadorInputEnvelope = {
     data: ConviteClienteCreateManyCriadorInput | ConviteClienteCreateManyCriadorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ComentarioTarefaCreateWithoutAutorInput = {
+    id?: string
+    conteudo: string
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    tarefa: TarefaCreateNestedOneWithoutComentariosInput
+  }
+
+  export type ComentarioTarefaUncheckedCreateWithoutAutorInput = {
+    id?: string
+    tarefa_id: string
+    conteudo: string
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type ComentarioTarefaCreateOrConnectWithoutAutorInput = {
+    where: ComentarioTarefaWhereUniqueInput
+    create: XOR<ComentarioTarefaCreateWithoutAutorInput, ComentarioTarefaUncheckedCreateWithoutAutorInput>
+  }
+
+  export type ComentarioTarefaCreateManyAutorInputEnvelope = {
+    data: ComentarioTarefaCreateManyAutorInput | ComentarioTarefaCreateManyAutorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AnexoTarefaCreateWithoutCriadorInput = {
+    id?: string
+    nome: string
+    arquivo_url: string
+    arquivo_tamanho?: number
+    mime_type?: string
+    criado_em?: Date | string
+    tarefa: TarefaCreateNestedOneWithoutAnexosInput
+  }
+
+  export type AnexoTarefaUncheckedCreateWithoutCriadorInput = {
+    id?: string
+    tarefa_id: string
+    nome: string
+    arquivo_url: string
+    arquivo_tamanho?: number
+    mime_type?: string
+    criado_em?: Date | string
+  }
+
+  export type AnexoTarefaCreateOrConnectWithoutCriadorInput = {
+    where: AnexoTarefaWhereUniqueInput
+    create: XOR<AnexoTarefaCreateWithoutCriadorInput, AnexoTarefaUncheckedCreateWithoutCriadorInput>
+  }
+
+  export type AnexoTarefaCreateManyCriadorInputEnvelope = {
+    data: AnexoTarefaCreateManyCriadorInput | AnexoTarefaCreateManyCriadorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AtividadeTarefaCreateWithoutAutorInput = {
+    id?: string
+    descricao: string
+    criado_em?: Date | string
+    tarefa: TarefaCreateNestedOneWithoutAtividadesInput
+  }
+
+  export type AtividadeTarefaUncheckedCreateWithoutAutorInput = {
+    id?: string
+    tarefa_id: string
+    descricao: string
+    criado_em?: Date | string
+  }
+
+  export type AtividadeTarefaCreateOrConnectWithoutAutorInput = {
+    where: AtividadeTarefaWhereUniqueInput
+    create: XOR<AtividadeTarefaCreateWithoutAutorInput, AtividadeTarefaUncheckedCreateWithoutAutorInput>
+  }
+
+  export type AtividadeTarefaCreateManyAutorInputEnvelope = {
+    data: AtividadeTarefaCreateManyAutorInput | AtividadeTarefaCreateManyAutorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AprovacaoTarefaCreateWithoutSolicitanteInput = {
+    id?: string
+    status?: $Enums.StatusAprovacao
+    comentario?: string | null
+    criado_em?: Date | string
+    decidido_em?: Date | string | null
+    tarefa: TarefaCreateNestedOneWithoutAprovacoesInput
+    aprovador?: UsuarioCreateNestedOneWithoutAprovacoes_recebidasInput
+  }
+
+  export type AprovacaoTarefaUncheckedCreateWithoutSolicitanteInput = {
+    id?: string
+    tarefa_id: string
+    aprovador_id?: string | null
+    status?: $Enums.StatusAprovacao
+    comentario?: string | null
+    criado_em?: Date | string
+    decidido_em?: Date | string | null
+  }
+
+  export type AprovacaoTarefaCreateOrConnectWithoutSolicitanteInput = {
+    where: AprovacaoTarefaWhereUniqueInput
+    create: XOR<AprovacaoTarefaCreateWithoutSolicitanteInput, AprovacaoTarefaUncheckedCreateWithoutSolicitanteInput>
+  }
+
+  export type AprovacaoTarefaCreateManySolicitanteInputEnvelope = {
+    data: AprovacaoTarefaCreateManySolicitanteInput | AprovacaoTarefaCreateManySolicitanteInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AprovacaoTarefaCreateWithoutAprovadorInput = {
+    id?: string
+    status?: $Enums.StatusAprovacao
+    comentario?: string | null
+    criado_em?: Date | string
+    decidido_em?: Date | string | null
+    tarefa: TarefaCreateNestedOneWithoutAprovacoesInput
+    solicitante?: UsuarioCreateNestedOneWithoutAprovacoes_solicitadasInput
+  }
+
+  export type AprovacaoTarefaUncheckedCreateWithoutAprovadorInput = {
+    id?: string
+    tarefa_id: string
+    solicitante_id?: string | null
+    status?: $Enums.StatusAprovacao
+    comentario?: string | null
+    criado_em?: Date | string
+    decidido_em?: Date | string | null
+  }
+
+  export type AprovacaoTarefaCreateOrConnectWithoutAprovadorInput = {
+    where: AprovacaoTarefaWhereUniqueInput
+    create: XOR<AprovacaoTarefaCreateWithoutAprovadorInput, AprovacaoTarefaUncheckedCreateWithoutAprovadorInput>
+  }
+
+  export type AprovacaoTarefaCreateManyAprovadorInputEnvelope = {
+    data: AprovacaoTarefaCreateManyAprovadorInput | AprovacaoTarefaCreateManyAprovadorInput[]
     skipDuplicates?: boolean
   }
 
@@ -68312,6 +80143,8 @@ export namespace Prisma {
     titulo?: StringFilter<"Tarefa"> | string
     descricao?: StringNullableFilter<"Tarefa"> | string | null
     status?: EnumStatusTarefaFilter<"Tarefa"> | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaFilter<"Tarefa"> | $Enums.PrioridadeTarefa
+    ordem?: IntFilter<"Tarefa"> | number
     data_prazo?: DateTimeNullableFilter<"Tarefa"> | Date | string | null
     concluida_em?: DateTimeNullableFilter<"Tarefa"> | Date | string | null
     criado_em?: DateTimeFilter<"Tarefa"> | Date | string
@@ -68430,6 +80263,137 @@ export namespace Prisma {
     data: XOR<ConviteClienteUpdateManyMutationInput, ConviteClienteUncheckedUpdateManyWithoutCriadorInput>
   }
 
+  export type ComentarioTarefaUpsertWithWhereUniqueWithoutAutorInput = {
+    where: ComentarioTarefaWhereUniqueInput
+    update: XOR<ComentarioTarefaUpdateWithoutAutorInput, ComentarioTarefaUncheckedUpdateWithoutAutorInput>
+    create: XOR<ComentarioTarefaCreateWithoutAutorInput, ComentarioTarefaUncheckedCreateWithoutAutorInput>
+  }
+
+  export type ComentarioTarefaUpdateWithWhereUniqueWithoutAutorInput = {
+    where: ComentarioTarefaWhereUniqueInput
+    data: XOR<ComentarioTarefaUpdateWithoutAutorInput, ComentarioTarefaUncheckedUpdateWithoutAutorInput>
+  }
+
+  export type ComentarioTarefaUpdateManyWithWhereWithoutAutorInput = {
+    where: ComentarioTarefaScalarWhereInput
+    data: XOR<ComentarioTarefaUpdateManyMutationInput, ComentarioTarefaUncheckedUpdateManyWithoutAutorInput>
+  }
+
+  export type ComentarioTarefaScalarWhereInput = {
+    AND?: ComentarioTarefaScalarWhereInput | ComentarioTarefaScalarWhereInput[]
+    OR?: ComentarioTarefaScalarWhereInput[]
+    NOT?: ComentarioTarefaScalarWhereInput | ComentarioTarefaScalarWhereInput[]
+    id?: StringFilter<"ComentarioTarefa"> | string
+    tarefa_id?: StringFilter<"ComentarioTarefa"> | string
+    autor_id?: StringNullableFilter<"ComentarioTarefa"> | string | null
+    conteudo?: StringFilter<"ComentarioTarefa"> | string
+    criado_em?: DateTimeFilter<"ComentarioTarefa"> | Date | string
+    atualizado_em?: DateTimeFilter<"ComentarioTarefa"> | Date | string
+  }
+
+  export type AnexoTarefaUpsertWithWhereUniqueWithoutCriadorInput = {
+    where: AnexoTarefaWhereUniqueInput
+    update: XOR<AnexoTarefaUpdateWithoutCriadorInput, AnexoTarefaUncheckedUpdateWithoutCriadorInput>
+    create: XOR<AnexoTarefaCreateWithoutCriadorInput, AnexoTarefaUncheckedCreateWithoutCriadorInput>
+  }
+
+  export type AnexoTarefaUpdateWithWhereUniqueWithoutCriadorInput = {
+    where: AnexoTarefaWhereUniqueInput
+    data: XOR<AnexoTarefaUpdateWithoutCriadorInput, AnexoTarefaUncheckedUpdateWithoutCriadorInput>
+  }
+
+  export type AnexoTarefaUpdateManyWithWhereWithoutCriadorInput = {
+    where: AnexoTarefaScalarWhereInput
+    data: XOR<AnexoTarefaUpdateManyMutationInput, AnexoTarefaUncheckedUpdateManyWithoutCriadorInput>
+  }
+
+  export type AnexoTarefaScalarWhereInput = {
+    AND?: AnexoTarefaScalarWhereInput | AnexoTarefaScalarWhereInput[]
+    OR?: AnexoTarefaScalarWhereInput[]
+    NOT?: AnexoTarefaScalarWhereInput | AnexoTarefaScalarWhereInput[]
+    id?: StringFilter<"AnexoTarefa"> | string
+    tarefa_id?: StringFilter<"AnexoTarefa"> | string
+    criado_por?: StringNullableFilter<"AnexoTarefa"> | string | null
+    nome?: StringFilter<"AnexoTarefa"> | string
+    arquivo_url?: StringFilter<"AnexoTarefa"> | string
+    arquivo_tamanho?: IntFilter<"AnexoTarefa"> | number
+    mime_type?: StringFilter<"AnexoTarefa"> | string
+    criado_em?: DateTimeFilter<"AnexoTarefa"> | Date | string
+  }
+
+  export type AtividadeTarefaUpsertWithWhereUniqueWithoutAutorInput = {
+    where: AtividadeTarefaWhereUniqueInput
+    update: XOR<AtividadeTarefaUpdateWithoutAutorInput, AtividadeTarefaUncheckedUpdateWithoutAutorInput>
+    create: XOR<AtividadeTarefaCreateWithoutAutorInput, AtividadeTarefaUncheckedCreateWithoutAutorInput>
+  }
+
+  export type AtividadeTarefaUpdateWithWhereUniqueWithoutAutorInput = {
+    where: AtividadeTarefaWhereUniqueInput
+    data: XOR<AtividadeTarefaUpdateWithoutAutorInput, AtividadeTarefaUncheckedUpdateWithoutAutorInput>
+  }
+
+  export type AtividadeTarefaUpdateManyWithWhereWithoutAutorInput = {
+    where: AtividadeTarefaScalarWhereInput
+    data: XOR<AtividadeTarefaUpdateManyMutationInput, AtividadeTarefaUncheckedUpdateManyWithoutAutorInput>
+  }
+
+  export type AtividadeTarefaScalarWhereInput = {
+    AND?: AtividadeTarefaScalarWhereInput | AtividadeTarefaScalarWhereInput[]
+    OR?: AtividadeTarefaScalarWhereInput[]
+    NOT?: AtividadeTarefaScalarWhereInput | AtividadeTarefaScalarWhereInput[]
+    id?: StringFilter<"AtividadeTarefa"> | string
+    tarefa_id?: StringFilter<"AtividadeTarefa"> | string
+    autor_id?: StringNullableFilter<"AtividadeTarefa"> | string | null
+    descricao?: StringFilter<"AtividadeTarefa"> | string
+    criado_em?: DateTimeFilter<"AtividadeTarefa"> | Date | string
+  }
+
+  export type AprovacaoTarefaUpsertWithWhereUniqueWithoutSolicitanteInput = {
+    where: AprovacaoTarefaWhereUniqueInput
+    update: XOR<AprovacaoTarefaUpdateWithoutSolicitanteInput, AprovacaoTarefaUncheckedUpdateWithoutSolicitanteInput>
+    create: XOR<AprovacaoTarefaCreateWithoutSolicitanteInput, AprovacaoTarefaUncheckedCreateWithoutSolicitanteInput>
+  }
+
+  export type AprovacaoTarefaUpdateWithWhereUniqueWithoutSolicitanteInput = {
+    where: AprovacaoTarefaWhereUniqueInput
+    data: XOR<AprovacaoTarefaUpdateWithoutSolicitanteInput, AprovacaoTarefaUncheckedUpdateWithoutSolicitanteInput>
+  }
+
+  export type AprovacaoTarefaUpdateManyWithWhereWithoutSolicitanteInput = {
+    where: AprovacaoTarefaScalarWhereInput
+    data: XOR<AprovacaoTarefaUpdateManyMutationInput, AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteInput>
+  }
+
+  export type AprovacaoTarefaScalarWhereInput = {
+    AND?: AprovacaoTarefaScalarWhereInput | AprovacaoTarefaScalarWhereInput[]
+    OR?: AprovacaoTarefaScalarWhereInput[]
+    NOT?: AprovacaoTarefaScalarWhereInput | AprovacaoTarefaScalarWhereInput[]
+    id?: StringFilter<"AprovacaoTarefa"> | string
+    tarefa_id?: StringFilter<"AprovacaoTarefa"> | string
+    solicitante_id?: StringNullableFilter<"AprovacaoTarefa"> | string | null
+    aprovador_id?: StringNullableFilter<"AprovacaoTarefa"> | string | null
+    status?: EnumStatusAprovacaoFilter<"AprovacaoTarefa"> | $Enums.StatusAprovacao
+    comentario?: StringNullableFilter<"AprovacaoTarefa"> | string | null
+    criado_em?: DateTimeFilter<"AprovacaoTarefa"> | Date | string
+    decidido_em?: DateTimeNullableFilter<"AprovacaoTarefa"> | Date | string | null
+  }
+
+  export type AprovacaoTarefaUpsertWithWhereUniqueWithoutAprovadorInput = {
+    where: AprovacaoTarefaWhereUniqueInput
+    update: XOR<AprovacaoTarefaUpdateWithoutAprovadorInput, AprovacaoTarefaUncheckedUpdateWithoutAprovadorInput>
+    create: XOR<AprovacaoTarefaCreateWithoutAprovadorInput, AprovacaoTarefaUncheckedCreateWithoutAprovadorInput>
+  }
+
+  export type AprovacaoTarefaUpdateWithWhereUniqueWithoutAprovadorInput = {
+    where: AprovacaoTarefaWhereUniqueInput
+    data: XOR<AprovacaoTarefaUpdateWithoutAprovadorInput, AprovacaoTarefaUncheckedUpdateWithoutAprovadorInput>
+  }
+
+  export type AprovacaoTarefaUpdateManyWithWhereWithoutAprovadorInput = {
+    where: AprovacaoTarefaScalarWhereInput
+    data: XOR<AprovacaoTarefaUpdateManyMutationInput, AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorInput>
+  }
+
   export type UsuarioCreateWithoutMembrosInput = {
     id: string
     nome: string
@@ -68451,6 +80415,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaCreateNestedManyWithoutResponsavelInput
     contratos_responsavel?: ContratoCreateNestedManyWithoutResponsavelInput
     convites_cliente?: ConviteClienteCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioUncheckedCreateWithoutMembrosInput = {
@@ -68474,6 +80443,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUncheckedCreateNestedManyWithoutResponsavelInput
     contratos_responsavel?: ContratoUncheckedCreateNestedManyWithoutResponsavelInput
     convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaUncheckedCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioCreateOrConnectWithoutMembrosInput = {
@@ -68514,6 +80488,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutMembrosInput = {
@@ -68549,6 +80524,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutMembrosInput = {
@@ -68613,6 +80589,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUpdateManyWithoutResponsavelNestedInput
     contratos_responsavel?: ContratoUpdateManyWithoutResponsavelNestedInput
     convites_cliente?: ConviteClienteUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutMembrosInput = {
@@ -68636,6 +80617,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUncheckedUpdateManyWithoutResponsavelNestedInput
     contratos_responsavel?: ContratoUncheckedUpdateManyWithoutResponsavelNestedInput
     convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUncheckedUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
   }
 
   export type EmpresaUpsertWithoutMembrosInput = {
@@ -68682,6 +80668,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutMembrosInput = {
@@ -68717,6 +80704,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PerfilUpsertWithoutMembrosInput = {
@@ -68783,6 +80771,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutPerfisInput = {
@@ -68818,6 +80807,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutPerfisInput = {
@@ -68913,6 +80903,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutPerfisInput = {
@@ -68948,6 +80939,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type MembroEmpresaUpsertWithWhereUniqueWithoutPerfilInput = {
@@ -69157,6 +81149,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutConvitesInput = {
@@ -69192,6 +81185,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutConvitesInput = {
@@ -69220,6 +81214,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaCreateNestedManyWithoutResponsavelInput
     contratos_responsavel?: ContratoCreateNestedManyWithoutResponsavelInput
     convites_cliente?: ConviteClienteCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioUncheckedCreateWithoutConvitesInput = {
@@ -69243,6 +81242,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUncheckedCreateNestedManyWithoutResponsavelInput
     contratos_responsavel?: ContratoUncheckedCreateNestedManyWithoutResponsavelInput
     convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaUncheckedCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioCreateOrConnectWithoutConvitesInput = {
@@ -69294,6 +81298,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutConvitesInput = {
@@ -69329,6 +81334,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type UsuarioUpsertWithoutConvitesInput = {
@@ -69363,6 +81369,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUpdateManyWithoutResponsavelNestedInput
     contratos_responsavel?: ContratoUpdateManyWithoutResponsavelNestedInput
     convites_cliente?: ConviteClienteUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutConvitesInput = {
@@ -69386,6 +81397,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUncheckedUpdateManyWithoutResponsavelNestedInput
     contratos_responsavel?: ContratoUncheckedUpdateManyWithoutResponsavelNestedInput
     convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUncheckedUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
   }
 
   export type EmpresaCreateWithoutConvites_clienteInput = {
@@ -69421,6 +81437,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutConvites_clienteInput = {
@@ -69456,6 +81473,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutConvites_clienteInput = {
@@ -69484,6 +81502,11 @@ export namespace Prisma {
     eventos_responsavel?: EventoCreateNestedManyWithoutResponsavelInput
     propostas_responsavel?: PropostaCreateNestedManyWithoutResponsavelInput
     contratos_responsavel?: ContratoCreateNestedManyWithoutResponsavelInput
+    comentarios_tarefa?: ComentarioTarefaCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioUncheckedCreateWithoutConvites_clienteInput = {
@@ -69507,6 +81530,11 @@ export namespace Prisma {
     eventos_responsavel?: EventoUncheckedCreateNestedManyWithoutResponsavelInput
     propostas_responsavel?: PropostaUncheckedCreateNestedManyWithoutResponsavelInput
     contratos_responsavel?: ContratoUncheckedCreateNestedManyWithoutResponsavelInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaUncheckedCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioCreateOrConnectWithoutConvites_clienteInput = {
@@ -69550,6 +81578,7 @@ export namespace Prisma {
     eventos?: EventoCreateNestedManyWithoutClienteInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutClienteInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
+    documentos?: DocumentoCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutConviteInput = {
@@ -69588,6 +81617,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedCreateNestedManyWithoutClienteInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutClienteInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutConviteInput = {
@@ -69639,6 +81669,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutConvites_clienteInput = {
@@ -69674,6 +81705,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type UsuarioUpsertWithoutConvites_clienteInput = {
@@ -69708,6 +81740,11 @@ export namespace Prisma {
     eventos_responsavel?: EventoUpdateManyWithoutResponsavelNestedInput
     propostas_responsavel?: PropostaUpdateManyWithoutResponsavelNestedInput
     contratos_responsavel?: ContratoUpdateManyWithoutResponsavelNestedInput
+    comentarios_tarefa?: ComentarioTarefaUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutConvites_clienteInput = {
@@ -69731,6 +81768,11 @@ export namespace Prisma {
     eventos_responsavel?: EventoUncheckedUpdateManyWithoutResponsavelNestedInput
     propostas_responsavel?: PropostaUncheckedUpdateManyWithoutResponsavelNestedInput
     contratos_responsavel?: ContratoUncheckedUpdateManyWithoutResponsavelNestedInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUncheckedUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
   }
 
   export type ClienteUpsertWithoutConviteInput = {
@@ -69780,6 +81822,7 @@ export namespace Prisma {
     eventos?: EventoUpdateManyWithoutClienteNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutClienteNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
+    documentos?: DocumentoUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutConviteInput = {
@@ -69818,6 +81861,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedUpdateManyWithoutClienteNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutClienteNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type EmpresaCreateWithoutClientesInput = {
@@ -69853,6 +81897,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutClientesInput = {
@@ -69888,6 +81933,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutClientesInput = {
@@ -70095,6 +82141,7 @@ export namespace Prisma {
     recebiveis?: RecebivelCreateNestedManyWithoutContratoInput
     eventos?: EventoCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutContratoInput
+    documentos?: DocumentoCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoUncheckedCreateWithoutClienteInput = {
@@ -70139,6 +82186,7 @@ export namespace Prisma {
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutContratoInput
     eventos?: EventoUncheckedCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutContratoInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoCreateOrConnectWithoutClienteInput = {
@@ -70492,6 +82540,48 @@ export namespace Prisma {
     create: XOR<ConviteClienteCreateWithoutClienteInput, ConviteClienteUncheckedCreateWithoutClienteInput>
   }
 
+  export type DocumentoCreateWithoutClienteInput = {
+    id?: string
+    titulo: string
+    descricao?: string | null
+    categoria?: $Enums.CategoriaDocumento
+    arquivo_url: string
+    arquivo_nome: string
+    arquivo_tamanho?: number
+    mime_type?: string
+    criado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutDocumentosInput
+    projeto?: ProjetoCreateNestedOneWithoutDocumentosInput
+    contrato?: ContratoCreateNestedOneWithoutDocumentosInput
+    criador?: UsuarioCreateNestedOneWithoutDocumentos_criadosInput
+  }
+
+  export type DocumentoUncheckedCreateWithoutClienteInput = {
+    id?: string
+    empresa_id: string
+    projeto_id?: string | null
+    contrato_id?: string | null
+    criado_por?: string | null
+    titulo: string
+    descricao?: string | null
+    categoria?: $Enums.CategoriaDocumento
+    arquivo_url: string
+    arquivo_nome: string
+    arquivo_tamanho?: number
+    mime_type?: string
+    criado_em?: Date | string
+  }
+
+  export type DocumentoCreateOrConnectWithoutClienteInput = {
+    where: DocumentoWhereUniqueInput
+    create: XOR<DocumentoCreateWithoutClienteInput, DocumentoUncheckedCreateWithoutClienteInput>
+  }
+
+  export type DocumentoCreateManyClienteInputEnvelope = {
+    data: DocumentoCreateManyClienteInput | DocumentoCreateManyClienteInput[]
+    skipDuplicates?: boolean
+  }
+
   export type EmpresaUpsertWithoutClientesInput = {
     update: XOR<EmpresaUpdateWithoutClientesInput, EmpresaUncheckedUpdateWithoutClientesInput>
     create: XOR<EmpresaCreateWithoutClientesInput, EmpresaUncheckedCreateWithoutClientesInput>
@@ -70536,6 +82626,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutClientesInput = {
@@ -70571,6 +82662,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ContatoUpsertWithWhereUniqueWithoutClienteInput = {
@@ -70807,6 +82899,22 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type DocumentoUpsertWithWhereUniqueWithoutClienteInput = {
+    where: DocumentoWhereUniqueInput
+    update: XOR<DocumentoUpdateWithoutClienteInput, DocumentoUncheckedUpdateWithoutClienteInput>
+    create: XOR<DocumentoCreateWithoutClienteInput, DocumentoUncheckedCreateWithoutClienteInput>
+  }
+
+  export type DocumentoUpdateWithWhereUniqueWithoutClienteInput = {
+    where: DocumentoWhereUniqueInput
+    data: XOR<DocumentoUpdateWithoutClienteInput, DocumentoUncheckedUpdateWithoutClienteInput>
+  }
+
+  export type DocumentoUpdateManyWithWhereWithoutClienteInput = {
+    where: DocumentoScalarWhereInput
+    data: XOR<DocumentoUpdateManyMutationInput, DocumentoUncheckedUpdateManyWithoutClienteInput>
+  }
+
   export type ClienteCreateWithoutContatosInput = {
     id?: string
     nome: string
@@ -70843,6 +82951,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutClienteInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
+    documentos?: DocumentoCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutContatosInput = {
@@ -70881,6 +82990,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutClienteInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutContatosInput = {
@@ -70935,6 +83045,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutClienteNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
+    documentos?: DocumentoUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutContatosInput = {
@@ -70973,6 +83084,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutClienteNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type EmpresaCreateWithoutServicosInput = {
@@ -71008,6 +83120,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutServicosInput = {
@@ -71043,6 +83156,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutServicosInput = {
@@ -71159,6 +83273,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutServicosInput = {
@@ -71194,6 +83309,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PlanoDeContasUpsertWithoutServicosInput = {
@@ -71300,6 +83416,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutLeadsInput = {
@@ -71335,6 +83452,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutLeadsInput = {
@@ -71378,6 +83496,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutClienteInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
+    documentos?: DocumentoCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutLeadsInput = {
@@ -71416,6 +83535,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutClienteInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutLeadsInput = {
@@ -71444,6 +83564,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaCreateNestedManyWithoutResponsavelInput
     contratos_responsavel?: ContratoCreateNestedManyWithoutResponsavelInput
     convites_cliente?: ConviteClienteCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioUncheckedCreateWithoutLeadsInput = {
@@ -71467,6 +83592,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUncheckedCreateNestedManyWithoutResponsavelInput
     contratos_responsavel?: ContratoUncheckedCreateNestedManyWithoutResponsavelInput
     convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaUncheckedCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioCreateOrConnectWithoutLeadsInput = {
@@ -71620,6 +83750,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutLeadsInput = {
@@ -71655,6 +83786,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutLeadsInput = {
@@ -71704,6 +83836,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutClienteNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
+    documentos?: DocumentoUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutLeadsInput = {
@@ -71742,6 +83875,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutClienteNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type UsuarioUpsertWithoutLeadsInput = {
@@ -71776,6 +83910,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUpdateManyWithoutResponsavelNestedInput
     contratos_responsavel?: ContratoUpdateManyWithoutResponsavelNestedInput
     convites_cliente?: ConviteClienteUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutLeadsInput = {
@@ -71799,6 +83938,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUncheckedUpdateManyWithoutResponsavelNestedInput
     contratos_responsavel?: ContratoUncheckedUpdateManyWithoutResponsavelNestedInput
     convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUncheckedUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
   }
 
   export type AtividadeCRMUpsertWithWhereUniqueWithoutLeadInput = {
@@ -71901,6 +84045,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaCreateNestedManyWithoutResponsavelInput
     contratos_responsavel?: ContratoCreateNestedManyWithoutResponsavelInput
     convites_cliente?: ConviteClienteCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioUncheckedCreateWithoutAtividades_crmInput = {
@@ -71924,6 +84073,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUncheckedCreateNestedManyWithoutResponsavelInput
     contratos_responsavel?: ContratoUncheckedCreateNestedManyWithoutResponsavelInput
     convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaUncheckedCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioCreateOrConnectWithoutAtividades_crmInput = {
@@ -72016,6 +84170,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUpdateManyWithoutResponsavelNestedInput
     contratos_responsavel?: ContratoUpdateManyWithoutResponsavelNestedInput
     convites_cliente?: ConviteClienteUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutAtividades_crmInput = {
@@ -72039,6 +84198,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUncheckedUpdateManyWithoutResponsavelNestedInput
     contratos_responsavel?: ContratoUncheckedUpdateManyWithoutResponsavelNestedInput
     convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUncheckedUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
   }
 
   export type EmpresaCreateWithoutPropostasInput = {
@@ -72074,6 +84238,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutPropostasInput = {
@@ -72109,6 +84274,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutPropostasInput = {
@@ -72152,6 +84318,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutClienteInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
+    documentos?: DocumentoCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutPropostasInput = {
@@ -72190,6 +84357,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutClienteInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutPropostasInput = {
@@ -72265,6 +84433,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaCreateNestedManyWithoutResponsavelInput
     contratos_responsavel?: ContratoCreateNestedManyWithoutResponsavelInput
     convites_cliente?: ConviteClienteCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioUncheckedCreateWithoutPropostas_criadasInput = {
@@ -72288,6 +84461,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUncheckedCreateNestedManyWithoutResponsavelInput
     contratos_responsavel?: ContratoUncheckedCreateNestedManyWithoutResponsavelInput
     convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaUncheckedCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioCreateOrConnectWithoutPropostas_criadasInput = {
@@ -72316,6 +84494,11 @@ export namespace Prisma {
     eventos_responsavel?: EventoCreateNestedManyWithoutResponsavelInput
     contratos_responsavel?: ContratoCreateNestedManyWithoutResponsavelInput
     convites_cliente?: ConviteClienteCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioUncheckedCreateWithoutPropostas_responsavelInput = {
@@ -72339,6 +84522,11 @@ export namespace Prisma {
     eventos_responsavel?: EventoUncheckedCreateNestedManyWithoutResponsavelInput
     contratos_responsavel?: ContratoUncheckedCreateNestedManyWithoutResponsavelInput
     convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaUncheckedCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioCreateOrConnectWithoutPropostas_responsavelInput = {
@@ -72418,6 +84606,7 @@ export namespace Prisma {
     recebiveis?: RecebivelCreateNestedManyWithoutContratoInput
     eventos?: EventoCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutContratoInput
+    documentos?: DocumentoCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoUncheckedCreateWithoutPropostaInput = {
@@ -72462,6 +84651,7 @@ export namespace Prisma {
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutContratoInput
     eventos?: EventoUncheckedCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutContratoInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoCreateOrConnectWithoutPropostaInput = {
@@ -72541,6 +84731,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutPropostasInput = {
@@ -72576,6 +84767,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutPropostasInput = {
@@ -72625,6 +84817,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutClienteNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
+    documentos?: DocumentoUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutPropostasInput = {
@@ -72663,6 +84856,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutClienteNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type LeadUpsertWithoutPropostasInput = {
@@ -72750,6 +84944,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUpdateManyWithoutResponsavelNestedInput
     contratos_responsavel?: ContratoUpdateManyWithoutResponsavelNestedInput
     convites_cliente?: ConviteClienteUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutPropostas_criadasInput = {
@@ -72773,6 +84972,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUncheckedUpdateManyWithoutResponsavelNestedInput
     contratos_responsavel?: ContratoUncheckedUpdateManyWithoutResponsavelNestedInput
     convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUncheckedUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
   }
 
   export type UsuarioUpsertWithoutPropostas_responsavelInput = {
@@ -72807,6 +85011,11 @@ export namespace Prisma {
     eventos_responsavel?: EventoUpdateManyWithoutResponsavelNestedInput
     contratos_responsavel?: ContratoUpdateManyWithoutResponsavelNestedInput
     convites_cliente?: ConviteClienteUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutPropostas_responsavelInput = {
@@ -72830,6 +85039,11 @@ export namespace Prisma {
     eventos_responsavel?: EventoUncheckedUpdateManyWithoutResponsavelNestedInput
     contratos_responsavel?: ContratoUncheckedUpdateManyWithoutResponsavelNestedInput
     convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUncheckedUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
   }
 
   export type ItemPropostaUpsertWithWhereUniqueWithoutPropostaInput = {
@@ -72901,6 +85115,7 @@ export namespace Prisma {
     recebiveis?: RecebivelUpdateManyWithoutContratoNestedInput
     eventos?: EventoUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutContratoNestedInput
+    documentos?: DocumentoUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoUncheckedUpdateWithoutPropostaInput = {
@@ -72945,6 +85160,7 @@ export namespace Prisma {
     recebiveis?: RecebivelUncheckedUpdateManyWithoutContratoNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutContratoNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutContratoNestedInput
   }
 
   export type AceiteOtpUpsertWithWhereUniqueWithoutPropostaInput = {
@@ -73369,6 +85585,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutContratosInput = {
@@ -73404,6 +85621,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutContratosInput = {
@@ -73518,6 +85736,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutClienteInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
+    documentos?: DocumentoCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutContratosInput = {
@@ -73556,6 +85775,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutClienteInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutContratosInput = {
@@ -73584,6 +85804,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaCreateNestedManyWithoutResponsavelInput
     contratos_responsavel?: ContratoCreateNestedManyWithoutResponsavelInput
     convites_cliente?: ConviteClienteCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioUncheckedCreateWithoutContratos_criadosInput = {
@@ -73607,6 +85832,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUncheckedCreateNestedManyWithoutResponsavelInput
     contratos_responsavel?: ContratoUncheckedCreateNestedManyWithoutResponsavelInput
     convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaUncheckedCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioCreateOrConnectWithoutContratos_criadosInput = {
@@ -73635,6 +85865,11 @@ export namespace Prisma {
     eventos_responsavel?: EventoCreateNestedManyWithoutResponsavelInput
     propostas_responsavel?: PropostaCreateNestedManyWithoutResponsavelInput
     convites_cliente?: ConviteClienteCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioUncheckedCreateWithoutContratos_responsavelInput = {
@@ -73658,6 +85893,11 @@ export namespace Prisma {
     eventos_responsavel?: EventoUncheckedCreateNestedManyWithoutResponsavelInput
     propostas_responsavel?: PropostaUncheckedCreateNestedManyWithoutResponsavelInput
     convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaUncheckedCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioCreateOrConnectWithoutContratos_responsavelInput = {
@@ -73868,6 +86108,48 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type DocumentoCreateWithoutContratoInput = {
+    id?: string
+    titulo: string
+    descricao?: string | null
+    categoria?: $Enums.CategoriaDocumento
+    arquivo_url: string
+    arquivo_nome: string
+    arquivo_tamanho?: number
+    mime_type?: string
+    criado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutDocumentosInput
+    projeto?: ProjetoCreateNestedOneWithoutDocumentosInput
+    cliente?: ClienteCreateNestedOneWithoutDocumentosInput
+    criador?: UsuarioCreateNestedOneWithoutDocumentos_criadosInput
+  }
+
+  export type DocumentoUncheckedCreateWithoutContratoInput = {
+    id?: string
+    empresa_id: string
+    projeto_id?: string | null
+    cliente_id?: string | null
+    criado_por?: string | null
+    titulo: string
+    descricao?: string | null
+    categoria?: $Enums.CategoriaDocumento
+    arquivo_url: string
+    arquivo_nome: string
+    arquivo_tamanho?: number
+    mime_type?: string
+    criado_em?: Date | string
+  }
+
+  export type DocumentoCreateOrConnectWithoutContratoInput = {
+    where: DocumentoWhereUniqueInput
+    create: XOR<DocumentoCreateWithoutContratoInput, DocumentoUncheckedCreateWithoutContratoInput>
+  }
+
+  export type DocumentoCreateManyContratoInputEnvelope = {
+    data: DocumentoCreateManyContratoInput | DocumentoCreateManyContratoInput[]
+    skipDuplicates?: boolean
+  }
+
   export type EmpresaUpsertWithoutContratosInput = {
     update: XOR<EmpresaUpdateWithoutContratosInput, EmpresaUncheckedUpdateWithoutContratosInput>
     create: XOR<EmpresaCreateWithoutContratosInput, EmpresaUncheckedCreateWithoutContratosInput>
@@ -73912,6 +86194,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutContratosInput = {
@@ -73947,6 +86230,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PropostaUpsertWithoutContratoInput = {
@@ -74073,6 +86357,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutClienteNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
+    documentos?: DocumentoUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutContratosInput = {
@@ -74111,6 +86396,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutClienteNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type UsuarioUpsertWithoutContratos_criadosInput = {
@@ -74145,6 +86431,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUpdateManyWithoutResponsavelNestedInput
     contratos_responsavel?: ContratoUpdateManyWithoutResponsavelNestedInput
     convites_cliente?: ConviteClienteUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutContratos_criadosInput = {
@@ -74168,6 +86459,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUncheckedUpdateManyWithoutResponsavelNestedInput
     contratos_responsavel?: ContratoUncheckedUpdateManyWithoutResponsavelNestedInput
     convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUncheckedUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
   }
 
   export type UsuarioUpsertWithoutContratos_responsavelInput = {
@@ -74202,6 +86498,11 @@ export namespace Prisma {
     eventos_responsavel?: EventoUpdateManyWithoutResponsavelNestedInput
     propostas_responsavel?: PropostaUpdateManyWithoutResponsavelNestedInput
     convites_cliente?: ConviteClienteUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutContratos_responsavelInput = {
@@ -74225,6 +86526,11 @@ export namespace Prisma {
     eventos_responsavel?: EventoUncheckedUpdateManyWithoutResponsavelNestedInput
     propostas_responsavel?: PropostaUncheckedUpdateManyWithoutResponsavelNestedInput
     convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUncheckedUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
   }
 
   export type ProjetoUpsertWithoutContratoInput = {
@@ -74324,6 +86630,22 @@ export namespace Prisma {
     data: XOR<NotaFiscalUpdateManyMutationInput, NotaFiscalUncheckedUpdateManyWithoutContratoInput>
   }
 
+  export type DocumentoUpsertWithWhereUniqueWithoutContratoInput = {
+    where: DocumentoWhereUniqueInput
+    update: XOR<DocumentoUpdateWithoutContratoInput, DocumentoUncheckedUpdateWithoutContratoInput>
+    create: XOR<DocumentoCreateWithoutContratoInput, DocumentoUncheckedCreateWithoutContratoInput>
+  }
+
+  export type DocumentoUpdateWithWhereUniqueWithoutContratoInput = {
+    where: DocumentoWhereUniqueInput
+    data: XOR<DocumentoUpdateWithoutContratoInput, DocumentoUncheckedUpdateWithoutContratoInput>
+  }
+
+  export type DocumentoUpdateManyWithWhereWithoutContratoInput = {
+    where: DocumentoScalarWhereInput
+    data: XOR<DocumentoUpdateManyMutationInput, DocumentoUncheckedUpdateManyWithoutContratoInput>
+  }
+
   export type EmpresaCreateWithoutProjetosInput = {
     id?: string
     nome: string
@@ -74357,6 +86679,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutProjetosInput = {
@@ -74392,6 +86715,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutProjetosInput = {
@@ -74441,6 +86765,7 @@ export namespace Prisma {
     recebiveis?: RecebivelCreateNestedManyWithoutContratoInput
     eventos?: EventoCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutContratoInput
+    documentos?: DocumentoCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoUncheckedCreateWithoutProjetoInput = {
@@ -74485,6 +86810,7 @@ export namespace Prisma {
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutContratoInput
     eventos?: EventoUncheckedCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutContratoInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoCreateOrConnectWithoutProjetoInput = {
@@ -74528,6 +86854,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutClienteInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
+    documentos?: DocumentoCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutProjetosInput = {
@@ -74566,6 +86893,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutClienteInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutProjetosInput = {
@@ -74594,6 +86922,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaCreateNestedManyWithoutResponsavelInput
     contratos_responsavel?: ContratoCreateNestedManyWithoutResponsavelInput
     convites_cliente?: ConviteClienteCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioUncheckedCreateWithoutProjetos_criadosInput = {
@@ -74617,6 +86950,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUncheckedCreateNestedManyWithoutResponsavelInput
     contratos_responsavel?: ContratoUncheckedCreateNestedManyWithoutResponsavelInput
     convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaUncheckedCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioCreateOrConnectWithoutProjetos_criadosInput = {
@@ -74665,12 +87003,20 @@ export namespace Prisma {
     titulo: string
     descricao?: string | null
     status?: $Enums.StatusTarefa
+    prioridade?: $Enums.PrioridadeTarefa
+    ordem?: number
     data_prazo?: Date | string | null
     concluida_em?: Date | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     etapa: EtapaCreateNestedOneWithoutTarefasInput
     responsavel?: UsuarioCreateNestedOneWithoutTarefasInput
+    comentarios?: ComentarioTarefaCreateNestedManyWithoutTarefaInput
+    anexos?: AnexoTarefaCreateNestedManyWithoutTarefaInput
+    atividades?: AtividadeTarefaCreateNestedManyWithoutTarefaInput
+    aprovacoes?: AprovacaoTarefaCreateNestedManyWithoutTarefaInput
+    checklist?: ItemChecklistCreateNestedManyWithoutTarefaInput
+    etiquetas?: TarefaEtiquetaCreateNestedManyWithoutTarefaInput
   }
 
   export type TarefaUncheckedCreateWithoutProjetoInput = {
@@ -74680,10 +87026,18 @@ export namespace Prisma {
     titulo: string
     descricao?: string | null
     status?: $Enums.StatusTarefa
+    prioridade?: $Enums.PrioridadeTarefa
+    ordem?: number
     data_prazo?: Date | string | null
     concluida_em?: Date | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
+    comentarios?: ComentarioTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    anexos?: AnexoTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    atividades?: AtividadeTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    aprovacoes?: AprovacaoTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    checklist?: ItemChecklistUncheckedCreateNestedManyWithoutTarefaInput
+    etiquetas?: TarefaEtiquetaUncheckedCreateNestedManyWithoutTarefaInput
   }
 
   export type TarefaCreateOrConnectWithoutProjetoInput = {
@@ -74699,20 +87053,28 @@ export namespace Prisma {
   export type DocumentoCreateWithoutProjetoInput = {
     id?: string
     titulo: string
+    descricao?: string | null
+    categoria?: $Enums.CategoriaDocumento
     arquivo_url: string
     arquivo_nome: string
     arquivo_tamanho?: number
     mime_type?: string
     criado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutDocumentosInput
+    cliente?: ClienteCreateNestedOneWithoutDocumentosInput
+    contrato?: ContratoCreateNestedOneWithoutDocumentosInput
     criador?: UsuarioCreateNestedOneWithoutDocumentos_criadosInput
   }
 
   export type DocumentoUncheckedCreateWithoutProjetoInput = {
     id?: string
     empresa_id: string
+    cliente_id?: string | null
+    contrato_id?: string | null
     criado_por?: string | null
     titulo: string
+    descricao?: string | null
+    categoria?: $Enums.CategoriaDocumento
     arquivo_url: string
     arquivo_nome: string
     arquivo_tamanho?: number
@@ -74854,6 +87216,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutProjetosInput = {
@@ -74889,6 +87252,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ContratoUpsertWithoutProjetoInput = {
@@ -74944,6 +87308,7 @@ export namespace Prisma {
     recebiveis?: RecebivelUpdateManyWithoutContratoNestedInput
     eventos?: EventoUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutContratoNestedInput
+    documentos?: DocumentoUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoUncheckedUpdateWithoutProjetoInput = {
@@ -74988,6 +87353,7 @@ export namespace Prisma {
     recebiveis?: RecebivelUncheckedUpdateManyWithoutContratoNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutContratoNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutContratoNestedInput
   }
 
   export type ClienteUpsertWithoutProjetosInput = {
@@ -75037,6 +87403,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutClienteNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
+    documentos?: DocumentoUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutProjetosInput = {
@@ -75075,6 +87442,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutClienteNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type UsuarioUpsertWithoutProjetos_criadosInput = {
@@ -75109,6 +87477,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUpdateManyWithoutResponsavelNestedInput
     contratos_responsavel?: ContratoUpdateManyWithoutResponsavelNestedInput
     convites_cliente?: ConviteClienteUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutProjetos_criadosInput = {
@@ -75132,6 +87505,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUncheckedUpdateManyWithoutResponsavelNestedInput
     contratos_responsavel?: ContratoUncheckedUpdateManyWithoutResponsavelNestedInput
     convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUncheckedUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
   }
 
   export type EtapaUpsertWithWhereUniqueWithoutProjetoInput = {
@@ -75278,12 +87656,20 @@ export namespace Prisma {
     titulo: string
     descricao?: string | null
     status?: $Enums.StatusTarefa
+    prioridade?: $Enums.PrioridadeTarefa
+    ordem?: number
     data_prazo?: Date | string | null
     concluida_em?: Date | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto: ProjetoCreateNestedOneWithoutTarefasInput
     responsavel?: UsuarioCreateNestedOneWithoutTarefasInput
+    comentarios?: ComentarioTarefaCreateNestedManyWithoutTarefaInput
+    anexos?: AnexoTarefaCreateNestedManyWithoutTarefaInput
+    atividades?: AtividadeTarefaCreateNestedManyWithoutTarefaInput
+    aprovacoes?: AprovacaoTarefaCreateNestedManyWithoutTarefaInput
+    checklist?: ItemChecklistCreateNestedManyWithoutTarefaInput
+    etiquetas?: TarefaEtiquetaCreateNestedManyWithoutTarefaInput
   }
 
   export type TarefaUncheckedCreateWithoutEtapaInput = {
@@ -75293,10 +87679,18 @@ export namespace Prisma {
     titulo: string
     descricao?: string | null
     status?: $Enums.StatusTarefa
+    prioridade?: $Enums.PrioridadeTarefa
+    ordem?: number
     data_prazo?: Date | string | null
     concluida_em?: Date | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
+    comentarios?: ComentarioTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    anexos?: AnexoTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    atividades?: AtividadeTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    aprovacoes?: AprovacaoTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    checklist?: ItemChecklistUncheckedCreateNestedManyWithoutTarefaInput
+    etiquetas?: TarefaEtiquetaUncheckedCreateNestedManyWithoutTarefaInput
   }
 
   export type TarefaCreateOrConnectWithoutEtapaInput = {
@@ -75469,6 +87863,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaCreateNestedManyWithoutResponsavelInput
     contratos_responsavel?: ContratoCreateNestedManyWithoutResponsavelInput
     convites_cliente?: ConviteClienteCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioUncheckedCreateWithoutTarefasInput = {
@@ -75492,11 +87891,170 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUncheckedCreateNestedManyWithoutResponsavelInput
     contratos_responsavel?: ContratoUncheckedCreateNestedManyWithoutResponsavelInput
     convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaUncheckedCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioCreateOrConnectWithoutTarefasInput = {
     where: UsuarioWhereUniqueInput
     create: XOR<UsuarioCreateWithoutTarefasInput, UsuarioUncheckedCreateWithoutTarefasInput>
+  }
+
+  export type ComentarioTarefaCreateWithoutTarefaInput = {
+    id?: string
+    conteudo: string
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    autor?: UsuarioCreateNestedOneWithoutComentarios_tarefaInput
+  }
+
+  export type ComentarioTarefaUncheckedCreateWithoutTarefaInput = {
+    id?: string
+    autor_id?: string | null
+    conteudo: string
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type ComentarioTarefaCreateOrConnectWithoutTarefaInput = {
+    where: ComentarioTarefaWhereUniqueInput
+    create: XOR<ComentarioTarefaCreateWithoutTarefaInput, ComentarioTarefaUncheckedCreateWithoutTarefaInput>
+  }
+
+  export type ComentarioTarefaCreateManyTarefaInputEnvelope = {
+    data: ComentarioTarefaCreateManyTarefaInput | ComentarioTarefaCreateManyTarefaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AnexoTarefaCreateWithoutTarefaInput = {
+    id?: string
+    nome: string
+    arquivo_url: string
+    arquivo_tamanho?: number
+    mime_type?: string
+    criado_em?: Date | string
+    criador?: UsuarioCreateNestedOneWithoutAnexos_tarefaInput
+  }
+
+  export type AnexoTarefaUncheckedCreateWithoutTarefaInput = {
+    id?: string
+    criado_por?: string | null
+    nome: string
+    arquivo_url: string
+    arquivo_tamanho?: number
+    mime_type?: string
+    criado_em?: Date | string
+  }
+
+  export type AnexoTarefaCreateOrConnectWithoutTarefaInput = {
+    where: AnexoTarefaWhereUniqueInput
+    create: XOR<AnexoTarefaCreateWithoutTarefaInput, AnexoTarefaUncheckedCreateWithoutTarefaInput>
+  }
+
+  export type AnexoTarefaCreateManyTarefaInputEnvelope = {
+    data: AnexoTarefaCreateManyTarefaInput | AnexoTarefaCreateManyTarefaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AtividadeTarefaCreateWithoutTarefaInput = {
+    id?: string
+    descricao: string
+    criado_em?: Date | string
+    autor?: UsuarioCreateNestedOneWithoutAtividades_tarefaInput
+  }
+
+  export type AtividadeTarefaUncheckedCreateWithoutTarefaInput = {
+    id?: string
+    autor_id?: string | null
+    descricao: string
+    criado_em?: Date | string
+  }
+
+  export type AtividadeTarefaCreateOrConnectWithoutTarefaInput = {
+    where: AtividadeTarefaWhereUniqueInput
+    create: XOR<AtividadeTarefaCreateWithoutTarefaInput, AtividadeTarefaUncheckedCreateWithoutTarefaInput>
+  }
+
+  export type AtividadeTarefaCreateManyTarefaInputEnvelope = {
+    data: AtividadeTarefaCreateManyTarefaInput | AtividadeTarefaCreateManyTarefaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AprovacaoTarefaCreateWithoutTarefaInput = {
+    id?: string
+    status?: $Enums.StatusAprovacao
+    comentario?: string | null
+    criado_em?: Date | string
+    decidido_em?: Date | string | null
+    solicitante?: UsuarioCreateNestedOneWithoutAprovacoes_solicitadasInput
+    aprovador?: UsuarioCreateNestedOneWithoutAprovacoes_recebidasInput
+  }
+
+  export type AprovacaoTarefaUncheckedCreateWithoutTarefaInput = {
+    id?: string
+    solicitante_id?: string | null
+    aprovador_id?: string | null
+    status?: $Enums.StatusAprovacao
+    comentario?: string | null
+    criado_em?: Date | string
+    decidido_em?: Date | string | null
+  }
+
+  export type AprovacaoTarefaCreateOrConnectWithoutTarefaInput = {
+    where: AprovacaoTarefaWhereUniqueInput
+    create: XOR<AprovacaoTarefaCreateWithoutTarefaInput, AprovacaoTarefaUncheckedCreateWithoutTarefaInput>
+  }
+
+  export type AprovacaoTarefaCreateManyTarefaInputEnvelope = {
+    data: AprovacaoTarefaCreateManyTarefaInput | AprovacaoTarefaCreateManyTarefaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ItemChecklistCreateWithoutTarefaInput = {
+    id?: string
+    texto: string
+    concluido?: boolean
+    ordem?: number
+    criado_em?: Date | string
+  }
+
+  export type ItemChecklistUncheckedCreateWithoutTarefaInput = {
+    id?: string
+    texto: string
+    concluido?: boolean
+    ordem?: number
+    criado_em?: Date | string
+  }
+
+  export type ItemChecklistCreateOrConnectWithoutTarefaInput = {
+    where: ItemChecklistWhereUniqueInput
+    create: XOR<ItemChecklistCreateWithoutTarefaInput, ItemChecklistUncheckedCreateWithoutTarefaInput>
+  }
+
+  export type ItemChecklistCreateManyTarefaInputEnvelope = {
+    data: ItemChecklistCreateManyTarefaInput | ItemChecklistCreateManyTarefaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TarefaEtiquetaCreateWithoutTarefaInput = {
+    etiqueta: EtiquetaTarefaCreateNestedOneWithoutTarefasInput
+  }
+
+  export type TarefaEtiquetaUncheckedCreateWithoutTarefaInput = {
+    etiqueta_id: string
+  }
+
+  export type TarefaEtiquetaCreateOrConnectWithoutTarefaInput = {
+    where: TarefaEtiquetaWhereUniqueInput
+    create: XOR<TarefaEtiquetaCreateWithoutTarefaInput, TarefaEtiquetaUncheckedCreateWithoutTarefaInput>
+  }
+
+  export type TarefaEtiquetaCreateManyTarefaInputEnvelope = {
+    data: TarefaEtiquetaCreateManyTarefaInput | TarefaEtiquetaCreateManyTarefaInput[]
+    skipDuplicates?: boolean
   }
 
   export type EtapaUpsertWithoutTarefasInput = {
@@ -75617,6 +88175,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUpdateManyWithoutResponsavelNestedInput
     contratos_responsavel?: ContratoUpdateManyWithoutResponsavelNestedInput
     convites_cliente?: ConviteClienteUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutTarefasInput = {
@@ -75640,6 +88203,1605 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUncheckedUpdateManyWithoutResponsavelNestedInput
     contratos_responsavel?: ContratoUncheckedUpdateManyWithoutResponsavelNestedInput
     convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUncheckedUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
+  }
+
+  export type ComentarioTarefaUpsertWithWhereUniqueWithoutTarefaInput = {
+    where: ComentarioTarefaWhereUniqueInput
+    update: XOR<ComentarioTarefaUpdateWithoutTarefaInput, ComentarioTarefaUncheckedUpdateWithoutTarefaInput>
+    create: XOR<ComentarioTarefaCreateWithoutTarefaInput, ComentarioTarefaUncheckedCreateWithoutTarefaInput>
+  }
+
+  export type ComentarioTarefaUpdateWithWhereUniqueWithoutTarefaInput = {
+    where: ComentarioTarefaWhereUniqueInput
+    data: XOR<ComentarioTarefaUpdateWithoutTarefaInput, ComentarioTarefaUncheckedUpdateWithoutTarefaInput>
+  }
+
+  export type ComentarioTarefaUpdateManyWithWhereWithoutTarefaInput = {
+    where: ComentarioTarefaScalarWhereInput
+    data: XOR<ComentarioTarefaUpdateManyMutationInput, ComentarioTarefaUncheckedUpdateManyWithoutTarefaInput>
+  }
+
+  export type AnexoTarefaUpsertWithWhereUniqueWithoutTarefaInput = {
+    where: AnexoTarefaWhereUniqueInput
+    update: XOR<AnexoTarefaUpdateWithoutTarefaInput, AnexoTarefaUncheckedUpdateWithoutTarefaInput>
+    create: XOR<AnexoTarefaCreateWithoutTarefaInput, AnexoTarefaUncheckedCreateWithoutTarefaInput>
+  }
+
+  export type AnexoTarefaUpdateWithWhereUniqueWithoutTarefaInput = {
+    where: AnexoTarefaWhereUniqueInput
+    data: XOR<AnexoTarefaUpdateWithoutTarefaInput, AnexoTarefaUncheckedUpdateWithoutTarefaInput>
+  }
+
+  export type AnexoTarefaUpdateManyWithWhereWithoutTarefaInput = {
+    where: AnexoTarefaScalarWhereInput
+    data: XOR<AnexoTarefaUpdateManyMutationInput, AnexoTarefaUncheckedUpdateManyWithoutTarefaInput>
+  }
+
+  export type AtividadeTarefaUpsertWithWhereUniqueWithoutTarefaInput = {
+    where: AtividadeTarefaWhereUniqueInput
+    update: XOR<AtividadeTarefaUpdateWithoutTarefaInput, AtividadeTarefaUncheckedUpdateWithoutTarefaInput>
+    create: XOR<AtividadeTarefaCreateWithoutTarefaInput, AtividadeTarefaUncheckedCreateWithoutTarefaInput>
+  }
+
+  export type AtividadeTarefaUpdateWithWhereUniqueWithoutTarefaInput = {
+    where: AtividadeTarefaWhereUniqueInput
+    data: XOR<AtividadeTarefaUpdateWithoutTarefaInput, AtividadeTarefaUncheckedUpdateWithoutTarefaInput>
+  }
+
+  export type AtividadeTarefaUpdateManyWithWhereWithoutTarefaInput = {
+    where: AtividadeTarefaScalarWhereInput
+    data: XOR<AtividadeTarefaUpdateManyMutationInput, AtividadeTarefaUncheckedUpdateManyWithoutTarefaInput>
+  }
+
+  export type AprovacaoTarefaUpsertWithWhereUniqueWithoutTarefaInput = {
+    where: AprovacaoTarefaWhereUniqueInput
+    update: XOR<AprovacaoTarefaUpdateWithoutTarefaInput, AprovacaoTarefaUncheckedUpdateWithoutTarefaInput>
+    create: XOR<AprovacaoTarefaCreateWithoutTarefaInput, AprovacaoTarefaUncheckedCreateWithoutTarefaInput>
+  }
+
+  export type AprovacaoTarefaUpdateWithWhereUniqueWithoutTarefaInput = {
+    where: AprovacaoTarefaWhereUniqueInput
+    data: XOR<AprovacaoTarefaUpdateWithoutTarefaInput, AprovacaoTarefaUncheckedUpdateWithoutTarefaInput>
+  }
+
+  export type AprovacaoTarefaUpdateManyWithWhereWithoutTarefaInput = {
+    where: AprovacaoTarefaScalarWhereInput
+    data: XOR<AprovacaoTarefaUpdateManyMutationInput, AprovacaoTarefaUncheckedUpdateManyWithoutTarefaInput>
+  }
+
+  export type ItemChecklistUpsertWithWhereUniqueWithoutTarefaInput = {
+    where: ItemChecklistWhereUniqueInput
+    update: XOR<ItemChecklistUpdateWithoutTarefaInput, ItemChecklistUncheckedUpdateWithoutTarefaInput>
+    create: XOR<ItemChecklistCreateWithoutTarefaInput, ItemChecklistUncheckedCreateWithoutTarefaInput>
+  }
+
+  export type ItemChecklistUpdateWithWhereUniqueWithoutTarefaInput = {
+    where: ItemChecklistWhereUniqueInput
+    data: XOR<ItemChecklistUpdateWithoutTarefaInput, ItemChecklistUncheckedUpdateWithoutTarefaInput>
+  }
+
+  export type ItemChecklistUpdateManyWithWhereWithoutTarefaInput = {
+    where: ItemChecklistScalarWhereInput
+    data: XOR<ItemChecklistUpdateManyMutationInput, ItemChecklistUncheckedUpdateManyWithoutTarefaInput>
+  }
+
+  export type ItemChecklistScalarWhereInput = {
+    AND?: ItemChecklistScalarWhereInput | ItemChecklistScalarWhereInput[]
+    OR?: ItemChecklistScalarWhereInput[]
+    NOT?: ItemChecklistScalarWhereInput | ItemChecklistScalarWhereInput[]
+    id?: StringFilter<"ItemChecklist"> | string
+    tarefa_id?: StringFilter<"ItemChecklist"> | string
+    texto?: StringFilter<"ItemChecklist"> | string
+    concluido?: BoolFilter<"ItemChecklist"> | boolean
+    ordem?: IntFilter<"ItemChecklist"> | number
+    criado_em?: DateTimeFilter<"ItemChecklist"> | Date | string
+  }
+
+  export type TarefaEtiquetaUpsertWithWhereUniqueWithoutTarefaInput = {
+    where: TarefaEtiquetaWhereUniqueInput
+    update: XOR<TarefaEtiquetaUpdateWithoutTarefaInput, TarefaEtiquetaUncheckedUpdateWithoutTarefaInput>
+    create: XOR<TarefaEtiquetaCreateWithoutTarefaInput, TarefaEtiquetaUncheckedCreateWithoutTarefaInput>
+  }
+
+  export type TarefaEtiquetaUpdateWithWhereUniqueWithoutTarefaInput = {
+    where: TarefaEtiquetaWhereUniqueInput
+    data: XOR<TarefaEtiquetaUpdateWithoutTarefaInput, TarefaEtiquetaUncheckedUpdateWithoutTarefaInput>
+  }
+
+  export type TarefaEtiquetaUpdateManyWithWhereWithoutTarefaInput = {
+    where: TarefaEtiquetaScalarWhereInput
+    data: XOR<TarefaEtiquetaUpdateManyMutationInput, TarefaEtiquetaUncheckedUpdateManyWithoutTarefaInput>
+  }
+
+  export type TarefaEtiquetaScalarWhereInput = {
+    AND?: TarefaEtiquetaScalarWhereInput | TarefaEtiquetaScalarWhereInput[]
+    OR?: TarefaEtiquetaScalarWhereInput[]
+    NOT?: TarefaEtiquetaScalarWhereInput | TarefaEtiquetaScalarWhereInput[]
+    tarefa_id?: StringFilter<"TarefaEtiqueta"> | string
+    etiqueta_id?: StringFilter<"TarefaEtiqueta"> | string
+  }
+
+  export type TarefaCreateWithoutComentariosInput = {
+    id?: string
+    titulo: string
+    descricao?: string | null
+    status?: $Enums.StatusTarefa
+    prioridade?: $Enums.PrioridadeTarefa
+    ordem?: number
+    data_prazo?: Date | string | null
+    concluida_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    etapa: EtapaCreateNestedOneWithoutTarefasInput
+    projeto: ProjetoCreateNestedOneWithoutTarefasInput
+    responsavel?: UsuarioCreateNestedOneWithoutTarefasInput
+    anexos?: AnexoTarefaCreateNestedManyWithoutTarefaInput
+    atividades?: AtividadeTarefaCreateNestedManyWithoutTarefaInput
+    aprovacoes?: AprovacaoTarefaCreateNestedManyWithoutTarefaInput
+    checklist?: ItemChecklistCreateNestedManyWithoutTarefaInput
+    etiquetas?: TarefaEtiquetaCreateNestedManyWithoutTarefaInput
+  }
+
+  export type TarefaUncheckedCreateWithoutComentariosInput = {
+    id?: string
+    etapa_id: string
+    projeto_id: string
+    responsavel_id?: string | null
+    titulo: string
+    descricao?: string | null
+    status?: $Enums.StatusTarefa
+    prioridade?: $Enums.PrioridadeTarefa
+    ordem?: number
+    data_prazo?: Date | string | null
+    concluida_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    anexos?: AnexoTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    atividades?: AtividadeTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    aprovacoes?: AprovacaoTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    checklist?: ItemChecklistUncheckedCreateNestedManyWithoutTarefaInput
+    etiquetas?: TarefaEtiquetaUncheckedCreateNestedManyWithoutTarefaInput
+  }
+
+  export type TarefaCreateOrConnectWithoutComentariosInput = {
+    where: TarefaWhereUniqueInput
+    create: XOR<TarefaCreateWithoutComentariosInput, TarefaUncheckedCreateWithoutComentariosInput>
+  }
+
+  export type UsuarioCreateWithoutComentarios_tarefaInput = {
+    id: string
+    nome: string
+    email: string
+    avatar_url?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaCreateNestedManyWithoutUsuarioInput
+    convites?: ConviteEmpresaCreateNestedManyWithoutConvidadoInput
+    leads?: LeadCreateNestedManyWithoutResponsavelInput
+    atividades_crm?: AtividadeCRMCreateNestedManyWithoutUsuarioInput
+    propostas_criadas?: PropostaCreateNestedManyWithoutCriadorInput
+    contratos_criados?: ContratoCreateNestedManyWithoutCriadorInput
+    projetos_criados?: ProjetoCreateNestedManyWithoutCriadorInput
+    tarefas?: TarefaCreateNestedManyWithoutResponsavelInput
+    documentos_criados?: DocumentoCreateNestedManyWithoutCriadorInput
+    recebiveis_criados?: RecebivelCreateNestedManyWithoutCriadorInput
+    contas_pagar_criadas?: ContaPagarCreateNestedManyWithoutCriadorInput
+    eventos_responsavel?: EventoCreateNestedManyWithoutResponsavelInput
+    propostas_responsavel?: PropostaCreateNestedManyWithoutResponsavelInput
+    contratos_responsavel?: ContratoCreateNestedManyWithoutResponsavelInput
+    convites_cliente?: ConviteClienteCreateNestedManyWithoutCriadorInput
+    anexos_tarefa?: AnexoTarefaCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
+  }
+
+  export type UsuarioUncheckedCreateWithoutComentarios_tarefaInput = {
+    id: string
+    nome: string
+    email: string
+    avatar_url?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaUncheckedCreateNestedManyWithoutUsuarioInput
+    convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutConvidadoInput
+    leads?: LeadUncheckedCreateNestedManyWithoutResponsavelInput
+    atividades_crm?: AtividadeCRMUncheckedCreateNestedManyWithoutUsuarioInput
+    propostas_criadas?: PropostaUncheckedCreateNestedManyWithoutCriadorInput
+    contratos_criados?: ContratoUncheckedCreateNestedManyWithoutCriadorInput
+    projetos_criados?: ProjetoUncheckedCreateNestedManyWithoutCriadorInput
+    tarefas?: TarefaUncheckedCreateNestedManyWithoutResponsavelInput
+    documentos_criados?: DocumentoUncheckedCreateNestedManyWithoutCriadorInput
+    recebiveis_criados?: RecebivelUncheckedCreateNestedManyWithoutCriadorInput
+    contas_pagar_criadas?: ContaPagarUncheckedCreateNestedManyWithoutCriadorInput
+    eventos_responsavel?: EventoUncheckedCreateNestedManyWithoutResponsavelInput
+    propostas_responsavel?: PropostaUncheckedCreateNestedManyWithoutResponsavelInput
+    contratos_responsavel?: ContratoUncheckedCreateNestedManyWithoutResponsavelInput
+    convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutCriadorInput
+    anexos_tarefa?: AnexoTarefaUncheckedCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
+  }
+
+  export type UsuarioCreateOrConnectWithoutComentarios_tarefaInput = {
+    where: UsuarioWhereUniqueInput
+    create: XOR<UsuarioCreateWithoutComentarios_tarefaInput, UsuarioUncheckedCreateWithoutComentarios_tarefaInput>
+  }
+
+  export type TarefaUpsertWithoutComentariosInput = {
+    update: XOR<TarefaUpdateWithoutComentariosInput, TarefaUncheckedUpdateWithoutComentariosInput>
+    create: XOR<TarefaCreateWithoutComentariosInput, TarefaUncheckedCreateWithoutComentariosInput>
+    where?: TarefaWhereInput
+  }
+
+  export type TarefaUpdateToOneWithWhereWithoutComentariosInput = {
+    where?: TarefaWhereInput
+    data: XOR<TarefaUpdateWithoutComentariosInput, TarefaUncheckedUpdateWithoutComentariosInput>
+  }
+
+  export type TarefaUpdateWithoutComentariosInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusTarefaFieldUpdateOperationsInput | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaFieldUpdateOperationsInput | $Enums.PrioridadeTarefa
+    ordem?: IntFieldUpdateOperationsInput | number
+    data_prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    etapa?: EtapaUpdateOneRequiredWithoutTarefasNestedInput
+    projeto?: ProjetoUpdateOneRequiredWithoutTarefasNestedInput
+    responsavel?: UsuarioUpdateOneWithoutTarefasNestedInput
+    anexos?: AnexoTarefaUpdateManyWithoutTarefaNestedInput
+    atividades?: AtividadeTarefaUpdateManyWithoutTarefaNestedInput
+    aprovacoes?: AprovacaoTarefaUpdateManyWithoutTarefaNestedInput
+    checklist?: ItemChecklistUpdateManyWithoutTarefaNestedInput
+    etiquetas?: TarefaEtiquetaUpdateManyWithoutTarefaNestedInput
+  }
+
+  export type TarefaUncheckedUpdateWithoutComentariosInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    etapa_id?: StringFieldUpdateOperationsInput | string
+    projeto_id?: StringFieldUpdateOperationsInput | string
+    responsavel_id?: NullableStringFieldUpdateOperationsInput | string | null
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusTarefaFieldUpdateOperationsInput | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaFieldUpdateOperationsInput | $Enums.PrioridadeTarefa
+    ordem?: IntFieldUpdateOperationsInput | number
+    data_prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    anexos?: AnexoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    atividades?: AtividadeTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    aprovacoes?: AprovacaoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    checklist?: ItemChecklistUncheckedUpdateManyWithoutTarefaNestedInput
+    etiquetas?: TarefaEtiquetaUncheckedUpdateManyWithoutTarefaNestedInput
+  }
+
+  export type UsuarioUpsertWithoutComentarios_tarefaInput = {
+    update: XOR<UsuarioUpdateWithoutComentarios_tarefaInput, UsuarioUncheckedUpdateWithoutComentarios_tarefaInput>
+    create: XOR<UsuarioCreateWithoutComentarios_tarefaInput, UsuarioUncheckedCreateWithoutComentarios_tarefaInput>
+    where?: UsuarioWhereInput
+  }
+
+  export type UsuarioUpdateToOneWithWhereWithoutComentarios_tarefaInput = {
+    where?: UsuarioWhereInput
+    data: XOR<UsuarioUpdateWithoutComentarios_tarefaInput, UsuarioUncheckedUpdateWithoutComentarios_tarefaInput>
+  }
+
+  export type UsuarioUpdateWithoutComentarios_tarefaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUpdateManyWithoutUsuarioNestedInput
+    convites?: ConviteEmpresaUpdateManyWithoutConvidadoNestedInput
+    leads?: LeadUpdateManyWithoutResponsavelNestedInput
+    atividades_crm?: AtividadeCRMUpdateManyWithoutUsuarioNestedInput
+    propostas_criadas?: PropostaUpdateManyWithoutCriadorNestedInput
+    contratos_criados?: ContratoUpdateManyWithoutCriadorNestedInput
+    projetos_criados?: ProjetoUpdateManyWithoutCriadorNestedInput
+    tarefas?: TarefaUpdateManyWithoutResponsavelNestedInput
+    documentos_criados?: DocumentoUpdateManyWithoutCriadorNestedInput
+    recebiveis_criados?: RecebivelUpdateManyWithoutCriadorNestedInput
+    contas_pagar_criadas?: ContaPagarUpdateManyWithoutCriadorNestedInput
+    eventos_responsavel?: EventoUpdateManyWithoutResponsavelNestedInput
+    propostas_responsavel?: PropostaUpdateManyWithoutResponsavelNestedInput
+    contratos_responsavel?: ContratoUpdateManyWithoutResponsavelNestedInput
+    convites_cliente?: ConviteClienteUpdateManyWithoutCriadorNestedInput
+    anexos_tarefa?: AnexoTarefaUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
+  }
+
+  export type UsuarioUncheckedUpdateWithoutComentarios_tarefaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUncheckedUpdateManyWithoutUsuarioNestedInput
+    convites?: ConviteEmpresaUncheckedUpdateManyWithoutConvidadoNestedInput
+    leads?: LeadUncheckedUpdateManyWithoutResponsavelNestedInput
+    atividades_crm?: AtividadeCRMUncheckedUpdateManyWithoutUsuarioNestedInput
+    propostas_criadas?: PropostaUncheckedUpdateManyWithoutCriadorNestedInput
+    contratos_criados?: ContratoUncheckedUpdateManyWithoutCriadorNestedInput
+    projetos_criados?: ProjetoUncheckedUpdateManyWithoutCriadorNestedInput
+    tarefas?: TarefaUncheckedUpdateManyWithoutResponsavelNestedInput
+    documentos_criados?: DocumentoUncheckedUpdateManyWithoutCriadorNestedInput
+    recebiveis_criados?: RecebivelUncheckedUpdateManyWithoutCriadorNestedInput
+    contas_pagar_criadas?: ContaPagarUncheckedUpdateManyWithoutCriadorNestedInput
+    eventos_responsavel?: EventoUncheckedUpdateManyWithoutResponsavelNestedInput
+    propostas_responsavel?: PropostaUncheckedUpdateManyWithoutResponsavelNestedInput
+    contratos_responsavel?: ContratoUncheckedUpdateManyWithoutResponsavelNestedInput
+    convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutCriadorNestedInput
+    anexos_tarefa?: AnexoTarefaUncheckedUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
+  }
+
+  export type TarefaCreateWithoutAnexosInput = {
+    id?: string
+    titulo: string
+    descricao?: string | null
+    status?: $Enums.StatusTarefa
+    prioridade?: $Enums.PrioridadeTarefa
+    ordem?: number
+    data_prazo?: Date | string | null
+    concluida_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    etapa: EtapaCreateNestedOneWithoutTarefasInput
+    projeto: ProjetoCreateNestedOneWithoutTarefasInput
+    responsavel?: UsuarioCreateNestedOneWithoutTarefasInput
+    comentarios?: ComentarioTarefaCreateNestedManyWithoutTarefaInput
+    atividades?: AtividadeTarefaCreateNestedManyWithoutTarefaInput
+    aprovacoes?: AprovacaoTarefaCreateNestedManyWithoutTarefaInput
+    checklist?: ItemChecklistCreateNestedManyWithoutTarefaInput
+    etiquetas?: TarefaEtiquetaCreateNestedManyWithoutTarefaInput
+  }
+
+  export type TarefaUncheckedCreateWithoutAnexosInput = {
+    id?: string
+    etapa_id: string
+    projeto_id: string
+    responsavel_id?: string | null
+    titulo: string
+    descricao?: string | null
+    status?: $Enums.StatusTarefa
+    prioridade?: $Enums.PrioridadeTarefa
+    ordem?: number
+    data_prazo?: Date | string | null
+    concluida_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    comentarios?: ComentarioTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    atividades?: AtividadeTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    aprovacoes?: AprovacaoTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    checklist?: ItemChecklistUncheckedCreateNestedManyWithoutTarefaInput
+    etiquetas?: TarefaEtiquetaUncheckedCreateNestedManyWithoutTarefaInput
+  }
+
+  export type TarefaCreateOrConnectWithoutAnexosInput = {
+    where: TarefaWhereUniqueInput
+    create: XOR<TarefaCreateWithoutAnexosInput, TarefaUncheckedCreateWithoutAnexosInput>
+  }
+
+  export type UsuarioCreateWithoutAnexos_tarefaInput = {
+    id: string
+    nome: string
+    email: string
+    avatar_url?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaCreateNestedManyWithoutUsuarioInput
+    convites?: ConviteEmpresaCreateNestedManyWithoutConvidadoInput
+    leads?: LeadCreateNestedManyWithoutResponsavelInput
+    atividades_crm?: AtividadeCRMCreateNestedManyWithoutUsuarioInput
+    propostas_criadas?: PropostaCreateNestedManyWithoutCriadorInput
+    contratos_criados?: ContratoCreateNestedManyWithoutCriadorInput
+    projetos_criados?: ProjetoCreateNestedManyWithoutCriadorInput
+    tarefas?: TarefaCreateNestedManyWithoutResponsavelInput
+    documentos_criados?: DocumentoCreateNestedManyWithoutCriadorInput
+    recebiveis_criados?: RecebivelCreateNestedManyWithoutCriadorInput
+    contas_pagar_criadas?: ContaPagarCreateNestedManyWithoutCriadorInput
+    eventos_responsavel?: EventoCreateNestedManyWithoutResponsavelInput
+    propostas_responsavel?: PropostaCreateNestedManyWithoutResponsavelInput
+    contratos_responsavel?: ContratoCreateNestedManyWithoutResponsavelInput
+    convites_cliente?: ConviteClienteCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaCreateNestedManyWithoutAutorInput
+    atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
+  }
+
+  export type UsuarioUncheckedCreateWithoutAnexos_tarefaInput = {
+    id: string
+    nome: string
+    email: string
+    avatar_url?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaUncheckedCreateNestedManyWithoutUsuarioInput
+    convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutConvidadoInput
+    leads?: LeadUncheckedCreateNestedManyWithoutResponsavelInput
+    atividades_crm?: AtividadeCRMUncheckedCreateNestedManyWithoutUsuarioInput
+    propostas_criadas?: PropostaUncheckedCreateNestedManyWithoutCriadorInput
+    contratos_criados?: ContratoUncheckedCreateNestedManyWithoutCriadorInput
+    projetos_criados?: ProjetoUncheckedCreateNestedManyWithoutCriadorInput
+    tarefas?: TarefaUncheckedCreateNestedManyWithoutResponsavelInput
+    documentos_criados?: DocumentoUncheckedCreateNestedManyWithoutCriadorInput
+    recebiveis_criados?: RecebivelUncheckedCreateNestedManyWithoutCriadorInput
+    contas_pagar_criadas?: ContaPagarUncheckedCreateNestedManyWithoutCriadorInput
+    eventos_responsavel?: EventoUncheckedCreateNestedManyWithoutResponsavelInput
+    propostas_responsavel?: PropostaUncheckedCreateNestedManyWithoutResponsavelInput
+    contratos_responsavel?: ContratoUncheckedCreateNestedManyWithoutResponsavelInput
+    convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedCreateNestedManyWithoutAutorInput
+    atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
+  }
+
+  export type UsuarioCreateOrConnectWithoutAnexos_tarefaInput = {
+    where: UsuarioWhereUniqueInput
+    create: XOR<UsuarioCreateWithoutAnexos_tarefaInput, UsuarioUncheckedCreateWithoutAnexos_tarefaInput>
+  }
+
+  export type TarefaUpsertWithoutAnexosInput = {
+    update: XOR<TarefaUpdateWithoutAnexosInput, TarefaUncheckedUpdateWithoutAnexosInput>
+    create: XOR<TarefaCreateWithoutAnexosInput, TarefaUncheckedCreateWithoutAnexosInput>
+    where?: TarefaWhereInput
+  }
+
+  export type TarefaUpdateToOneWithWhereWithoutAnexosInput = {
+    where?: TarefaWhereInput
+    data: XOR<TarefaUpdateWithoutAnexosInput, TarefaUncheckedUpdateWithoutAnexosInput>
+  }
+
+  export type TarefaUpdateWithoutAnexosInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusTarefaFieldUpdateOperationsInput | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaFieldUpdateOperationsInput | $Enums.PrioridadeTarefa
+    ordem?: IntFieldUpdateOperationsInput | number
+    data_prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    etapa?: EtapaUpdateOneRequiredWithoutTarefasNestedInput
+    projeto?: ProjetoUpdateOneRequiredWithoutTarefasNestedInput
+    responsavel?: UsuarioUpdateOneWithoutTarefasNestedInput
+    comentarios?: ComentarioTarefaUpdateManyWithoutTarefaNestedInput
+    atividades?: AtividadeTarefaUpdateManyWithoutTarefaNestedInput
+    aprovacoes?: AprovacaoTarefaUpdateManyWithoutTarefaNestedInput
+    checklist?: ItemChecklistUpdateManyWithoutTarefaNestedInput
+    etiquetas?: TarefaEtiquetaUpdateManyWithoutTarefaNestedInput
+  }
+
+  export type TarefaUncheckedUpdateWithoutAnexosInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    etapa_id?: StringFieldUpdateOperationsInput | string
+    projeto_id?: StringFieldUpdateOperationsInput | string
+    responsavel_id?: NullableStringFieldUpdateOperationsInput | string | null
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusTarefaFieldUpdateOperationsInput | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaFieldUpdateOperationsInput | $Enums.PrioridadeTarefa
+    ordem?: IntFieldUpdateOperationsInput | number
+    data_prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    comentarios?: ComentarioTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    atividades?: AtividadeTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    aprovacoes?: AprovacaoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    checklist?: ItemChecklistUncheckedUpdateManyWithoutTarefaNestedInput
+    etiquetas?: TarefaEtiquetaUncheckedUpdateManyWithoutTarefaNestedInput
+  }
+
+  export type UsuarioUpsertWithoutAnexos_tarefaInput = {
+    update: XOR<UsuarioUpdateWithoutAnexos_tarefaInput, UsuarioUncheckedUpdateWithoutAnexos_tarefaInput>
+    create: XOR<UsuarioCreateWithoutAnexos_tarefaInput, UsuarioUncheckedCreateWithoutAnexos_tarefaInput>
+    where?: UsuarioWhereInput
+  }
+
+  export type UsuarioUpdateToOneWithWhereWithoutAnexos_tarefaInput = {
+    where?: UsuarioWhereInput
+    data: XOR<UsuarioUpdateWithoutAnexos_tarefaInput, UsuarioUncheckedUpdateWithoutAnexos_tarefaInput>
+  }
+
+  export type UsuarioUpdateWithoutAnexos_tarefaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUpdateManyWithoutUsuarioNestedInput
+    convites?: ConviteEmpresaUpdateManyWithoutConvidadoNestedInput
+    leads?: LeadUpdateManyWithoutResponsavelNestedInput
+    atividades_crm?: AtividadeCRMUpdateManyWithoutUsuarioNestedInput
+    propostas_criadas?: PropostaUpdateManyWithoutCriadorNestedInput
+    contratos_criados?: ContratoUpdateManyWithoutCriadorNestedInput
+    projetos_criados?: ProjetoUpdateManyWithoutCriadorNestedInput
+    tarefas?: TarefaUpdateManyWithoutResponsavelNestedInput
+    documentos_criados?: DocumentoUpdateManyWithoutCriadorNestedInput
+    recebiveis_criados?: RecebivelUpdateManyWithoutCriadorNestedInput
+    contas_pagar_criadas?: ContaPagarUpdateManyWithoutCriadorNestedInput
+    eventos_responsavel?: EventoUpdateManyWithoutResponsavelNestedInput
+    propostas_responsavel?: PropostaUpdateManyWithoutResponsavelNestedInput
+    contratos_responsavel?: ContratoUpdateManyWithoutResponsavelNestedInput
+    convites_cliente?: ConviteClienteUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUpdateManyWithoutAutorNestedInput
+    atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
+  }
+
+  export type UsuarioUncheckedUpdateWithoutAnexos_tarefaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUncheckedUpdateManyWithoutUsuarioNestedInput
+    convites?: ConviteEmpresaUncheckedUpdateManyWithoutConvidadoNestedInput
+    leads?: LeadUncheckedUpdateManyWithoutResponsavelNestedInput
+    atividades_crm?: AtividadeCRMUncheckedUpdateManyWithoutUsuarioNestedInput
+    propostas_criadas?: PropostaUncheckedUpdateManyWithoutCriadorNestedInput
+    contratos_criados?: ContratoUncheckedUpdateManyWithoutCriadorNestedInput
+    projetos_criados?: ProjetoUncheckedUpdateManyWithoutCriadorNestedInput
+    tarefas?: TarefaUncheckedUpdateManyWithoutResponsavelNestedInput
+    documentos_criados?: DocumentoUncheckedUpdateManyWithoutCriadorNestedInput
+    recebiveis_criados?: RecebivelUncheckedUpdateManyWithoutCriadorNestedInput
+    contas_pagar_criadas?: ContaPagarUncheckedUpdateManyWithoutCriadorNestedInput
+    eventos_responsavel?: EventoUncheckedUpdateManyWithoutResponsavelNestedInput
+    propostas_responsavel?: PropostaUncheckedUpdateManyWithoutResponsavelNestedInput
+    contratos_responsavel?: ContratoUncheckedUpdateManyWithoutResponsavelNestedInput
+    convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
+  }
+
+  export type TarefaCreateWithoutAtividadesInput = {
+    id?: string
+    titulo: string
+    descricao?: string | null
+    status?: $Enums.StatusTarefa
+    prioridade?: $Enums.PrioridadeTarefa
+    ordem?: number
+    data_prazo?: Date | string | null
+    concluida_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    etapa: EtapaCreateNestedOneWithoutTarefasInput
+    projeto: ProjetoCreateNestedOneWithoutTarefasInput
+    responsavel?: UsuarioCreateNestedOneWithoutTarefasInput
+    comentarios?: ComentarioTarefaCreateNestedManyWithoutTarefaInput
+    anexos?: AnexoTarefaCreateNestedManyWithoutTarefaInput
+    aprovacoes?: AprovacaoTarefaCreateNestedManyWithoutTarefaInput
+    checklist?: ItemChecklistCreateNestedManyWithoutTarefaInput
+    etiquetas?: TarefaEtiquetaCreateNestedManyWithoutTarefaInput
+  }
+
+  export type TarefaUncheckedCreateWithoutAtividadesInput = {
+    id?: string
+    etapa_id: string
+    projeto_id: string
+    responsavel_id?: string | null
+    titulo: string
+    descricao?: string | null
+    status?: $Enums.StatusTarefa
+    prioridade?: $Enums.PrioridadeTarefa
+    ordem?: number
+    data_prazo?: Date | string | null
+    concluida_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    comentarios?: ComentarioTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    anexos?: AnexoTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    aprovacoes?: AprovacaoTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    checklist?: ItemChecklistUncheckedCreateNestedManyWithoutTarefaInput
+    etiquetas?: TarefaEtiquetaUncheckedCreateNestedManyWithoutTarefaInput
+  }
+
+  export type TarefaCreateOrConnectWithoutAtividadesInput = {
+    where: TarefaWhereUniqueInput
+    create: XOR<TarefaCreateWithoutAtividadesInput, TarefaUncheckedCreateWithoutAtividadesInput>
+  }
+
+  export type UsuarioCreateWithoutAtividades_tarefaInput = {
+    id: string
+    nome: string
+    email: string
+    avatar_url?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaCreateNestedManyWithoutUsuarioInput
+    convites?: ConviteEmpresaCreateNestedManyWithoutConvidadoInput
+    leads?: LeadCreateNestedManyWithoutResponsavelInput
+    atividades_crm?: AtividadeCRMCreateNestedManyWithoutUsuarioInput
+    propostas_criadas?: PropostaCreateNestedManyWithoutCriadorInput
+    contratos_criados?: ContratoCreateNestedManyWithoutCriadorInput
+    projetos_criados?: ProjetoCreateNestedManyWithoutCriadorInput
+    tarefas?: TarefaCreateNestedManyWithoutResponsavelInput
+    documentos_criados?: DocumentoCreateNestedManyWithoutCriadorInput
+    recebiveis_criados?: RecebivelCreateNestedManyWithoutCriadorInput
+    contas_pagar_criadas?: ContaPagarCreateNestedManyWithoutCriadorInput
+    eventos_responsavel?: EventoCreateNestedManyWithoutResponsavelInput
+    propostas_responsavel?: PropostaCreateNestedManyWithoutResponsavelInput
+    contratos_responsavel?: ContratoCreateNestedManyWithoutResponsavelInput
+    convites_cliente?: ConviteClienteCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaCreateNestedManyWithoutCriadorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
+  }
+
+  export type UsuarioUncheckedCreateWithoutAtividades_tarefaInput = {
+    id: string
+    nome: string
+    email: string
+    avatar_url?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaUncheckedCreateNestedManyWithoutUsuarioInput
+    convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutConvidadoInput
+    leads?: LeadUncheckedCreateNestedManyWithoutResponsavelInput
+    atividades_crm?: AtividadeCRMUncheckedCreateNestedManyWithoutUsuarioInput
+    propostas_criadas?: PropostaUncheckedCreateNestedManyWithoutCriadorInput
+    contratos_criados?: ContratoUncheckedCreateNestedManyWithoutCriadorInput
+    projetos_criados?: ProjetoUncheckedCreateNestedManyWithoutCriadorInput
+    tarefas?: TarefaUncheckedCreateNestedManyWithoutResponsavelInput
+    documentos_criados?: DocumentoUncheckedCreateNestedManyWithoutCriadorInput
+    recebiveis_criados?: RecebivelUncheckedCreateNestedManyWithoutCriadorInput
+    contas_pagar_criadas?: ContaPagarUncheckedCreateNestedManyWithoutCriadorInput
+    eventos_responsavel?: EventoUncheckedCreateNestedManyWithoutResponsavelInput
+    propostas_responsavel?: PropostaUncheckedCreateNestedManyWithoutResponsavelInput
+    contratos_responsavel?: ContratoUncheckedCreateNestedManyWithoutResponsavelInput
+    convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaUncheckedCreateNestedManyWithoutCriadorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
+  }
+
+  export type UsuarioCreateOrConnectWithoutAtividades_tarefaInput = {
+    where: UsuarioWhereUniqueInput
+    create: XOR<UsuarioCreateWithoutAtividades_tarefaInput, UsuarioUncheckedCreateWithoutAtividades_tarefaInput>
+  }
+
+  export type TarefaUpsertWithoutAtividadesInput = {
+    update: XOR<TarefaUpdateWithoutAtividadesInput, TarefaUncheckedUpdateWithoutAtividadesInput>
+    create: XOR<TarefaCreateWithoutAtividadesInput, TarefaUncheckedCreateWithoutAtividadesInput>
+    where?: TarefaWhereInput
+  }
+
+  export type TarefaUpdateToOneWithWhereWithoutAtividadesInput = {
+    where?: TarefaWhereInput
+    data: XOR<TarefaUpdateWithoutAtividadesInput, TarefaUncheckedUpdateWithoutAtividadesInput>
+  }
+
+  export type TarefaUpdateWithoutAtividadesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusTarefaFieldUpdateOperationsInput | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaFieldUpdateOperationsInput | $Enums.PrioridadeTarefa
+    ordem?: IntFieldUpdateOperationsInput | number
+    data_prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    etapa?: EtapaUpdateOneRequiredWithoutTarefasNestedInput
+    projeto?: ProjetoUpdateOneRequiredWithoutTarefasNestedInput
+    responsavel?: UsuarioUpdateOneWithoutTarefasNestedInput
+    comentarios?: ComentarioTarefaUpdateManyWithoutTarefaNestedInput
+    anexos?: AnexoTarefaUpdateManyWithoutTarefaNestedInput
+    aprovacoes?: AprovacaoTarefaUpdateManyWithoutTarefaNestedInput
+    checklist?: ItemChecklistUpdateManyWithoutTarefaNestedInput
+    etiquetas?: TarefaEtiquetaUpdateManyWithoutTarefaNestedInput
+  }
+
+  export type TarefaUncheckedUpdateWithoutAtividadesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    etapa_id?: StringFieldUpdateOperationsInput | string
+    projeto_id?: StringFieldUpdateOperationsInput | string
+    responsavel_id?: NullableStringFieldUpdateOperationsInput | string | null
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusTarefaFieldUpdateOperationsInput | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaFieldUpdateOperationsInput | $Enums.PrioridadeTarefa
+    ordem?: IntFieldUpdateOperationsInput | number
+    data_prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    comentarios?: ComentarioTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    anexos?: AnexoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    aprovacoes?: AprovacaoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    checklist?: ItemChecklistUncheckedUpdateManyWithoutTarefaNestedInput
+    etiquetas?: TarefaEtiquetaUncheckedUpdateManyWithoutTarefaNestedInput
+  }
+
+  export type UsuarioUpsertWithoutAtividades_tarefaInput = {
+    update: XOR<UsuarioUpdateWithoutAtividades_tarefaInput, UsuarioUncheckedUpdateWithoutAtividades_tarefaInput>
+    create: XOR<UsuarioCreateWithoutAtividades_tarefaInput, UsuarioUncheckedCreateWithoutAtividades_tarefaInput>
+    where?: UsuarioWhereInput
+  }
+
+  export type UsuarioUpdateToOneWithWhereWithoutAtividades_tarefaInput = {
+    where?: UsuarioWhereInput
+    data: XOR<UsuarioUpdateWithoutAtividades_tarefaInput, UsuarioUncheckedUpdateWithoutAtividades_tarefaInput>
+  }
+
+  export type UsuarioUpdateWithoutAtividades_tarefaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUpdateManyWithoutUsuarioNestedInput
+    convites?: ConviteEmpresaUpdateManyWithoutConvidadoNestedInput
+    leads?: LeadUpdateManyWithoutResponsavelNestedInput
+    atividades_crm?: AtividadeCRMUpdateManyWithoutUsuarioNestedInput
+    propostas_criadas?: PropostaUpdateManyWithoutCriadorNestedInput
+    contratos_criados?: ContratoUpdateManyWithoutCriadorNestedInput
+    projetos_criados?: ProjetoUpdateManyWithoutCriadorNestedInput
+    tarefas?: TarefaUpdateManyWithoutResponsavelNestedInput
+    documentos_criados?: DocumentoUpdateManyWithoutCriadorNestedInput
+    recebiveis_criados?: RecebivelUpdateManyWithoutCriadorNestedInput
+    contas_pagar_criadas?: ContaPagarUpdateManyWithoutCriadorNestedInput
+    eventos_responsavel?: EventoUpdateManyWithoutResponsavelNestedInput
+    propostas_responsavel?: PropostaUpdateManyWithoutResponsavelNestedInput
+    contratos_responsavel?: ContratoUpdateManyWithoutResponsavelNestedInput
+    convites_cliente?: ConviteClienteUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUpdateManyWithoutCriadorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
+  }
+
+  export type UsuarioUncheckedUpdateWithoutAtividades_tarefaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUncheckedUpdateManyWithoutUsuarioNestedInput
+    convites?: ConviteEmpresaUncheckedUpdateManyWithoutConvidadoNestedInput
+    leads?: LeadUncheckedUpdateManyWithoutResponsavelNestedInput
+    atividades_crm?: AtividadeCRMUncheckedUpdateManyWithoutUsuarioNestedInput
+    propostas_criadas?: PropostaUncheckedUpdateManyWithoutCriadorNestedInput
+    contratos_criados?: ContratoUncheckedUpdateManyWithoutCriadorNestedInput
+    projetos_criados?: ProjetoUncheckedUpdateManyWithoutCriadorNestedInput
+    tarefas?: TarefaUncheckedUpdateManyWithoutResponsavelNestedInput
+    documentos_criados?: DocumentoUncheckedUpdateManyWithoutCriadorNestedInput
+    recebiveis_criados?: RecebivelUncheckedUpdateManyWithoutCriadorNestedInput
+    contas_pagar_criadas?: ContaPagarUncheckedUpdateManyWithoutCriadorNestedInput
+    eventos_responsavel?: EventoUncheckedUpdateManyWithoutResponsavelNestedInput
+    propostas_responsavel?: PropostaUncheckedUpdateManyWithoutResponsavelNestedInput
+    contratos_responsavel?: ContratoUncheckedUpdateManyWithoutResponsavelNestedInput
+    convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUncheckedUpdateManyWithoutCriadorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
+  }
+
+  export type TarefaCreateWithoutAprovacoesInput = {
+    id?: string
+    titulo: string
+    descricao?: string | null
+    status?: $Enums.StatusTarefa
+    prioridade?: $Enums.PrioridadeTarefa
+    ordem?: number
+    data_prazo?: Date | string | null
+    concluida_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    etapa: EtapaCreateNestedOneWithoutTarefasInput
+    projeto: ProjetoCreateNestedOneWithoutTarefasInput
+    responsavel?: UsuarioCreateNestedOneWithoutTarefasInput
+    comentarios?: ComentarioTarefaCreateNestedManyWithoutTarefaInput
+    anexos?: AnexoTarefaCreateNestedManyWithoutTarefaInput
+    atividades?: AtividadeTarefaCreateNestedManyWithoutTarefaInput
+    checklist?: ItemChecklistCreateNestedManyWithoutTarefaInput
+    etiquetas?: TarefaEtiquetaCreateNestedManyWithoutTarefaInput
+  }
+
+  export type TarefaUncheckedCreateWithoutAprovacoesInput = {
+    id?: string
+    etapa_id: string
+    projeto_id: string
+    responsavel_id?: string | null
+    titulo: string
+    descricao?: string | null
+    status?: $Enums.StatusTarefa
+    prioridade?: $Enums.PrioridadeTarefa
+    ordem?: number
+    data_prazo?: Date | string | null
+    concluida_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    comentarios?: ComentarioTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    anexos?: AnexoTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    atividades?: AtividadeTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    checklist?: ItemChecklistUncheckedCreateNestedManyWithoutTarefaInput
+    etiquetas?: TarefaEtiquetaUncheckedCreateNestedManyWithoutTarefaInput
+  }
+
+  export type TarefaCreateOrConnectWithoutAprovacoesInput = {
+    where: TarefaWhereUniqueInput
+    create: XOR<TarefaCreateWithoutAprovacoesInput, TarefaUncheckedCreateWithoutAprovacoesInput>
+  }
+
+  export type UsuarioCreateWithoutAprovacoes_solicitadasInput = {
+    id: string
+    nome: string
+    email: string
+    avatar_url?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaCreateNestedManyWithoutUsuarioInput
+    convites?: ConviteEmpresaCreateNestedManyWithoutConvidadoInput
+    leads?: LeadCreateNestedManyWithoutResponsavelInput
+    atividades_crm?: AtividadeCRMCreateNestedManyWithoutUsuarioInput
+    propostas_criadas?: PropostaCreateNestedManyWithoutCriadorInput
+    contratos_criados?: ContratoCreateNestedManyWithoutCriadorInput
+    projetos_criados?: ProjetoCreateNestedManyWithoutCriadorInput
+    tarefas?: TarefaCreateNestedManyWithoutResponsavelInput
+    documentos_criados?: DocumentoCreateNestedManyWithoutCriadorInput
+    recebiveis_criados?: RecebivelCreateNestedManyWithoutCriadorInput
+    contas_pagar_criadas?: ContaPagarCreateNestedManyWithoutCriadorInput
+    eventos_responsavel?: EventoCreateNestedManyWithoutResponsavelInput
+    propostas_responsavel?: PropostaCreateNestedManyWithoutResponsavelInput
+    contratos_responsavel?: ContratoCreateNestedManyWithoutResponsavelInput
+    convites_cliente?: ConviteClienteCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
+    aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
+  }
+
+  export type UsuarioUncheckedCreateWithoutAprovacoes_solicitadasInput = {
+    id: string
+    nome: string
+    email: string
+    avatar_url?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaUncheckedCreateNestedManyWithoutUsuarioInput
+    convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutConvidadoInput
+    leads?: LeadUncheckedCreateNestedManyWithoutResponsavelInput
+    atividades_crm?: AtividadeCRMUncheckedCreateNestedManyWithoutUsuarioInput
+    propostas_criadas?: PropostaUncheckedCreateNestedManyWithoutCriadorInput
+    contratos_criados?: ContratoUncheckedCreateNestedManyWithoutCriadorInput
+    projetos_criados?: ProjetoUncheckedCreateNestedManyWithoutCriadorInput
+    tarefas?: TarefaUncheckedCreateNestedManyWithoutResponsavelInput
+    documentos_criados?: DocumentoUncheckedCreateNestedManyWithoutCriadorInput
+    recebiveis_criados?: RecebivelUncheckedCreateNestedManyWithoutCriadorInput
+    contas_pagar_criadas?: ContaPagarUncheckedCreateNestedManyWithoutCriadorInput
+    eventos_responsavel?: EventoUncheckedCreateNestedManyWithoutResponsavelInput
+    propostas_responsavel?: PropostaUncheckedCreateNestedManyWithoutResponsavelInput
+    contratos_responsavel?: ContratoUncheckedCreateNestedManyWithoutResponsavelInput
+    convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaUncheckedCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
+  }
+
+  export type UsuarioCreateOrConnectWithoutAprovacoes_solicitadasInput = {
+    where: UsuarioWhereUniqueInput
+    create: XOR<UsuarioCreateWithoutAprovacoes_solicitadasInput, UsuarioUncheckedCreateWithoutAprovacoes_solicitadasInput>
+  }
+
+  export type UsuarioCreateWithoutAprovacoes_recebidasInput = {
+    id: string
+    nome: string
+    email: string
+    avatar_url?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaCreateNestedManyWithoutUsuarioInput
+    convites?: ConviteEmpresaCreateNestedManyWithoutConvidadoInput
+    leads?: LeadCreateNestedManyWithoutResponsavelInput
+    atividades_crm?: AtividadeCRMCreateNestedManyWithoutUsuarioInput
+    propostas_criadas?: PropostaCreateNestedManyWithoutCriadorInput
+    contratos_criados?: ContratoCreateNestedManyWithoutCriadorInput
+    projetos_criados?: ProjetoCreateNestedManyWithoutCriadorInput
+    tarefas?: TarefaCreateNestedManyWithoutResponsavelInput
+    documentos_criados?: DocumentoCreateNestedManyWithoutCriadorInput
+    recebiveis_criados?: RecebivelCreateNestedManyWithoutCriadorInput
+    contas_pagar_criadas?: ContaPagarCreateNestedManyWithoutCriadorInput
+    eventos_responsavel?: EventoCreateNestedManyWithoutResponsavelInput
+    propostas_responsavel?: PropostaCreateNestedManyWithoutResponsavelInput
+    contratos_responsavel?: ContratoCreateNestedManyWithoutResponsavelInput
+    convites_cliente?: ConviteClienteCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
+  }
+
+  export type UsuarioUncheckedCreateWithoutAprovacoes_recebidasInput = {
+    id: string
+    nome: string
+    email: string
+    avatar_url?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaUncheckedCreateNestedManyWithoutUsuarioInput
+    convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutConvidadoInput
+    leads?: LeadUncheckedCreateNestedManyWithoutResponsavelInput
+    atividades_crm?: AtividadeCRMUncheckedCreateNestedManyWithoutUsuarioInput
+    propostas_criadas?: PropostaUncheckedCreateNestedManyWithoutCriadorInput
+    contratos_criados?: ContratoUncheckedCreateNestedManyWithoutCriadorInput
+    projetos_criados?: ProjetoUncheckedCreateNestedManyWithoutCriadorInput
+    tarefas?: TarefaUncheckedCreateNestedManyWithoutResponsavelInput
+    documentos_criados?: DocumentoUncheckedCreateNestedManyWithoutCriadorInput
+    recebiveis_criados?: RecebivelUncheckedCreateNestedManyWithoutCriadorInput
+    contas_pagar_criadas?: ContaPagarUncheckedCreateNestedManyWithoutCriadorInput
+    eventos_responsavel?: EventoUncheckedCreateNestedManyWithoutResponsavelInput
+    propostas_responsavel?: PropostaUncheckedCreateNestedManyWithoutResponsavelInput
+    contratos_responsavel?: ContratoUncheckedCreateNestedManyWithoutResponsavelInput
+    convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaUncheckedCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
+  }
+
+  export type UsuarioCreateOrConnectWithoutAprovacoes_recebidasInput = {
+    where: UsuarioWhereUniqueInput
+    create: XOR<UsuarioCreateWithoutAprovacoes_recebidasInput, UsuarioUncheckedCreateWithoutAprovacoes_recebidasInput>
+  }
+
+  export type TarefaUpsertWithoutAprovacoesInput = {
+    update: XOR<TarefaUpdateWithoutAprovacoesInput, TarefaUncheckedUpdateWithoutAprovacoesInput>
+    create: XOR<TarefaCreateWithoutAprovacoesInput, TarefaUncheckedCreateWithoutAprovacoesInput>
+    where?: TarefaWhereInput
+  }
+
+  export type TarefaUpdateToOneWithWhereWithoutAprovacoesInput = {
+    where?: TarefaWhereInput
+    data: XOR<TarefaUpdateWithoutAprovacoesInput, TarefaUncheckedUpdateWithoutAprovacoesInput>
+  }
+
+  export type TarefaUpdateWithoutAprovacoesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusTarefaFieldUpdateOperationsInput | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaFieldUpdateOperationsInput | $Enums.PrioridadeTarefa
+    ordem?: IntFieldUpdateOperationsInput | number
+    data_prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    etapa?: EtapaUpdateOneRequiredWithoutTarefasNestedInput
+    projeto?: ProjetoUpdateOneRequiredWithoutTarefasNestedInput
+    responsavel?: UsuarioUpdateOneWithoutTarefasNestedInput
+    comentarios?: ComentarioTarefaUpdateManyWithoutTarefaNestedInput
+    anexos?: AnexoTarefaUpdateManyWithoutTarefaNestedInput
+    atividades?: AtividadeTarefaUpdateManyWithoutTarefaNestedInput
+    checklist?: ItemChecklistUpdateManyWithoutTarefaNestedInput
+    etiquetas?: TarefaEtiquetaUpdateManyWithoutTarefaNestedInput
+  }
+
+  export type TarefaUncheckedUpdateWithoutAprovacoesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    etapa_id?: StringFieldUpdateOperationsInput | string
+    projeto_id?: StringFieldUpdateOperationsInput | string
+    responsavel_id?: NullableStringFieldUpdateOperationsInput | string | null
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusTarefaFieldUpdateOperationsInput | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaFieldUpdateOperationsInput | $Enums.PrioridadeTarefa
+    ordem?: IntFieldUpdateOperationsInput | number
+    data_prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    comentarios?: ComentarioTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    anexos?: AnexoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    atividades?: AtividadeTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    checklist?: ItemChecklistUncheckedUpdateManyWithoutTarefaNestedInput
+    etiquetas?: TarefaEtiquetaUncheckedUpdateManyWithoutTarefaNestedInput
+  }
+
+  export type UsuarioUpsertWithoutAprovacoes_solicitadasInput = {
+    update: XOR<UsuarioUpdateWithoutAprovacoes_solicitadasInput, UsuarioUncheckedUpdateWithoutAprovacoes_solicitadasInput>
+    create: XOR<UsuarioCreateWithoutAprovacoes_solicitadasInput, UsuarioUncheckedCreateWithoutAprovacoes_solicitadasInput>
+    where?: UsuarioWhereInput
+  }
+
+  export type UsuarioUpdateToOneWithWhereWithoutAprovacoes_solicitadasInput = {
+    where?: UsuarioWhereInput
+    data: XOR<UsuarioUpdateWithoutAprovacoes_solicitadasInput, UsuarioUncheckedUpdateWithoutAprovacoes_solicitadasInput>
+  }
+
+  export type UsuarioUpdateWithoutAprovacoes_solicitadasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUpdateManyWithoutUsuarioNestedInput
+    convites?: ConviteEmpresaUpdateManyWithoutConvidadoNestedInput
+    leads?: LeadUpdateManyWithoutResponsavelNestedInput
+    atividades_crm?: AtividadeCRMUpdateManyWithoutUsuarioNestedInput
+    propostas_criadas?: PropostaUpdateManyWithoutCriadorNestedInput
+    contratos_criados?: ContratoUpdateManyWithoutCriadorNestedInput
+    projetos_criados?: ProjetoUpdateManyWithoutCriadorNestedInput
+    tarefas?: TarefaUpdateManyWithoutResponsavelNestedInput
+    documentos_criados?: DocumentoUpdateManyWithoutCriadorNestedInput
+    recebiveis_criados?: RecebivelUpdateManyWithoutCriadorNestedInput
+    contas_pagar_criadas?: ContaPagarUpdateManyWithoutCriadorNestedInput
+    eventos_responsavel?: EventoUpdateManyWithoutResponsavelNestedInput
+    propostas_responsavel?: PropostaUpdateManyWithoutResponsavelNestedInput
+    contratos_responsavel?: ContratoUpdateManyWithoutResponsavelNestedInput
+    convites_cliente?: ConviteClienteUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
+  }
+
+  export type UsuarioUncheckedUpdateWithoutAprovacoes_solicitadasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUncheckedUpdateManyWithoutUsuarioNestedInput
+    convites?: ConviteEmpresaUncheckedUpdateManyWithoutConvidadoNestedInput
+    leads?: LeadUncheckedUpdateManyWithoutResponsavelNestedInput
+    atividades_crm?: AtividadeCRMUncheckedUpdateManyWithoutUsuarioNestedInput
+    propostas_criadas?: PropostaUncheckedUpdateManyWithoutCriadorNestedInput
+    contratos_criados?: ContratoUncheckedUpdateManyWithoutCriadorNestedInput
+    projetos_criados?: ProjetoUncheckedUpdateManyWithoutCriadorNestedInput
+    tarefas?: TarefaUncheckedUpdateManyWithoutResponsavelNestedInput
+    documentos_criados?: DocumentoUncheckedUpdateManyWithoutCriadorNestedInput
+    recebiveis_criados?: RecebivelUncheckedUpdateManyWithoutCriadorNestedInput
+    contas_pagar_criadas?: ContaPagarUncheckedUpdateManyWithoutCriadorNestedInput
+    eventos_responsavel?: EventoUncheckedUpdateManyWithoutResponsavelNestedInput
+    propostas_responsavel?: PropostaUncheckedUpdateManyWithoutResponsavelNestedInput
+    contratos_responsavel?: ContratoUncheckedUpdateManyWithoutResponsavelNestedInput
+    convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUncheckedUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
+  }
+
+  export type UsuarioUpsertWithoutAprovacoes_recebidasInput = {
+    update: XOR<UsuarioUpdateWithoutAprovacoes_recebidasInput, UsuarioUncheckedUpdateWithoutAprovacoes_recebidasInput>
+    create: XOR<UsuarioCreateWithoutAprovacoes_recebidasInput, UsuarioUncheckedCreateWithoutAprovacoes_recebidasInput>
+    where?: UsuarioWhereInput
+  }
+
+  export type UsuarioUpdateToOneWithWhereWithoutAprovacoes_recebidasInput = {
+    where?: UsuarioWhereInput
+    data: XOR<UsuarioUpdateWithoutAprovacoes_recebidasInput, UsuarioUncheckedUpdateWithoutAprovacoes_recebidasInput>
+  }
+
+  export type UsuarioUpdateWithoutAprovacoes_recebidasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUpdateManyWithoutUsuarioNestedInput
+    convites?: ConviteEmpresaUpdateManyWithoutConvidadoNestedInput
+    leads?: LeadUpdateManyWithoutResponsavelNestedInput
+    atividades_crm?: AtividadeCRMUpdateManyWithoutUsuarioNestedInput
+    propostas_criadas?: PropostaUpdateManyWithoutCriadorNestedInput
+    contratos_criados?: ContratoUpdateManyWithoutCriadorNestedInput
+    projetos_criados?: ProjetoUpdateManyWithoutCriadorNestedInput
+    tarefas?: TarefaUpdateManyWithoutResponsavelNestedInput
+    documentos_criados?: DocumentoUpdateManyWithoutCriadorNestedInput
+    recebiveis_criados?: RecebivelUpdateManyWithoutCriadorNestedInput
+    contas_pagar_criadas?: ContaPagarUpdateManyWithoutCriadorNestedInput
+    eventos_responsavel?: EventoUpdateManyWithoutResponsavelNestedInput
+    propostas_responsavel?: PropostaUpdateManyWithoutResponsavelNestedInput
+    contratos_responsavel?: ContratoUpdateManyWithoutResponsavelNestedInput
+    convites_cliente?: ConviteClienteUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
+  }
+
+  export type UsuarioUncheckedUpdateWithoutAprovacoes_recebidasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUncheckedUpdateManyWithoutUsuarioNestedInput
+    convites?: ConviteEmpresaUncheckedUpdateManyWithoutConvidadoNestedInput
+    leads?: LeadUncheckedUpdateManyWithoutResponsavelNestedInput
+    atividades_crm?: AtividadeCRMUncheckedUpdateManyWithoutUsuarioNestedInput
+    propostas_criadas?: PropostaUncheckedUpdateManyWithoutCriadorNestedInput
+    contratos_criados?: ContratoUncheckedUpdateManyWithoutCriadorNestedInput
+    projetos_criados?: ProjetoUncheckedUpdateManyWithoutCriadorNestedInput
+    tarefas?: TarefaUncheckedUpdateManyWithoutResponsavelNestedInput
+    documentos_criados?: DocumentoUncheckedUpdateManyWithoutCriadorNestedInput
+    recebiveis_criados?: RecebivelUncheckedUpdateManyWithoutCriadorNestedInput
+    contas_pagar_criadas?: ContaPagarUncheckedUpdateManyWithoutCriadorNestedInput
+    eventos_responsavel?: EventoUncheckedUpdateManyWithoutResponsavelNestedInput
+    propostas_responsavel?: PropostaUncheckedUpdateManyWithoutResponsavelNestedInput
+    contratos_responsavel?: ContratoUncheckedUpdateManyWithoutResponsavelNestedInput
+    convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUncheckedUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
+  }
+
+  export type TarefaCreateWithoutChecklistInput = {
+    id?: string
+    titulo: string
+    descricao?: string | null
+    status?: $Enums.StatusTarefa
+    prioridade?: $Enums.PrioridadeTarefa
+    ordem?: number
+    data_prazo?: Date | string | null
+    concluida_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    etapa: EtapaCreateNestedOneWithoutTarefasInput
+    projeto: ProjetoCreateNestedOneWithoutTarefasInput
+    responsavel?: UsuarioCreateNestedOneWithoutTarefasInput
+    comentarios?: ComentarioTarefaCreateNestedManyWithoutTarefaInput
+    anexos?: AnexoTarefaCreateNestedManyWithoutTarefaInput
+    atividades?: AtividadeTarefaCreateNestedManyWithoutTarefaInput
+    aprovacoes?: AprovacaoTarefaCreateNestedManyWithoutTarefaInput
+    etiquetas?: TarefaEtiquetaCreateNestedManyWithoutTarefaInput
+  }
+
+  export type TarefaUncheckedCreateWithoutChecklistInput = {
+    id?: string
+    etapa_id: string
+    projeto_id: string
+    responsavel_id?: string | null
+    titulo: string
+    descricao?: string | null
+    status?: $Enums.StatusTarefa
+    prioridade?: $Enums.PrioridadeTarefa
+    ordem?: number
+    data_prazo?: Date | string | null
+    concluida_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    comentarios?: ComentarioTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    anexos?: AnexoTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    atividades?: AtividadeTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    aprovacoes?: AprovacaoTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    etiquetas?: TarefaEtiquetaUncheckedCreateNestedManyWithoutTarefaInput
+  }
+
+  export type TarefaCreateOrConnectWithoutChecklistInput = {
+    where: TarefaWhereUniqueInput
+    create: XOR<TarefaCreateWithoutChecklistInput, TarefaUncheckedCreateWithoutChecklistInput>
+  }
+
+  export type TarefaUpsertWithoutChecklistInput = {
+    update: XOR<TarefaUpdateWithoutChecklistInput, TarefaUncheckedUpdateWithoutChecklistInput>
+    create: XOR<TarefaCreateWithoutChecklistInput, TarefaUncheckedCreateWithoutChecklistInput>
+    where?: TarefaWhereInput
+  }
+
+  export type TarefaUpdateToOneWithWhereWithoutChecklistInput = {
+    where?: TarefaWhereInput
+    data: XOR<TarefaUpdateWithoutChecklistInput, TarefaUncheckedUpdateWithoutChecklistInput>
+  }
+
+  export type TarefaUpdateWithoutChecklistInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusTarefaFieldUpdateOperationsInput | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaFieldUpdateOperationsInput | $Enums.PrioridadeTarefa
+    ordem?: IntFieldUpdateOperationsInput | number
+    data_prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    etapa?: EtapaUpdateOneRequiredWithoutTarefasNestedInput
+    projeto?: ProjetoUpdateOneRequiredWithoutTarefasNestedInput
+    responsavel?: UsuarioUpdateOneWithoutTarefasNestedInput
+    comentarios?: ComentarioTarefaUpdateManyWithoutTarefaNestedInput
+    anexos?: AnexoTarefaUpdateManyWithoutTarefaNestedInput
+    atividades?: AtividadeTarefaUpdateManyWithoutTarefaNestedInput
+    aprovacoes?: AprovacaoTarefaUpdateManyWithoutTarefaNestedInput
+    etiquetas?: TarefaEtiquetaUpdateManyWithoutTarefaNestedInput
+  }
+
+  export type TarefaUncheckedUpdateWithoutChecklistInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    etapa_id?: StringFieldUpdateOperationsInput | string
+    projeto_id?: StringFieldUpdateOperationsInput | string
+    responsavel_id?: NullableStringFieldUpdateOperationsInput | string | null
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusTarefaFieldUpdateOperationsInput | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaFieldUpdateOperationsInput | $Enums.PrioridadeTarefa
+    ordem?: IntFieldUpdateOperationsInput | number
+    data_prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    comentarios?: ComentarioTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    anexos?: AnexoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    atividades?: AtividadeTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    aprovacoes?: AprovacaoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    etiquetas?: TarefaEtiquetaUncheckedUpdateManyWithoutTarefaNestedInput
+  }
+
+  export type EmpresaCreateWithoutEtiquetas_tarefaInput = {
+    id?: string
+    nome: string
+    slug: string
+    cnpj?: string | null
+    logo_url?: string | null
+    plano?: $Enums.PlanoTipo
+    status?: $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
+    perfis?: PerfilCreateNestedManyWithoutEmpresaInput
+    convites?: ConviteEmpresaCreateNestedManyWithoutEmpresaInput
+    convites_cliente?: ConviteClienteCreateNestedManyWithoutEmpresaInput
+    clientes?: ClienteCreateNestedManyWithoutEmpresaInput
+    servicos?: ServicoCreateNestedManyWithoutEmpresaInput
+    leads?: LeadCreateNestedManyWithoutEmpresaInput
+    propostas?: PropostaCreateNestedManyWithoutEmpresaInput
+    contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
+    documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
+    contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
+    boletos?: BoletoCreateNestedManyWithoutEmpresaInput
+    recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
+    contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
+    eventos?: EventoCreateNestedManyWithoutEmpresaInput
+    registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
+    notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
+    notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
+    diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+  }
+
+  export type EmpresaUncheckedCreateWithoutEtiquetas_tarefaInput = {
+    id?: string
+    nome: string
+    slug: string
+    cnpj?: string | null
+    logo_url?: string | null
+    plano?: $Enums.PlanoTipo
+    status?: $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
+    perfis?: PerfilUncheckedCreateNestedManyWithoutEmpresaInput
+    convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
+    convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutEmpresaInput
+    clientes?: ClienteUncheckedCreateNestedManyWithoutEmpresaInput
+    servicos?: ServicoUncheckedCreateNestedManyWithoutEmpresaInput
+    leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
+    propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
+    contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
+    contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
+    boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
+    recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
+    contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
+    registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
+    notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
+    notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+  }
+
+  export type EmpresaCreateOrConnectWithoutEtiquetas_tarefaInput = {
+    where: EmpresaWhereUniqueInput
+    create: XOR<EmpresaCreateWithoutEtiquetas_tarefaInput, EmpresaUncheckedCreateWithoutEtiquetas_tarefaInput>
+  }
+
+  export type TarefaEtiquetaCreateWithoutEtiquetaInput = {
+    tarefa: TarefaCreateNestedOneWithoutEtiquetasInput
+  }
+
+  export type TarefaEtiquetaUncheckedCreateWithoutEtiquetaInput = {
+    tarefa_id: string
+  }
+
+  export type TarefaEtiquetaCreateOrConnectWithoutEtiquetaInput = {
+    where: TarefaEtiquetaWhereUniqueInput
+    create: XOR<TarefaEtiquetaCreateWithoutEtiquetaInput, TarefaEtiquetaUncheckedCreateWithoutEtiquetaInput>
+  }
+
+  export type TarefaEtiquetaCreateManyEtiquetaInputEnvelope = {
+    data: TarefaEtiquetaCreateManyEtiquetaInput | TarefaEtiquetaCreateManyEtiquetaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EmpresaUpsertWithoutEtiquetas_tarefaInput = {
+    update: XOR<EmpresaUpdateWithoutEtiquetas_tarefaInput, EmpresaUncheckedUpdateWithoutEtiquetas_tarefaInput>
+    create: XOR<EmpresaCreateWithoutEtiquetas_tarefaInput, EmpresaUncheckedCreateWithoutEtiquetas_tarefaInput>
+    where?: EmpresaWhereInput
+  }
+
+  export type EmpresaUpdateToOneWithWhereWithoutEtiquetas_tarefaInput = {
+    where?: EmpresaWhereInput
+    data: XOR<EmpresaUpdateWithoutEtiquetas_tarefaInput, EmpresaUncheckedUpdateWithoutEtiquetas_tarefaInput>
+  }
+
+  export type EmpresaUpdateWithoutEtiquetas_tarefaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    logo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
+    status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
+    perfis?: PerfilUpdateManyWithoutEmpresaNestedInput
+    convites?: ConviteEmpresaUpdateManyWithoutEmpresaNestedInput
+    convites_cliente?: ConviteClienteUpdateManyWithoutEmpresaNestedInput
+    clientes?: ClienteUpdateManyWithoutEmpresaNestedInput
+    servicos?: ServicoUpdateManyWithoutEmpresaNestedInput
+    leads?: LeadUpdateManyWithoutEmpresaNestedInput
+    propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
+    contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
+    documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
+    contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
+    boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
+    recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
+    contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
+    eventos?: EventoUpdateManyWithoutEmpresaNestedInput
+    registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
+    notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
+    notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
+    diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+  }
+
+  export type EmpresaUncheckedUpdateWithoutEtiquetas_tarefaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    logo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
+    status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
+    perfis?: PerfilUncheckedUpdateManyWithoutEmpresaNestedInput
+    convites?: ConviteEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
+    convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutEmpresaNestedInput
+    clientes?: ClienteUncheckedUpdateManyWithoutEmpresaNestedInput
+    servicos?: ServicoUncheckedUpdateManyWithoutEmpresaNestedInput
+    leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
+    propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
+    contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
+    contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
+    recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
+    contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
+    registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
+    notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
+    notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+  }
+
+  export type TarefaEtiquetaUpsertWithWhereUniqueWithoutEtiquetaInput = {
+    where: TarefaEtiquetaWhereUniqueInput
+    update: XOR<TarefaEtiquetaUpdateWithoutEtiquetaInput, TarefaEtiquetaUncheckedUpdateWithoutEtiquetaInput>
+    create: XOR<TarefaEtiquetaCreateWithoutEtiquetaInput, TarefaEtiquetaUncheckedCreateWithoutEtiquetaInput>
+  }
+
+  export type TarefaEtiquetaUpdateWithWhereUniqueWithoutEtiquetaInput = {
+    where: TarefaEtiquetaWhereUniqueInput
+    data: XOR<TarefaEtiquetaUpdateWithoutEtiquetaInput, TarefaEtiquetaUncheckedUpdateWithoutEtiquetaInput>
+  }
+
+  export type TarefaEtiquetaUpdateManyWithWhereWithoutEtiquetaInput = {
+    where: TarefaEtiquetaScalarWhereInput
+    data: XOR<TarefaEtiquetaUpdateManyMutationInput, TarefaEtiquetaUncheckedUpdateManyWithoutEtiquetaInput>
+  }
+
+  export type TarefaCreateWithoutEtiquetasInput = {
+    id?: string
+    titulo: string
+    descricao?: string | null
+    status?: $Enums.StatusTarefa
+    prioridade?: $Enums.PrioridadeTarefa
+    ordem?: number
+    data_prazo?: Date | string | null
+    concluida_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    etapa: EtapaCreateNestedOneWithoutTarefasInput
+    projeto: ProjetoCreateNestedOneWithoutTarefasInput
+    responsavel?: UsuarioCreateNestedOneWithoutTarefasInput
+    comentarios?: ComentarioTarefaCreateNestedManyWithoutTarefaInput
+    anexos?: AnexoTarefaCreateNestedManyWithoutTarefaInput
+    atividades?: AtividadeTarefaCreateNestedManyWithoutTarefaInput
+    aprovacoes?: AprovacaoTarefaCreateNestedManyWithoutTarefaInput
+    checklist?: ItemChecklistCreateNestedManyWithoutTarefaInput
+  }
+
+  export type TarefaUncheckedCreateWithoutEtiquetasInput = {
+    id?: string
+    etapa_id: string
+    projeto_id: string
+    responsavel_id?: string | null
+    titulo: string
+    descricao?: string | null
+    status?: $Enums.StatusTarefa
+    prioridade?: $Enums.PrioridadeTarefa
+    ordem?: number
+    data_prazo?: Date | string | null
+    concluida_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    comentarios?: ComentarioTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    anexos?: AnexoTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    atividades?: AtividadeTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    aprovacoes?: AprovacaoTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    checklist?: ItemChecklistUncheckedCreateNestedManyWithoutTarefaInput
+  }
+
+  export type TarefaCreateOrConnectWithoutEtiquetasInput = {
+    where: TarefaWhereUniqueInput
+    create: XOR<TarefaCreateWithoutEtiquetasInput, TarefaUncheckedCreateWithoutEtiquetasInput>
+  }
+
+  export type EtiquetaTarefaCreateWithoutTarefasInput = {
+    id?: string
+    nome: string
+    cor?: string
+    empresa: EmpresaCreateNestedOneWithoutEtiquetas_tarefaInput
+  }
+
+  export type EtiquetaTarefaUncheckedCreateWithoutTarefasInput = {
+    id?: string
+    empresa_id: string
+    nome: string
+    cor?: string
+  }
+
+  export type EtiquetaTarefaCreateOrConnectWithoutTarefasInput = {
+    where: EtiquetaTarefaWhereUniqueInput
+    create: XOR<EtiquetaTarefaCreateWithoutTarefasInput, EtiquetaTarefaUncheckedCreateWithoutTarefasInput>
+  }
+
+  export type TarefaUpsertWithoutEtiquetasInput = {
+    update: XOR<TarefaUpdateWithoutEtiquetasInput, TarefaUncheckedUpdateWithoutEtiquetasInput>
+    create: XOR<TarefaCreateWithoutEtiquetasInput, TarefaUncheckedCreateWithoutEtiquetasInput>
+    where?: TarefaWhereInput
+  }
+
+  export type TarefaUpdateToOneWithWhereWithoutEtiquetasInput = {
+    where?: TarefaWhereInput
+    data: XOR<TarefaUpdateWithoutEtiquetasInput, TarefaUncheckedUpdateWithoutEtiquetasInput>
+  }
+
+  export type TarefaUpdateWithoutEtiquetasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusTarefaFieldUpdateOperationsInput | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaFieldUpdateOperationsInput | $Enums.PrioridadeTarefa
+    ordem?: IntFieldUpdateOperationsInput | number
+    data_prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    etapa?: EtapaUpdateOneRequiredWithoutTarefasNestedInput
+    projeto?: ProjetoUpdateOneRequiredWithoutTarefasNestedInput
+    responsavel?: UsuarioUpdateOneWithoutTarefasNestedInput
+    comentarios?: ComentarioTarefaUpdateManyWithoutTarefaNestedInput
+    anexos?: AnexoTarefaUpdateManyWithoutTarefaNestedInput
+    atividades?: AtividadeTarefaUpdateManyWithoutTarefaNestedInput
+    aprovacoes?: AprovacaoTarefaUpdateManyWithoutTarefaNestedInput
+    checklist?: ItemChecklistUpdateManyWithoutTarefaNestedInput
+  }
+
+  export type TarefaUncheckedUpdateWithoutEtiquetasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    etapa_id?: StringFieldUpdateOperationsInput | string
+    projeto_id?: StringFieldUpdateOperationsInput | string
+    responsavel_id?: NullableStringFieldUpdateOperationsInput | string | null
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusTarefaFieldUpdateOperationsInput | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaFieldUpdateOperationsInput | $Enums.PrioridadeTarefa
+    ordem?: IntFieldUpdateOperationsInput | number
+    data_prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    comentarios?: ComentarioTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    anexos?: AnexoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    atividades?: AtividadeTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    aprovacoes?: AprovacaoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    checklist?: ItemChecklistUncheckedUpdateManyWithoutTarefaNestedInput
+  }
+
+  export type EtiquetaTarefaUpsertWithoutTarefasInput = {
+    update: XOR<EtiquetaTarefaUpdateWithoutTarefasInput, EtiquetaTarefaUncheckedUpdateWithoutTarefasInput>
+    create: XOR<EtiquetaTarefaCreateWithoutTarefasInput, EtiquetaTarefaUncheckedCreateWithoutTarefasInput>
+    where?: EtiquetaTarefaWhereInput
+  }
+
+  export type EtiquetaTarefaUpdateToOneWithWhereWithoutTarefasInput = {
+    where?: EtiquetaTarefaWhereInput
+    data: XOR<EtiquetaTarefaUpdateWithoutTarefasInput, EtiquetaTarefaUncheckedUpdateWithoutTarefasInput>
+  }
+
+  export type EtiquetaTarefaUpdateWithoutTarefasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cor?: StringFieldUpdateOperationsInput | string
+    empresa?: EmpresaUpdateOneRequiredWithoutEtiquetas_tarefaNestedInput
+  }
+
+  export type EtiquetaTarefaUncheckedUpdateWithoutTarefasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cor?: StringFieldUpdateOperationsInput | string
   }
 
   export type EmpresaCreateWithoutDocumentosInput = {
@@ -75675,6 +89837,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutDocumentosInput = {
@@ -75710,6 +89873,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutDocumentosInput = {
@@ -75760,6 +89924,184 @@ export namespace Prisma {
     create: XOR<ProjetoCreateWithoutDocumentosInput, ProjetoUncheckedCreateWithoutDocumentosInput>
   }
 
+  export type ClienteCreateWithoutDocumentosInput = {
+    id?: string
+    nome: string
+    tipo?: $Enums.TipoCliente
+    nome_fantasia?: string | null
+    cpf_cnpj?: string | null
+    inscricao_estadual?: string | null
+    contato_principal?: string | null
+    email?: string | null
+    telefone?: string | null
+    whatsapp?: string | null
+    cep?: string | null
+    logradouro?: string | null
+    numero?: string | null
+    complemento?: string | null
+    bairro?: string | null
+    cidade?: string | null
+    estado?: string | null
+    nome_fazenda?: string | null
+    distancia_km?: Decimal | DecimalJsLike | number | string | null
+    preco_km?: Decimal | DecimalJsLike | number | string | null
+    status?: $Enums.StatusCliente
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutClientesInput
+    contatos?: ContatoCreateNestedManyWithoutClienteInput
+    leads?: LeadCreateNestedManyWithoutClienteInput
+    propostas?: PropostaCreateNestedManyWithoutClienteInput
+    contratos?: ContratoCreateNestedManyWithoutClienteInput
+    projetos?: ProjetoCreateNestedManyWithoutClienteInput
+    tokens_portal?: TokenPortalCreateNestedManyWithoutClienteInput
+    recebiveis?: RecebivelCreateNestedManyWithoutClienteInput
+    boletos?: BoletoCreateNestedManyWithoutClienteInput
+    eventos?: EventoCreateNestedManyWithoutClienteInput
+    notas_fiscais?: NotaFiscalCreateNestedManyWithoutClienteInput
+    diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
+    convite?: ConviteClienteCreateNestedOneWithoutClienteInput
+  }
+
+  export type ClienteUncheckedCreateWithoutDocumentosInput = {
+    id?: string
+    empresa_id: string
+    nome: string
+    tipo?: $Enums.TipoCliente
+    nome_fantasia?: string | null
+    cpf_cnpj?: string | null
+    inscricao_estadual?: string | null
+    contato_principal?: string | null
+    email?: string | null
+    telefone?: string | null
+    whatsapp?: string | null
+    cep?: string | null
+    logradouro?: string | null
+    numero?: string | null
+    complemento?: string | null
+    bairro?: string | null
+    cidade?: string | null
+    estado?: string | null
+    nome_fazenda?: string | null
+    distancia_km?: Decimal | DecimalJsLike | number | string | null
+    preco_km?: Decimal | DecimalJsLike | number | string | null
+    status?: $Enums.StatusCliente
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    contatos?: ContatoUncheckedCreateNestedManyWithoutClienteInput
+    leads?: LeadUncheckedCreateNestedManyWithoutClienteInput
+    propostas?: PropostaUncheckedCreateNestedManyWithoutClienteInput
+    contratos?: ContratoUncheckedCreateNestedManyWithoutClienteInput
+    projetos?: ProjetoUncheckedCreateNestedManyWithoutClienteInput
+    tokens_portal?: TokenPortalUncheckedCreateNestedManyWithoutClienteInput
+    recebiveis?: RecebivelUncheckedCreateNestedManyWithoutClienteInput
+    boletos?: BoletoUncheckedCreateNestedManyWithoutClienteInput
+    eventos?: EventoUncheckedCreateNestedManyWithoutClienteInput
+    notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutClienteInput
+    diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
+    convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
+  }
+
+  export type ClienteCreateOrConnectWithoutDocumentosInput = {
+    where: ClienteWhereUniqueInput
+    create: XOR<ClienteCreateWithoutDocumentosInput, ClienteUncheckedCreateWithoutDocumentosInput>
+  }
+
+  export type ContratoCreateWithoutDocumentosInput = {
+    id?: string
+    numero_contrato?: string | null
+    tipo_contrato?: string | null
+    titulo: string
+    objeto?: string | null
+    status?: $Enums.StatusContrato
+    conteudo?: string | null
+    valor_total?: Decimal | DecimalJsLike | number | string
+    forma_pagamento?: string | null
+    periodicidade?: string | null
+    numero_parcelas?: number | null
+    primeiro_vencimento?: Date | string | null
+    dia_vencimento?: number | null
+    indice_reajuste?: string | null
+    periodicidade_reajuste?: string | null
+    renovacao_automatica?: boolean
+    gerar_projeto?: boolean
+    gerar_financeiro?: boolean
+    cliente_nome?: string | null
+    cliente_cpf_cnpj?: string | null
+    cliente_contato_nome?: string | null
+    cliente_contato_email?: string | null
+    cliente_contato_tel?: string | null
+    data_emissao?: Date | string | null
+    data_inicio?: Date | string | null
+    data_fim?: Date | string | null
+    assinado_em?: Date | string | null
+    anexo_url?: string | null
+    authentique_id?: string | null
+    authentique_url?: string | null
+    pdf_assinado_url?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutContratosInput
+    proposta?: PropostaCreateNestedOneWithoutContratoInput
+    cliente: ClienteCreateNestedOneWithoutContratosInput
+    criador?: UsuarioCreateNestedOneWithoutContratos_criadosInput
+    responsavel?: UsuarioCreateNestedOneWithoutContratos_responsavelInput
+    projeto?: ProjetoCreateNestedOneWithoutContratoInput
+    recebiveis?: RecebivelCreateNestedManyWithoutContratoInput
+    eventos?: EventoCreateNestedManyWithoutContratoInput
+    notas_fiscais?: NotaFiscalCreateNestedManyWithoutContratoInput
+  }
+
+  export type ContratoUncheckedCreateWithoutDocumentosInput = {
+    id?: string
+    empresa_id: string
+    proposta_id?: string | null
+    cliente_id: string
+    criado_por?: string | null
+    responsavel_id?: string | null
+    numero_contrato?: string | null
+    tipo_contrato?: string | null
+    titulo: string
+    objeto?: string | null
+    status?: $Enums.StatusContrato
+    conteudo?: string | null
+    valor_total?: Decimal | DecimalJsLike | number | string
+    forma_pagamento?: string | null
+    periodicidade?: string | null
+    numero_parcelas?: number | null
+    primeiro_vencimento?: Date | string | null
+    dia_vencimento?: number | null
+    indice_reajuste?: string | null
+    periodicidade_reajuste?: string | null
+    renovacao_automatica?: boolean
+    gerar_projeto?: boolean
+    gerar_financeiro?: boolean
+    cliente_nome?: string | null
+    cliente_cpf_cnpj?: string | null
+    cliente_contato_nome?: string | null
+    cliente_contato_email?: string | null
+    cliente_contato_tel?: string | null
+    data_emissao?: Date | string | null
+    data_inicio?: Date | string | null
+    data_fim?: Date | string | null
+    assinado_em?: Date | string | null
+    anexo_url?: string | null
+    authentique_id?: string | null
+    authentique_url?: string | null
+    pdf_assinado_url?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
+    recebiveis?: RecebivelUncheckedCreateNestedManyWithoutContratoInput
+    eventos?: EventoUncheckedCreateNestedManyWithoutContratoInput
+    notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutContratoInput
+  }
+
+  export type ContratoCreateOrConnectWithoutDocumentosInput = {
+    where: ContratoWhereUniqueInput
+    create: XOR<ContratoCreateWithoutDocumentosInput, ContratoUncheckedCreateWithoutDocumentosInput>
+  }
+
   export type UsuarioCreateWithoutDocumentos_criadosInput = {
     id: string
     nome: string
@@ -75781,6 +90123,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaCreateNestedManyWithoutResponsavelInput
     contratos_responsavel?: ContratoCreateNestedManyWithoutResponsavelInput
     convites_cliente?: ConviteClienteCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioUncheckedCreateWithoutDocumentos_criadosInput = {
@@ -75804,6 +90151,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUncheckedCreateNestedManyWithoutResponsavelInput
     contratos_responsavel?: ContratoUncheckedCreateNestedManyWithoutResponsavelInput
     convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaUncheckedCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioCreateOrConnectWithoutDocumentos_criadosInput = {
@@ -75855,6 +90207,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutDocumentosInput = {
@@ -75890,6 +90243,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ProjetoUpsertWithoutDocumentosInput = {
@@ -75941,6 +90295,196 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
   }
 
+  export type ClienteUpsertWithoutDocumentosInput = {
+    update: XOR<ClienteUpdateWithoutDocumentosInput, ClienteUncheckedUpdateWithoutDocumentosInput>
+    create: XOR<ClienteCreateWithoutDocumentosInput, ClienteUncheckedCreateWithoutDocumentosInput>
+    where?: ClienteWhereInput
+  }
+
+  export type ClienteUpdateToOneWithWhereWithoutDocumentosInput = {
+    where?: ClienteWhereInput
+    data: XOR<ClienteUpdateWithoutDocumentosInput, ClienteUncheckedUpdateWithoutDocumentosInput>
+  }
+
+  export type ClienteUpdateWithoutDocumentosInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    tipo?: EnumTipoClienteFieldUpdateOperationsInput | $Enums.TipoCliente
+    nome_fantasia?: NullableStringFieldUpdateOperationsInput | string | null
+    cpf_cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    inscricao_estadual?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_principal?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    cep?: NullableStringFieldUpdateOperationsInput | string | null
+    logradouro?: NullableStringFieldUpdateOperationsInput | string | null
+    numero?: NullableStringFieldUpdateOperationsInput | string | null
+    complemento?: NullableStringFieldUpdateOperationsInput | string | null
+    bairro?: NullableStringFieldUpdateOperationsInput | string | null
+    cidade?: NullableStringFieldUpdateOperationsInput | string | null
+    estado?: NullableStringFieldUpdateOperationsInput | string | null
+    nome_fazenda?: NullableStringFieldUpdateOperationsInput | string | null
+    distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutClientesNestedInput
+    contatos?: ContatoUpdateManyWithoutClienteNestedInput
+    leads?: LeadUpdateManyWithoutClienteNestedInput
+    propostas?: PropostaUpdateManyWithoutClienteNestedInput
+    contratos?: ContratoUpdateManyWithoutClienteNestedInput
+    projetos?: ProjetoUpdateManyWithoutClienteNestedInput
+    tokens_portal?: TokenPortalUpdateManyWithoutClienteNestedInput
+    recebiveis?: RecebivelUpdateManyWithoutClienteNestedInput
+    boletos?: BoletoUpdateManyWithoutClienteNestedInput
+    eventos?: EventoUpdateManyWithoutClienteNestedInput
+    notas_fiscais?: NotaFiscalUpdateManyWithoutClienteNestedInput
+    diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
+    convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
+  }
+
+  export type ClienteUncheckedUpdateWithoutDocumentosInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    tipo?: EnumTipoClienteFieldUpdateOperationsInput | $Enums.TipoCliente
+    nome_fantasia?: NullableStringFieldUpdateOperationsInput | string | null
+    cpf_cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    inscricao_estadual?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_principal?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    cep?: NullableStringFieldUpdateOperationsInput | string | null
+    logradouro?: NullableStringFieldUpdateOperationsInput | string | null
+    numero?: NullableStringFieldUpdateOperationsInput | string | null
+    complemento?: NullableStringFieldUpdateOperationsInput | string | null
+    bairro?: NullableStringFieldUpdateOperationsInput | string | null
+    cidade?: NullableStringFieldUpdateOperationsInput | string | null
+    estado?: NullableStringFieldUpdateOperationsInput | string | null
+    nome_fazenda?: NullableStringFieldUpdateOperationsInput | string | null
+    distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    contatos?: ContatoUncheckedUpdateManyWithoutClienteNestedInput
+    leads?: LeadUncheckedUpdateManyWithoutClienteNestedInput
+    propostas?: PropostaUncheckedUpdateManyWithoutClienteNestedInput
+    contratos?: ContratoUncheckedUpdateManyWithoutClienteNestedInput
+    projetos?: ProjetoUncheckedUpdateManyWithoutClienteNestedInput
+    tokens_portal?: TokenPortalUncheckedUpdateManyWithoutClienteNestedInput
+    recebiveis?: RecebivelUncheckedUpdateManyWithoutClienteNestedInput
+    boletos?: BoletoUncheckedUpdateManyWithoutClienteNestedInput
+    eventos?: EventoUncheckedUpdateManyWithoutClienteNestedInput
+    notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutClienteNestedInput
+    diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
+    convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
+  }
+
+  export type ContratoUpsertWithoutDocumentosInput = {
+    update: XOR<ContratoUpdateWithoutDocumentosInput, ContratoUncheckedUpdateWithoutDocumentosInput>
+    create: XOR<ContratoCreateWithoutDocumentosInput, ContratoUncheckedCreateWithoutDocumentosInput>
+    where?: ContratoWhereInput
+  }
+
+  export type ContratoUpdateToOneWithWhereWithoutDocumentosInput = {
+    where?: ContratoWhereInput
+    data: XOR<ContratoUpdateWithoutDocumentosInput, ContratoUncheckedUpdateWithoutDocumentosInput>
+  }
+
+  export type ContratoUpdateWithoutDocumentosInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero_contrato?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_contrato?: NullableStringFieldUpdateOperationsInput | string | null
+    titulo?: StringFieldUpdateOperationsInput | string
+    objeto?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusContratoFieldUpdateOperationsInput | $Enums.StatusContrato
+    conteudo?: NullableStringFieldUpdateOperationsInput | string | null
+    valor_total?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    forma_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
+    periodicidade?: NullableStringFieldUpdateOperationsInput | string | null
+    numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
+    primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
+    periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
+    renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
+    gerar_projeto?: BoolFieldUpdateOperationsInput | boolean
+    gerar_financeiro?: BoolFieldUpdateOperationsInput | boolean
+    cliente_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_cpf_cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_contato_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_contato_email?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_contato_tel?: NullableStringFieldUpdateOperationsInput | string | null
+    data_emissao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    anexo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
+    authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
+    pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
+    proposta?: PropostaUpdateOneWithoutContratoNestedInput
+    cliente?: ClienteUpdateOneRequiredWithoutContratosNestedInput
+    criador?: UsuarioUpdateOneWithoutContratos_criadosNestedInput
+    responsavel?: UsuarioUpdateOneWithoutContratos_responsavelNestedInput
+    projeto?: ProjetoUpdateOneWithoutContratoNestedInput
+    recebiveis?: RecebivelUpdateManyWithoutContratoNestedInput
+    eventos?: EventoUpdateManyWithoutContratoNestedInput
+    notas_fiscais?: NotaFiscalUpdateManyWithoutContratoNestedInput
+  }
+
+  export type ContratoUncheckedUpdateWithoutDocumentosInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    proposta_id?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_id?: StringFieldUpdateOperationsInput | string
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    responsavel_id?: NullableStringFieldUpdateOperationsInput | string | null
+    numero_contrato?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_contrato?: NullableStringFieldUpdateOperationsInput | string | null
+    titulo?: StringFieldUpdateOperationsInput | string
+    objeto?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusContratoFieldUpdateOperationsInput | $Enums.StatusContrato
+    conteudo?: NullableStringFieldUpdateOperationsInput | string | null
+    valor_total?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    forma_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
+    periodicidade?: NullableStringFieldUpdateOperationsInput | string | null
+    numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
+    primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
+    periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
+    renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
+    gerar_projeto?: BoolFieldUpdateOperationsInput | boolean
+    gerar_financeiro?: BoolFieldUpdateOperationsInput | boolean
+    cliente_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_cpf_cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_contato_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_contato_email?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_contato_tel?: NullableStringFieldUpdateOperationsInput | string | null
+    data_emissao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    anexo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
+    authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
+    pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
+    recebiveis?: RecebivelUncheckedUpdateManyWithoutContratoNestedInput
+    eventos?: EventoUncheckedUpdateManyWithoutContratoNestedInput
+    notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutContratoNestedInput
+  }
+
   export type UsuarioUpsertWithoutDocumentos_criadosInput = {
     update: XOR<UsuarioUpdateWithoutDocumentos_criadosInput, UsuarioUncheckedUpdateWithoutDocumentos_criadosInput>
     create: XOR<UsuarioCreateWithoutDocumentos_criadosInput, UsuarioUncheckedCreateWithoutDocumentos_criadosInput>
@@ -75973,6 +90517,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUpdateManyWithoutResponsavelNestedInput
     contratos_responsavel?: ContratoUpdateManyWithoutResponsavelNestedInput
     convites_cliente?: ConviteClienteUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutDocumentos_criadosInput = {
@@ -75996,6 +90545,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUncheckedUpdateManyWithoutResponsavelNestedInput
     contratos_responsavel?: ContratoUncheckedUpdateManyWithoutResponsavelNestedInput
     convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUncheckedUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
   }
 
   export type EmpresaCreateWithoutPlano_contasInput = {
@@ -76031,6 +90585,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutPlano_contasInput = {
@@ -76066,6 +90621,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutPlano_contasInput = {
@@ -76326,6 +90882,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutPlano_contasInput = {
@@ -76361,6 +90918,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PlanoDeContasUpsertWithoutFilhosInput = {
@@ -76567,6 +91125,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutContas_bancariasInput = {
@@ -76602,6 +91161,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutContas_bancariasInput = {
@@ -76832,6 +91392,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutContas_bancariasInput = {
@@ -76867,6 +91428,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type BancoUpsertWithoutContas_bancariasInput = {
@@ -76991,6 +91553,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutTransferencias_tesourariaInput = {
@@ -77026,6 +91589,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutTransferencias_tesourariaInput = {
@@ -77167,6 +91731,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutTransferencias_tesourariaInput = {
@@ -77202,6 +91767,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ContaBancariaUpsertWithoutTransferencias_origemInput = {
@@ -77339,6 +91905,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutRecebiveisInput = {
@@ -77374,6 +91941,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutRecebiveisInput = {
@@ -77417,6 +91985,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutClienteInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
+    documentos?: DocumentoCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutRecebiveisInput = {
@@ -77455,6 +92024,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutClienteInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutRecebiveisInput = {
@@ -77504,6 +92074,7 @@ export namespace Prisma {
     projeto?: ProjetoCreateNestedOneWithoutContratoInput
     eventos?: EventoCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutContratoInput
+    documentos?: DocumentoCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoUncheckedCreateWithoutRecebiveisInput = {
@@ -77548,6 +92119,7 @@ export namespace Prisma {
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
     eventos?: EventoUncheckedCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutContratoInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoCreateOrConnectWithoutRecebiveisInput = {
@@ -77656,6 +92228,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaCreateNestedManyWithoutResponsavelInput
     contratos_responsavel?: ContratoCreateNestedManyWithoutResponsavelInput
     convites_cliente?: ConviteClienteCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioUncheckedCreateWithoutRecebiveis_criadosInput = {
@@ -77679,6 +92256,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUncheckedCreateNestedManyWithoutResponsavelInput
     contratos_responsavel?: ContratoUncheckedCreateNestedManyWithoutResponsavelInput
     convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaUncheckedCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioCreateOrConnectWithoutRecebiveis_criadosInput = {
@@ -77771,6 +92353,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutRecebiveisInput = {
@@ -77806,6 +92389,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutRecebiveisInput = {
@@ -77855,6 +92439,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutClienteNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
+    documentos?: DocumentoUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutRecebiveisInput = {
@@ -77893,6 +92478,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutClienteNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type ContratoUpsertWithoutRecebiveisInput = {
@@ -77948,6 +92534,7 @@ export namespace Prisma {
     projeto?: ProjetoUpdateOneWithoutContratoNestedInput
     eventos?: EventoUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutContratoNestedInput
+    documentos?: DocumentoUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoUncheckedUpdateWithoutRecebiveisInput = {
@@ -77992,6 +92579,7 @@ export namespace Prisma {
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutContratoNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutContratoNestedInput
   }
 
   export type PlanoDeContasUpsertWithoutRecebiveisInput = {
@@ -78118,6 +92706,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUpdateManyWithoutResponsavelNestedInput
     contratos_responsavel?: ContratoUpdateManyWithoutResponsavelNestedInput
     convites_cliente?: ConviteClienteUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutRecebiveis_criadosInput = {
@@ -78141,6 +92734,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUncheckedUpdateManyWithoutResponsavelNestedInput
     contratos_responsavel?: ContratoUncheckedUpdateManyWithoutResponsavelNestedInput
     convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUncheckedUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
   }
 
   export type BoletoUpsertWithoutRecebivelInput = {
@@ -78223,6 +92821,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutContas_pagarInput = {
@@ -78258,6 +92857,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutContas_pagarInput = {
@@ -78366,6 +92966,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaCreateNestedManyWithoutResponsavelInput
     contratos_responsavel?: ContratoCreateNestedManyWithoutResponsavelInput
     convites_cliente?: ConviteClienteCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioUncheckedCreateWithoutContas_pagar_criadasInput = {
@@ -78389,6 +92994,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUncheckedCreateNestedManyWithoutResponsavelInput
     contratos_responsavel?: ContratoUncheckedCreateNestedManyWithoutResponsavelInput
     convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaUncheckedCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioCreateOrConnectWithoutContas_pagar_criadasInput = {
@@ -78440,6 +93050,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutContas_pagarInput = {
@@ -78475,6 +93086,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PlanoDeContasUpsertWithoutContas_pagarInput = {
@@ -78601,6 +93213,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUpdateManyWithoutResponsavelNestedInput
     contratos_responsavel?: ContratoUpdateManyWithoutResponsavelNestedInput
     convites_cliente?: ConviteClienteUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutContas_pagar_criadasInput = {
@@ -78624,6 +93241,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUncheckedUpdateManyWithoutResponsavelNestedInput
     contratos_responsavel?: ContratoUncheckedUpdateManyWithoutResponsavelNestedInput
     convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUncheckedUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
   }
 
   export type EmpresaCreateWithoutModelos_documentoInput = {
@@ -78659,6 +93281,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutModelos_documentoInput = {
@@ -78694,6 +93317,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutModelos_documentoInput = {
@@ -78745,6 +93369,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutModelos_documentoInput = {
@@ -78780,6 +93405,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateWithoutEventosInput = {
@@ -78815,6 +93441,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutEventosInput = {
@@ -78850,6 +93477,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutEventosInput = {
@@ -78878,6 +93506,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaCreateNestedManyWithoutResponsavelInput
     contratos_responsavel?: ContratoCreateNestedManyWithoutResponsavelInput
     convites_cliente?: ConviteClienteCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioUncheckedCreateWithoutEventos_responsavelInput = {
@@ -78901,6 +93534,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUncheckedCreateNestedManyWithoutResponsavelInput
     contratos_responsavel?: ContratoUncheckedCreateNestedManyWithoutResponsavelInput
     convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaUncheckedCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
   }
 
   export type UsuarioCreateOrConnectWithoutEventos_responsavelInput = {
@@ -78944,6 +93582,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutClienteInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
+    documentos?: DocumentoCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutEventosInput = {
@@ -78982,6 +93621,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutClienteInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutEventosInput = {
@@ -79031,6 +93671,7 @@ export namespace Prisma {
     projeto?: ProjetoCreateNestedOneWithoutContratoInput
     recebiveis?: RecebivelCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutContratoInput
+    documentos?: DocumentoCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoUncheckedCreateWithoutEventosInput = {
@@ -79075,6 +93716,7 @@ export namespace Prisma {
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutContratoInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoCreateOrConnectWithoutEventosInput = {
@@ -79169,6 +93811,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutEventosInput = {
@@ -79204,6 +93847,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type UsuarioUpsertWithoutEventos_responsavelInput = {
@@ -79238,6 +93882,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUpdateManyWithoutResponsavelNestedInput
     contratos_responsavel?: ContratoUpdateManyWithoutResponsavelNestedInput
     convites_cliente?: ConviteClienteUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutEventos_responsavelInput = {
@@ -79261,6 +93910,11 @@ export namespace Prisma {
     propostas_responsavel?: PropostaUncheckedUpdateManyWithoutResponsavelNestedInput
     contratos_responsavel?: ContratoUncheckedUpdateManyWithoutResponsavelNestedInput
     convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUncheckedUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
   }
 
   export type ClienteUpsertWithoutEventosInput = {
@@ -79310,6 +93964,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutClienteNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
+    documentos?: DocumentoUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutEventosInput = {
@@ -79348,6 +94003,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutClienteNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type ContratoUpsertWithoutEventosInput = {
@@ -79403,6 +94059,7 @@ export namespace Prisma {
     projeto?: ProjetoUpdateOneWithoutContratoNestedInput
     recebiveis?: RecebivelUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutContratoNestedInput
+    documentos?: DocumentoUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoUncheckedUpdateWithoutEventosInput = {
@@ -79447,6 +94104,7 @@ export namespace Prisma {
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutContratoNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutContratoNestedInput
   }
 
   export type ProjetoUpsertWithoutEventosInput = {
@@ -79531,6 +94189,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutRegistros_auditoriaInput = {
@@ -79566,6 +94225,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutRegistros_auditoriaInput = {
@@ -79617,6 +94277,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutRegistros_auditoriaInput = {
@@ -79652,6 +94313,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateWithoutNotificacoesInput = {
@@ -79687,6 +94349,7 @@ export namespace Prisma {
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutNotificacoesInput = {
@@ -79722,6 +94385,7 @@ export namespace Prisma {
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutNotificacoesInput = {
@@ -79773,6 +94437,7 @@ export namespace Prisma {
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutNotificacoesInput = {
@@ -79808,6 +94473,7 @@ export namespace Prisma {
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateWithoutNotas_fiscaisInput = {
@@ -79843,6 +94509,7 @@ export namespace Prisma {
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
     notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutNotas_fiscaisInput = {
@@ -79878,6 +94545,7 @@ export namespace Prisma {
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
     notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutNotas_fiscaisInput = {
@@ -79921,6 +94589,7 @@ export namespace Prisma {
     eventos?: EventoCreateNestedManyWithoutClienteInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
+    documentos?: DocumentoCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutNotas_fiscaisInput = {
@@ -79959,6 +94628,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedCreateNestedManyWithoutClienteInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutNotas_fiscaisInput = {
@@ -80008,6 +94678,7 @@ export namespace Prisma {
     projeto?: ProjetoCreateNestedOneWithoutContratoInput
     recebiveis?: RecebivelCreateNestedManyWithoutContratoInput
     eventos?: EventoCreateNestedManyWithoutContratoInput
+    documentos?: DocumentoCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoUncheckedCreateWithoutNotas_fiscaisInput = {
@@ -80052,6 +94723,7 @@ export namespace Prisma {
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutContratoInput
     eventos?: EventoUncheckedCreateNestedManyWithoutContratoInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoCreateOrConnectWithoutNotas_fiscaisInput = {
@@ -80103,6 +94775,7 @@ export namespace Prisma {
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
     notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutNotas_fiscaisInput = {
@@ -80138,6 +94811,7 @@ export namespace Prisma {
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
     notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutNotas_fiscaisInput = {
@@ -80187,6 +94861,7 @@ export namespace Prisma {
     eventos?: EventoUpdateManyWithoutClienteNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
+    documentos?: DocumentoUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutNotas_fiscaisInput = {
@@ -80225,6 +94900,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedUpdateManyWithoutClienteNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type ContratoUpsertWithoutNotas_fiscaisInput = {
@@ -80280,6 +94956,7 @@ export namespace Prisma {
     projeto?: ProjetoUpdateOneWithoutContratoNestedInput
     recebiveis?: RecebivelUpdateManyWithoutContratoNestedInput
     eventos?: EventoUpdateManyWithoutContratoNestedInput
+    documentos?: DocumentoUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoUncheckedUpdateWithoutNotas_fiscaisInput = {
@@ -80324,6 +95001,7 @@ export namespace Prisma {
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutContratoNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutContratoNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutContratoNestedInput
   }
 
   export type EmpresaCreateWithoutBoletosInput = {
@@ -80359,6 +95037,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutBoletosInput = {
@@ -80394,6 +95073,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutBoletosInput = {
@@ -80486,6 +95166,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutClienteInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
+    documentos?: DocumentoCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutBoletosInput = {
@@ -80524,6 +95205,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutClienteInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutBoletosInput = {
@@ -80575,6 +95257,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutBoletosInput = {
@@ -80610,6 +95293,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type RecebivelUpsertWithoutBoletoInput = {
@@ -80714,6 +95398,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutClienteNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
+    documentos?: DocumentoUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutBoletosInput = {
@@ -80752,6 +95437,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutClienteNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type EmpresaCreateWithoutDiagnosticosInput = {
@@ -80787,6 +95473,7 @@ export namespace Prisma {
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
     notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutDiagnosticosInput = {
@@ -80822,6 +95509,7 @@ export namespace Prisma {
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
     notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutDiagnosticosInput = {
@@ -80865,6 +95553,7 @@ export namespace Prisma {
     eventos?: EventoCreateNestedManyWithoutClienteInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
+    documentos?: DocumentoCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutDiagnosticosInput = {
@@ -80903,6 +95592,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedCreateNestedManyWithoutClienteInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutDiagnosticosInput = {
@@ -80997,6 +95687,7 @@ export namespace Prisma {
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
     notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutDiagnosticosInput = {
@@ -81032,6 +95723,7 @@ export namespace Prisma {
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
     notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutDiagnosticosInput = {
@@ -81081,6 +95773,7 @@ export namespace Prisma {
     eventos?: EventoUpdateManyWithoutClienteNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
+    documentos?: DocumentoUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutDiagnosticosInput = {
@@ -81119,6 +95812,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedUpdateManyWithoutClienteNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type ProjetoUpsertWithoutDiagnosticosInput = {
@@ -81206,6 +95900,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutClienteInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
+    documentos?: DocumentoCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutTokens_portalInput = {
@@ -81244,6 +95939,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutClienteInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutTokens_portalInput = {
@@ -81298,6 +95994,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutClienteNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
+    documentos?: DocumentoUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutTokens_portalInput = {
@@ -81336,6 +96033,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutClienteNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type MembroEmpresaCreateManyEmpresaInput = {
@@ -81517,9 +96215,13 @@ export namespace Prisma {
 
   export type DocumentoCreateManyEmpresaInput = {
     id?: string
-    projeto_id: string
+    projeto_id?: string | null
+    cliente_id?: string | null
+    contrato_id?: string | null
     criado_por?: string | null
     titulo: string
+    descricao?: string | null
+    categoria?: $Enums.CategoriaDocumento
     arquivo_url: string
     arquivo_nome: string
     arquivo_tamanho?: number
@@ -81709,6 +96411,12 @@ export namespace Prisma {
     atualizado_em?: Date | string
   }
 
+  export type EtiquetaTarefaCreateManyEmpresaInput = {
+    id?: string
+    nome: string
+    cor?: string
+  }
+
   export type MembroEmpresaUpdateWithoutEmpresaInput = {
     id?: StringFieldUpdateOperationsInput | string
     ativo?: BoolFieldUpdateOperationsInput | boolean
@@ -81860,6 +96568,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutClienteNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
+    documentos?: DocumentoUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutEmpresaInput = {
@@ -81898,6 +96607,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutClienteNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateManyWithoutEmpresaInput = {
@@ -82160,6 +96870,7 @@ export namespace Prisma {
     recebiveis?: RecebivelUpdateManyWithoutContratoNestedInput
     eventos?: EventoUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutContratoNestedInput
+    documentos?: DocumentoUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoUncheckedUpdateWithoutEmpresaInput = {
@@ -82204,6 +96915,7 @@ export namespace Prisma {
     recebiveis?: RecebivelUncheckedUpdateManyWithoutContratoNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutContratoNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoUncheckedUpdateManyWithoutEmpresaInput = {
@@ -82301,20 +97013,28 @@ export namespace Prisma {
   export type DocumentoUpdateWithoutEmpresaInput = {
     id?: StringFieldUpdateOperationsInput | string
     titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: EnumCategoriaDocumentoFieldUpdateOperationsInput | $Enums.CategoriaDocumento
     arquivo_url?: StringFieldUpdateOperationsInput | string
     arquivo_nome?: StringFieldUpdateOperationsInput | string
     arquivo_tamanho?: IntFieldUpdateOperationsInput | number
     mime_type?: StringFieldUpdateOperationsInput | string
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
-    projeto?: ProjetoUpdateOneRequiredWithoutDocumentosNestedInput
+    projeto?: ProjetoUpdateOneWithoutDocumentosNestedInput
+    cliente?: ClienteUpdateOneWithoutDocumentosNestedInput
+    contrato?: ContratoUpdateOneWithoutDocumentosNestedInput
     criador?: UsuarioUpdateOneWithoutDocumentos_criadosNestedInput
   }
 
   export type DocumentoUncheckedUpdateWithoutEmpresaInput = {
     id?: StringFieldUpdateOperationsInput | string
-    projeto_id?: StringFieldUpdateOperationsInput | string
+    projeto_id?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: EnumCategoriaDocumentoFieldUpdateOperationsInput | $Enums.CategoriaDocumento
     arquivo_url?: StringFieldUpdateOperationsInput | string
     arquivo_nome?: StringFieldUpdateOperationsInput | string
     arquivo_tamanho?: IntFieldUpdateOperationsInput | number
@@ -82324,9 +97044,13 @@ export namespace Prisma {
 
   export type DocumentoUncheckedUpdateManyWithoutEmpresaInput = {
     id?: StringFieldUpdateOperationsInput | string
-    projeto_id?: StringFieldUpdateOperationsInput | string
+    projeto_id?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: EnumCategoriaDocumentoFieldUpdateOperationsInput | $Enums.CategoriaDocumento
     arquivo_url?: StringFieldUpdateOperationsInput | string
     arquivo_nome?: StringFieldUpdateOperationsInput | string
     arquivo_tamanho?: IntFieldUpdateOperationsInput | number
@@ -82898,6 +97622,26 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type EtiquetaTarefaUpdateWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cor?: StringFieldUpdateOperationsInput | string
+    tarefas?: TarefaEtiquetaUpdateManyWithoutEtiquetaNestedInput
+  }
+
+  export type EtiquetaTarefaUncheckedUpdateWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cor?: StringFieldUpdateOperationsInput | string
+    tarefas?: TarefaEtiquetaUncheckedUpdateManyWithoutEtiquetaNestedInput
+  }
+
+  export type EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cor?: StringFieldUpdateOperationsInput | string
+  }
+
   export type MembroEmpresaCreateManyUsuarioInput = {
     id?: string
     empresa_id: string
@@ -83035,6 +97779,8 @@ export namespace Prisma {
     titulo: string
     descricao?: string | null
     status?: $Enums.StatusTarefa
+    prioridade?: $Enums.PrioridadeTarefa
+    ordem?: number
     data_prazo?: Date | string | null
     concluida_em?: Date | string | null
     criado_em?: Date | string
@@ -83044,8 +97790,12 @@ export namespace Prisma {
   export type DocumentoCreateManyCriadorInput = {
     id?: string
     empresa_id: string
-    projeto_id: string
+    projeto_id?: string | null
+    cliente_id?: string | null
+    contrato_id?: string | null
     titulo: string
+    descricao?: string | null
+    categoria?: $Enums.CategoriaDocumento
     arquivo_url: string
     arquivo_nome: string
     arquivo_tamanho?: number
@@ -83188,6 +97938,51 @@ export namespace Prisma {
     cliente_id?: string | null
     expira_em?: Date | string | null
     criado_em?: Date | string
+  }
+
+  export type ComentarioTarefaCreateManyAutorInput = {
+    id?: string
+    tarefa_id: string
+    conteudo: string
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type AnexoTarefaCreateManyCriadorInput = {
+    id?: string
+    tarefa_id: string
+    nome: string
+    arquivo_url: string
+    arquivo_tamanho?: number
+    mime_type?: string
+    criado_em?: Date | string
+  }
+
+  export type AtividadeTarefaCreateManyAutorInput = {
+    id?: string
+    tarefa_id: string
+    descricao: string
+    criado_em?: Date | string
+  }
+
+  export type AprovacaoTarefaCreateManySolicitanteInput = {
+    id?: string
+    tarefa_id: string
+    aprovador_id?: string | null
+    status?: $Enums.StatusAprovacao
+    comentario?: string | null
+    criado_em?: Date | string
+    decidido_em?: Date | string | null
+  }
+
+  export type AprovacaoTarefaCreateManyAprovadorInput = {
+    id?: string
+    tarefa_id: string
+    solicitante_id?: string | null
+    status?: $Enums.StatusAprovacao
+    comentario?: string | null
+    criado_em?: Date | string
+    decidido_em?: Date | string | null
   }
 
   export type MembroEmpresaUpdateWithoutUsuarioInput = {
@@ -83470,6 +98265,7 @@ export namespace Prisma {
     recebiveis?: RecebivelUpdateManyWithoutContratoNestedInput
     eventos?: EventoUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutContratoNestedInput
+    documentos?: DocumentoUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoUncheckedUpdateWithoutCriadorInput = {
@@ -83514,6 +98310,7 @@ export namespace Prisma {
     recebiveis?: RecebivelUncheckedUpdateManyWithoutContratoNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutContratoNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoUncheckedUpdateManyWithoutCriadorInput = {
@@ -83613,12 +98410,20 @@ export namespace Prisma {
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusTarefaFieldUpdateOperationsInput | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaFieldUpdateOperationsInput | $Enums.PrioridadeTarefa
+    ordem?: IntFieldUpdateOperationsInput | number
     data_prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     etapa?: EtapaUpdateOneRequiredWithoutTarefasNestedInput
     projeto?: ProjetoUpdateOneRequiredWithoutTarefasNestedInput
+    comentarios?: ComentarioTarefaUpdateManyWithoutTarefaNestedInput
+    anexos?: AnexoTarefaUpdateManyWithoutTarefaNestedInput
+    atividades?: AtividadeTarefaUpdateManyWithoutTarefaNestedInput
+    aprovacoes?: AprovacaoTarefaUpdateManyWithoutTarefaNestedInput
+    checklist?: ItemChecklistUpdateManyWithoutTarefaNestedInput
+    etiquetas?: TarefaEtiquetaUpdateManyWithoutTarefaNestedInput
   }
 
   export type TarefaUncheckedUpdateWithoutResponsavelInput = {
@@ -83628,10 +98433,18 @@ export namespace Prisma {
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusTarefaFieldUpdateOperationsInput | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaFieldUpdateOperationsInput | $Enums.PrioridadeTarefa
+    ordem?: IntFieldUpdateOperationsInput | number
     data_prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    comentarios?: ComentarioTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    anexos?: AnexoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    atividades?: AtividadeTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    aprovacoes?: AprovacaoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    checklist?: ItemChecklistUncheckedUpdateManyWithoutTarefaNestedInput
+    etiquetas?: TarefaEtiquetaUncheckedUpdateManyWithoutTarefaNestedInput
   }
 
   export type TarefaUncheckedUpdateManyWithoutResponsavelInput = {
@@ -83641,6 +98454,8 @@ export namespace Prisma {
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusTarefaFieldUpdateOperationsInput | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaFieldUpdateOperationsInput | $Enums.PrioridadeTarefa
+    ordem?: IntFieldUpdateOperationsInput | number
     data_prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -83650,20 +98465,28 @@ export namespace Prisma {
   export type DocumentoUpdateWithoutCriadorInput = {
     id?: StringFieldUpdateOperationsInput | string
     titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: EnumCategoriaDocumentoFieldUpdateOperationsInput | $Enums.CategoriaDocumento
     arquivo_url?: StringFieldUpdateOperationsInput | string
     arquivo_nome?: StringFieldUpdateOperationsInput | string
     arquivo_tamanho?: IntFieldUpdateOperationsInput | number
     mime_type?: StringFieldUpdateOperationsInput | string
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutDocumentosNestedInput
-    projeto?: ProjetoUpdateOneRequiredWithoutDocumentosNestedInput
+    projeto?: ProjetoUpdateOneWithoutDocumentosNestedInput
+    cliente?: ClienteUpdateOneWithoutDocumentosNestedInput
+    contrato?: ContratoUpdateOneWithoutDocumentosNestedInput
   }
 
   export type DocumentoUncheckedUpdateWithoutCriadorInput = {
     id?: StringFieldUpdateOperationsInput | string
     empresa_id?: StringFieldUpdateOperationsInput | string
-    projeto_id?: StringFieldUpdateOperationsInput | string
+    projeto_id?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: EnumCategoriaDocumentoFieldUpdateOperationsInput | $Enums.CategoriaDocumento
     arquivo_url?: StringFieldUpdateOperationsInput | string
     arquivo_nome?: StringFieldUpdateOperationsInput | string
     arquivo_tamanho?: IntFieldUpdateOperationsInput | number
@@ -83674,8 +98497,12 @@ export namespace Prisma {
   export type DocumentoUncheckedUpdateManyWithoutCriadorInput = {
     id?: StringFieldUpdateOperationsInput | string
     empresa_id?: StringFieldUpdateOperationsInput | string
-    projeto_id?: StringFieldUpdateOperationsInput | string
+    projeto_id?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: EnumCategoriaDocumentoFieldUpdateOperationsInput | $Enums.CategoriaDocumento
     arquivo_url?: StringFieldUpdateOperationsInput | string
     arquivo_nome?: StringFieldUpdateOperationsInput | string
     arquivo_tamanho?: IntFieldUpdateOperationsInput | number
@@ -83994,6 +98821,7 @@ export namespace Prisma {
     recebiveis?: RecebivelUpdateManyWithoutContratoNestedInput
     eventos?: EventoUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutContratoNestedInput
+    documentos?: DocumentoUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoUncheckedUpdateWithoutResponsavelInput = {
@@ -84038,6 +98866,7 @@ export namespace Prisma {
     recebiveis?: RecebivelUncheckedUpdateManyWithoutContratoNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutContratoNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoUncheckedUpdateManyWithoutResponsavelInput = {
@@ -84108,6 +98937,141 @@ export namespace Prisma {
     cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
     expira_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ComentarioTarefaUpdateWithoutAutorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    conteudo?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    tarefa?: TarefaUpdateOneRequiredWithoutComentariosNestedInput
+  }
+
+  export type ComentarioTarefaUncheckedUpdateWithoutAutorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tarefa_id?: StringFieldUpdateOperationsInput | string
+    conteudo?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ComentarioTarefaUncheckedUpdateManyWithoutAutorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tarefa_id?: StringFieldUpdateOperationsInput | string
+    conteudo?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnexoTarefaUpdateWithoutCriadorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    arquivo_url?: StringFieldUpdateOperationsInput | string
+    arquivo_tamanho?: IntFieldUpdateOperationsInput | number
+    mime_type?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    tarefa?: TarefaUpdateOneRequiredWithoutAnexosNestedInput
+  }
+
+  export type AnexoTarefaUncheckedUpdateWithoutCriadorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tarefa_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    arquivo_url?: StringFieldUpdateOperationsInput | string
+    arquivo_tamanho?: IntFieldUpdateOperationsInput | number
+    mime_type?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnexoTarefaUncheckedUpdateManyWithoutCriadorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tarefa_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    arquivo_url?: StringFieldUpdateOperationsInput | string
+    arquivo_tamanho?: IntFieldUpdateOperationsInput | number
+    mime_type?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AtividadeTarefaUpdateWithoutAutorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    descricao?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    tarefa?: TarefaUpdateOneRequiredWithoutAtividadesNestedInput
+  }
+
+  export type AtividadeTarefaUncheckedUpdateWithoutAutorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tarefa_id?: StringFieldUpdateOperationsInput | string
+    descricao?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AtividadeTarefaUncheckedUpdateManyWithoutAutorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tarefa_id?: StringFieldUpdateOperationsInput | string
+    descricao?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AprovacaoTarefaUpdateWithoutSolicitanteInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusAprovacaoFieldUpdateOperationsInput | $Enums.StatusAprovacao
+    comentario?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    decidido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tarefa?: TarefaUpdateOneRequiredWithoutAprovacoesNestedInput
+    aprovador?: UsuarioUpdateOneWithoutAprovacoes_recebidasNestedInput
+  }
+
+  export type AprovacaoTarefaUncheckedUpdateWithoutSolicitanteInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tarefa_id?: StringFieldUpdateOperationsInput | string
+    aprovador_id?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusAprovacaoFieldUpdateOperationsInput | $Enums.StatusAprovacao
+    comentario?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    decidido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tarefa_id?: StringFieldUpdateOperationsInput | string
+    aprovador_id?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusAprovacaoFieldUpdateOperationsInput | $Enums.StatusAprovacao
+    comentario?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    decidido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type AprovacaoTarefaUpdateWithoutAprovadorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusAprovacaoFieldUpdateOperationsInput | $Enums.StatusAprovacao
+    comentario?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    decidido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tarefa?: TarefaUpdateOneRequiredWithoutAprovacoesNestedInput
+    solicitante?: UsuarioUpdateOneWithoutAprovacoes_solicitadasNestedInput
+  }
+
+  export type AprovacaoTarefaUncheckedUpdateWithoutAprovadorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tarefa_id?: StringFieldUpdateOperationsInput | string
+    solicitante_id?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusAprovacaoFieldUpdateOperationsInput | $Enums.StatusAprovacao
+    comentario?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    decidido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tarefa_id?: StringFieldUpdateOperationsInput | string
+    solicitante_id?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusAprovacaoFieldUpdateOperationsInput | $Enums.StatusAprovacao
+    comentario?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    decidido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type MembroEmpresaCreateManyPerfilInput = {
@@ -84390,6 +99354,22 @@ export namespace Prisma {
     atualizado_em?: Date | string
   }
 
+  export type DocumentoCreateManyClienteInput = {
+    id?: string
+    empresa_id: string
+    projeto_id?: string | null
+    contrato_id?: string | null
+    criado_por?: string | null
+    titulo: string
+    descricao?: string | null
+    categoria?: $Enums.CategoriaDocumento
+    arquivo_url: string
+    arquivo_nome: string
+    arquivo_tamanho?: number
+    mime_type?: string
+    criado_em?: Date | string
+  }
+
   export type ContatoUpdateWithoutClienteInput = {
     id?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
@@ -84619,6 +99599,7 @@ export namespace Prisma {
     recebiveis?: RecebivelUpdateManyWithoutContratoNestedInput
     eventos?: EventoUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutContratoNestedInput
+    documentos?: DocumentoUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoUncheckedUpdateWithoutClienteInput = {
@@ -84663,6 +99644,7 @@ export namespace Prisma {
     recebiveis?: RecebivelUncheckedUpdateManyWithoutContratoNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutContratoNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoUncheckedUpdateManyWithoutClienteInput = {
@@ -85068,6 +100050,54 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type DocumentoUpdateWithoutClienteInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: EnumCategoriaDocumentoFieldUpdateOperationsInput | $Enums.CategoriaDocumento
+    arquivo_url?: StringFieldUpdateOperationsInput | string
+    arquivo_nome?: StringFieldUpdateOperationsInput | string
+    arquivo_tamanho?: IntFieldUpdateOperationsInput | number
+    mime_type?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutDocumentosNestedInput
+    projeto?: ProjetoUpdateOneWithoutDocumentosNestedInput
+    contrato?: ContratoUpdateOneWithoutDocumentosNestedInput
+    criador?: UsuarioUpdateOneWithoutDocumentos_criadosNestedInput
+  }
+
+  export type DocumentoUncheckedUpdateWithoutClienteInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    projeto_id?: NullableStringFieldUpdateOperationsInput | string | null
+    contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: EnumCategoriaDocumentoFieldUpdateOperationsInput | $Enums.CategoriaDocumento
+    arquivo_url?: StringFieldUpdateOperationsInput | string
+    arquivo_nome?: StringFieldUpdateOperationsInput | string
+    arquivo_tamanho?: IntFieldUpdateOperationsInput | number
+    mime_type?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DocumentoUncheckedUpdateManyWithoutClienteInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    projeto_id?: NullableStringFieldUpdateOperationsInput | string | null
+    contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: EnumCategoriaDocumentoFieldUpdateOperationsInput | $Enums.CategoriaDocumento
+    arquivo_url?: StringFieldUpdateOperationsInput | string
+    arquivo_nome?: StringFieldUpdateOperationsInput | string
+    arquivo_tamanho?: IntFieldUpdateOperationsInput | number
+    mime_type?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type ItemPropostaCreateManyServicoInput = {
     id?: string
     proposta_id: string
@@ -85406,6 +100436,22 @@ export namespace Prisma {
     email_enviado_em?: Date | string | null
   }
 
+  export type DocumentoCreateManyContratoInput = {
+    id?: string
+    empresa_id: string
+    projeto_id?: string | null
+    cliente_id?: string | null
+    criado_por?: string | null
+    titulo: string
+    descricao?: string | null
+    categoria?: $Enums.CategoriaDocumento
+    arquivo_url: string
+    arquivo_nome: string
+    arquivo_tamanho?: number
+    mime_type?: string
+    criado_em?: Date | string
+  }
+
   export type RecebivelUpdateWithoutContratoInput = {
     id?: StringFieldUpdateOperationsInput | string
     descricao?: StringFieldUpdateOperationsInput | string
@@ -85600,6 +100646,54 @@ export namespace Prisma {
     email_enviado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
+  export type DocumentoUpdateWithoutContratoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: EnumCategoriaDocumentoFieldUpdateOperationsInput | $Enums.CategoriaDocumento
+    arquivo_url?: StringFieldUpdateOperationsInput | string
+    arquivo_nome?: StringFieldUpdateOperationsInput | string
+    arquivo_tamanho?: IntFieldUpdateOperationsInput | number
+    mime_type?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutDocumentosNestedInput
+    projeto?: ProjetoUpdateOneWithoutDocumentosNestedInput
+    cliente?: ClienteUpdateOneWithoutDocumentosNestedInput
+    criador?: UsuarioUpdateOneWithoutDocumentos_criadosNestedInput
+  }
+
+  export type DocumentoUncheckedUpdateWithoutContratoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    projeto_id?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: EnumCategoriaDocumentoFieldUpdateOperationsInput | $Enums.CategoriaDocumento
+    arquivo_url?: StringFieldUpdateOperationsInput | string
+    arquivo_nome?: StringFieldUpdateOperationsInput | string
+    arquivo_tamanho?: IntFieldUpdateOperationsInput | number
+    mime_type?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DocumentoUncheckedUpdateManyWithoutContratoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    projeto_id?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: EnumCategoriaDocumentoFieldUpdateOperationsInput | $Enums.CategoriaDocumento
+    arquivo_url?: StringFieldUpdateOperationsInput | string
+    arquivo_nome?: StringFieldUpdateOperationsInput | string
+    arquivo_tamanho?: IntFieldUpdateOperationsInput | number
+    mime_type?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type EtapaCreateManyProjetoInput = {
     id?: string
     titulo: string
@@ -85619,6 +100713,8 @@ export namespace Prisma {
     titulo: string
     descricao?: string | null
     status?: $Enums.StatusTarefa
+    prioridade?: $Enums.PrioridadeTarefa
+    ordem?: number
     data_prazo?: Date | string | null
     concluida_em?: Date | string | null
     criado_em?: Date | string
@@ -85628,8 +100724,12 @@ export namespace Prisma {
   export type DocumentoCreateManyProjetoInput = {
     id?: string
     empresa_id: string
+    cliente_id?: string | null
+    contrato_id?: string | null
     criado_por?: string | null
     titulo: string
+    descricao?: string | null
+    categoria?: $Enums.CategoriaDocumento
     arquivo_url: string
     arquivo_nome: string
     arquivo_tamanho?: number
@@ -85710,12 +100810,20 @@ export namespace Prisma {
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusTarefaFieldUpdateOperationsInput | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaFieldUpdateOperationsInput | $Enums.PrioridadeTarefa
+    ordem?: IntFieldUpdateOperationsInput | number
     data_prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     etapa?: EtapaUpdateOneRequiredWithoutTarefasNestedInput
     responsavel?: UsuarioUpdateOneWithoutTarefasNestedInput
+    comentarios?: ComentarioTarefaUpdateManyWithoutTarefaNestedInput
+    anexos?: AnexoTarefaUpdateManyWithoutTarefaNestedInput
+    atividades?: AtividadeTarefaUpdateManyWithoutTarefaNestedInput
+    aprovacoes?: AprovacaoTarefaUpdateManyWithoutTarefaNestedInput
+    checklist?: ItemChecklistUpdateManyWithoutTarefaNestedInput
+    etiquetas?: TarefaEtiquetaUpdateManyWithoutTarefaNestedInput
   }
 
   export type TarefaUncheckedUpdateWithoutProjetoInput = {
@@ -85725,10 +100833,18 @@ export namespace Prisma {
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusTarefaFieldUpdateOperationsInput | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaFieldUpdateOperationsInput | $Enums.PrioridadeTarefa
+    ordem?: IntFieldUpdateOperationsInput | number
     data_prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    comentarios?: ComentarioTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    anexos?: AnexoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    atividades?: AtividadeTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    aprovacoes?: AprovacaoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    checklist?: ItemChecklistUncheckedUpdateManyWithoutTarefaNestedInput
+    etiquetas?: TarefaEtiquetaUncheckedUpdateManyWithoutTarefaNestedInput
   }
 
   export type TarefaUncheckedUpdateManyWithoutProjetoInput = {
@@ -85738,6 +100854,8 @@ export namespace Prisma {
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusTarefaFieldUpdateOperationsInput | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaFieldUpdateOperationsInput | $Enums.PrioridadeTarefa
+    ordem?: IntFieldUpdateOperationsInput | number
     data_prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -85747,20 +100865,28 @@ export namespace Prisma {
   export type DocumentoUpdateWithoutProjetoInput = {
     id?: StringFieldUpdateOperationsInput | string
     titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: EnumCategoriaDocumentoFieldUpdateOperationsInput | $Enums.CategoriaDocumento
     arquivo_url?: StringFieldUpdateOperationsInput | string
     arquivo_nome?: StringFieldUpdateOperationsInput | string
     arquivo_tamanho?: IntFieldUpdateOperationsInput | number
     mime_type?: StringFieldUpdateOperationsInput | string
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutDocumentosNestedInput
+    cliente?: ClienteUpdateOneWithoutDocumentosNestedInput
+    contrato?: ContratoUpdateOneWithoutDocumentosNestedInput
     criador?: UsuarioUpdateOneWithoutDocumentos_criadosNestedInput
   }
 
   export type DocumentoUncheckedUpdateWithoutProjetoInput = {
     id?: StringFieldUpdateOperationsInput | string
     empresa_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: EnumCategoriaDocumentoFieldUpdateOperationsInput | $Enums.CategoriaDocumento
     arquivo_url?: StringFieldUpdateOperationsInput | string
     arquivo_nome?: StringFieldUpdateOperationsInput | string
     arquivo_tamanho?: IntFieldUpdateOperationsInput | number
@@ -85771,8 +100897,12 @@ export namespace Prisma {
   export type DocumentoUncheckedUpdateManyWithoutProjetoInput = {
     id?: StringFieldUpdateOperationsInput | string
     empresa_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: EnumCategoriaDocumentoFieldUpdateOperationsInput | $Enums.CategoriaDocumento
     arquivo_url?: StringFieldUpdateOperationsInput | string
     arquivo_nome?: StringFieldUpdateOperationsInput | string
     arquivo_tamanho?: IntFieldUpdateOperationsInput | number
@@ -85877,6 +101007,8 @@ export namespace Prisma {
     titulo: string
     descricao?: string | null
     status?: $Enums.StatusTarefa
+    prioridade?: $Enums.PrioridadeTarefa
+    ordem?: number
     data_prazo?: Date | string | null
     concluida_em?: Date | string | null
     criado_em?: Date | string
@@ -85888,12 +101020,20 @@ export namespace Prisma {
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusTarefaFieldUpdateOperationsInput | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaFieldUpdateOperationsInput | $Enums.PrioridadeTarefa
+    ordem?: IntFieldUpdateOperationsInput | number
     data_prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUpdateOneRequiredWithoutTarefasNestedInput
     responsavel?: UsuarioUpdateOneWithoutTarefasNestedInput
+    comentarios?: ComentarioTarefaUpdateManyWithoutTarefaNestedInput
+    anexos?: AnexoTarefaUpdateManyWithoutTarefaNestedInput
+    atividades?: AtividadeTarefaUpdateManyWithoutTarefaNestedInput
+    aprovacoes?: AprovacaoTarefaUpdateManyWithoutTarefaNestedInput
+    checklist?: ItemChecklistUpdateManyWithoutTarefaNestedInput
+    etiquetas?: TarefaEtiquetaUpdateManyWithoutTarefaNestedInput
   }
 
   export type TarefaUncheckedUpdateWithoutEtapaInput = {
@@ -85903,10 +101043,18 @@ export namespace Prisma {
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusTarefaFieldUpdateOperationsInput | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaFieldUpdateOperationsInput | $Enums.PrioridadeTarefa
+    ordem?: IntFieldUpdateOperationsInput | number
     data_prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    comentarios?: ComentarioTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    anexos?: AnexoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    atividades?: AtividadeTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    aprovacoes?: AprovacaoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    checklist?: ItemChecklistUncheckedUpdateManyWithoutTarefaNestedInput
+    etiquetas?: TarefaEtiquetaUncheckedUpdateManyWithoutTarefaNestedInput
   }
 
   export type TarefaUncheckedUpdateManyWithoutEtapaInput = {
@@ -85916,10 +101064,216 @@ export namespace Prisma {
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusTarefaFieldUpdateOperationsInput | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaFieldUpdateOperationsInput | $Enums.PrioridadeTarefa
+    ordem?: IntFieldUpdateOperationsInput | number
     data_prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ComentarioTarefaCreateManyTarefaInput = {
+    id?: string
+    autor_id?: string | null
+    conteudo: string
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type AnexoTarefaCreateManyTarefaInput = {
+    id?: string
+    criado_por?: string | null
+    nome: string
+    arquivo_url: string
+    arquivo_tamanho?: number
+    mime_type?: string
+    criado_em?: Date | string
+  }
+
+  export type AtividadeTarefaCreateManyTarefaInput = {
+    id?: string
+    autor_id?: string | null
+    descricao: string
+    criado_em?: Date | string
+  }
+
+  export type AprovacaoTarefaCreateManyTarefaInput = {
+    id?: string
+    solicitante_id?: string | null
+    aprovador_id?: string | null
+    status?: $Enums.StatusAprovacao
+    comentario?: string | null
+    criado_em?: Date | string
+    decidido_em?: Date | string | null
+  }
+
+  export type ItemChecklistCreateManyTarefaInput = {
+    id?: string
+    texto: string
+    concluido?: boolean
+    ordem?: number
+    criado_em?: Date | string
+  }
+
+  export type TarefaEtiquetaCreateManyTarefaInput = {
+    etiqueta_id: string
+  }
+
+  export type ComentarioTarefaUpdateWithoutTarefaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    conteudo?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    autor?: UsuarioUpdateOneWithoutComentarios_tarefaNestedInput
+  }
+
+  export type ComentarioTarefaUncheckedUpdateWithoutTarefaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    autor_id?: NullableStringFieldUpdateOperationsInput | string | null
+    conteudo?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ComentarioTarefaUncheckedUpdateManyWithoutTarefaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    autor_id?: NullableStringFieldUpdateOperationsInput | string | null
+    conteudo?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnexoTarefaUpdateWithoutTarefaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    arquivo_url?: StringFieldUpdateOperationsInput | string
+    arquivo_tamanho?: IntFieldUpdateOperationsInput | number
+    mime_type?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    criador?: UsuarioUpdateOneWithoutAnexos_tarefaNestedInput
+  }
+
+  export type AnexoTarefaUncheckedUpdateWithoutTarefaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    nome?: StringFieldUpdateOperationsInput | string
+    arquivo_url?: StringFieldUpdateOperationsInput | string
+    arquivo_tamanho?: IntFieldUpdateOperationsInput | number
+    mime_type?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnexoTarefaUncheckedUpdateManyWithoutTarefaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    nome?: StringFieldUpdateOperationsInput | string
+    arquivo_url?: StringFieldUpdateOperationsInput | string
+    arquivo_tamanho?: IntFieldUpdateOperationsInput | number
+    mime_type?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AtividadeTarefaUpdateWithoutTarefaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    descricao?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    autor?: UsuarioUpdateOneWithoutAtividades_tarefaNestedInput
+  }
+
+  export type AtividadeTarefaUncheckedUpdateWithoutTarefaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    autor_id?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AtividadeTarefaUncheckedUpdateManyWithoutTarefaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    autor_id?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AprovacaoTarefaUpdateWithoutTarefaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusAprovacaoFieldUpdateOperationsInput | $Enums.StatusAprovacao
+    comentario?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    decidido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    solicitante?: UsuarioUpdateOneWithoutAprovacoes_solicitadasNestedInput
+    aprovador?: UsuarioUpdateOneWithoutAprovacoes_recebidasNestedInput
+  }
+
+  export type AprovacaoTarefaUncheckedUpdateWithoutTarefaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    solicitante_id?: NullableStringFieldUpdateOperationsInput | string | null
+    aprovador_id?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusAprovacaoFieldUpdateOperationsInput | $Enums.StatusAprovacao
+    comentario?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    decidido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type AprovacaoTarefaUncheckedUpdateManyWithoutTarefaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    solicitante_id?: NullableStringFieldUpdateOperationsInput | string | null
+    aprovador_id?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusAprovacaoFieldUpdateOperationsInput | $Enums.StatusAprovacao
+    comentario?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    decidido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ItemChecklistUpdateWithoutTarefaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    texto?: StringFieldUpdateOperationsInput | string
+    concluido?: BoolFieldUpdateOperationsInput | boolean
+    ordem?: IntFieldUpdateOperationsInput | number
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ItemChecklistUncheckedUpdateWithoutTarefaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    texto?: StringFieldUpdateOperationsInput | string
+    concluido?: BoolFieldUpdateOperationsInput | boolean
+    ordem?: IntFieldUpdateOperationsInput | number
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ItemChecklistUncheckedUpdateManyWithoutTarefaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    texto?: StringFieldUpdateOperationsInput | string
+    concluido?: BoolFieldUpdateOperationsInput | boolean
+    ordem?: IntFieldUpdateOperationsInput | number
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TarefaEtiquetaUpdateWithoutTarefaInput = {
+    etiqueta?: EtiquetaTarefaUpdateOneRequiredWithoutTarefasNestedInput
+  }
+
+  export type TarefaEtiquetaUncheckedUpdateWithoutTarefaInput = {
+    etiqueta_id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TarefaEtiquetaUncheckedUpdateManyWithoutTarefaInput = {
+    etiqueta_id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TarefaEtiquetaCreateManyEtiquetaInput = {
+    tarefa_id: string
+  }
+
+  export type TarefaEtiquetaUpdateWithoutEtiquetaInput = {
+    tarefa?: TarefaUpdateOneRequiredWithoutEtiquetasNestedInput
+  }
+
+  export type TarefaEtiquetaUncheckedUpdateWithoutEtiquetaInput = {
+    tarefa_id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TarefaEtiquetaUncheckedUpdateManyWithoutEtiquetaInput = {
+    tarefa_id?: StringFieldUpdateOperationsInput | string
   }
 
   export type PlanoDeContasCreateManyParentInput = {
