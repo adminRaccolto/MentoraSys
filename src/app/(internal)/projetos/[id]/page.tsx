@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { obterEmpresaAtiva } from "@/lib/permissoes";
+import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import ProjetoDetalheClient from "./projeto-detalhe-client";
 
@@ -10,6 +11,9 @@ interface Props {
 export default async function ProjetoDetalhePage({ params }: Props) {
   const { id } = await params;
   const empresaId = await obterEmpresaAtiva();
+
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
 
   const [projeto, membros] = await Promise.all([
     prisma.projeto.findUnique({
@@ -44,5 +48,5 @@ export default async function ProjetoDetalhePage({ params }: Props) {
 
   if (!projeto) notFound();
 
-  return <ProjetoDetalheClient projeto={projeto} membros={membros} />;
+  return <ProjetoDetalheClient projeto={projeto} membros={membros} usuarioAtualId={user?.id} />;
 }

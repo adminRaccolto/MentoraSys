@@ -18,9 +18,10 @@ import { Separator } from "@/components/ui/separator";
 import { createClient } from "@/lib/supabase/client";
 import { editarProjeto } from "@/actions/projetos";
 import { criarEtapa, editarEtapa, excluirEtapa } from "@/actions/etapas";
-import { criarTarefa, concluirTarefa, excluirTarefa } from "@/actions/tarefas";
+import { criarTarefa, concluirTarefa, excluirTarefa, carregarTarefaCompleta } from "@/actions/tarefas";
 import { criarDocumento, excluirDocumento } from "@/actions/documentos";
 import { gerarLinkPortal } from "@/actions/portal";
+import TarefaModal, { type TarefaCompleta } from "@/components/tarefa-modal";
 
 type StatusProjeto = "PLANEJAMENTO" | "EM_ANDAMENTO" | "CONCLUIDO" | "CANCELADO";
 type StatusEtapa = "PENDENTE" | "EM_ANDAMENTO" | "CONCLUIDA" | "CANCELADA";
@@ -55,6 +56,7 @@ interface Projeto {
 interface Props {
   projeto: Projeto;
   membros: { usuario: Responsavel }[];
+  usuarioAtualId?: string;
 }
 
 const STATUS_PROJETO: Record<StatusProjeto, string> = {
@@ -74,7 +76,7 @@ function formatBytes(bytes: number) {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
-export default function ProjetoDetalheClient({ projeto: inicial, membros }: Props) {
+export default function ProjetoDetalheClient({ projeto: inicial, membros, usuarioAtualId }: Props) {
   const router = useRouter();
   const [projeto, setProjeto] = useState(inicial);
   const [etapasAbertas, setEtapasAbertas] = useState<Set<string>>(
@@ -88,6 +90,39 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros }: Prop
   const [linkPortalGerado, setLinkPortalGerado] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   const [isPending, startTransition] = useTransition();
+
+  // modal de tarefa
+  const [tarefaModal, setTarefaModal] = useState<TarefaCompleta | null>(null);
+  const [carregandoTarefa, setCarregandoTarefa] = useState<string | null>(null);
+
+  const abrirTarefa = async (tarefaId: string) => {
+    setCarregandoTarefa(tarefaId);
+    try {
+      const dados = await carregarTarefaCompleta(tarefaId);
+      setTarefaModal(dados as unknown as TarefaCompleta);
+    } catch { toast.error("Erro ao carregar tarefa"); }
+    finally { setCarregandoTarefa(null); }
+  };
+
+  const atualizarTarefaNaLista = (tarefaId: string, campos: Partial<TarefaCompleta>) => {
+    setProjeto((p) => ({
+      ...p,
+      etapas: p.etapas.map((e) => ({
+        ...e,
+        tarefas: e.tarefas.map((t) =>
+          t.id === tarefaId
+            ? {
+                ...t,
+                ...(campos.titulo && { titulo: campos.titulo }),
+                ...(campos.status && { status: campos.status }),
+                ...(campos.responsavel !== undefined && { responsavel: campos.responsavel }),
+                ...(campos.data_prazo !== undefined && { data_prazo: campos.data_prazo ? new Date(campos.data_prazo as string) : null }),
+              }
+            : t
+        ),
+      })),
+    }));
+  };
 
   // ─── Status do projeto ────────────────────────────────────────────────
   const mudarStatus = (status: string) => {
@@ -359,9 +394,13 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros }: Prop
                 {aberta && (
                   <div className="border-t">
                     {etapa.tarefas.map((tarefa) => (
-                      <div key={tarefa.id} className="flex items-center gap-2 px-4 py-2.5 hover:bg-muted/30 group">
+                      <div
+                        key={tarefa.id}
+                        className="flex items-center gap-2 px-4 py-2.5 hover:bg-muted/30 group cursor-pointer"
+                        onClick={() => abrirTarefa(tarefa.id)}
+                      >
                         <button
-                          onClick={() => toggleTarefa(etapa.id, tarefa.id, tarefa.status !== "CONCLUIDA")}
+                          onClick={(e) => { e.stopPropagation(); toggleTarefa(etapa.id, tarefa.id, tarefa.status !== "CONCLUIDA"); }}
                           className={`size-4 rounded border flex items-center justify-center shrink-0 transition-colors ${
                             tarefa.status === "CONCLUIDA"
                               ? "bg-primary border-primary text-primary-foreground"
@@ -372,6 +411,9 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros }: Prop
                         </button>
                         <span className={`flex-1 text-sm ${tarefa.status === "CONCLUIDA" ? "line-through text-muted-foreground" : ""}`}>
                           {tarefa.titulo}
+                          {carregandoTarefa === tarefa.id && (
+                            <span className="ml-1.5 inline-block size-3 border-2 border-primary border-t-transparent rounded-full animate-spin align-middle" />
+                          )}
                         </span>
                         {tarefa.responsavel && (
                           <span className="text-xs text-muted-foreground hidden group-hover:inline">
@@ -385,7 +427,7 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros }: Prop
                         )}
                         <Button size="icon" variant="ghost"
                           className="size-6 opacity-0 group-hover:opacity-100 text-destructive hover:text-destructive"
-                          onClick={() => removerTarefa(etapa.id, tarefa.id)}>
+                          onClick={(e) => { e.stopPropagation(); removerTarefa(etapa.id, tarefa.id); }}>
                           <X className="size-3" />
                         </Button>
                       </div>
@@ -554,6 +596,16 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros }: Prop
           </div>
         </TabsContent>
       </Tabs>
+
+      {tarefaModal && (
+        <TarefaModal
+          tarefa={tarefaModal}
+          membros={membros.map((m) => m.usuario)}
+          usuarioAtualId={usuarioAtualId}
+          onClose={() => setTarefaModal(null)}
+          onUpdate={atualizarTarefaNaLista}
+        />
+      )}
     </div>
   );
 }
