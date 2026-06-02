@@ -25435,6 +25435,7 @@ export namespace Prisma {
     data_inicio: Date | null
     data_fim: Date | null
     assinado_em: Date | null
+    anexo_url: string | null
     authentique_id: string | null
     authentique_url: string | null
     pdf_assinado_url: string | null
@@ -25475,6 +25476,7 @@ export namespace Prisma {
     data_inicio: Date | null
     data_fim: Date | null
     assinado_em: Date | null
+    anexo_url: string | null
     authentique_id: string | null
     authentique_url: string | null
     pdf_assinado_url: string | null
@@ -25515,6 +25517,7 @@ export namespace Prisma {
     data_inicio: number
     data_fim: number
     assinado_em: number
+    anexo_url: number
     authentique_id: number
     authentique_url: number
     pdf_assinado_url: number
@@ -25569,6 +25572,7 @@ export namespace Prisma {
     data_inicio?: true
     data_fim?: true
     assinado_em?: true
+    anexo_url?: true
     authentique_id?: true
     authentique_url?: true
     pdf_assinado_url?: true
@@ -25609,6 +25613,7 @@ export namespace Prisma {
     data_inicio?: true
     data_fim?: true
     assinado_em?: true
+    anexo_url?: true
     authentique_id?: true
     authentique_url?: true
     pdf_assinado_url?: true
@@ -25649,6 +25654,7 @@ export namespace Prisma {
     data_inicio?: true
     data_fim?: true
     assinado_em?: true
+    anexo_url?: true
     authentique_id?: true
     authentique_url?: true
     pdf_assinado_url?: true
@@ -25776,6 +25782,7 @@ export namespace Prisma {
     data_inicio: Date | null
     data_fim: Date | null
     assinado_em: Date | null
+    anexo_url: string | null
     authentique_id: string | null
     authentique_url: string | null
     pdf_assinado_url: string | null
@@ -25835,6 +25842,7 @@ export namespace Prisma {
     data_inicio?: boolean
     data_fim?: boolean
     assinado_em?: boolean
+    anexo_url?: boolean
     authentique_id?: boolean
     authentique_url?: boolean
     pdf_assinado_url?: boolean
@@ -25885,6 +25893,7 @@ export namespace Prisma {
     data_inicio?: boolean
     data_fim?: boolean
     assinado_em?: boolean
+    anexo_url?: boolean
     authentique_id?: boolean
     authentique_url?: boolean
     pdf_assinado_url?: boolean
@@ -25930,6 +25939,7 @@ export namespace Prisma {
     data_inicio?: boolean
     data_fim?: boolean
     assinado_em?: boolean
+    anexo_url?: boolean
     authentique_id?: boolean
     authentique_url?: boolean
     pdf_assinado_url?: boolean
@@ -25975,6 +25985,7 @@ export namespace Prisma {
     data_inicio?: boolean
     data_fim?: boolean
     assinado_em?: boolean
+    anexo_url?: boolean
     authentique_id?: boolean
     authentique_url?: boolean
     pdf_assinado_url?: boolean
@@ -25982,7 +25993,7 @@ export namespace Prisma {
     atualizado_em?: boolean
   }
 
-  export type ContratoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "proposta_id" | "cliente_id" | "criado_por" | "responsavel_id" | "numero_contrato" | "tipo_contrato" | "titulo" | "objeto" | "status" | "conteudo" | "valor_total" | "forma_pagamento" | "periodicidade" | "numero_parcelas" | "primeiro_vencimento" | "dia_vencimento" | "indice_reajuste" | "periodicidade_reajuste" | "renovacao_automatica" | "gerar_projeto" | "gerar_financeiro" | "cliente_nome" | "cliente_cpf_cnpj" | "cliente_contato_nome" | "cliente_contato_email" | "cliente_contato_tel" | "data_emissao" | "data_inicio" | "data_fim" | "assinado_em" | "authentique_id" | "authentique_url" | "pdf_assinado_url" | "criado_em" | "atualizado_em", ExtArgs["result"]["contrato"]>
+  export type ContratoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "proposta_id" | "cliente_id" | "criado_por" | "responsavel_id" | "numero_contrato" | "tipo_contrato" | "titulo" | "objeto" | "status" | "conteudo" | "valor_total" | "forma_pagamento" | "periodicidade" | "numero_parcelas" | "primeiro_vencimento" | "dia_vencimento" | "indice_reajuste" | "periodicidade_reajuste" | "renovacao_automatica" | "gerar_projeto" | "gerar_financeiro" | "cliente_nome" | "cliente_cpf_cnpj" | "cliente_contato_nome" | "cliente_contato_email" | "cliente_contato_tel" | "data_emissao" | "data_inicio" | "data_fim" | "assinado_em" | "anexo_url" | "authentique_id" | "authentique_url" | "pdf_assinado_url" | "criado_em" | "atualizado_em", ExtArgs["result"]["contrato"]>
   export type ContratoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     proposta?: boolean | Contrato$propostaArgs<ExtArgs>
@@ -26056,6 +26067,7 @@ export namespace Prisma {
       data_inicio: Date | null
       data_fim: Date | null
       assinado_em: Date | null
+      anexo_url: string | null
       authentique_id: string | null
       authentique_url: string | null
       pdf_assinado_url: string | null
@@ -26525,6 +26537,7 @@ export namespace Prisma {
     readonly data_inicio: FieldRef<"Contrato", 'DateTime'>
     readonly data_fim: FieldRef<"Contrato", 'DateTime'>
     readonly assinado_em: FieldRef<"Contrato", 'DateTime'>
+    readonly anexo_url: FieldRef<"Contrato", 'String'>
     readonly authentique_id: FieldRef<"Contrato", 'String'>
     readonly authentique_url: FieldRef<"Contrato", 'String'>
     readonly pdf_assinado_url: FieldRef<"Contrato", 'String'>
@@ -49521,6 +49534,7 @@ export namespace Prisma {
     data_inicio: 'data_inicio',
     data_fim: 'data_fim',
     assinado_em: 'assinado_em',
+    anexo_url: 'anexo_url',
     authentique_id: 'authentique_id',
     authentique_url: 'authentique_url',
     pdf_assinado_url: 'pdf_assinado_url',
@@ -51771,6 +51785,7 @@ export namespace Prisma {
     data_inicio?: DateTimeNullableFilter<"Contrato"> | Date | string | null
     data_fim?: DateTimeNullableFilter<"Contrato"> | Date | string | null
     assinado_em?: DateTimeNullableFilter<"Contrato"> | Date | string | null
+    anexo_url?: StringNullableFilter<"Contrato"> | string | null
     authentique_id?: StringNullableFilter<"Contrato"> | string | null
     authentique_url?: StringNullableFilter<"Contrato"> | string | null
     pdf_assinado_url?: StringNullableFilter<"Contrato"> | string | null
@@ -51820,6 +51835,7 @@ export namespace Prisma {
     data_inicio?: SortOrderInput | SortOrder
     data_fim?: SortOrderInput | SortOrder
     assinado_em?: SortOrderInput | SortOrder
+    anexo_url?: SortOrderInput | SortOrder
     authentique_id?: SortOrderInput | SortOrder
     authentique_url?: SortOrderInput | SortOrder
     pdf_assinado_url?: SortOrderInput | SortOrder
@@ -51872,6 +51888,7 @@ export namespace Prisma {
     data_inicio?: DateTimeNullableFilter<"Contrato"> | Date | string | null
     data_fim?: DateTimeNullableFilter<"Contrato"> | Date | string | null
     assinado_em?: DateTimeNullableFilter<"Contrato"> | Date | string | null
+    anexo_url?: StringNullableFilter<"Contrato"> | string | null
     authentique_id?: StringNullableFilter<"Contrato"> | string | null
     authentique_url?: StringNullableFilter<"Contrato"> | string | null
     pdf_assinado_url?: StringNullableFilter<"Contrato"> | string | null
@@ -51921,6 +51938,7 @@ export namespace Prisma {
     data_inicio?: SortOrderInput | SortOrder
     data_fim?: SortOrderInput | SortOrder
     assinado_em?: SortOrderInput | SortOrder
+    anexo_url?: SortOrderInput | SortOrder
     authentique_id?: SortOrderInput | SortOrder
     authentique_url?: SortOrderInput | SortOrder
     pdf_assinado_url?: SortOrderInput | SortOrder
@@ -51969,6 +51987,7 @@ export namespace Prisma {
     data_inicio?: DateTimeNullableWithAggregatesFilter<"Contrato"> | Date | string | null
     data_fim?: DateTimeNullableWithAggregatesFilter<"Contrato"> | Date | string | null
     assinado_em?: DateTimeNullableWithAggregatesFilter<"Contrato"> | Date | string | null
+    anexo_url?: StringNullableWithAggregatesFilter<"Contrato"> | string | null
     authentique_id?: StringNullableWithAggregatesFilter<"Contrato"> | string | null
     authentique_url?: StringNullableWithAggregatesFilter<"Contrato"> | string | null
     pdf_assinado_url?: StringNullableWithAggregatesFilter<"Contrato"> | string | null
@@ -55405,6 +55424,7 @@ export namespace Prisma {
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
     assinado_em?: Date | string | null
+    anexo_url?: string | null
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
@@ -55454,6 +55474,7 @@ export namespace Prisma {
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
     assinado_em?: Date | string | null
+    anexo_url?: string | null
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
@@ -55493,6 +55514,7 @@ export namespace Prisma {
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    anexo_url?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -55542,6 +55564,7 @@ export namespace Prisma {
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    anexo_url?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -55586,6 +55609,7 @@ export namespace Prisma {
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
     assinado_em?: Date | string | null
+    anexo_url?: string | null
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
@@ -55621,6 +55645,7 @@ export namespace Prisma {
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    anexo_url?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -55661,6 +55686,7 @@ export namespace Prisma {
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    anexo_url?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -59107,6 +59133,7 @@ export namespace Prisma {
     data_inicio?: SortOrder
     data_fim?: SortOrder
     assinado_em?: SortOrder
+    anexo_url?: SortOrder
     authentique_id?: SortOrder
     authentique_url?: SortOrder
     pdf_assinado_url?: SortOrder
@@ -59153,6 +59180,7 @@ export namespace Prisma {
     data_inicio?: SortOrder
     data_fim?: SortOrder
     assinado_em?: SortOrder
+    anexo_url?: SortOrder
     authentique_id?: SortOrder
     authentique_url?: SortOrder
     pdf_assinado_url?: SortOrder
@@ -59193,6 +59221,7 @@ export namespace Prisma {
     data_inicio?: SortOrder
     data_fim?: SortOrder
     assinado_em?: SortOrder
+    anexo_url?: SortOrder
     authentique_id?: SortOrder
     authentique_url?: SortOrder
     pdf_assinado_url?: SortOrder
@@ -65869,6 +65898,7 @@ export namespace Prisma {
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
     assinado_em?: Date | string | null
+    anexo_url?: string | null
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
@@ -65916,6 +65946,7 @@ export namespace Prisma {
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
     assinado_em?: Date | string | null
+    anexo_url?: string | null
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
@@ -66856,6 +66887,7 @@ export namespace Prisma {
     data_inicio?: DateTimeNullableFilter<"Contrato"> | Date | string | null
     data_fim?: DateTimeNullableFilter<"Contrato"> | Date | string | null
     assinado_em?: DateTimeNullableFilter<"Contrato"> | Date | string | null
+    anexo_url?: StringNullableFilter<"Contrato"> | string | null
     authentique_id?: StringNullableFilter<"Contrato"> | string | null
     authentique_url?: StringNullableFilter<"Contrato"> | string | null
     pdf_assinado_url?: StringNullableFilter<"Contrato"> | string | null
@@ -67591,6 +67623,7 @@ export namespace Prisma {
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
     assinado_em?: Date | string | null
+    anexo_url?: string | null
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
@@ -67638,6 +67671,7 @@ export namespace Prisma {
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
     assinado_em?: Date | string | null
+    anexo_url?: string | null
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
@@ -68027,6 +68061,7 @@ export namespace Prisma {
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
     assinado_em?: Date | string | null
+    anexo_url?: string | null
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
@@ -68074,6 +68109,7 @@ export namespace Prisma {
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
     assinado_em?: Date | string | null
+    anexo_url?: string | null
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
@@ -70045,6 +70081,7 @@ export namespace Prisma {
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
     assinado_em?: Date | string | null
+    anexo_url?: string | null
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
@@ -70092,6 +70129,7 @@ export namespace Prisma {
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
     assinado_em?: Date | string | null
+    anexo_url?: string | null
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
@@ -72366,6 +72404,7 @@ export namespace Prisma {
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
     assinado_em?: Date | string | null
+    anexo_url?: string | null
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
@@ -72413,6 +72452,7 @@ export namespace Prisma {
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
     assinado_em?: Date | string | null
+    anexo_url?: string | null
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
@@ -72847,6 +72887,7 @@ export namespace Prisma {
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    anexo_url?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -72894,6 +72935,7 @@ export namespace Prisma {
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    anexo_url?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -74385,6 +74427,7 @@ export namespace Prisma {
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
     assinado_em?: Date | string | null
+    anexo_url?: string | null
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
@@ -74433,6 +74476,7 @@ export namespace Prisma {
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
     assinado_em?: Date | string | null
+    anexo_url?: string | null
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
@@ -74886,6 +74930,7 @@ export namespace Prisma {
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    anexo_url?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -74934,6 +74979,7 @@ export namespace Prisma {
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    anexo_url?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -77444,6 +77490,7 @@ export namespace Prisma {
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
     assinado_em?: Date | string | null
+    anexo_url?: string | null
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
@@ -77492,6 +77539,7 @@ export namespace Prisma {
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
     assinado_em?: Date | string | null
+    anexo_url?: string | null
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
@@ -77886,6 +77934,7 @@ export namespace Prisma {
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    anexo_url?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -77934,6 +77983,7 @@ export namespace Prisma {
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    anexo_url?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -78967,6 +79017,7 @@ export namespace Prisma {
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
     assinado_em?: Date | string | null
+    anexo_url?: string | null
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
@@ -79015,6 +79066,7 @@ export namespace Prisma {
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
     assinado_em?: Date | string | null
+    anexo_url?: string | null
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
@@ -79337,6 +79389,7 @@ export namespace Prisma {
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    anexo_url?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -79385,6 +79438,7 @@ export namespace Prisma {
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    anexo_url?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -79940,6 +79994,7 @@ export namespace Prisma {
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
     assinado_em?: Date | string | null
+    anexo_url?: string | null
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
@@ -79988,6 +80043,7 @@ export namespace Prisma {
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
     assinado_em?: Date | string | null
+    anexo_url?: string | null
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
@@ -80210,6 +80266,7 @@ export namespace Prisma {
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    anexo_url?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -80258,6 +80315,7 @@ export namespace Prisma {
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    anexo_url?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -81435,6 +81493,7 @@ export namespace Prisma {
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
     assinado_em?: Date | string | null
+    anexo_url?: string | null
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
@@ -82087,6 +82146,7 @@ export namespace Prisma {
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    anexo_url?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -82134,6 +82194,7 @@ export namespace Prisma {
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    anexo_url?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -82177,6 +82238,7 @@ export namespace Prisma {
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    anexo_url?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -82944,6 +83006,7 @@ export namespace Prisma {
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
     assinado_em?: Date | string | null
+    anexo_url?: string | null
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
@@ -83109,6 +83172,7 @@ export namespace Prisma {
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
     assinado_em?: Date | string | null
+    anexo_url?: string | null
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
@@ -83392,6 +83456,7 @@ export namespace Prisma {
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    anexo_url?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -83439,6 +83504,7 @@ export namespace Prisma {
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    anexo_url?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -83482,6 +83548,7 @@ export namespace Prisma {
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    anexo_url?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -83913,6 +83980,7 @@ export namespace Prisma {
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    anexo_url?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -83960,6 +84028,7 @@ export namespace Prisma {
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    anexo_url?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -84003,6 +84072,7 @@ export namespace Prisma {
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    anexo_url?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -84195,6 +84265,7 @@ export namespace Prisma {
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
     assinado_em?: Date | string | null
+    anexo_url?: string | null
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
@@ -84534,6 +84605,7 @@ export namespace Prisma {
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    anexo_url?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -84581,6 +84653,7 @@ export namespace Prisma {
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    anexo_url?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
@@ -84624,6 +84697,7 @@ export namespace Prisma {
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    anexo_url?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null

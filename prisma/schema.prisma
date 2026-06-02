@@ -460,6 +460,7 @@ model Contrato {
   data_inicio           DateTime?
   data_fim              DateTime?
   assinado_em           DateTime?
+  anexo_url             String?
   authentique_id        String?
   authentique_url       String?
   pdf_assinado_url      String?

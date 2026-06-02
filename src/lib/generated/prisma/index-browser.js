@@ -359,6 +359,7 @@ exports.Prisma.ContratoScalarFieldEnum = {
   data_inicio: 'data_inicio',
   data_fim: 'data_fim',
   assinado_em: 'assinado_em',
+  anexo_url: 'anexo_url',
   authentique_id: 'authentique_id',
   authentique_url: 'authentique_url',
   pdf_assinado_url: 'pdf_assinado_url',
