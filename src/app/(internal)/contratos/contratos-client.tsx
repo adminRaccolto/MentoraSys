@@ -766,6 +766,41 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
                     <Field label="Dia do vencimento">
                       <Input {...register("dia_vencimento")} type="number" min="1" max="31" className="h-9 text-sm" placeholder="Ex: 10" />
                     </Field>
+                    {contratoEditando && contratoEditando.status === "ASSINADO" && (
+                      <div className="pt-2 border-t">
+                        {contratoEditando.recebiveis_count > 0 ? (
+                          <p className="text-xs text-green-700 flex items-center gap-1.5">
+                            <CheckCircle className="size-3.5" />
+                            {contratoEditando.recebiveis_count} parcela{contratoEditando.recebiveis_count > 1 ? "s" : ""} já lançada{contratoEditando.recebiveis_count > 1 ? "s" : ""} no financeiro
+                          </p>
+                        ) : (
+                          <Button
+                            type="button"
+                            size="sm"
+                            className="w-full"
+                            disabled={isPending}
+                            onClick={() => {
+                              const n = contratoEditando.numero_parcelas;
+                              const venc = contratoEditando.primeiro_vencimento;
+                              const val = Number(contratoEditando.valor_total);
+                              if (n && venc && val > 0) {
+                                gerarParcelasDirecto(contratoEditando);
+                              } else {
+                                formParcelas.reset({
+                                  n_parcelas: n ? String(n) : "1",
+                                  valor_parcela: n && val > 0 ? String((val / n).toFixed(2)) : String(val.toFixed(2)),
+                                  data_primeira: venc ? new Date(venc).toISOString().split("T")[0] : "",
+                                });
+                                setContratoParcelar(contratoEditando);
+                              }
+                            }}
+                          >
+                            <DollarSign className="size-3.5 mr-1.5" />
+                            Calcular e lançar parcelas
+                          </Button>
+                        )}
+                      </div>
+                    )}
                   </div>
                   <div className="px-6 py-5 space-y-4">
                     <p className="text-xs font-semibold text-primary uppercase tracking-widest">Texto / Cláusulas</p>
@@ -963,6 +998,34 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
                 >
                   <Download className="size-4 mr-2" />
                   Baixar PDF assinado
+                </Button>
+              )}
+
+              {/* Gerar recebíveis — só aparece quando ASSINADO e sem parcelas */}
+              {contratoEditando && contratoEditando.status === "ASSINADO" && contratoEditando.recebiveis_count === 0 && (
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="text-primary border-primary hover:bg-primary/5"
+                  disabled={isPending}
+                  onClick={() => {
+                    const n = contratoEditando.numero_parcelas;
+                    const venc = contratoEditando.primeiro_vencimento;
+                    const val = Number(contratoEditando.valor_total);
+                    if (n && venc && val > 0) {
+                      gerarParcelasDirecto(contratoEditando);
+                    } else {
+                      formParcelas.reset({
+                        n_parcelas: n ? String(n) : "1",
+                        valor_parcela: n && val > 0 ? String((val / n).toFixed(2)) : String(val.toFixed(2)),
+                        data_primeira: venc ? new Date(venc).toISOString().split("T")[0] : "",
+                      });
+                      setContratoParcelar(contratoEditando);
+                    }
+                  }}
+                >
+                  <DollarSign className="size-4 mr-2" />
+                  Calcular parcelas
                 </Button>
               )}
 
