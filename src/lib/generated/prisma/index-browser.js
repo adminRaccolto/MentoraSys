@@ -700,6 +700,22 @@ exports.Prisma.TokenPortalScalarFieldEnum = {
   criado_em: 'criado_em'
 };
 
+exports.Prisma.AplicacaoDiagnosticoScalarFieldEnum = {
+  id: 'id',
+  empresa_id: 'empresa_id',
+  projeto_id: 'projeto_id',
+  cliente_id: 'cliente_id',
+  criado_por: 'criado_por',
+  momento: 'momento',
+  status: 'status',
+  token: 'token',
+  respostas: 'respostas',
+  enviado_em: 'enviado_em',
+  respondido_em: 'respondido_em',
+  criado_em: 'criado_em',
+  atualizado_em: 'atualizado_em'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -873,6 +889,18 @@ exports.TipoDiagnostico = exports.$Enums.TipoDiagnostico = {
   GANTT: 'GANTT'
 };
 
+exports.MomentoDiagnostico = exports.$Enums.MomentoDiagnostico = {
+  PONTO_A: 'PONTO_A',
+  PONTO_B: 'PONTO_B',
+  PONTO_C: 'PONTO_C'
+};
+
+exports.StatusAplicacaoDiagnostico = exports.$Enums.StatusAplicacaoDiagnostico = {
+  PENDENTE: 'PENDENTE',
+  ENVIADO: 'ENVIADO',
+  RESPONDIDO: 'RESPONDIDO'
+};
+
 exports.Prisma.ModelName = {
   Empresa: 'Empresa',
   Usuario: 'Usuario',
@@ -915,7 +943,8 @@ exports.Prisma.ModelName = {
   NotaFiscal: 'NotaFiscal',
   Boleto: 'Boleto',
   Diagnostico: 'Diagnostico',
-  TokenPortal: 'TokenPortal'
+  TokenPortal: 'TokenPortal',
+  AplicacaoDiagnostico: 'AplicacaoDiagnostico'
 };
 
 /**

@@ -23,6 +23,7 @@ import { criarDocumento, excluirDocumento } from "@/actions/documentos";
 import { gerarLinkPortal } from "@/actions/portal";
 import TarefaModal, { type TarefaCompleta } from "@/components/tarefa-modal";
 import ProjetoKanban from "@/components/projeto-kanban";
+import DiagnosticoColetaAba from "@/components/diagnostico-coleta-aba";
 
 type StatusProjeto = "PLANEJAMENTO" | "EM_ANDAMENTO" | "CONCLUIDO" | "CANCELADO";
 type StatusEtapa = "PENDENTE" | "EM_ANDAMENTO" | "CONCLUIDA" | "CANCELADA";
@@ -58,6 +59,10 @@ interface Props {
   projeto: Projeto;
   membros: { usuario: Responsavel }[];
   usuarioAtualId?: string;
+  diagnosticosColeta?: {
+    id: string; momento: string; status: string; token: string;
+    enviado_em: Date | null; respondido_em: Date | null; respostas: unknown;
+  }[];
 }
 
 const STATUS_PROJETO: Record<StatusProjeto, string> = {
@@ -77,7 +82,7 @@ function formatBytes(bytes: number) {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
-export default function ProjetoDetalheClient({ projeto: inicial, membros, usuarioAtualId }: Props) {
+export default function ProjetoDetalheClient({ projeto: inicial, membros, usuarioAtualId, diagnosticosColeta = [] }: Props) {
   const router = useRouter();
   const [projeto, setProjeto] = useState(inicial);
   const [etapasAbertas, setEtapasAbertas] = useState<Set<string>>(
@@ -349,6 +354,14 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros, usuari
           <TabsList className="h-9 bg-transparent p-0 gap-1">
             <TabsTrigger value="kanban" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-3 h-9">Kanban</TabsTrigger>
             <TabsTrigger value="etapas" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-3 h-9">Lista</TabsTrigger>
+            <TabsTrigger value="diagnostico" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-3 h-9">
+              Diagnóstico
+              {diagnosticosColeta.filter(d => d.status === "RESPONDIDO").length > 0 && (
+                <span className="ml-1 text-[10px] bg-green-500 text-white rounded-full px-1.5 py-0.5">
+                  {diagnosticosColeta.filter(d => d.status === "RESPONDIDO").length}/3
+                </span>
+              )}
+            </TabsTrigger>
             <TabsTrigger value="documentos" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-3 h-9">Documentos ({projeto.documentos.length})</TabsTrigger>
             <TabsTrigger value="info" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-3 h-9">Informações</TabsTrigger>
           </TabsList>
@@ -525,6 +538,14 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros, usuari
             </Button>
           )}
           </div>
+        </TabsContent>
+
+        {/* ── Tab Diagnóstico ── */}
+        <TabsContent value="diagnostico" className="flex-1 overflow-auto mt-0 p-6 data-[state=inactive]:hidden">
+          <DiagnosticoColetaAba
+            projetoId={projeto.id}
+            aplicacoesIniciais={diagnosticosColeta as any}
+          />
         </TabsContent>
 
         {/* ── Tab Documentos ── */}

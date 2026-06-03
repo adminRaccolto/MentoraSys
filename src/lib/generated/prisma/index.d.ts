@@ -223,6 +223,11 @@ export type Diagnostico = $Result.DefaultSelection<Prisma.$DiagnosticoPayload>
  * 
  */
 export type TokenPortal = $Result.DefaultSelection<Prisma.$TokenPortalPayload>
+/**
+ * Model AplicacaoDiagnostico
+ * 
+ */
+export type AplicacaoDiagnostico = $Result.DefaultSelection<Prisma.$AplicacaoDiagnosticoPayload>
 
 /**
  * Enums
@@ -431,6 +436,24 @@ export const TipoDiagnostico: {
 
 export type TipoDiagnostico = (typeof TipoDiagnostico)[keyof typeof TipoDiagnostico]
 
+
+export const MomentoDiagnostico: {
+  PONTO_A: 'PONTO_A',
+  PONTO_B: 'PONTO_B',
+  PONTO_C: 'PONTO_C'
+};
+
+export type MomentoDiagnostico = (typeof MomentoDiagnostico)[keyof typeof MomentoDiagnostico]
+
+
+export const StatusAplicacaoDiagnostico: {
+  PENDENTE: 'PENDENTE',
+  ENVIADO: 'ENVIADO',
+  RESPONDIDO: 'RESPONDIDO'
+};
+
+export type StatusAplicacaoDiagnostico = (typeof StatusAplicacaoDiagnostico)[keyof typeof StatusAplicacaoDiagnostico]
+
 }
 
 export type PlanoTipo = $Enums.PlanoTipo
@@ -512,6 +535,14 @@ export const StatusNota: typeof $Enums.StatusNota
 export type TipoDiagnostico = $Enums.TipoDiagnostico
 
 export const TipoDiagnostico: typeof $Enums.TipoDiagnostico
+
+export type MomentoDiagnostico = $Enums.MomentoDiagnostico
+
+export const MomentoDiagnostico: typeof $Enums.MomentoDiagnostico
+
+export type StatusAplicacaoDiagnostico = $Enums.StatusAplicacaoDiagnostico
+
+export const StatusAplicacaoDiagnostico: typeof $Enums.StatusAplicacaoDiagnostico
 
 /**
  * ##  Prisma Client ʲˢ
@@ -1053,6 +1084,16 @@ export class PrismaClient<
     * ```
     */
   get tokenPortal(): Prisma.TokenPortalDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.aplicacaoDiagnostico`: Exposes CRUD operations for the **AplicacaoDiagnostico** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AplicacaoDiagnosticos
+    * const aplicacaoDiagnosticos = await prisma.aplicacaoDiagnostico.findMany()
+    * ```
+    */
+  get aplicacaoDiagnostico(): Prisma.AplicacaoDiagnosticoDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1528,7 +1569,8 @@ export namespace Prisma {
     NotaFiscal: 'NotaFiscal',
     Boleto: 'Boleto',
     Diagnostico: 'Diagnostico',
-    TokenPortal: 'TokenPortal'
+    TokenPortal: 'TokenPortal',
+    AplicacaoDiagnostico: 'AplicacaoDiagnostico'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1544,7 +1586,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "lead" | "atividadeCRM" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "projeto" | "etapa" | "tarefa" | "comentarioTarefa" | "anexoTarefa" | "atividadeTarefa" | "aprovacaoTarefa" | "itemChecklist" | "etiquetaTarefa" | "tarefaEtiqueta" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "recebivel" | "contaPagar" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "boleto" | "diagnostico" | "tokenPortal"
+      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "lead" | "atividadeCRM" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "projeto" | "etapa" | "tarefa" | "comentarioTarefa" | "anexoTarefa" | "atividadeTarefa" | "aprovacaoTarefa" | "itemChecklist" | "etiquetaTarefa" | "tarefaEtiqueta" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "recebivel" | "contaPagar" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "boleto" | "diagnostico" | "tokenPortal" | "aplicacaoDiagnostico"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -4656,6 +4698,80 @@ export namespace Prisma {
           }
         }
       }
+      AplicacaoDiagnostico: {
+        payload: Prisma.$AplicacaoDiagnosticoPayload<ExtArgs>
+        fields: Prisma.AplicacaoDiagnosticoFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AplicacaoDiagnosticoFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AplicacaoDiagnosticoPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AplicacaoDiagnosticoFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AplicacaoDiagnosticoPayload>
+          }
+          findFirst: {
+            args: Prisma.AplicacaoDiagnosticoFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AplicacaoDiagnosticoPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AplicacaoDiagnosticoFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AplicacaoDiagnosticoPayload>
+          }
+          findMany: {
+            args: Prisma.AplicacaoDiagnosticoFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AplicacaoDiagnosticoPayload>[]
+          }
+          create: {
+            args: Prisma.AplicacaoDiagnosticoCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AplicacaoDiagnosticoPayload>
+          }
+          createMany: {
+            args: Prisma.AplicacaoDiagnosticoCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AplicacaoDiagnosticoCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AplicacaoDiagnosticoPayload>[]
+          }
+          delete: {
+            args: Prisma.AplicacaoDiagnosticoDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AplicacaoDiagnosticoPayload>
+          }
+          update: {
+            args: Prisma.AplicacaoDiagnosticoUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AplicacaoDiagnosticoPayload>
+          }
+          deleteMany: {
+            args: Prisma.AplicacaoDiagnosticoDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AplicacaoDiagnosticoUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AplicacaoDiagnosticoUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AplicacaoDiagnosticoPayload>[]
+          }
+          upsert: {
+            args: Prisma.AplicacaoDiagnosticoUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AplicacaoDiagnosticoPayload>
+          }
+          aggregate: {
+            args: Prisma.AplicacaoDiagnosticoAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAplicacaoDiagnostico>
+          }
+          groupBy: {
+            args: Prisma.AplicacaoDiagnosticoGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AplicacaoDiagnosticoGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AplicacaoDiagnosticoCountArgs<ExtArgs>
+            result: $Utils.Optional<AplicacaoDiagnosticoCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -4806,6 +4922,7 @@ export namespace Prisma {
     boleto?: BoletoOmit
     diagnostico?: DiagnosticoOmit
     tokenPortal?: TokenPortalOmit
+    aplicacaoDiagnostico?: AplicacaoDiagnosticoOmit
   }
 
   /* Types for Logging */
@@ -4910,6 +5027,7 @@ export namespace Prisma {
     notas_fiscais: number
     diagnosticos: number
     etiquetas_tarefa: number
+    aplicacoes_diagnostico: number
   }
 
   export type EmpresaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4937,6 +5055,7 @@ export namespace Prisma {
     notas_fiscais?: boolean | EmpresaCountOutputTypeCountNotas_fiscaisArgs
     diagnosticos?: boolean | EmpresaCountOutputTypeCountDiagnosticosArgs
     etiquetas_tarefa?: boolean | EmpresaCountOutputTypeCountEtiquetas_tarefaArgs
+    aplicacoes_diagnostico?: boolean | EmpresaCountOutputTypeCountAplicacoes_diagnosticoArgs
   }
 
   // Custom InputTypes
@@ -5116,6 +5235,13 @@ export namespace Prisma {
    */
   export type EmpresaCountOutputTypeCountEtiquetas_tarefaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: EtiquetaTarefaWhereInput
+  }
+
+  /**
+   * EmpresaCountOutputType without action
+   */
+  export type EmpresaCountOutputTypeCountAplicacoes_diagnosticoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AplicacaoDiagnosticoWhereInput
   }
 
 
@@ -5409,6 +5535,7 @@ export namespace Prisma {
     notas_fiscais: number
     diagnosticos: number
     documentos: number
+    aplicacoes_diagnostico: number
   }
 
   export type ClienteCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5424,6 +5551,7 @@ export namespace Prisma {
     notas_fiscais?: boolean | ClienteCountOutputTypeCountNotas_fiscaisArgs
     diagnosticos?: boolean | ClienteCountOutputTypeCountDiagnosticosArgs
     documentos?: boolean | ClienteCountOutputTypeCountDocumentosArgs
+    aplicacoes_diagnostico?: boolean | ClienteCountOutputTypeCountAplicacoes_diagnosticoArgs
   }
 
   // Custom InputTypes
@@ -5519,6 +5647,13 @@ export namespace Prisma {
    */
   export type ClienteCountOutputTypeCountDocumentosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: DocumentoWhereInput
+  }
+
+  /**
+   * ClienteCountOutputType without action
+   */
+  export type ClienteCountOutputTypeCountAplicacoes_diagnosticoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AplicacaoDiagnosticoWhereInput
   }
 
 
@@ -5701,6 +5836,7 @@ export namespace Prisma {
     documentos: number
     eventos: number
     diagnosticos: number
+    aplicacoes_diagnostico: number
   }
 
   export type ProjetoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5709,6 +5845,7 @@ export namespace Prisma {
     documentos?: boolean | ProjetoCountOutputTypeCountDocumentosArgs
     eventos?: boolean | ProjetoCountOutputTypeCountEventosArgs
     diagnosticos?: boolean | ProjetoCountOutputTypeCountDiagnosticosArgs
+    aplicacoes_diagnostico?: boolean | ProjetoCountOutputTypeCountAplicacoes_diagnosticoArgs
   }
 
   // Custom InputTypes
@@ -5755,6 +5892,13 @@ export namespace Prisma {
    */
   export type ProjetoCountOutputTypeCountDiagnosticosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: DiagnosticoWhereInput
+  }
+
+  /**
+   * ProjetoCountOutputType without action
+   */
+  export type ProjetoCountOutputTypeCountAplicacoes_diagnosticoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AplicacaoDiagnosticoWhereInput
   }
 
 
@@ -6271,6 +6415,7 @@ export namespace Prisma {
     notas_fiscais?: boolean | Empresa$notas_fiscaisArgs<ExtArgs>
     diagnosticos?: boolean | Empresa$diagnosticosArgs<ExtArgs>
     etiquetas_tarefa?: boolean | Empresa$etiquetas_tarefaArgs<ExtArgs>
+    aplicacoes_diagnostico?: boolean | Empresa$aplicacoes_diagnosticoArgs<ExtArgs>
     _count?: boolean | EmpresaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["empresa"]>
 
@@ -6339,6 +6484,7 @@ export namespace Prisma {
     notas_fiscais?: boolean | Empresa$notas_fiscaisArgs<ExtArgs>
     diagnosticos?: boolean | Empresa$diagnosticosArgs<ExtArgs>
     etiquetas_tarefa?: boolean | Empresa$etiquetas_tarefaArgs<ExtArgs>
+    aplicacoes_diagnostico?: boolean | Empresa$aplicacoes_diagnosticoArgs<ExtArgs>
     _count?: boolean | EmpresaCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EmpresaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -6371,6 +6517,7 @@ export namespace Prisma {
       notas_fiscais: Prisma.$NotaFiscalPayload<ExtArgs>[]
       diagnosticos: Prisma.$DiagnosticoPayload<ExtArgs>[]
       etiquetas_tarefa: Prisma.$EtiquetaTarefaPayload<ExtArgs>[]
+      aplicacoes_diagnostico: Prisma.$AplicacaoDiagnosticoPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6801,6 +6948,7 @@ export namespace Prisma {
     notas_fiscais<T extends Empresa$notas_fiscaisArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$notas_fiscaisArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotaFiscalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     diagnosticos<T extends Empresa$diagnosticosArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$diagnosticosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiagnosticoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     etiquetas_tarefa<T extends Empresa$etiquetas_tarefaArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$etiquetas_tarefaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EtiquetaTarefaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    aplicacoes_diagnostico<T extends Empresa$aplicacoes_diagnosticoArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$aplicacoes_diagnosticoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AplicacaoDiagnosticoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7806,6 +7954,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: EtiquetaTarefaScalarFieldEnum | EtiquetaTarefaScalarFieldEnum[]
+  }
+
+  /**
+   * Empresa.aplicacoes_diagnostico
+   */
+  export type Empresa$aplicacoes_diagnosticoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AplicacaoDiagnostico
+     */
+    select?: AplicacaoDiagnosticoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AplicacaoDiagnostico
+     */
+    omit?: AplicacaoDiagnosticoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AplicacaoDiagnosticoInclude<ExtArgs> | null
+    where?: AplicacaoDiagnosticoWhereInput
+    orderBy?: AplicacaoDiagnosticoOrderByWithRelationInput | AplicacaoDiagnosticoOrderByWithRelationInput[]
+    cursor?: AplicacaoDiagnosticoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AplicacaoDiagnosticoScalarFieldEnum | AplicacaoDiagnosticoScalarFieldEnum[]
   }
 
   /**
@@ -16452,6 +16624,7 @@ export namespace Prisma {
     diagnosticos?: boolean | Cliente$diagnosticosArgs<ExtArgs>
     convite?: boolean | Cliente$conviteArgs<ExtArgs>
     documentos?: boolean | Cliente$documentosArgs<ExtArgs>
+    aplicacoes_diagnostico?: boolean | Cliente$aplicacoes_diagnosticoArgs<ExtArgs>
     _count?: boolean | ClienteCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["cliente"]>
 
@@ -16554,6 +16727,7 @@ export namespace Prisma {
     diagnosticos?: boolean | Cliente$diagnosticosArgs<ExtArgs>
     convite?: boolean | Cliente$conviteArgs<ExtArgs>
     documentos?: boolean | Cliente$documentosArgs<ExtArgs>
+    aplicacoes_diagnostico?: boolean | Cliente$aplicacoes_diagnosticoArgs<ExtArgs>
     _count?: boolean | ClienteCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ClienteIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -16580,6 +16754,7 @@ export namespace Prisma {
       diagnosticos: Prisma.$DiagnosticoPayload<ExtArgs>[]
       convite: Prisma.$ConviteClientePayload<ExtArgs> | null
       documentos: Prisma.$DocumentoPayload<ExtArgs>[]
+      aplicacoes_diagnostico: Prisma.$AplicacaoDiagnosticoPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -17014,6 +17189,7 @@ export namespace Prisma {
     diagnosticos<T extends Cliente$diagnosticosArgs<ExtArgs> = {}>(args?: Subset<T, Cliente$diagnosticosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiagnosticoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     convite<T extends Cliente$conviteArgs<ExtArgs> = {}>(args?: Subset<T, Cliente$conviteArgs<ExtArgs>>): Prisma__ConviteClienteClient<$Result.GetResult<Prisma.$ConviteClientePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     documentos<T extends Cliente$documentosArgs<ExtArgs> = {}>(args?: Subset<T, Cliente$documentosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DocumentoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    aplicacoes_diagnostico<T extends Cliente$aplicacoes_diagnosticoArgs<ExtArgs> = {}>(args?: Subset<T, Cliente$aplicacoes_diagnosticoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AplicacaoDiagnosticoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -17772,6 +17948,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: DocumentoScalarFieldEnum | DocumentoScalarFieldEnum[]
+  }
+
+  /**
+   * Cliente.aplicacoes_diagnostico
+   */
+  export type Cliente$aplicacoes_diagnosticoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AplicacaoDiagnostico
+     */
+    select?: AplicacaoDiagnosticoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AplicacaoDiagnostico
+     */
+    omit?: AplicacaoDiagnosticoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AplicacaoDiagnosticoInclude<ExtArgs> | null
+    where?: AplicacaoDiagnosticoWhereInput
+    orderBy?: AplicacaoDiagnosticoOrderByWithRelationInput | AplicacaoDiagnosticoOrderByWithRelationInput[]
+    cursor?: AplicacaoDiagnosticoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AplicacaoDiagnosticoScalarFieldEnum | AplicacaoDiagnosticoScalarFieldEnum[]
   }
 
   /**
@@ -28431,6 +28631,7 @@ export namespace Prisma {
     documentos?: boolean | Projeto$documentosArgs<ExtArgs>
     eventos?: boolean | Projeto$eventosArgs<ExtArgs>
     diagnosticos?: boolean | Projeto$diagnosticosArgs<ExtArgs>
+    aplicacoes_diagnostico?: boolean | Projeto$aplicacoes_diagnosticoArgs<ExtArgs>
     _count?: boolean | ProjetoCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["projeto"]>
 
@@ -28498,6 +28699,7 @@ export namespace Prisma {
     documentos?: boolean | Projeto$documentosArgs<ExtArgs>
     eventos?: boolean | Projeto$eventosArgs<ExtArgs>
     diagnosticos?: boolean | Projeto$diagnosticosArgs<ExtArgs>
+    aplicacoes_diagnostico?: boolean | Projeto$aplicacoes_diagnosticoArgs<ExtArgs>
     _count?: boolean | ProjetoCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProjetoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -28525,6 +28727,7 @@ export namespace Prisma {
       documentos: Prisma.$DocumentoPayload<ExtArgs>[]
       eventos: Prisma.$EventoPayload<ExtArgs>[]
       diagnosticos: Prisma.$DiagnosticoPayload<ExtArgs>[]
+      aplicacoes_diagnostico: Prisma.$AplicacaoDiagnosticoPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -28942,6 +29145,7 @@ export namespace Prisma {
     documentos<T extends Projeto$documentosArgs<ExtArgs> = {}>(args?: Subset<T, Projeto$documentosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DocumentoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     eventos<T extends Projeto$eventosArgs<ExtArgs> = {}>(args?: Subset<T, Projeto$eventosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     diagnosticos<T extends Projeto$diagnosticosArgs<ExtArgs> = {}>(args?: Subset<T, Projeto$diagnosticosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiagnosticoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    aplicacoes_diagnostico<T extends Projeto$aplicacoes_diagnosticoArgs<ExtArgs> = {}>(args?: Subset<T, Projeto$aplicacoes_diagnosticoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AplicacaoDiagnosticoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -29539,6 +29743,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: DiagnosticoScalarFieldEnum | DiagnosticoScalarFieldEnum[]
+  }
+
+  /**
+   * Projeto.aplicacoes_diagnostico
+   */
+  export type Projeto$aplicacoes_diagnosticoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AplicacaoDiagnostico
+     */
+    select?: AplicacaoDiagnosticoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AplicacaoDiagnostico
+     */
+    omit?: AplicacaoDiagnosticoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AplicacaoDiagnosticoInclude<ExtArgs> | null
+    where?: AplicacaoDiagnosticoWhereInput
+    orderBy?: AplicacaoDiagnosticoOrderByWithRelationInput | AplicacaoDiagnosticoOrderByWithRelationInput[]
+    cursor?: AplicacaoDiagnosticoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AplicacaoDiagnosticoScalarFieldEnum | AplicacaoDiagnosticoScalarFieldEnum[]
   }
 
   /**
@@ -58415,6 +58643,1204 @@ export namespace Prisma {
 
 
   /**
+   * Model AplicacaoDiagnostico
+   */
+
+  export type AggregateAplicacaoDiagnostico = {
+    _count: AplicacaoDiagnosticoCountAggregateOutputType | null
+    _min: AplicacaoDiagnosticoMinAggregateOutputType | null
+    _max: AplicacaoDiagnosticoMaxAggregateOutputType | null
+  }
+
+  export type AplicacaoDiagnosticoMinAggregateOutputType = {
+    id: string | null
+    empresa_id: string | null
+    projeto_id: string | null
+    cliente_id: string | null
+    criado_por: string | null
+    momento: $Enums.MomentoDiagnostico | null
+    status: $Enums.StatusAplicacaoDiagnostico | null
+    token: string | null
+    enviado_em: Date | null
+    respondido_em: Date | null
+    criado_em: Date | null
+    atualizado_em: Date | null
+  }
+
+  export type AplicacaoDiagnosticoMaxAggregateOutputType = {
+    id: string | null
+    empresa_id: string | null
+    projeto_id: string | null
+    cliente_id: string | null
+    criado_por: string | null
+    momento: $Enums.MomentoDiagnostico | null
+    status: $Enums.StatusAplicacaoDiagnostico | null
+    token: string | null
+    enviado_em: Date | null
+    respondido_em: Date | null
+    criado_em: Date | null
+    atualizado_em: Date | null
+  }
+
+  export type AplicacaoDiagnosticoCountAggregateOutputType = {
+    id: number
+    empresa_id: number
+    projeto_id: number
+    cliente_id: number
+    criado_por: number
+    momento: number
+    status: number
+    token: number
+    respostas: number
+    enviado_em: number
+    respondido_em: number
+    criado_em: number
+    atualizado_em: number
+    _all: number
+  }
+
+
+  export type AplicacaoDiagnosticoMinAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    projeto_id?: true
+    cliente_id?: true
+    criado_por?: true
+    momento?: true
+    status?: true
+    token?: true
+    enviado_em?: true
+    respondido_em?: true
+    criado_em?: true
+    atualizado_em?: true
+  }
+
+  export type AplicacaoDiagnosticoMaxAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    projeto_id?: true
+    cliente_id?: true
+    criado_por?: true
+    momento?: true
+    status?: true
+    token?: true
+    enviado_em?: true
+    respondido_em?: true
+    criado_em?: true
+    atualizado_em?: true
+  }
+
+  export type AplicacaoDiagnosticoCountAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    projeto_id?: true
+    cliente_id?: true
+    criado_por?: true
+    momento?: true
+    status?: true
+    token?: true
+    respostas?: true
+    enviado_em?: true
+    respondido_em?: true
+    criado_em?: true
+    atualizado_em?: true
+    _all?: true
+  }
+
+  export type AplicacaoDiagnosticoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AplicacaoDiagnostico to aggregate.
+     */
+    where?: AplicacaoDiagnosticoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AplicacaoDiagnosticos to fetch.
+     */
+    orderBy?: AplicacaoDiagnosticoOrderByWithRelationInput | AplicacaoDiagnosticoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AplicacaoDiagnosticoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AplicacaoDiagnosticos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AplicacaoDiagnosticos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AplicacaoDiagnosticos
+    **/
+    _count?: true | AplicacaoDiagnosticoCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AplicacaoDiagnosticoMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AplicacaoDiagnosticoMaxAggregateInputType
+  }
+
+  export type GetAplicacaoDiagnosticoAggregateType<T extends AplicacaoDiagnosticoAggregateArgs> = {
+        [P in keyof T & keyof AggregateAplicacaoDiagnostico]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAplicacaoDiagnostico[P]>
+      : GetScalarType<T[P], AggregateAplicacaoDiagnostico[P]>
+  }
+
+
+
+
+  export type AplicacaoDiagnosticoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AplicacaoDiagnosticoWhereInput
+    orderBy?: AplicacaoDiagnosticoOrderByWithAggregationInput | AplicacaoDiagnosticoOrderByWithAggregationInput[]
+    by: AplicacaoDiagnosticoScalarFieldEnum[] | AplicacaoDiagnosticoScalarFieldEnum
+    having?: AplicacaoDiagnosticoScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AplicacaoDiagnosticoCountAggregateInputType | true
+    _min?: AplicacaoDiagnosticoMinAggregateInputType
+    _max?: AplicacaoDiagnosticoMaxAggregateInputType
+  }
+
+  export type AplicacaoDiagnosticoGroupByOutputType = {
+    id: string
+    empresa_id: string
+    projeto_id: string
+    cliente_id: string | null
+    criado_por: string | null
+    momento: $Enums.MomentoDiagnostico
+    status: $Enums.StatusAplicacaoDiagnostico
+    token: string
+    respostas: JsonValue | null
+    enviado_em: Date | null
+    respondido_em: Date | null
+    criado_em: Date
+    atualizado_em: Date
+    _count: AplicacaoDiagnosticoCountAggregateOutputType | null
+    _min: AplicacaoDiagnosticoMinAggregateOutputType | null
+    _max: AplicacaoDiagnosticoMaxAggregateOutputType | null
+  }
+
+  type GetAplicacaoDiagnosticoGroupByPayload<T extends AplicacaoDiagnosticoGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AplicacaoDiagnosticoGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AplicacaoDiagnosticoGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AplicacaoDiagnosticoGroupByOutputType[P]>
+            : GetScalarType<T[P], AplicacaoDiagnosticoGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AplicacaoDiagnosticoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    projeto_id?: boolean
+    cliente_id?: boolean
+    criado_por?: boolean
+    momento?: boolean
+    status?: boolean
+    token?: boolean
+    respostas?: boolean
+    enviado_em?: boolean
+    respondido_em?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    projeto?: boolean | ProjetoDefaultArgs<ExtArgs>
+    cliente?: boolean | AplicacaoDiagnostico$clienteArgs<ExtArgs>
+  }, ExtArgs["result"]["aplicacaoDiagnostico"]>
+
+  export type AplicacaoDiagnosticoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    projeto_id?: boolean
+    cliente_id?: boolean
+    criado_por?: boolean
+    momento?: boolean
+    status?: boolean
+    token?: boolean
+    respostas?: boolean
+    enviado_em?: boolean
+    respondido_em?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    projeto?: boolean | ProjetoDefaultArgs<ExtArgs>
+    cliente?: boolean | AplicacaoDiagnostico$clienteArgs<ExtArgs>
+  }, ExtArgs["result"]["aplicacaoDiagnostico"]>
+
+  export type AplicacaoDiagnosticoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    projeto_id?: boolean
+    cliente_id?: boolean
+    criado_por?: boolean
+    momento?: boolean
+    status?: boolean
+    token?: boolean
+    respostas?: boolean
+    enviado_em?: boolean
+    respondido_em?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    projeto?: boolean | ProjetoDefaultArgs<ExtArgs>
+    cliente?: boolean | AplicacaoDiagnostico$clienteArgs<ExtArgs>
+  }, ExtArgs["result"]["aplicacaoDiagnostico"]>
+
+  export type AplicacaoDiagnosticoSelectScalar = {
+    id?: boolean
+    empresa_id?: boolean
+    projeto_id?: boolean
+    cliente_id?: boolean
+    criado_por?: boolean
+    momento?: boolean
+    status?: boolean
+    token?: boolean
+    respostas?: boolean
+    enviado_em?: boolean
+    respondido_em?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+  }
+
+  export type AplicacaoDiagnosticoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "projeto_id" | "cliente_id" | "criado_por" | "momento" | "status" | "token" | "respostas" | "enviado_em" | "respondido_em" | "criado_em" | "atualizado_em", ExtArgs["result"]["aplicacaoDiagnostico"]>
+  export type AplicacaoDiagnosticoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    projeto?: boolean | ProjetoDefaultArgs<ExtArgs>
+    cliente?: boolean | AplicacaoDiagnostico$clienteArgs<ExtArgs>
+  }
+  export type AplicacaoDiagnosticoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    projeto?: boolean | ProjetoDefaultArgs<ExtArgs>
+    cliente?: boolean | AplicacaoDiagnostico$clienteArgs<ExtArgs>
+  }
+  export type AplicacaoDiagnosticoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    projeto?: boolean | ProjetoDefaultArgs<ExtArgs>
+    cliente?: boolean | AplicacaoDiagnostico$clienteArgs<ExtArgs>
+  }
+
+  export type $AplicacaoDiagnosticoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AplicacaoDiagnostico"
+    objects: {
+      empresa: Prisma.$EmpresaPayload<ExtArgs>
+      projeto: Prisma.$ProjetoPayload<ExtArgs>
+      cliente: Prisma.$ClientePayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      empresa_id: string
+      projeto_id: string
+      cliente_id: string | null
+      criado_por: string | null
+      momento: $Enums.MomentoDiagnostico
+      status: $Enums.StatusAplicacaoDiagnostico
+      token: string
+      respostas: Prisma.JsonValue | null
+      enviado_em: Date | null
+      respondido_em: Date | null
+      criado_em: Date
+      atualizado_em: Date
+    }, ExtArgs["result"]["aplicacaoDiagnostico"]>
+    composites: {}
+  }
+
+  type AplicacaoDiagnosticoGetPayload<S extends boolean | null | undefined | AplicacaoDiagnosticoDefaultArgs> = $Result.GetResult<Prisma.$AplicacaoDiagnosticoPayload, S>
+
+  type AplicacaoDiagnosticoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AplicacaoDiagnosticoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AplicacaoDiagnosticoCountAggregateInputType | true
+    }
+
+  export interface AplicacaoDiagnosticoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AplicacaoDiagnostico'], meta: { name: 'AplicacaoDiagnostico' } }
+    /**
+     * Find zero or one AplicacaoDiagnostico that matches the filter.
+     * @param {AplicacaoDiagnosticoFindUniqueArgs} args - Arguments to find a AplicacaoDiagnostico
+     * @example
+     * // Get one AplicacaoDiagnostico
+     * const aplicacaoDiagnostico = await prisma.aplicacaoDiagnostico.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AplicacaoDiagnosticoFindUniqueArgs>(args: SelectSubset<T, AplicacaoDiagnosticoFindUniqueArgs<ExtArgs>>): Prisma__AplicacaoDiagnosticoClient<$Result.GetResult<Prisma.$AplicacaoDiagnosticoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AplicacaoDiagnostico that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AplicacaoDiagnosticoFindUniqueOrThrowArgs} args - Arguments to find a AplicacaoDiagnostico
+     * @example
+     * // Get one AplicacaoDiagnostico
+     * const aplicacaoDiagnostico = await prisma.aplicacaoDiagnostico.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AplicacaoDiagnosticoFindUniqueOrThrowArgs>(args: SelectSubset<T, AplicacaoDiagnosticoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AplicacaoDiagnosticoClient<$Result.GetResult<Prisma.$AplicacaoDiagnosticoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AplicacaoDiagnostico that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AplicacaoDiagnosticoFindFirstArgs} args - Arguments to find a AplicacaoDiagnostico
+     * @example
+     * // Get one AplicacaoDiagnostico
+     * const aplicacaoDiagnostico = await prisma.aplicacaoDiagnostico.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AplicacaoDiagnosticoFindFirstArgs>(args?: SelectSubset<T, AplicacaoDiagnosticoFindFirstArgs<ExtArgs>>): Prisma__AplicacaoDiagnosticoClient<$Result.GetResult<Prisma.$AplicacaoDiagnosticoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AplicacaoDiagnostico that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AplicacaoDiagnosticoFindFirstOrThrowArgs} args - Arguments to find a AplicacaoDiagnostico
+     * @example
+     * // Get one AplicacaoDiagnostico
+     * const aplicacaoDiagnostico = await prisma.aplicacaoDiagnostico.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AplicacaoDiagnosticoFindFirstOrThrowArgs>(args?: SelectSubset<T, AplicacaoDiagnosticoFindFirstOrThrowArgs<ExtArgs>>): Prisma__AplicacaoDiagnosticoClient<$Result.GetResult<Prisma.$AplicacaoDiagnosticoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AplicacaoDiagnosticos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AplicacaoDiagnosticoFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AplicacaoDiagnosticos
+     * const aplicacaoDiagnosticos = await prisma.aplicacaoDiagnostico.findMany()
+     * 
+     * // Get first 10 AplicacaoDiagnosticos
+     * const aplicacaoDiagnosticos = await prisma.aplicacaoDiagnostico.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const aplicacaoDiagnosticoWithIdOnly = await prisma.aplicacaoDiagnostico.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AplicacaoDiagnosticoFindManyArgs>(args?: SelectSubset<T, AplicacaoDiagnosticoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AplicacaoDiagnosticoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AplicacaoDiagnostico.
+     * @param {AplicacaoDiagnosticoCreateArgs} args - Arguments to create a AplicacaoDiagnostico.
+     * @example
+     * // Create one AplicacaoDiagnostico
+     * const AplicacaoDiagnostico = await prisma.aplicacaoDiagnostico.create({
+     *   data: {
+     *     // ... data to create a AplicacaoDiagnostico
+     *   }
+     * })
+     * 
+     */
+    create<T extends AplicacaoDiagnosticoCreateArgs>(args: SelectSubset<T, AplicacaoDiagnosticoCreateArgs<ExtArgs>>): Prisma__AplicacaoDiagnosticoClient<$Result.GetResult<Prisma.$AplicacaoDiagnosticoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AplicacaoDiagnosticos.
+     * @param {AplicacaoDiagnosticoCreateManyArgs} args - Arguments to create many AplicacaoDiagnosticos.
+     * @example
+     * // Create many AplicacaoDiagnosticos
+     * const aplicacaoDiagnostico = await prisma.aplicacaoDiagnostico.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AplicacaoDiagnosticoCreateManyArgs>(args?: SelectSubset<T, AplicacaoDiagnosticoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AplicacaoDiagnosticos and returns the data saved in the database.
+     * @param {AplicacaoDiagnosticoCreateManyAndReturnArgs} args - Arguments to create many AplicacaoDiagnosticos.
+     * @example
+     * // Create many AplicacaoDiagnosticos
+     * const aplicacaoDiagnostico = await prisma.aplicacaoDiagnostico.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AplicacaoDiagnosticos and only return the `id`
+     * const aplicacaoDiagnosticoWithIdOnly = await prisma.aplicacaoDiagnostico.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AplicacaoDiagnosticoCreateManyAndReturnArgs>(args?: SelectSubset<T, AplicacaoDiagnosticoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AplicacaoDiagnosticoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AplicacaoDiagnostico.
+     * @param {AplicacaoDiagnosticoDeleteArgs} args - Arguments to delete one AplicacaoDiagnostico.
+     * @example
+     * // Delete one AplicacaoDiagnostico
+     * const AplicacaoDiagnostico = await prisma.aplicacaoDiagnostico.delete({
+     *   where: {
+     *     // ... filter to delete one AplicacaoDiagnostico
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AplicacaoDiagnosticoDeleteArgs>(args: SelectSubset<T, AplicacaoDiagnosticoDeleteArgs<ExtArgs>>): Prisma__AplicacaoDiagnosticoClient<$Result.GetResult<Prisma.$AplicacaoDiagnosticoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AplicacaoDiagnostico.
+     * @param {AplicacaoDiagnosticoUpdateArgs} args - Arguments to update one AplicacaoDiagnostico.
+     * @example
+     * // Update one AplicacaoDiagnostico
+     * const aplicacaoDiagnostico = await prisma.aplicacaoDiagnostico.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AplicacaoDiagnosticoUpdateArgs>(args: SelectSubset<T, AplicacaoDiagnosticoUpdateArgs<ExtArgs>>): Prisma__AplicacaoDiagnosticoClient<$Result.GetResult<Prisma.$AplicacaoDiagnosticoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AplicacaoDiagnosticos.
+     * @param {AplicacaoDiagnosticoDeleteManyArgs} args - Arguments to filter AplicacaoDiagnosticos to delete.
+     * @example
+     * // Delete a few AplicacaoDiagnosticos
+     * const { count } = await prisma.aplicacaoDiagnostico.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AplicacaoDiagnosticoDeleteManyArgs>(args?: SelectSubset<T, AplicacaoDiagnosticoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AplicacaoDiagnosticos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AplicacaoDiagnosticoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AplicacaoDiagnosticos
+     * const aplicacaoDiagnostico = await prisma.aplicacaoDiagnostico.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AplicacaoDiagnosticoUpdateManyArgs>(args: SelectSubset<T, AplicacaoDiagnosticoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AplicacaoDiagnosticos and returns the data updated in the database.
+     * @param {AplicacaoDiagnosticoUpdateManyAndReturnArgs} args - Arguments to update many AplicacaoDiagnosticos.
+     * @example
+     * // Update many AplicacaoDiagnosticos
+     * const aplicacaoDiagnostico = await prisma.aplicacaoDiagnostico.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AplicacaoDiagnosticos and only return the `id`
+     * const aplicacaoDiagnosticoWithIdOnly = await prisma.aplicacaoDiagnostico.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AplicacaoDiagnosticoUpdateManyAndReturnArgs>(args: SelectSubset<T, AplicacaoDiagnosticoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AplicacaoDiagnosticoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AplicacaoDiagnostico.
+     * @param {AplicacaoDiagnosticoUpsertArgs} args - Arguments to update or create a AplicacaoDiagnostico.
+     * @example
+     * // Update or create a AplicacaoDiagnostico
+     * const aplicacaoDiagnostico = await prisma.aplicacaoDiagnostico.upsert({
+     *   create: {
+     *     // ... data to create a AplicacaoDiagnostico
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AplicacaoDiagnostico we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AplicacaoDiagnosticoUpsertArgs>(args: SelectSubset<T, AplicacaoDiagnosticoUpsertArgs<ExtArgs>>): Prisma__AplicacaoDiagnosticoClient<$Result.GetResult<Prisma.$AplicacaoDiagnosticoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AplicacaoDiagnosticos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AplicacaoDiagnosticoCountArgs} args - Arguments to filter AplicacaoDiagnosticos to count.
+     * @example
+     * // Count the number of AplicacaoDiagnosticos
+     * const count = await prisma.aplicacaoDiagnostico.count({
+     *   where: {
+     *     // ... the filter for the AplicacaoDiagnosticos we want to count
+     *   }
+     * })
+    **/
+    count<T extends AplicacaoDiagnosticoCountArgs>(
+      args?: Subset<T, AplicacaoDiagnosticoCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AplicacaoDiagnosticoCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AplicacaoDiagnostico.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AplicacaoDiagnosticoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AplicacaoDiagnosticoAggregateArgs>(args: Subset<T, AplicacaoDiagnosticoAggregateArgs>): Prisma.PrismaPromise<GetAplicacaoDiagnosticoAggregateType<T>>
+
+    /**
+     * Group by AplicacaoDiagnostico.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AplicacaoDiagnosticoGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AplicacaoDiagnosticoGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AplicacaoDiagnosticoGroupByArgs['orderBy'] }
+        : { orderBy?: AplicacaoDiagnosticoGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AplicacaoDiagnosticoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAplicacaoDiagnosticoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AplicacaoDiagnostico model
+   */
+  readonly fields: AplicacaoDiagnosticoFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AplicacaoDiagnostico.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AplicacaoDiagnosticoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    empresa<T extends EmpresaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmpresaDefaultArgs<ExtArgs>>): Prisma__EmpresaClient<$Result.GetResult<Prisma.$EmpresaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    projeto<T extends ProjetoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjetoDefaultArgs<ExtArgs>>): Prisma__ProjetoClient<$Result.GetResult<Prisma.$ProjetoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    cliente<T extends AplicacaoDiagnostico$clienteArgs<ExtArgs> = {}>(args?: Subset<T, AplicacaoDiagnostico$clienteArgs<ExtArgs>>): Prisma__ClienteClient<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AplicacaoDiagnostico model
+   */
+  interface AplicacaoDiagnosticoFieldRefs {
+    readonly id: FieldRef<"AplicacaoDiagnostico", 'String'>
+    readonly empresa_id: FieldRef<"AplicacaoDiagnostico", 'String'>
+    readonly projeto_id: FieldRef<"AplicacaoDiagnostico", 'String'>
+    readonly cliente_id: FieldRef<"AplicacaoDiagnostico", 'String'>
+    readonly criado_por: FieldRef<"AplicacaoDiagnostico", 'String'>
+    readonly momento: FieldRef<"AplicacaoDiagnostico", 'MomentoDiagnostico'>
+    readonly status: FieldRef<"AplicacaoDiagnostico", 'StatusAplicacaoDiagnostico'>
+    readonly token: FieldRef<"AplicacaoDiagnostico", 'String'>
+    readonly respostas: FieldRef<"AplicacaoDiagnostico", 'Json'>
+    readonly enviado_em: FieldRef<"AplicacaoDiagnostico", 'DateTime'>
+    readonly respondido_em: FieldRef<"AplicacaoDiagnostico", 'DateTime'>
+    readonly criado_em: FieldRef<"AplicacaoDiagnostico", 'DateTime'>
+    readonly atualizado_em: FieldRef<"AplicacaoDiagnostico", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AplicacaoDiagnostico findUnique
+   */
+  export type AplicacaoDiagnosticoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AplicacaoDiagnostico
+     */
+    select?: AplicacaoDiagnosticoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AplicacaoDiagnostico
+     */
+    omit?: AplicacaoDiagnosticoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AplicacaoDiagnosticoInclude<ExtArgs> | null
+    /**
+     * Filter, which AplicacaoDiagnostico to fetch.
+     */
+    where: AplicacaoDiagnosticoWhereUniqueInput
+  }
+
+  /**
+   * AplicacaoDiagnostico findUniqueOrThrow
+   */
+  export type AplicacaoDiagnosticoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AplicacaoDiagnostico
+     */
+    select?: AplicacaoDiagnosticoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AplicacaoDiagnostico
+     */
+    omit?: AplicacaoDiagnosticoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AplicacaoDiagnosticoInclude<ExtArgs> | null
+    /**
+     * Filter, which AplicacaoDiagnostico to fetch.
+     */
+    where: AplicacaoDiagnosticoWhereUniqueInput
+  }
+
+  /**
+   * AplicacaoDiagnostico findFirst
+   */
+  export type AplicacaoDiagnosticoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AplicacaoDiagnostico
+     */
+    select?: AplicacaoDiagnosticoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AplicacaoDiagnostico
+     */
+    omit?: AplicacaoDiagnosticoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AplicacaoDiagnosticoInclude<ExtArgs> | null
+    /**
+     * Filter, which AplicacaoDiagnostico to fetch.
+     */
+    where?: AplicacaoDiagnosticoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AplicacaoDiagnosticos to fetch.
+     */
+    orderBy?: AplicacaoDiagnosticoOrderByWithRelationInput | AplicacaoDiagnosticoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AplicacaoDiagnosticos.
+     */
+    cursor?: AplicacaoDiagnosticoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AplicacaoDiagnosticos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AplicacaoDiagnosticos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AplicacaoDiagnosticos.
+     */
+    distinct?: AplicacaoDiagnosticoScalarFieldEnum | AplicacaoDiagnosticoScalarFieldEnum[]
+  }
+
+  /**
+   * AplicacaoDiagnostico findFirstOrThrow
+   */
+  export type AplicacaoDiagnosticoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AplicacaoDiagnostico
+     */
+    select?: AplicacaoDiagnosticoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AplicacaoDiagnostico
+     */
+    omit?: AplicacaoDiagnosticoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AplicacaoDiagnosticoInclude<ExtArgs> | null
+    /**
+     * Filter, which AplicacaoDiagnostico to fetch.
+     */
+    where?: AplicacaoDiagnosticoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AplicacaoDiagnosticos to fetch.
+     */
+    orderBy?: AplicacaoDiagnosticoOrderByWithRelationInput | AplicacaoDiagnosticoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AplicacaoDiagnosticos.
+     */
+    cursor?: AplicacaoDiagnosticoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AplicacaoDiagnosticos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AplicacaoDiagnosticos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AplicacaoDiagnosticos.
+     */
+    distinct?: AplicacaoDiagnosticoScalarFieldEnum | AplicacaoDiagnosticoScalarFieldEnum[]
+  }
+
+  /**
+   * AplicacaoDiagnostico findMany
+   */
+  export type AplicacaoDiagnosticoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AplicacaoDiagnostico
+     */
+    select?: AplicacaoDiagnosticoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AplicacaoDiagnostico
+     */
+    omit?: AplicacaoDiagnosticoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AplicacaoDiagnosticoInclude<ExtArgs> | null
+    /**
+     * Filter, which AplicacaoDiagnosticos to fetch.
+     */
+    where?: AplicacaoDiagnosticoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AplicacaoDiagnosticos to fetch.
+     */
+    orderBy?: AplicacaoDiagnosticoOrderByWithRelationInput | AplicacaoDiagnosticoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AplicacaoDiagnosticos.
+     */
+    cursor?: AplicacaoDiagnosticoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AplicacaoDiagnosticos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AplicacaoDiagnosticos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AplicacaoDiagnosticos.
+     */
+    distinct?: AplicacaoDiagnosticoScalarFieldEnum | AplicacaoDiagnosticoScalarFieldEnum[]
+  }
+
+  /**
+   * AplicacaoDiagnostico create
+   */
+  export type AplicacaoDiagnosticoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AplicacaoDiagnostico
+     */
+    select?: AplicacaoDiagnosticoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AplicacaoDiagnostico
+     */
+    omit?: AplicacaoDiagnosticoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AplicacaoDiagnosticoInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AplicacaoDiagnostico.
+     */
+    data: XOR<AplicacaoDiagnosticoCreateInput, AplicacaoDiagnosticoUncheckedCreateInput>
+  }
+
+  /**
+   * AplicacaoDiagnostico createMany
+   */
+  export type AplicacaoDiagnosticoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AplicacaoDiagnosticos.
+     */
+    data: AplicacaoDiagnosticoCreateManyInput | AplicacaoDiagnosticoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AplicacaoDiagnostico createManyAndReturn
+   */
+  export type AplicacaoDiagnosticoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AplicacaoDiagnostico
+     */
+    select?: AplicacaoDiagnosticoSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AplicacaoDiagnostico
+     */
+    omit?: AplicacaoDiagnosticoOmit<ExtArgs> | null
+    /**
+     * The data used to create many AplicacaoDiagnosticos.
+     */
+    data: AplicacaoDiagnosticoCreateManyInput | AplicacaoDiagnosticoCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AplicacaoDiagnosticoIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AplicacaoDiagnostico update
+   */
+  export type AplicacaoDiagnosticoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AplicacaoDiagnostico
+     */
+    select?: AplicacaoDiagnosticoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AplicacaoDiagnostico
+     */
+    omit?: AplicacaoDiagnosticoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AplicacaoDiagnosticoInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AplicacaoDiagnostico.
+     */
+    data: XOR<AplicacaoDiagnosticoUpdateInput, AplicacaoDiagnosticoUncheckedUpdateInput>
+    /**
+     * Choose, which AplicacaoDiagnostico to update.
+     */
+    where: AplicacaoDiagnosticoWhereUniqueInput
+  }
+
+  /**
+   * AplicacaoDiagnostico updateMany
+   */
+  export type AplicacaoDiagnosticoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AplicacaoDiagnosticos.
+     */
+    data: XOR<AplicacaoDiagnosticoUpdateManyMutationInput, AplicacaoDiagnosticoUncheckedUpdateManyInput>
+    /**
+     * Filter which AplicacaoDiagnosticos to update
+     */
+    where?: AplicacaoDiagnosticoWhereInput
+    /**
+     * Limit how many AplicacaoDiagnosticos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AplicacaoDiagnostico updateManyAndReturn
+   */
+  export type AplicacaoDiagnosticoUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AplicacaoDiagnostico
+     */
+    select?: AplicacaoDiagnosticoSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AplicacaoDiagnostico
+     */
+    omit?: AplicacaoDiagnosticoOmit<ExtArgs> | null
+    /**
+     * The data used to update AplicacaoDiagnosticos.
+     */
+    data: XOR<AplicacaoDiagnosticoUpdateManyMutationInput, AplicacaoDiagnosticoUncheckedUpdateManyInput>
+    /**
+     * Filter which AplicacaoDiagnosticos to update
+     */
+    where?: AplicacaoDiagnosticoWhereInput
+    /**
+     * Limit how many AplicacaoDiagnosticos to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AplicacaoDiagnosticoIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AplicacaoDiagnostico upsert
+   */
+  export type AplicacaoDiagnosticoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AplicacaoDiagnostico
+     */
+    select?: AplicacaoDiagnosticoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AplicacaoDiagnostico
+     */
+    omit?: AplicacaoDiagnosticoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AplicacaoDiagnosticoInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AplicacaoDiagnostico to update in case it exists.
+     */
+    where: AplicacaoDiagnosticoWhereUniqueInput
+    /**
+     * In case the AplicacaoDiagnostico found by the `where` argument doesn't exist, create a new AplicacaoDiagnostico with this data.
+     */
+    create: XOR<AplicacaoDiagnosticoCreateInput, AplicacaoDiagnosticoUncheckedCreateInput>
+    /**
+     * In case the AplicacaoDiagnostico was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AplicacaoDiagnosticoUpdateInput, AplicacaoDiagnosticoUncheckedUpdateInput>
+  }
+
+  /**
+   * AplicacaoDiagnostico delete
+   */
+  export type AplicacaoDiagnosticoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AplicacaoDiagnostico
+     */
+    select?: AplicacaoDiagnosticoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AplicacaoDiagnostico
+     */
+    omit?: AplicacaoDiagnosticoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AplicacaoDiagnosticoInclude<ExtArgs> | null
+    /**
+     * Filter which AplicacaoDiagnostico to delete.
+     */
+    where: AplicacaoDiagnosticoWhereUniqueInput
+  }
+
+  /**
+   * AplicacaoDiagnostico deleteMany
+   */
+  export type AplicacaoDiagnosticoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AplicacaoDiagnosticos to delete
+     */
+    where?: AplicacaoDiagnosticoWhereInput
+    /**
+     * Limit how many AplicacaoDiagnosticos to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AplicacaoDiagnostico.cliente
+   */
+  export type AplicacaoDiagnostico$clienteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cliente
+     */
+    select?: ClienteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Cliente
+     */
+    omit?: ClienteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClienteInclude<ExtArgs> | null
+    where?: ClienteWhereInput
+  }
+
+  /**
+   * AplicacaoDiagnostico without action
+   */
+  export type AplicacaoDiagnosticoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AplicacaoDiagnostico
+     */
+    select?: AplicacaoDiagnosticoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AplicacaoDiagnostico
+     */
+    omit?: AplicacaoDiagnosticoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AplicacaoDiagnosticoInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -59134,6 +60560,25 @@ export namespace Prisma {
   export type TokenPortalScalarFieldEnum = (typeof TokenPortalScalarFieldEnum)[keyof typeof TokenPortalScalarFieldEnum]
 
 
+  export const AplicacaoDiagnosticoScalarFieldEnum: {
+    id: 'id',
+    empresa_id: 'empresa_id',
+    projeto_id: 'projeto_id',
+    cliente_id: 'cliente_id',
+    criado_por: 'criado_por',
+    momento: 'momento',
+    status: 'status',
+    token: 'token',
+    respostas: 'respostas',
+    enviado_em: 'enviado_em',
+    respondido_em: 'respondido_em',
+    criado_em: 'criado_em',
+    atualizado_em: 'atualizado_em'
+  };
+
+  export type AplicacaoDiagnosticoScalarFieldEnum = (typeof AplicacaoDiagnosticoScalarFieldEnum)[keyof typeof AplicacaoDiagnosticoScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -59545,6 +60990,34 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'MomentoDiagnostico'
+   */
+  export type EnumMomentoDiagnosticoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MomentoDiagnostico'>
+    
+
+
+  /**
+   * Reference to a field of type 'MomentoDiagnostico[]'
+   */
+  export type ListEnumMomentoDiagnosticoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MomentoDiagnostico[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'StatusAplicacaoDiagnostico'
+   */
+  export type EnumStatusAplicacaoDiagnosticoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StatusAplicacaoDiagnostico'>
+    
+
+
+  /**
+   * Reference to a field of type 'StatusAplicacaoDiagnostico[]'
+   */
+  export type ListEnumStatusAplicacaoDiagnosticoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StatusAplicacaoDiagnostico[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -59599,6 +61072,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalListRelationFilter
     diagnosticos?: DiagnosticoListRelationFilter
     etiquetas_tarefa?: EtiquetaTarefaListRelationFilter
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoListRelationFilter
   }
 
   export type EmpresaOrderByWithRelationInput = {
@@ -59636,6 +61110,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalOrderByRelationAggregateInput
     diagnosticos?: DiagnosticoOrderByRelationAggregateInput
     etiquetas_tarefa?: EtiquetaTarefaOrderByRelationAggregateInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoOrderByRelationAggregateInput
   }
 
   export type EmpresaWhereUniqueInput = Prisma.AtLeast<{
@@ -59676,6 +61151,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalListRelationFilter
     diagnosticos?: DiagnosticoListRelationFilter
     etiquetas_tarefa?: EtiquetaTarefaListRelationFilter
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoListRelationFilter
   }, "id" | "slug" | "cnpj">
 
   export type EmpresaOrderByWithAggregationInput = {
@@ -60252,6 +61728,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoListRelationFilter
     convite?: XOR<ConviteClienteNullableScalarRelationFilter, ConviteClienteWhereInput> | null
     documentos?: DocumentoListRelationFilter
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoListRelationFilter
   }
 
   export type ClienteOrderByWithRelationInput = {
@@ -60293,6 +61770,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoOrderByRelationAggregateInput
     convite?: ConviteClienteOrderByWithRelationInput
     documentos?: DocumentoOrderByRelationAggregateInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoOrderByRelationAggregateInput
   }
 
   export type ClienteWhereUniqueInput = Prisma.AtLeast<{
@@ -60337,6 +61815,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoListRelationFilter
     convite?: XOR<ConviteClienteNullableScalarRelationFilter, ConviteClienteWhereInput> | null
     documentos?: DocumentoListRelationFilter
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoListRelationFilter
   }, "id">
 
   export type ClienteOrderByWithAggregationInput = {
@@ -61360,6 +62839,7 @@ export namespace Prisma {
     documentos?: DocumentoListRelationFilter
     eventos?: EventoListRelationFilter
     diagnosticos?: DiagnosticoListRelationFilter
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoListRelationFilter
   }
 
   export type ProjetoOrderByWithRelationInput = {
@@ -61384,6 +62864,7 @@ export namespace Prisma {
     documentos?: DocumentoOrderByRelationAggregateInput
     eventos?: EventoOrderByRelationAggregateInput
     diagnosticos?: DiagnosticoOrderByRelationAggregateInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoOrderByRelationAggregateInput
   }
 
   export type ProjetoWhereUniqueInput = Prisma.AtLeast<{
@@ -61411,6 +62892,7 @@ export namespace Prisma {
     documentos?: DocumentoListRelationFilter
     eventos?: EventoListRelationFilter
     diagnosticos?: DiagnosticoListRelationFilter
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoListRelationFilter
   }, "id" | "contrato_id">
 
   export type ProjetoOrderByWithAggregationInput = {
@@ -63572,6 +65054,108 @@ export namespace Prisma {
     criado_em?: DateTimeWithAggregatesFilter<"TokenPortal"> | Date | string
   }
 
+  export type AplicacaoDiagnosticoWhereInput = {
+    AND?: AplicacaoDiagnosticoWhereInput | AplicacaoDiagnosticoWhereInput[]
+    OR?: AplicacaoDiagnosticoWhereInput[]
+    NOT?: AplicacaoDiagnosticoWhereInput | AplicacaoDiagnosticoWhereInput[]
+    id?: StringFilter<"AplicacaoDiagnostico"> | string
+    empresa_id?: StringFilter<"AplicacaoDiagnostico"> | string
+    projeto_id?: StringFilter<"AplicacaoDiagnostico"> | string
+    cliente_id?: StringNullableFilter<"AplicacaoDiagnostico"> | string | null
+    criado_por?: StringNullableFilter<"AplicacaoDiagnostico"> | string | null
+    momento?: EnumMomentoDiagnosticoFilter<"AplicacaoDiagnostico"> | $Enums.MomentoDiagnostico
+    status?: EnumStatusAplicacaoDiagnosticoFilter<"AplicacaoDiagnostico"> | $Enums.StatusAplicacaoDiagnostico
+    token?: StringFilter<"AplicacaoDiagnostico"> | string
+    respostas?: JsonNullableFilter<"AplicacaoDiagnostico">
+    enviado_em?: DateTimeNullableFilter<"AplicacaoDiagnostico"> | Date | string | null
+    respondido_em?: DateTimeNullableFilter<"AplicacaoDiagnostico"> | Date | string | null
+    criado_em?: DateTimeFilter<"AplicacaoDiagnostico"> | Date | string
+    atualizado_em?: DateTimeFilter<"AplicacaoDiagnostico"> | Date | string
+    empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
+    projeto?: XOR<ProjetoScalarRelationFilter, ProjetoWhereInput>
+    cliente?: XOR<ClienteNullableScalarRelationFilter, ClienteWhereInput> | null
+  }
+
+  export type AplicacaoDiagnosticoOrderByWithRelationInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    projeto_id?: SortOrder
+    cliente_id?: SortOrderInput | SortOrder
+    criado_por?: SortOrderInput | SortOrder
+    momento?: SortOrder
+    status?: SortOrder
+    token?: SortOrder
+    respostas?: SortOrderInput | SortOrder
+    enviado_em?: SortOrderInput | SortOrder
+    respondido_em?: SortOrderInput | SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+    empresa?: EmpresaOrderByWithRelationInput
+    projeto?: ProjetoOrderByWithRelationInput
+    cliente?: ClienteOrderByWithRelationInput
+  }
+
+  export type AplicacaoDiagnosticoWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    token?: string
+    projeto_id_momento?: AplicacaoDiagnosticoProjeto_idMomentoCompoundUniqueInput
+    AND?: AplicacaoDiagnosticoWhereInput | AplicacaoDiagnosticoWhereInput[]
+    OR?: AplicacaoDiagnosticoWhereInput[]
+    NOT?: AplicacaoDiagnosticoWhereInput | AplicacaoDiagnosticoWhereInput[]
+    empresa_id?: StringFilter<"AplicacaoDiagnostico"> | string
+    projeto_id?: StringFilter<"AplicacaoDiagnostico"> | string
+    cliente_id?: StringNullableFilter<"AplicacaoDiagnostico"> | string | null
+    criado_por?: StringNullableFilter<"AplicacaoDiagnostico"> | string | null
+    momento?: EnumMomentoDiagnosticoFilter<"AplicacaoDiagnostico"> | $Enums.MomentoDiagnostico
+    status?: EnumStatusAplicacaoDiagnosticoFilter<"AplicacaoDiagnostico"> | $Enums.StatusAplicacaoDiagnostico
+    respostas?: JsonNullableFilter<"AplicacaoDiagnostico">
+    enviado_em?: DateTimeNullableFilter<"AplicacaoDiagnostico"> | Date | string | null
+    respondido_em?: DateTimeNullableFilter<"AplicacaoDiagnostico"> | Date | string | null
+    criado_em?: DateTimeFilter<"AplicacaoDiagnostico"> | Date | string
+    atualizado_em?: DateTimeFilter<"AplicacaoDiagnostico"> | Date | string
+    empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
+    projeto?: XOR<ProjetoScalarRelationFilter, ProjetoWhereInput>
+    cliente?: XOR<ClienteNullableScalarRelationFilter, ClienteWhereInput> | null
+  }, "id" | "token" | "projeto_id_momento">
+
+  export type AplicacaoDiagnosticoOrderByWithAggregationInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    projeto_id?: SortOrder
+    cliente_id?: SortOrderInput | SortOrder
+    criado_por?: SortOrderInput | SortOrder
+    momento?: SortOrder
+    status?: SortOrder
+    token?: SortOrder
+    respostas?: SortOrderInput | SortOrder
+    enviado_em?: SortOrderInput | SortOrder
+    respondido_em?: SortOrderInput | SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+    _count?: AplicacaoDiagnosticoCountOrderByAggregateInput
+    _max?: AplicacaoDiagnosticoMaxOrderByAggregateInput
+    _min?: AplicacaoDiagnosticoMinOrderByAggregateInput
+  }
+
+  export type AplicacaoDiagnosticoScalarWhereWithAggregatesInput = {
+    AND?: AplicacaoDiagnosticoScalarWhereWithAggregatesInput | AplicacaoDiagnosticoScalarWhereWithAggregatesInput[]
+    OR?: AplicacaoDiagnosticoScalarWhereWithAggregatesInput[]
+    NOT?: AplicacaoDiagnosticoScalarWhereWithAggregatesInput | AplicacaoDiagnosticoScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AplicacaoDiagnostico"> | string
+    empresa_id?: StringWithAggregatesFilter<"AplicacaoDiagnostico"> | string
+    projeto_id?: StringWithAggregatesFilter<"AplicacaoDiagnostico"> | string
+    cliente_id?: StringNullableWithAggregatesFilter<"AplicacaoDiagnostico"> | string | null
+    criado_por?: StringNullableWithAggregatesFilter<"AplicacaoDiagnostico"> | string | null
+    momento?: EnumMomentoDiagnosticoWithAggregatesFilter<"AplicacaoDiagnostico"> | $Enums.MomentoDiagnostico
+    status?: EnumStatusAplicacaoDiagnosticoWithAggregatesFilter<"AplicacaoDiagnostico"> | $Enums.StatusAplicacaoDiagnostico
+    token?: StringWithAggregatesFilter<"AplicacaoDiagnostico"> | string
+    respostas?: JsonNullableWithAggregatesFilter<"AplicacaoDiagnostico">
+    enviado_em?: DateTimeNullableWithAggregatesFilter<"AplicacaoDiagnostico"> | Date | string | null
+    respondido_em?: DateTimeNullableWithAggregatesFilter<"AplicacaoDiagnostico"> | Date | string | null
+    criado_em?: DateTimeWithAggregatesFilter<"AplicacaoDiagnostico"> | Date | string
+    atualizado_em?: DateTimeWithAggregatesFilter<"AplicacaoDiagnostico"> | Date | string
+  }
+
   export type EmpresaCreateInput = {
     id?: string
     nome: string
@@ -63607,6 +65191,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateInput = {
@@ -63644,6 +65229,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUpdateInput = {
@@ -63681,6 +65267,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateInput = {
@@ -63718,6 +65305,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateManyInput = {
@@ -64313,6 +65901,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
     documentos?: DocumentoCreateNestedManyWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateInput = {
@@ -64353,6 +65942,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUpdateInput = {
@@ -64393,6 +65983,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUpdateManyWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateInput = {
@@ -64433,6 +66024,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteCreateManyInput = {
@@ -65578,6 +67170,7 @@ export namespace Prisma {
     documentos?: DocumentoCreateNestedManyWithoutProjetoInput
     eventos?: EventoCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutProjetoInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutProjetoInput
   }
 
   export type ProjetoUncheckedCreateInput = {
@@ -65598,6 +67191,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedCreateNestedManyWithoutProjetoInput
     eventos?: EventoUncheckedCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
   }
 
   export type ProjetoUpdateInput = {
@@ -65618,6 +67212,7 @@ export namespace Prisma {
     documentos?: DocumentoUpdateManyWithoutProjetoNestedInput
     eventos?: EventoUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutProjetoNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutProjetoNestedInput
   }
 
   export type ProjetoUncheckedUpdateInput = {
@@ -65638,6 +67233,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedUpdateManyWithoutProjetoNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
   }
 
   export type ProjetoCreateManyInput = {
@@ -67916,6 +69512,115 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type AplicacaoDiagnosticoCreateInput = {
+    id?: string
+    criado_por?: string | null
+    momento: $Enums.MomentoDiagnostico
+    status?: $Enums.StatusAplicacaoDiagnostico
+    token?: string
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    enviado_em?: Date | string | null
+    respondido_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutAplicacoes_diagnosticoInput
+    projeto: ProjetoCreateNestedOneWithoutAplicacoes_diagnosticoInput
+    cliente?: ClienteCreateNestedOneWithoutAplicacoes_diagnosticoInput
+  }
+
+  export type AplicacaoDiagnosticoUncheckedCreateInput = {
+    id?: string
+    empresa_id: string
+    projeto_id: string
+    cliente_id?: string | null
+    criado_por?: string | null
+    momento: $Enums.MomentoDiagnostico
+    status?: $Enums.StatusAplicacaoDiagnostico
+    token?: string
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    enviado_em?: Date | string | null
+    respondido_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type AplicacaoDiagnosticoUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    momento?: EnumMomentoDiagnosticoFieldUpdateOperationsInput | $Enums.MomentoDiagnostico
+    status?: EnumStatusAplicacaoDiagnosticoFieldUpdateOperationsInput | $Enums.StatusAplicacaoDiagnostico
+    token?: StringFieldUpdateOperationsInput | string
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    enviado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    respondido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutAplicacoes_diagnosticoNestedInput
+    projeto?: ProjetoUpdateOneRequiredWithoutAplicacoes_diagnosticoNestedInput
+    cliente?: ClienteUpdateOneWithoutAplicacoes_diagnosticoNestedInput
+  }
+
+  export type AplicacaoDiagnosticoUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    projeto_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    momento?: EnumMomentoDiagnosticoFieldUpdateOperationsInput | $Enums.MomentoDiagnostico
+    status?: EnumStatusAplicacaoDiagnosticoFieldUpdateOperationsInput | $Enums.StatusAplicacaoDiagnostico
+    token?: StringFieldUpdateOperationsInput | string
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    enviado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    respondido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AplicacaoDiagnosticoCreateManyInput = {
+    id?: string
+    empresa_id: string
+    projeto_id: string
+    cliente_id?: string | null
+    criado_por?: string | null
+    momento: $Enums.MomentoDiagnostico
+    status?: $Enums.StatusAplicacaoDiagnostico
+    token?: string
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    enviado_em?: Date | string | null
+    respondido_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type AplicacaoDiagnosticoUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    momento?: EnumMomentoDiagnosticoFieldUpdateOperationsInput | $Enums.MomentoDiagnostico
+    status?: EnumStatusAplicacaoDiagnosticoFieldUpdateOperationsInput | $Enums.StatusAplicacaoDiagnostico
+    token?: StringFieldUpdateOperationsInput | string
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    enviado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    respondido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AplicacaoDiagnosticoUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    projeto_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    momento?: EnumMomentoDiagnosticoFieldUpdateOperationsInput | $Enums.MomentoDiagnostico
+    status?: EnumStatusAplicacaoDiagnosticoFieldUpdateOperationsInput | $Enums.StatusAplicacaoDiagnostico
+    token?: StringFieldUpdateOperationsInput | string
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    enviado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    respondido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -68138,6 +69843,12 @@ export namespace Prisma {
     none?: EtiquetaTarefaWhereInput
   }
 
+  export type AplicacaoDiagnosticoListRelationFilter = {
+    every?: AplicacaoDiagnosticoWhereInput
+    some?: AplicacaoDiagnosticoWhereInput
+    none?: AplicacaoDiagnosticoWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -68236,6 +69947,10 @@ export namespace Prisma {
   }
 
   export type EtiquetaTarefaOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AplicacaoDiagnosticoOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -71037,6 +72752,91 @@ export namespace Prisma {
     criado_em?: SortOrder
   }
 
+  export type EnumMomentoDiagnosticoFilter<$PrismaModel = never> = {
+    equals?: $Enums.MomentoDiagnostico | EnumMomentoDiagnosticoFieldRefInput<$PrismaModel>
+    in?: $Enums.MomentoDiagnostico[] | ListEnumMomentoDiagnosticoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MomentoDiagnostico[] | ListEnumMomentoDiagnosticoFieldRefInput<$PrismaModel>
+    not?: NestedEnumMomentoDiagnosticoFilter<$PrismaModel> | $Enums.MomentoDiagnostico
+  }
+
+  export type EnumStatusAplicacaoDiagnosticoFilter<$PrismaModel = never> = {
+    equals?: $Enums.StatusAplicacaoDiagnostico | EnumStatusAplicacaoDiagnosticoFieldRefInput<$PrismaModel>
+    in?: $Enums.StatusAplicacaoDiagnostico[] | ListEnumStatusAplicacaoDiagnosticoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.StatusAplicacaoDiagnostico[] | ListEnumStatusAplicacaoDiagnosticoFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusAplicacaoDiagnosticoFilter<$PrismaModel> | $Enums.StatusAplicacaoDiagnostico
+  }
+
+  export type AplicacaoDiagnosticoProjeto_idMomentoCompoundUniqueInput = {
+    projeto_id: string
+    momento: $Enums.MomentoDiagnostico
+  }
+
+  export type AplicacaoDiagnosticoCountOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    projeto_id?: SortOrder
+    cliente_id?: SortOrder
+    criado_por?: SortOrder
+    momento?: SortOrder
+    status?: SortOrder
+    token?: SortOrder
+    respostas?: SortOrder
+    enviado_em?: SortOrder
+    respondido_em?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+  }
+
+  export type AplicacaoDiagnosticoMaxOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    projeto_id?: SortOrder
+    cliente_id?: SortOrder
+    criado_por?: SortOrder
+    momento?: SortOrder
+    status?: SortOrder
+    token?: SortOrder
+    enviado_em?: SortOrder
+    respondido_em?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+  }
+
+  export type AplicacaoDiagnosticoMinOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    projeto_id?: SortOrder
+    cliente_id?: SortOrder
+    criado_por?: SortOrder
+    momento?: SortOrder
+    status?: SortOrder
+    token?: SortOrder
+    enviado_em?: SortOrder
+    respondido_em?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+  }
+
+  export type EnumMomentoDiagnosticoWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MomentoDiagnostico | EnumMomentoDiagnosticoFieldRefInput<$PrismaModel>
+    in?: $Enums.MomentoDiagnostico[] | ListEnumMomentoDiagnosticoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MomentoDiagnostico[] | ListEnumMomentoDiagnosticoFieldRefInput<$PrismaModel>
+    not?: NestedEnumMomentoDiagnosticoWithAggregatesFilter<$PrismaModel> | $Enums.MomentoDiagnostico
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumMomentoDiagnosticoFilter<$PrismaModel>
+    _max?: NestedEnumMomentoDiagnosticoFilter<$PrismaModel>
+  }
+
+  export type EnumStatusAplicacaoDiagnosticoWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.StatusAplicacaoDiagnostico | EnumStatusAplicacaoDiagnosticoFieldRefInput<$PrismaModel>
+    in?: $Enums.StatusAplicacaoDiagnostico[] | ListEnumStatusAplicacaoDiagnosticoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.StatusAplicacaoDiagnostico[] | ListEnumStatusAplicacaoDiagnosticoFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusAplicacaoDiagnosticoWithAggregatesFilter<$PrismaModel> | $Enums.StatusAplicacaoDiagnostico
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStatusAplicacaoDiagnosticoFilter<$PrismaModel>
+    _max?: NestedEnumStatusAplicacaoDiagnosticoFilter<$PrismaModel>
+  }
+
   export type MembroEmpresaCreateNestedManyWithoutEmpresaInput = {
     create?: XOR<MembroEmpresaCreateWithoutEmpresaInput, MembroEmpresaUncheckedCreateWithoutEmpresaInput> | MembroEmpresaCreateWithoutEmpresaInput[] | MembroEmpresaUncheckedCreateWithoutEmpresaInput[]
     connectOrCreate?: MembroEmpresaCreateOrConnectWithoutEmpresaInput | MembroEmpresaCreateOrConnectWithoutEmpresaInput[]
@@ -71205,6 +73005,13 @@ export namespace Prisma {
     connect?: EtiquetaTarefaWhereUniqueInput | EtiquetaTarefaWhereUniqueInput[]
   }
 
+  export type AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput = {
+    create?: XOR<AplicacaoDiagnosticoCreateWithoutEmpresaInput, AplicacaoDiagnosticoUncheckedCreateWithoutEmpresaInput> | AplicacaoDiagnosticoCreateWithoutEmpresaInput[] | AplicacaoDiagnosticoUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: AplicacaoDiagnosticoCreateOrConnectWithoutEmpresaInput | AplicacaoDiagnosticoCreateOrConnectWithoutEmpresaInput[]
+    createMany?: AplicacaoDiagnosticoCreateManyEmpresaInputEnvelope
+    connect?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
+  }
+
   export type MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput = {
     create?: XOR<MembroEmpresaCreateWithoutEmpresaInput, MembroEmpresaUncheckedCreateWithoutEmpresaInput> | MembroEmpresaCreateWithoutEmpresaInput[] | MembroEmpresaUncheckedCreateWithoutEmpresaInput[]
     connectOrCreate?: MembroEmpresaCreateOrConnectWithoutEmpresaInput | MembroEmpresaCreateOrConnectWithoutEmpresaInput[]
@@ -71371,6 +73178,13 @@ export namespace Prisma {
     connectOrCreate?: EtiquetaTarefaCreateOrConnectWithoutEmpresaInput | EtiquetaTarefaCreateOrConnectWithoutEmpresaInput[]
     createMany?: EtiquetaTarefaCreateManyEmpresaInputEnvelope
     connect?: EtiquetaTarefaWhereUniqueInput | EtiquetaTarefaWhereUniqueInput[]
+  }
+
+  export type AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput = {
+    create?: XOR<AplicacaoDiagnosticoCreateWithoutEmpresaInput, AplicacaoDiagnosticoUncheckedCreateWithoutEmpresaInput> | AplicacaoDiagnosticoCreateWithoutEmpresaInput[] | AplicacaoDiagnosticoUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: AplicacaoDiagnosticoCreateOrConnectWithoutEmpresaInput | AplicacaoDiagnosticoCreateOrConnectWithoutEmpresaInput[]
+    createMany?: AplicacaoDiagnosticoCreateManyEmpresaInputEnvelope
+    connect?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -71729,6 +73543,20 @@ export namespace Prisma {
     deleteMany?: EtiquetaTarefaScalarWhereInput | EtiquetaTarefaScalarWhereInput[]
   }
 
+  export type AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput = {
+    create?: XOR<AplicacaoDiagnosticoCreateWithoutEmpresaInput, AplicacaoDiagnosticoUncheckedCreateWithoutEmpresaInput> | AplicacaoDiagnosticoCreateWithoutEmpresaInput[] | AplicacaoDiagnosticoUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: AplicacaoDiagnosticoCreateOrConnectWithoutEmpresaInput | AplicacaoDiagnosticoCreateOrConnectWithoutEmpresaInput[]
+    upsert?: AplicacaoDiagnosticoUpsertWithWhereUniqueWithoutEmpresaInput | AplicacaoDiagnosticoUpsertWithWhereUniqueWithoutEmpresaInput[]
+    createMany?: AplicacaoDiagnosticoCreateManyEmpresaInputEnvelope
+    set?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
+    disconnect?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
+    delete?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
+    connect?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
+    update?: AplicacaoDiagnosticoUpdateWithWhereUniqueWithoutEmpresaInput | AplicacaoDiagnosticoUpdateWithWhereUniqueWithoutEmpresaInput[]
+    updateMany?: AplicacaoDiagnosticoUpdateManyWithWhereWithoutEmpresaInput | AplicacaoDiagnosticoUpdateManyWithWhereWithoutEmpresaInput[]
+    deleteMany?: AplicacaoDiagnosticoScalarWhereInput | AplicacaoDiagnosticoScalarWhereInput[]
+  }
+
   export type MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput = {
     create?: XOR<MembroEmpresaCreateWithoutEmpresaInput, MembroEmpresaUncheckedCreateWithoutEmpresaInput> | MembroEmpresaCreateWithoutEmpresaInput[] | MembroEmpresaUncheckedCreateWithoutEmpresaInput[]
     connectOrCreate?: MembroEmpresaCreateOrConnectWithoutEmpresaInput | MembroEmpresaCreateOrConnectWithoutEmpresaInput[]
@@ -72063,6 +73891,20 @@ export namespace Prisma {
     update?: EtiquetaTarefaUpdateWithWhereUniqueWithoutEmpresaInput | EtiquetaTarefaUpdateWithWhereUniqueWithoutEmpresaInput[]
     updateMany?: EtiquetaTarefaUpdateManyWithWhereWithoutEmpresaInput | EtiquetaTarefaUpdateManyWithWhereWithoutEmpresaInput[]
     deleteMany?: EtiquetaTarefaScalarWhereInput | EtiquetaTarefaScalarWhereInput[]
+  }
+
+  export type AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput = {
+    create?: XOR<AplicacaoDiagnosticoCreateWithoutEmpresaInput, AplicacaoDiagnosticoUncheckedCreateWithoutEmpresaInput> | AplicacaoDiagnosticoCreateWithoutEmpresaInput[] | AplicacaoDiagnosticoUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: AplicacaoDiagnosticoCreateOrConnectWithoutEmpresaInput | AplicacaoDiagnosticoCreateOrConnectWithoutEmpresaInput[]
+    upsert?: AplicacaoDiagnosticoUpsertWithWhereUniqueWithoutEmpresaInput | AplicacaoDiagnosticoUpsertWithWhereUniqueWithoutEmpresaInput[]
+    createMany?: AplicacaoDiagnosticoCreateManyEmpresaInputEnvelope
+    set?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
+    disconnect?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
+    delete?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
+    connect?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
+    update?: AplicacaoDiagnosticoUpdateWithWhereUniqueWithoutEmpresaInput | AplicacaoDiagnosticoUpdateWithWhereUniqueWithoutEmpresaInput[]
+    updateMany?: AplicacaoDiagnosticoUpdateManyWithWhereWithoutEmpresaInput | AplicacaoDiagnosticoUpdateManyWithWhereWithoutEmpresaInput[]
+    deleteMany?: AplicacaoDiagnosticoScalarWhereInput | AplicacaoDiagnosticoScalarWhereInput[]
   }
 
   export type MembroEmpresaCreateNestedManyWithoutUsuarioInput = {
@@ -73297,6 +75139,13 @@ export namespace Prisma {
     connect?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
   }
 
+  export type AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput = {
+    create?: XOR<AplicacaoDiagnosticoCreateWithoutClienteInput, AplicacaoDiagnosticoUncheckedCreateWithoutClienteInput> | AplicacaoDiagnosticoCreateWithoutClienteInput[] | AplicacaoDiagnosticoUncheckedCreateWithoutClienteInput[]
+    connectOrCreate?: AplicacaoDiagnosticoCreateOrConnectWithoutClienteInput | AplicacaoDiagnosticoCreateOrConnectWithoutClienteInput[]
+    createMany?: AplicacaoDiagnosticoCreateManyClienteInputEnvelope
+    connect?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
+  }
+
   export type ContatoUncheckedCreateNestedManyWithoutClienteInput = {
     create?: XOR<ContatoCreateWithoutClienteInput, ContatoUncheckedCreateWithoutClienteInput> | ContatoCreateWithoutClienteInput[] | ContatoUncheckedCreateWithoutClienteInput[]
     connectOrCreate?: ContatoCreateOrConnectWithoutClienteInput | ContatoCreateOrConnectWithoutClienteInput[]
@@ -73385,6 +75234,13 @@ export namespace Prisma {
     connectOrCreate?: DocumentoCreateOrConnectWithoutClienteInput | DocumentoCreateOrConnectWithoutClienteInput[]
     createMany?: DocumentoCreateManyClienteInputEnvelope
     connect?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+  }
+
+  export type AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput = {
+    create?: XOR<AplicacaoDiagnosticoCreateWithoutClienteInput, AplicacaoDiagnosticoUncheckedCreateWithoutClienteInput> | AplicacaoDiagnosticoCreateWithoutClienteInput[] | AplicacaoDiagnosticoUncheckedCreateWithoutClienteInput[]
+    connectOrCreate?: AplicacaoDiagnosticoCreateOrConnectWithoutClienteInput | AplicacaoDiagnosticoCreateOrConnectWithoutClienteInput[]
+    createMany?: AplicacaoDiagnosticoCreateManyClienteInputEnvelope
+    connect?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
   }
 
   export type EnumTipoClienteFieldUpdateOperationsInput = {
@@ -73589,6 +75445,20 @@ export namespace Prisma {
     deleteMany?: DocumentoScalarWhereInput | DocumentoScalarWhereInput[]
   }
 
+  export type AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput = {
+    create?: XOR<AplicacaoDiagnosticoCreateWithoutClienteInput, AplicacaoDiagnosticoUncheckedCreateWithoutClienteInput> | AplicacaoDiagnosticoCreateWithoutClienteInput[] | AplicacaoDiagnosticoUncheckedCreateWithoutClienteInput[]
+    connectOrCreate?: AplicacaoDiagnosticoCreateOrConnectWithoutClienteInput | AplicacaoDiagnosticoCreateOrConnectWithoutClienteInput[]
+    upsert?: AplicacaoDiagnosticoUpsertWithWhereUniqueWithoutClienteInput | AplicacaoDiagnosticoUpsertWithWhereUniqueWithoutClienteInput[]
+    createMany?: AplicacaoDiagnosticoCreateManyClienteInputEnvelope
+    set?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
+    disconnect?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
+    delete?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
+    connect?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
+    update?: AplicacaoDiagnosticoUpdateWithWhereUniqueWithoutClienteInput | AplicacaoDiagnosticoUpdateWithWhereUniqueWithoutClienteInput[]
+    updateMany?: AplicacaoDiagnosticoUpdateManyWithWhereWithoutClienteInput | AplicacaoDiagnosticoUpdateManyWithWhereWithoutClienteInput[]
+    deleteMany?: AplicacaoDiagnosticoScalarWhereInput | AplicacaoDiagnosticoScalarWhereInput[]
+  }
+
   export type ContatoUncheckedUpdateManyWithoutClienteNestedInput = {
     create?: XOR<ContatoCreateWithoutClienteInput, ContatoUncheckedCreateWithoutClienteInput> | ContatoCreateWithoutClienteInput[] | ContatoUncheckedCreateWithoutClienteInput[]
     connectOrCreate?: ContatoCreateOrConnectWithoutClienteInput | ContatoCreateOrConnectWithoutClienteInput[]
@@ -73765,6 +75635,20 @@ export namespace Prisma {
     update?: DocumentoUpdateWithWhereUniqueWithoutClienteInput | DocumentoUpdateWithWhereUniqueWithoutClienteInput[]
     updateMany?: DocumentoUpdateManyWithWhereWithoutClienteInput | DocumentoUpdateManyWithWhereWithoutClienteInput[]
     deleteMany?: DocumentoScalarWhereInput | DocumentoScalarWhereInput[]
+  }
+
+  export type AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput = {
+    create?: XOR<AplicacaoDiagnosticoCreateWithoutClienteInput, AplicacaoDiagnosticoUncheckedCreateWithoutClienteInput> | AplicacaoDiagnosticoCreateWithoutClienteInput[] | AplicacaoDiagnosticoUncheckedCreateWithoutClienteInput[]
+    connectOrCreate?: AplicacaoDiagnosticoCreateOrConnectWithoutClienteInput | AplicacaoDiagnosticoCreateOrConnectWithoutClienteInput[]
+    upsert?: AplicacaoDiagnosticoUpsertWithWhereUniqueWithoutClienteInput | AplicacaoDiagnosticoUpsertWithWhereUniqueWithoutClienteInput[]
+    createMany?: AplicacaoDiagnosticoCreateManyClienteInputEnvelope
+    set?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
+    disconnect?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
+    delete?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
+    connect?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
+    update?: AplicacaoDiagnosticoUpdateWithWhereUniqueWithoutClienteInput | AplicacaoDiagnosticoUpdateWithWhereUniqueWithoutClienteInput[]
+    updateMany?: AplicacaoDiagnosticoUpdateManyWithWhereWithoutClienteInput | AplicacaoDiagnosticoUpdateManyWithWhereWithoutClienteInput[]
+    deleteMany?: AplicacaoDiagnosticoScalarWhereInput | AplicacaoDiagnosticoScalarWhereInput[]
   }
 
   export type ClienteCreateNestedOneWithoutContatosInput = {
@@ -74620,6 +76504,13 @@ export namespace Prisma {
     connect?: DiagnosticoWhereUniqueInput | DiagnosticoWhereUniqueInput[]
   }
 
+  export type AplicacaoDiagnosticoCreateNestedManyWithoutProjetoInput = {
+    create?: XOR<AplicacaoDiagnosticoCreateWithoutProjetoInput, AplicacaoDiagnosticoUncheckedCreateWithoutProjetoInput> | AplicacaoDiagnosticoCreateWithoutProjetoInput[] | AplicacaoDiagnosticoUncheckedCreateWithoutProjetoInput[]
+    connectOrCreate?: AplicacaoDiagnosticoCreateOrConnectWithoutProjetoInput | AplicacaoDiagnosticoCreateOrConnectWithoutProjetoInput[]
+    createMany?: AplicacaoDiagnosticoCreateManyProjetoInputEnvelope
+    connect?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
+  }
+
   export type EtapaUncheckedCreateNestedManyWithoutProjetoInput = {
     create?: XOR<EtapaCreateWithoutProjetoInput, EtapaUncheckedCreateWithoutProjetoInput> | EtapaCreateWithoutProjetoInput[] | EtapaUncheckedCreateWithoutProjetoInput[]
     connectOrCreate?: EtapaCreateOrConnectWithoutProjetoInput | EtapaCreateOrConnectWithoutProjetoInput[]
@@ -74653,6 +76544,13 @@ export namespace Prisma {
     connectOrCreate?: DiagnosticoCreateOrConnectWithoutProjetoInput | DiagnosticoCreateOrConnectWithoutProjetoInput[]
     createMany?: DiagnosticoCreateManyProjetoInputEnvelope
     connect?: DiagnosticoWhereUniqueInput | DiagnosticoWhereUniqueInput[]
+  }
+
+  export type AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutProjetoInput = {
+    create?: XOR<AplicacaoDiagnosticoCreateWithoutProjetoInput, AplicacaoDiagnosticoUncheckedCreateWithoutProjetoInput> | AplicacaoDiagnosticoCreateWithoutProjetoInput[] | AplicacaoDiagnosticoUncheckedCreateWithoutProjetoInput[]
+    connectOrCreate?: AplicacaoDiagnosticoCreateOrConnectWithoutProjetoInput | AplicacaoDiagnosticoCreateOrConnectWithoutProjetoInput[]
+    createMany?: AplicacaoDiagnosticoCreateManyProjetoInputEnvelope
+    connect?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
   }
 
   export type EnumStatusProjetoFieldUpdateOperationsInput = {
@@ -74765,6 +76663,20 @@ export namespace Prisma {
     deleteMany?: DiagnosticoScalarWhereInput | DiagnosticoScalarWhereInput[]
   }
 
+  export type AplicacaoDiagnosticoUpdateManyWithoutProjetoNestedInput = {
+    create?: XOR<AplicacaoDiagnosticoCreateWithoutProjetoInput, AplicacaoDiagnosticoUncheckedCreateWithoutProjetoInput> | AplicacaoDiagnosticoCreateWithoutProjetoInput[] | AplicacaoDiagnosticoUncheckedCreateWithoutProjetoInput[]
+    connectOrCreate?: AplicacaoDiagnosticoCreateOrConnectWithoutProjetoInput | AplicacaoDiagnosticoCreateOrConnectWithoutProjetoInput[]
+    upsert?: AplicacaoDiagnosticoUpsertWithWhereUniqueWithoutProjetoInput | AplicacaoDiagnosticoUpsertWithWhereUniqueWithoutProjetoInput[]
+    createMany?: AplicacaoDiagnosticoCreateManyProjetoInputEnvelope
+    set?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
+    disconnect?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
+    delete?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
+    connect?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
+    update?: AplicacaoDiagnosticoUpdateWithWhereUniqueWithoutProjetoInput | AplicacaoDiagnosticoUpdateWithWhereUniqueWithoutProjetoInput[]
+    updateMany?: AplicacaoDiagnosticoUpdateManyWithWhereWithoutProjetoInput | AplicacaoDiagnosticoUpdateManyWithWhereWithoutProjetoInput[]
+    deleteMany?: AplicacaoDiagnosticoScalarWhereInput | AplicacaoDiagnosticoScalarWhereInput[]
+  }
+
   export type EtapaUncheckedUpdateManyWithoutProjetoNestedInput = {
     create?: XOR<EtapaCreateWithoutProjetoInput, EtapaUncheckedCreateWithoutProjetoInput> | EtapaCreateWithoutProjetoInput[] | EtapaUncheckedCreateWithoutProjetoInput[]
     connectOrCreate?: EtapaCreateOrConnectWithoutProjetoInput | EtapaCreateOrConnectWithoutProjetoInput[]
@@ -74833,6 +76745,20 @@ export namespace Prisma {
     update?: DiagnosticoUpdateWithWhereUniqueWithoutProjetoInput | DiagnosticoUpdateWithWhereUniqueWithoutProjetoInput[]
     updateMany?: DiagnosticoUpdateManyWithWhereWithoutProjetoInput | DiagnosticoUpdateManyWithWhereWithoutProjetoInput[]
     deleteMany?: DiagnosticoScalarWhereInput | DiagnosticoScalarWhereInput[]
+  }
+
+  export type AplicacaoDiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput = {
+    create?: XOR<AplicacaoDiagnosticoCreateWithoutProjetoInput, AplicacaoDiagnosticoUncheckedCreateWithoutProjetoInput> | AplicacaoDiagnosticoCreateWithoutProjetoInput[] | AplicacaoDiagnosticoUncheckedCreateWithoutProjetoInput[]
+    connectOrCreate?: AplicacaoDiagnosticoCreateOrConnectWithoutProjetoInput | AplicacaoDiagnosticoCreateOrConnectWithoutProjetoInput[]
+    upsert?: AplicacaoDiagnosticoUpsertWithWhereUniqueWithoutProjetoInput | AplicacaoDiagnosticoUpsertWithWhereUniqueWithoutProjetoInput[]
+    createMany?: AplicacaoDiagnosticoCreateManyProjetoInputEnvelope
+    set?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
+    disconnect?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
+    delete?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
+    connect?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
+    update?: AplicacaoDiagnosticoUpdateWithWhereUniqueWithoutProjetoInput | AplicacaoDiagnosticoUpdateWithWhereUniqueWithoutProjetoInput[]
+    updateMany?: AplicacaoDiagnosticoUpdateManyWithWhereWithoutProjetoInput | AplicacaoDiagnosticoUpdateManyWithWhereWithoutProjetoInput[]
+    deleteMany?: AplicacaoDiagnosticoScalarWhereInput | AplicacaoDiagnosticoScalarWhereInput[]
   }
 
   export type ProjetoCreateNestedOneWithoutEtapasInput = {
@@ -76483,6 +78409,58 @@ export namespace Prisma {
     update?: XOR<XOR<ClienteUpdateToOneWithWhereWithoutTokens_portalInput, ClienteUpdateWithoutTokens_portalInput>, ClienteUncheckedUpdateWithoutTokens_portalInput>
   }
 
+  export type EmpresaCreateNestedOneWithoutAplicacoes_diagnosticoInput = {
+    create?: XOR<EmpresaCreateWithoutAplicacoes_diagnosticoInput, EmpresaUncheckedCreateWithoutAplicacoes_diagnosticoInput>
+    connectOrCreate?: EmpresaCreateOrConnectWithoutAplicacoes_diagnosticoInput
+    connect?: EmpresaWhereUniqueInput
+  }
+
+  export type ProjetoCreateNestedOneWithoutAplicacoes_diagnosticoInput = {
+    create?: XOR<ProjetoCreateWithoutAplicacoes_diagnosticoInput, ProjetoUncheckedCreateWithoutAplicacoes_diagnosticoInput>
+    connectOrCreate?: ProjetoCreateOrConnectWithoutAplicacoes_diagnosticoInput
+    connect?: ProjetoWhereUniqueInput
+  }
+
+  export type ClienteCreateNestedOneWithoutAplicacoes_diagnosticoInput = {
+    create?: XOR<ClienteCreateWithoutAplicacoes_diagnosticoInput, ClienteUncheckedCreateWithoutAplicacoes_diagnosticoInput>
+    connectOrCreate?: ClienteCreateOrConnectWithoutAplicacoes_diagnosticoInput
+    connect?: ClienteWhereUniqueInput
+  }
+
+  export type EnumMomentoDiagnosticoFieldUpdateOperationsInput = {
+    set?: $Enums.MomentoDiagnostico
+  }
+
+  export type EnumStatusAplicacaoDiagnosticoFieldUpdateOperationsInput = {
+    set?: $Enums.StatusAplicacaoDiagnostico
+  }
+
+  export type EmpresaUpdateOneRequiredWithoutAplicacoes_diagnosticoNestedInput = {
+    create?: XOR<EmpresaCreateWithoutAplicacoes_diagnosticoInput, EmpresaUncheckedCreateWithoutAplicacoes_diagnosticoInput>
+    connectOrCreate?: EmpresaCreateOrConnectWithoutAplicacoes_diagnosticoInput
+    upsert?: EmpresaUpsertWithoutAplicacoes_diagnosticoInput
+    connect?: EmpresaWhereUniqueInput
+    update?: XOR<XOR<EmpresaUpdateToOneWithWhereWithoutAplicacoes_diagnosticoInput, EmpresaUpdateWithoutAplicacoes_diagnosticoInput>, EmpresaUncheckedUpdateWithoutAplicacoes_diagnosticoInput>
+  }
+
+  export type ProjetoUpdateOneRequiredWithoutAplicacoes_diagnosticoNestedInput = {
+    create?: XOR<ProjetoCreateWithoutAplicacoes_diagnosticoInput, ProjetoUncheckedCreateWithoutAplicacoes_diagnosticoInput>
+    connectOrCreate?: ProjetoCreateOrConnectWithoutAplicacoes_diagnosticoInput
+    upsert?: ProjetoUpsertWithoutAplicacoes_diagnosticoInput
+    connect?: ProjetoWhereUniqueInput
+    update?: XOR<XOR<ProjetoUpdateToOneWithWhereWithoutAplicacoes_diagnosticoInput, ProjetoUpdateWithoutAplicacoes_diagnosticoInput>, ProjetoUncheckedUpdateWithoutAplicacoes_diagnosticoInput>
+  }
+
+  export type ClienteUpdateOneWithoutAplicacoes_diagnosticoNestedInput = {
+    create?: XOR<ClienteCreateWithoutAplicacoes_diagnosticoInput, ClienteUncheckedCreateWithoutAplicacoes_diagnosticoInput>
+    connectOrCreate?: ClienteCreateOrConnectWithoutAplicacoes_diagnosticoInput
+    upsert?: ClienteUpsertWithoutAplicacoes_diagnosticoInput
+    disconnect?: ClienteWhereInput | boolean
+    delete?: ClienteWhereInput | boolean
+    connect?: ClienteWhereUniqueInput
+    update?: XOR<XOR<ClienteUpdateToOneWithWhereWithoutAplicacoes_diagnosticoInput, ClienteUpdateWithoutAplicacoes_diagnosticoInput>, ClienteUncheckedUpdateWithoutAplicacoes_diagnosticoInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -77124,6 +79102,40 @@ export namespace Prisma {
     _max?: NestedEnumTipoDiagnosticoFilter<$PrismaModel>
   }
 
+  export type NestedEnumMomentoDiagnosticoFilter<$PrismaModel = never> = {
+    equals?: $Enums.MomentoDiagnostico | EnumMomentoDiagnosticoFieldRefInput<$PrismaModel>
+    in?: $Enums.MomentoDiagnostico[] | ListEnumMomentoDiagnosticoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MomentoDiagnostico[] | ListEnumMomentoDiagnosticoFieldRefInput<$PrismaModel>
+    not?: NestedEnumMomentoDiagnosticoFilter<$PrismaModel> | $Enums.MomentoDiagnostico
+  }
+
+  export type NestedEnumStatusAplicacaoDiagnosticoFilter<$PrismaModel = never> = {
+    equals?: $Enums.StatusAplicacaoDiagnostico | EnumStatusAplicacaoDiagnosticoFieldRefInput<$PrismaModel>
+    in?: $Enums.StatusAplicacaoDiagnostico[] | ListEnumStatusAplicacaoDiagnosticoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.StatusAplicacaoDiagnostico[] | ListEnumStatusAplicacaoDiagnosticoFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusAplicacaoDiagnosticoFilter<$PrismaModel> | $Enums.StatusAplicacaoDiagnostico
+  }
+
+  export type NestedEnumMomentoDiagnosticoWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MomentoDiagnostico | EnumMomentoDiagnosticoFieldRefInput<$PrismaModel>
+    in?: $Enums.MomentoDiagnostico[] | ListEnumMomentoDiagnosticoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MomentoDiagnostico[] | ListEnumMomentoDiagnosticoFieldRefInput<$PrismaModel>
+    not?: NestedEnumMomentoDiagnosticoWithAggregatesFilter<$PrismaModel> | $Enums.MomentoDiagnostico
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumMomentoDiagnosticoFilter<$PrismaModel>
+    _max?: NestedEnumMomentoDiagnosticoFilter<$PrismaModel>
+  }
+
+  export type NestedEnumStatusAplicacaoDiagnosticoWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.StatusAplicacaoDiagnostico | EnumStatusAplicacaoDiagnosticoFieldRefInput<$PrismaModel>
+    in?: $Enums.StatusAplicacaoDiagnostico[] | ListEnumStatusAplicacaoDiagnosticoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.StatusAplicacaoDiagnostico[] | ListEnumStatusAplicacaoDiagnosticoFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusAplicacaoDiagnosticoWithAggregatesFilter<$PrismaModel> | $Enums.StatusAplicacaoDiagnostico
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStatusAplicacaoDiagnosticoFilter<$PrismaModel>
+    _max?: NestedEnumStatusAplicacaoDiagnosticoFilter<$PrismaModel>
+  }
+
   export type MembroEmpresaCreateWithoutEmpresaInput = {
     id?: string
     ativo?: boolean
@@ -77279,6 +79291,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
     documentos?: DocumentoCreateNestedManyWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutEmpresaInput = {
@@ -77318,6 +79331,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutEmpresaInput = {
@@ -77611,6 +79625,7 @@ export namespace Prisma {
     documentos?: DocumentoCreateNestedManyWithoutProjetoInput
     eventos?: EventoCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutProjetoInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutProjetoInput
   }
 
   export type ProjetoUncheckedCreateWithoutEmpresaInput = {
@@ -77630,6 +79645,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedCreateNestedManyWithoutProjetoInput
     eventos?: EventoUncheckedCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
   }
 
   export type ProjetoCreateOrConnectWithoutEmpresaInput = {
@@ -78207,6 +80223,46 @@ export namespace Prisma {
 
   export type EtiquetaTarefaCreateManyEmpresaInputEnvelope = {
     data: EtiquetaTarefaCreateManyEmpresaInput | EtiquetaTarefaCreateManyEmpresaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AplicacaoDiagnosticoCreateWithoutEmpresaInput = {
+    id?: string
+    criado_por?: string | null
+    momento: $Enums.MomentoDiagnostico
+    status?: $Enums.StatusAplicacaoDiagnostico
+    token?: string
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    enviado_em?: Date | string | null
+    respondido_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    projeto: ProjetoCreateNestedOneWithoutAplicacoes_diagnosticoInput
+    cliente?: ClienteCreateNestedOneWithoutAplicacoes_diagnosticoInput
+  }
+
+  export type AplicacaoDiagnosticoUncheckedCreateWithoutEmpresaInput = {
+    id?: string
+    projeto_id: string
+    cliente_id?: string | null
+    criado_por?: string | null
+    momento: $Enums.MomentoDiagnostico
+    status?: $Enums.StatusAplicacaoDiagnostico
+    token?: string
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    enviado_em?: Date | string | null
+    respondido_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type AplicacaoDiagnosticoCreateOrConnectWithoutEmpresaInput = {
+    where: AplicacaoDiagnosticoWhereUniqueInput
+    create: XOR<AplicacaoDiagnosticoCreateWithoutEmpresaInput, AplicacaoDiagnosticoUncheckedCreateWithoutEmpresaInput>
+  }
+
+  export type AplicacaoDiagnosticoCreateManyEmpresaInputEnvelope = {
+    data: AplicacaoDiagnosticoCreateManyEmpresaInput | AplicacaoDiagnosticoCreateManyEmpresaInput[]
     skipDuplicates?: boolean
   }
 
@@ -79072,6 +81128,41 @@ export namespace Prisma {
     cor?: StringFilter<"EtiquetaTarefa"> | string
   }
 
+  export type AplicacaoDiagnosticoUpsertWithWhereUniqueWithoutEmpresaInput = {
+    where: AplicacaoDiagnosticoWhereUniqueInput
+    update: XOR<AplicacaoDiagnosticoUpdateWithoutEmpresaInput, AplicacaoDiagnosticoUncheckedUpdateWithoutEmpresaInput>
+    create: XOR<AplicacaoDiagnosticoCreateWithoutEmpresaInput, AplicacaoDiagnosticoUncheckedCreateWithoutEmpresaInput>
+  }
+
+  export type AplicacaoDiagnosticoUpdateWithWhereUniqueWithoutEmpresaInput = {
+    where: AplicacaoDiagnosticoWhereUniqueInput
+    data: XOR<AplicacaoDiagnosticoUpdateWithoutEmpresaInput, AplicacaoDiagnosticoUncheckedUpdateWithoutEmpresaInput>
+  }
+
+  export type AplicacaoDiagnosticoUpdateManyWithWhereWithoutEmpresaInput = {
+    where: AplicacaoDiagnosticoScalarWhereInput
+    data: XOR<AplicacaoDiagnosticoUpdateManyMutationInput, AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaInput>
+  }
+
+  export type AplicacaoDiagnosticoScalarWhereInput = {
+    AND?: AplicacaoDiagnosticoScalarWhereInput | AplicacaoDiagnosticoScalarWhereInput[]
+    OR?: AplicacaoDiagnosticoScalarWhereInput[]
+    NOT?: AplicacaoDiagnosticoScalarWhereInput | AplicacaoDiagnosticoScalarWhereInput[]
+    id?: StringFilter<"AplicacaoDiagnostico"> | string
+    empresa_id?: StringFilter<"AplicacaoDiagnostico"> | string
+    projeto_id?: StringFilter<"AplicacaoDiagnostico"> | string
+    cliente_id?: StringNullableFilter<"AplicacaoDiagnostico"> | string | null
+    criado_por?: StringNullableFilter<"AplicacaoDiagnostico"> | string | null
+    momento?: EnumMomentoDiagnosticoFilter<"AplicacaoDiagnostico"> | $Enums.MomentoDiagnostico
+    status?: EnumStatusAplicacaoDiagnosticoFilter<"AplicacaoDiagnostico"> | $Enums.StatusAplicacaoDiagnostico
+    token?: StringFilter<"AplicacaoDiagnostico"> | string
+    respostas?: JsonNullableFilter<"AplicacaoDiagnostico">
+    enviado_em?: DateTimeNullableFilter<"AplicacaoDiagnostico"> | Date | string | null
+    respondido_em?: DateTimeNullableFilter<"AplicacaoDiagnostico"> | Date | string | null
+    criado_em?: DateTimeFilter<"AplicacaoDiagnostico"> | Date | string
+    atualizado_em?: DateTimeFilter<"AplicacaoDiagnostico"> | Date | string
+  }
+
   export type MembroEmpresaCreateWithoutUsuarioInput = {
     id?: string
     ativo?: boolean
@@ -79403,6 +81494,7 @@ export namespace Prisma {
     documentos?: DocumentoCreateNestedManyWithoutProjetoInput
     eventos?: EventoCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutProjetoInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutProjetoInput
   }
 
   export type ProjetoUncheckedCreateWithoutCriadorInput = {
@@ -79422,6 +81514,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedCreateNestedManyWithoutProjetoInput
     eventos?: EventoUncheckedCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
   }
 
   export type ProjetoCreateOrConnectWithoutCriadorInput = {
@@ -80519,6 +82612,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutMembrosInput = {
@@ -80555,6 +82649,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutMembrosInput = {
@@ -80699,6 +82794,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutMembrosInput = {
@@ -80735,6 +82831,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PerfilUpsertWithoutMembrosInput = {
@@ -80802,6 +82899,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutPerfisInput = {
@@ -80838,6 +82936,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutPerfisInput = {
@@ -80934,6 +83033,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutPerfisInput = {
@@ -80970,6 +83070,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type MembroEmpresaUpsertWithWhereUniqueWithoutPerfilInput = {
@@ -81180,6 +83281,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutConvitesInput = {
@@ -81216,6 +83318,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutConvitesInput = {
@@ -81329,6 +83432,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutConvitesInput = {
@@ -81365,6 +83469,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type UsuarioUpsertWithoutConvitesInput = {
@@ -81468,6 +83573,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutConvites_clienteInput = {
@@ -81504,6 +83610,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutConvites_clienteInput = {
@@ -81609,6 +83716,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutClienteInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
     documentos?: DocumentoCreateNestedManyWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutConviteInput = {
@@ -81648,6 +83756,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutClienteInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutConviteInput = {
@@ -81700,6 +83809,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutConvites_clienteInput = {
@@ -81736,6 +83846,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type UsuarioUpsertWithoutConvites_clienteInput = {
@@ -81853,6 +83964,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutClienteNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
     documentos?: DocumentoUpdateManyWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutConviteInput = {
@@ -81892,6 +84004,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutClienteNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type EmpresaCreateWithoutClientesInput = {
@@ -81928,6 +84041,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutClientesInput = {
@@ -81964,6 +84078,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutClientesInput = {
@@ -82248,6 +84363,7 @@ export namespace Prisma {
     documentos?: DocumentoCreateNestedManyWithoutProjetoInput
     eventos?: EventoCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutProjetoInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutProjetoInput
   }
 
   export type ProjetoUncheckedCreateWithoutClienteInput = {
@@ -82267,6 +84383,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedCreateNestedManyWithoutProjetoInput
     eventos?: EventoUncheckedCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
   }
 
   export type ProjetoCreateOrConnectWithoutClienteInput = {
@@ -82614,6 +84731,46 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type AplicacaoDiagnosticoCreateWithoutClienteInput = {
+    id?: string
+    criado_por?: string | null
+    momento: $Enums.MomentoDiagnostico
+    status?: $Enums.StatusAplicacaoDiagnostico
+    token?: string
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    enviado_em?: Date | string | null
+    respondido_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutAplicacoes_diagnosticoInput
+    projeto: ProjetoCreateNestedOneWithoutAplicacoes_diagnosticoInput
+  }
+
+  export type AplicacaoDiagnosticoUncheckedCreateWithoutClienteInput = {
+    id?: string
+    empresa_id: string
+    projeto_id: string
+    criado_por?: string | null
+    momento: $Enums.MomentoDiagnostico
+    status?: $Enums.StatusAplicacaoDiagnostico
+    token?: string
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    enviado_em?: Date | string | null
+    respondido_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type AplicacaoDiagnosticoCreateOrConnectWithoutClienteInput = {
+    where: AplicacaoDiagnosticoWhereUniqueInput
+    create: XOR<AplicacaoDiagnosticoCreateWithoutClienteInput, AplicacaoDiagnosticoUncheckedCreateWithoutClienteInput>
+  }
+
+  export type AplicacaoDiagnosticoCreateManyClienteInputEnvelope = {
+    data: AplicacaoDiagnosticoCreateManyClienteInput | AplicacaoDiagnosticoCreateManyClienteInput[]
+    skipDuplicates?: boolean
+  }
+
   export type EmpresaUpsertWithoutClientesInput = {
     update: XOR<EmpresaUpdateWithoutClientesInput, EmpresaUncheckedUpdateWithoutClientesInput>
     create: XOR<EmpresaCreateWithoutClientesInput, EmpresaUncheckedCreateWithoutClientesInput>
@@ -82659,6 +84816,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutClientesInput = {
@@ -82695,6 +84853,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ContatoUpsertWithWhereUniqueWithoutClienteInput = {
@@ -82947,6 +85106,22 @@ export namespace Prisma {
     data: XOR<DocumentoUpdateManyMutationInput, DocumentoUncheckedUpdateManyWithoutClienteInput>
   }
 
+  export type AplicacaoDiagnosticoUpsertWithWhereUniqueWithoutClienteInput = {
+    where: AplicacaoDiagnosticoWhereUniqueInput
+    update: XOR<AplicacaoDiagnosticoUpdateWithoutClienteInput, AplicacaoDiagnosticoUncheckedUpdateWithoutClienteInput>
+    create: XOR<AplicacaoDiagnosticoCreateWithoutClienteInput, AplicacaoDiagnosticoUncheckedCreateWithoutClienteInput>
+  }
+
+  export type AplicacaoDiagnosticoUpdateWithWhereUniqueWithoutClienteInput = {
+    where: AplicacaoDiagnosticoWhereUniqueInput
+    data: XOR<AplicacaoDiagnosticoUpdateWithoutClienteInput, AplicacaoDiagnosticoUncheckedUpdateWithoutClienteInput>
+  }
+
+  export type AplicacaoDiagnosticoUpdateManyWithWhereWithoutClienteInput = {
+    where: AplicacaoDiagnosticoScalarWhereInput
+    data: XOR<AplicacaoDiagnosticoUpdateManyMutationInput, AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteInput>
+  }
+
   export type ClienteCreateWithoutContatosInput = {
     id?: string
     nome: string
@@ -82984,6 +85159,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
     documentos?: DocumentoCreateNestedManyWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutContatosInput = {
@@ -83023,6 +85199,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutContatosInput = {
@@ -83078,6 +85255,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUpdateManyWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutContatosInput = {
@@ -83117,6 +85295,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type EmpresaCreateWithoutServicosInput = {
@@ -83153,6 +85332,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutServicosInput = {
@@ -83189,6 +85369,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutServicosInput = {
@@ -83306,6 +85487,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutServicosInput = {
@@ -83342,6 +85524,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PlanoDeContasUpsertWithoutServicosInput = {
@@ -83449,6 +85632,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutLeadsInput = {
@@ -83485,6 +85669,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutLeadsInput = {
@@ -83529,6 +85714,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
     documentos?: DocumentoCreateNestedManyWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutLeadsInput = {
@@ -83568,6 +85754,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutLeadsInput = {
@@ -83783,6 +85970,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutLeadsInput = {
@@ -83819,6 +86007,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutLeadsInput = {
@@ -83869,6 +86058,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUpdateManyWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutLeadsInput = {
@@ -83908,6 +86098,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type UsuarioUpsertWithoutLeadsInput = {
@@ -84271,6 +86462,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutPropostasInput = {
@@ -84307,6 +86499,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutPropostasInput = {
@@ -84351,6 +86544,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
     documentos?: DocumentoCreateNestedManyWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutPropostasInput = {
@@ -84390,6 +86584,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutPropostasInput = {
@@ -84766,6 +86961,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutPropostasInput = {
@@ -84802,6 +86998,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutPropostasInput = {
@@ -84852,6 +87049,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUpdateManyWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutPropostasInput = {
@@ -84891,6 +87089,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type LeadUpsertWithoutPropostasInput = {
@@ -85622,6 +87821,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutContratosInput = {
@@ -85658,6 +87858,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutContratosInput = {
@@ -85773,6 +87974,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
     documentos?: DocumentoCreateNestedManyWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutContratosInput = {
@@ -85812,6 +88014,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutContratosInput = {
@@ -85958,6 +88161,7 @@ export namespace Prisma {
     documentos?: DocumentoCreateNestedManyWithoutProjetoInput
     eventos?: EventoCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutProjetoInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutProjetoInput
   }
 
   export type ProjetoUncheckedCreateWithoutContratoInput = {
@@ -85977,6 +88181,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedCreateNestedManyWithoutProjetoInput
     eventos?: EventoUncheckedCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
   }
 
   export type ProjetoCreateOrConnectWithoutContratoInput = {
@@ -86231,6 +88436,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutContratosInput = {
@@ -86267,6 +88473,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PropostaUpsertWithoutContratoInput = {
@@ -86394,6 +88601,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUpdateManyWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutContratosInput = {
@@ -86433,6 +88641,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type UsuarioUpsertWithoutContratos_criadosInput = {
@@ -86597,6 +88806,7 @@ export namespace Prisma {
     documentos?: DocumentoUpdateManyWithoutProjetoNestedInput
     eventos?: EventoUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutProjetoNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutProjetoNestedInput
   }
 
   export type ProjetoUncheckedUpdateWithoutContratoInput = {
@@ -86616,6 +88826,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedUpdateManyWithoutProjetoNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
   }
 
   export type RecebivelUpsertWithWhereUniqueWithoutContratoInput = {
@@ -86716,6 +88927,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutProjetosInput = {
@@ -86752,6 +88964,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutProjetosInput = {
@@ -86893,6 +89106,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
     documentos?: DocumentoCreateNestedManyWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutProjetosInput = {
@@ -86932,6 +89146,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutProjetosInput = {
@@ -87210,6 +89425,46 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type AplicacaoDiagnosticoCreateWithoutProjetoInput = {
+    id?: string
+    criado_por?: string | null
+    momento: $Enums.MomentoDiagnostico
+    status?: $Enums.StatusAplicacaoDiagnostico
+    token?: string
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    enviado_em?: Date | string | null
+    respondido_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutAplicacoes_diagnosticoInput
+    cliente?: ClienteCreateNestedOneWithoutAplicacoes_diagnosticoInput
+  }
+
+  export type AplicacaoDiagnosticoUncheckedCreateWithoutProjetoInput = {
+    id?: string
+    empresa_id: string
+    cliente_id?: string | null
+    criado_por?: string | null
+    momento: $Enums.MomentoDiagnostico
+    status?: $Enums.StatusAplicacaoDiagnostico
+    token?: string
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    enviado_em?: Date | string | null
+    respondido_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type AplicacaoDiagnosticoCreateOrConnectWithoutProjetoInput = {
+    where: AplicacaoDiagnosticoWhereUniqueInput
+    create: XOR<AplicacaoDiagnosticoCreateWithoutProjetoInput, AplicacaoDiagnosticoUncheckedCreateWithoutProjetoInput>
+  }
+
+  export type AplicacaoDiagnosticoCreateManyProjetoInputEnvelope = {
+    data: AplicacaoDiagnosticoCreateManyProjetoInput | AplicacaoDiagnosticoCreateManyProjetoInput[]
+    skipDuplicates?: boolean
+  }
+
   export type EmpresaUpsertWithoutProjetosInput = {
     update: XOR<EmpresaUpdateWithoutProjetosInput, EmpresaUncheckedUpdateWithoutProjetosInput>
     create: XOR<EmpresaCreateWithoutProjetosInput, EmpresaUncheckedCreateWithoutProjetosInput>
@@ -87255,6 +89510,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutProjetosInput = {
@@ -87291,6 +89547,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ContratoUpsertWithoutProjetoInput = {
@@ -87444,6 +89701,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUpdateManyWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutProjetosInput = {
@@ -87483,6 +89741,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type UsuarioUpsertWithoutProjetos_criadosInput = {
@@ -87648,6 +89907,22 @@ export namespace Prisma {
     data: XOR<DiagnosticoUpdateManyMutationInput, DiagnosticoUncheckedUpdateManyWithoutProjetoInput>
   }
 
+  export type AplicacaoDiagnosticoUpsertWithWhereUniqueWithoutProjetoInput = {
+    where: AplicacaoDiagnosticoWhereUniqueInput
+    update: XOR<AplicacaoDiagnosticoUpdateWithoutProjetoInput, AplicacaoDiagnosticoUncheckedUpdateWithoutProjetoInput>
+    create: XOR<AplicacaoDiagnosticoCreateWithoutProjetoInput, AplicacaoDiagnosticoUncheckedCreateWithoutProjetoInput>
+  }
+
+  export type AplicacaoDiagnosticoUpdateWithWhereUniqueWithoutProjetoInput = {
+    where: AplicacaoDiagnosticoWhereUniqueInput
+    data: XOR<AplicacaoDiagnosticoUpdateWithoutProjetoInput, AplicacaoDiagnosticoUncheckedUpdateWithoutProjetoInput>
+  }
+
+  export type AplicacaoDiagnosticoUpdateManyWithWhereWithoutProjetoInput = {
+    where: AplicacaoDiagnosticoScalarWhereInput
+    data: XOR<AplicacaoDiagnosticoUpdateManyMutationInput, AplicacaoDiagnosticoUncheckedUpdateManyWithoutProjetoInput>
+  }
+
   export type ProjetoCreateWithoutEtapasInput = {
     id?: string
     titulo: string
@@ -87665,6 +89940,7 @@ export namespace Prisma {
     documentos?: DocumentoCreateNestedManyWithoutProjetoInput
     eventos?: EventoCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutProjetoInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutProjetoInput
   }
 
   export type ProjetoUncheckedCreateWithoutEtapasInput = {
@@ -87684,6 +89960,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedCreateNestedManyWithoutProjetoInput
     eventos?: EventoUncheckedCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
   }
 
   export type ProjetoCreateOrConnectWithoutEtapasInput = {
@@ -87771,6 +90048,7 @@ export namespace Prisma {
     documentos?: DocumentoUpdateManyWithoutProjetoNestedInput
     eventos?: EventoUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutProjetoNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutProjetoNestedInput
   }
 
   export type ProjetoUncheckedUpdateWithoutEtapasInput = {
@@ -87790,6 +90068,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedUpdateManyWithoutProjetoNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
   }
 
   export type TarefaUpsertWithWhereUniqueWithoutEtapaInput = {
@@ -87856,6 +90135,7 @@ export namespace Prisma {
     documentos?: DocumentoCreateNestedManyWithoutProjetoInput
     eventos?: EventoCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutProjetoInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutProjetoInput
   }
 
   export type ProjetoUncheckedCreateWithoutTarefasInput = {
@@ -87875,6 +90155,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedCreateNestedManyWithoutProjetoInput
     eventos?: EventoUncheckedCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
   }
 
   export type ProjetoCreateOrConnectWithoutTarefasInput = {
@@ -88162,6 +90443,7 @@ export namespace Prisma {
     documentos?: DocumentoUpdateManyWithoutProjetoNestedInput
     eventos?: EventoUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutProjetoNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutProjetoNestedInput
   }
 
   export type ProjetoUncheckedUpdateWithoutTarefasInput = {
@@ -88181,6 +90463,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedUpdateManyWithoutProjetoNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
   }
 
   export type UsuarioUpsertWithoutTarefasInput = {
@@ -89540,6 +91823,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutEtiquetas_tarefaInput = {
@@ -89576,6 +91860,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutEtiquetas_tarefaInput = {
@@ -89646,6 +91931,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutEtiquetas_tarefaInput = {
@@ -89682,6 +91968,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type TarefaEtiquetaUpsertWithWhereUniqueWithoutEtiquetaInput = {
@@ -89878,6 +92165,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutDocumentosInput = {
@@ -89914,6 +92202,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutDocumentosInput = {
@@ -89938,6 +92227,7 @@ export namespace Prisma {
     tarefas?: TarefaCreateNestedManyWithoutProjetoInput
     eventos?: EventoCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutProjetoInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutProjetoInput
   }
 
   export type ProjetoUncheckedCreateWithoutDocumentosInput = {
@@ -89957,6 +92247,7 @@ export namespace Prisma {
     tarefas?: TarefaUncheckedCreateNestedManyWithoutProjetoInput
     eventos?: EventoUncheckedCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
   }
 
   export type ProjetoCreateOrConnectWithoutDocumentosInput = {
@@ -90001,6 +92292,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutClienteInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutDocumentosInput = {
@@ -90040,6 +92332,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutClienteInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutDocumentosInput = {
@@ -90250,6 +92543,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutDocumentosInput = {
@@ -90286,6 +92580,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ProjetoUpsertWithoutDocumentosInput = {
@@ -90316,6 +92611,7 @@ export namespace Prisma {
     tarefas?: TarefaUpdateManyWithoutProjetoNestedInput
     eventos?: EventoUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutProjetoNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutProjetoNestedInput
   }
 
   export type ProjetoUncheckedUpdateWithoutDocumentosInput = {
@@ -90335,6 +92631,7 @@ export namespace Prisma {
     tarefas?: TarefaUncheckedUpdateManyWithoutProjetoNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
   }
 
   export type ClienteUpsertWithoutDocumentosInput = {
@@ -90385,6 +92682,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutClienteNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutDocumentosInput = {
@@ -90424,6 +92722,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutClienteNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type ContratoUpsertWithoutDocumentosInput = {
@@ -90630,6 +92929,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutPlano_contasInput = {
@@ -90666,6 +92966,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutPlano_contasInput = {
@@ -90927,6 +93228,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutPlano_contasInput = {
@@ -90963,6 +93265,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PlanoDeContasUpsertWithoutFilhosInput = {
@@ -91170,6 +93473,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutContas_bancariasInput = {
@@ -91206,6 +93510,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutContas_bancariasInput = {
@@ -91437,6 +93742,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutContas_bancariasInput = {
@@ -91473,6 +93779,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type BancoUpsertWithoutContas_bancariasInput = {
@@ -91598,6 +93905,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutTransferencias_tesourariaInput = {
@@ -91634,6 +93942,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutTransferencias_tesourariaInput = {
@@ -91776,6 +94085,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutTransferencias_tesourariaInput = {
@@ -91812,6 +94122,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ContaBancariaUpsertWithoutTransferencias_origemInput = {
@@ -91950,6 +94261,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutRecebiveisInput = {
@@ -91986,6 +94298,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutRecebiveisInput = {
@@ -92030,6 +94343,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
     documentos?: DocumentoCreateNestedManyWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutRecebiveisInput = {
@@ -92069,6 +94383,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutRecebiveisInput = {
@@ -92400,6 +94715,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutRecebiveisInput = {
@@ -92436,6 +94752,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutRecebiveisInput = {
@@ -92486,6 +94803,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUpdateManyWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutRecebiveisInput = {
@@ -92525,6 +94843,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type ContratoUpsertWithoutRecebiveisInput = {
@@ -92870,6 +95189,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutContas_pagarInput = {
@@ -92906,6 +95226,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutContas_pagarInput = {
@@ -93099,6 +95420,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutContas_pagarInput = {
@@ -93135,6 +95457,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PlanoDeContasUpsertWithoutContas_pagarInput = {
@@ -93330,6 +95653,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutModelos_documentoInput = {
@@ -93366,6 +95690,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutModelos_documentoInput = {
@@ -93418,6 +95743,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutModelos_documentoInput = {
@@ -93454,6 +95780,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateWithoutEventosInput = {
@@ -93490,6 +95817,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutEventosInput = {
@@ -93526,6 +95854,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutEventosInput = {
@@ -93631,6 +95960,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
     documentos?: DocumentoCreateNestedManyWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutEventosInput = {
@@ -93670,6 +96000,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutEventosInput = {
@@ -93791,6 +96122,7 @@ export namespace Prisma {
     tarefas?: TarefaCreateNestedManyWithoutProjetoInput
     documentos?: DocumentoCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutProjetoInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutProjetoInput
   }
 
   export type ProjetoUncheckedCreateWithoutEventosInput = {
@@ -93810,6 +96142,7 @@ export namespace Prisma {
     tarefas?: TarefaUncheckedCreateNestedManyWithoutProjetoInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
   }
 
   export type ProjetoCreateOrConnectWithoutEventosInput = {
@@ -93862,6 +96195,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutEventosInput = {
@@ -93898,6 +96232,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type UsuarioUpsertWithoutEventos_responsavelInput = {
@@ -94015,6 +96350,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUpdateManyWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutEventosInput = {
@@ -94054,6 +96390,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type ContratoUpsertWithoutEventosInput = {
@@ -94187,6 +96524,7 @@ export namespace Prisma {
     tarefas?: TarefaUpdateManyWithoutProjetoNestedInput
     documentos?: DocumentoUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutProjetoNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutProjetoNestedInput
   }
 
   export type ProjetoUncheckedUpdateWithoutEventosInput = {
@@ -94206,6 +96544,7 @@ export namespace Prisma {
     tarefas?: TarefaUncheckedUpdateManyWithoutProjetoNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
   }
 
   export type EmpresaCreateWithoutRegistros_auditoriaInput = {
@@ -94242,6 +96581,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutRegistros_auditoriaInput = {
@@ -94278,6 +96618,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutRegistros_auditoriaInput = {
@@ -94330,6 +96671,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutRegistros_auditoriaInput = {
@@ -94366,6 +96708,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateWithoutNotificacoesInput = {
@@ -94402,6 +96745,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutNotificacoesInput = {
@@ -94438,6 +96782,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutNotificacoesInput = {
@@ -94490,6 +96835,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutNotificacoesInput = {
@@ -94526,6 +96872,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateWithoutNotas_fiscaisInput = {
@@ -94562,6 +96909,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutNotas_fiscaisInput = {
@@ -94598,6 +96946,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutNotas_fiscaisInput = {
@@ -94642,6 +96991,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
     documentos?: DocumentoCreateNestedManyWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutNotas_fiscaisInput = {
@@ -94681,6 +97031,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutNotas_fiscaisInput = {
@@ -94830,6 +97181,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutNotas_fiscaisInput = {
@@ -94866,6 +97218,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutNotas_fiscaisInput = {
@@ -94916,6 +97269,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUpdateManyWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutNotas_fiscaisInput = {
@@ -94955,6 +97309,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type ContratoUpsertWithoutNotas_fiscaisInput = {
@@ -95094,6 +97449,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutBoletosInput = {
@@ -95130,6 +97486,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutBoletosInput = {
@@ -95223,6 +97580,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
     documentos?: DocumentoCreateNestedManyWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutBoletosInput = {
@@ -95262,6 +97620,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutBoletosInput = {
@@ -95314,6 +97673,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutBoletosInput = {
@@ -95350,6 +97710,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type RecebivelUpsertWithoutBoletoInput = {
@@ -95455,6 +97816,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUpdateManyWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutBoletosInput = {
@@ -95494,6 +97856,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type EmpresaCreateWithoutDiagnosticosInput = {
@@ -95530,6 +97893,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutDiagnosticosInput = {
@@ -95566,6 +97930,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutDiagnosticosInput = {
@@ -95610,6 +97975,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
     documentos?: DocumentoCreateNestedManyWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutDiagnosticosInput = {
@@ -95649,6 +98015,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutDiagnosticosInput = {
@@ -95673,6 +98040,7 @@ export namespace Prisma {
     tarefas?: TarefaCreateNestedManyWithoutProjetoInput
     documentos?: DocumentoCreateNestedManyWithoutProjetoInput
     eventos?: EventoCreateNestedManyWithoutProjetoInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutProjetoInput
   }
 
   export type ProjetoUncheckedCreateWithoutDiagnosticosInput = {
@@ -95692,6 +98060,7 @@ export namespace Prisma {
     tarefas?: TarefaUncheckedCreateNestedManyWithoutProjetoInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutProjetoInput
     eventos?: EventoUncheckedCreateNestedManyWithoutProjetoInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
   }
 
   export type ProjetoCreateOrConnectWithoutDiagnosticosInput = {
@@ -95744,6 +98113,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutDiagnosticosInput = {
@@ -95780,6 +98150,7 @@ export namespace Prisma {
     notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutDiagnosticosInput = {
@@ -95830,6 +98201,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUpdateManyWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutDiagnosticosInput = {
@@ -95869,6 +98241,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type ProjetoUpsertWithoutDiagnosticosInput = {
@@ -95899,6 +98272,7 @@ export namespace Prisma {
     tarefas?: TarefaUpdateManyWithoutProjetoNestedInput
     documentos?: DocumentoUpdateManyWithoutProjetoNestedInput
     eventos?: EventoUpdateManyWithoutProjetoNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutProjetoNestedInput
   }
 
   export type ProjetoUncheckedUpdateWithoutDiagnosticosInput = {
@@ -95918,6 +98292,7 @@ export namespace Prisma {
     tarefas?: TarefaUncheckedUpdateManyWithoutProjetoNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutProjetoNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutProjetoNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
   }
 
   export type ClienteCreateWithoutTokens_portalInput = {
@@ -95957,6 +98332,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
     documentos?: DocumentoCreateNestedManyWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutTokens_portalInput = {
@@ -95996,6 +98372,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutTokens_portalInput = {
@@ -96051,6 +98428,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUpdateManyWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutTokens_portalInput = {
@@ -96083,6 +98461,443 @@ export namespace Prisma {
     propostas?: PropostaUncheckedUpdateManyWithoutClienteNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutClienteNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutClienteNestedInput
+    recebiveis?: RecebivelUncheckedUpdateManyWithoutClienteNestedInput
+    boletos?: BoletoUncheckedUpdateManyWithoutClienteNestedInput
+    eventos?: EventoUncheckedUpdateManyWithoutClienteNestedInput
+    notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutClienteNestedInput
+    diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
+    convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
+  }
+
+  export type EmpresaCreateWithoutAplicacoes_diagnosticoInput = {
+    id?: string
+    nome: string
+    slug: string
+    cnpj?: string | null
+    logo_url?: string | null
+    plano?: $Enums.PlanoTipo
+    status?: $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
+    perfis?: PerfilCreateNestedManyWithoutEmpresaInput
+    convites?: ConviteEmpresaCreateNestedManyWithoutEmpresaInput
+    convites_cliente?: ConviteClienteCreateNestedManyWithoutEmpresaInput
+    clientes?: ClienteCreateNestedManyWithoutEmpresaInput
+    servicos?: ServicoCreateNestedManyWithoutEmpresaInput
+    leads?: LeadCreateNestedManyWithoutEmpresaInput
+    propostas?: PropostaCreateNestedManyWithoutEmpresaInput
+    contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
+    documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
+    contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
+    boletos?: BoletoCreateNestedManyWithoutEmpresaInput
+    recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
+    contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
+    eventos?: EventoCreateNestedManyWithoutEmpresaInput
+    registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
+    notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
+    notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
+    diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+  }
+
+  export type EmpresaUncheckedCreateWithoutAplicacoes_diagnosticoInput = {
+    id?: string
+    nome: string
+    slug: string
+    cnpj?: string | null
+    logo_url?: string | null
+    plano?: $Enums.PlanoTipo
+    status?: $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
+    perfis?: PerfilUncheckedCreateNestedManyWithoutEmpresaInput
+    convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
+    convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutEmpresaInput
+    clientes?: ClienteUncheckedCreateNestedManyWithoutEmpresaInput
+    servicos?: ServicoUncheckedCreateNestedManyWithoutEmpresaInput
+    leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
+    propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
+    contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
+    contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
+    boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
+    recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
+    contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
+    registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
+    notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
+    notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+  }
+
+  export type EmpresaCreateOrConnectWithoutAplicacoes_diagnosticoInput = {
+    where: EmpresaWhereUniqueInput
+    create: XOR<EmpresaCreateWithoutAplicacoes_diagnosticoInput, EmpresaUncheckedCreateWithoutAplicacoes_diagnosticoInput>
+  }
+
+  export type ProjetoCreateWithoutAplicacoes_diagnosticoInput = {
+    id?: string
+    titulo: string
+    descricao?: string | null
+    status?: $Enums.StatusProjeto
+    data_inicio?: Date | string | null
+    data_fim?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutProjetosInput
+    contrato?: ContratoCreateNestedOneWithoutProjetoInput
+    cliente: ClienteCreateNestedOneWithoutProjetosInput
+    criador?: UsuarioCreateNestedOneWithoutProjetos_criadosInput
+    etapas?: EtapaCreateNestedManyWithoutProjetoInput
+    tarefas?: TarefaCreateNestedManyWithoutProjetoInput
+    documentos?: DocumentoCreateNestedManyWithoutProjetoInput
+    eventos?: EventoCreateNestedManyWithoutProjetoInput
+    diagnosticos?: DiagnosticoCreateNestedManyWithoutProjetoInput
+  }
+
+  export type ProjetoUncheckedCreateWithoutAplicacoes_diagnosticoInput = {
+    id?: string
+    empresa_id: string
+    contrato_id?: string | null
+    cliente_id: string
+    criado_por?: string | null
+    titulo: string
+    descricao?: string | null
+    status?: $Enums.StatusProjeto
+    data_inicio?: Date | string | null
+    data_fim?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    etapas?: EtapaUncheckedCreateNestedManyWithoutProjetoInput
+    tarefas?: TarefaUncheckedCreateNestedManyWithoutProjetoInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutProjetoInput
+    eventos?: EventoUncheckedCreateNestedManyWithoutProjetoInput
+    diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
+  }
+
+  export type ProjetoCreateOrConnectWithoutAplicacoes_diagnosticoInput = {
+    where: ProjetoWhereUniqueInput
+    create: XOR<ProjetoCreateWithoutAplicacoes_diagnosticoInput, ProjetoUncheckedCreateWithoutAplicacoes_diagnosticoInput>
+  }
+
+  export type ClienteCreateWithoutAplicacoes_diagnosticoInput = {
+    id?: string
+    nome: string
+    tipo?: $Enums.TipoCliente
+    nome_fantasia?: string | null
+    cpf_cnpj?: string | null
+    inscricao_estadual?: string | null
+    contato_principal?: string | null
+    email?: string | null
+    telefone?: string | null
+    whatsapp?: string | null
+    cep?: string | null
+    logradouro?: string | null
+    numero?: string | null
+    complemento?: string | null
+    bairro?: string | null
+    cidade?: string | null
+    estado?: string | null
+    nome_fazenda?: string | null
+    distancia_km?: Decimal | DecimalJsLike | number | string | null
+    preco_km?: Decimal | DecimalJsLike | number | string | null
+    status?: $Enums.StatusCliente
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutClientesInput
+    contatos?: ContatoCreateNestedManyWithoutClienteInput
+    leads?: LeadCreateNestedManyWithoutClienteInput
+    propostas?: PropostaCreateNestedManyWithoutClienteInput
+    contratos?: ContratoCreateNestedManyWithoutClienteInput
+    projetos?: ProjetoCreateNestedManyWithoutClienteInput
+    tokens_portal?: TokenPortalCreateNestedManyWithoutClienteInput
+    recebiveis?: RecebivelCreateNestedManyWithoutClienteInput
+    boletos?: BoletoCreateNestedManyWithoutClienteInput
+    eventos?: EventoCreateNestedManyWithoutClienteInput
+    notas_fiscais?: NotaFiscalCreateNestedManyWithoutClienteInput
+    diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
+    convite?: ConviteClienteCreateNestedOneWithoutClienteInput
+    documentos?: DocumentoCreateNestedManyWithoutClienteInput
+  }
+
+  export type ClienteUncheckedCreateWithoutAplicacoes_diagnosticoInput = {
+    id?: string
+    empresa_id: string
+    nome: string
+    tipo?: $Enums.TipoCliente
+    nome_fantasia?: string | null
+    cpf_cnpj?: string | null
+    inscricao_estadual?: string | null
+    contato_principal?: string | null
+    email?: string | null
+    telefone?: string | null
+    whatsapp?: string | null
+    cep?: string | null
+    logradouro?: string | null
+    numero?: string | null
+    complemento?: string | null
+    bairro?: string | null
+    cidade?: string | null
+    estado?: string | null
+    nome_fazenda?: string | null
+    distancia_km?: Decimal | DecimalJsLike | number | string | null
+    preco_km?: Decimal | DecimalJsLike | number | string | null
+    status?: $Enums.StatusCliente
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    contatos?: ContatoUncheckedCreateNestedManyWithoutClienteInput
+    leads?: LeadUncheckedCreateNestedManyWithoutClienteInput
+    propostas?: PropostaUncheckedCreateNestedManyWithoutClienteInput
+    contratos?: ContratoUncheckedCreateNestedManyWithoutClienteInput
+    projetos?: ProjetoUncheckedCreateNestedManyWithoutClienteInput
+    tokens_portal?: TokenPortalUncheckedCreateNestedManyWithoutClienteInput
+    recebiveis?: RecebivelUncheckedCreateNestedManyWithoutClienteInput
+    boletos?: BoletoUncheckedCreateNestedManyWithoutClienteInput
+    eventos?: EventoUncheckedCreateNestedManyWithoutClienteInput
+    notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutClienteInput
+    diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
+    convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
+  }
+
+  export type ClienteCreateOrConnectWithoutAplicacoes_diagnosticoInput = {
+    where: ClienteWhereUniqueInput
+    create: XOR<ClienteCreateWithoutAplicacoes_diagnosticoInput, ClienteUncheckedCreateWithoutAplicacoes_diagnosticoInput>
+  }
+
+  export type EmpresaUpsertWithoutAplicacoes_diagnosticoInput = {
+    update: XOR<EmpresaUpdateWithoutAplicacoes_diagnosticoInput, EmpresaUncheckedUpdateWithoutAplicacoes_diagnosticoInput>
+    create: XOR<EmpresaCreateWithoutAplicacoes_diagnosticoInput, EmpresaUncheckedCreateWithoutAplicacoes_diagnosticoInput>
+    where?: EmpresaWhereInput
+  }
+
+  export type EmpresaUpdateToOneWithWhereWithoutAplicacoes_diagnosticoInput = {
+    where?: EmpresaWhereInput
+    data: XOR<EmpresaUpdateWithoutAplicacoes_diagnosticoInput, EmpresaUncheckedUpdateWithoutAplicacoes_diagnosticoInput>
+  }
+
+  export type EmpresaUpdateWithoutAplicacoes_diagnosticoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    logo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
+    status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
+    perfis?: PerfilUpdateManyWithoutEmpresaNestedInput
+    convites?: ConviteEmpresaUpdateManyWithoutEmpresaNestedInput
+    convites_cliente?: ConviteClienteUpdateManyWithoutEmpresaNestedInput
+    clientes?: ClienteUpdateManyWithoutEmpresaNestedInput
+    servicos?: ServicoUpdateManyWithoutEmpresaNestedInput
+    leads?: LeadUpdateManyWithoutEmpresaNestedInput
+    propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
+    contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
+    documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
+    contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
+    boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
+    recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
+    contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
+    eventos?: EventoUpdateManyWithoutEmpresaNestedInput
+    registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
+    notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
+    notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
+    diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+  }
+
+  export type EmpresaUncheckedUpdateWithoutAplicacoes_diagnosticoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    logo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
+    status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
+    perfis?: PerfilUncheckedUpdateManyWithoutEmpresaNestedInput
+    convites?: ConviteEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
+    convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutEmpresaNestedInput
+    clientes?: ClienteUncheckedUpdateManyWithoutEmpresaNestedInput
+    servicos?: ServicoUncheckedUpdateManyWithoutEmpresaNestedInput
+    leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
+    propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
+    contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
+    contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
+    recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
+    contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
+    registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
+    notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
+    notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+  }
+
+  export type ProjetoUpsertWithoutAplicacoes_diagnosticoInput = {
+    update: XOR<ProjetoUpdateWithoutAplicacoes_diagnosticoInput, ProjetoUncheckedUpdateWithoutAplicacoes_diagnosticoInput>
+    create: XOR<ProjetoCreateWithoutAplicacoes_diagnosticoInput, ProjetoUncheckedCreateWithoutAplicacoes_diagnosticoInput>
+    where?: ProjetoWhereInput
+  }
+
+  export type ProjetoUpdateToOneWithWhereWithoutAplicacoes_diagnosticoInput = {
+    where?: ProjetoWhereInput
+    data: XOR<ProjetoUpdateWithoutAplicacoes_diagnosticoInput, ProjetoUncheckedUpdateWithoutAplicacoes_diagnosticoInput>
+  }
+
+  export type ProjetoUpdateWithoutAplicacoes_diagnosticoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
+    data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutProjetosNestedInput
+    contrato?: ContratoUpdateOneWithoutProjetoNestedInput
+    cliente?: ClienteUpdateOneRequiredWithoutProjetosNestedInput
+    criador?: UsuarioUpdateOneWithoutProjetos_criadosNestedInput
+    etapas?: EtapaUpdateManyWithoutProjetoNestedInput
+    tarefas?: TarefaUpdateManyWithoutProjetoNestedInput
+    documentos?: DocumentoUpdateManyWithoutProjetoNestedInput
+    eventos?: EventoUpdateManyWithoutProjetoNestedInput
+    diagnosticos?: DiagnosticoUpdateManyWithoutProjetoNestedInput
+  }
+
+  export type ProjetoUncheckedUpdateWithoutAplicacoes_diagnosticoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_id?: StringFieldUpdateOperationsInput | string
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
+    data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    etapas?: EtapaUncheckedUpdateManyWithoutProjetoNestedInput
+    tarefas?: TarefaUncheckedUpdateManyWithoutProjetoNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutProjetoNestedInput
+    eventos?: EventoUncheckedUpdateManyWithoutProjetoNestedInput
+    diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
+  }
+
+  export type ClienteUpsertWithoutAplicacoes_diagnosticoInput = {
+    update: XOR<ClienteUpdateWithoutAplicacoes_diagnosticoInput, ClienteUncheckedUpdateWithoutAplicacoes_diagnosticoInput>
+    create: XOR<ClienteCreateWithoutAplicacoes_diagnosticoInput, ClienteUncheckedCreateWithoutAplicacoes_diagnosticoInput>
+    where?: ClienteWhereInput
+  }
+
+  export type ClienteUpdateToOneWithWhereWithoutAplicacoes_diagnosticoInput = {
+    where?: ClienteWhereInput
+    data: XOR<ClienteUpdateWithoutAplicacoes_diagnosticoInput, ClienteUncheckedUpdateWithoutAplicacoes_diagnosticoInput>
+  }
+
+  export type ClienteUpdateWithoutAplicacoes_diagnosticoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    tipo?: EnumTipoClienteFieldUpdateOperationsInput | $Enums.TipoCliente
+    nome_fantasia?: NullableStringFieldUpdateOperationsInput | string | null
+    cpf_cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    inscricao_estadual?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_principal?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    cep?: NullableStringFieldUpdateOperationsInput | string | null
+    logradouro?: NullableStringFieldUpdateOperationsInput | string | null
+    numero?: NullableStringFieldUpdateOperationsInput | string | null
+    complemento?: NullableStringFieldUpdateOperationsInput | string | null
+    bairro?: NullableStringFieldUpdateOperationsInput | string | null
+    cidade?: NullableStringFieldUpdateOperationsInput | string | null
+    estado?: NullableStringFieldUpdateOperationsInput | string | null
+    nome_fazenda?: NullableStringFieldUpdateOperationsInput | string | null
+    distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutClientesNestedInput
+    contatos?: ContatoUpdateManyWithoutClienteNestedInput
+    leads?: LeadUpdateManyWithoutClienteNestedInput
+    propostas?: PropostaUpdateManyWithoutClienteNestedInput
+    contratos?: ContratoUpdateManyWithoutClienteNestedInput
+    projetos?: ProjetoUpdateManyWithoutClienteNestedInput
+    tokens_portal?: TokenPortalUpdateManyWithoutClienteNestedInput
+    recebiveis?: RecebivelUpdateManyWithoutClienteNestedInput
+    boletos?: BoletoUpdateManyWithoutClienteNestedInput
+    eventos?: EventoUpdateManyWithoutClienteNestedInput
+    notas_fiscais?: NotaFiscalUpdateManyWithoutClienteNestedInput
+    diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
+    convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
+    documentos?: DocumentoUpdateManyWithoutClienteNestedInput
+  }
+
+  export type ClienteUncheckedUpdateWithoutAplicacoes_diagnosticoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    tipo?: EnumTipoClienteFieldUpdateOperationsInput | $Enums.TipoCliente
+    nome_fantasia?: NullableStringFieldUpdateOperationsInput | string | null
+    cpf_cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    inscricao_estadual?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_principal?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    cep?: NullableStringFieldUpdateOperationsInput | string | null
+    logradouro?: NullableStringFieldUpdateOperationsInput | string | null
+    numero?: NullableStringFieldUpdateOperationsInput | string | null
+    complemento?: NullableStringFieldUpdateOperationsInput | string | null
+    bairro?: NullableStringFieldUpdateOperationsInput | string | null
+    cidade?: NullableStringFieldUpdateOperationsInput | string | null
+    estado?: NullableStringFieldUpdateOperationsInput | string | null
+    nome_fazenda?: NullableStringFieldUpdateOperationsInput | string | null
+    distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    contatos?: ContatoUncheckedUpdateManyWithoutClienteNestedInput
+    leads?: LeadUncheckedUpdateManyWithoutClienteNestedInput
+    propostas?: PropostaUncheckedUpdateManyWithoutClienteNestedInput
+    contratos?: ContratoUncheckedUpdateManyWithoutClienteNestedInput
+    projetos?: ProjetoUncheckedUpdateManyWithoutClienteNestedInput
+    tokens_portal?: TokenPortalUncheckedUpdateManyWithoutClienteNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutClienteNestedInput
     boletos?: BoletoUncheckedUpdateManyWithoutClienteNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutClienteNestedInput
@@ -96474,6 +99289,21 @@ export namespace Prisma {
     cor?: string
   }
 
+  export type AplicacaoDiagnosticoCreateManyEmpresaInput = {
+    id?: string
+    projeto_id: string
+    cliente_id?: string | null
+    criado_por?: string | null
+    momento: $Enums.MomentoDiagnostico
+    status?: $Enums.StatusAplicacaoDiagnostico
+    token?: string
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    enviado_em?: Date | string | null
+    respondido_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
   export type MembroEmpresaUpdateWithoutEmpresaInput = {
     id?: StringFieldUpdateOperationsInput | string
     ativo?: BoolFieldUpdateOperationsInput | boolean
@@ -96626,6 +99456,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUpdateManyWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutEmpresaInput = {
@@ -96665,6 +99496,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateManyWithoutEmpresaInput = {
@@ -97035,6 +99867,7 @@ export namespace Prisma {
     documentos?: DocumentoUpdateManyWithoutProjetoNestedInput
     eventos?: EventoUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutProjetoNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutProjetoNestedInput
   }
 
   export type ProjetoUncheckedUpdateWithoutEmpresaInput = {
@@ -97054,6 +99887,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedUpdateManyWithoutProjetoNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
   }
 
   export type ProjetoUncheckedUpdateManyWithoutEmpresaInput = {
@@ -97700,6 +100534,51 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
     cor?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AplicacaoDiagnosticoUpdateWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    momento?: EnumMomentoDiagnosticoFieldUpdateOperationsInput | $Enums.MomentoDiagnostico
+    status?: EnumStatusAplicacaoDiagnosticoFieldUpdateOperationsInput | $Enums.StatusAplicacaoDiagnostico
+    token?: StringFieldUpdateOperationsInput | string
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    enviado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    respondido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    projeto?: ProjetoUpdateOneRequiredWithoutAplicacoes_diagnosticoNestedInput
+    cliente?: ClienteUpdateOneWithoutAplicacoes_diagnosticoNestedInput
+  }
+
+  export type AplicacaoDiagnosticoUncheckedUpdateWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projeto_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    momento?: EnumMomentoDiagnosticoFieldUpdateOperationsInput | $Enums.MomentoDiagnostico
+    status?: EnumStatusAplicacaoDiagnosticoFieldUpdateOperationsInput | $Enums.StatusAplicacaoDiagnostico
+    token?: StringFieldUpdateOperationsInput | string
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    enviado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    respondido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projeto_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    momento?: EnumMomentoDiagnosticoFieldUpdateOperationsInput | $Enums.MomentoDiagnostico
+    status?: EnumStatusAplicacaoDiagnosticoFieldUpdateOperationsInput | $Enums.StatusAplicacaoDiagnostico
+    token?: StringFieldUpdateOperationsInput | string
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    enviado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    respondido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MembroEmpresaCreateManyUsuarioInput = {
@@ -98435,6 +101314,7 @@ export namespace Prisma {
     documentos?: DocumentoUpdateManyWithoutProjetoNestedInput
     eventos?: EventoUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutProjetoNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutProjetoNestedInput
   }
 
   export type ProjetoUncheckedUpdateWithoutCriadorInput = {
@@ -98454,6 +101334,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedUpdateManyWithoutProjetoNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
   }
 
   export type ProjetoUncheckedUpdateManyWithoutCriadorInput = {
@@ -99439,6 +102320,21 @@ export namespace Prisma {
     criado_em?: Date | string
   }
 
+  export type AplicacaoDiagnosticoCreateManyClienteInput = {
+    id?: string
+    empresa_id: string
+    projeto_id: string
+    criado_por?: string | null
+    momento: $Enums.MomentoDiagnostico
+    status?: $Enums.StatusAplicacaoDiagnostico
+    token?: string
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    enviado_em?: Date | string | null
+    respondido_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
   export type ContatoUpdateWithoutClienteInput = {
     id?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
@@ -99776,6 +102672,7 @@ export namespace Prisma {
     documentos?: DocumentoUpdateManyWithoutProjetoNestedInput
     eventos?: EventoUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutProjetoNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutProjetoNestedInput
   }
 
   export type ProjetoUncheckedUpdateWithoutClienteInput = {
@@ -99795,6 +102692,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedUpdateManyWithoutProjetoNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
   }
 
   export type ProjetoUncheckedUpdateManyWithoutClienteInput = {
@@ -100168,6 +103066,51 @@ export namespace Prisma {
     arquivo_tamanho?: IntFieldUpdateOperationsInput | number
     mime_type?: StringFieldUpdateOperationsInput | string
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AplicacaoDiagnosticoUpdateWithoutClienteInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    momento?: EnumMomentoDiagnosticoFieldUpdateOperationsInput | $Enums.MomentoDiagnostico
+    status?: EnumStatusAplicacaoDiagnosticoFieldUpdateOperationsInput | $Enums.StatusAplicacaoDiagnostico
+    token?: StringFieldUpdateOperationsInput | string
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    enviado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    respondido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutAplicacoes_diagnosticoNestedInput
+    projeto?: ProjetoUpdateOneRequiredWithoutAplicacoes_diagnosticoNestedInput
+  }
+
+  export type AplicacaoDiagnosticoUncheckedUpdateWithoutClienteInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    projeto_id?: StringFieldUpdateOperationsInput | string
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    momento?: EnumMomentoDiagnosticoFieldUpdateOperationsInput | $Enums.MomentoDiagnostico
+    status?: EnumStatusAplicacaoDiagnosticoFieldUpdateOperationsInput | $Enums.StatusAplicacaoDiagnostico
+    token?: StringFieldUpdateOperationsInput | string
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    enviado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    respondido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    projeto_id?: StringFieldUpdateOperationsInput | string
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    momento?: EnumMomentoDiagnosticoFieldUpdateOperationsInput | $Enums.MomentoDiagnostico
+    status?: EnumStatusAplicacaoDiagnosticoFieldUpdateOperationsInput | $Enums.StatusAplicacaoDiagnostico
+    token?: StringFieldUpdateOperationsInput | string
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    enviado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    respondido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ItemPropostaCreateManyServicoInput = {
@@ -100839,6 +103782,21 @@ export namespace Prisma {
     atualizado_em?: Date | string
   }
 
+  export type AplicacaoDiagnosticoCreateManyProjetoInput = {
+    id?: string
+    empresa_id: string
+    cliente_id?: string | null
+    criado_por?: string | null
+    momento: $Enums.MomentoDiagnostico
+    status?: $Enums.StatusAplicacaoDiagnostico
+    token?: string
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    enviado_em?: Date | string | null
+    respondido_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
   export type EtapaUpdateWithoutProjetoInput = {
     id?: StringFieldUpdateOperationsInput | string
     titulo?: StringFieldUpdateOperationsInput | string
@@ -101068,6 +104026,51 @@ export namespace Prisma {
     tipo?: EnumTipoDiagnosticoFieldUpdateOperationsInput | $Enums.TipoDiagnostico
     titulo?: StringFieldUpdateOperationsInput | string
     conteudo?: JsonNullValueInput | InputJsonValue
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AplicacaoDiagnosticoUpdateWithoutProjetoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    momento?: EnumMomentoDiagnosticoFieldUpdateOperationsInput | $Enums.MomentoDiagnostico
+    status?: EnumStatusAplicacaoDiagnosticoFieldUpdateOperationsInput | $Enums.StatusAplicacaoDiagnostico
+    token?: StringFieldUpdateOperationsInput | string
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    enviado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    respondido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutAplicacoes_diagnosticoNestedInput
+    cliente?: ClienteUpdateOneWithoutAplicacoes_diagnosticoNestedInput
+  }
+
+  export type AplicacaoDiagnosticoUncheckedUpdateWithoutProjetoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    momento?: EnumMomentoDiagnosticoFieldUpdateOperationsInput | $Enums.MomentoDiagnostico
+    status?: EnumStatusAplicacaoDiagnosticoFieldUpdateOperationsInput | $Enums.StatusAplicacaoDiagnostico
+    token?: StringFieldUpdateOperationsInput | string
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    enviado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    respondido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AplicacaoDiagnosticoUncheckedUpdateManyWithoutProjetoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    momento?: EnumMomentoDiagnosticoFieldUpdateOperationsInput | $Enums.MomentoDiagnostico
+    status?: EnumStatusAplicacaoDiagnosticoFieldUpdateOperationsInput | $Enums.StatusAplicacaoDiagnostico
+    token?: StringFieldUpdateOperationsInput | string
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    enviado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    respondido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }

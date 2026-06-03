@@ -59,6 +59,7 @@ model Empresa {
   notas_fiscais        NotaFiscal[]
   diagnosticos         Diagnostico[]
   etiquetas_tarefa     EtiquetaTarefa[]
+  aplicacoes_diagnostico AplicacaoDiagnostico[]
 
   @@map("empresas")
 }
@@ -275,6 +276,7 @@ model Cliente {
   diagnosticos  Diagnostico[]
   convite       ConviteCliente?
   documentos    Documento[]
+  aplicacoes_diagnostico AplicacaoDiagnostico[]
 
   @@map("clientes")
 }
@@ -559,6 +561,7 @@ model Projeto {
   documentos   Documento[]
   eventos      Evento[]
   diagnosticos Diagnostico[]
+  aplicacoes_diagnostico AplicacaoDiagnostico[]
 
   @@map("projetos")
 }
@@ -1112,4 +1115,41 @@ model TokenPortal {
   cliente Cliente @relation(fields: [cliente_id], references: [id], onDelete: Cascade)
 
   @@map("tokens_portal")
+}
+
+// ─── DIAGNÓSTICO DE COLETA (QUESTIONÁRIO PERFIL DO CLIENTE) ───────────────────
+
+enum MomentoDiagnostico {
+  PONTO_A
+  PONTO_B
+  PONTO_C
+}
+
+enum StatusAplicacaoDiagnostico {
+  PENDENTE
+  ENVIADO
+  RESPONDIDO
+}
+
+model AplicacaoDiagnostico {
+  id          String                     @id @default(cuid())
+  empresa_id  String
+  projeto_id  String
+  cliente_id  String?
+  criado_por  String?
+  momento     MomentoDiagnostico
+  status      StatusAplicacaoDiagnostico @default(PENDENTE)
+  token       String                     @unique @default(cuid())
+  respostas   Json?
+  enviado_em  DateTime?
+  respondido_em DateTime?
+  criado_em   DateTime                   @default(now())
+  atualizado_em DateTime                 @updatedAt
+
+  empresa Empresa  @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  projeto Projeto  @relation(fields: [projeto_id], references: [id], onDelete: Cascade)
+  cliente Cliente? @relation(fields: [cliente_id], references: [id])
+
+  @@unique([projeto_id, momento])
+  @@map("aplicacoes_diagnostico")
 }

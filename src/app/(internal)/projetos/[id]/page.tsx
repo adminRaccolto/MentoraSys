@@ -15,7 +15,7 @@ export default async function ProjetoDetalhePage({ params }: Props) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
-  const [projeto, membros] = await Promise.all([
+  const [projeto, membros, diagnosticosColeta] = await Promise.all([
     prisma.projeto.findUnique({
       where: { id, empresa_id: empresaId },
       include: {
@@ -44,9 +44,20 @@ export default async function ProjetoDetalhePage({ params }: Props) {
       where: { empresa_id: empresaId, ativo: true },
       include: { usuario: { select: { id: true, nome: true } } },
     }),
+    prisma.aplicacaoDiagnostico.findMany({
+      where: { projeto_id: id, empresa_id: empresaId },
+      orderBy: { momento: "asc" },
+    }),
   ]);
 
   if (!projeto) notFound();
 
-  return <ProjetoDetalheClient projeto={projeto} membros={membros} usuarioAtualId={user?.id} />;
+  return (
+    <ProjetoDetalheClient
+      projeto={projeto}
+      membros={membros}
+      usuarioAtualId={user?.id}
+      diagnosticosColeta={diagnosticosColeta}
+    />
+  );
 }
