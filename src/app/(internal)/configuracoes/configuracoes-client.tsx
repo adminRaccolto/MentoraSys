@@ -59,12 +59,18 @@ const ACOES = ["criar", "editar", "excluir"] as const;
 const schemaEmpresa = z.object({
   nome: z.string().min(2, "Nome obrigatório"),
   cnpj: z.string().optional(),
+  nome_fantasia: z.string().optional(),
+  razao_social: z.string().optional(),
   telefone: z.string().optional(),
   email_contato: z.string().optional(),
   endereco: z.string().optional(),
   cidade: z.string().optional(),
   estado: z.string().optional(),
+  cep: z.string().optional(),
   site: z.string().optional(),
+  representante: z.string().optional(),
+  representante_cargo: z.string().optional(),
+  representante_cpf: z.string().optional(),
 });
 
 const schemaPerfil = z.object({
@@ -103,12 +109,18 @@ interface Props {
     cnpj: string;
     logo_url: string;
     plano: string;
+    nome_fantasia: string;
+    razao_social: string;
     telefone: string;
     email_contato: string;
     endereco: string;
     cidade: string;
     estado: string;
+    cep: string;
     site: string;
+    representante: string;
+    representante_cargo: string;
+    representante_cpf: string;
   };
   usuario: {
     id: string;
@@ -397,12 +409,18 @@ export default function ConfiguracoesClient({ empresa, usuario, membros: membros
     defaultValues: {
       nome: empresa.nome,
       cnpj: empresa.cnpj,
+      nome_fantasia: empresa.nome_fantasia,
+      razao_social: empresa.razao_social,
       telefone: empresa.telefone,
       email_contato: empresa.email_contato,
       endereco: empresa.endereco,
       cidade: empresa.cidade,
       estado: empresa.estado,
+      cep: empresa.cep,
       site: empresa.site,
+      representante: empresa.representante,
+      representante_cargo: empresa.representante_cargo,
+      representante_cpf: empresa.representante_cpf,
     },
   });
 
@@ -466,37 +484,71 @@ export default function ConfiguracoesClient({ empresa, usuario, membros: membros
 
           <Separator />
 
-          <form onSubmit={onSubmitEmpresa} className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
-              <Field label="Razão social / Nome *" error={formEmpresa.formState.errors.nome?.message}>
-                <Input {...formEmpresa.register("nome")} className="h-9 text-sm" />
-              </Field>
-              <Field label="CNPJ">
-                <Input {...formEmpresa.register("cnpj")} className="h-9 text-sm" placeholder="00.000.000/0001-00" />
-              </Field>
-              <Field label="Telefone / Celular">
-                <Input {...formEmpresa.register("telefone")} className="h-9 text-sm" placeholder="(xx) 9xxxx-xxxx" />
-              </Field>
-              <Field label="E-mail de contato">
-                <Input {...formEmpresa.register("email_contato")} type="email" className="h-9 text-sm" placeholder="contato@empresa.com" />
-              </Field>
-              <div className="col-span-2">
-                <Field label="Endereço completo">
-                  <Input {...formEmpresa.register("endereco")} className="h-9 text-sm" placeholder="Rua, nº, complemento, bairro" />
+          <form onSubmit={onSubmitEmpresa} className="space-y-6">
+            {/* Identificação */}
+            <div>
+              <p className="text-xs font-semibold text-primary uppercase tracking-widest mb-3">Identificação</p>
+              <div className="grid grid-cols-2 gap-4">
+                <Field label="Razão Social *" error={formEmpresa.formState.errors.nome?.message}>
+                  <Input {...formEmpresa.register("nome")} className="h-9 text-sm" placeholder="Nome jurídico completo" />
                 </Field>
-              </div>
-              <Field label="Cidade">
-                <Input {...formEmpresa.register("cidade")} className="h-9 text-sm" />
-              </Field>
-              <Field label="Estado (UF)">
-                <Input {...formEmpresa.register("estado")} className="h-9 text-sm" placeholder="MT" maxLength={2} />
-              </Field>
-              <div className="col-span-2">
+                <Field label="Nome Fantasia">
+                  <Input {...formEmpresa.register("nome_fantasia")} className="h-9 text-sm" placeholder="Como a empresa é conhecida" />
+                </Field>
+                <Field label="CNPJ">
+                  <Input {...formEmpresa.register("cnpj")} className="h-9 text-sm" placeholder="00.000.000/0001-00" />
+                </Field>
                 <Field label="Site">
                   <Input {...formEmpresa.register("site")} className="h-9 text-sm" placeholder="https://www.empresa.com" />
                 </Field>
               </div>
             </div>
+
+            {/* Representante legal */}
+            <div>
+              <p className="text-xs font-semibold text-primary uppercase tracking-widest mb-3">Representante Legal <span className="text-muted-foreground normal-case font-normal">(usado nos documentos)</span></p>
+              <div className="grid grid-cols-2 gap-4">
+                <Field label="Nome do representante">
+                  <Input {...formEmpresa.register("representante")} className="h-9 text-sm" placeholder="Nome completo" />
+                </Field>
+                <Field label="CPF do representante">
+                  <Input {...formEmpresa.register("representante_cpf")} className="h-9 text-sm" placeholder="000.000.000-00" />
+                </Field>
+                <div className="col-span-2">
+                  <Field label="Cargo / Qualidade">
+                    <Input {...formEmpresa.register("representante_cargo")} className="h-9 text-sm" placeholder="Ex: Sócio Administrador" />
+                  </Field>
+                </div>
+              </div>
+            </div>
+
+            {/* Contato */}
+            <div>
+              <p className="text-xs font-semibold text-primary uppercase tracking-widest mb-3">Contato e Endereço</p>
+              <div className="grid grid-cols-2 gap-4">
+                <Field label="Telefone / Celular">
+                  <Input {...formEmpresa.register("telefone")} className="h-9 text-sm" placeholder="(xx) 9xxxx-xxxx" />
+                </Field>
+                <Field label="E-mail de contato">
+                  <Input {...formEmpresa.register("email_contato")} type="email" className="h-9 text-sm" placeholder="contato@empresa.com" />
+                </Field>
+                <div className="col-span-2">
+                  <Field label="Endereço completo">
+                    <Input {...formEmpresa.register("endereco")} className="h-9 text-sm" placeholder="Rua, nº, complemento, bairro" />
+                  </Field>
+                </div>
+                <Field label="Cidade">
+                  <Input {...formEmpresa.register("cidade")} className="h-9 text-sm" />
+                </Field>
+                <Field label="Estado (UF)">
+                  <Input {...formEmpresa.register("estado")} className="h-9 text-sm" placeholder="MT" maxLength={2} />
+                </Field>
+                <Field label="CEP">
+                  <Input {...formEmpresa.register("cep")} className="h-9 text-sm" placeholder="00000-000" />
+                </Field>
+              </div>
+            </div>
+
             <div className="flex justify-end">
               <Button type="submit" disabled={isPendingEmpresa}>
                 {isPendingEmpresa ? "Salvando..." : "Salvar dados da empresa"}

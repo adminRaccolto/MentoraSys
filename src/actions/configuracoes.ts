@@ -76,12 +76,18 @@ export async function uploadAvatarAction(formData: FormData) {
 const schemaEmpresa = z.object({
   nome: z.string().min(2, "Nome obrigatório"),
   cnpj: z.string().optional(),
+  nome_fantasia: z.string().optional(),
+  razao_social: z.string().optional(),
   telefone: z.string().optional(),
   email_contato: z.string().optional(),
   endereco: z.string().optional(),
   cidade: z.string().optional(),
   estado: z.string().optional(),
+  cep: z.string().optional(),
   site: z.string().optional(),
+  representante: z.string().optional(),
+  representante_cargo: z.string().optional(),
+  representante_cpf: z.string().optional(),
 });
 
 const schemaPerfil = z.object({

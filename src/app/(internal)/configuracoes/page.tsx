@@ -76,12 +76,18 @@ export default async function ConfiguracoesPage() {
         cnpj: empresa.cnpj ?? "",
         logo_url: empresa.logo_url ?? "",
         plano: empresa.plano,
+        nome_fantasia: config.nome_fantasia ?? "",
+        razao_social: config.razao_social ?? "",
         telefone: config.telefone ?? "",
         email_contato: config.email_contato ?? "",
         endereco: config.endereco ?? "",
         cidade: config.cidade ?? "",
         estado: config.estado ?? "",
+        cep: config.cep ?? "",
         site: config.site ?? "",
+        representante: config.representante ?? "",
+        representante_cargo: config.representante_cargo ?? "",
+        representante_cpf: config.representante_cpf ?? "",
       }}
       usuario={usuario ? {
         id: usuario.id,
