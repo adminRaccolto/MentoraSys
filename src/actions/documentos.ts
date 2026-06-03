@@ -18,7 +18,7 @@ export async function listarDocumentos(filtros?: {
   contrato_id?: string;
   busca?: string;
 }) {
-  await verificarPermissao("documentos", "listar");
+  await verificarPermissao("projetos", "editar");
   const empresaId = await obterEmpresaAtiva();
 
   return prisma.documento.findMany({
@@ -52,7 +52,7 @@ export async function criarUrlUpload(input: {
   arquivo_nome: string;
   mime_type: string;
 }) {
-  await verificarPermissao("documentos", "criar");
+  await verificarPermissao("projetos", "editar");
   const empresaId = await obterEmpresaAtiva();
 
   const extensao = input.arquivo_nome.split(".").pop() ?? "bin";
@@ -81,7 +81,7 @@ export async function confirmarUpload(input: {
   cliente_id?: string;
   contrato_id?: string;
 }) {
-  await verificarPermissao("documentos", "criar");
+  await verificarPermissao("projetos", "editar");
   const empresaId = await obterEmpresaAtiva();
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -114,7 +114,7 @@ export async function confirmarUpload(input: {
 // ─── URL DE DOWNLOAD PRÉ-ASSINADA (1 hora) ───────────────────────────────────
 
 export async function obterUrlDownload(documentoId: string) {
-  await verificarPermissao("documentos", "listar");
+  await verificarPermissao("projetos", "editar");
   const empresaId = await obterEmpresaAtiva();
 
   const doc = await prisma.documento.findFirst({
@@ -139,7 +139,7 @@ export async function obterUrlDownload(documentoId: string) {
 // ─── EXCLUIR ─────────────────────────────────────────────────────────────────
 
 export async function excluirDocumento(documentoId: string) {
-  await verificarPermissao("documentos", "excluir");
+  await verificarPermissao("projetos", "editar");
   const empresaId = await obterEmpresaAtiva();
 
   const doc = await prisma.documento.findFirst({
@@ -166,7 +166,7 @@ export async function atualizarDocumento(
   documentoId: string,
   data: { titulo?: string; descricao?: string; categoria?: CategoriaDocumento }
 ) {
-  await verificarPermissao("documentos", "editar");
+  await verificarPermissao("projetos", "editar");
   const empresaId = await obterEmpresaAtiva();
 
   const resultado = await prisma.documento.updateMany({

@@ -149,7 +149,7 @@ export async function moverTarefa(input: {
 // ─── CARREGAR TAREFA COMPLETA ─────────────────────────────────────────────────
 
 export async function carregarTarefaCompleta(tarefaId: string) {
-  await verificarPermissao("projetos", "listar");
+  await verificarPermissao("projetos", "editar");
   const empresaId = await obterEmpresaAtiva();
 
   const tarefa = await prisma.tarefa.findFirst({
