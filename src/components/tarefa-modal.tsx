@@ -257,7 +257,7 @@ export default function TarefaModal({ tarefa: ini_, membros, usuarioAtualId, onC
 
   return (
     <Dialog open onOpenChange={v => { if (!v) onClose(); }}>
-      <DialogContent className="w-[96vw] max-w-350 h-[88vh] max-h-[88vh] p-0 gap-0 overflow-hidden flex flex-col">
+      <DialogContent className="w-[96vw] max-w-[96vw] sm:max-w-[96vw] h-[88vh] max-h-[88vh] p-0 gap-0 overflow-hidden flex flex-col">
 
         {/* ── barra superior ───────────────────────────────────────────── */}
         <div className="flex items-center gap-4 px-6 py-3 border-b bg-muted/20 shrink-0">
@@ -273,10 +273,10 @@ export default function TarefaModal({ tarefa: ini_, membros, usuarioAtualId, onC
         </div>
 
         {/* ── corpo 3 colunas ──────────────────────────────────────────── */}
-        <div className="flex flex-1 min-h-0 overflow-hidden divide-x">
+        <div className="flex flex-1 min-h-0 overflow-hidden divide-x w-full">
 
           {/* ══ COL 1 — Conteúdo principal ═══════════════════════════════ */}
-          <div className="flex-1 overflow-y-auto p-6 space-y-6 min-w-0">
+          <div className="w-[45%] shrink-0 overflow-y-auto p-6 space-y-6 min-w-0">
 
             {/* título */}
             {editTitle ? (
@@ -393,7 +393,7 @@ export default function TarefaModal({ tarefa: ini_, membros, usuarioAtualId, onC
           </div>
 
           {/* ══ COL 2 — Metadados ════════════════════════════════════════ */}
-          <div className="w-64 shrink-0 overflow-y-auto p-6 space-y-5 bg-muted/10">
+          <div className="w-[22%] shrink-0 overflow-y-auto p-6 space-y-5 bg-muted/10">
 
             <Meta icon={<Flag className="size-3" />} label="Status">
               <Select value={t.status} onValueChange={v => v && salvarCampo({ status: v })}>
@@ -457,7 +457,7 @@ export default function TarefaModal({ tarefa: ini_, membros, usuarioAtualId, onC
           </div>
 
           {/* ══ COL 3 — Comentários / Atividade / Aprovação ═════════════ */}
-          <div className="w-96 shrink-0 flex flex-col overflow-hidden">
+          <div className="w-[33%] shrink-0 flex flex-col overflow-hidden">
 
             {/* abas */}
             <div className="flex border-b shrink-0 bg-background">
