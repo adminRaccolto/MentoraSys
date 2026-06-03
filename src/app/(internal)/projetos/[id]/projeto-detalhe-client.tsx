@@ -308,64 +308,79 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros, usuari
   const progresso = totalTarefas > 0 ? Math.round((tarefasConcluidas / totalTarefas) * 100) : 0;
 
   return (
-    <div className="flex flex-col min-h-0 flex-1">
-      {/* Header — centralizado e compacto */}
-      <div className="px-6 pt-5 pb-3 border-b bg-background shrink-0">
-        <div className="flex items-center justify-between gap-4 mb-2">
-          <div>
-            <button
-              onClick={() => router.push("/projetos")}
-              className="text-xs text-muted-foreground hover:text-foreground mb-0.5 block"
-            >
-              ← Projetos
-            </button>
-            <h1 className="text-xl font-bold leading-tight">{projeto.titulo}</h1>
-            <p className="text-sm text-muted-foreground">{projeto.cliente.nome}</p>
+    <Tabs defaultValue="kanban" className="flex flex-col flex-1 min-h-0">
+      {/* Header + TabsList — fundo azul petróleo */}
+      <div className="bg-primary text-primary-foreground shrink-0">
+        {/* Header */}
+        <div className="px-6 pt-4 pb-2">
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <button
+                onClick={() => router.push("/projetos")}
+                className="text-xs text-white/60 hover:text-white mb-0.5 block transition-colors"
+              >
+                ← Projetos
+              </button>
+              <h1 className="text-xl font-bold leading-tight text-white">{projeto.titulo}</h1>
+              <p className="text-sm text-white/70">{projeto.cliente.nome}</p>
+            </div>
+            <div className="flex items-center gap-2 shrink-0">
+              <Select value={projeto.status} onValueChange={(v) => v && mudarStatus(v)}>
+                <SelectTrigger className="w-44 bg-white/10 border-white/20 text-white hover:bg-white/20">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {Object.entries(STATUS_PROJETO).map(([v, l]) => (
+                    <SelectItem key={v} value={v}>{l}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
           </div>
-          <div className="flex items-center gap-2 shrink-0">
-            <Select value={projeto.status} onValueChange={(v) => v && mudarStatus(v)}>
-              <SelectTrigger className="w-44">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {Object.entries(STATUS_PROJETO).map(([v, l]) => (
-                  <SelectItem key={v} value={v}>{l}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
+
+          {totalTarefas > 0 && (
+            <div className="space-y-0.5 mt-2">
+              <div className="flex justify-between text-xs text-white/60">
+                <span>Progresso</span>
+                <span>{tarefasConcluidas}/{totalTarefas} ({progresso}%)</span>
+              </div>
+              <div className="h-1.5 bg-white/20 rounded-full overflow-hidden">
+                <div className="h-full bg-white transition-all duration-300" style={{ width: `${progresso}%` }} />
+              </div>
+            </div>
+          )}
         </div>
 
-        {totalTarefas > 0 && (
-          <div className="space-y-0.5 mb-3">
-            <div className="flex justify-between text-xs text-muted-foreground">
-              <span>Progresso</span>
-              <span>{tarefasConcluidas}/{totalTarefas} ({progresso}%)</span>
-            </div>
-            <div className="h-1.5 bg-muted rounded-full overflow-hidden">
-              <div className="h-full bg-primary transition-all duration-300" style={{ width: `${progresso}%` }} />
-            </div>
-          </div>
-        )}
-      </div>
-
-      <Tabs defaultValue="kanban" className="flex flex-col flex-1 min-h-0">
-        <div className="px-6 border-b bg-background shrink-0">
+        {/* Tabs */}
+        <div className="px-6">
           <TabsList className="h-9 bg-transparent p-0 gap-1">
-            <TabsTrigger value="kanban" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-3 h-9">Kanban</TabsTrigger>
-            <TabsTrigger value="etapas" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-3 h-9">Lista</TabsTrigger>
-            <TabsTrigger value="diagnostico" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-3 h-9">
-              Diagnóstico
-              {diagnosticosColeta.filter(d => d.status === "RESPONDIDO").length > 0 && (
-                <span className="ml-1 text-[10px] bg-green-500 text-white rounded-full px-1.5 py-0.5">
-                  {diagnosticosColeta.filter(d => d.status === "RESPONDIDO").length}/3
-                </span>
-              )}
-            </TabsTrigger>
-            <TabsTrigger value="documentos" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-3 h-9">Documentos ({projeto.documentos.length})</TabsTrigger>
-            <TabsTrigger value="info" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-3 h-9">Informações</TabsTrigger>
+            {[
+              { value: "kanban", label: "Kanban" },
+              { value: "etapas", label: "Lista" },
+              { value: "diagnostico", label: null },
+              { value: "documentos", label: `Documentos (${projeto.documentos.length})` },
+              { value: "info", label: "Informações" },
+            ].map((tab) => (
+              tab.value === "diagnostico" ? (
+                <TabsTrigger key="diagnostico" value="diagnostico"
+                  className="rounded-none border-b-2 border-transparent text-white/70 hover:text-white data-[state=active]:border-white data-[state=active]:text-white data-[state=active]:bg-transparent px-3 h-9">
+                  Diagnóstico
+                  {diagnosticosColeta.filter(d => d.status === "RESPONDIDO").length > 0 && (
+                    <span className="ml-1 text-[10px] bg-green-400 text-white rounded-full px-1.5 py-0.5">
+                      {diagnosticosColeta.filter(d => d.status === "RESPONDIDO").length}/3
+                    </span>
+                  )}
+                </TabsTrigger>
+              ) : (
+                <TabsTrigger key={tab.value} value={tab.value}
+                  className="rounded-none border-b-2 border-transparent text-white/70 hover:text-white data-[state=active]:border-white data-[state=active]:text-white data-[state=active]:bg-transparent px-3 h-9">
+                  {tab.label}
+                </TabsTrigger>
+              )
+            ))}
           </TabsList>
         </div>
+      </div>
 
         {/* ── Tab Kanban — ocupa toda a área restante ── */}
         <TabsContent value="kanban" className="flex-1 min-h-0 overflow-auto p-4 mt-0 data-[state=inactive]:hidden">
@@ -651,9 +666,6 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros, usuari
           </div>
           </div>
         </TabsContent>
-      </Tabs>
-
-
       {tarefaModal && (
         <TarefaModal
           tarefa={tarefaModal}
@@ -663,6 +675,6 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros, usuari
           onUpdate={atualizarTarefaNaLista}
         />
       )}
-    </div>
+    </Tabs>
   );
 }
