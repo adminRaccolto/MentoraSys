@@ -112,6 +112,22 @@ export async function enviarParaAssinatura(input: Input) {
 
   const config = (empresa.configuracoes as Record<string, string>) ?? {};
 
+  // ── Logo em base64 (Autentique não acessa URLs externas) ─────────────────────
+  let logoImgTag = "";
+  if (empresa.logo_url) {
+    try {
+      const logoRes = await fetch(empresa.logo_url);
+      if (logoRes.ok) {
+        const buffer = await logoRes.arrayBuffer();
+        const mime = logoRes.headers.get("content-type") ?? "image/png";
+        const b64 = Buffer.from(buffer).toString("base64");
+        logoImgTag = `<img src="data:${mime};base64,${b64}" alt="Logo" style="max-height:60px;max-width:180px;object-fit:contain;" />`;
+      }
+    } catch {
+      // se não conseguir buscar, deixa sem logo
+    }
+  }
+
   // ── Montar variáveis ────────────────────────────────────────────────────────
   const vars: Record<string, string> = {
     data_hoje: fmt(new Date()),
@@ -123,9 +139,7 @@ export async function enviarParaAssinatura(input: Input) {
     "empresa.nome": empresa.nome,
     "empresa.cnpj": fmtCnpj(empresa.cnpj),
     "empresa.logo_url": empresa.logo_url ?? "",
-    "empresa.logo_img": empresa.logo_url
-      ? `<img src="${empresa.logo_url}" alt="Logo" style="max-height:60px;max-width:180px;object-fit:contain;" />`
-      : "",
+    "empresa.logo_img": logoImgTag,
     "empresa.telefone": fmtTelefone(config.telefone),
     "empresa.email": config.email_contato ?? "",
     "empresa.endereco": config.endereco ?? "",
