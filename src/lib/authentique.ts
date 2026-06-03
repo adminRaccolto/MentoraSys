@@ -61,13 +61,14 @@ export async function criarDocumentoAuthentique(params: {
   nome: string;
   mensagem?: string;
   htmlContent: string;
+  pdfBuffer?: ArrayBuffer;
   signatarios: AutentiqueSignatario[];
   sandbox?: boolean;
 }): Promise<{ id: string; signatarios: Array<{ email: string; link: string }> }> {
   const apiKey = process.env.AUTHENTIQUE_API_KEY;
   if (!apiKey) throw new Error("AUTHENTIQUE_API_KEY não configurada");
 
-  const { nome, mensagem, htmlContent, signatarios, sandbox = false } = params;
+  const { nome, mensagem, htmlContent, pdfBuffer, signatarios, sandbox = false } = params;
 
   const signers = signatarios.map((s) => ({
     email: s.email,
@@ -93,8 +94,14 @@ export async function criarDocumentoAuthentique(params: {
   formData.append("operations", operations);
   formData.append("map", map);
 
-  const htmlBlob = new Blob([htmlContent], { type: "text/html" });
-  formData.append("0", htmlBlob, `${nome.replace(/[^a-z0-9]/gi, "_")}.html`);
+  const nomeArquivo = nome.replace(/[^a-z0-9]/gi, "_");
+  if (pdfBuffer) {
+    const pdfBlob = new Blob([pdfBuffer], { type: "application/pdf" });
+    formData.append("0", pdfBlob, `${nomeArquivo}.pdf`);
+  } else {
+    const htmlBlob = new Blob([htmlContent], { type: "text/html" });
+    formData.append("0", htmlBlob, `${nomeArquivo}.html`);
+  }
 
   const res = await fetch(AUTHENTIQUE_API, {
     method: "POST",

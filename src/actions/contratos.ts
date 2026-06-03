@@ -141,6 +141,18 @@ export async function editarContrato(id: string, input: ContratoInput) {
   return { data: { ...contrato, valor_total: Number(contrato.valor_total) } };
 }
 
+export async function salvarAnexoContrato(id: string, anexo_url: string | null) {
+  await verificarPermissao("contratos", "editar");
+  const empresaId = await obterEmpresaAtiva();
+
+  const existente = await prisma.contrato.findFirst({ where: { id, empresa_id: empresaId } });
+  if (!existente) throw new Error("Contrato não encontrado");
+
+  await prisma.contrato.update({ where: { id }, data: { anexo_url } });
+  revalidatePath("/contratos");
+  return { ok: true };
+}
+
 export async function excluirContrato(id: string) {
   await verificarPermissao("contratos", "excluir");
   const empresaId = await obterEmpresaAtiva();

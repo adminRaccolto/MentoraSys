@@ -9,7 +9,7 @@ import { registrar } from "@/lib/auditoria";
 
 const schemaEnviar = z.object({
   contrato_id: z.string().min(1),
-  modelo_id: z.string().min(1),
+  modelo_id: z.string().optional(), // opcional quando há anexo_url
   email_empresa: z.string().email("E-mail da empresa inválido"),
   nome_empresa: z.string().min(1, "Nome do representante obrigatório"),
   email_cliente: z.string().email("E-mail do cliente inválido"),
@@ -104,7 +104,8 @@ export async function enviarParaAssinatura(input: Input) {
 
   if (!contrato) return { ok: false, error: "Contrato não encontrado" };
   if (!empresa) return { ok: false, error: "Empresa não encontrada" };
-  if (!modelo) return { ok: false, error: "Modelo não encontrado" };
+  // modelo obrigatório apenas quando não há PDF anexado
+  if (!contrato.anexo_url && !modelo) return { ok: false, error: "Modelo de documento não encontrado" };
   if (contrato.status !== "RASCUNHO") {
     return { ok: false, error: "Apenas contratos em rascunho podem ser enviados para assinatura" };
   }
@@ -209,20 +210,36 @@ export async function enviarParaAssinatura(input: Input) {
     }
   }
 
-  const htmlContent = substituir(modelo.conteudo, vars);
-
   // ── Criar documento no Authentique ─────────────────────────────────────────
   let doc: { id: string; signatarios: Array<{ email: string; link: string }> };
   try {
-    doc = await criarDocumentoAuthentique({
-      nome: contrato.titulo,
-      htmlContent,
-      signatarios: [
-        { email: data.email_empresa, nome: data.nome_empresa },
-        { email: data.email_cliente, nome: data.nome_cliente },
-      ],
-      sandbox: data.sandbox,
-    });
+    if (contrato.anexo_url) {
+      // Envia o PDF anexado diretamente
+      const pdfRes = await fetch(contrato.anexo_url);
+      if (!pdfRes.ok) throw new Error("Não foi possível baixar o PDF anexado");
+      const pdfBuffer = await pdfRes.arrayBuffer();
+      doc = await criarDocumentoAuthentique({
+        nome: contrato.titulo,
+        htmlContent: "",
+        pdfBuffer,
+        signatarios: [
+          { email: data.email_empresa, nome: data.nome_empresa },
+          { email: data.email_cliente, nome: data.nome_cliente },
+        ],
+        sandbox: data.sandbox,
+      });
+    } else {
+      const htmlContent = substituir(modelo!.conteudo, vars);
+      doc = await criarDocumentoAuthentique({
+        nome: contrato.titulo,
+        htmlContent,
+        signatarios: [
+          { email: data.email_empresa, nome: data.nome_empresa },
+          { email: data.email_cliente, nome: data.nome_cliente },
+        ],
+        sandbox: data.sandbox,
+      });
+    }
   } catch (e: unknown) {
     const msg = e instanceof Error ? e.message : "Erro ao criar documento na Authentique";
     return { ok: false as const, error: msg };

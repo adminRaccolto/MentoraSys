@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useTransition, useEffect } from "react";
+import { useState, useTransition, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Plus, Trash2, FileSignature, Link as LinkIcon, DollarSign, FileText, RefreshCw, Printer, Send, Download, ExternalLink, Copy, CheckCircle } from "lucide-react";
+import { Plus, Trash2, FileSignature, Link as LinkIcon, DollarSign, FileText, RefreshCw, Printer, Send, Download, ExternalLink, Copy, CheckCircle, Upload, X as XIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -18,7 +18,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
-import { criarContrato, editarContrato, excluirContrato, marcarAssinado } from "@/actions/contratos";
+import { criarContrato, editarContrato, excluirContrato, marcarAssinado, salvarAnexoContrato } from "@/actions/contratos";
 import { gerarParcelasContrato } from "@/actions/recebiveis";
 import { enviarParaAssinatura } from "@/actions/assinatura";
 
@@ -75,6 +75,7 @@ const schema = z.object({
   cliente_contato_email: z.string().optional(),
   cliente_contato_tel: z.string().optional(),
   parcelas_json: z.array(schemaParcela).optional(),
+  anexo_url: z.string().optional(),
 });
 
 type FormData = z.input<typeof schema>;
@@ -127,6 +128,7 @@ interface Contrato {
   responsavel: { id: string; nome: string } | null;
   recebiveis_count: number;
   parcelas_json: unknown;
+  anexo_url: string | null;
 }
 
 interface Cliente {
@@ -172,7 +174,7 @@ const schemaParcelas = z.object({
 type FormParcelas = z.input<typeof schemaParcelas>;
 
 const schemaAssinatura = z.object({
-  modelo_id: z.string().min(1, "Selecione o modelo"),
+  modelo_id: z.string().optional(), // opcional quando há PDF anexado
   email_empresa: z.string().email("E-mail inválido"),
   nome_empresa: z.string().min(1, "Nome obrigatório"),
   email_cliente: z.string().email("E-mail inválido"),
@@ -239,6 +241,8 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
   const [contratoMarcarAssinado, setContratoMarcarAssinado] = useState<Contrato | null>(null);
   const [dataAssinatura, setDataAssinatura] = useState(new Date().toISOString().split("T")[0]);
   const [isPending, startTransition] = useTransition();
+  const [uploadandoAnexo, setUploadandoAnexo] = useState(false);
+  const anexoFileRef = useRef<HTMLInputElement>(null);
 
   const { register, handleSubmit, reset, setValue, watch, control, formState: { errors } } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -354,8 +358,35 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
       cliente_contato_email: c.cliente_contato_email ?? "",
       cliente_contato_tel: c.cliente_contato_tel ?? "",
       parcelas_json: Array.isArray(c.parcelas_json) ? (c.parcelas_json as any[]) : [],
+      anexo_url: c.anexo_url ?? "",
     });
     setModalAberto(true);
+  };
+
+  const handleUploadAnexo = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file || !contratoEditando) return;
+    setUploadandoAnexo(true);
+    try {
+      const { criarUrlUpload } = await import("@/actions/documentos");
+      const { signedUrl, caminho } = await criarUrlUpload({ arquivo_nome: file.name, mime_type: file.type || "application/pdf" });
+      await fetch(signedUrl, { method: "PUT", body: file, headers: { "Content-Type": file.type || "application/pdf" } });
+      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+      const publicUrl = `${supabaseUrl}/storage/v1/object/public/documentos/${caminho}`;
+      await salvarAnexoContrato(contratoEditando.id, publicUrl);
+      setValue("anexo_url", publicUrl);
+      setContratos(prev => prev.map(c => c.id === contratoEditando.id ? { ...c, anexo_url: publicUrl } : c));
+      toast.success("Anexo salvo");
+    } catch { toast.error("Erro ao enviar anexo"); }
+    finally { setUploadandoAnexo(false); if (anexoFileRef.current) anexoFileRef.current.value = ""; }
+  };
+
+  const removerAnexoContrato = async () => {
+    if (!contratoEditando) return;
+    await salvarAnexoContrato(contratoEditando.id, null);
+    setValue("anexo_url", "");
+    setContratos(prev => prev.map(c => c.id === contratoEditando.id ? { ...c, anexo_url: null } : c));
+    toast.success("Anexo removido");
   };
 
   const onSubmit = (data: FormData) => {
@@ -612,7 +643,7 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
                           <FileText className="size-3.5" />
                         </Button>
                       )}
-                      {c.status === "RASCUNHO" && modelosContrato.length > 0 && (
+                      {c.status === "RASCUNHO" && (modelosContrato.length > 0 || !!c.anexo_url) && (
                         <Button size="icon" variant="ghost" className="size-8 text-primary" title="Enviar para assinatura"
                           onClick={() => abrirAssinatura(c)}>
                           <Send className="size-3.5" />
@@ -765,9 +796,48 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
                   <div className="px-6 py-5 space-y-4">
                     <p className="text-xs font-semibold text-primary uppercase tracking-widest">Objeto</p>
                     <Field label="Objeto / Escopo">
-                      <Textarea {...register("objeto")} rows={6} className="text-sm resize-none"
+                      <Textarea {...register("objeto")} rows={4} className="text-sm resize-none"
                         placeholder="Descrição detalhada do objeto do contrato..." />
                     </Field>
+
+                    <div className="pt-2 border-t space-y-2">
+                      <p className="text-xs font-semibold text-primary uppercase tracking-widest">Documento para Assinatura</p>
+                      <p className="text-xs text-muted-foreground">
+                        Anexe o PDF do contrato. Quando presente, ele é enviado diretamente ao Autentique — sem necessidade de modelo de texto.
+                      </p>
+                      {watch("anexo_url") ? (
+                        <div className="flex items-center gap-2 p-2.5 border rounded-lg bg-green-50 border-green-200">
+                          <FileText className="size-4 text-green-600 shrink-0" />
+                          <span className="flex-1 text-xs text-green-800 truncate">PDF anexado</span>
+                          <a href={watch("anexo_url")} target="_blank" rel="noopener noreferrer">
+                            <Button size="icon" variant="ghost" className="size-7" title="Visualizar">
+                              <ExternalLink className="size-3.5" />
+                            </Button>
+                          </a>
+                          {contratoEditando && (
+                            <Button size="icon" variant="ghost" className="size-7 text-destructive hover:text-destructive"
+                              type="button" onClick={removerAnexoContrato} title="Remover">
+                              <XIcon className="size-3.5" />
+                            </Button>
+                          )}
+                        </div>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => anexoFileRef.current?.click()}
+                          disabled={!contratoEditando || uploadandoAnexo}
+                          className="w-full flex items-center justify-center gap-2 text-xs border-2 border-dashed border-primary/30 rounded-lg py-3 hover:bg-primary/5 hover:border-primary/60 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          {uploadandoAnexo
+                            ? <><span className="size-3.5 border-2 border-primary border-t-transparent rounded-full animate-spin" />Enviando…</>
+                            : <><Upload className="size-3.5 text-primary" />Anexar PDF do contrato</>}
+                        </button>
+                      )}
+                      <input ref={anexoFileRef} type="file" accept=".pdf,application/pdf" className="hidden" onChange={handleUploadAnexo} />
+                      {!contratoEditando && (
+                        <p className="text-[10px] text-muted-foreground italic">Salve o contrato primeiro para anexar um arquivo.</p>
+                      )}
+                    </div>
                   </div>
                 </div>
               </TabsContent>
@@ -1015,7 +1085,7 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
               )}
 
               {/* Enviar para assinatura */}
-              {contratoEditando && contratoEditando.status === "RASCUNHO" && modelosContrato.length > 0 && (
+              {contratoEditando && contratoEditando.status === "RASCUNHO" && (modelosContrato.length > 0 || !!contratoEditando.anexo_url) && (
                 <Button
                   type="button"
                   variant="outline"
@@ -1188,7 +1258,13 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
               O contrato <strong>{contratoAssinatura?.titulo}</strong> será enviado para assinatura eletrônica via Authentique. Ambos receberão um e-mail com o link para assinar.
             </p>
 
-            {modelosContrato.length > 1 && (
+            {contratoAssinatura?.anexo_url ? (
+              <div className="flex items-center gap-2 p-3 bg-green-50 border border-green-200 rounded-lg text-xs text-green-800">
+                <FileText className="size-4 text-green-600 shrink-0" />
+                <span>Será enviado o <strong>PDF anexado</strong> ao contrato.</span>
+                <a href={contratoAssinatura.anexo_url} target="_blank" rel="noopener noreferrer" className="ml-auto text-green-700 underline">Visualizar</a>
+              </div>
+            ) : modelosContrato.length > 1 ? (
               <div className="space-y-1.5">
                 <Label className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Modelo de Contrato *</Label>
                 <Select
@@ -1200,11 +1276,13 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
                     {modelosContrato.map((m) => <SelectItem key={m.id} value={m.id}>{m.nome}</SelectItem>)}
                   </SelectContent>
                 </Select>
-                {formAssinatura.formState.errors.modelo_id && (
-                  <p className="text-xs text-destructive">{formAssinatura.formState.errors.modelo_id.message}</p>
-                )}
               </div>
-            )}
+            ) : modelosContrato.length === 1 ? (
+              <div className="flex items-center gap-2 p-3 bg-primary/5 border border-primary/20 rounded-lg text-xs text-primary">
+                <FileText className="size-4 shrink-0" />
+                <span>Modelo: <strong>{modelosContrato[0].nome}</strong></span>
+              </div>
+            ) : null}
 
             <div className="rounded-lg border p-3 space-y-3">
               <p className="text-xs font-semibold uppercase tracking-wide text-primary">Signatário 1 — Empresa</p>
