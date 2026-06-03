@@ -35,6 +35,7 @@ const schemaContrato = z.object({
   cliente_contato_nome: z.string().optional(),
   cliente_contato_email: z.string().optional(),
   cliente_contato_tel: z.string().optional(),
+  parcelas_json: z.array(z.object({ numero: z.number(), vencimento: z.string(), valor: z.number() })).optional(),
 });
 
 type ContratoInput = z.infer<typeof schemaContrato>;
@@ -83,6 +84,7 @@ export async function criarContrato(input: ContratoInput) {
       cliente_contato_nome: data.cliente_contato_nome || cliente?.contato_principal || null,
       cliente_contato_email: data.cliente_contato_email || cliente?.email || null,
       cliente_contato_tel: data.cliente_contato_tel || cliente?.telefone || null,
+      parcelas_json: data.parcelas_json && data.parcelas_json.length > 0 ? data.parcelas_json : undefined,
     },
   });
 
@@ -130,6 +132,7 @@ export async function editarContrato(id: string, input: ContratoInput) {
       cliente_contato_nome: data.cliente_contato_nome || null,
       cliente_contato_email: data.cliente_contato_email || null,
       cliente_contato_tel: data.cliente_contato_tel || null,
+      parcelas_json: data.parcelas_json && data.parcelas_json.length > 0 ? data.parcelas_json : undefined,
     },
   });
 

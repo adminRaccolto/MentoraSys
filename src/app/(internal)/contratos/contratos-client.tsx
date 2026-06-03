@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useTransition, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
@@ -27,6 +27,24 @@ const PERIODICIDADES = ["Mensal", "Bimestral", "Trimestral", "Semestral", "Anual
 const TIPOS_CONTRATO = ["Consultoria", "Mentoria", "Assessoria", "Prestação de Serviços", "Retainer", "Outro"];
 const INDICES_REAJUSTE = ["IPCA", "IGPM", "IGP-DI", "INPC", "Nenhum"];
 const PERIODICIDADES_REAJUSTE = ["Anual", "Semestral", "A definir"];
+
+function periodoParaMeses(p?: string | null): number {
+  const map: Record<string, number> = { Mensal: 1, Bimestral: 2, Trimestral: 3, Semestral: 6, Anual: 12, "Única": 0 };
+  return map[p ?? ""] ?? 1;
+}
+
+function gerarParcelasIguais(n: number, primeiroVencimento: string, periodicidade: string | undefined, total: number) {
+  const meses = periodoParaMeses(periodicidade);
+  const valorBase = Math.floor((total / n) * 100) / 100;
+  const resto = Math.round((total - valorBase * n) * 100) / 100;
+  return Array.from({ length: n }, (_, i) => {
+    const d = new Date(primeiroVencimento + "T12:00:00");
+    if (meses > 0) d.setMonth(d.getMonth() + i * meses);
+    return { numero: i + 1, vencimento: d.toISOString().split("T")[0], valor: i === n - 1 ? Math.round((valorBase + resto) * 100) / 100 : valorBase };
+  });
+}
+
+const schemaParcela = z.object({ numero: z.number(), vencimento: z.string(), valor: z.number().min(0) });
 
 const schema = z.object({
   cliente_id: z.string().min(1, "Cliente obrigatório"),
@@ -56,6 +74,7 @@ const schema = z.object({
   cliente_contato_nome: z.string().optional(),
   cliente_contato_email: z.string().optional(),
   cliente_contato_tel: z.string().optional(),
+  parcelas_json: z.array(schemaParcela).optional(),
 });
 
 type FormData = z.input<typeof schema>;
@@ -107,6 +126,7 @@ interface Contrato {
   proposta: { id: string; titulo: string } | null;
   responsavel: { id: string; nome: string } | null;
   recebiveis_count: number;
+  parcelas_json: unknown;
 }
 
 interface Cliente {
@@ -220,14 +240,37 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
   const [dataAssinatura, setDataAssinatura] = useState(new Date().toISOString().split("T")[0]);
   const [isPending, startTransition] = useTransition();
 
-  const { register, handleSubmit, reset, setValue, watch, formState: { errors } } = useForm<FormData>({
+  const { register, handleSubmit, reset, setValue, watch, control, formState: { errors } } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: {
       gerar_financeiro: true,
       gerar_projeto: false,
       renovacao_automatica: false,
+      parcelas_json: [],
     },
   });
+
+  const { fields: parcelasFields, replace: replaceParcelas } = useFieldArray({ control, name: "parcelas_json" as any });
+
+  const numeroParcelas = watch("numero_parcelas");
+  const primeiroVencimento = watch("primeiro_vencimento");
+  const periodicidade = watch("periodicidade");
+  const valorTotal = watch("valor_total");
+
+  const distribuirIgualmente = () => {
+    const n = Number(numeroParcelas) || 0;
+    if (n < 1 || !primeiroVencimento) return;
+    replaceParcelas(gerarParcelasIguais(n, primeiroVencimento, periodicidade, Number(valorTotal) || 0) as any);
+  };
+
+  // auto-gera quando nº parcelas e vencimento são preenchidos (e grade ainda vazia)
+  useEffect(() => {
+    const n = Number(numeroParcelas) || 0;
+    if (n >= 1 && primeiroVencimento && parcelasFields.length === 0) {
+      replaceParcelas(gerarParcelasIguais(n, primeiroVencimento, periodicidade, Number(valorTotal) || 0) as any);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [numeroParcelas, primeiroVencimento]);
 
   const watchClienteId = watch("cliente_id");
   const watchRenovacao = watch("renovacao_automatica");
@@ -310,6 +353,7 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
       cliente_contato_nome: c.cliente_contato_nome ?? "",
       cliente_contato_email: c.cliente_contato_email ?? "",
       cliente_contato_tel: c.cliente_contato_tel ?? "",
+      parcelas_json: Array.isArray(c.parcelas_json) ? (c.parcelas_json as any[]) : [],
     });
     setModalAberto(true);
   };
@@ -766,40 +810,67 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
                     <Field label="Dia do vencimento">
                       <Input {...register("dia_vencimento")} type="number" min="1" max="31" className="h-9 text-sm" placeholder="Ex: 10" />
                     </Field>
-                    {contratoEditando && contratoEditando.status === "ASSINADO" && (
-                      <div className="pt-2 border-t">
-                        {contratoEditando.recebiveis_count > 0 ? (
-                          <p className="text-xs text-green-700 flex items-center gap-1.5">
-                            <CheckCircle className="size-3.5" />
-                            {contratoEditando.recebiveis_count} parcela{contratoEditando.recebiveis_count > 1 ? "s" : ""} já lançada{contratoEditando.recebiveis_count > 1 ? "s" : ""} no financeiro
-                          </p>
-                        ) : (
-                          <Button
-                            type="button"
-                            size="sm"
-                            className="w-full"
-                            disabled={isPending}
-                            onClick={() => {
-                              const n = contratoEditando.numero_parcelas;
-                              const venc = contratoEditando.primeiro_vencimento;
-                              const val = Number(contratoEditando.valor_total);
-                              if (n && venc && val > 0) {
-                                gerarParcelasDirecto(contratoEditando);
-                              } else {
-                                formParcelas.reset({
-                                  n_parcelas: n ? String(n) : "1",
-                                  valor_parcela: n && val > 0 ? String((val / n).toFixed(2)) : String(val.toFixed(2)),
-                                  data_primeira: venc ? new Date(venc).toISOString().split("T")[0] : "",
-                                });
-                                setContratoParcelar(contratoEditando);
-                              }
-                            }}
-                          >
-                            <DollarSign className="size-3.5 mr-1.5" />
-                            Calcular e lançar parcelas
-                          </Button>
-                        )}
+
+                    {/* Grade de parcelas */}
+                    {(parcelasFields as any[]).length > 0 && (
+                      <div className="space-y-2 pt-1">
+                        <div className="flex items-center justify-between">
+                          <p className="text-[10px] font-semibold text-primary uppercase tracking-widest">Grade de Parcelas</p>
+                          <button type="button" onClick={distribuirIgualmente} className="text-[10px] text-primary hover:underline">
+                            Distribuir igualmente
+                          </button>
+                        </div>
+                        <div className="border rounded-md overflow-hidden">
+                          <table className="w-full text-xs">
+                            <thead>
+                              <tr className="bg-muted/50 border-b">
+                                <th className="px-2 py-1.5 text-left text-muted-foreground font-medium w-8">#</th>
+                                <th className="px-2 py-1.5 text-left text-muted-foreground font-medium">Vencimento</th>
+                                <th className="px-2 py-1.5 text-right text-muted-foreground font-medium">Valor (R$)</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {(parcelasFields as any[]).map((p, idx) => (
+                                <tr key={p.id} className={idx % 2 === 0 ? "bg-white" : "bg-muted/20"}>
+                                  <td className="px-2 py-1 text-muted-foreground">{idx + 1}</td>
+                                  <td className="px-2 py-1">
+                                    <input
+                                      {...register(`parcelas_json.${idx}.vencimento` as any)}
+                                      type="date"
+                                      className="w-full border-0 bg-transparent text-xs outline-none focus:bg-white focus:ring-1 focus:ring-primary rounded px-1"
+                                    />
+                                  </td>
+                                  <td className="px-2 py-1">
+                                    <input
+                                      {...register(`parcelas_json.${idx}.valor` as any, { valueAsNumber: true })}
+                                      type="number" step="0.01" min="0"
+                                      className="w-full border-0 bg-transparent text-xs text-right outline-none focus:bg-white focus:ring-1 focus:ring-primary rounded px-1"
+                                    />
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                            <tfoot>
+                              <tr className="border-t bg-muted/30">
+                                <td colSpan={2} className="px-2 py-1.5 text-xs font-semibold text-muted-foreground text-right">Total:</td>
+                                <td className="px-2 py-1.5 text-xs font-bold text-right">
+                                  {(watch("parcelas_json") as any[] ?? []).reduce((s: number, p: any) => s + (Number(p.valor) || 0), 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                                </td>
+                              </tr>
+                            </tfoot>
+                          </table>
+                        </div>
                       </div>
+                    )}
+
+                    {Number(numeroParcelas) >= 1 && primeiroVencimento && (parcelasFields as any[]).length === 0 && (
+                      <button
+                        type="button"
+                        onClick={distribuirIgualmente}
+                        className="w-full text-xs text-primary border border-dashed border-primary/40 rounded-md py-2 hover:bg-primary/5 transition-colors"
+                      >
+                        + Gerar grade de parcelas
+                      </button>
                     )}
                   </div>
                   <div className="px-6 py-5 space-y-4">

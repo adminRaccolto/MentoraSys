@@ -345,6 +345,7 @@ exports.Prisma.ContratoScalarFieldEnum = {
   numero_parcelas: 'numero_parcelas',
   primeiro_vencimento: 'primeiro_vencimento',
   dia_vencimento: 'dia_vencimento',
+  parcelas_json: 'parcelas_json',
   indice_reajuste: 'indice_reajuste',
   periodicidade_reajuste: 'periodicidade_reajuste',
   renovacao_automatica: 'renovacao_automatica',

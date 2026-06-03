@@ -453,6 +453,7 @@ model Contrato {
   numero_parcelas        Int?
   primeiro_vencimento    DateTime?
   dia_vencimento         Int?
+  parcelas_json          Json?
   indice_reajuste        String?
   periodicidade_reajuste String?
   renovacao_automatica   Boolean        @default(false)

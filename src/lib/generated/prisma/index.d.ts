@@ -26558,6 +26558,7 @@ export namespace Prisma {
     numero_parcelas: number
     primeiro_vencimento: number
     dia_vencimento: number
+    parcelas_json: number
     indice_reajuste: number
     periodicidade_reajuste: number
     renovacao_automatica: number
@@ -26695,6 +26696,7 @@ export namespace Prisma {
     numero_parcelas?: true
     primeiro_vencimento?: true
     dia_vencimento?: true
+    parcelas_json?: true
     indice_reajuste?: true
     periodicidade_reajuste?: true
     renovacao_automatica?: true
@@ -26823,6 +26825,7 @@ export namespace Prisma {
     numero_parcelas: number | null
     primeiro_vencimento: Date | null
     dia_vencimento: number | null
+    parcelas_json: JsonValue | null
     indice_reajuste: string | null
     periodicidade_reajuste: string | null
     renovacao_automatica: boolean
@@ -26883,6 +26886,7 @@ export namespace Prisma {
     numero_parcelas?: boolean
     primeiro_vencimento?: boolean
     dia_vencimento?: boolean
+    parcelas_json?: boolean
     indice_reajuste?: boolean
     periodicidade_reajuste?: boolean
     renovacao_automatica?: boolean
@@ -26935,6 +26939,7 @@ export namespace Prisma {
     numero_parcelas?: boolean
     primeiro_vencimento?: boolean
     dia_vencimento?: boolean
+    parcelas_json?: boolean
     indice_reajuste?: boolean
     periodicidade_reajuste?: boolean
     renovacao_automatica?: boolean
@@ -26981,6 +26986,7 @@ export namespace Prisma {
     numero_parcelas?: boolean
     primeiro_vencimento?: boolean
     dia_vencimento?: boolean
+    parcelas_json?: boolean
     indice_reajuste?: boolean
     periodicidade_reajuste?: boolean
     renovacao_automatica?: boolean
@@ -27027,6 +27033,7 @@ export namespace Prisma {
     numero_parcelas?: boolean
     primeiro_vencimento?: boolean
     dia_vencimento?: boolean
+    parcelas_json?: boolean
     indice_reajuste?: boolean
     periodicidade_reajuste?: boolean
     renovacao_automatica?: boolean
@@ -27049,7 +27056,7 @@ export namespace Prisma {
     atualizado_em?: boolean
   }
 
-  export type ContratoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "proposta_id" | "cliente_id" | "criado_por" | "responsavel_id" | "numero_contrato" | "tipo_contrato" | "titulo" | "objeto" | "status" | "conteudo" | "valor_total" | "forma_pagamento" | "periodicidade" | "numero_parcelas" | "primeiro_vencimento" | "dia_vencimento" | "indice_reajuste" | "periodicidade_reajuste" | "renovacao_automatica" | "gerar_projeto" | "gerar_financeiro" | "cliente_nome" | "cliente_cpf_cnpj" | "cliente_contato_nome" | "cliente_contato_email" | "cliente_contato_tel" | "data_emissao" | "data_inicio" | "data_fim" | "assinado_em" | "anexo_url" | "authentique_id" | "authentique_url" | "pdf_assinado_url" | "criado_em" | "atualizado_em", ExtArgs["result"]["contrato"]>
+  export type ContratoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "proposta_id" | "cliente_id" | "criado_por" | "responsavel_id" | "numero_contrato" | "tipo_contrato" | "titulo" | "objeto" | "status" | "conteudo" | "valor_total" | "forma_pagamento" | "periodicidade" | "numero_parcelas" | "primeiro_vencimento" | "dia_vencimento" | "parcelas_json" | "indice_reajuste" | "periodicidade_reajuste" | "renovacao_automatica" | "gerar_projeto" | "gerar_financeiro" | "cliente_nome" | "cliente_cpf_cnpj" | "cliente_contato_nome" | "cliente_contato_email" | "cliente_contato_tel" | "data_emissao" | "data_inicio" | "data_fim" | "assinado_em" | "anexo_url" | "authentique_id" | "authentique_url" | "pdf_assinado_url" | "criado_em" | "atualizado_em", ExtArgs["result"]["contrato"]>
   export type ContratoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     proposta?: boolean | Contrato$propostaArgs<ExtArgs>
@@ -27111,6 +27118,7 @@ export namespace Prisma {
       numero_parcelas: number | null
       primeiro_vencimento: Date | null
       dia_vencimento: number | null
+      parcelas_json: Prisma.JsonValue | null
       indice_reajuste: string | null
       periodicidade_reajuste: string | null
       renovacao_automatica: boolean
@@ -27582,6 +27590,7 @@ export namespace Prisma {
     readonly numero_parcelas: FieldRef<"Contrato", 'Int'>
     readonly primeiro_vencimento: FieldRef<"Contrato", 'DateTime'>
     readonly dia_vencimento: FieldRef<"Contrato", 'Int'>
+    readonly parcelas_json: FieldRef<"Contrato", 'Json'>
     readonly indice_reajuste: FieldRef<"Contrato", 'String'>
     readonly periodicidade_reajuste: FieldRef<"Contrato", 'String'>
     readonly renovacao_automatica: FieldRef<"Contrato", 'Boolean'>
@@ -58692,6 +58701,7 @@ export namespace Prisma {
     numero_parcelas: 'numero_parcelas',
     primeiro_vencimento: 'primeiro_vencimento',
     dia_vencimento: 'dia_vencimento',
+    parcelas_json: 'parcelas_json',
     indice_reajuste: 'indice_reajuste',
     periodicidade_reajuste: 'periodicidade_reajuste',
     renovacao_automatica: 'renovacao_automatica',
@@ -61093,6 +61103,7 @@ export namespace Prisma {
     numero_parcelas?: IntNullableFilter<"Contrato"> | number | null
     primeiro_vencimento?: DateTimeNullableFilter<"Contrato"> | Date | string | null
     dia_vencimento?: IntNullableFilter<"Contrato"> | number | null
+    parcelas_json?: JsonNullableFilter<"Contrato">
     indice_reajuste?: StringNullableFilter<"Contrato"> | string | null
     periodicidade_reajuste?: StringNullableFilter<"Contrato"> | string | null
     renovacao_automatica?: BoolFilter<"Contrato"> | boolean
@@ -61144,6 +61155,7 @@ export namespace Prisma {
     numero_parcelas?: SortOrderInput | SortOrder
     primeiro_vencimento?: SortOrderInput | SortOrder
     dia_vencimento?: SortOrderInput | SortOrder
+    parcelas_json?: SortOrderInput | SortOrder
     indice_reajuste?: SortOrderInput | SortOrder
     periodicidade_reajuste?: SortOrderInput | SortOrder
     renovacao_automatica?: SortOrder
@@ -61198,6 +61210,7 @@ export namespace Prisma {
     numero_parcelas?: IntNullableFilter<"Contrato"> | number | null
     primeiro_vencimento?: DateTimeNullableFilter<"Contrato"> | Date | string | null
     dia_vencimento?: IntNullableFilter<"Contrato"> | number | null
+    parcelas_json?: JsonNullableFilter<"Contrato">
     indice_reajuste?: StringNullableFilter<"Contrato"> | string | null
     periodicidade_reajuste?: StringNullableFilter<"Contrato"> | string | null
     renovacao_automatica?: BoolFilter<"Contrato"> | boolean
@@ -61249,6 +61262,7 @@ export namespace Prisma {
     numero_parcelas?: SortOrderInput | SortOrder
     primeiro_vencimento?: SortOrderInput | SortOrder
     dia_vencimento?: SortOrderInput | SortOrder
+    parcelas_json?: SortOrderInput | SortOrder
     indice_reajuste?: SortOrderInput | SortOrder
     periodicidade_reajuste?: SortOrderInput | SortOrder
     renovacao_automatica?: SortOrder
@@ -61298,6 +61312,7 @@ export namespace Prisma {
     numero_parcelas?: IntNullableWithAggregatesFilter<"Contrato"> | number | null
     primeiro_vencimento?: DateTimeNullableWithAggregatesFilter<"Contrato"> | Date | string | null
     dia_vencimento?: IntNullableWithAggregatesFilter<"Contrato"> | number | null
+    parcelas_json?: JsonNullableWithAggregatesFilter<"Contrato">
     indice_reajuste?: StringNullableWithAggregatesFilter<"Contrato"> | string | null
     periodicidade_reajuste?: StringNullableWithAggregatesFilter<"Contrato"> | string | null
     renovacao_automatica?: BoolWithAggregatesFilter<"Contrato"> | boolean
@@ -65250,6 +65265,7 @@ export namespace Prisma {
     numero_parcelas?: number | null
     primeiro_vencimento?: Date | string | null
     dia_vencimento?: number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: string | null
     periodicidade_reajuste?: string | null
     renovacao_automatica?: boolean
@@ -65301,6 +65317,7 @@ export namespace Prisma {
     numero_parcelas?: number | null
     primeiro_vencimento?: Date | string | null
     dia_vencimento?: number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: string | null
     periodicidade_reajuste?: string | null
     renovacao_automatica?: boolean
@@ -65342,6 +65359,7 @@ export namespace Prisma {
     numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
@@ -65393,6 +65411,7 @@ export namespace Prisma {
     numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
@@ -65439,6 +65458,7 @@ export namespace Prisma {
     numero_parcelas?: number | null
     primeiro_vencimento?: Date | string | null
     dia_vencimento?: number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: string | null
     periodicidade_reajuste?: string | null
     renovacao_automatica?: boolean
@@ -65475,6 +65495,7 @@ export namespace Prisma {
     numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
@@ -65516,6 +65537,7 @@ export namespace Prisma {
     numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
@@ -69489,6 +69511,7 @@ export namespace Prisma {
     numero_parcelas?: SortOrder
     primeiro_vencimento?: SortOrder
     dia_vencimento?: SortOrder
+    parcelas_json?: SortOrder
     indice_reajuste?: SortOrder
     periodicidade_reajuste?: SortOrder
     renovacao_automatica?: SortOrder
@@ -77483,6 +77506,7 @@ export namespace Prisma {
     numero_parcelas?: number | null
     primeiro_vencimento?: Date | string | null
     dia_vencimento?: number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: string | null
     periodicidade_reajuste?: string | null
     renovacao_automatica?: boolean
@@ -77532,6 +77556,7 @@ export namespace Prisma {
     numero_parcelas?: number | null
     primeiro_vencimento?: Date | string | null
     dia_vencimento?: number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: string | null
     periodicidade_reajuste?: string | null
     renovacao_automatica?: boolean
@@ -78506,6 +78531,7 @@ export namespace Prisma {
     numero_parcelas?: IntNullableFilter<"Contrato"> | number | null
     primeiro_vencimento?: DateTimeNullableFilter<"Contrato"> | Date | string | null
     dia_vencimento?: IntNullableFilter<"Contrato"> | number | null
+    parcelas_json?: JsonNullableFilter<"Contrato">
     indice_reajuste?: StringNullableFilter<"Contrato"> | string | null
     periodicidade_reajuste?: StringNullableFilter<"Contrato"> | string | null
     renovacao_automatica?: BoolFilter<"Contrato"> | boolean
@@ -79272,6 +79298,7 @@ export namespace Prisma {
     numero_parcelas?: number | null
     primeiro_vencimento?: Date | string | null
     dia_vencimento?: number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: string | null
     periodicidade_reajuste?: string | null
     renovacao_automatica?: boolean
@@ -79321,6 +79348,7 @@ export namespace Prisma {
     numero_parcelas?: number | null
     primeiro_vencimento?: Date | string | null
     dia_vencimento?: number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: string | null
     periodicidade_reajuste?: string | null
     renovacao_automatica?: boolean
@@ -79736,6 +79764,7 @@ export namespace Prisma {
     numero_parcelas?: number | null
     primeiro_vencimento?: Date | string | null
     dia_vencimento?: number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: string | null
     periodicidade_reajuste?: string | null
     renovacao_automatica?: boolean
@@ -79785,6 +79814,7 @@ export namespace Prisma {
     numero_parcelas?: number | null
     primeiro_vencimento?: Date | string | null
     dia_vencimento?: number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: string | null
     periodicidade_reajuste?: string | null
     renovacao_automatica?: boolean
@@ -82113,6 +82143,7 @@ export namespace Prisma {
     numero_parcelas?: number | null
     primeiro_vencimento?: Date | string | null
     dia_vencimento?: number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: string | null
     periodicidade_reajuste?: string | null
     renovacao_automatica?: boolean
@@ -82162,6 +82193,7 @@ export namespace Prisma {
     numero_parcelas?: number | null
     primeiro_vencimento?: Date | string | null
     dia_vencimento?: number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: string | null
     periodicidade_reajuste?: string | null
     renovacao_automatica?: boolean
@@ -84578,6 +84610,7 @@ export namespace Prisma {
     numero_parcelas?: number | null
     primeiro_vencimento?: Date | string | null
     dia_vencimento?: number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: string | null
     periodicidade_reajuste?: string | null
     renovacao_automatica?: boolean
@@ -84627,6 +84660,7 @@ export namespace Prisma {
     numero_parcelas?: number | null
     primeiro_vencimento?: Date | string | null
     dia_vencimento?: number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: string | null
     periodicidade_reajuste?: string | null
     renovacao_automatica?: boolean
@@ -85087,6 +85121,7 @@ export namespace Prisma {
     numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
@@ -85136,6 +85171,7 @@ export namespace Prisma {
     numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
@@ -86737,6 +86773,7 @@ export namespace Prisma {
     numero_parcelas?: number | null
     primeiro_vencimento?: Date | string | null
     dia_vencimento?: number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: string | null
     periodicidade_reajuste?: string | null
     renovacao_automatica?: boolean
@@ -86787,6 +86824,7 @@ export namespace Prisma {
     numero_parcelas?: number | null
     primeiro_vencimento?: Date | string | null
     dia_vencimento?: number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: string | null
     periodicidade_reajuste?: string | null
     renovacao_automatica?: boolean
@@ -87280,6 +87318,7 @@ export namespace Prisma {
     numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
@@ -87330,6 +87369,7 @@ export namespace Prisma {
     numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
@@ -90021,6 +90061,7 @@ export namespace Prisma {
     numero_parcelas?: number | null
     primeiro_vencimento?: Date | string | null
     dia_vencimento?: number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: string | null
     periodicidade_reajuste?: string | null
     renovacao_automatica?: boolean
@@ -90071,6 +90112,7 @@ export namespace Prisma {
     numero_parcelas?: number | null
     primeiro_vencimento?: Date | string | null
     dia_vencimento?: number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: string | null
     periodicidade_reajuste?: string | null
     renovacao_automatica?: boolean
@@ -90409,6 +90451,7 @@ export namespace Prisma {
     numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
@@ -90459,6 +90502,7 @@ export namespace Prisma {
     numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
@@ -92046,6 +92090,7 @@ export namespace Prisma {
     numero_parcelas?: number | null
     primeiro_vencimento?: Date | string | null
     dia_vencimento?: number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: string | null
     periodicidade_reajuste?: string | null
     renovacao_automatica?: boolean
@@ -92096,6 +92141,7 @@ export namespace Prisma {
     numero_parcelas?: number | null
     primeiro_vencimento?: Date | string | null
     dia_vencimento?: number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: string | null
     periodicidade_reajuste?: string | null
     renovacao_automatica?: boolean
@@ -92506,6 +92552,7 @@ export namespace Prisma {
     numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
@@ -92556,6 +92603,7 @@ export namespace Prisma {
     numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
@@ -93643,6 +93691,7 @@ export namespace Prisma {
     numero_parcelas?: number | null
     primeiro_vencimento?: Date | string | null
     dia_vencimento?: number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: string | null
     periodicidade_reajuste?: string | null
     renovacao_automatica?: boolean
@@ -93693,6 +93742,7 @@ export namespace Prisma {
     numero_parcelas?: number | null
     primeiro_vencimento?: Date | string | null
     dia_vencimento?: number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: string | null
     periodicidade_reajuste?: string | null
     renovacao_automatica?: boolean
@@ -94031,6 +94081,7 @@ export namespace Prisma {
     numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
@@ -94081,6 +94132,7 @@ export namespace Prisma {
     numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
@@ -94650,6 +94702,7 @@ export namespace Prisma {
     numero_parcelas?: number | null
     primeiro_vencimento?: Date | string | null
     dia_vencimento?: number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: string | null
     periodicidade_reajuste?: string | null
     renovacao_automatica?: boolean
@@ -94700,6 +94753,7 @@ export namespace Prisma {
     numero_parcelas?: number | null
     primeiro_vencimento?: Date | string | null
     dia_vencimento?: number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: string | null
     periodicidade_reajuste?: string | null
     renovacao_automatica?: boolean
@@ -94928,6 +94982,7 @@ export namespace Prisma {
     numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
@@ -94978,6 +95033,7 @@ export namespace Prisma {
     numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
@@ -96177,6 +96233,7 @@ export namespace Prisma {
     numero_parcelas?: number | null
     primeiro_vencimento?: Date | string | null
     dia_vencimento?: number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: string | null
     periodicidade_reajuste?: string | null
     renovacao_automatica?: boolean
@@ -96842,6 +96899,7 @@ export namespace Prisma {
     numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
@@ -96891,6 +96949,7 @@ export namespace Prisma {
     numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
@@ -96936,6 +96995,7 @@ export namespace Prisma {
     numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
@@ -97736,6 +97796,7 @@ export namespace Prisma {
     numero_parcelas?: number | null
     primeiro_vencimento?: Date | string | null
     dia_vencimento?: number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: string | null
     periodicidade_reajuste?: string | null
     renovacao_automatica?: boolean
@@ -97908,6 +97969,7 @@ export namespace Prisma {
     numero_parcelas?: number | null
     primeiro_vencimento?: Date | string | null
     dia_vencimento?: number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: string | null
     periodicidade_reajuste?: string | null
     renovacao_automatica?: boolean
@@ -98237,6 +98299,7 @@ export namespace Prisma {
     numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
@@ -98286,6 +98349,7 @@ export namespace Prisma {
     numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
@@ -98331,6 +98395,7 @@ export namespace Prisma {
     numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
@@ -98793,6 +98858,7 @@ export namespace Prisma {
     numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
@@ -98842,6 +98908,7 @@ export namespace Prisma {
     numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
@@ -98887,6 +98954,7 @@ export namespace Prisma {
     numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
@@ -99215,6 +99283,7 @@ export namespace Prisma {
     numero_parcelas?: number | null
     primeiro_vencimento?: Date | string | null
     dia_vencimento?: number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: string | null
     periodicidade_reajuste?: string | null
     renovacao_automatica?: boolean
@@ -99571,6 +99640,7 @@ export namespace Prisma {
     numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
@@ -99620,6 +99690,7 @@ export namespace Prisma {
     numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
@@ -99665,6 +99736,7 @@ export namespace Prisma {
     numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
     indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
     renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
