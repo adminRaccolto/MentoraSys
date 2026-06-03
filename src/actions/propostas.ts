@@ -205,6 +205,23 @@ export async function aceitarPropostaPublica(token: string) {
   return { data: { ...proposta, valor_total: Number(proposta.valor_total) } };
 }
 
+export async function marcarPropostaAceita(id: string) {
+  await verificarPermissao("propostas", "editar");
+  const empresaId = await obterEmpresaAtiva();
+
+  const proposta = await prisma.proposta.findFirst({ where: { id, empresa_id: empresaId } });
+  if (!proposta) throw new Error("Proposta não encontrada");
+  if (proposta.status === "ACEITA") return { ok: false, error: "Proposta já está aceita" };
+
+  await prisma.proposta.update({
+    where: { id },
+    data: { status: "ACEITA", aceito_em: new Date() },
+  });
+
+  revalidatePath("/propostas");
+  return { ok: true };
+}
+
 export async function excluirProposta(id: string) {
   await verificarPermissao("propostas", "excluir");
   const empresaId = await obterEmpresaAtiva();

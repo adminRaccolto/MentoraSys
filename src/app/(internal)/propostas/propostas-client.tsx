@@ -5,7 +5,7 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Plus, FileText, Trash2, Send, Copy, ExternalLink } from "lucide-react";
+import { Plus, FileText, Trash2, Send, Copy, ExternalLink, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -17,7 +17,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
-import { criarProposta, editarProposta, enviarProposta, excluirProposta } from "@/actions/propostas";
+import { criarProposta, editarProposta, enviarProposta, excluirProposta, marcarPropostaAceita } from "@/actions/propostas";
 
 type StatusProposta = "RASCUNHO" | "ENVIADA" | "VISUALIZADA" | "ACEITA" | "RECUSADA" | "EXPIRADA";
 
@@ -195,6 +195,7 @@ export default function PropostasClient({ propostas: inicial, clientes, servicos
   const [propostaEnviando, setPropostaEnviando] = useState<Proposta | null>(null);
   const [propostaExcluindo, setPropostaExcluindo] = useState<Proposta | null>(null);
   const [propostaDocumento, setPropostaDocumento] = useState<Proposta | null>(null);
+  const [propostaAceitando, setPropostaAceitando] = useState<Proposta | null>(null);
   const [isPending, startTransition] = useTransition();
 
   const { register, handleSubmit, reset, setValue, watch, control, formState: { errors } } =
@@ -489,6 +490,14 @@ export default function PropostasClient({ propostas: inicial, clientes, servicos
                         onClick={() => window.open(`/p/${p.token_aceite}`, "_blank")}>
                         <ExternalLink className="size-3.5" />
                       </Button>
+                      {!["ACEITA", "RECUSADA", "EXPIRADA"].includes(p.status) && (
+                        <Button size="icon" variant="ghost"
+                          className="size-8 text-green-600 hover:text-green-700"
+                          title="Marcar como aceita"
+                          onClick={() => setPropostaAceitando(p)}>
+                          <CheckCircle className="size-3.5" />
+                        </Button>
+                      )}
                       <Button size="icon" variant="ghost" className="size-8 text-destructive hover:text-destructive"
                         onClick={() => setPropostaExcluindo(p)}>
                         <Trash2 className="size-3.5" />
@@ -835,6 +844,48 @@ export default function PropostasClient({ propostas: inicial, clientes, servicos
             <AlertDialogCancel>Cancelar</AlertDialogCancel>
             <AlertDialogAction onClick={confirmarEnvio} disabled={isPending}>
               Confirmar e copiar link
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* Confirmar aceite manual */}
+      <AlertDialog open={!!propostaAceitando} onOpenChange={(v) => !v && setPropostaAceitando(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Marcar proposta como aceita?</AlertDialogTitle>
+            <AlertDialogDescription>
+              A proposta <strong>{propostaAceitando?.titulo}</strong> será marcada como <strong>Aceita</strong> manualmente.
+              Isso permite criar o contrato a partir dela.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction
+              className="bg-green-600 text-white hover:bg-green-700"
+              disabled={isPending}
+              onClick={() => {
+                if (!propostaAceitando) return;
+                startTransition(async () => {
+                  const res = await marcarPropostaAceita(propostaAceitando.id);
+                  if (res.ok) {
+                    setPropostas((prev) =>
+                      prev.map((p) =>
+                        p.id === propostaAceitando.id
+                          ? { ...p, status: "ACEITA" as StatusProposta }
+                          : p
+                      )
+                    );
+                    toast.success("Proposta marcada como aceita!");
+                  } else {
+                    toast.error(res.error ?? "Erro ao aceitar proposta");
+                  }
+                  setPropostaAceitando(null);
+                });
+              }}
+            >
+              <CheckCircle className="size-4 mr-1.5" />
+              Confirmar aceite
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
