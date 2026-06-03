@@ -192,7 +192,7 @@ function EtapaColuna({
   return (
     <div
       ref={setNodeRef}
-      className={`flex flex-col w-72 shrink-0 bg-muted/40 rounded-xl border transition-colors ${
+      className={`flex flex-col w-80 shrink-0 bg-muted/40 rounded-xl border transition-colors ${
         isOver ? "bg-primary/5 border-primary/30" : ""
       }`}
     >
@@ -405,7 +405,7 @@ export default function ProjetoKanban({ projetoId, etapas: etapasIniciais, onCha
       onDragOver={onDragOver}
       onDragEnd={onDragEnd}
     >
-      <div className="flex gap-4 overflow-x-auto pb-4 pt-1 px-1">
+      <div className="flex gap-4 overflow-x-auto pb-4 pt-1 px-1 h-full items-start">
         {etapas.map((etapa) => (
           <EtapaColuna
             key={etapa.id}

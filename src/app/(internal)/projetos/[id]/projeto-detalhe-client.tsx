@@ -303,19 +303,19 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros, usuari
   const progresso = totalTarefas > 0 ? Math.round((tarefasConcluidas / totalTarefas) * 100) : 0;
 
   return (
-    <div className="p-6 space-y-6 max-w-4xl mx-auto">
-      {/* Header */}
-      <div className="space-y-3">
-        <div className="flex items-start justify-between gap-4">
+    <div className="flex flex-col min-h-0 flex-1">
+      {/* Header — centralizado e compacto */}
+      <div className="px-6 pt-5 pb-3 border-b bg-background shrink-0">
+        <div className="flex items-center justify-between gap-4 mb-2">
           <div>
             <button
               onClick={() => router.push("/projetos")}
-              className="text-xs text-muted-foreground hover:text-foreground mb-1"
+              className="text-xs text-muted-foreground hover:text-foreground mb-0.5 block"
             >
               ← Projetos
             </button>
-            <h1 className="text-2xl font-bold">{projeto.titulo}</h1>
-            <p className="text-sm text-muted-foreground mt-0.5">{projeto.cliente.nome}</p>
+            <h1 className="text-xl font-bold leading-tight">{projeto.titulo}</h1>
+            <p className="text-sm text-muted-foreground">{projeto.cliente.nome}</p>
           </div>
           <div className="flex items-center gap-2 shrink-0">
             <Select value={projeto.status} onValueChange={(v) => v && mudarStatus(v)}>
@@ -332,31 +332,30 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros, usuari
         </div>
 
         {totalTarefas > 0 && (
-          <div className="space-y-1">
+          <div className="space-y-0.5 mb-3">
             <div className="flex justify-between text-xs text-muted-foreground">
-              <span>Progresso geral</span>
-              <span>{tarefasConcluidas}/{totalTarefas} tarefas ({progresso}%)</span>
+              <span>Progresso</span>
+              <span>{tarefasConcluidas}/{totalTarefas} ({progresso}%)</span>
             </div>
-            <div className="h-2 bg-muted rounded-full overflow-hidden">
-              <div
-                className="h-full bg-primary transition-all duration-300"
-                style={{ width: `${progresso}%` }}
-              />
+            <div className="h-1.5 bg-muted rounded-full overflow-hidden">
+              <div className="h-full bg-primary transition-all duration-300" style={{ width: `${progresso}%` }} />
             </div>
           </div>
         )}
       </div>
 
-      <Tabs defaultValue="kanban">
-        <TabsList>
-          <TabsTrigger value="kanban">Kanban</TabsTrigger>
-          <TabsTrigger value="etapas">Lista</TabsTrigger>
-          <TabsTrigger value="documentos">Documentos ({projeto.documentos.length})</TabsTrigger>
-          <TabsTrigger value="info">Informações</TabsTrigger>
-        </TabsList>
+      <Tabs defaultValue="kanban" className="flex flex-col flex-1 min-h-0">
+        <div className="px-6 border-b bg-background shrink-0">
+          <TabsList className="h-9 bg-transparent p-0 gap-1">
+            <TabsTrigger value="kanban" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-3 h-9">Kanban</TabsTrigger>
+            <TabsTrigger value="etapas" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-3 h-9">Lista</TabsTrigger>
+            <TabsTrigger value="documentos" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-3 h-9">Documentos ({projeto.documentos.length})</TabsTrigger>
+            <TabsTrigger value="info" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-3 h-9">Informações</TabsTrigger>
+          </TabsList>
+        </div>
 
-        {/* ── Tab Kanban ── */}
-        <TabsContent value="kanban" className="mt-4 -mx-6 px-6 overflow-x-auto">
+        {/* ── Tab Kanban — ocupa toda a área restante ── */}
+        <TabsContent value="kanban" className="flex-1 min-h-0 overflow-auto p-4 mt-0 data-[state=inactive]:hidden">
           <ProjetoKanban
             projetoId={projeto.id}
             etapas={projeto.etapas as any}
@@ -384,7 +383,8 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros, usuari
         </TabsContent>
 
         {/* ── Tab Lista ── */}
-        <TabsContent value="etapas" className="space-y-3 mt-4">
+        <TabsContent value="etapas" className="flex-1 overflow-auto mt-0 p-6 data-[state=inactive]:hidden">
+          <div className="max-w-3xl space-y-3">
           {projeto.etapas.map((etapa) => {
             const aberta = etapasAbertas.has(etapa.id);
             const concluidas = etapa.tarefas.filter((t) => t.status === "CONCLUIDA").length;
@@ -524,10 +524,12 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros, usuari
               <Plus className="size-4 mr-1.5" /> Nova etapa
             </Button>
           )}
+          </div>
         </TabsContent>
 
         {/* ── Tab Documentos ── */}
-        <TabsContent value="documentos" className="space-y-4 mt-4">
+        <TabsContent value="documentos" className="flex-1 overflow-auto mt-0 p-6 data-[state=inactive]:hidden">
+          <div className="max-w-3xl space-y-4">
           <div
             className="border-2 border-dashed rounded-lg p-8 text-center cursor-pointer hover:bg-muted/30 transition-colors"
             onClick={() => fileRef.current?.click()}
@@ -567,10 +569,12 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros, usuari
               </div>
             ))}
           </div>
+          </div>
         </TabsContent>
 
         {/* ── Tab Informações ── */}
-        <TabsContent value="info" className="mt-4 space-y-4">
+        <TabsContent value="info" className="flex-1 overflow-auto mt-0 p-6 data-[state=inactive]:hidden">
+          <div className="max-w-3xl space-y-4">
           <div className="border rounded-lg p-4 bg-card space-y-3">
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
@@ -624,8 +628,10 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros, usuari
               </div>
             )}
           </div>
+          </div>
         </TabsContent>
       </Tabs>
+
 
       {tarefaModal && (
         <TarefaModal
