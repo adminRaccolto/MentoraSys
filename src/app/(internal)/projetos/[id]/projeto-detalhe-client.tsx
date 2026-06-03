@@ -22,6 +22,7 @@ import { criarTarefa, concluirTarefa, excluirTarefa, carregarTarefaCompleta } fr
 import { criarDocumento, excluirDocumento } from "@/actions/documentos";
 import { gerarLinkPortal } from "@/actions/portal";
 import TarefaModal, { type TarefaCompleta } from "@/components/tarefa-modal";
+import ProjetoKanban from "@/components/projeto-kanban";
 
 type StatusProjeto = "PLANEJAMENTO" | "EM_ANDAMENTO" | "CONCLUIDO" | "CANCELADO";
 type StatusEtapa = "PENDENTE" | "EM_ANDAMENTO" | "CONCLUIDA" | "CANCELADA";
@@ -346,14 +347,43 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros, usuari
         )}
       </div>
 
-      <Tabs defaultValue="etapas">
+      <Tabs defaultValue="kanban">
         <TabsList>
-          <TabsTrigger value="etapas">Etapas & Tarefas</TabsTrigger>
+          <TabsTrigger value="kanban">Kanban</TabsTrigger>
+          <TabsTrigger value="etapas">Lista</TabsTrigger>
           <TabsTrigger value="documentos">Documentos ({projeto.documentos.length})</TabsTrigger>
           <TabsTrigger value="info">Informações</TabsTrigger>
         </TabsList>
 
-        {/* ── Tab Etapas ── */}
+        {/* ── Tab Kanban ── */}
+        <TabsContent value="kanban" className="mt-4 -mx-6 px-6 overflow-x-auto">
+          <ProjetoKanban
+            projetoId={projeto.id}
+            etapas={projeto.etapas as any}
+            onChange={(etapasKanban: any[]) =>
+              setProjeto((p) => ({
+                ...p,
+                etapas: p.etapas.map((e) => {
+                  const atualizada = etapasKanban.find((k: any) => k.id === e.id);
+                  if (!atualizada) return e;
+                  return {
+                    ...e,
+                    tarefas: e.tarefas
+                      .filter((t) => atualizada.tarefas.some((k: any) => k.id === t.id))
+                      .sort((a, b) => {
+                        const ia = atualizada.tarefas.findIndex((k: any) => k.id === a.id);
+                        const ib = atualizada.tarefas.findIndex((k: any) => k.id === b.id);
+                        return ia - ib;
+                      }),
+                  };
+                }),
+              }))
+            }
+            onAbrirTarefa={abrirTarefa}
+          />
+        </TabsContent>
+
+        {/* ── Tab Lista ── */}
         <TabsContent value="etapas" className="space-y-3 mt-4">
           {projeto.etapas.map((etapa) => {
             const aberta = etapasAbertas.has(etapa.id);

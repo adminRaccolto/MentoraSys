@@ -124,6 +124,28 @@ export async function excluirTarefa(tarefaId: string, projetoId: string) {
   return { data: null };
 }
 
+// ─── MOVER TAREFA (drag-and-drop) ────────────────────────────────────────────
+
+export async function moverTarefa(input: {
+  tarefaId: string;
+  novaEtapaId: string;
+  novaOrdem: number;
+  projetoId: string;
+}) {
+  await verificarPermissao("projetos", "editar");
+  const empresaId = await obterEmpresaAtiva();
+
+  const projeto = await prisma.projeto.findUnique({ where: { id: input.projetoId, empresa_id: empresaId } });
+  if (!projeto) throw new Error("Projeto não encontrado");
+
+  await prisma.tarefa.update({
+    where: { id: input.tarefaId },
+    data: { etapa_id: input.novaEtapaId, ordem: input.novaOrdem },
+  });
+
+  return { ok: true };
+}
+
 // ─── CARREGAR TAREFA COMPLETA ─────────────────────────────────────────────────
 
 export async function carregarTarefaCompleta(tarefaId: string) {
