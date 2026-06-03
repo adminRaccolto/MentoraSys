@@ -74,9 +74,16 @@ interface Cliente {
 
 function maskCpfCnpj(v: string) {
   const d = v.replace(/\D/g, "").slice(0, 14);
-  if (d.length <= 11)
-    return d.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4").replace(/(\d{3})(\d{3})(\d{0,3})/, "$1.$2.$3").replace(/(\d{3})(\d{0,3})/, "$1.$2").replace(/(\d{0,3})/, "$1");
-  return d.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5").replace(/(\d{2})(\d{3})(\d{3})(\d{0,4})/, "$1.$2.$3/$4").replace(/(\d{2})(\d{3})(\d{0,3})/, "$1.$2.$3").replace(/(\d{2})(\d{0,3})/, "$1.$2").replace(/(\d{0,2})/, "$1");
+  if (d.length <= 11) {
+    // CPF: 000.000.000-00
+    if (d.length <= 3) return d;
+    if (d.length <= 6) return `${d.slice(0, 3)}.${d.slice(3)}`;
+    if (d.length <= 9) return `${d.slice(0, 3)}.${d.slice(3, 6)}.${d.slice(6)}`;
+    return `${d.slice(0, 3)}.${d.slice(3, 6)}.${d.slice(6, 9)}-${d.slice(9)}`;
+  }
+  // CNPJ: 00.000.000/0000-00
+  if (d.length <= 12) return `${d.slice(0, 2)}.${d.slice(2, 5)}.${d.slice(5, 8)}/${d.slice(8)}`;
+  return `${d.slice(0, 2)}.${d.slice(2, 5)}.${d.slice(5, 8)}/${d.slice(8, 12)}-${d.slice(12)}`;
 }
 
 function maskPhone(v: string) {
