@@ -1,4 +1,5 @@
 "use server";
+import { parseLocalDate } from "@/lib/date";
 
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
@@ -41,7 +42,7 @@ export async function criarContaPagar(input: InputCreate) {
       descricao: data.descricao,
       fornecedor: data.fornecedor || null,
       valor: data.valor,
-      data_vencimento: new Date(data.data_vencimento),
+      data_vencimento: parseLocalDate(data.data_vencimento),
       plano_contas_id: data.plano_contas_id || null,
       conta_bancaria_id: data.conta_bancaria_id || null,
       observacoes: data.observacoes || null,
@@ -69,7 +70,7 @@ export async function baixarContaPagar(id: string, input: InputBaixar) {
     where: { id },
     data: {
       status: novoStatus,
-      data_pagamento: new Date(data.data_pagamento),
+      data_pagamento: parseLocalDate(data.data_pagamento),
       valor_pago: data.valor_pago,
       forma_pagamento: data.forma_pagamento,
       conta_bancaria_id: data.conta_bancaria_id || null,
@@ -124,7 +125,7 @@ export async function baixarLoteContasPagar(ids: string[], input: InputBaixarLot
       where: { id: c.id },
       data: {
         status: "PAGO",
-        data_pagamento: new Date(data.data_pagamento),
+        data_pagamento: parseLocalDate(data.data_pagamento),
         valor_pago: c.valor,
         forma_pagamento: data.forma_pagamento,
         conta_bancaria_id: data.conta_bancaria_id || null,
@@ -153,7 +154,7 @@ export async function editarContaPagar(id: string, input: InputCreate) {
       descricao: data.descricao,
       fornecedor: data.fornecedor || null,
       valor: data.valor,
-      data_vencimento: new Date(data.data_vencimento),
+      data_vencimento: parseLocalDate(data.data_vencimento),
       plano_contas_id: data.plano_contas_id || null,
       conta_bancaria_id: data.conta_bancaria_id || null,
       observacoes: data.observacoes || null,

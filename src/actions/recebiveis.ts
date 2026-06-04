@@ -1,4 +1,5 @@
 "use server";
+import { parseLocalDate } from "@/lib/date";
 
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
@@ -54,7 +55,7 @@ export async function criarRecebivel(input: InputCreate) {
       criado_por: user?.id,
       descricao: data.descricao,
       valor: data.valor,
-      data_vencimento: new Date(data.data_vencimento),
+      data_vencimento: new Date(`${data.data_vencimento}T12:00:00`),
       cliente_id: data.cliente_id || null,
       contrato_id: data.contrato_id || null,
       plano_contas_id: data.plano_contas_id || null,
@@ -99,7 +100,7 @@ export async function gerarParcelasContrato(contratoId: string, input: InputParc
   const parcelas = Array.from({ length: data.n_parcelas }, (_, i) => {
     const pp = propostaParcelas?.[i];
     const vencimento = pp ? new Date(pp.vencimento) : (() => {
-      const d = new Date(data.data_primeira);
+      const d = parseLocalDate(data.data_primeira);
       d.setMonth(d.getMonth() + i);
       return d;
     })();
@@ -141,7 +142,7 @@ export async function baixarRecebivel(id: string, input: InputBaixar) {
     where: { id },
     data: {
       status: novoStatus,
-      data_pagamento: new Date(data.data_pagamento),
+      data_pagamento: parseLocalDate(data.data_pagamento),
       valor_pago: data.valor_pago,
       forma_pagamento: data.forma_pagamento,
       conta_bancaria_id: data.conta_bancaria_id || null,
@@ -163,9 +164,9 @@ export async function baixarRecebivel(id: string, input: InputBaixar) {
         plano_contas_id: jurosMultasId,
         descricao: `Juros e multas — ${recebivel.descricao}`,
         valor: totalJurosMulta,
-        data_vencimento: new Date(data.data_pagamento),
+        data_vencimento: parseLocalDate(data.data_pagamento),
         status: "PAGO",
-        data_pagamento: new Date(data.data_pagamento),
+        data_pagamento: parseLocalDate(data.data_pagamento),
         valor_pago: totalJurosMulta,
         forma_pagamento: data.forma_pagamento,
         conta_bancaria_id: data.conta_bancaria_id || null,
@@ -223,7 +224,7 @@ export async function baixarLoteRecebiveis(ids: string[], input: InputBaixarLote
       where: { id: r.id },
       data: {
         status: "PAGO",
-        data_pagamento: new Date(data.data_pagamento),
+        data_pagamento: parseLocalDate(data.data_pagamento),
         valor_pago: r.valor,
         forma_pagamento: data.forma_pagamento,
         conta_bancaria_id: data.conta_bancaria_id || null,
@@ -251,7 +252,7 @@ export async function editarRecebivel(id: string, input: InputCreate) {
     data: {
       descricao: data.descricao,
       valor: data.valor,
-      data_vencimento: new Date(data.data_vencimento),
+      data_vencimento: new Date(`${data.data_vencimento}T12:00:00`),
       cliente_id: data.cliente_id || null,
       contrato_id: data.contrato_id || null,
       plano_contas_id: data.plano_contas_id || null,
@@ -328,7 +329,7 @@ export async function refaturarRecebivel(id: string, input: z.input<typeof schem
       juros_valor: data.juros_valor > 0 ? data.juros_valor : null,
       multa_valor: data.multa_valor > 0 ? data.multa_valor : null,
       desconto_valor: data.desconto_valor > 0 ? data.desconto_valor : null,
-      data_vencimento: new Date(data.nova_data_vencimento),
+      data_vencimento: new Date(`${data.nova_data_vencimento}T12:00:00`),
       numero_parcela: original.numero_parcela,
       total_parcelas: original.total_parcelas,
       observacoes: data.observacoes || `Renegociação de lançamento de ${new Date(original.data_vencimento).toLocaleDateString("pt-BR")}`,
@@ -348,7 +349,7 @@ export async function refaturarRecebivel(id: string, input: z.input<typeof schem
         plano_contas_id: jurosMultasId,
         descricao: `Juros e multas — ${original.descricao}`,
         valor: totalJurosMulta,
-        data_vencimento: new Date(data.nova_data_vencimento),
+        data_vencimento: new Date(`${data.nova_data_vencimento}T12:00:00`),
         recebivel_origem_id: id,
         observacoes: "Apropriação automática de juros e multas por renegociação",
       },

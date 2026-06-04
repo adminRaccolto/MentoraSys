@@ -1,4 +1,5 @@
 "use server";
+import { parseLocalDate } from "@/lib/date";
 
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
@@ -32,8 +33,8 @@ export async function criarEtapa(projetoId: string, input: Input) {
       titulo: data.titulo,
       descricao: data.descricao || null,
       ordem: data.ordem ?? count,
-      data_inicio: data.data_inicio ? new Date(data.data_inicio) : null,
-      data_fim: data.data_fim ? new Date(data.data_fim) : null,
+      data_inicio: data.data_inicio ? parseLocalDate(data.data_inicio) : null,
+      data_fim: data.data_fim ? parseLocalDate(data.data_fim) : null,
     },
   });
 
@@ -55,8 +56,8 @@ export async function editarEtapa(etapaId: string, projetoId: string, input: Inp
     data: {
       titulo: data.titulo,
       descricao: data.descricao || null,
-      data_inicio: data.data_inicio ? new Date(data.data_inicio) : null,
-      data_fim: data.data_fim ? new Date(data.data_fim) : null,
+      data_inicio: data.data_inicio ? parseLocalDate(data.data_inicio) : null,
+      data_fim: data.data_fim ? parseLocalDate(data.data_fim) : null,
       ...(input.status && { status: input.status as any }),
     },
   });

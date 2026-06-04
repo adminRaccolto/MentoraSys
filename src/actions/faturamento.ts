@@ -1,4 +1,5 @@
 "use server";
+import { parseLocalDate } from "@/lib/date";
 
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
@@ -49,11 +50,11 @@ export async function criarNota(input: InputCreate) {
       cliente_id: data.cliente_id,
       contrato_id: data.contrato_id || null,
       numero: data.numero || null,
-      competencia: new Date(data.competencia),
+      competencia: parseLocalDate(data.competencia),
       valor: data.valor,
       descricao: data.descricao,
-      data_emissao: data.data_emissao ? new Date(data.data_emissao) : null,
-      data_vencimento: data.data_vencimento ? new Date(data.data_vencimento) : null,
+      data_emissao: data.data_emissao ? parseLocalDate(data.data_emissao) : null,
+      data_vencimento: data.data_vencimento ? parseLocalDate(data.data_vencimento) : null,
       observacoes: data.observacoes || null,
     },
   });
@@ -74,11 +75,11 @@ export async function editarNota(id: string, input: InputCreate) {
       cliente_id: data.cliente_id,
       contrato_id: data.contrato_id || null,
       numero: data.numero || null,
-      competencia: new Date(data.competencia),
+      competencia: parseLocalDate(data.competencia),
       valor: data.valor,
       descricao: data.descricao,
-      data_emissao: data.data_emissao ? new Date(data.data_emissao) : null,
-      data_vencimento: data.data_vencimento ? new Date(data.data_vencimento) : null,
+      data_emissao: data.data_emissao ? parseLocalDate(data.data_emissao) : null,
+      data_vencimento: data.data_vencimento ? parseLocalDate(data.data_vencimento) : null,
       observacoes: data.observacoes || null,
     },
   });
@@ -145,8 +146,8 @@ export async function emitirNota(id: string, input: InputEmitir) {
     data: {
       status:           "EMITIDA",
       numero:           data.numero || numeroNfse || null,
-      data_emissao:     new Date(data.data_emissao),
-      data_vencimento:  data.data_vencimento ? new Date(data.data_vencimento) : null,
+      data_emissao:     parseLocalDate(data.data_emissao),
+      data_vencimento:  data.data_vencimento ? parseLocalDate(data.data_vencimento) : null,
       codigo_servico:   data.codigo_servico || null,
       aliquota_iss:     data.aliquota_iss ?? null,
       nfsio_id:         nfsioId,

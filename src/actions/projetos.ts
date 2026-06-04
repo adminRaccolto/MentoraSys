@@ -1,4 +1,5 @@
 "use server";
+import { parseLocalDate } from "@/lib/date";
 
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
@@ -32,8 +33,8 @@ export async function criarProjeto(input: Input) {
       contrato_id: data.contrato_id || null,
       titulo: data.titulo,
       descricao: data.descricao || null,
-      data_inicio: data.data_inicio ? new Date(data.data_inicio) : null,
-      data_fim: data.data_fim ? new Date(data.data_fim) : null,
+      data_inicio: data.data_inicio ? parseLocalDate(data.data_inicio) : null,
+      data_fim: data.data_fim ? parseLocalDate(data.data_fim) : null,
       criado_por: user?.id,
     },
   });
@@ -58,8 +59,8 @@ export async function editarProjeto(id: string, input: Input & { status?: string
       contrato_id: data.contrato_id || null,
       titulo: data.titulo,
       descricao: data.descricao || null,
-      data_inicio: data.data_inicio ? new Date(data.data_inicio) : null,
-      data_fim: data.data_fim ? new Date(data.data_fim) : null,
+      data_inicio: data.data_inicio ? parseLocalDate(data.data_inicio) : null,
+      data_fim: data.data_fim ? parseLocalDate(data.data_fim) : null,
       ...(input.status && { status: input.status as any }),
     },
   });

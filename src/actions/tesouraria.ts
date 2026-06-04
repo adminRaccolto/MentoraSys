@@ -1,4 +1,5 @@
 "use server";
+import { parseLocalDate } from "@/lib/date";
 
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
@@ -30,7 +31,7 @@ export async function criarTransferencia(input: Input) {
       conta_origem_id:  data.conta_origem_id,
       conta_destino_id: data.conta_destino_id,
       valor:            data.valor,
-      data:             new Date(data.data),
+      data:             parseLocalDate(data.data),
       descricao:        data.descricao || null,
     },
     include: {

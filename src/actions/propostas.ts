@@ -1,4 +1,5 @@
 "use server";
+import { parseLocalDate } from "@/lib/date";
 
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
@@ -76,7 +77,7 @@ export async function criarProposta(input: PropostaInput) {
       forma_pagamento: data.forma_pagamento || null,
       periodicidade: data.periodicidade || null,
       numero_parcelas: data.numero_parcelas ?? null,
-      primeiro_vencimento: data.primeiro_vencimento ? new Date(data.primeiro_vencimento) : null,
+      primeiro_vencimento: data.primeiro_vencimento ? parseLocalDate(data.primeiro_vencimento) : null,
       contato_nome: data.contato_nome || null,
       contato_email: data.contato_email || null,
       contato_telefone: data.contato_telefone || null,
@@ -141,7 +142,7 @@ export async function editarProposta(id: string, input: PropostaInput) {
       forma_pagamento: data.forma_pagamento || null,
       periodicidade: data.periodicidade || null,
       numero_parcelas: data.numero_parcelas ?? null,
-      primeiro_vencimento: data.primeiro_vencimento ? new Date(data.primeiro_vencimento) : null,
+      primeiro_vencimento: data.primeiro_vencimento ? parseLocalDate(data.primeiro_vencimento) : null,
       contato_nome: data.contato_nome || null,
       contato_email: data.contato_email || null,
       contato_telefone: data.contato_telefone || null,

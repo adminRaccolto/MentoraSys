@@ -1,4 +1,5 @@
 "use server";
+import { parseLocalDate } from "@/lib/date";
 
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
@@ -40,8 +41,8 @@ export async function criarEvento(input: InputCreate) {
       empresa_id: empresaId,
       titulo: data.titulo,
       descricao: data.descricao,
-      inicio: new Date(data.inicio),
-      fim: data.fim ? new Date(data.fim) : undefined,
+      inicio: parseLocalDate(data.inicio),
+      fim: data.fim ? parseLocalDate(data.fim) : undefined,
       dia_todo: data.dia_todo ?? false,
       lembrete_minutos: data.lembrete_minutos,
       lembrete_em: calcularLembreteEm(data.inicio, data.lembrete_minutos),
@@ -64,11 +65,11 @@ export async function editarEvento(id: string, input: InputEdit) {
 
   const updateData: Record<string, unknown> = { ...data };
   if (data.inicio) {
-    updateData.inicio = new Date(data.inicio);
+    updateData.inicio = parseLocalDate(data.inicio);
     updateData.lembrete_em = calcularLembreteEm(data.inicio, data.lembrete_minutos);
     updateData.lembrete_enviado = false;
   }
-  if (data.fim) updateData.fim = new Date(data.fim);
+  if (data.fim) updateData.fim = parseLocalDate(data.fim);
   if (data.responsavel_id === "") updateData.responsavel_id = null;
   if (data.cliente_id === "") updateData.cliente_id = null;
   if (data.contrato_id === "") updateData.contrato_id = null;
