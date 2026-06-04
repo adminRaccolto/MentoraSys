@@ -183,16 +183,21 @@ const schemaAssinatura = z.object({
 type FormAssinatura = z.input<typeof schemaAssinatura>;
 
 function SelectField({
-  label, value, onValueChange, placeholder, children,
+  label, value, onValueChange, placeholder, children, resolvedLabel,
 }: {
   label: string; value: string; onValueChange: (v: string) => void;
-  placeholder?: string; children: React.ReactNode;
+  placeholder?: string; children: React.ReactNode; resolvedLabel?: string;
 }) {
   return (
     <div className="space-y-1.5">
       <Label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">{label}</Label>
       <Select value={value} onValueChange={(v: string | null) => onValueChange(v ?? "")}>
-        <SelectTrigger className="w-full h-9 text-sm"><SelectValue placeholder={placeholder ?? "Selecione..."} /></SelectTrigger>
+        <SelectTrigger className="w-full h-9 text-sm">
+          {resolvedLabel
+            ? <span className="truncate">{resolvedLabel}</span>
+            : <SelectValue placeholder={placeholder ?? "Selecione..."} />
+          }
+        </SelectTrigger>
         <SelectContent>{children}</SelectContent>
       </Select>
     </div>
@@ -745,6 +750,7 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
                     <SelectField
                       label="Cliente *"
                       value={watch("cliente_id") ?? ""}
+                      resolvedLabel={clientes.find((c) => c.id === watch("cliente_id"))?.nome}
                       onValueChange={(v) => {
                         setValue("cliente_id", v);
                         preencherSnapshotCliente(v);
@@ -756,6 +762,7 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
                     <SelectField
                       label="Responsável"
                       value={watch("responsavel_id") ?? ""}
+                      resolvedLabel={watch("responsavel_id") ? (usuarios.find((u) => u.id === watch("responsavel_id"))?.nome) : undefined}
                       onValueChange={(v) => setValue("responsavel_id", v || undefined)}
                       placeholder="Sem responsável"
                     >
@@ -784,6 +791,7 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
                     <SelectField
                       label="Proposta vinculada"
                       value={watch("proposta_id") ?? ""}
+                      resolvedLabel={watch("proposta_id") ? (propostasAceitas.find((p) => p.id === watch("proposta_id"))?.titulo) : undefined}
                       onValueChange={(v) => setValue("proposta_id", v || undefined)}
                       placeholder="Nenhuma"
                     >
@@ -1271,7 +1279,11 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
                   value={formAssinatura.watch("modelo_id")}
                   onValueChange={(v) => formAssinatura.setValue("modelo_id", v ?? "")}
                 >
-                  <SelectTrigger><SelectValue placeholder="Selecione o modelo..." /></SelectTrigger>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Selecione o modelo...">
+                      {(value: string | null) => value ? (modelosContrato.find((m) => m.id === value)?.nome ?? value) : undefined}
+                    </SelectValue>
+                  </SelectTrigger>
                   <SelectContent>
                     {modelosContrato.map((m) => <SelectItem key={m.id} value={m.id}>{m.nome}</SelectItem>)}
                   </SelectContent>

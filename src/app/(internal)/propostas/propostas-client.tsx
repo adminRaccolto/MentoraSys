@@ -566,6 +566,10 @@ export default function PropostasClient({ propostas: inicial, clientes, servicos
                     <SelectField
                       label="Lead vinculado"
                       value={watch("lead_id") ?? ""}
+                      resolvedLabel={watch("lead_id") ? (() => {
+                        const l = leads.find((l) => l.id === watch("lead_id"));
+                        return l ? `${l.nome}${l.empresa_nome ? ` — ${l.empresa_nome}` : ""}` : undefined;
+                      })() : undefined}
                       onValueChange={(v) => setValue("lead_id", v || undefined)}
                       placeholder="Nenhum"
                     >

@@ -658,7 +658,16 @@ export default function ConfiguracoesClient({ empresa, usuario, membros: membros
                     onValueChange={(v) => formFiscal.setValue("regime_tributario", v ?? undefined)}
                   >
                     <SelectTrigger className="h-9 text-sm">
-                      <SelectValue placeholder="Selecione o regime" />
+                      <SelectValue placeholder="Selecione o regime">
+                        {(value: string | null) => {
+                          const REGIME_LABELS: Record<string, string> = {
+                            SIMPLES_NACIONAL: "Simples Nacional",
+                            LUCRO_PRESUMIDO: "Lucro Presumido",
+                            LUCRO_REAL: "Lucro Real",
+                          };
+                          return value ? (REGIME_LABELS[value] ?? value) : undefined;
+                        }}
+                      </SelectValue>
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="SIMPLES_NACIONAL">Simples Nacional</SelectItem>
@@ -834,7 +843,9 @@ export default function ConfiguracoesClient({ empresa, usuario, membros: membros
                   disabled={m.usuario.id === usuarioAtualId}
                 >
                   <SelectTrigger className="h-7 text-xs w-36">
-                    <SelectValue />
+                    <SelectValue>
+                      {(value: string | null) => value ? (perfis.find((p) => p.id === value)?.nome ?? value) : undefined}
+                    </SelectValue>
                   </SelectTrigger>
                   <SelectContent>
                     {perfis.map((p) => (
@@ -945,7 +956,11 @@ export default function ConfiguracoesClient({ empresa, usuario, membros: membros
                   <div className="space-y-1">
                     <label className="text-xs font-medium">Perfil *</label>
                     <Select value={novoPerfilId} onValueChange={v => { if (v) setNovoPerfilId(v); }}>
-                      <SelectTrigger className="h-9 text-sm"><SelectValue placeholder="Selecione" /></SelectTrigger>
+                      <SelectTrigger className="h-9 text-sm">
+                        <SelectValue placeholder="Selecione">
+                          {(value: string | null) => value ? (perfis.find((p) => p.id === value)?.nome ?? value) : undefined}
+                        </SelectValue>
+                      </SelectTrigger>
                       <SelectContent>
                         {perfis.map(p => <SelectItem key={p.id} value={p.id} className="text-sm">{p.nome}</SelectItem>)}
                       </SelectContent>
@@ -997,7 +1012,9 @@ export default function ConfiguracoesClient({ empresa, usuario, membros: membros
                   />
                   <Select value={convitePerfilId} onValueChange={(v) => { if (v) setConvitePerfilId(v); }}>
                     <SelectTrigger className="h-9 text-sm w-36">
-                      <SelectValue placeholder="Perfil" />
+                      <SelectValue placeholder="Perfil">
+                        {(value: string | null) => value ? (perfis.find((p) => p.id === value)?.nome ?? value) : undefined}
+                      </SelectValue>
                     </SelectTrigger>
                     <SelectContent>
                       {perfis.map((p) => (

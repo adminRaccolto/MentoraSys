@@ -325,7 +325,9 @@ export default function ModelosClient({ modelos }: Props) {
                   onValueChange={(v) => form.setValue("tipo", v as "CONTRATO" | "PROPOSTA" | "RECIBO" | "GENERICO")}
                 >
                   <SelectTrigger>
-                    <SelectValue />
+                    <SelectValue>
+                      {(value: string | null) => value ? (TIPO_LABELS[value as TipoModelo] ?? value) : undefined}
+                    </SelectValue>
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="CONTRATO">Contrato</SelectItem>

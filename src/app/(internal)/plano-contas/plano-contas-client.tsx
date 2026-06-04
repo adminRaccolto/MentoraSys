@@ -263,7 +263,7 @@ export default function PlanoContasClient({ contas: inicial }: { contas: Conta[]
                 >
                   <SelectTrigger className="h-9 w-full">
                     <SelectValue>
-                      {TIPO_CONFIG[watch("tipo")]?.label ?? ""}
+                      {(value: string | null) => value ? (TIPO_CONFIG[value as TipoPlano]?.label ?? value) : undefined}
                     </SelectValue>
                   </SelectTrigger>
                   <SelectContent>
@@ -288,10 +288,8 @@ export default function PlanoContasClient({ contas: inicial }: { contas: Conta[]
                 onValueChange={(v) => setValue("parent_id", v === "" ? null : v)}
               >
                 <SelectTrigger className="h-9 w-full">
-                  <SelectValue>
-                    {watch("parent_id")
-                      ? contas.find((c) => c.id === watch("parent_id"))?.nome ?? ""
-                      : "Sem conta pai (nível raiz)"}
+                  <SelectValue placeholder="Sem conta pai (nível raiz)">
+                    {(value: string | null) => value ? (contas.find((c) => c.id === value)?.nome ?? value) : undefined}
                   </SelectValue>
                 </SelectTrigger>
                 <SelectContent>

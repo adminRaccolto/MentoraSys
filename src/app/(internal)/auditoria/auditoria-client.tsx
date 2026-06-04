@@ -131,7 +131,9 @@ export default function AuditoriaClient({
             onValueChange={(v) => form.setValue("recurso", v ?? undefined)}
           >
             <SelectTrigger className="w-40 h-8 text-sm">
-              <SelectValue placeholder="Todos" />
+              <SelectValue placeholder="Todos">
+                {(value: string | null) => value || undefined}
+              </SelectValue>
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="">Todos</SelectItem>
@@ -151,7 +153,9 @@ export default function AuditoriaClient({
             onValueChange={(v) => form.setValue("usuario_id", v ?? undefined)}
           >
             <SelectTrigger className="w-44 h-8 text-sm">
-              <SelectValue placeholder="Todos" />
+              <SelectValue placeholder="Todos">
+                {(value: string | null) => value ? (usuarios.find((u) => u.id === value)?.nome ?? value) : undefined}
+              </SelectValue>
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="">Todos</SelectItem>

@@ -490,7 +490,11 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
             <div className="space-y-1">
               <Label>Forma de pagamento *</Label>
               <Select value={formLoteData.forma_pagamento} onValueChange={v => setFormLoteData(p => ({ ...p, forma_pagamento: v ?? "" }))}>
-                <SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
+                <SelectTrigger>
+                  <SelectValue placeholder="Selecione">
+                    {(value: string | null) => value || undefined}
+                  </SelectValue>
+                </SelectTrigger>
                 <SelectContent>
                   {["PIX","Transferência","Boleto","Cartão","Dinheiro","Cheque"].map(f => <SelectItem key={f} value={f}>{f}</SelectItem>)}
                 </SelectContent>
@@ -499,7 +503,11 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
             <div className="space-y-1">
               <Label>Conta bancária</Label>
               <Select value={formLoteData.conta_bancaria_id || "_none"} onValueChange={v => setFormLoteData(p => ({ ...p, conta_bancaria_id: !v || v === "_none" ? "" : v }))}>
-                <SelectTrigger><SelectValue placeholder="Nenhuma" /></SelectTrigger>
+                <SelectTrigger>
+                  <SelectValue placeholder="Nenhuma">
+                    {(value: string | null) => value && value !== "_none" ? (contasBancarias.find((c) => c.id === value)?.nome ?? value) : undefined}
+                  </SelectValue>
+                </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="_none">Nenhuma</SelectItem>
                   {contasBancarias.map(c => <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>)}
@@ -537,7 +545,11 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
             <div className="space-y-1">
               <Label>Cliente</Label>
               <Select value={formNovo.watch("cliente_id") ?? ""} onValueChange={(v) => formNovo.setValue("cliente_id", v === "nenhum" ? undefined : v ?? undefined)}>
-                <SelectTrigger><SelectValue placeholder="Nenhum" /></SelectTrigger>
+                <SelectTrigger>
+                  <SelectValue placeholder="Nenhum">
+                    {(value: string | null) => value && value !== "nenhum" ? (clientes.find((c) => c.id === value)?.nome ?? value) : undefined}
+                  </SelectValue>
+                </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="nenhum">Nenhum</SelectItem>
                   {clientes.map((c) => <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>)}
@@ -547,7 +559,11 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
             <div className="space-y-1">
               <Label>Categoria</Label>
               <Select value={formNovo.watch("plano_contas_id") ?? ""} onValueChange={(v) => formNovo.setValue("plano_contas_id", v === "nenhuma" ? undefined : v ?? undefined)}>
-                <SelectTrigger><SelectValue placeholder="Nenhuma" /></SelectTrigger>
+                <SelectTrigger>
+                  <SelectValue placeholder="Nenhuma">
+                    {(value: string | null) => value && value !== "nenhuma" ? (categorias.find((c) => c.id === value)?.nome ?? value) : undefined}
+                  </SelectValue>
+                </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="nenhuma">Nenhuma</SelectItem>
                   {categorias.map((c) => <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>)}
@@ -584,7 +600,11 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
             <div className="space-y-1">
               <Label>Forma de pagamento *</Label>
               <Select value={formBaixar.watch("forma_pagamento") ?? ""} onValueChange={(v) => formBaixar.setValue("forma_pagamento", v ?? "")}>
-                <SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
+                <SelectTrigger>
+                  <SelectValue placeholder="Selecione">
+                    {(value: string | null) => value || undefined}
+                  </SelectValue>
+                </SelectTrigger>
                 <SelectContent>
                   {FORMAS.map((f) => <SelectItem key={f} value={f}>{f}</SelectItem>)}
                 </SelectContent>
@@ -595,7 +615,11 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
               <div className="space-y-1">
                 <Label>Conta bancária</Label>
                 <Select value={formBaixar.watch("conta_bancaria_id") ?? ""} onValueChange={(v) => formBaixar.setValue("conta_bancaria_id", v === "nenhuma" ? undefined : v ?? undefined)}>
-                  <SelectTrigger><SelectValue placeholder="Nenhuma" /></SelectTrigger>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Nenhuma">
+                      {(value: string | null) => value && value !== "nenhuma" ? (contasBancarias.find((c) => c.id === value)?.nome ?? value) : undefined}
+                    </SelectValue>
+                  </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="nenhuma">Nenhuma</SelectItem>
                     {contasBancarias.map((c) => <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>)}
@@ -619,7 +643,15 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
             <div className="space-y-1">
               <Label>Contrato *</Label>
               <Select value={formParcelas.watch("contrato_id") ?? ""} onValueChange={(v) => formParcelas.setValue("contrato_id", v ?? "")}>
-                <SelectTrigger><SelectValue placeholder="Selecione um contrato" /></SelectTrigger>
+                <SelectTrigger>
+                  <SelectValue placeholder="Selecione um contrato">
+                    {(value: string | null) => {
+                      if (!value) return undefined;
+                      const c = contratos.find((c) => c.id === value);
+                      return c ? `${c.titulo} — ${c.cliente.nome}` : undefined;
+                    }}
+                  </SelectValue>
+                </SelectTrigger>
                 <SelectContent>
                   {contratos.map((c) => <SelectItem key={c.id} value={c.id}>{c.titulo} — {c.cliente.nome}</SelectItem>)}
                 </SelectContent>
@@ -653,7 +685,11 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
             <div className="space-y-1">
               <Label>Categoria</Label>
               <Select value={formParcelas.watch("plano_contas_id") ?? ""} onValueChange={(v) => formParcelas.setValue("plano_contas_id", v === "nenhuma" ? undefined : v ?? undefined)}>
-                <SelectTrigger><SelectValue placeholder="Nenhuma" /></SelectTrigger>
+                <SelectTrigger>
+                  <SelectValue placeholder="Nenhuma">
+                    {(value: string | null) => value && value !== "nenhuma" ? (categorias.find((c) => c.id === value)?.nome ?? value) : undefined}
+                  </SelectValue>
+                </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="nenhuma">Nenhuma</SelectItem>
                   {categorias.map((c) => <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>)}

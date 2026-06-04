@@ -343,7 +343,9 @@ export default function CrmClient({ leads: inicial, clientes, membros }: Props) 
                         onValueChange={(v) => setAtivValue("tipo", v as AtividadeForm["tipo"])}
                       >
                         <SelectTrigger className="h-8 text-xs">
-                          <SelectValue />
+                          <SelectValue>
+                            {(value: string | null) => value || undefined}
+                          </SelectValue>
                         </SelectTrigger>
                         <SelectContent>
                           {["LIGACAO", "EMAIL", "REUNIAO", "NOTA", "WHATSAPP"].map((t) => (
@@ -404,7 +406,11 @@ export default function CrmClient({ leads: inicial, clientes, membros }: Props) 
               <div className="space-y-1">
                 <Label>Cliente vinculado</Label>
                 <Select value={watch("cliente_id") ?? ""} onValueChange={(v) => setValue("cliente_id", v ?? undefined)}>
-                  <SelectTrigger><SelectValue placeholder="Selecione..." /></SelectTrigger>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Selecione...">
+                      {(value: string | null) => value ? (clientes.find((c) => c.id === value)?.nome ?? value) : undefined}
+                    </SelectValue>
+                  </SelectTrigger>
                   <SelectContent>
                     {clientes.map((c) => (
                       <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>
@@ -415,7 +421,11 @@ export default function CrmClient({ leads: inicial, clientes, membros }: Props) 
               <div className="space-y-1">
                 <Label>Responsável</Label>
                 <Select value={watch("responsavel_id") ?? ""} onValueChange={(v) => setValue("responsavel_id", v ?? undefined)}>
-                  <SelectTrigger><SelectValue placeholder="Selecione..." /></SelectTrigger>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Selecione...">
+                      {(value: string | null) => value ? (membros.find((m) => m.usuario.id === value)?.usuario.nome ?? value) : undefined}
+                    </SelectValue>
+                  </SelectTrigger>
                   <SelectContent>
                     {membros.map((m) => (
                       <SelectItem key={m.usuario.id} value={m.usuario.id}>{m.usuario.nome}</SelectItem>

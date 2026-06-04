@@ -187,7 +187,7 @@ export default function ContasBancariasClient({ contas: inicial, bancos }: { con
 
       {/* Modal criar / editar */}
       <Dialog open={modalAberto} onOpenChange={setModalAberto}>
-        <DialogContent className="max-w-lg">
+        <DialogContent className="max-w-2xl">
           <DialogHeader>
             <DialogTitle>{editando ? "Editar conta bancária" : "Nova conta bancária"}</DialogTitle>
           </DialogHeader>
@@ -205,7 +205,15 @@ export default function ContasBancariasClient({ contas: inicial, bancos }: { con
                   value={watch("banco_id") ?? undefined}
                   onValueChange={(v) => setValue("banco_id", !v || v === "_nenhum" ? undefined : v)}
                 >
-                  <SelectTrigger><SelectValue placeholder="Selecione o banco" /></SelectTrigger>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Selecione o banco">
+                      {(value: string | null) => {
+                        if (!value || value === "_nenhum") return undefined;
+                        const b = bancos.find((b) => b.id === value);
+                        return b ? `${b.codigo} — ${b.sigla}` : undefined;
+                      }}
+                    </SelectValue>
+                  </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="_nenhum">Nenhum</SelectItem>
                     {bancos.map((b) => (
@@ -222,7 +230,11 @@ export default function ContasBancariasClient({ contas: inicial, bancos }: { con
                   value={watch("tipo")}
                   onValueChange={(v) => setValue("tipo", v as FormData["tipo"])}
                 >
-                  <SelectTrigger><SelectValue /></SelectTrigger>
+                  <SelectTrigger>
+                    <SelectValue>
+                      {(value: string | null) => value ? (TIPO_LABEL[value] ?? value) : undefined}
+                    </SelectValue>
+                  </SelectTrigger>
                   <SelectContent>
                     {Object.entries(TIPO_LABEL).map(([k, v]) => (
                       <SelectItem key={k} value={k}>{v}</SelectItem>

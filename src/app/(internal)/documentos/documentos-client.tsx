@@ -410,7 +410,11 @@ export default function DocumentosClient({ documentos: inicial, clientes, projet
                 <div>
                   <Label>Categoria</Label>
                   <Select value={form.categoria} onValueChange={(v) => setForm((f) => ({ ...f, categoria: v as CategoriaDocumento }))}>
-                    <SelectTrigger><SelectValue /></SelectTrigger>
+                    <SelectTrigger>
+                      <SelectValue>
+                        {(value: string | null) => value ? (CATEGORIAS.find((c) => c.value === value)?.label ?? value) : undefined}
+                      </SelectValue>
+                    </SelectTrigger>
                     <SelectContent>
                       {CATEGORIAS.filter((c) => c.value !== "TODOS").map((c) => (
                         <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>
@@ -422,7 +426,11 @@ export default function DocumentosClient({ documentos: inicial, clientes, projet
                 <div>
                   <Label>Cliente</Label>
                   <Select value={form.cliente_id} onValueChange={(v: string | null) => setForm((f) => ({ ...f, cliente_id: !v || v === "none" ? "" : v }))}>
-                    <SelectTrigger><SelectValue placeholder="Nenhum" /></SelectTrigger>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Nenhum">
+                        {(value: string | null) => value && value !== "none" ? (clientes.find((c) => c.id === value)?.nome ?? value) : undefined}
+                      </SelectValue>
+                    </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="none">Nenhum</SelectItem>
                       {clientes.map((c) => <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>)}
@@ -433,7 +441,11 @@ export default function DocumentosClient({ documentos: inicial, clientes, projet
                 <div>
                   <Label>Projeto</Label>
                   <Select value={form.projeto_id} onValueChange={(v: string | null) => setForm((f) => ({ ...f, projeto_id: !v || v === "none" ? "" : v }))}>
-                    <SelectTrigger><SelectValue placeholder="Nenhum" /></SelectTrigger>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Nenhum">
+                        {(value: string | null) => value && value !== "none" ? (projetos.find((p) => p.id === value)?.titulo ?? value) : undefined}
+                      </SelectValue>
+                    </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="none">Nenhum</SelectItem>
                       {projetos.map((p) => <SelectItem key={p.id} value={p.id}>{p.titulo}</SelectItem>)}
@@ -444,7 +456,11 @@ export default function DocumentosClient({ documentos: inicial, clientes, projet
                 <div>
                   <Label>Contrato</Label>
                   <Select value={form.contrato_id} onValueChange={(v: string | null) => setForm((f) => ({ ...f, contrato_id: !v || v === "none" ? "" : v }))}>
-                    <SelectTrigger><SelectValue placeholder="Nenhum" /></SelectTrigger>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Nenhum">
+                        {(value: string | null) => value && value !== "none" ? (contratos.find((c) => c.id === value)?.titulo ?? value) : undefined}
+                      </SelectValue>
+                    </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="none">Nenhum</SelectItem>
                       {contratos.map((c) => <SelectItem key={c.id} value={c.id}>{c.titulo}</SelectItem>)}

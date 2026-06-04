@@ -431,7 +431,13 @@ export default function AgendaClient({
                 onValueChange={(v) => form.setValue("lembrete_minutos", v ?? undefined)}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder="Sem lembrete" />
+                  <SelectValue placeholder="Sem lembrete">
+                    {(value: string | null) => {
+                      if (!value) return undefined;
+                      const map: Record<string, string> = { "30": "30 minutos antes", "60": "1 hora antes", "1440": "1 dia antes" };
+                      return map[value] ?? value;
+                    }}
+                  </SelectValue>
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="">Sem lembrete</SelectItem>
@@ -450,7 +456,9 @@ export default function AgendaClient({
                   onValueChange={(v) => form.setValue("cliente_id", v ?? undefined)}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="Nenhum" />
+                    <SelectValue placeholder="Nenhum">
+                      {(value: string | null) => value ? (clientes.find((c) => c.id === value)?.nome ?? value) : undefined}
+                    </SelectValue>
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="">Nenhum</SelectItem>
@@ -467,7 +475,9 @@ export default function AgendaClient({
                   onValueChange={(v) => form.setValue("responsavel_id", v ?? undefined)}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="Nenhum" />
+                    <SelectValue placeholder="Nenhum">
+                      {(value: string | null) => value ? (usuarios.find((u) => u.id === value)?.nome ?? value) : undefined}
+                    </SelectValue>
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="">Nenhum</SelectItem>
@@ -487,7 +497,9 @@ export default function AgendaClient({
                   onValueChange={(v) => form.setValue("contrato_id", v ?? undefined)}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="Nenhum" />
+                    <SelectValue placeholder="Nenhum">
+                      {(value: string | null) => value ? (contratos.find((c) => c.id === value)?.titulo ?? value) : undefined}
+                    </SelectValue>
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="">Nenhum</SelectItem>
@@ -504,7 +516,9 @@ export default function AgendaClient({
                   onValueChange={(v) => form.setValue("projeto_id", v ?? undefined)}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="Nenhum" />
+                    <SelectValue placeholder="Nenhum">
+                      {(value: string | null) => value ? (projetos.find((p) => p.id === value)?.titulo ?? value) : undefined}
+                    </SelectValue>
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="">Nenhum</SelectItem>

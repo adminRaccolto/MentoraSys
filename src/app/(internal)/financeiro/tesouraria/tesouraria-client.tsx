@@ -197,7 +197,11 @@ export default function TesourariaClient({ contas, transferencias: inicial, extr
               <Building2 className="size-4 text-muted-foreground" />
               <span className="text-sm text-muted-foreground">Conta:</span>
               <Select value={contaExtrato} onValueChange={v => { if (v) abrirExtrato(v); }}>
-                <SelectTrigger className="h-8 w-56 text-sm"><SelectValue placeholder="Selecione uma conta" /></SelectTrigger>
+                <SelectTrigger className="h-8 w-56 text-sm">
+                  <SelectValue placeholder="Selecione uma conta">
+                    {(value: string | null) => value ? (contas.find((c) => c.id === value)?.nome ?? value) : undefined}
+                  </SelectValue>
+                </SelectTrigger>
                 <SelectContent>
                   {contas.map(c => <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>)}
                 </SelectContent>
@@ -265,14 +269,22 @@ export default function TesourariaClient({ contas, transferencias: inicial, extr
               <div className="space-y-1">
                 <Label>Conta de origem *</Label>
                 <Select value={form.conta_origem_id} onValueChange={v => setForm(p => ({ ...p, conta_origem_id: v ?? "" }))}>
-                  <SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Selecione">
+                      {(value: string | null) => value ? (contas.find((c) => c.id === value)?.nome ?? value) : undefined}
+                    </SelectValue>
+                  </SelectTrigger>
                   <SelectContent>{contas.map(c => <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>)}</SelectContent>
                 </Select>
               </div>
               <div className="space-y-1">
                 <Label>Conta de destino *</Label>
                 <Select value={form.conta_destino_id} onValueChange={v => setForm(p => ({ ...p, conta_destino_id: v ?? "" }))}>
-                  <SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Selecione">
+                      {(value: string | null) => value ? (contas.find((c) => c.id === value)?.nome ?? value) : undefined}
+                    </SelectValue>
+                  </SelectTrigger>
                   <SelectContent>
                     {contas.filter(c => c.id !== form.conta_origem_id).map(c => <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>)}
                   </SelectContent>

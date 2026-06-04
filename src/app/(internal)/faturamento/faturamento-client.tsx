@@ -341,7 +341,9 @@ export default function FaturamentoClient({
           <Label className="text-xs">Cliente</Label>
           <Select value={filtroCliente} onValueChange={(v) => setFiltroCliente(v ?? "")}>
             <SelectTrigger className="w-44 h-8 text-sm">
-              <SelectValue placeholder="Todos" />
+              <SelectValue placeholder="Todos">
+                {(value: string | null) => value ? (clientes.find((c) => c.id === value)?.nome ?? value) : undefined}
+              </SelectValue>
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="">Todos</SelectItem>
@@ -355,7 +357,9 @@ export default function FaturamentoClient({
           <Label className="text-xs">Status</Label>
           <Select value={filtroStatus} onValueChange={(v) => setFiltroStatus(v ?? "")}>
             <SelectTrigger className="w-36 h-8 text-sm">
-              <SelectValue placeholder="Todos" />
+              <SelectValue placeholder="Todos">
+                {(value: string | null) => value ? (STATUS_LABEL[value] ?? value) : undefined}
+              </SelectValue>
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="">Todos</SelectItem>
@@ -565,7 +569,9 @@ export default function FaturamentoClient({
                   onValueChange={(v) => formCreate.setValue("cliente_id", v ?? "")}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="Selecione" />
+                    <SelectValue placeholder="Selecione">
+                      {(value: string | null) => value ? (clientes.find((c) => c.id === value)?.nome ?? value) : undefined}
+                    </SelectValue>
                   </SelectTrigger>
                   <SelectContent>
                     {clientes.map((c) => (
@@ -584,7 +590,9 @@ export default function FaturamentoClient({
                   onValueChange={(v) => formCreate.setValue("contrato_id", v ?? undefined)}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="Nenhum" />
+                    <SelectValue placeholder="Nenhum">
+                      {(value: string | null) => value ? (contratos.find((c) => c.id === value)?.titulo ?? value) : undefined}
+                    </SelectValue>
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="">Nenhum</SelectItem>

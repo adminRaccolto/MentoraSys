@@ -225,7 +225,9 @@ export default function DiagnosticosClient({ diagnosticos, clientes, projetos }:
                 onValueChange={(v) => form.setValue("tipo", v as "SWOT" | "CANVAS" | "CINCO_W_DOIS_H" | "ORGANOGRAMA" | "MAPA_PROCESSO" | "GANTT")}
               >
                 <SelectTrigger>
-                  <SelectValue />
+                  <SelectValue>
+                    {(value: string | null) => value ? (TIPO_LABEL[value] ?? value) : undefined}
+                  </SelectValue>
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="SWOT">Análise SWOT</SelectItem>
@@ -252,7 +254,9 @@ export default function DiagnosticosClient({ diagnosticos, clientes, projetos }:
                   onValueChange={(v) => form.setValue("cliente_id", v ?? undefined)}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="Nenhum" />
+                    <SelectValue placeholder="Nenhum">
+                      {(value: string | null) => value ? (clientes.find((c) => c.id === value)?.nome ?? value) : undefined}
+                    </SelectValue>
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="">Nenhum</SelectItem>
@@ -269,7 +273,9 @@ export default function DiagnosticosClient({ diagnosticos, clientes, projetos }:
                   onValueChange={(v) => form.setValue("projeto_id", v ?? undefined)}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="Nenhum" />
+                    <SelectValue placeholder="Nenhum">
+                      {(value: string | null) => value ? (projetos.find((p) => p.id === value)?.titulo ?? value) : undefined}
+                    </SelectValue>
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="">Nenhum</SelectItem>

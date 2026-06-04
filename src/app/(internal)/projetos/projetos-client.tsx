@@ -192,7 +192,11 @@ export default function ProjetosClient({ projetos: inicial, clientes, contratos 
             <div className="space-y-1">
               <Label>Cliente *</Label>
               <Select value={watch("cliente_id") ?? ""} onValueChange={(v) => setValue("cliente_id", v ?? "")}>
-                <SelectTrigger><SelectValue placeholder="Selecione um cliente" /></SelectTrigger>
+                <SelectTrigger>
+                  <SelectValue placeholder="Selecione um cliente">
+                    {(value: string | null) => value ? (clientes.find((c) => c.id === value)?.nome ?? value) : undefined}
+                  </SelectValue>
+                </SelectTrigger>
                 <SelectContent>
                   {clientes.map((c) => (
                     <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>
@@ -217,7 +221,15 @@ export default function ProjetosClient({ projetos: inicial, clientes, contratos 
                     if (c) setValue("cliente_id", c.cliente_id);
                   }}
                 >
-                  <SelectTrigger><SelectValue placeholder="Nenhum" /></SelectTrigger>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Nenhum">
+                      {(value: string | null) => {
+                        if (!value || value === "nenhum") return undefined;
+                        const c = contratos.find((ct) => ct.id === value);
+                        return c ? `${c.titulo} — ${c.cliente.nome}` : undefined;
+                      }}
+                    </SelectValue>
+                  </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="nenhum">Nenhum</SelectItem>
                     {contratos.map((c) => (

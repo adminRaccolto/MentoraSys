@@ -233,13 +233,12 @@ export default function ServicosClient({
                   onValueChange={(v) => setValue("plano_contas_id", v === "" ? null : v)}
                 >
                   <SelectTrigger className="h-9 w-full">
-                    <SelectValue>
-                      {watch("plano_contas_id")
-                        ? (() => {
-                            const c = contasReceita.find((x) => x.id === watch("plano_contas_id"));
-                            return c ? `${c.codigo ? c.codigo + " · " : ""}${c.nome}` : "";
-                          })()
-                        : "Sem vínculo"}
+                    <SelectValue placeholder="Sem vínculo">
+                      {(value: string | null) => {
+                        if (!value) return undefined;
+                        const c = contasReceita.find((x) => x.id === value);
+                        return c ? `${c.codigo ? c.codigo + " · " : ""}${c.nome}` : undefined;
+                      }}
                     </SelectValue>
                   </SelectTrigger>
                   <SelectContent>
