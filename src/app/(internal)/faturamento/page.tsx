@@ -49,7 +49,7 @@ export default async function FaturamentoPage({
       },
       include: {
         cliente: { select: { id: true, nome: true } },
-        contrato: { select: { id: true, titulo: true } },
+        contrato: { select: { id: true, titulo: true, juros_ao_mes_percentual: true, multa_percentual: true } },
       },
       orderBy: { data_vencimento: "asc" },
     }),
@@ -111,7 +111,12 @@ export default async function FaturamentoPage({
         cliente_id: r.cliente_id!,
         contrato_id: r.contrato_id ?? null,
         cliente: r.cliente!,
-        contrato: r.contrato ?? null,
+        contrato: r.contrato ? {
+          id: r.contrato.id,
+          titulo: r.contrato.titulo,
+          juros_ao_mes_percentual: r.contrato.juros_ao_mes_percentual != null ? Number(r.contrato.juros_ao_mes_percentual) : null,
+          multa_percentual: r.contrato.multa_percentual != null ? Number(r.contrato.multa_percentual) : null,
+        } : null,
       }))}
       clientes={clientes}
       contratos={contratos}

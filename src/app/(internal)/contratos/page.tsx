@@ -18,6 +18,8 @@ export default async function ContratosPage() {
     }).then((rows) => rows.map((r) => ({
       ...r,
       valor_total: Number(r.valor_total),
+      juros_ao_mes_percentual: r.juros_ao_mes_percentual != null ? Number(r.juros_ao_mes_percentual) : null,
+      multa_percentual: r.multa_percentual != null ? Number(r.multa_percentual) : null,
       recebiveis_count: r._count.recebiveis,
     }))),
     prisma.cliente.findMany({

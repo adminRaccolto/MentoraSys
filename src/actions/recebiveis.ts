@@ -6,6 +6,7 @@ import { prisma } from "@/lib/prisma";
 import { verificarPermissao, obterEmpresaAtiva } from "@/lib/permissoes";
 import { createClient } from "@/lib/supabase/server";
 import { registrar } from "@/lib/auditoria";
+import { obterOuCriarContaJurosMultas } from "@/lib/plano-contas-financeiras";
 
 const schemaCreate = z.object({
   descricao: z.string().min(1, "Descrição obrigatória"),
@@ -23,6 +24,9 @@ const schemaBaixar = z.object({
   valor_pago: z.coerce.number().positive("Valor deve ser positivo"),
   forma_pagamento: z.string().min(1, "Forma obrigatória"),
   conta_bancaria_id: z.string().optional(),
+  juros_valor: z.coerce.number().min(0).optional(),
+  multa_valor: z.coerce.number().min(0).optional(),
+  desconto_valor: z.coerce.number().min(0).optional(),
 });
 
 const schemaParcelas = z.object({
@@ -141,8 +145,34 @@ export async function baixarRecebivel(id: string, input: InputBaixar) {
       valor_pago: data.valor_pago,
       forma_pagamento: data.forma_pagamento,
       conta_bancaria_id: data.conta_bancaria_id || null,
+      juros_valor: data.juros_valor && data.juros_valor > 0 ? data.juros_valor : null,
+      multa_valor: data.multa_valor && data.multa_valor > 0 ? data.multa_valor : null,
+      desconto_valor: data.desconto_valor && data.desconto_valor > 0 ? data.desconto_valor : null,
     },
   });
+
+  // Apropria juros/multa automaticamente no plano de contas
+  const totalJurosMulta = (data.juros_valor ?? 0) + (data.multa_valor ?? 0);
+  if (totalJurosMulta > 0) {
+    const jurosMultasId = await obterOuCriarContaJurosMultas(empresaId);
+    await prisma.recebivel.create({
+      data: {
+        empresa_id: empresaId,
+        cliente_id: recebivel.cliente_id,
+        contrato_id: recebivel.contrato_id,
+        plano_contas_id: jurosMultasId,
+        descricao: `Juros e multas — ${recebivel.descricao}`,
+        valor: totalJurosMulta,
+        data_vencimento: new Date(data.data_pagamento),
+        status: "PAGO",
+        data_pagamento: new Date(data.data_pagamento),
+        valor_pago: totalJurosMulta,
+        forma_pagamento: data.forma_pagamento,
+        conta_bancaria_id: data.conta_bancaria_id || null,
+        recebivel_origem_id: recebivel.id,
+      },
+    });
+  }
 
   await registrar({ recurso: "recebiveis", acao: "baixar", registroId: id, detalhes: { status: novoStatus, valor_pago: data.valor_pago } });
   revalidatePath("/financeiro/recebiveis");
@@ -246,4 +276,87 @@ export async function excluirRecebivel(id: string) {
   await registrar({ recurso: "recebiveis", acao: "excluir", registroId: id });
   revalidatePath("/financeiro/recebiveis");
   return { data: null };
+}
+
+const schemaRefaturar = z.object({
+  juros_valor: z.coerce.number().min(0).default(0),
+  multa_valor: z.coerce.number().min(0).default(0),
+  desconto_valor: z.coerce.number().min(0).default(0),
+  nova_data_vencimento: z.string().min(1, "Nova data obrigatória"),
+  observacoes: z.string().optional(),
+});
+
+export async function refaturarRecebivel(id: string, input: z.input<typeof schemaRefaturar>) {
+  await verificarPermissao("financeiro", "editar");
+  const empresaId = await obterEmpresaAtiva();
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  const data = schemaRefaturar.parse(input);
+
+  const original = await prisma.recebivel.findFirst({
+    where: { id, empresa_id: empresaId },
+  });
+  if (!original) throw new Error("Recebível não encontrado");
+  if (!["VENCIDO", "PENDENTE", "PARCIAL"].includes(original.status)) {
+    throw new Error("Apenas recebíveis pendentes, parciais ou vencidos podem ser refaturados");
+  }
+
+  const novoValor = Number(original.valor)
+    + (data.juros_valor ?? 0)
+    + (data.multa_valor ?? 0)
+    - (data.desconto_valor ?? 0);
+
+  if (novoValor <= 0) throw new Error("O valor resultante deve ser positivo");
+
+  // Marca o original como RENEGOCIADO
+  await prisma.recebivel.update({
+    where: { id },
+    data: { status: "RENEGOCIADO" },
+  });
+
+  // Cria o novo recebível com os valores atualizados
+  const novo = await prisma.recebivel.create({
+    data: {
+      empresa_id: empresaId,
+      criado_por: user?.id ?? null,
+      cliente_id: original.cliente_id,
+      contrato_id: original.contrato_id,
+      plano_contas_id: original.plano_contas_id,
+      conta_bancaria_id: original.conta_bancaria_id,
+      descricao: original.descricao,
+      valor: novoValor,
+      juros_valor: data.juros_valor > 0 ? data.juros_valor : null,
+      multa_valor: data.multa_valor > 0 ? data.multa_valor : null,
+      desconto_valor: data.desconto_valor > 0 ? data.desconto_valor : null,
+      data_vencimento: new Date(data.nova_data_vencimento),
+      numero_parcela: original.numero_parcela,
+      total_parcelas: original.total_parcelas,
+      observacoes: data.observacoes || `Renegociação de lançamento de ${new Date(original.data_vencimento).toLocaleDateString("pt-BR")}`,
+      recebivel_origem_id: id,
+    },
+  });
+
+  // Se havia juros/multa, registra automaticamente no plano de contas
+  const totalJurosMulta = (data.juros_valor ?? 0) + (data.multa_valor ?? 0);
+  if (totalJurosMulta > 0) {
+    const jurosMultasId = await obterOuCriarContaJurosMultas(empresaId);
+    await prisma.recebivel.create({
+      data: {
+        empresa_id: empresaId,
+        cliente_id: original.cliente_id,
+        contrato_id: original.contrato_id,
+        plano_contas_id: jurosMultasId,
+        descricao: `Juros e multas — ${original.descricao}`,
+        valor: totalJurosMulta,
+        data_vencimento: new Date(data.nova_data_vencimento),
+        recebivel_origem_id: id,
+        observacoes: "Apropriação automática de juros e multas por renegociação",
+      },
+    });
+  }
+
+  await registrar({ recurso: "recebiveis", acao: "refaturar", registroId: id, detalhes: { novoId: novo.id, juros: data.juros_valor, multa: data.multa_valor } });
+  revalidatePath("/financeiro/recebiveis");
+  revalidatePath("/faturamento");
+  return { ok: true, novoRecebivelId: novo.id };
 }

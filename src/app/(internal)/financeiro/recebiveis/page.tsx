@@ -25,7 +25,7 @@ export default async function RecebiveisPage({ searchParams }: Props) {
       },
       include: {
         cliente: { select: { id: true, nome: true } },
-        contrato: { select: { id: true, titulo: true, numero_contrato: true } },
+        contrato: { select: { id: true, titulo: true, numero_contrato: true, juros_ao_mes_percentual: true, multa_percentual: true } },
         plano_contas: { select: { id: true, nome: true } },
         boleto: { select: { id: true, status: true, linha_digitavel: true, url_boleto: true, url_fatura: true } },
       },
@@ -65,6 +65,11 @@ export default async function RecebiveisPage({ searchParams }: Props) {
         ...r,
         valor: Number(r.valor),
         valor_pago: r.valor_pago != null ? Number(r.valor_pago) : null,
+        contrato: r.contrato ? {
+          ...r.contrato,
+          juros_ao_mes_percentual: r.contrato.juros_ao_mes_percentual != null ? Number(r.contrato.juros_ao_mes_percentual) : null,
+          multa_percentual: r.contrato.multa_percentual != null ? Number(r.contrato.multa_percentual) : null,
+        } : null,
       }))}
       clientes={clientes}
       contratos={contratos.map((c) => ({ ...c, valor_total: Number(c.valor_total) }))}

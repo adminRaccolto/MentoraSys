@@ -36,6 +36,8 @@ const schemaContrato = z.object({
   cliente_contato_email: z.string().optional(),
   cliente_contato_tel: z.string().optional(),
   parcelas_json: z.array(z.object({ numero: z.number(), vencimento: z.string(), valor: z.number() })).optional(),
+  juros_ao_mes_percentual: z.coerce.number().min(0).optional().nullable(),
+  multa_percentual: z.coerce.number().min(0).optional().nullable(),
 });
 
 type ContratoInput = z.infer<typeof schemaContrato>;
@@ -85,12 +87,14 @@ export async function criarContrato(input: ContratoInput) {
       cliente_contato_email: data.cliente_contato_email || cliente?.email || null,
       cliente_contato_tel: data.cliente_contato_tel || cliente?.telefone || null,
       parcelas_json: data.parcelas_json && data.parcelas_json.length > 0 ? data.parcelas_json : undefined,
+      juros_ao_mes_percentual: data.juros_ao_mes_percentual ?? null,
+      multa_percentual: data.multa_percentual ?? null,
     },
   });
 
   await registrar({ recurso: "contratos", acao: "criar", registroId: contrato.id, detalhes: { titulo: data.titulo } });
   revalidatePath("/contratos");
-  return { data: { ...contrato, valor_total: Number(contrato.valor_total) } };
+  return { data: { ...contrato, valor_total: Number(contrato.valor_total), juros_ao_mes_percentual: contrato.juros_ao_mes_percentual != null ? Number(contrato.juros_ao_mes_percentual) : null, multa_percentual: contrato.multa_percentual != null ? Number(contrato.multa_percentual) : null } };
 }
 
 export async function editarContrato(id: string, input: ContratoInput) {
@@ -133,12 +137,14 @@ export async function editarContrato(id: string, input: ContratoInput) {
       cliente_contato_email: data.cliente_contato_email || null,
       cliente_contato_tel: data.cliente_contato_tel || null,
       parcelas_json: data.parcelas_json && data.parcelas_json.length > 0 ? data.parcelas_json : undefined,
+      juros_ao_mes_percentual: data.juros_ao_mes_percentual ?? null,
+      multa_percentual: data.multa_percentual ?? null,
     },
   });
 
   await registrar({ recurso: "contratos", acao: "editar", registroId: id });
   revalidatePath("/contratos");
-  return { data: { ...contrato, valor_total: Number(contrato.valor_total) } };
+  return { data: { ...contrato, valor_total: Number(contrato.valor_total), juros_ao_mes_percentual: contrato.juros_ao_mes_percentual != null ? Number(contrato.juros_ao_mes_percentual) : null, multa_percentual: contrato.multa_percentual != null ? Number(contrato.multa_percentual) : null } };
 }
 
 export async function salvarAnexoContrato(id: string, anexo_url: string | null) {

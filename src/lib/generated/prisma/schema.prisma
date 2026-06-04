@@ -437,45 +437,47 @@ model ItemProposta {
 // ─── CONTRATOS ────────────────────────────────────────────────────────────────
 
 model Contrato {
-  id                     String         @id @default(cuid())
-  empresa_id             String
-  proposta_id            String?        @unique
-  cliente_id             String
-  criado_por             String?
-  responsavel_id         String?
-  numero_contrato        String?
-  tipo_contrato          String?
-  titulo                 String
-  objeto                 String?
-  status                 StatusContrato @default(RASCUNHO)
-  conteudo               String?
-  valor_total            Decimal        @default(0) @db.Decimal(10, 2)
-  forma_pagamento        String?
-  periodicidade          String?
-  numero_parcelas        Int?
-  primeiro_vencimento    DateTime?
-  dia_vencimento         Int?
-  parcelas_json          Json?
-  indice_reajuste        String?
-  periodicidade_reajuste String?
-  renovacao_automatica   Boolean        @default(false)
-  gerar_projeto          Boolean        @default(false)
-  gerar_financeiro       Boolean        @default(true)
-  cliente_nome           String?
-  cliente_cpf_cnpj       String?
-  cliente_contato_nome   String?
-  cliente_contato_email  String?
-  cliente_contato_tel    String?
-  data_emissao           DateTime?
-  data_inicio            DateTime?
-  data_fim               DateTime?
-  assinado_em            DateTime?
-  anexo_url              String?
-  authentique_id         String?
-  authentique_url        String?
-  pdf_assinado_url       String?
-  criado_em              DateTime       @default(now())
-  atualizado_em          DateTime       @updatedAt
+  id                      String         @id @default(cuid())
+  empresa_id              String
+  proposta_id             String?        @unique
+  cliente_id              String
+  criado_por              String?
+  responsavel_id          String?
+  numero_contrato         String?
+  tipo_contrato           String?
+  titulo                  String
+  objeto                  String?
+  status                  StatusContrato @default(RASCUNHO)
+  conteudo                String?
+  valor_total             Decimal        @default(0) @db.Decimal(10, 2)
+  forma_pagamento         String?
+  periodicidade           String?
+  numero_parcelas         Int?
+  primeiro_vencimento     DateTime?
+  dia_vencimento          Int?
+  parcelas_json           Json?
+  indice_reajuste         String?
+  periodicidade_reajuste  String?
+  renovacao_automatica    Boolean        @default(false)
+  gerar_projeto           Boolean        @default(false)
+  gerar_financeiro        Boolean        @default(true)
+  cliente_nome            String?
+  cliente_cpf_cnpj        String?
+  cliente_contato_nome    String?
+  cliente_contato_email   String?
+  cliente_contato_tel     String?
+  data_emissao            DateTime?
+  data_inicio             DateTime?
+  data_fim                DateTime?
+  assinado_em             DateTime?
+  anexo_url               String?
+  authentique_id          String?
+  authentique_url         String?
+  pdf_assinado_url        String?
+  juros_ao_mes_percentual Decimal?       @db.Decimal(5, 2)
+  multa_percentual        Decimal?       @db.Decimal(5, 2)
+  criado_em               DateTime       @default(now())
+  atualizado_em           DateTime       @updatedAt
 
   empresa       Empresa      @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
   proposta      Proposta?    @relation(fields: [proposta_id], references: [id])
@@ -751,6 +753,7 @@ enum StatusRecebivel {
   PAGO
   VENCIDO
   CANCELADO
+  RENEGOCIADO
 }
 
 enum StatusContaPagar {
@@ -853,25 +856,29 @@ model TransferenciaTesouraria {
 // ─── RECEBÍVEIS ───────────────────────────────────────────────────────────────
 
 model Recebivel {
-  id                String          @id @default(cuid())
-  empresa_id        String
-  cliente_id        String?
-  contrato_id       String?
-  plano_contas_id   String?
-  conta_bancaria_id String?
-  criado_por        String?
-  descricao         String
-  valor             Decimal         @db.Decimal(10, 2)
-  data_vencimento   DateTime
-  status            StatusRecebivel @default(PENDENTE)
-  data_pagamento    DateTime?
-  valor_pago        Decimal?        @db.Decimal(10, 2)
-  forma_pagamento   String?
-  numero_parcela    Int?
-  total_parcelas    Int?
-  observacoes       String?
-  criado_em         DateTime        @default(now())
-  atualizado_em     DateTime        @updatedAt
+  id                  String          @id @default(cuid())
+  empresa_id          String
+  cliente_id          String?
+  contrato_id         String?
+  plano_contas_id     String?
+  conta_bancaria_id   String?
+  criado_por          String?
+  descricao           String
+  valor               Decimal         @db.Decimal(10, 2)
+  data_vencimento     DateTime
+  status              StatusRecebivel @default(PENDENTE)
+  data_pagamento      DateTime?
+  valor_pago          Decimal?        @db.Decimal(10, 2)
+  forma_pagamento     String?
+  numero_parcela      Int?
+  total_parcelas      Int?
+  observacoes         String?
+  juros_valor         Decimal?        @db.Decimal(10, 2)
+  multa_valor         Decimal?        @db.Decimal(10, 2)
+  desconto_valor      Decimal?        @db.Decimal(10, 2)
+  recebivel_origem_id String?
+  criado_em           DateTime        @default(now())
+  atualizado_em       DateTime        @updatedAt
 
   empresa        Empresa        @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
   cliente        Cliente?       @relation(fields: [cliente_id], references: [id])

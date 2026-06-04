@@ -364,6 +364,8 @@ exports.Prisma.ContratoScalarFieldEnum = {
   authentique_id: 'authentique_id',
   authentique_url: 'authentique_url',
   pdf_assinado_url: 'pdf_assinado_url',
+  juros_ao_mes_percentual: 'juros_ao_mes_percentual',
+  multa_percentual: 'multa_percentual',
   criado_em: 'criado_em',
   atualizado_em: 'atualizado_em'
 };
@@ -554,6 +556,10 @@ exports.Prisma.RecebivelScalarFieldEnum = {
   numero_parcela: 'numero_parcela',
   total_parcelas: 'total_parcelas',
   observacoes: 'observacoes',
+  juros_valor: 'juros_valor',
+  multa_valor: 'multa_valor',
+  desconto_valor: 'desconto_valor',
+  recebivel_origem_id: 'recebivel_origem_id',
   criado_em: 'criado_em',
   atualizado_em: 'atualizado_em'
 };
@@ -858,7 +864,8 @@ exports.StatusRecebivel = exports.$Enums.StatusRecebivel = {
   PARCIAL: 'PARCIAL',
   PAGO: 'PAGO',
   VENCIDO: 'VENCIDO',
-  CANCELADO: 'CANCELADO'
+  CANCELADO: 'CANCELADO',
+  RENEGOCIADO: 'RENEGOCIADO'
 };
 
 exports.StatusContaPagar = exports.$Enums.StatusContaPagar = {

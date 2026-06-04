@@ -76,6 +76,8 @@ const schema = z.object({
   cliente_contato_tel: z.string().optional(),
   parcelas_json: z.array(schemaParcela).optional(),
   anexo_url: z.string().optional(),
+  juros_ao_mes_percentual: z.coerce.number().min(0).optional(),
+  multa_percentual: z.coerce.number().min(0).optional(),
 });
 
 type FormData = z.input<typeof schema>;
@@ -129,6 +131,8 @@ interface Contrato {
   recebiveis_count: number;
   parcelas_json: unknown;
   anexo_url: string | null;
+  juros_ao_mes_percentual: number | null;
+  multa_percentual: number | null;
 }
 
 interface Cliente {
@@ -364,6 +368,8 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
       cliente_contato_tel: c.cliente_contato_tel ?? "",
       parcelas_json: Array.isArray(c.parcelas_json) ? (c.parcelas_json as any[]) : [],
       anexo_url: c.anexo_url ?? "",
+      juros_ao_mes_percentual: c.juros_ao_mes_percentual ?? undefined,
+      multa_percentual: c.multa_percentual ?? undefined,
     });
     setModalAberto(true);
   };
@@ -405,6 +411,8 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
           renovacao_automatica: data.renovacao_automatica ?? false,
           gerar_financeiro: data.gerar_financeiro ?? true,
           gerar_projeto: data.gerar_projeto ?? false,
+          juros_ao_mes_percentual: data.juros_ao_mes_percentual ? Number(data.juros_ao_mes_percentual) : null,
+          multa_percentual: data.multa_percentual ? Number(data.multa_percentual) : null,
         };
 
         if (contratoEditando) {
@@ -876,6 +884,14 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
                       <SelectItem value="">Não informado</SelectItem>
                       {PERIODICIDADES.map((p) => <SelectItem key={p} value={p}>{p}</SelectItem>)}
                     </SelectField>
+                    <div className="grid grid-cols-2 gap-3 pt-2 border-t border-border">
+                      <Field label="Juros a.m. (%)">
+                        <Input {...register("juros_ao_mes_percentual")} type="number" step="0.01" min="0" className="h-9 text-sm" placeholder="Ex: 1,00" />
+                      </Field>
+                      <Field label="Multa (%)">
+                        <Input {...register("multa_percentual")} type="number" step="0.01" min="0" className="h-9 text-sm" placeholder="Ex: 2,00" />
+                      </Field>
+                    </div>
                   </div>
                   <div className="px-6 py-5 space-y-4">
                     <p className="text-xs font-semibold text-primary uppercase tracking-widest">Parcelas</p>

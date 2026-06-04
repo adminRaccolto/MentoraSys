@@ -474,6 +474,8 @@ model Contrato {
   authentique_id        String?
   authentique_url       String?
   pdf_assinado_url      String?
+  juros_ao_mes_percentual Decimal?     @db.Decimal(5, 2)
+  multa_percentual        Decimal?     @db.Decimal(5, 2)
   criado_em             DateTime       @default(now())
   atualizado_em         DateTime       @updatedAt
 
@@ -751,6 +753,7 @@ enum StatusRecebivel {
   PAGO
   VENCIDO
   CANCELADO
+  RENEGOCIADO
 }
 
 enum StatusContaPagar {
@@ -870,6 +873,10 @@ model Recebivel {
   numero_parcela   Int?
   total_parcelas   Int?
   observacoes      String?
+  juros_valor      Decimal?        @db.Decimal(10, 2)
+  multa_valor      Decimal?        @db.Decimal(10, 2)
+  desconto_valor   Decimal?        @db.Decimal(10, 2)
+  recebivel_origem_id String?
   criado_em        DateTime        @default(now())
   atualizado_em    DateTime        @updatedAt
 

@@ -16,17 +16,18 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { criarRecebivel, baixarRecebivel, excluirRecebivel, gerarParcelasContrato, estornarRecebivel, baixarLoteRecebiveis } from "@/actions/recebiveis";
+import { criarRecebivel, baixarRecebivel, excluirRecebivel, gerarParcelasContrato, estornarRecebivel, baixarLoteRecebiveis, refaturarRecebivel } from "@/actions/recebiveis";
 import { gerarBoleto, consultarBoleto, cancelarBoleto } from "@/actions/boletos";
 
-type Status = "PENDENTE" | "PARCIAL" | "PAGO" | "VENCIDO" | "CANCELADO";
+type Status = "PENDENTE" | "PARCIAL" | "PAGO" | "VENCIDO" | "CANCELADO" | "RENEGOCIADO";
 
 const STATUS_CONFIG: Record<Status, { label: string; variant: "default" | "secondary" | "outline" | "destructive" }> = {
-  PENDENTE: { label: "Pendente", variant: "secondary" },
-  PARCIAL:  { label: "Parcial",  variant: "outline" },
-  PAGO:     { label: "Pago",     variant: "default" },
-  VENCIDO:  { label: "Vencido",  variant: "destructive" },
-  CANCELADO:{ label: "Cancelado",variant: "outline" },
+  PENDENTE:    { label: "Pendente",    variant: "secondary" },
+  PARCIAL:     { label: "Parcial",     variant: "outline" },
+  PAGO:        { label: "Pago",        variant: "default" },
+  VENCIDO:     { label: "Vencido",     variant: "destructive" },
+  CANCELADO:   { label: "Cancelado",   variant: "outline" },
+  RENEGOCIADO: { label: "Renegociado", variant: "outline" },
 };
 
 const FORMAS = ["Dinheiro", "PIX", "TED", "Boleto", "Cartão de Crédito", "Cartão de Débito", "Cheque"];
@@ -46,6 +47,17 @@ const schemaBaixar = z.object({
   valor_pago: z.string().min(1, "Valor obrigatório"),
   forma_pagamento: z.string().min(1, "Forma obrigatória"),
   conta_bancaria_id: z.string().optional(),
+  juros_valor: z.coerce.number().min(0).optional(),
+  multa_valor: z.coerce.number().min(0).optional(),
+  desconto_valor: z.coerce.number().min(0).optional(),
+});
+
+const schemaRefaturarForm = z.object({
+  juros_valor: z.coerce.number().min(0).default(0),
+  multa_valor: z.coerce.number().min(0).default(0),
+  desconto_valor: z.coerce.number().min(0).default(0),
+  nova_data_vencimento: z.string().min(1, "Nova data obrigatória"),
+  observacoes: z.string().optional(),
 });
 
 const schemaParcelas = z.object({
@@ -59,6 +71,7 @@ const schemaParcelas = z.object({
 type FormCreate = z.input<typeof schemaCreate>;
 type FormBaixar = z.input<typeof schemaBaixar>;
 type FormParcelas = z.input<typeof schemaParcelas>;
+type FormRefaturar = z.input<typeof schemaRefaturarForm>;
 
 interface Boleto {
   id: string; status: string; linha_digitavel: string | null;
@@ -70,7 +83,7 @@ interface Recebivel {
   status: Status; data_pagamento: Date | null; valor_pago: string | number | null;
   forma_pagamento: string | null; numero_parcela: number | null; total_parcelas: number | null;
   cliente: { id: string; nome: string } | null;
-  contrato: { id: string; titulo: string; numero_contrato: string | null } | null;
+  contrato: { id: string; titulo: string; numero_contrato: string | null; juros_ao_mes_percentual: number | null; multa_percentual: number | null } | null;
   plano_contas: { id: string; nome: string } | null;
   boleto: Boleto | null;
 }
@@ -112,6 +125,7 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
   const [modalBaixar, setModalBaixar] = useState<Recebivel | null>(null);
   const [modalParcelas, setModalParcelas] = useState(false);
   const [modalRecibo, setModalRecibo] = useState<Recebivel | null>(null);
+  const [modalRefaturar, setModalRefaturar] = useState<Recebivel | null>(null);
   const [excluindo, setExcluindo] = useState<Recebivel | null>(null);
   const [isPending, startTransition] = useTransition();
   const [selecionados, setSelecionados] = useState<Set<string>>(new Set());
@@ -149,13 +163,68 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
     if (!modalBaixar) return;
     startTransition(async () => {
       try {
-        await baixarRecebivel(modalBaixar.id, { ...data, valor_pago: Number(data.valor_pago) });
+        await baixarRecebivel(modalBaixar.id, {
+          ...data,
+          valor_pago: Number(data.valor_pago),
+          juros_valor: data.juros_valor ? Number(data.juros_valor) : undefined,
+          multa_valor: data.multa_valor ? Number(data.multa_valor) : undefined,
+          desconto_valor: data.desconto_valor ? Number(data.desconto_valor) : undefined,
+        });
         const novoStatus: Status = Number(data.valor_pago) < Number(modalBaixar.valor) ? "PARCIAL" : "PAGO";
         setRecebiveis((prev) => prev.map((r) => r.id === modalBaixar.id ? { ...r, status: novoStatus, data_pagamento: new Date(data.data_pagamento), valor_pago: data.valor_pago, forma_pagamento: data.forma_pagamento } : r));
         toast.success("Baixa registrada");
         setModalBaixar(null);
         formBaixar.reset();
       } catch { toast.error("Erro ao baixar recebível"); }
+    });
+  };
+
+  // Formulário refaturar
+  const formRefaturar = useForm<FormRefaturar>({ resolver: zodResolver(schemaRefaturarForm) });
+  const jurosValorWatch = Number(formRefaturar.watch("juros_valor") ?? 0);
+  const multaValorWatch = Number(formRefaturar.watch("multa_valor") ?? 0);
+  const descontoValorWatch = Number(formRefaturar.watch("desconto_valor") ?? 0);
+  const novoTotalRefaturar = modalRefaturar
+    ? Number(modalRefaturar.valor) + jurosValorWatch + multaValorWatch - descontoValorWatch
+    : 0;
+
+  const abrirRefaturar = (r: Recebivel) => {
+    // pré-calcula juros e multa com base nos dados do contrato
+    let jurosPreCalc = 0;
+    let multaPreCalc = 0;
+    if (r.contrato) {
+      const diasAtraso = r.data_vencimento < new Date()
+        ? Math.floor((new Date().getTime() - new Date(r.data_vencimento).getTime()) / (1000 * 60 * 60 * 24))
+        : 0;
+      if (r.contrato.juros_ao_mes_percentual && diasAtraso > 0) {
+        jurosPreCalc = Math.round(Number(r.valor) * (r.contrato.juros_ao_mes_percentual / 100) * (diasAtraso / 30) * 100) / 100;
+      }
+      if (r.contrato.multa_percentual) {
+        multaPreCalc = Math.round(Number(r.valor) * (r.contrato.multa_percentual / 100) * 100) / 100;
+      }
+    }
+    formRefaturar.reset({
+      juros_valor: jurosPreCalc,
+      multa_valor: multaPreCalc,
+      desconto_valor: 0,
+      nova_data_vencimento: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split("T")[0],
+      observacoes: "",
+    });
+    setModalRefaturar(r);
+  };
+
+  const onSubmitRefaturar = (data: FormRefaturar) => {
+    if (!modalRefaturar) return;
+    startTransition(async () => {
+      try {
+        await refaturarRecebivel(modalRefaturar.id, data);
+        setRecebiveis((prev) => prev.map((r) => r.id === modalRefaturar.id ? { ...r, status: "RENEGOCIADO" as Status } : r));
+        toast.success("Recebível refaturado com sucesso");
+        setModalRefaturar(null);
+        formRefaturar.reset();
+      } catch (e: unknown) {
+        toast.error(e instanceof Error ? e.message : "Erro ao refaturar");
+      }
     });
   };
 
@@ -272,6 +341,7 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
     { key: "VENCIDO", label: "Vencido" },
     { key: "PAGO", label: "Pago" },
     { key: "CANCELADO", label: "Cancelado" },
+    { key: "RENEGOCIADO", label: "Renegociado" },
   ];
 
   return (
@@ -402,6 +472,15 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
                           onClick={() => { formBaixar.setValue("valor_pago", String(Number(r.valor).toFixed(2))); formBaixar.setValue("data_pagamento", new Date().toISOString().split("T")[0]); setModalBaixar(r); }}
                         >
                           <CheckCircle className="size-3.5" />
+                        </Button>
+                      )}
+                      {r.status === "VENCIDO" && (
+                        <Button
+                          size="icon" variant="ghost" className="size-7 text-amber-600 hover:text-amber-600"
+                          title="Refaturar com juros e multa"
+                          onClick={() => abrirRefaturar(r)}
+                        >
+                          <RefreshCw className="size-3.5" />
                         </Button>
                       )}
                       {(r.status === "PAGO" || r.status === "PARCIAL") && (
@@ -627,6 +706,20 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
                 </Select>
               </div>
             )}
+            <div className="grid grid-cols-3 gap-3 pt-1 border-t border-border">
+              <div className="space-y-1">
+                <Label className="text-xs">Juros (R$)</Label>
+                <Input type="number" step="0.01" min={0} placeholder="0,00" {...formBaixar.register("juros_valor")} className="h-8 text-sm" />
+              </div>
+              <div className="space-y-1">
+                <Label className="text-xs">Multa (R$)</Label>
+                <Input type="number" step="0.01" min={0} placeholder="0,00" {...formBaixar.register("multa_valor")} className="h-8 text-sm" />
+              </div>
+              <div className="space-y-1">
+                <Label className="text-xs">Desconto (R$)</Label>
+                <Input type="number" step="0.01" min={0} placeholder="0,00" {...formBaixar.register("desconto_valor")} className="h-8 text-sm" />
+              </div>
+            </div>
             <DialogFooter>
               <Button type="button" variant="outline" onClick={() => setModalBaixar(null)}>Cancelar</Button>
               <Button type="submit" disabled={isPending}>{isPending ? "Salvando..." : "Confirmar pagamento"}</Button>
@@ -728,6 +821,64 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
           <DialogFooter>
             <Button variant="outline" onClick={() => setModalRecibo(null)}>Fechar</Button>
           </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Modal refaturar */}
+      <Dialog open={!!modalRefaturar} onOpenChange={(v) => !v && setModalRefaturar(null)}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>Refaturar recebível vencido</DialogTitle>
+          </DialogHeader>
+          <form onSubmit={formRefaturar.handleSubmit(onSubmitRefaturar)} className="space-y-3">
+            {modalRefaturar && (
+              <div className="rounded-lg bg-muted/40 border px-3 py-2 text-sm space-y-0.5">
+                <p className="font-medium truncate">{modalRefaturar.descricao}</p>
+                <p className="text-muted-foreground text-xs">
+                  Valor original: <strong>{formatBRL(modalRefaturar.valor)}</strong> · Vencido em: {new Date(modalRefaturar.data_vencimento).toLocaleDateString("pt-BR")}
+                </p>
+              </div>
+            )}
+            <div className="grid grid-cols-3 gap-3">
+              <div className="space-y-1">
+                <Label className="text-xs">Juros (R$)</Label>
+                <Input type="number" step="0.01" min={0} placeholder="0,00" {...formRefaturar.register("juros_valor")} className="h-8 text-sm" />
+              </div>
+              <div className="space-y-1">
+                <Label className="text-xs">Multa (R$)</Label>
+                <Input type="number" step="0.01" min={0} placeholder="0,00" {...formRefaturar.register("multa_valor")} className="h-8 text-sm" />
+              </div>
+              <div className="space-y-1">
+                <Label className="text-xs">Desconto (R$)</Label>
+                <Input type="number" step="0.01" min={0} placeholder="0,00" {...formRefaturar.register("desconto_valor")} className="h-8 text-sm" />
+              </div>
+            </div>
+            {modalRefaturar && (
+              <div className="rounded-lg bg-primary/5 border border-primary/20 px-3 py-2 text-sm flex justify-between items-center">
+                <span className="text-muted-foreground">Novo total:</span>
+                <span className={`font-bold text-base ${novoTotalRefaturar <= 0 ? "text-destructive" : "text-primary"}`}>
+                  {formatBRL(Math.max(0, novoTotalRefaturar))}
+                </span>
+              </div>
+            )}
+            <div className="space-y-1">
+              <Label>Nova data de vencimento *</Label>
+              <Input type="date" {...formRefaturar.register("nova_data_vencimento")} />
+              {formRefaturar.formState.errors.nova_data_vencimento && (
+                <p className="text-xs text-destructive">{formRefaturar.formState.errors.nova_data_vencimento.message}</p>
+              )}
+            </div>
+            <div className="space-y-1">
+              <Label className="text-xs">Observações</Label>
+              <Input placeholder="Opcional" {...formRefaturar.register("observacoes")} className="h-8 text-sm" />
+            </div>
+            <DialogFooter>
+              <Button type="button" variant="outline" onClick={() => setModalRefaturar(null)}>Cancelar</Button>
+              <Button type="submit" disabled={isPending || novoTotalRefaturar <= 0}>
+                {isPending ? "Refaturando..." : "Refaturar"}
+              </Button>
+            </DialogFooter>
+          </form>
         </DialogContent>
       </Dialog>
 

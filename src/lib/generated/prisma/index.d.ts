@@ -377,7 +377,8 @@ export const StatusRecebivel: {
   PARCIAL: 'PARCIAL',
   PAGO: 'PAGO',
   VENCIDO: 'VENCIDO',
-  CANCELADO: 'CANCELADO'
+  CANCELADO: 'CANCELADO',
+  RENEGOCIADO: 'RENEGOCIADO'
 };
 
 export type StatusRecebivel = (typeof StatusRecebivel)[keyof typeof StatusRecebivel]
@@ -26649,12 +26650,16 @@ export namespace Prisma {
     valor_total: Decimal | null
     numero_parcelas: number | null
     dia_vencimento: number | null
+    juros_ao_mes_percentual: Decimal | null
+    multa_percentual: Decimal | null
   }
 
   export type ContratoSumAggregateOutputType = {
     valor_total: Decimal | null
     numero_parcelas: number | null
     dia_vencimento: number | null
+    juros_ao_mes_percentual: Decimal | null
+    multa_percentual: Decimal | null
   }
 
   export type ContratoMinAggregateOutputType = {
@@ -26694,6 +26699,8 @@ export namespace Prisma {
     authentique_id: string | null
     authentique_url: string | null
     pdf_assinado_url: string | null
+    juros_ao_mes_percentual: Decimal | null
+    multa_percentual: Decimal | null
     criado_em: Date | null
     atualizado_em: Date | null
   }
@@ -26735,6 +26742,8 @@ export namespace Prisma {
     authentique_id: string | null
     authentique_url: string | null
     pdf_assinado_url: string | null
+    juros_ao_mes_percentual: Decimal | null
+    multa_percentual: Decimal | null
     criado_em: Date | null
     atualizado_em: Date | null
   }
@@ -26777,6 +26786,8 @@ export namespace Prisma {
     authentique_id: number
     authentique_url: number
     pdf_assinado_url: number
+    juros_ao_mes_percentual: number
+    multa_percentual: number
     criado_em: number
     atualizado_em: number
     _all: number
@@ -26787,12 +26798,16 @@ export namespace Prisma {
     valor_total?: true
     numero_parcelas?: true
     dia_vencimento?: true
+    juros_ao_mes_percentual?: true
+    multa_percentual?: true
   }
 
   export type ContratoSumAggregateInputType = {
     valor_total?: true
     numero_parcelas?: true
     dia_vencimento?: true
+    juros_ao_mes_percentual?: true
+    multa_percentual?: true
   }
 
   export type ContratoMinAggregateInputType = {
@@ -26832,6 +26847,8 @@ export namespace Prisma {
     authentique_id?: true
     authentique_url?: true
     pdf_assinado_url?: true
+    juros_ao_mes_percentual?: true
+    multa_percentual?: true
     criado_em?: true
     atualizado_em?: true
   }
@@ -26873,6 +26890,8 @@ export namespace Prisma {
     authentique_id?: true
     authentique_url?: true
     pdf_assinado_url?: true
+    juros_ao_mes_percentual?: true
+    multa_percentual?: true
     criado_em?: true
     atualizado_em?: true
   }
@@ -26915,6 +26934,8 @@ export namespace Prisma {
     authentique_id?: true
     authentique_url?: true
     pdf_assinado_url?: true
+    juros_ao_mes_percentual?: true
+    multa_percentual?: true
     criado_em?: true
     atualizado_em?: true
     _all?: true
@@ -27044,6 +27065,8 @@ export namespace Prisma {
     authentique_id: string | null
     authentique_url: string | null
     pdf_assinado_url: string | null
+    juros_ao_mes_percentual: Decimal | null
+    multa_percentual: Decimal | null
     criado_em: Date
     atualizado_em: Date
     _count: ContratoCountAggregateOutputType | null
@@ -27105,6 +27128,8 @@ export namespace Prisma {
     authentique_id?: boolean
     authentique_url?: boolean
     pdf_assinado_url?: boolean
+    juros_ao_mes_percentual?: boolean
+    multa_percentual?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -27158,6 +27183,8 @@ export namespace Prisma {
     authentique_id?: boolean
     authentique_url?: boolean
     pdf_assinado_url?: boolean
+    juros_ao_mes_percentual?: boolean
+    multa_percentual?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -27205,6 +27232,8 @@ export namespace Prisma {
     authentique_id?: boolean
     authentique_url?: boolean
     pdf_assinado_url?: boolean
+    juros_ao_mes_percentual?: boolean
+    multa_percentual?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -27252,11 +27281,13 @@ export namespace Prisma {
     authentique_id?: boolean
     authentique_url?: boolean
     pdf_assinado_url?: boolean
+    juros_ao_mes_percentual?: boolean
+    multa_percentual?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
   }
 
-  export type ContratoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "proposta_id" | "cliente_id" | "criado_por" | "responsavel_id" | "numero_contrato" | "tipo_contrato" | "titulo" | "objeto" | "status" | "conteudo" | "valor_total" | "forma_pagamento" | "periodicidade" | "numero_parcelas" | "primeiro_vencimento" | "dia_vencimento" | "parcelas_json" | "indice_reajuste" | "periodicidade_reajuste" | "renovacao_automatica" | "gerar_projeto" | "gerar_financeiro" | "cliente_nome" | "cliente_cpf_cnpj" | "cliente_contato_nome" | "cliente_contato_email" | "cliente_contato_tel" | "data_emissao" | "data_inicio" | "data_fim" | "assinado_em" | "anexo_url" | "authentique_id" | "authentique_url" | "pdf_assinado_url" | "criado_em" | "atualizado_em", ExtArgs["result"]["contrato"]>
+  export type ContratoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "proposta_id" | "cliente_id" | "criado_por" | "responsavel_id" | "numero_contrato" | "tipo_contrato" | "titulo" | "objeto" | "status" | "conteudo" | "valor_total" | "forma_pagamento" | "periodicidade" | "numero_parcelas" | "primeiro_vencimento" | "dia_vencimento" | "parcelas_json" | "indice_reajuste" | "periodicidade_reajuste" | "renovacao_automatica" | "gerar_projeto" | "gerar_financeiro" | "cliente_nome" | "cliente_cpf_cnpj" | "cliente_contato_nome" | "cliente_contato_email" | "cliente_contato_tel" | "data_emissao" | "data_inicio" | "data_fim" | "assinado_em" | "anexo_url" | "authentique_id" | "authentique_url" | "pdf_assinado_url" | "juros_ao_mes_percentual" | "multa_percentual" | "criado_em" | "atualizado_em", ExtArgs["result"]["contrato"]>
   export type ContratoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     proposta?: boolean | Contrato$propostaArgs<ExtArgs>
@@ -27337,6 +27368,8 @@ export namespace Prisma {
       authentique_id: string | null
       authentique_url: string | null
       pdf_assinado_url: string | null
+      juros_ao_mes_percentual: Prisma.Decimal | null
+      multa_percentual: Prisma.Decimal | null
       criado_em: Date
       atualizado_em: Date
     }, ExtArgs["result"]["contrato"]>
@@ -27809,6 +27842,8 @@ export namespace Prisma {
     readonly authentique_id: FieldRef<"Contrato", 'String'>
     readonly authentique_url: FieldRef<"Contrato", 'String'>
     readonly pdf_assinado_url: FieldRef<"Contrato", 'String'>
+    readonly juros_ao_mes_percentual: FieldRef<"Contrato", 'Decimal'>
+    readonly multa_percentual: FieldRef<"Contrato", 'Decimal'>
     readonly criado_em: FieldRef<"Contrato", 'DateTime'>
     readonly atualizado_em: FieldRef<"Contrato", 'DateTime'>
   }
@@ -46284,6 +46319,9 @@ export namespace Prisma {
     valor_pago: Decimal | null
     numero_parcela: number | null
     total_parcelas: number | null
+    juros_valor: Decimal | null
+    multa_valor: Decimal | null
+    desconto_valor: Decimal | null
   }
 
   export type RecebivelSumAggregateOutputType = {
@@ -46291,6 +46329,9 @@ export namespace Prisma {
     valor_pago: Decimal | null
     numero_parcela: number | null
     total_parcelas: number | null
+    juros_valor: Decimal | null
+    multa_valor: Decimal | null
+    desconto_valor: Decimal | null
   }
 
   export type RecebivelMinAggregateOutputType = {
@@ -46311,6 +46352,10 @@ export namespace Prisma {
     numero_parcela: number | null
     total_parcelas: number | null
     observacoes: string | null
+    juros_valor: Decimal | null
+    multa_valor: Decimal | null
+    desconto_valor: Decimal | null
+    recebivel_origem_id: string | null
     criado_em: Date | null
     atualizado_em: Date | null
   }
@@ -46333,6 +46378,10 @@ export namespace Prisma {
     numero_parcela: number | null
     total_parcelas: number | null
     observacoes: string | null
+    juros_valor: Decimal | null
+    multa_valor: Decimal | null
+    desconto_valor: Decimal | null
+    recebivel_origem_id: string | null
     criado_em: Date | null
     atualizado_em: Date | null
   }
@@ -46355,6 +46404,10 @@ export namespace Prisma {
     numero_parcela: number
     total_parcelas: number
     observacoes: number
+    juros_valor: number
+    multa_valor: number
+    desconto_valor: number
+    recebivel_origem_id: number
     criado_em: number
     atualizado_em: number
     _all: number
@@ -46366,6 +46419,9 @@ export namespace Prisma {
     valor_pago?: true
     numero_parcela?: true
     total_parcelas?: true
+    juros_valor?: true
+    multa_valor?: true
+    desconto_valor?: true
   }
 
   export type RecebivelSumAggregateInputType = {
@@ -46373,6 +46429,9 @@ export namespace Prisma {
     valor_pago?: true
     numero_parcela?: true
     total_parcelas?: true
+    juros_valor?: true
+    multa_valor?: true
+    desconto_valor?: true
   }
 
   export type RecebivelMinAggregateInputType = {
@@ -46393,6 +46452,10 @@ export namespace Prisma {
     numero_parcela?: true
     total_parcelas?: true
     observacoes?: true
+    juros_valor?: true
+    multa_valor?: true
+    desconto_valor?: true
+    recebivel_origem_id?: true
     criado_em?: true
     atualizado_em?: true
   }
@@ -46415,6 +46478,10 @@ export namespace Prisma {
     numero_parcela?: true
     total_parcelas?: true
     observacoes?: true
+    juros_valor?: true
+    multa_valor?: true
+    desconto_valor?: true
+    recebivel_origem_id?: true
     criado_em?: true
     atualizado_em?: true
   }
@@ -46437,6 +46504,10 @@ export namespace Prisma {
     numero_parcela?: true
     total_parcelas?: true
     observacoes?: true
+    juros_valor?: true
+    multa_valor?: true
+    desconto_valor?: true
+    recebivel_origem_id?: true
     criado_em?: true
     atualizado_em?: true
     _all?: true
@@ -46546,6 +46617,10 @@ export namespace Prisma {
     numero_parcela: number | null
     total_parcelas: number | null
     observacoes: string | null
+    juros_valor: Decimal | null
+    multa_valor: Decimal | null
+    desconto_valor: Decimal | null
+    recebivel_origem_id: string | null
     criado_em: Date
     atualizado_em: Date
     _count: RecebivelCountAggregateOutputType | null
@@ -46587,6 +46662,10 @@ export namespace Prisma {
     numero_parcela?: boolean
     total_parcelas?: boolean
     observacoes?: boolean
+    juros_valor?: boolean
+    multa_valor?: boolean
+    desconto_valor?: boolean
+    recebivel_origem_id?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -46617,6 +46696,10 @@ export namespace Prisma {
     numero_parcela?: boolean
     total_parcelas?: boolean
     observacoes?: boolean
+    juros_valor?: boolean
+    multa_valor?: boolean
+    desconto_valor?: boolean
+    recebivel_origem_id?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -46645,6 +46728,10 @@ export namespace Prisma {
     numero_parcela?: boolean
     total_parcelas?: boolean
     observacoes?: boolean
+    juros_valor?: boolean
+    multa_valor?: boolean
+    desconto_valor?: boolean
+    recebivel_origem_id?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -46673,11 +46760,15 @@ export namespace Prisma {
     numero_parcela?: boolean
     total_parcelas?: boolean
     observacoes?: boolean
+    juros_valor?: boolean
+    multa_valor?: boolean
+    desconto_valor?: boolean
+    recebivel_origem_id?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
   }
 
-  export type RecebivelOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "cliente_id" | "contrato_id" | "plano_contas_id" | "conta_bancaria_id" | "criado_por" | "descricao" | "valor" | "data_vencimento" | "status" | "data_pagamento" | "valor_pago" | "forma_pagamento" | "numero_parcela" | "total_parcelas" | "observacoes" | "criado_em" | "atualizado_em", ExtArgs["result"]["recebivel"]>
+  export type RecebivelOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "cliente_id" | "contrato_id" | "plano_contas_id" | "conta_bancaria_id" | "criado_por" | "descricao" | "valor" | "data_vencimento" | "status" | "data_pagamento" | "valor_pago" | "forma_pagamento" | "numero_parcela" | "total_parcelas" | "observacoes" | "juros_valor" | "multa_valor" | "desconto_valor" | "recebivel_origem_id" | "criado_em" | "atualizado_em", ExtArgs["result"]["recebivel"]>
   export type RecebivelInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     cliente?: boolean | Recebivel$clienteArgs<ExtArgs>
@@ -46735,6 +46826,10 @@ export namespace Prisma {
       numero_parcela: number | null
       total_parcelas: number | null
       observacoes: string | null
+      juros_valor: Prisma.Decimal | null
+      multa_valor: Prisma.Decimal | null
+      desconto_valor: Prisma.Decimal | null
+      recebivel_origem_id: string | null
       criado_em: Date
       atualizado_em: Date
     }, ExtArgs["result"]["recebivel"]>
@@ -47185,6 +47280,10 @@ export namespace Prisma {
     readonly numero_parcela: FieldRef<"Recebivel", 'Int'>
     readonly total_parcelas: FieldRef<"Recebivel", 'Int'>
     readonly observacoes: FieldRef<"Recebivel", 'String'>
+    readonly juros_valor: FieldRef<"Recebivel", 'Decimal'>
+    readonly multa_valor: FieldRef<"Recebivel", 'Decimal'>
+    readonly desconto_valor: FieldRef<"Recebivel", 'Decimal'>
+    readonly recebivel_origem_id: FieldRef<"Recebivel", 'String'>
     readonly criado_em: FieldRef<"Recebivel", 'DateTime'>
     readonly atualizado_em: FieldRef<"Recebivel", 'DateTime'>
   }
@@ -60235,6 +60334,8 @@ export namespace Prisma {
     authentique_id: 'authentique_id',
     authentique_url: 'authentique_url',
     pdf_assinado_url: 'pdf_assinado_url',
+    juros_ao_mes_percentual: 'juros_ao_mes_percentual',
+    multa_percentual: 'multa_percentual',
     criado_em: 'criado_em',
     atualizado_em: 'atualizado_em'
   };
@@ -60473,6 +60574,10 @@ export namespace Prisma {
     numero_parcela: 'numero_parcela',
     total_parcelas: 'total_parcelas',
     observacoes: 'observacoes',
+    juros_valor: 'juros_valor',
+    multa_valor: 'multa_valor',
+    desconto_valor: 'desconto_valor',
+    recebivel_origem_id: 'recebivel_origem_id',
     criado_em: 'criado_em',
     atualizado_em: 'atualizado_em'
   };
@@ -62693,6 +62798,8 @@ export namespace Prisma {
     authentique_id?: StringNullableFilter<"Contrato"> | string | null
     authentique_url?: StringNullableFilter<"Contrato"> | string | null
     pdf_assinado_url?: StringNullableFilter<"Contrato"> | string | null
+    juros_ao_mes_percentual?: DecimalNullableFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: DecimalNullableFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFilter<"Contrato"> | Date | string
     atualizado_em?: DateTimeFilter<"Contrato"> | Date | string
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
@@ -62745,6 +62852,8 @@ export namespace Prisma {
     authentique_id?: SortOrderInput | SortOrder
     authentique_url?: SortOrderInput | SortOrder
     pdf_assinado_url?: SortOrderInput | SortOrder
+    juros_ao_mes_percentual?: SortOrderInput | SortOrder
+    multa_percentual?: SortOrderInput | SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     empresa?: EmpresaOrderByWithRelationInput
@@ -62800,6 +62909,8 @@ export namespace Prisma {
     authentique_id?: StringNullableFilter<"Contrato"> | string | null
     authentique_url?: StringNullableFilter<"Contrato"> | string | null
     pdf_assinado_url?: StringNullableFilter<"Contrato"> | string | null
+    juros_ao_mes_percentual?: DecimalNullableFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: DecimalNullableFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFilter<"Contrato"> | Date | string
     atualizado_em?: DateTimeFilter<"Contrato"> | Date | string
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
@@ -62852,6 +62963,8 @@ export namespace Prisma {
     authentique_id?: SortOrderInput | SortOrder
     authentique_url?: SortOrderInput | SortOrder
     pdf_assinado_url?: SortOrderInput | SortOrder
+    juros_ao_mes_percentual?: SortOrderInput | SortOrder
+    multa_percentual?: SortOrderInput | SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     _count?: ContratoCountOrderByAggregateInput
@@ -62902,6 +63015,8 @@ export namespace Prisma {
     authentique_id?: StringNullableWithAggregatesFilter<"Contrato"> | string | null
     authentique_url?: StringNullableWithAggregatesFilter<"Contrato"> | string | null
     pdf_assinado_url?: StringNullableWithAggregatesFilter<"Contrato"> | string | null
+    juros_ao_mes_percentual?: DecimalNullableWithAggregatesFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: DecimalNullableWithAggregatesFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeWithAggregatesFilter<"Contrato"> | Date | string
     atualizado_em?: DateTimeWithAggregatesFilter<"Contrato"> | Date | string
   }
@@ -64130,6 +64245,10 @@ export namespace Prisma {
     numero_parcela?: IntNullableFilter<"Recebivel"> | number | null
     total_parcelas?: IntNullableFilter<"Recebivel"> | number | null
     observacoes?: StringNullableFilter<"Recebivel"> | string | null
+    juros_valor?: DecimalNullableFilter<"Recebivel"> | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: DecimalNullableFilter<"Recebivel"> | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: DecimalNullableFilter<"Recebivel"> | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: StringNullableFilter<"Recebivel"> | string | null
     criado_em?: DateTimeFilter<"Recebivel"> | Date | string
     atualizado_em?: DateTimeFilter<"Recebivel"> | Date | string
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
@@ -64160,6 +64279,10 @@ export namespace Prisma {
     numero_parcela?: SortOrderInput | SortOrder
     total_parcelas?: SortOrderInput | SortOrder
     observacoes?: SortOrderInput | SortOrder
+    juros_valor?: SortOrderInput | SortOrder
+    multa_valor?: SortOrderInput | SortOrder
+    desconto_valor?: SortOrderInput | SortOrder
+    recebivel_origem_id?: SortOrderInput | SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     empresa?: EmpresaOrderByWithRelationInput
@@ -64193,6 +64316,10 @@ export namespace Prisma {
     numero_parcela?: IntNullableFilter<"Recebivel"> | number | null
     total_parcelas?: IntNullableFilter<"Recebivel"> | number | null
     observacoes?: StringNullableFilter<"Recebivel"> | string | null
+    juros_valor?: DecimalNullableFilter<"Recebivel"> | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: DecimalNullableFilter<"Recebivel"> | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: DecimalNullableFilter<"Recebivel"> | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: StringNullableFilter<"Recebivel"> | string | null
     criado_em?: DateTimeFilter<"Recebivel"> | Date | string
     atualizado_em?: DateTimeFilter<"Recebivel"> | Date | string
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
@@ -64223,6 +64350,10 @@ export namespace Prisma {
     numero_parcela?: SortOrderInput | SortOrder
     total_parcelas?: SortOrderInput | SortOrder
     observacoes?: SortOrderInput | SortOrder
+    juros_valor?: SortOrderInput | SortOrder
+    multa_valor?: SortOrderInput | SortOrder
+    desconto_valor?: SortOrderInput | SortOrder
+    recebivel_origem_id?: SortOrderInput | SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     _count?: RecebivelCountOrderByAggregateInput
@@ -64253,6 +64384,10 @@ export namespace Prisma {
     numero_parcela?: IntNullableWithAggregatesFilter<"Recebivel"> | number | null
     total_parcelas?: IntNullableWithAggregatesFilter<"Recebivel"> | number | null
     observacoes?: StringNullableWithAggregatesFilter<"Recebivel"> | string | null
+    juros_valor?: DecimalNullableWithAggregatesFilter<"Recebivel"> | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: DecimalNullableWithAggregatesFilter<"Recebivel"> | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: DecimalNullableWithAggregatesFilter<"Recebivel"> | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: StringNullableWithAggregatesFilter<"Recebivel"> | string | null
     criado_em?: DateTimeWithAggregatesFilter<"Recebivel"> | Date | string
     atualizado_em?: DateTimeWithAggregatesFilter<"Recebivel"> | Date | string
   }
@@ -66989,6 +67124,8 @@ export namespace Prisma {
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
+    juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutContratosInput
@@ -67041,6 +67178,8 @@ export namespace Prisma {
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
+    juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
@@ -67083,6 +67222,8 @@ export namespace Prisma {
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
@@ -67135,6 +67276,8 @@ export namespace Prisma {
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
@@ -67182,6 +67325,8 @@ export namespace Prisma {
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
+    juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -67219,6 +67364,8 @@ export namespace Prisma {
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -67261,6 +67408,8 @@ export namespace Prisma {
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -68513,6 +68662,10 @@ export namespace Prisma {
     numero_parcela?: number | null
     total_parcelas?: number | null
     observacoes?: string | null
+    juros_valor?: Decimal | DecimalJsLike | number | string | null
+    multa_valor?: Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutRecebiveisInput
@@ -68543,6 +68696,10 @@ export namespace Prisma {
     numero_parcela?: number | null
     total_parcelas?: number | null
     observacoes?: string | null
+    juros_valor?: Decimal | DecimalJsLike | number | string | null
+    multa_valor?: Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
@@ -68561,6 +68718,10 @@ export namespace Prisma {
     numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
     total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutRecebiveisNestedInput
@@ -68591,6 +68752,10 @@ export namespace Prisma {
     numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
     total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
@@ -68615,6 +68780,10 @@ export namespace Prisma {
     numero_parcela?: number | null
     total_parcelas?: number | null
     observacoes?: string | null
+    juros_valor?: Decimal | DecimalJsLike | number | string | null
+    multa_valor?: Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -68631,6 +68800,10 @@ export namespace Prisma {
     numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
     total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -68653,6 +68826,10 @@ export namespace Prisma {
     numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
     total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -71382,6 +71559,8 @@ export namespace Prisma {
     authentique_id?: SortOrder
     authentique_url?: SortOrder
     pdf_assinado_url?: SortOrder
+    juros_ao_mes_percentual?: SortOrder
+    multa_percentual?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -71390,6 +71569,8 @@ export namespace Prisma {
     valor_total?: SortOrder
     numero_parcelas?: SortOrder
     dia_vencimento?: SortOrder
+    juros_ao_mes_percentual?: SortOrder
+    multa_percentual?: SortOrder
   }
 
   export type ContratoMaxOrderByAggregateInput = {
@@ -71429,6 +71610,8 @@ export namespace Prisma {
     authentique_id?: SortOrder
     authentique_url?: SortOrder
     pdf_assinado_url?: SortOrder
+    juros_ao_mes_percentual?: SortOrder
+    multa_percentual?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -71470,6 +71653,8 @@ export namespace Prisma {
     authentique_id?: SortOrder
     authentique_url?: SortOrder
     pdf_assinado_url?: SortOrder
+    juros_ao_mes_percentual?: SortOrder
+    multa_percentual?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -71478,6 +71663,8 @@ export namespace Prisma {
     valor_total?: SortOrder
     numero_parcelas?: SortOrder
     dia_vencimento?: SortOrder
+    juros_ao_mes_percentual?: SortOrder
+    multa_percentual?: SortOrder
   }
 
   export type EnumStatusContratoWithAggregatesFilter<$PrismaModel = never> = {
@@ -72291,6 +72478,10 @@ export namespace Prisma {
     numero_parcela?: SortOrder
     total_parcelas?: SortOrder
     observacoes?: SortOrder
+    juros_valor?: SortOrder
+    multa_valor?: SortOrder
+    desconto_valor?: SortOrder
+    recebivel_origem_id?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -72300,6 +72491,9 @@ export namespace Prisma {
     valor_pago?: SortOrder
     numero_parcela?: SortOrder
     total_parcelas?: SortOrder
+    juros_valor?: SortOrder
+    multa_valor?: SortOrder
+    desconto_valor?: SortOrder
   }
 
   export type RecebivelMaxOrderByAggregateInput = {
@@ -72320,6 +72514,10 @@ export namespace Prisma {
     numero_parcela?: SortOrder
     total_parcelas?: SortOrder
     observacoes?: SortOrder
+    juros_valor?: SortOrder
+    multa_valor?: SortOrder
+    desconto_valor?: SortOrder
+    recebivel_origem_id?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -72342,6 +72540,10 @@ export namespace Prisma {
     numero_parcela?: SortOrder
     total_parcelas?: SortOrder
     observacoes?: SortOrder
+    juros_valor?: SortOrder
+    multa_valor?: SortOrder
+    desconto_valor?: SortOrder
+    recebivel_origem_id?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -72351,6 +72553,9 @@ export namespace Prisma {
     valor_pago?: SortOrder
     numero_parcela?: SortOrder
     total_parcelas?: SortOrder
+    juros_valor?: SortOrder
+    multa_valor?: SortOrder
+    desconto_valor?: SortOrder
   }
 
   export type EnumStatusRecebivelWithAggregatesFilter<$PrismaModel = never> = {
@@ -79743,6 +79948,8 @@ export namespace Prisma {
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
+    juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     proposta?: PropostaCreateNestedOneWithoutContratoInput
@@ -79793,6 +80000,8 @@ export namespace Prisma {
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
+    juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
@@ -80082,6 +80291,10 @@ export namespace Prisma {
     numero_parcela?: number | null
     total_parcelas?: number | null
     observacoes?: string | null
+    juros_valor?: Decimal | DecimalJsLike | number | string | null
+    multa_valor?: Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     cliente?: ClienteCreateNestedOneWithoutRecebiveisInput
@@ -80110,6 +80323,10 @@ export namespace Prisma {
     numero_parcela?: number | null
     total_parcelas?: number | null
     observacoes?: string | null
+    juros_valor?: Decimal | DecimalJsLike | number | string | null
+    multa_valor?: Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
@@ -80818,6 +81035,8 @@ export namespace Prisma {
     authentique_id?: StringNullableFilter<"Contrato"> | string | null
     authentique_url?: StringNullableFilter<"Contrato"> | string | null
     pdf_assinado_url?: StringNullableFilter<"Contrato"> | string | null
+    juros_ao_mes_percentual?: DecimalNullableFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: DecimalNullableFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFilter<"Contrato"> | Date | string
     atualizado_em?: DateTimeFilter<"Contrato"> | Date | string
   }
@@ -81064,6 +81283,10 @@ export namespace Prisma {
     numero_parcela?: IntNullableFilter<"Recebivel"> | number | null
     total_parcelas?: IntNullableFilter<"Recebivel"> | number | null
     observacoes?: StringNullableFilter<"Recebivel"> | string | null
+    juros_valor?: DecimalNullableFilter<"Recebivel"> | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: DecimalNullableFilter<"Recebivel"> | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: DecimalNullableFilter<"Recebivel"> | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: StringNullableFilter<"Recebivel"> | string | null
     criado_em?: DateTimeFilter<"Recebivel"> | Date | string
     atualizado_em?: DateTimeFilter<"Recebivel"> | Date | string
   }
@@ -81623,6 +81846,8 @@ export namespace Prisma {
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
+    juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutContratosInput
@@ -81673,6 +81898,8 @@ export namespace Prisma {
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
+    juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
@@ -81848,6 +82075,10 @@ export namespace Prisma {
     numero_parcela?: number | null
     total_parcelas?: number | null
     observacoes?: string | null
+    juros_valor?: Decimal | DecimalJsLike | number | string | null
+    multa_valor?: Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutRecebiveisInput
@@ -81876,6 +82107,10 @@ export namespace Prisma {
     numero_parcela?: number | null
     total_parcelas?: number | null
     observacoes?: string | null
+    juros_valor?: Decimal | DecimalJsLike | number | string | null
+    multa_valor?: Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
@@ -82093,6 +82328,8 @@ export namespace Prisma {
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
+    juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutContratosInput
@@ -82143,6 +82380,8 @@ export namespace Prisma {
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
+    juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
@@ -84494,6 +84733,8 @@ export namespace Prisma {
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
+    juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutContratosInput
@@ -84544,6 +84785,8 @@ export namespace Prisma {
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
+    juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
@@ -84653,6 +84896,10 @@ export namespace Prisma {
     numero_parcela?: number | null
     total_parcelas?: number | null
     observacoes?: string | null
+    juros_valor?: Decimal | DecimalJsLike | number | string | null
+    multa_valor?: Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutRecebiveisInput
@@ -84681,6 +84928,10 @@ export namespace Prisma {
     numero_parcela?: number | null
     total_parcelas?: number | null
     observacoes?: string | null
+    juros_valor?: Decimal | DecimalJsLike | number | string | null
+    multa_valor?: Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
@@ -87049,6 +87300,8 @@ export namespace Prisma {
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
+    juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutContratosInput
@@ -87099,6 +87352,8 @@ export namespace Prisma {
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
+    juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
@@ -87564,6 +87819,8 @@ export namespace Prisma {
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
@@ -87614,6 +87871,8 @@ export namespace Prisma {
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
@@ -88426,6 +88685,10 @@ export namespace Prisma {
     numero_parcela?: number | null
     total_parcelas?: number | null
     observacoes?: string | null
+    juros_valor?: Decimal | DecimalJsLike | number | string | null
+    multa_valor?: Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutRecebiveisInput
@@ -88454,6 +88717,10 @@ export namespace Prisma {
     numero_parcela?: number | null
     total_parcelas?: number | null
     observacoes?: string | null
+    juros_valor?: Decimal | DecimalJsLike | number | string | null
+    multa_valor?: Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
@@ -89238,6 +89505,8 @@ export namespace Prisma {
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
+    juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutContratosInput
@@ -89289,6 +89558,8 @@ export namespace Prisma {
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
+    juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutContratoInput
@@ -89827,6 +90098,8 @@ export namespace Prisma {
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
@@ -89878,6 +90151,8 @@ export namespace Prisma {
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     recebiveis?: RecebivelUncheckedUpdateManyWithoutContratoNestedInput
@@ -92606,6 +92881,8 @@ export namespace Prisma {
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
+    juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutContratosInput
@@ -92657,6 +92934,8 @@ export namespace Prisma {
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
+    juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
@@ -93002,6 +93281,8 @@ export namespace Prisma {
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
@@ -93053,6 +93334,8 @@ export namespace Prisma {
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
@@ -93294,6 +93577,10 @@ export namespace Prisma {
     numero_parcela?: number | null
     total_parcelas?: number | null
     observacoes?: string | null
+    juros_valor?: Decimal | DecimalJsLike | number | string | null
+    multa_valor?: Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutRecebiveisInput
@@ -93322,6 +93609,10 @@ export namespace Prisma {
     numero_parcela?: number | null
     total_parcelas?: number | null
     observacoes?: string | null
+    juros_valor?: Decimal | DecimalJsLike | number | string | null
+    multa_valor?: Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
@@ -93784,6 +94075,10 @@ export namespace Prisma {
     numero_parcela?: number | null
     total_parcelas?: number | null
     observacoes?: string | null
+    juros_valor?: Decimal | DecimalJsLike | number | string | null
+    multa_valor?: Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutRecebiveisInput
@@ -93812,6 +94107,10 @@ export namespace Prisma {
     numero_parcela?: number | null
     total_parcelas?: number | null
     observacoes?: string | null
+    juros_valor?: Decimal | DecimalJsLike | number | string | null
+    multa_valor?: Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
@@ -94661,6 +94960,8 @@ export namespace Prisma {
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
+    juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutContratosInput
@@ -94712,6 +95013,8 @@ export namespace Prisma {
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
+    juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
@@ -95188,6 +95491,8 @@ export namespace Prisma {
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
@@ -95239,6 +95544,8 @@ export namespace Prisma {
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
@@ -96406,6 +96713,8 @@ export namespace Prisma {
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
+    juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutContratosInput
@@ -96457,6 +96766,8 @@ export namespace Prisma {
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
+    juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
@@ -96802,6 +97113,8 @@ export namespace Prisma {
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
@@ -96853,6 +97166,8 @@ export namespace Prisma {
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
@@ -97437,6 +97752,8 @@ export namespace Prisma {
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
+    juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutContratosInput
@@ -97488,6 +97805,8 @@ export namespace Prisma {
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
+    juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
@@ -97513,6 +97832,10 @@ export namespace Prisma {
     numero_parcela?: number | null
     total_parcelas?: number | null
     observacoes?: string | null
+    juros_valor?: Decimal | DecimalJsLike | number | string | null
+    multa_valor?: Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutRecebiveisInput
@@ -97542,6 +97865,10 @@ export namespace Prisma {
     numero_parcela?: number | null
     total_parcelas?: number | null
     observacoes?: string | null
+    juros_valor?: Decimal | DecimalJsLike | number | string | null
+    multa_valor?: Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
@@ -97772,6 +98099,8 @@ export namespace Prisma {
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
@@ -97823,6 +98152,8 @@ export namespace Prisma {
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
@@ -97854,6 +98185,10 @@ export namespace Prisma {
     numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
     total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutRecebiveisNestedInput
@@ -97883,6 +98218,10 @@ export namespace Prisma {
     numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
     total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
@@ -97979,6 +98318,10 @@ export namespace Prisma {
     numero_parcela?: number | null
     total_parcelas?: number | null
     observacoes?: string | null
+    juros_valor?: Decimal | DecimalJsLike | number | string | null
+    multa_valor?: Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutRecebiveisInput
@@ -98008,6 +98351,10 @@ export namespace Prisma {
     numero_parcela?: number | null
     total_parcelas?: number | null
     observacoes?: string | null
+    juros_valor?: Decimal | DecimalJsLike | number | string | null
+    multa_valor?: Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     nota_fiscal?: NotaFiscalUncheckedCreateNestedOneWithoutRecebivelInput
@@ -98211,6 +98558,10 @@ export namespace Prisma {
     numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
     total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutRecebiveisNestedInput
@@ -98240,6 +98591,10 @@ export namespace Prisma {
     numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
     total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     nota_fiscal?: NotaFiscalUncheckedUpdateOneWithoutRecebivelNestedInput
@@ -99544,6 +99899,8 @@ export namespace Prisma {
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
+    juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -99650,6 +100007,10 @@ export namespace Prisma {
     numero_parcela?: number | null
     total_parcelas?: number | null
     observacoes?: string | null
+    juros_valor?: Decimal | DecimalJsLike | number | string | null
+    multa_valor?: Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -100230,6 +100591,8 @@ export namespace Prisma {
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     proposta?: PropostaUpdateOneWithoutContratoNestedInput
@@ -100280,6 +100643,8 @@ export namespace Prisma {
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
@@ -100326,6 +100691,8 @@ export namespace Prisma {
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -100625,6 +100992,10 @@ export namespace Prisma {
     numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
     total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     cliente?: ClienteUpdateOneWithoutRecebiveisNestedInput
@@ -100653,6 +101024,10 @@ export namespace Prisma {
     numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
     total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
@@ -100676,6 +101051,10 @@ export namespace Prisma {
     numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
     total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -101185,6 +101564,8 @@ export namespace Prisma {
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
+    juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -101251,6 +101632,10 @@ export namespace Prisma {
     numero_parcela?: number | null
     total_parcelas?: number | null
     observacoes?: string | null
+    juros_valor?: Decimal | DecimalJsLike | number | string | null
+    multa_valor?: Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -101358,6 +101743,8 @@ export namespace Prisma {
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
+    juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -101688,6 +102075,8 @@ export namespace Prisma {
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
@@ -101738,6 +102127,8 @@ export namespace Prisma {
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
@@ -101784,6 +102175,8 @@ export namespace Prisma {
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -101959,6 +102352,10 @@ export namespace Prisma {
     numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
     total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutRecebiveisNestedInput
@@ -101987,6 +102384,10 @@ export namespace Prisma {
     numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
     total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
@@ -102010,6 +102411,10 @@ export namespace Prisma {
     numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
     total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -102251,6 +102656,8 @@ export namespace Prisma {
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
@@ -102301,6 +102708,8 @@ export namespace Prisma {
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
@@ -102347,6 +102756,8 @@ export namespace Prisma {
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -102676,6 +103087,8 @@ export namespace Prisma {
     authentique_id?: string | null
     authentique_url?: string | null
     pdf_assinado_url?: string | null
+    juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -102720,6 +103133,10 @@ export namespace Prisma {
     numero_parcela?: number | null
     total_parcelas?: number | null
     observacoes?: string | null
+    juros_valor?: Decimal | DecimalJsLike | number | string | null
+    multa_valor?: Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -103051,6 +103468,8 @@ export namespace Prisma {
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
@@ -103101,6 +103520,8 @@ export namespace Prisma {
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
@@ -103147,6 +103568,8 @@ export namespace Prisma {
     authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
     authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -103244,6 +103667,10 @@ export namespace Prisma {
     numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
     total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutRecebiveisNestedInput
@@ -103272,6 +103699,10 @@ export namespace Prisma {
     numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
     total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
@@ -103295,6 +103726,10 @@ export namespace Prisma {
     numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
     total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -103911,6 +104346,10 @@ export namespace Prisma {
     numero_parcela?: number | null
     total_parcelas?: number | null
     observacoes?: string | null
+    juros_valor?: Decimal | DecimalJsLike | number | string | null
+    multa_valor?: Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -103989,6 +104428,10 @@ export namespace Prisma {
     numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
     total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutRecebiveisNestedInput
@@ -104017,6 +104460,10 @@ export namespace Prisma {
     numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
     total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
@@ -104040,6 +104487,10 @@ export namespace Prisma {
     numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
     total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -104900,6 +105351,10 @@ export namespace Prisma {
     numero_parcela?: number | null
     total_parcelas?: number | null
     observacoes?: string | null
+    juros_valor?: Decimal | DecimalJsLike | number | string | null
+    multa_valor?: Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -104986,6 +105441,10 @@ export namespace Prisma {
     numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
     total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutRecebiveisNestedInput
@@ -105014,6 +105473,10 @@ export namespace Prisma {
     numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
     total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
@@ -105037,6 +105500,10 @@ export namespace Prisma {
     numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
     total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -105219,6 +105686,10 @@ export namespace Prisma {
     numero_parcela?: number | null
     total_parcelas?: number | null
     observacoes?: string | null
+    juros_valor?: Decimal | DecimalJsLike | number | string | null
+    multa_valor?: Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -105273,6 +105744,10 @@ export namespace Prisma {
     numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
     total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutRecebiveisNestedInput
@@ -105301,6 +105776,10 @@ export namespace Prisma {
     numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
     total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
@@ -105324,6 +105803,10 @@ export namespace Prisma {
     numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
     total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }

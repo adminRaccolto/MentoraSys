@@ -54,6 +54,7 @@ import {
   consultarStatusNfse,
   gerarNFdeRecebivel,
 } from "@/actions/faturamento";
+import { refaturarRecebivel } from "@/actions/recebiveis";
 
 interface Nota {
   id: string;
@@ -91,7 +92,7 @@ interface Recebivel {
   cliente_id: string;
   contrato_id: string | null;
   cliente: { id: string; nome: string };
-  contrato: { id: string; titulo: string } | null;
+  contrato: { id: string; titulo: string; juros_ao_mes_percentual: number | null; multa_percentual: number | null } | null;
 }
 
 interface KpiData {
@@ -134,6 +135,15 @@ const schemaEmitir = z.object({
   aliquota_iss: z.coerce.number().optional(),
 });
 type FormEmitir = z.input<typeof schemaEmitir>;
+
+const schemaRefaturarFat = z.object({
+  juros_valor: z.coerce.number().min(0).default(0),
+  multa_valor: z.coerce.number().min(0).default(0),
+  desconto_valor: z.coerce.number().min(0).default(0),
+  nova_data_vencimento: z.string().min(1, "Nova data obrigatória"),
+  observacoes: z.string().optional(),
+});
+type FormRefaturarFat = z.input<typeof schemaRefaturarFat>;
 
 const MESES = [
   "Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
@@ -179,6 +189,7 @@ export default function FaturamentoClient({
     tipo: "baixar" | "cancelar" | "excluir";
     nota: Nota;
   } | null>(null);
+  const [modalRefaturarFat, setModalRefaturarFat] = useState<Recebivel | null>(null);
 
   const formCreate = useForm<FormCreate>({
     resolver: zodResolver(schemaCreate),
@@ -326,6 +337,54 @@ export default function FaturamentoClient({
     });
   };
 
+  const formRefaturarFatForm = useForm<FormRefaturarFat>({
+    resolver: zodResolver(schemaRefaturarFat),
+  });
+  const jurosWatchFat = Number(formRefaturarFatForm.watch("juros_valor") ?? 0);
+  const multaWatchFat = Number(formRefaturarFatForm.watch("multa_valor") ?? 0);
+  const descontoWatchFat = Number(formRefaturarFatForm.watch("desconto_valor") ?? 0);
+  const novoTotalFat = modalRefaturarFat
+    ? modalRefaturarFat.valor + jurosWatchFat + multaWatchFat - descontoWatchFat
+    : 0;
+
+  const abrirRefaturarFat = (r: Recebivel) => {
+    let jurosPreCalc = 0;
+    let multaPreCalc = 0;
+    if (r.contrato) {
+      const diasAtraso = new Date(r.data_vencimento) < new Date()
+        ? Math.floor((new Date().getTime() - new Date(r.data_vencimento).getTime()) / (1000 * 60 * 60 * 24))
+        : 0;
+      if (r.contrato.juros_ao_mes_percentual && diasAtraso > 0) {
+        jurosPreCalc = Math.round(r.valor * (r.contrato.juros_ao_mes_percentual / 100) * (diasAtraso / 30) * 100) / 100;
+      }
+      if (r.contrato.multa_percentual) {
+        multaPreCalc = Math.round(r.valor * (r.contrato.multa_percentual / 100) * 100) / 100;
+      }
+    }
+    formRefaturarFatForm.reset({
+      juros_valor: jurosPreCalc,
+      multa_valor: multaPreCalc,
+      desconto_valor: 0,
+      nova_data_vencimento: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split("T")[0],
+      observacoes: "",
+    });
+    setModalRefaturarFat(r);
+  };
+
+  const onSubmitRefaturarFat = formRefaturarFatForm.handleSubmit((data) => {
+    if (!modalRefaturarFat) return;
+    startTransition(async () => {
+      try {
+        await refaturarRecebivel(modalRefaturarFat.id, data);
+        toast.success("Recebível refaturado — o novo lançamento aparecerá na lista");
+        setModalRefaturarFat(null);
+        router.refresh();
+      } catch (e: unknown) {
+        toast.error(e instanceof Error ? e.message : "Erro ao refaturar");
+      }
+    });
+  });
+
   const totalFaturado = notas
     .filter((n) => n.status !== "CANCELADA")
     .reduce((s, n) => s + n.valor, 0);
@@ -466,15 +525,29 @@ export default function FaturamentoClient({
                         </Badge>
                       </td>
                       <td className="px-4 py-3">
-                        <Button
-                          size="sm"
-                          className="h-7 text-xs gap-1"
-                          disabled={isPending}
-                          onClick={() => handleGerarNF(r.id)}
-                        >
-                          <FilePlus2 className="size-3.5" />
-                          Gerar NF
-                        </Button>
+                        <div className="flex gap-1">
+                          <Button
+                            size="sm"
+                            className="h-7 text-xs gap-1"
+                            disabled={isPending}
+                            onClick={() => handleGerarNF(r.id)}
+                          >
+                            <FilePlus2 className="size-3.5" />
+                            Gerar NF
+                          </Button>
+                          {r.status === "VENCIDO" && (
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="h-7 text-xs gap-1"
+                              disabled={isPending}
+                              onClick={() => abrirRefaturarFat(r)}
+                            >
+                              <RefreshCw className="size-3.5" />
+                              Refaturar
+                            </Button>
+                          )}
+                        </div>
                       </td>
                     </tr>
                   ))}
@@ -895,6 +968,64 @@ export default function FaturamentoClient({
               <Button type="submit" disabled={isPending}>
                 <SendHorizonal className="size-4 mr-1.5" />
                 Emitir
+              </Button>
+            </DialogFooter>
+          </form>
+        </DialogContent>
+      </Dialog>
+
+      {/* Modal refaturar */}
+      <Dialog open={!!modalRefaturarFat} onOpenChange={(v) => !v && setModalRefaturarFat(null)}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>Refaturar recebível vencido</DialogTitle>
+          </DialogHeader>
+          <form onSubmit={onSubmitRefaturarFat} className="space-y-3">
+            {modalRefaturarFat && (
+              <div className="rounded-lg bg-muted/40 border px-3 py-2 text-sm space-y-0.5">
+                <p className="font-medium truncate">{modalRefaturarFat.descricao}</p>
+                <p className="text-muted-foreground text-xs">
+                  Valor original: <strong>{fmtMoney(modalRefaturarFat.valor)}</strong> · Vencido em: {new Date(modalRefaturarFat.data_vencimento).toLocaleDateString("pt-BR")}
+                </p>
+              </div>
+            )}
+            <div className="grid grid-cols-3 gap-3">
+              <div className="space-y-1">
+                <Label className="text-xs">Juros (R$)</Label>
+                <Input type="number" step="0.01" min={0} placeholder="0,00" {...formRefaturarFatForm.register("juros_valor")} className="h-8 text-sm" />
+              </div>
+              <div className="space-y-1">
+                <Label className="text-xs">Multa (R$)</Label>
+                <Input type="number" step="0.01" min={0} placeholder="0,00" {...formRefaturarFatForm.register("multa_valor")} className="h-8 text-sm" />
+              </div>
+              <div className="space-y-1">
+                <Label className="text-xs">Desconto (R$)</Label>
+                <Input type="number" step="0.01" min={0} placeholder="0,00" {...formRefaturarFatForm.register("desconto_valor")} className="h-8 text-sm" />
+              </div>
+            </div>
+            {modalRefaturarFat && (
+              <div className="rounded-lg bg-primary/5 border border-primary/20 px-3 py-2 text-sm flex justify-between items-center">
+                <span className="text-muted-foreground">Novo total:</span>
+                <span className={`font-bold text-base ${novoTotalFat <= 0 ? "text-destructive" : "text-primary"}`}>
+                  {fmtMoney(Math.max(0, novoTotalFat))}
+                </span>
+              </div>
+            )}
+            <div className="space-y-1">
+              <Label>Nova data de vencimento *</Label>
+              <Input type="date" {...formRefaturarFatForm.register("nova_data_vencimento")} />
+              {formRefaturarFatForm.formState.errors.nova_data_vencimento && (
+                <p className="text-xs text-destructive">{formRefaturarFatForm.formState.errors.nova_data_vencimento.message}</p>
+              )}
+            </div>
+            <div className="space-y-1">
+              <Label className="text-xs">Observações</Label>
+              <Input placeholder="Opcional" {...formRefaturarFatForm.register("observacoes")} className="h-8 text-sm" />
+            </div>
+            <DialogFooter>
+              <Button type="button" variant="outline" onClick={() => setModalRefaturarFat(null)}>Cancelar</Button>
+              <Button type="submit" disabled={isPending || novoTotalFat <= 0}>
+                {isPending ? "Refaturando..." : "Refaturar"}
               </Button>
             </DialogFooter>
           </form>
