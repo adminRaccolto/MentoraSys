@@ -465,7 +465,7 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
                   <TableCell className="text-muted-foreground text-sm">{r.forma_pagamento ?? "—"}</TableCell>
                   <TableCell>
                     <div className="flex gap-1">
-                      {(r.status === "PENDENTE" || r.status === "PARCIAL") && (
+                      {(r.status === "PENDENTE" || r.status === "PARCIAL" || r.status === "VENCIDO") && (
                         <Button
                           size="icon" variant="ghost" className="size-7 text-primary hover:text-primary"
                           title="Registrar baixa"
@@ -474,7 +474,7 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
                           <CheckCircle className="size-3.5" />
                         </Button>
                       )}
-                      {r.status === "VENCIDO" && (
+                      {(r.status === "VENCIDO" || (r.status === "PENDENTE" && vencido)) && (
                         <Button
                           size="icon" variant="ghost" className="size-7 text-amber-600 hover:text-amber-600"
                           title="Refaturar com juros e multa"

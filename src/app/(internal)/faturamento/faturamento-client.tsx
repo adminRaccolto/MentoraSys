@@ -513,16 +513,14 @@ export default function FaturamentoClient({
                       </td>
                       <td className="px-4 py-3 text-right font-medium">{fmtMoney(r.valor)}</td>
                       <td className="px-4 py-3">
-                        <Badge
-                          variant="outline"
-                          className={
-                            r.status === "VENCIDO"
-                              ? "bg-red-50 text-red-700 border-0 text-xs"
-                              : "bg-slate-50 text-slate-600 border-0 text-xs"
-                          }
-                        >
-                          {r.status === "VENCIDO" ? "Vencido" : "Pendente"}
-                        </Badge>
+                        {(() => {
+                          const isVenc = r.status === "VENCIDO" || new Date(r.data_vencimento) < new Date();
+                          return (
+                            <Badge variant="outline" className={isVenc ? "bg-red-50 text-red-700 border-0 text-xs" : "bg-slate-50 text-slate-600 border-0 text-xs"}>
+                              {isVenc ? "Vencido" : "Pendente"}
+                            </Badge>
+                          );
+                        })()}
                       </td>
                       <td className="px-4 py-3">
                         <div className="flex gap-1">
@@ -535,11 +533,11 @@ export default function FaturamentoClient({
                             <FilePlus2 className="size-3.5" />
                             Gerar NF
                           </Button>
-                          {r.status === "VENCIDO" && (
+                          {(r.status === "VENCIDO" || new Date(r.data_vencimento) < new Date()) && (
                             <Button
                               size="sm"
                               variant="outline"
-                              className="h-7 text-xs gap-1"
+                              className="h-7 text-xs gap-1 text-amber-600 border-amber-300 hover:bg-amber-50"
                               disabled={isPending}
                               onClick={() => abrirRefaturarFat(r)}
                             >
