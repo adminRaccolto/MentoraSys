@@ -21,7 +21,14 @@ export default async function RecebiveisPage({ searchParams }: Props) {
       where: {
         empresa_id: empresaId,
         data_vencimento: { gte: inicio, lte: fim },
-        ...(status && status !== "TODOS" ? { status: status as never } : {}),
+        // "VENCIDO" não é um status fixo no banco — itens vencidos têm status PENDENTE com data passada
+        ...(status === "VENCIDO"
+          ? { OR: [{ status: "VENCIDO" }, { status: "PENDENTE", data_vencimento: { lt: new Date() } }] }
+          : status === "PENDENTE"
+          ? { status: "PENDENTE", data_vencimento: { gte: new Date() } }
+          : status && status !== "TODOS"
+          ? { status: status as never }
+          : {}),
       },
       include: {
         cliente: { select: { id: true, nome: true } },

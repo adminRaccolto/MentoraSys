@@ -138,9 +138,15 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
     router.push(`/financeiro/recebiveis?de=${filtroDe}&ate=${filtroAte}&status=${statusFiltro}`);
   };
 
-  const statusFiltrados = statusFiltro === "TODOS" ? recebiveis : recebiveis.filter((r) => r.status === statusFiltro);
+  const statusFiltrados = (() => {
+    if (statusFiltro === "TODOS") return recebiveis;
+    if (statusFiltro === "VENCIDO") return recebiveis.filter((r) => r.status === "VENCIDO" || (r.status === "PENDENTE" && new Date(r.data_vencimento) < new Date()));
+    if (statusFiltro === "PENDENTE") return recebiveis.filter((r) => r.status === "PENDENTE" && new Date(r.data_vencimento) >= new Date());
+    return recebiveis.filter((r) => r.status === statusFiltro);
+  })();
 
-  const totalPendente = recebiveis.filter((r) => r.status === "PENDENTE").reduce((s, r) => s + Number(r.valor), 0);
+  const totalPendente = recebiveis.filter((r) => r.status === "PENDENTE" && new Date(r.data_vencimento) >= new Date()).reduce((s, r) => s + Number(r.valor), 0);
+  const totalVencido = recebiveis.filter((r) => r.status === "VENCIDO" || (r.status === "PENDENTE" && new Date(r.data_vencimento) < new Date())).reduce((s, r) => s + Number(r.valor), 0);
   const totalPago = recebiveis.filter((r) => r.status === "PAGO").reduce((s, r) => s + Number(r.valor_pago ?? r.valor), 0);
 
   // Formulário criar
@@ -372,6 +378,7 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
         </div>
         <div className="flex gap-4 text-sm">
           <span className="text-muted-foreground">Pendente: <strong className="text-foreground">{formatBRL(totalPendente)}</strong></span>
+          {totalVencido > 0 && <span className="text-muted-foreground">Vencido: <strong className="text-destructive">{formatBRL(totalVencido)}</strong></span>}
           <span className="text-muted-foreground">Recebido: <strong className="text-primary">{formatBRL(totalPago)}</strong></span>
         </div>
       </div>
