@@ -53769,6 +53769,8 @@ export namespace Prisma {
     criado_em: Date | null
     atualizado_em: Date | null
     nfsio_id: string | null
+    asaas_invoice_id: string | null
+    nfse_provider: string | null
     numero_nfse: string | null
     codigo_servico: string | null
     aliquota_iss: Decimal | null
@@ -53795,6 +53797,8 @@ export namespace Prisma {
     criado_em: Date | null
     atualizado_em: Date | null
     nfsio_id: string | null
+    asaas_invoice_id: string | null
+    nfse_provider: string | null
     numero_nfse: string | null
     codigo_servico: string | null
     aliquota_iss: Decimal | null
@@ -53821,6 +53825,8 @@ export namespace Prisma {
     criado_em: number
     atualizado_em: number
     nfsio_id: number
+    asaas_invoice_id: number
+    nfse_provider: number
     numero_nfse: number
     codigo_servico: number
     aliquota_iss: number
@@ -53859,6 +53865,8 @@ export namespace Prisma {
     criado_em?: true
     atualizado_em?: true
     nfsio_id?: true
+    asaas_invoice_id?: true
+    nfse_provider?: true
     numero_nfse?: true
     codigo_servico?: true
     aliquota_iss?: true
@@ -53885,6 +53893,8 @@ export namespace Prisma {
     criado_em?: true
     atualizado_em?: true
     nfsio_id?: true
+    asaas_invoice_id?: true
+    nfse_provider?: true
     numero_nfse?: true
     codigo_servico?: true
     aliquota_iss?: true
@@ -53911,6 +53921,8 @@ export namespace Prisma {
     criado_em?: true
     atualizado_em?: true
     nfsio_id?: true
+    asaas_invoice_id?: true
+    nfse_provider?: true
     numero_nfse?: true
     codigo_servico?: true
     aliquota_iss?: true
@@ -54024,6 +54036,8 @@ export namespace Prisma {
     criado_em: Date
     atualizado_em: Date
     nfsio_id: string | null
+    asaas_invoice_id: string | null
+    nfse_provider: string | null
     numero_nfse: string | null
     codigo_servico: string | null
     aliquota_iss: Decimal | null
@@ -54069,6 +54083,8 @@ export namespace Prisma {
     criado_em?: boolean
     atualizado_em?: boolean
     nfsio_id?: boolean
+    asaas_invoice_id?: boolean
+    nfse_provider?: boolean
     numero_nfse?: boolean
     codigo_servico?: boolean
     aliquota_iss?: boolean
@@ -54098,6 +54114,8 @@ export namespace Prisma {
     criado_em?: boolean
     atualizado_em?: boolean
     nfsio_id?: boolean
+    asaas_invoice_id?: boolean
+    nfse_provider?: boolean
     numero_nfse?: boolean
     codigo_servico?: boolean
     aliquota_iss?: boolean
@@ -54127,6 +54145,8 @@ export namespace Prisma {
     criado_em?: boolean
     atualizado_em?: boolean
     nfsio_id?: boolean
+    asaas_invoice_id?: boolean
+    nfse_provider?: boolean
     numero_nfse?: boolean
     codigo_servico?: boolean
     aliquota_iss?: boolean
@@ -54156,6 +54176,8 @@ export namespace Prisma {
     criado_em?: boolean
     atualizado_em?: boolean
     nfsio_id?: boolean
+    asaas_invoice_id?: boolean
+    nfse_provider?: boolean
     numero_nfse?: boolean
     codigo_servico?: boolean
     aliquota_iss?: boolean
@@ -54165,7 +54187,7 @@ export namespace Prisma {
     email_enviado_em?: boolean
   }
 
-  export type NotaFiscalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "cliente_id" | "contrato_id" | "criado_por" | "numero" | "competencia" | "valor" | "descricao" | "status" | "data_emissao" | "data_vencimento" | "observacoes" | "criado_em" | "atualizado_em" | "nfsio_id" | "numero_nfse" | "codigo_servico" | "aliquota_iss" | "pdf_url" | "xml_url" | "email_enviado" | "email_enviado_em", ExtArgs["result"]["notaFiscal"]>
+  export type NotaFiscalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "cliente_id" | "contrato_id" | "criado_por" | "numero" | "competencia" | "valor" | "descricao" | "status" | "data_emissao" | "data_vencimento" | "observacoes" | "criado_em" | "atualizado_em" | "nfsio_id" | "asaas_invoice_id" | "nfse_provider" | "numero_nfse" | "codigo_servico" | "aliquota_iss" | "pdf_url" | "xml_url" | "email_enviado" | "email_enviado_em", ExtArgs["result"]["notaFiscal"]>
   export type NotaFiscalInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     cliente?: boolean | ClienteDefaultArgs<ExtArgs>
@@ -54206,6 +54228,8 @@ export namespace Prisma {
       criado_em: Date
       atualizado_em: Date
       nfsio_id: string | null
+      asaas_invoice_id: string | null
+      nfse_provider: string | null
       numero_nfse: string | null
       codigo_servico: string | null
       aliquota_iss: Prisma.Decimal | null
@@ -54655,6 +54679,8 @@ export namespace Prisma {
     readonly criado_em: FieldRef<"NotaFiscal", 'DateTime'>
     readonly atualizado_em: FieldRef<"NotaFiscal", 'DateTime'>
     readonly nfsio_id: FieldRef<"NotaFiscal", 'String'>
+    readonly asaas_invoice_id: FieldRef<"NotaFiscal", 'String'>
+    readonly nfse_provider: FieldRef<"NotaFiscal", 'String'>
     readonly numero_nfse: FieldRef<"NotaFiscal", 'String'>
     readonly codigo_servico: FieldRef<"NotaFiscal", 'String'>
     readonly aliquota_iss: FieldRef<"NotaFiscal", 'Decimal'>
@@ -60497,6 +60523,8 @@ export namespace Prisma {
     criado_em: 'criado_em',
     atualizado_em: 'atualizado_em',
     nfsio_id: 'nfsio_id',
+    asaas_invoice_id: 'asaas_invoice_id',
+    nfse_provider: 'nfse_provider',
     numero_nfse: 'numero_nfse',
     codigo_servico: 'codigo_servico',
     aliquota_iss: 'aliquota_iss',
@@ -64652,6 +64680,8 @@ export namespace Prisma {
     criado_em?: DateTimeFilter<"NotaFiscal"> | Date | string
     atualizado_em?: DateTimeFilter<"NotaFiscal"> | Date | string
     nfsio_id?: StringNullableFilter<"NotaFiscal"> | string | null
+    asaas_invoice_id?: StringNullableFilter<"NotaFiscal"> | string | null
+    nfse_provider?: StringNullableFilter<"NotaFiscal"> | string | null
     numero_nfse?: StringNullableFilter<"NotaFiscal"> | string | null
     codigo_servico?: StringNullableFilter<"NotaFiscal"> | string | null
     aliquota_iss?: DecimalNullableFilter<"NotaFiscal"> | Decimal | DecimalJsLike | number | string | null
@@ -64681,6 +64711,8 @@ export namespace Prisma {
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     nfsio_id?: SortOrderInput | SortOrder
+    asaas_invoice_id?: SortOrderInput | SortOrder
+    nfse_provider?: SortOrderInput | SortOrder
     numero_nfse?: SortOrderInput | SortOrder
     codigo_servico?: SortOrderInput | SortOrder
     aliquota_iss?: SortOrderInput | SortOrder
@@ -64713,6 +64745,8 @@ export namespace Prisma {
     criado_em?: DateTimeFilter<"NotaFiscal"> | Date | string
     atualizado_em?: DateTimeFilter<"NotaFiscal"> | Date | string
     nfsio_id?: StringNullableFilter<"NotaFiscal"> | string | null
+    asaas_invoice_id?: StringNullableFilter<"NotaFiscal"> | string | null
+    nfse_provider?: StringNullableFilter<"NotaFiscal"> | string | null
     numero_nfse?: StringNullableFilter<"NotaFiscal"> | string | null
     codigo_servico?: StringNullableFilter<"NotaFiscal"> | string | null
     aliquota_iss?: DecimalNullableFilter<"NotaFiscal"> | Decimal | DecimalJsLike | number | string | null
@@ -64742,6 +64776,8 @@ export namespace Prisma {
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     nfsio_id?: SortOrderInput | SortOrder
+    asaas_invoice_id?: SortOrderInput | SortOrder
+    nfse_provider?: SortOrderInput | SortOrder
     numero_nfse?: SortOrderInput | SortOrder
     codigo_servico?: SortOrderInput | SortOrder
     aliquota_iss?: SortOrderInput | SortOrder
@@ -64776,6 +64812,8 @@ export namespace Prisma {
     criado_em?: DateTimeWithAggregatesFilter<"NotaFiscal"> | Date | string
     atualizado_em?: DateTimeWithAggregatesFilter<"NotaFiscal"> | Date | string
     nfsio_id?: StringNullableWithAggregatesFilter<"NotaFiscal"> | string | null
+    asaas_invoice_id?: StringNullableWithAggregatesFilter<"NotaFiscal"> | string | null
+    nfse_provider?: StringNullableWithAggregatesFilter<"NotaFiscal"> | string | null
     numero_nfse?: StringNullableWithAggregatesFilter<"NotaFiscal"> | string | null
     codigo_servico?: StringNullableWithAggregatesFilter<"NotaFiscal"> | string | null
     aliquota_iss?: DecimalNullableWithAggregatesFilter<"NotaFiscal"> | Decimal | DecimalJsLike | number | string | null
@@ -69060,6 +69098,8 @@ export namespace Prisma {
     criado_em?: Date | string
     atualizado_em?: Date | string
     nfsio_id?: string | null
+    asaas_invoice_id?: string | null
+    nfse_provider?: string | null
     numero_nfse?: string | null
     codigo_servico?: string | null
     aliquota_iss?: Decimal | DecimalJsLike | number | string | null
@@ -69089,6 +69129,8 @@ export namespace Prisma {
     criado_em?: Date | string
     atualizado_em?: Date | string
     nfsio_id?: string | null
+    asaas_invoice_id?: string | null
+    nfse_provider?: string | null
     numero_nfse?: string | null
     codigo_servico?: string | null
     aliquota_iss?: Decimal | DecimalJsLike | number | string | null
@@ -69112,6 +69154,8 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     nfsio_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nfse_provider?: NullableStringFieldUpdateOperationsInput | string | null
     numero_nfse?: NullableStringFieldUpdateOperationsInput | string | null
     codigo_servico?: NullableStringFieldUpdateOperationsInput | string | null
     aliquota_iss?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -69141,6 +69185,8 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     nfsio_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nfse_provider?: NullableStringFieldUpdateOperationsInput | string | null
     numero_nfse?: NullableStringFieldUpdateOperationsInput | string | null
     codigo_servico?: NullableStringFieldUpdateOperationsInput | string | null
     aliquota_iss?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -69167,6 +69213,8 @@ export namespace Prisma {
     criado_em?: Date | string
     atualizado_em?: Date | string
     nfsio_id?: string | null
+    asaas_invoice_id?: string | null
+    nfse_provider?: string | null
     numero_nfse?: string | null
     codigo_servico?: string | null
     aliquota_iss?: Decimal | DecimalJsLike | number | string | null
@@ -69190,6 +69238,8 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     nfsio_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nfse_provider?: NullableStringFieldUpdateOperationsInput | string | null
     numero_nfse?: NullableStringFieldUpdateOperationsInput | string | null
     codigo_servico?: NullableStringFieldUpdateOperationsInput | string | null
     aliquota_iss?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -69216,6 +69266,8 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     nfsio_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nfse_provider?: NullableStringFieldUpdateOperationsInput | string | null
     numero_nfse?: NullableStringFieldUpdateOperationsInput | string | null
     codigo_servico?: NullableStringFieldUpdateOperationsInput | string | null
     aliquota_iss?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -72517,6 +72569,8 @@ export namespace Prisma {
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     nfsio_id?: SortOrder
+    asaas_invoice_id?: SortOrder
+    nfse_provider?: SortOrder
     numero_nfse?: SortOrder
     codigo_servico?: SortOrder
     aliquota_iss?: SortOrder
@@ -72548,6 +72602,8 @@ export namespace Prisma {
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     nfsio_id?: SortOrder
+    asaas_invoice_id?: SortOrder
+    nfse_provider?: SortOrder
     numero_nfse?: SortOrder
     codigo_servico?: SortOrder
     aliquota_iss?: SortOrder
@@ -72574,6 +72630,8 @@ export namespace Prisma {
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     nfsio_id?: SortOrder
+    asaas_invoice_id?: SortOrder
+    nfse_provider?: SortOrder
     numero_nfse?: SortOrder
     codigo_servico?: SortOrder
     aliquota_iss?: SortOrder
@@ -80122,6 +80180,8 @@ export namespace Prisma {
     criado_em?: Date | string
     atualizado_em?: Date | string
     nfsio_id?: string | null
+    asaas_invoice_id?: string | null
+    nfse_provider?: string | null
     numero_nfse?: string | null
     codigo_servico?: string | null
     aliquota_iss?: Decimal | DecimalJsLike | number | string | null
@@ -80149,6 +80209,8 @@ export namespace Prisma {
     criado_em?: Date | string
     atualizado_em?: Date | string
     nfsio_id?: string | null
+    asaas_invoice_id?: string | null
+    nfse_provider?: string | null
     numero_nfse?: string | null
     codigo_servico?: string | null
     aliquota_iss?: Decimal | DecimalJsLike | number | string | null
@@ -81061,6 +81123,8 @@ export namespace Prisma {
     criado_em?: DateTimeFilter<"NotaFiscal"> | Date | string
     atualizado_em?: DateTimeFilter<"NotaFiscal"> | Date | string
     nfsio_id?: StringNullableFilter<"NotaFiscal"> | string | null
+    asaas_invoice_id?: StringNullableFilter<"NotaFiscal"> | string | null
+    nfse_provider?: StringNullableFilter<"NotaFiscal"> | string | null
     numero_nfse?: StringNullableFilter<"NotaFiscal"> | string | null
     codigo_servico?: StringNullableFilter<"NotaFiscal"> | string | null
     aliquota_iss?: DecimalNullableFilter<"NotaFiscal"> | Decimal | DecimalJsLike | number | string | null
@@ -84584,6 +84648,8 @@ export namespace Prisma {
     criado_em?: Date | string
     atualizado_em?: Date | string
     nfsio_id?: string | null
+    asaas_invoice_id?: string | null
+    nfse_provider?: string | null
     numero_nfse?: string | null
     codigo_servico?: string | null
     aliquota_iss?: Decimal | DecimalJsLike | number | string | null
@@ -84611,6 +84677,8 @@ export namespace Prisma {
     criado_em?: Date | string
     atualizado_em?: Date | string
     nfsio_id?: string | null
+    asaas_invoice_id?: string | null
+    nfse_provider?: string | null
     numero_nfse?: string | null
     codigo_servico?: string | null
     aliquota_iss?: Decimal | DecimalJsLike | number | string | null
@@ -88303,6 +88371,8 @@ export namespace Prisma {
     criado_em?: Date | string
     atualizado_em?: Date | string
     nfsio_id?: string | null
+    asaas_invoice_id?: string | null
+    nfse_provider?: string | null
     numero_nfse?: string | null
     codigo_servico?: string | null
     aliquota_iss?: Decimal | DecimalJsLike | number | string | null
@@ -88330,6 +88400,8 @@ export namespace Prisma {
     criado_em?: Date | string
     atualizado_em?: Date | string
     nfsio_id?: string | null
+    asaas_invoice_id?: string | null
+    nfse_provider?: string | null
     numero_nfse?: string | null
     codigo_servico?: string | null
     aliquota_iss?: Decimal | DecimalJsLike | number | string | null
@@ -99262,6 +99334,8 @@ export namespace Prisma {
     criado_em?: Date | string
     atualizado_em?: Date | string
     nfsio_id?: string | null
+    asaas_invoice_id?: string | null
+    nfse_provider?: string | null
     numero_nfse?: string | null
     codigo_servico?: string | null
     aliquota_iss?: Decimal | DecimalJsLike | number | string | null
@@ -100419,6 +100493,8 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     nfsio_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nfse_provider?: NullableStringFieldUpdateOperationsInput | string | null
     numero_nfse?: NullableStringFieldUpdateOperationsInput | string | null
     codigo_servico?: NullableStringFieldUpdateOperationsInput | string | null
     aliquota_iss?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -100446,6 +100522,8 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     nfsio_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nfse_provider?: NullableStringFieldUpdateOperationsInput | string | null
     numero_nfse?: NullableStringFieldUpdateOperationsInput | string | null
     codigo_servico?: NullableStringFieldUpdateOperationsInput | string | null
     aliquota_iss?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -100471,6 +100549,8 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     nfsio_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nfse_provider?: NullableStringFieldUpdateOperationsInput | string | null
     numero_nfse?: NullableStringFieldUpdateOperationsInput | string | null
     codigo_servico?: NullableStringFieldUpdateOperationsInput | string | null
     aliquota_iss?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -102283,6 +102363,8 @@ export namespace Prisma {
     criado_em?: Date | string
     atualizado_em?: Date | string
     nfsio_id?: string | null
+    asaas_invoice_id?: string | null
+    nfse_provider?: string | null
     numero_nfse?: string | null
     codigo_servico?: string | null
     aliquota_iss?: Decimal | DecimalJsLike | number | string | null
@@ -102923,6 +103005,8 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     nfsio_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nfse_provider?: NullableStringFieldUpdateOperationsInput | string | null
     numero_nfse?: NullableStringFieldUpdateOperationsInput | string | null
     codigo_servico?: NullableStringFieldUpdateOperationsInput | string | null
     aliquota_iss?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -102950,6 +103034,8 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     nfsio_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nfse_provider?: NullableStringFieldUpdateOperationsInput | string | null
     numero_nfse?: NullableStringFieldUpdateOperationsInput | string | null
     codigo_servico?: NullableStringFieldUpdateOperationsInput | string | null
     aliquota_iss?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -102975,6 +103061,8 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     nfsio_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nfse_provider?: NullableStringFieldUpdateOperationsInput | string | null
     numero_nfse?: NullableStringFieldUpdateOperationsInput | string | null
     codigo_servico?: NullableStringFieldUpdateOperationsInput | string | null
     aliquota_iss?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -103442,6 +103530,8 @@ export namespace Prisma {
     criado_em?: Date | string
     atualizado_em?: Date | string
     nfsio_id?: string | null
+    asaas_invoice_id?: string | null
+    nfse_provider?: string | null
     numero_nfse?: string | null
     codigo_servico?: string | null
     aliquota_iss?: Decimal | DecimalJsLike | number | string | null
@@ -103600,6 +103690,8 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     nfsio_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nfse_provider?: NullableStringFieldUpdateOperationsInput | string | null
     numero_nfse?: NullableStringFieldUpdateOperationsInput | string | null
     codigo_servico?: NullableStringFieldUpdateOperationsInput | string | null
     aliquota_iss?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -103627,6 +103719,8 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     nfsio_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nfse_provider?: NullableStringFieldUpdateOperationsInput | string | null
     numero_nfse?: NullableStringFieldUpdateOperationsInput | string | null
     codigo_servico?: NullableStringFieldUpdateOperationsInput | string | null
     aliquota_iss?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -103652,6 +103746,8 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     nfsio_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nfse_provider?: NullableStringFieldUpdateOperationsInput | string | null
     numero_nfse?: NullableStringFieldUpdateOperationsInput | string | null
     codigo_servico?: NullableStringFieldUpdateOperationsInput | string | null
     aliquota_iss?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null

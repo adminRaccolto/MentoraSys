@@ -7,6 +7,7 @@ import { verificarPermissao, obterEmpresaAtiva } from "@/lib/permissoes";
 import { createClient } from "@/lib/supabase/server";
 import { registrar } from "@/lib/auditoria";
 import { nfsioEmitirNota, nfsioConsultarNota, nfsioCancelarNota } from "@/lib/nfsio";
+import { asaasGetOrCreateCustomer, asaasEmitirNFSe, asaasConsultarNFSe, asaasCancelarNFSe } from "@/lib/asaas";
 import { enviarLembrete } from "@/lib/email";
 
 const schemaCreate = z.object({
@@ -28,6 +29,7 @@ const schemaEmitir = z.object({
   codigo_servico: z.string().optional(),
   aliquota_iss: z.coerce.number().optional(),
   usar_nfsio: z.boolean().optional(),
+  usar_asaas: z.boolean().optional(),
 });
 
 type InputCreate = z.input<typeof schemaCreate>;
@@ -98,6 +100,8 @@ export async function emitirNota(id: string, input: InputEmitir) {
   if (!nota) throw new Error("Nota não encontrada");
 
   let nfsioId: string | null = null;
+  let asaasInvoiceId: string | null = null;
+  let nfseProvider: string | null = null;
   let numeroNfse: string | null = null;
   let pdfUrl: string | null = null;
   let xmlUrl: string | null = null;
@@ -112,31 +116,51 @@ export async function emitirNota(id: string, input: InputEmitir) {
       codigoServico:     data.codigo_servico ?? "6.02",
       aliquotaIss:       data.aliquota_iss ?? 5,
     });
-    nfsioId   = nfse.id;
+    nfsioId    = nfse.id;
+    nfseProvider = "nfsio";
     numeroNfse = nfse.number ?? null;
-    pdfUrl    = nfse.pdfUrl ?? null;
-    xmlUrl    = nfse.xmlUrl ?? null;
+    pdfUrl     = nfse.pdfUrl ?? null;
+    xmlUrl     = nfse.xmlUrl ?? null;
+  } else if (data.usar_asaas && process.env.ASAAS_API_KEY) {
+    const customer = await asaasGetOrCreateCustomer(
+      nota.cliente.nome,
+      nota.cliente.cpf_cnpj ?? undefined,
+      nota.cliente.email ?? undefined,
+    );
+    const invoice = await asaasEmitirNFSe({
+      customerId:    customer.id,
+      valor:         Number(nota.valor),
+      descricao:     nota.descricao,
+      codigoServico: data.codigo_servico || undefined,
+    });
+    asaasInvoiceId = invoice.id;
+    nfseProvider   = "asaas";
+    numeroNfse     = invoice.number ?? null;
+    pdfUrl         = invoice.pdf ?? null;
+    xmlUrl         = invoice.xml ?? null;
   }
 
   await prisma.notaFiscal.update({
     where: { id },
     data: {
-      status:          "EMITIDA",
-      numero:          data.numero || numeroNfse || null,
-      data_emissao:    new Date(data.data_emissao),
-      data_vencimento: data.data_vencimento ? new Date(data.data_vencimento) : null,
-      codigo_servico:  data.codigo_servico || null,
-      aliquota_iss:    data.aliquota_iss ?? null,
-      nfsio_id:        nfsioId,
-      numero_nfse:     numeroNfse,
-      pdf_url:         pdfUrl,
-      xml_url:         xmlUrl,
+      status:           "EMITIDA",
+      numero:           data.numero || numeroNfse || null,
+      data_emissao:     new Date(data.data_emissao),
+      data_vencimento:  data.data_vencimento ? new Date(data.data_vencimento) : null,
+      codigo_servico:   data.codigo_servico || null,
+      aliquota_iss:     data.aliquota_iss ?? null,
+      nfsio_id:         nfsioId,
+      asaas_invoice_id: asaasInvoiceId,
+      nfse_provider:    nfseProvider,
+      numero_nfse:      numeroNfse,
+      pdf_url:          pdfUrl,
+      xml_url:          xmlUrl,
     },
   });
 
-  await registrar({ recurso: "faturamento", acao: "emitir", registroId: id, detalhes: { nfsio: !!nfsioId } });
+  await registrar({ recurso: "faturamento", acao: "emitir", registroId: id, detalhes: { provider: nfseProvider } });
   revalidatePath("/faturamento");
-  return { ok: true, nfsioId, pdfUrl };
+  return { ok: true, nfsioId, asaasInvoiceId, pdfUrl };
 }
 
 export async function consultarStatusNfse(id: string) {
@@ -144,7 +168,23 @@ export async function consultarStatusNfse(id: string) {
   const empresaId = await obterEmpresaAtiva();
 
   const nota = await prisma.notaFiscal.findFirst({ where: { id, empresa_id: empresaId } });
-  if (!nota?.nfsio_id) throw new Error("Esta nota não tem NFS-e emitida via NFSe.io");
+  if (!nota) throw new Error("Nota não encontrada");
+
+  if (nota.nfse_provider === "asaas" && nota.asaas_invoice_id) {
+    const invoice = await asaasConsultarNFSe(nota.asaas_invoice_id);
+    await prisma.notaFiscal.update({
+      where: { id },
+      data: {
+        numero_nfse: invoice.number ?? nota.numero_nfse,
+        pdf_url:     invoice.pdf    ?? nota.pdf_url,
+        xml_url:     invoice.xml    ?? nota.xml_url,
+      },
+    });
+    revalidatePath("/faturamento");
+    return { ok: true, status: invoice.status, pdfUrl: invoice.pdf };
+  }
+
+  if (!nota.nfsio_id) throw new Error("Esta nota não tem NFS-e emitida via NFSe.io");
 
   const nfse = await nfsioConsultarNota(nota.nfsio_id);
   await prisma.notaFiscal.update({
@@ -167,7 +207,9 @@ export async function cancelarNotaNfsio(id: string) {
   const nota = await prisma.notaFiscal.findFirst({ where: { id, empresa_id: empresaId } });
   if (!nota) throw new Error("Nota não encontrada");
 
-  if (nota.nfsio_id) {
+  if (nota.nfse_provider === "asaas" && nota.asaas_invoice_id) {
+    try { await asaasCancelarNFSe(nota.asaas_invoice_id); } catch { /* ignora */ }
+  } else if (nota.nfsio_id) {
     try { await nfsioCancelarNota(nota.nfsio_id); } catch { /* ignora */ }
   }
 

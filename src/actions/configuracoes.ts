@@ -103,12 +103,15 @@ export async function atualizarEmpresa(input: EmpresaInput) {
 
   const { nome, cnpj, ...extra } = data;
 
+  const atual = await prisma.empresa.findUnique({ where: { id: empresaId }, select: { configuracoes: true } });
+  const configAtual = (atual?.configuracoes as Record<string, unknown>) ?? {};
+
   await prisma.empresa.update({
     where: { id: empresaId },
     data: {
       nome,
       cnpj: cnpj || null,
-      configuracoes: extra,
+      configuracoes: { ...configAtual, ...extra },
     },
   });
 
@@ -168,6 +171,100 @@ export async function salvarAvatarUrl(url: string) {
   await prisma.usuario.update({
     where: { id: user.id },
     data: { avatar_url: url },
+  });
+
+  revalidatePath("/configuracoes");
+  return { ok: true };
+}
+
+// ─── Configurações Fiscais ─────────────────────────────────────────────────────
+
+const schemaFiscal = z.object({
+  inscricao_municipal: z.string().optional(),
+  municipio_ibge: z.string().optional(),
+  regime_tributario: z.string().optional(),
+  codigo_servico_padrao: z.string().optional(),
+  aliquota_iss_padrao: z.coerce.number().min(0).max(100).optional(),
+  senha_certificado: z.string().optional(),
+});
+
+type FiscalInput = z.infer<typeof schemaFiscal>;
+
+export async function salvarConfigFiscal(input: FiscalInput) {
+  const empresaId = await obterEmpresaAtiva();
+  const data = schemaFiscal.parse(input);
+
+  const atual = await prisma.empresa.findUnique({ where: { id: empresaId }, select: { configuracoes: true } });
+  const configAtual = (atual?.configuracoes as Record<string, unknown>) ?? {};
+
+  await prisma.empresa.update({
+    where: { id: empresaId },
+    data: {
+      configuracoes: {
+        ...configAtual,
+        inscricao_municipal: data.inscricao_municipal ?? "",
+        municipio_ibge: data.municipio_ibge ?? "",
+        regime_tributario: data.regime_tributario ?? "",
+        codigo_servico_padrao: data.codigo_servico_padrao ?? "",
+        aliquota_iss_padrao: data.aliquota_iss_padrao ?? null,
+        ...(data.senha_certificado !== undefined ? { senha_certificado: data.senha_certificado } : {}),
+      },
+    },
+  });
+
+  revalidatePath("/configuracoes");
+  return { ok: true };
+}
+
+export async function uploadCertificadoAction(formData: FormData) {
+  const empresaId = await obterEmpresaAtiva();
+  const file = formData.get("file") as File | null;
+  if (!file) return { ok: false as const, error: "Nenhum arquivo" };
+
+  if (!file.name.toLowerCase().endsWith(".pfx") && !file.name.toLowerCase().endsWith(".p12")) {
+    return { ok: false as const, error: "Formato inválido. Use .pfx ou .p12" };
+  }
+  if (file.size > 5 * 1024 * 1024) {
+    return { ok: false as const, error: "Arquivo muito grande. Máximo 5 MB." };
+  }
+
+  const path = `${empresaId}/certificado.pfx`;
+  const buffer = Buffer.from(await file.arrayBuffer());
+
+  const admin = adminClient();
+  const { data, error } = await admin.storage
+    .from("certificados")
+    .upload(path, buffer, { upsert: true, contentType: "application/x-pkcs12" });
+
+  if (error) return { ok: false as const, error: error.message };
+
+  const atual = await prisma.empresa.findUnique({ where: { id: empresaId }, select: { configuracoes: true } });
+  const configAtual = (atual?.configuracoes as Record<string, unknown>) ?? {};
+
+  await prisma.empresa.update({
+    where: { id: empresaId },
+    data: { configuracoes: { ...configAtual, certificado_path: data.path } },
+  });
+
+  revalidatePath("/configuracoes");
+  return { ok: true as const };
+}
+
+export async function removerCertificado() {
+  const empresaId = await obterEmpresaAtiva();
+
+  const admin = adminClient();
+  await admin.storage.from("certificados").remove([`${empresaId}/certificado.pfx`]);
+
+  const atual = await prisma.empresa.findUnique({ where: { id: empresaId }, select: { configuracoes: true } });
+  const configAtual = (atual?.configuracoes as Record<string, unknown>) ?? {};
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { certificado_path: _removed, ...resto } = configAtual;
+
+  await prisma.empresa.update({
+    where: { id: empresaId },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    data: { configuracoes: resto as any },
   });
 
   revalidatePath("/configuracoes");

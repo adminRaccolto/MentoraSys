@@ -63,3 +63,37 @@ export async function asaasGetBarCode(paymentId: string): Promise<AsaasBarCode> 
 export async function asaasCancelPayment(paymentId: string): Promise<void> {
   await req("DELETE", `/payments/${paymentId}`);
 }
+
+// ─── NFS-e ────────────────────────────────────────────────────────────────────
+
+export interface AsaasInvoice {
+  id: string;
+  status: string; // RECEIVED | SYNCHRONIZED | CANCELLED | ERROR
+  number?: string;
+  pdf?: string;
+  xml?: string;
+}
+
+export async function asaasEmitirNFSe(params: {
+  customerId: string;
+  valor: number;
+  descricao: string;
+  codigoServico?: string;
+  paymentId?: string;
+}): Promise<AsaasInvoice> {
+  return req<AsaasInvoice>("POST", "/invoices", {
+    customer: params.customerId,
+    serviceDescription: params.descricao,
+    value: params.valor,
+    ...(params.codigoServico ? { municipalServiceCode: params.codigoServico } : {}),
+    ...(params.paymentId ? { payment: params.paymentId } : {}),
+  });
+}
+
+export async function asaasConsultarNFSe(invoiceId: string): Promise<AsaasInvoice> {
+  return req<AsaasInvoice>("GET", `/invoices/${invoiceId}`);
+}
+
+export async function asaasCancelarNFSe(invoiceId: string): Promise<void> {
+  await req("DELETE", `/invoices/${invoiceId}`);
+}

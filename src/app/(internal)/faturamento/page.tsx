@@ -29,7 +29,7 @@ export default async function FaturamentoPage({
   if (params.cliente_id) where.cliente_id = params.cliente_id;
   if (params.status) where.status = params.status;
 
-  const [notas, clientes, contratos, kpis] = await Promise.all([
+  const [notas, clientes, contratos, kpis, empresa] = await Promise.all([
     prisma.notaFiscal.findMany({
       where,
       include: {
@@ -54,17 +54,24 @@ export default async function FaturamentoPage({
       _sum: { valor: true },
       _count: { id: true },
     }),
+    prisma.empresa.findUnique({
+      where: { id: empresaId },
+      select: { configuracoes: true },
+    }),
   ]);
 
   const kpiMap = Object.fromEntries(
     kpis.map((k) => [k.status, { valor: Number(k._sum.valor ?? 0), count: k._count.id }])
   );
 
+  const config = (empresa?.configuracoes as Record<string, unknown>) ?? {};
+
   return (
     <FaturamentoClient
       notas={notas.map((n) => ({
         ...n,
         valor: Number(n.valor),
+        aliquota_iss: n.aliquota_iss ? Number(n.aliquota_iss) : null,
         competencia: n.competencia.toISOString(),
         data_emissao: n.data_emissao?.toISOString() ?? null,
         data_vencimento: n.data_vencimento?.toISOString() ?? null,
@@ -72,6 +79,8 @@ export default async function FaturamentoPage({
         atualizado_em: n.atualizado_em.toISOString(),
         numero_nfse: n.numero_nfse ?? null,
         nfsio_id: n.nfsio_id ?? null,
+        asaas_invoice_id: n.asaas_invoice_id ?? null,
+        nfse_provider: n.nfse_provider ?? null,
         pdf_url: n.pdf_url ?? null,
         email_enviado: n.email_enviado,
       }))}
@@ -83,6 +92,10 @@ export default async function FaturamentoPage({
       filtros={{
         cliente_id: params.cliente_id ?? "",
         status: params.status ?? "",
+      }}
+      configFiscal={{
+        codigo_servico_padrao: (config.codigo_servico_padrao as string) ?? "",
+        aliquota_iss_padrao: config.aliquota_iss_padrao != null ? Number(config.aliquota_iss_padrao) : null,
       }}
     />
   );

@@ -56,10 +56,14 @@ interface Nota {
   numero: string | null;
   numero_nfse: string | null;
   nfsio_id: string | null;
+  asaas_invoice_id: string | null;
+  nfse_provider: string | null;
   pdf_url: string | null;
   email_enviado: boolean;
   competencia: string;
   valor: number;
+  aliquota_iss: number | null;
+  codigo_servico: string | null;
   descricao: string;
   status: "PENDENTE" | "EMITIDA" | "PAGA" | "CANCELADA";
   data_emissao: string | null;
@@ -84,6 +88,7 @@ interface Props {
   mes: number;
   ano: number;
   filtros: { cliente_id: string; status: string };
+  configFiscal: { codigo_servico_padrao: string; aliquota_iss_padrao: number | null };
 }
 
 const schemaCreate = z.object({
@@ -104,6 +109,7 @@ const schemaEmitir = z.object({
   data_emissao: z.string().min(1, "Data de emissão obrigatória"),
   data_vencimento: z.string().optional(),
   usar_nfsio: z.boolean().optional(),
+  usar_asaas: z.boolean().optional(),
   codigo_servico: z.string().optional(),
   aliquota_iss: z.coerce.number().optional(),
 });
@@ -140,6 +146,7 @@ export default function FaturamentoClient({
   mes,
   ano,
   filtros,
+  configFiscal,
 }: Props) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
@@ -442,7 +449,13 @@ export default function FaturamentoClient({
                           className="h-7 px-2 text-xs text-blue-600 hover:text-blue-700"
                           disabled={isPending}
                           onClick={() => {
-                            formEmitir.reset({ numero: "", data_emissao: "", data_vencimento: "" });
+                            formEmitir.reset({
+                              numero: "",
+                              data_emissao: "",
+                              data_vencimento: "",
+                              codigo_servico: nota.codigo_servico ?? configFiscal.codigo_servico_padrao ?? "",
+                              aliquota_iss: nota.aliquota_iss ?? configFiscal.aliquota_iss_padrao ?? undefined,
+                            });
                             setModalEmitir(nota);
                           }}
                         >
@@ -655,24 +668,47 @@ export default function FaturamentoClient({
               </div>
             </div>
 
-            {/* NFSe.io */}
+            {/* Emissão eletrônica */}
             <div className="rounded-md border p-3 space-y-3">
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Emissão eletrônica de NFS-e</p>
+
               <div className="flex items-center gap-2">
                 <input
                   type="checkbox"
                   id="usar_nfsio"
                   className="accent-primary"
                   {...formEmitir.register("usar_nfsio")}
+                  onChange={(e) => {
+                    formEmitir.setValue("usar_nfsio", e.target.checked);
+                    if (e.target.checked) formEmitir.setValue("usar_asaas", false);
+                  }}
                 />
                 <label htmlFor="usar_nfsio" className="text-sm font-medium cursor-pointer">
                   Emitir NFS-e via NFSe.io
                 </label>
               </div>
-              {formEmitir.watch("usar_nfsio") && (
-                <div className="grid grid-cols-2 gap-3">
+
+              <div className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  id="usar_asaas"
+                  className="accent-primary"
+                  {...formEmitir.register("usar_asaas")}
+                  onChange={(e) => {
+                    formEmitir.setValue("usar_asaas", e.target.checked);
+                    if (e.target.checked) formEmitir.setValue("usar_nfsio", false);
+                  }}
+                />
+                <label htmlFor="usar_asaas" className="text-sm font-medium cursor-pointer">
+                  Emitir NFS-e via Asaas
+                </label>
+              </div>
+
+              {(formEmitir.watch("usar_nfsio") || formEmitir.watch("usar_asaas")) && (
+                <div className="grid grid-cols-2 gap-3 pt-1">
                   <div className="space-y-1">
                     <Label className="text-xs">Código do serviço (LC 116)</Label>
-                    <Input {...formEmitir.register("codigo_servico")} placeholder="Ex.: 6.02" className="h-8 text-sm" />
+                    <Input {...formEmitir.register("codigo_servico")} placeholder="Ex.: 17.01" className="h-8 text-sm" />
                   </div>
                   <div className="space-y-1">
                     <Label className="text-xs">Alíquota ISS (%)</Label>

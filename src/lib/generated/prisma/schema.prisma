@@ -1031,6 +1031,8 @@ model NotaFiscal {
   atualizado_em   DateTime   @updatedAt
 
   nfsio_id         String?
+  asaas_invoice_id String?
+  nfse_provider    String? // 'nfsio' | 'asaas'
   numero_nfse      String?
   codigo_servico   String?
   aliquota_iss     Decimal?  @db.Decimal(5, 2)

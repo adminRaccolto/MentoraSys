@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Settings, Building2, User, Upload, Trash2, ImageIcon, Loader2, Users, UserPlus, Mail, MoreVertical, X, ShieldCheck, Plus, Check, ChevronRight } from "lucide-react";
+import { Settings, Building2, User, Upload, Trash2, ImageIcon, Loader2, Users, UserPlus, Mail, MoreVertical, X, ShieldCheck, Plus, Check, ChevronRight, FileKey2, KeyRound } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -34,6 +34,9 @@ import {
   salvarAvatarUrl,
   uploadLogoAction,
   uploadAvatarAction,
+  salvarConfigFiscal,
+  uploadCertificadoAction,
+  removerCertificado,
 } from "@/actions/configuracoes";
 import { convidarMembro, removerMembro, alterarPerfilMembro, cancelarConvite, criarUsuarioDireto } from "@/actions/equipe";
 import { criarPerfil, editarPerfil, excluirPerfil } from "@/actions/perfis";
@@ -77,8 +80,18 @@ const schemaPerfil = z.object({
   nome: z.string().min(2, "Nome obrigatório"),
 });
 
+const schemaFiscal = z.object({
+  inscricao_municipal: z.string().optional(),
+  municipio_ibge: z.string().optional(),
+  regime_tributario: z.string().optional(),
+  codigo_servico_padrao: z.string().optional(),
+  aliquota_iss_padrao: z.coerce.number().min(0).max(100).optional(),
+  senha_certificado: z.string().optional(),
+});
+
 type EmpresaForm = z.input<typeof schemaEmpresa>;
 type PerfilForm = z.input<typeof schemaPerfil>;
+type FiscalForm = z.input<typeof schemaFiscal>;
 
 interface MembroItem {
   id: string;
@@ -121,6 +134,13 @@ interface Props {
     representante: string;
     representante_cargo: string;
     representante_cpf: string;
+    // fiscal
+    inscricao_municipal: string;
+    municipio_ibge: string;
+    regime_tributario: string;
+    codigo_servico_padrao: string;
+    aliquota_iss_padrao: number | null;
+    certificado_path: string;
   };
   usuario: {
     id: string;
@@ -303,6 +323,10 @@ function ImageUploadZone({
 export default function ConfiguracoesClient({ empresa, usuario, membros: membrosInicial, perfis: perfisInicial, convitesPendentes: convitesInicial, usuarioAtualId, empresaAtualId, minhasEmpresas: minhasEmpresasInicial }: Props) {
   const [isPendingEmpresa, startEmpresa] = useTransition();
   const [isPendingPerfil, startPerfil] = useTransition();
+  const [isPendingFiscal, startFiscal] = useTransition();
+  const [temCertificado, setTemCertificado] = useState(!!empresa.certificado_path);
+  const [uploadandoCert, setUploadandoCert] = useState(false);
+  const certInputRef = useRef<HTMLInputElement>(null);
 
   // Equipe
   const [membros, setMembros] = useState(membrosInicial);
@@ -451,6 +475,58 @@ export default function ConfiguracoesClient({ empresa, usuario, membros: membros
     });
   });
 
+  const formFiscal = useForm<FiscalForm>({
+    resolver: zodResolver(schemaFiscal),
+    defaultValues: {
+      inscricao_municipal: empresa.inscricao_municipal,
+      municipio_ibge: empresa.municipio_ibge,
+      regime_tributario: empresa.regime_tributario,
+      codigo_servico_padrao: empresa.codigo_servico_padrao,
+      aliquota_iss_padrao: empresa.aliquota_iss_padrao ?? undefined,
+      senha_certificado: "",
+    },
+  });
+
+  const onSubmitFiscal = formFiscal.handleSubmit((data) => {
+    startFiscal(async () => {
+      try {
+        await salvarConfigFiscal({
+          ...data,
+          aliquota_iss_padrao: data.aliquota_iss_padrao != null ? Number(data.aliquota_iss_padrao) : undefined,
+        });
+        toast.success("Configurações fiscais salvas");
+      } catch {
+        toast.error("Erro ao salvar configurações fiscais");
+      }
+    });
+  });
+
+  const handleCertUpload = async (file: File) => {
+    setUploadandoCert(true);
+    try {
+      const fd = new FormData();
+      fd.append("file", file);
+      const res = await uploadCertificadoAction(fd);
+      if (!res.ok) throw new Error((res as { error?: string }).error ?? "Erro no upload");
+      setTemCertificado(true);
+      toast.success("Certificado digital enviado com sucesso");
+    } catch (e: unknown) {
+      toast.error(e instanceof Error ? e.message : "Erro no upload do certificado");
+    } finally {
+      setUploadandoCert(false);
+    }
+  };
+
+  const handleCertRemove = async () => {
+    try {
+      await removerCertificado();
+      setTemCertificado(false);
+      toast.success("Certificado removido");
+    } catch {
+      toast.error("Erro ao remover certificado");
+    }
+  };
+
   return (
     <div className="p-6 space-y-8 max-w-4xl">
       <div className="flex items-center gap-2">
@@ -552,6 +628,130 @@ export default function ConfiguracoesClient({ empresa, usuario, membros: membros
             <div className="flex justify-end">
               <Button type="submit" disabled={isPendingEmpresa}>
                 {isPendingEmpresa ? "Salvando..." : "Salvar dados da empresa"}
+              </Button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      {/* ── Configurações Fiscais ── */}
+      <section className="rounded-xl border bg-card">
+        <div className="px-6 py-4 border-b flex items-center gap-2">
+          <FileKey2 className="size-4 text-primary" />
+          <h2 className="font-semibold">Configurações Fiscais (NFS-e)</h2>
+        </div>
+
+        <div className="px-6 py-6 space-y-6">
+          <form onSubmit={onSubmitFiscal} className="space-y-6">
+            <div>
+              <p className="text-xs font-semibold text-primary uppercase tracking-widest mb-3">Dados para Emissão de NFS-e</p>
+              <div className="grid grid-cols-2 gap-4">
+                <Field label="Inscrição Municipal">
+                  <Input {...formFiscal.register("inscricao_municipal")} className="h-9 text-sm" placeholder="Número de inscrição no município" />
+                </Field>
+                <Field label="Código IBGE do Município">
+                  <Input {...formFiscal.register("municipio_ibge")} className="h-9 text-sm" placeholder="Ex: 5103403 (Cuiabá)" />
+                </Field>
+                <Field label="Regime Tributário">
+                  <Select
+                    value={formFiscal.watch("regime_tributario") ?? ""}
+                    onValueChange={(v) => formFiscal.setValue("regime_tributario", v ?? undefined)}
+                  >
+                    <SelectTrigger className="h-9 text-sm">
+                      <SelectValue placeholder="Selecione o regime" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="SIMPLES_NACIONAL">Simples Nacional</SelectItem>
+                      <SelectItem value="LUCRO_PRESUMIDO">Lucro Presumido</SelectItem>
+                      <SelectItem value="LUCRO_REAL">Lucro Real</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </Field>
+                <div /> {/* spacer */}
+                <Field label="Código de Serviço Padrão (LC 116)">
+                  <Input {...formFiscal.register("codigo_servico_padrao")} className="h-9 text-sm" placeholder="Ex: 17.01" />
+                </Field>
+                <Field label="Alíquota ISS Padrão (%)">
+                  <Input {...formFiscal.register("aliquota_iss_padrao")} type="number" step="0.01" min={0} max={100} className="h-9 text-sm" placeholder="Ex: 5" />
+                </Field>
+              </div>
+            </div>
+
+            <Separator />
+
+            {/* Certificado Digital */}
+            <div>
+              <p className="text-xs font-semibold text-primary uppercase tracking-widest mb-3">Certificado Digital A1</p>
+              <div className="space-y-4">
+                <div className="flex items-center gap-4 p-4 rounded-lg border bg-muted/20">
+                  <KeyRound className="size-8 text-muted-foreground shrink-0" />
+                  <div className="flex-1 min-w-0">
+                    {temCertificado ? (
+                      <>
+                        <p className="text-sm font-medium flex items-center gap-1.5">
+                          <Check className="size-4 text-green-600" />
+                          Certificado enviado
+                        </p>
+                        <p className="text-xs text-muted-foreground mt-0.5">Arquivo .pfx armazenado com segurança</p>
+                      </>
+                    ) : (
+                      <>
+                        <p className="text-sm font-medium text-muted-foreground">Nenhum certificado enviado</p>
+                        <p className="text-xs text-muted-foreground mt-0.5">Envie seu certificado A1 (.pfx ou .p12) para emissão de NFS-e</p>
+                      </>
+                    )}
+                  </div>
+                  <div className="flex gap-2 shrink-0">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      className="h-8 text-xs"
+                      disabled={uploadandoCert}
+                      onClick={() => certInputRef.current?.click()}
+                    >
+                      {uploadandoCert ? <Loader2 className="size-3 animate-spin mr-1" /> : <Upload className="size-3 mr-1" />}
+                      {temCertificado ? "Substituir" : "Enviar"}
+                    </Button>
+                    {temCertificado && (
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 text-xs text-destructive hover:text-destructive"
+                        onClick={handleCertRemove}
+                      >
+                        <Trash2 className="size-3 mr-1" />
+                        Remover
+                      </Button>
+                    )}
+                  </div>
+                  <input
+                    ref={certInputRef}
+                    type="file"
+                    className="hidden"
+                    accept=".pfx,.p12"
+                    onChange={(e) => { const f = e.target.files?.[0]; if (f) handleCertUpload(f); }}
+                  />
+                </div>
+
+                {temCertificado && (
+                  <Field label="Senha do Certificado">
+                    <Input
+                      {...formFiscal.register("senha_certificado")}
+                      type="password"
+                      className="h-9 text-sm"
+                      placeholder="Senha do arquivo .pfx"
+                      autoComplete="new-password"
+                    />
+                  </Field>
+                )}
+              </div>
+            </div>
+
+            <div className="flex justify-end">
+              <Button type="submit" disabled={isPendingFiscal}>
+                {isPendingFiscal ? "Salvando..." : "Salvar configurações fiscais"}
               </Button>
             </div>
           </form>

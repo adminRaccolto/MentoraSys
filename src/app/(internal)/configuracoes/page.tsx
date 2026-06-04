@@ -88,6 +88,12 @@ export default async function ConfiguracoesPage() {
         representante: config.representante ?? "",
         representante_cargo: config.representante_cargo ?? "",
         representante_cpf: config.representante_cpf ?? "",
+        inscricao_municipal: config.inscricao_municipal ?? "",
+        municipio_ibge: config.municipio_ibge ?? "",
+        regime_tributario: config.regime_tributario ?? "",
+        codigo_servico_padrao: config.codigo_servico_padrao ?? "",
+        aliquota_iss_padrao: config.aliquota_iss_padrao != null ? Number(config.aliquota_iss_padrao) : null,
+        certificado_path: config.certificado_path ?? "",
       }}
       usuario={usuario ? {
         id: usuario.id,

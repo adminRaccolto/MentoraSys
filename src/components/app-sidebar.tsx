@@ -28,6 +28,7 @@ import {
   ListTree,
   ArrowLeftRight,
   Settings,
+  Landmark,
 } from "lucide-react";
 import NotificacoesBell from "@/components/notificacoes-bell";
 import { type Notificacao } from "@/hooks/useNotificacoes";
@@ -65,6 +66,7 @@ const NAV_FINANCEIRO = [
   { label: "Contas a Pagar", href: "/financeiro/contas-a-pagar",  icon: ArrowUpCircle },
   { label: "Fluxo de Caixa", href: "/financeiro/fluxo-de-caixa",  icon: BarChart2 },
   { label: "Tesouraria",    href: "/financeiro/tesouraria",       icon: ArrowLeftRight },
+  { label: "Contas Bancárias", href: "/financeiro/contas-bancarias", icon: Landmark },
   { label: "Plano de Contas", href: "/plano-contas",              icon: ListTree },
 ];
 
