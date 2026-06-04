@@ -321,3 +321,42 @@ export async function gerarRecebivel(id: string) {
   revalidatePath("/financeiro/recebiveis");
   return { ok: true, recebivelId: recebivel.id };
 }
+
+export async function gerarNFdeRecebivel(recebivelId: string) {
+  await verificarPermissao("faturamento", "criar");
+  const empresaId = await obterEmpresaAtiva();
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  const recebivel = await prisma.recebivel.findFirst({
+    where: { id: recebivelId, empresa_id: empresaId },
+    include: { nota_fiscal: { select: { id: true } } },
+  });
+  if (!recebivel) throw new Error("Recebível não encontrado");
+  if (recebivel.nota_fiscal) throw new Error("Este recebível já possui uma nota fiscal vinculada");
+  if (!recebivel.cliente_id) throw new Error("Recebível sem cliente vinculado");
+
+  const competencia = new Date(recebivel.data_vencimento);
+  competencia.setDate(1);
+
+  const nota = await prisma.notaFiscal.create({
+    data: {
+      empresa_id: empresaId,
+      criado_por: user?.id,
+      cliente_id: recebivel.cliente_id,
+      contrato_id: recebivel.contrato_id ?? null,
+      recebivel_id: recebivel.id,
+      descricao: recebivel.descricao,
+      valor: recebivel.valor,
+      competencia,
+      data_vencimento: recebivel.data_vencimento,
+      observacoes: recebivel.numero_parcela
+        ? `Parcela ${recebivel.numero_parcela}${recebivel.total_parcelas ? `/${recebivel.total_parcelas}` : ""}`
+        : null,
+    },
+  });
+
+  await registrar({ recurso: "faturamento", acao: "gerar_nf_recebivel", registroId: nota.id, detalhes: { recebivelId } });
+  revalidatePath("/faturamento");
+  return { ok: true, notaId: nota.id };
+}

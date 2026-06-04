@@ -29,7 +29,7 @@ export default async function FaturamentoPage({
   if (params.cliente_id) where.cliente_id = params.cliente_id;
   if (params.status) where.status = params.status;
 
-  const [notas, clientes, contratos, kpis, empresa] = await Promise.all([
+  const [notas, recebiveis, clientes, contratos, kpis, empresa] = await Promise.all([
     prisma.notaFiscal.findMany({
       where,
       include: {
@@ -37,6 +37,21 @@ export default async function FaturamentoPage({
         contrato: { select: { id: true, titulo: true } },
       },
       orderBy: { criado_em: "desc" },
+    }),
+    // recebíveis com vencimento no mês que ainda não têm NF
+    prisma.recebivel.findMany({
+      where: {
+        empresa_id: empresaId,
+        data_vencimento: { gte: inicioMes, lte: fimMes },
+        status: { in: ["PENDENTE", "VENCIDO", "PARCIAL"] },
+        nota_fiscal: null,
+        cliente_id: { not: null },
+      },
+      include: {
+        cliente: { select: { id: true, nome: true } },
+        contrato: { select: { id: true, titulo: true } },
+      },
+      orderBy: { data_vencimento: "asc" },
     }),
     prisma.cliente.findMany({
       where: { empresa_id: empresaId, status: "ATIVO" },
@@ -83,6 +98,20 @@ export default async function FaturamentoPage({
         nfse_provider: n.nfse_provider ?? null,
         pdf_url: n.pdf_url ?? null,
         email_enviado: n.email_enviado,
+        recebivel_id: n.recebivel_id ?? null,
+      }))}
+      recebiveis={recebiveis.map((r) => ({
+        id: r.id,
+        descricao: r.descricao,
+        valor: Number(r.valor),
+        data_vencimento: r.data_vencimento.toISOString(),
+        status: r.status,
+        numero_parcela: r.numero_parcela,
+        total_parcelas: r.total_parcelas,
+        cliente_id: r.cliente_id!,
+        contrato_id: r.contrato_id ?? null,
+        cliente: r.cliente!,
+        contrato: r.contrato ?? null,
       }))}
       clientes={clientes}
       contratos={contratos}

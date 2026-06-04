@@ -880,6 +880,7 @@ model Recebivel {
   conta_bancaria ContaBancaria? @relation(fields: [conta_bancaria_id], references: [id])
   criador        Usuario?       @relation("RecebiveisCriados", fields: [criado_por], references: [id])
   boleto         Boleto?
+  nota_fiscal    NotaFiscal?
 
   @@map("recebiveis")
 }
@@ -1030,6 +1031,7 @@ model NotaFiscal {
   criado_em       DateTime   @default(now())
   atualizado_em   DateTime   @updatedAt
 
+  recebivel_id     String?   @unique
   nfsio_id         String?
   asaas_invoice_id String?
   nfse_provider    String?   // 'nfsio' | 'asaas'
@@ -1041,9 +1043,10 @@ model NotaFiscal {
   email_enviado    Boolean    @default(false)
   email_enviado_em DateTime?
 
-  empresa  Empresa   @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
-  cliente  Cliente   @relation(fields: [cliente_id], references: [id])
-  contrato Contrato? @relation(fields: [contrato_id], references: [id])
+  empresa   Empresa    @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  cliente   Cliente    @relation(fields: [cliente_id], references: [id])
+  contrato  Contrato?  @relation(fields: [contrato_id], references: [id])
+  recebivel Recebivel? @relation(fields: [recebivel_id], references: [id])
 
   @@map("notas_fiscais")
 }

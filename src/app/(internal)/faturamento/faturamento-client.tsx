@@ -19,6 +19,9 @@ import {
   FileDown,
   Mail,
   RefreshCw,
+  FilePlus2,
+  Clock,
+  AlertCircle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -49,6 +52,7 @@ import {
   gerarRecebivel,
   enviarNotaPorEmail,
   consultarStatusNfse,
+  gerarNFdeRecebivel,
 } from "@/actions/faturamento";
 
 interface Nota {
@@ -71,6 +75,21 @@ interface Nota {
   observacoes: string | null;
   cliente_id: string;
   contrato_id: string | null;
+  recebivel_id: string | null;
+  cliente: { id: string; nome: string };
+  contrato: { id: string; titulo: string } | null;
+}
+
+interface Recebivel {
+  id: string;
+  descricao: string;
+  valor: number;
+  data_vencimento: string;
+  status: string;
+  numero_parcela: number | null;
+  total_parcelas: number | null;
+  cliente_id: string;
+  contrato_id: string | null;
   cliente: { id: string; nome: string };
   contrato: { id: string; titulo: string } | null;
 }
@@ -82,6 +101,7 @@ interface KpiData {
 
 interface Props {
   notas: Nota[];
+  recebiveis: Recebivel[];
   clientes: { id: string; nome: string }[];
   contratos: { id: string; titulo: string }[];
   kpis: Record<string, KpiData>;
@@ -140,6 +160,7 @@ function fmtMoney(v: number) {
 
 export default function FaturamentoClient({
   notas,
+  recebiveis,
   clientes,
   contratos,
   kpis,
@@ -150,6 +171,7 @@ export default function FaturamentoClient({
 }: Props) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
+  const [aba, setAba] = useState<"a-faturar" | "faturadas">("a-faturar");
   const [modalAberto, setModalAberto] = useState(false);
   const [notaEditando, setNotaEditando] = useState<Nota | null>(null);
   const [modalEmitir, setModalEmitir] = useState<Nota | null>(null);
@@ -291,6 +313,19 @@ export default function FaturamentoClient({
     });
   };
 
+  const handleGerarNF = (recebivelId: string) => {
+    startTransition(async () => {
+      try {
+        await gerarNFdeRecebivel(recebivelId);
+        toast.success("Nota fiscal criada — edite e emita quando pronto");
+        setAba("faturadas");
+        router.refresh();
+      } catch (e: unknown) {
+        toast.error(e instanceof Error ? e.message : "Erro ao gerar nota fiscal");
+      }
+    });
+  };
+
   const totalFaturado = notas
     .filter((n) => n.status !== "CANCELADA")
     .reduce((s, n) => s + n.valor, 0);
@@ -334,6 +369,131 @@ export default function FaturamentoClient({
           </div>
         ))}
       </div>
+
+      {/* Abas flutuantes */}
+      <div className="flex gap-1 border-b border-border">
+        <button
+          onClick={() => setAba("a-faturar")}
+          className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium border-b-2 transition-colors ${
+            aba === "a-faturar"
+              ? "border-primary text-primary"
+              : "border-transparent text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          <Clock className="size-4" />
+          A Faturar
+          {recebiveis.length > 0 && (
+            <span className="ml-1 inline-flex items-center justify-center rounded-full bg-amber-100 text-amber-700 text-xs font-semibold px-1.5 py-0.5 min-w-[1.25rem]">
+              {recebiveis.length}
+            </span>
+          )}
+        </button>
+        <button
+          onClick={() => setAba("faturadas")}
+          className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium border-b-2 transition-colors ${
+            aba === "faturadas"
+              ? "border-primary text-primary"
+              : "border-transparent text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          <Receipt className="size-4" />
+          Faturadas
+          {notas.length > 0 && (
+            <span className="ml-1 inline-flex items-center justify-center rounded-full bg-slate-100 text-slate-600 text-xs font-semibold px-1.5 py-0.5 min-w-[1.25rem]">
+              {notas.length}
+            </span>
+          )}
+        </button>
+      </div>
+
+      {/* ── ABA: A Faturar ──────────────────────────────────────────────── */}
+      {aba === "a-faturar" && (
+        <div className="space-y-4">
+          {recebiveis.length === 0 ? (
+            <div className="border border-border rounded-lg p-12 text-center bg-card">
+              <CheckCircle className="size-10 text-emerald-500 mx-auto mb-3" />
+              <p className="font-medium text-foreground">Tudo faturado!</p>
+              <p className="text-sm text-muted-foreground mt-1">
+                Nenhum recebível pendente de NF neste mês.
+              </p>
+            </div>
+          ) : (
+            <div className="border border-border rounded-lg overflow-hidden bg-card">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-border bg-muted/40">
+                    <th className="text-left px-4 py-3 font-medium text-muted-foreground">Cliente</th>
+                    <th className="text-left px-4 py-3 font-medium text-muted-foreground">Descrição / Contrato</th>
+                    <th className="text-left px-4 py-3 font-medium text-muted-foreground">Parcela</th>
+                    <th className="text-left px-4 py-3 font-medium text-muted-foreground">Vencimento</th>
+                    <th className="text-right px-4 py-3 font-medium text-muted-foreground">Valor</th>
+                    <th className="text-left px-4 py-3 font-medium text-muted-foreground">Status</th>
+                    <th className="w-28" />
+                  </tr>
+                </thead>
+                <tbody>
+                  {recebiveis.map((r) => (
+                    <tr key={r.id} className="border-b border-border last:border-0 hover:bg-muted/20 transition-colors">
+                      <td className="px-4 py-3 font-medium">{r.cliente.nome}</td>
+                      <td className="px-4 py-3 text-muted-foreground">
+                        <span className="block">{r.descricao}</span>
+                        {r.contrato && (
+                          <span className="text-xs text-primary/70">{r.contrato.titulo}</span>
+                        )}
+                      </td>
+                      <td className="px-4 py-3 text-muted-foreground">
+                        {r.numero_parcela
+                          ? `${r.numero_parcela}${r.total_parcelas ? `/${r.total_parcelas}` : ""}`
+                          : "—"}
+                      </td>
+                      <td className="px-4 py-3 text-muted-foreground">
+                        {new Date(r.data_vencimento).toLocaleDateString("pt-BR")}
+                        {new Date(r.data_vencimento) < new Date() && (
+                          <AlertCircle className="size-3.5 text-destructive inline ml-1" />
+                        )}
+                      </td>
+                      <td className="px-4 py-3 text-right font-medium">{fmtMoney(r.valor)}</td>
+                      <td className="px-4 py-3">
+                        <Badge
+                          variant="outline"
+                          className={
+                            r.status === "VENCIDO"
+                              ? "bg-red-50 text-red-700 border-0 text-xs"
+                              : "bg-slate-50 text-slate-600 border-0 text-xs"
+                          }
+                        >
+                          {r.status === "VENCIDO" ? "Vencido" : "Pendente"}
+                        </Badge>
+                      </td>
+                      <td className="px-4 py-3">
+                        <Button
+                          size="sm"
+                          className="h-7 text-xs gap-1"
+                          disabled={isPending}
+                          onClick={() => handleGerarNF(r.id)}
+                        >
+                          <FilePlus2 className="size-3.5" />
+                          Gerar NF
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <div className="px-4 py-3 border-t border-border bg-muted/20 flex justify-between items-center text-sm">
+                <span className="text-muted-foreground">{recebiveis.length} recebível{recebiveis.length !== 1 ? "s" : ""} a faturar</span>
+                <span className="font-semibold">
+                  Total: {fmtMoney(recebiveis.reduce((s, r) => s + r.valor, 0))}
+                </span>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* ── ABA: Faturadas ──────────────────────────────────────────────── */}
+      {aba === "faturadas" && (
+        <div className="space-y-4">
 
       {/* Filtros */}
       <div className="flex flex-wrap items-end gap-3">
@@ -546,6 +706,8 @@ export default function FaturamentoClient({
           </table>
         )}
       </div>
+      </div>
+      )}
 
       {/* Modal criar/editar nota */}
       <Dialog open={modalAberto} onOpenChange={setModalAberto}>

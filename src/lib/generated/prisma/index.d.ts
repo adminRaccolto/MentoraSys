@@ -46596,6 +46596,7 @@ export namespace Prisma {
     conta_bancaria?: boolean | Recebivel$conta_bancariaArgs<ExtArgs>
     criador?: boolean | Recebivel$criadorArgs<ExtArgs>
     boleto?: boolean | Recebivel$boletoArgs<ExtArgs>
+    nota_fiscal?: boolean | Recebivel$nota_fiscalArgs<ExtArgs>
   }, ExtArgs["result"]["recebivel"]>
 
   export type RecebivelSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -46685,6 +46686,7 @@ export namespace Prisma {
     conta_bancaria?: boolean | Recebivel$conta_bancariaArgs<ExtArgs>
     criador?: boolean | Recebivel$criadorArgs<ExtArgs>
     boleto?: boolean | Recebivel$boletoArgs<ExtArgs>
+    nota_fiscal?: boolean | Recebivel$nota_fiscalArgs<ExtArgs>
   }
   export type RecebivelIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -46713,6 +46715,7 @@ export namespace Prisma {
       conta_bancaria: Prisma.$ContaBancariaPayload<ExtArgs> | null
       criador: Prisma.$UsuarioPayload<ExtArgs> | null
       boleto: Prisma.$BoletoPayload<ExtArgs> | null
+      nota_fiscal: Prisma.$NotaFiscalPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -47135,6 +47138,7 @@ export namespace Prisma {
     conta_bancaria<T extends Recebivel$conta_bancariaArgs<ExtArgs> = {}>(args?: Subset<T, Recebivel$conta_bancariaArgs<ExtArgs>>): Prisma__ContaBancariaClient<$Result.GetResult<Prisma.$ContaBancariaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     criador<T extends Recebivel$criadorArgs<ExtArgs> = {}>(args?: Subset<T, Recebivel$criadorArgs<ExtArgs>>): Prisma__UsuarioClient<$Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     boleto<T extends Recebivel$boletoArgs<ExtArgs> = {}>(args?: Subset<T, Recebivel$boletoArgs<ExtArgs>>): Prisma__BoletoClient<$Result.GetResult<Prisma.$BoletoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    nota_fiscal<T extends Recebivel$nota_fiscalArgs<ExtArgs> = {}>(args?: Subset<T, Recebivel$nota_fiscalArgs<ExtArgs>>): Prisma__NotaFiscalClient<$Result.GetResult<Prisma.$NotaFiscalPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -47695,6 +47699,25 @@ export namespace Prisma {
      */
     include?: BoletoInclude<ExtArgs> | null
     where?: BoletoWhereInput
+  }
+
+  /**
+   * Recebivel.nota_fiscal
+   */
+  export type Recebivel$nota_fiscalArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotaFiscal
+     */
+    select?: NotaFiscalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotaFiscal
+     */
+    omit?: NotaFiscalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotaFiscalInclude<ExtArgs> | null
+    where?: NotaFiscalWhereInput
   }
 
   /**
@@ -53768,6 +53791,7 @@ export namespace Prisma {
     observacoes: string | null
     criado_em: Date | null
     atualizado_em: Date | null
+    recebivel_id: string | null
     nfsio_id: string | null
     asaas_invoice_id: string | null
     nfse_provider: string | null
@@ -53796,6 +53820,7 @@ export namespace Prisma {
     observacoes: string | null
     criado_em: Date | null
     atualizado_em: Date | null
+    recebivel_id: string | null
     nfsio_id: string | null
     asaas_invoice_id: string | null
     nfse_provider: string | null
@@ -53824,6 +53849,7 @@ export namespace Prisma {
     observacoes: number
     criado_em: number
     atualizado_em: number
+    recebivel_id: number
     nfsio_id: number
     asaas_invoice_id: number
     nfse_provider: number
@@ -53864,6 +53890,7 @@ export namespace Prisma {
     observacoes?: true
     criado_em?: true
     atualizado_em?: true
+    recebivel_id?: true
     nfsio_id?: true
     asaas_invoice_id?: true
     nfse_provider?: true
@@ -53892,6 +53919,7 @@ export namespace Prisma {
     observacoes?: true
     criado_em?: true
     atualizado_em?: true
+    recebivel_id?: true
     nfsio_id?: true
     asaas_invoice_id?: true
     nfse_provider?: true
@@ -53920,6 +53948,7 @@ export namespace Prisma {
     observacoes?: true
     criado_em?: true
     atualizado_em?: true
+    recebivel_id?: true
     nfsio_id?: true
     asaas_invoice_id?: true
     nfse_provider?: true
@@ -54035,6 +54064,7 @@ export namespace Prisma {
     observacoes: string | null
     criado_em: Date
     atualizado_em: Date
+    recebivel_id: string | null
     nfsio_id: string | null
     asaas_invoice_id: string | null
     nfse_provider: string | null
@@ -54082,6 +54112,7 @@ export namespace Prisma {
     observacoes?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
+    recebivel_id?: boolean
     nfsio_id?: boolean
     asaas_invoice_id?: boolean
     nfse_provider?: boolean
@@ -54095,6 +54126,7 @@ export namespace Prisma {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     cliente?: boolean | ClienteDefaultArgs<ExtArgs>
     contrato?: boolean | NotaFiscal$contratoArgs<ExtArgs>
+    recebivel?: boolean | NotaFiscal$recebivelArgs<ExtArgs>
   }, ExtArgs["result"]["notaFiscal"]>
 
   export type NotaFiscalSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -54113,6 +54145,7 @@ export namespace Prisma {
     observacoes?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
+    recebivel_id?: boolean
     nfsio_id?: boolean
     asaas_invoice_id?: boolean
     nfse_provider?: boolean
@@ -54126,6 +54159,7 @@ export namespace Prisma {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     cliente?: boolean | ClienteDefaultArgs<ExtArgs>
     contrato?: boolean | NotaFiscal$contratoArgs<ExtArgs>
+    recebivel?: boolean | NotaFiscal$recebivelArgs<ExtArgs>
   }, ExtArgs["result"]["notaFiscal"]>
 
   export type NotaFiscalSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -54144,6 +54178,7 @@ export namespace Prisma {
     observacoes?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
+    recebivel_id?: boolean
     nfsio_id?: boolean
     asaas_invoice_id?: boolean
     nfse_provider?: boolean
@@ -54157,6 +54192,7 @@ export namespace Prisma {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     cliente?: boolean | ClienteDefaultArgs<ExtArgs>
     contrato?: boolean | NotaFiscal$contratoArgs<ExtArgs>
+    recebivel?: boolean | NotaFiscal$recebivelArgs<ExtArgs>
   }, ExtArgs["result"]["notaFiscal"]>
 
   export type NotaFiscalSelectScalar = {
@@ -54175,6 +54211,7 @@ export namespace Prisma {
     observacoes?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
+    recebivel_id?: boolean
     nfsio_id?: boolean
     asaas_invoice_id?: boolean
     nfse_provider?: boolean
@@ -54187,21 +54224,24 @@ export namespace Prisma {
     email_enviado_em?: boolean
   }
 
-  export type NotaFiscalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "cliente_id" | "contrato_id" | "criado_por" | "numero" | "competencia" | "valor" | "descricao" | "status" | "data_emissao" | "data_vencimento" | "observacoes" | "criado_em" | "atualizado_em" | "nfsio_id" | "asaas_invoice_id" | "nfse_provider" | "numero_nfse" | "codigo_servico" | "aliquota_iss" | "pdf_url" | "xml_url" | "email_enviado" | "email_enviado_em", ExtArgs["result"]["notaFiscal"]>
+  export type NotaFiscalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "cliente_id" | "contrato_id" | "criado_por" | "numero" | "competencia" | "valor" | "descricao" | "status" | "data_emissao" | "data_vencimento" | "observacoes" | "criado_em" | "atualizado_em" | "recebivel_id" | "nfsio_id" | "asaas_invoice_id" | "nfse_provider" | "numero_nfse" | "codigo_servico" | "aliquota_iss" | "pdf_url" | "xml_url" | "email_enviado" | "email_enviado_em", ExtArgs["result"]["notaFiscal"]>
   export type NotaFiscalInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     cliente?: boolean | ClienteDefaultArgs<ExtArgs>
     contrato?: boolean | NotaFiscal$contratoArgs<ExtArgs>
+    recebivel?: boolean | NotaFiscal$recebivelArgs<ExtArgs>
   }
   export type NotaFiscalIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     cliente?: boolean | ClienteDefaultArgs<ExtArgs>
     contrato?: boolean | NotaFiscal$contratoArgs<ExtArgs>
+    recebivel?: boolean | NotaFiscal$recebivelArgs<ExtArgs>
   }
   export type NotaFiscalIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     cliente?: boolean | ClienteDefaultArgs<ExtArgs>
     contrato?: boolean | NotaFiscal$contratoArgs<ExtArgs>
+    recebivel?: boolean | NotaFiscal$recebivelArgs<ExtArgs>
   }
 
   export type $NotaFiscalPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -54210,6 +54250,7 @@ export namespace Prisma {
       empresa: Prisma.$EmpresaPayload<ExtArgs>
       cliente: Prisma.$ClientePayload<ExtArgs>
       contrato: Prisma.$ContratoPayload<ExtArgs> | null
+      recebivel: Prisma.$RecebivelPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -54227,6 +54268,7 @@ export namespace Prisma {
       observacoes: string | null
       criado_em: Date
       atualizado_em: Date
+      recebivel_id: string | null
       nfsio_id: string | null
       asaas_invoice_id: string | null
       nfse_provider: string | null
@@ -54634,6 +54676,7 @@ export namespace Prisma {
     empresa<T extends EmpresaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmpresaDefaultArgs<ExtArgs>>): Prisma__EmpresaClient<$Result.GetResult<Prisma.$EmpresaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     cliente<T extends ClienteDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ClienteDefaultArgs<ExtArgs>>): Prisma__ClienteClient<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     contrato<T extends NotaFiscal$contratoArgs<ExtArgs> = {}>(args?: Subset<T, NotaFiscal$contratoArgs<ExtArgs>>): Prisma__ContratoClient<$Result.GetResult<Prisma.$ContratoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    recebivel<T extends NotaFiscal$recebivelArgs<ExtArgs> = {}>(args?: Subset<T, NotaFiscal$recebivelArgs<ExtArgs>>): Prisma__RecebivelClient<$Result.GetResult<Prisma.$RecebivelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -54678,6 +54721,7 @@ export namespace Prisma {
     readonly observacoes: FieldRef<"NotaFiscal", 'String'>
     readonly criado_em: FieldRef<"NotaFiscal", 'DateTime'>
     readonly atualizado_em: FieldRef<"NotaFiscal", 'DateTime'>
+    readonly recebivel_id: FieldRef<"NotaFiscal", 'String'>
     readonly nfsio_id: FieldRef<"NotaFiscal", 'String'>
     readonly asaas_invoice_id: FieldRef<"NotaFiscal", 'String'>
     readonly nfse_provider: FieldRef<"NotaFiscal", 'String'>
@@ -55105,6 +55149,25 @@ export namespace Prisma {
      */
     include?: ContratoInclude<ExtArgs> | null
     where?: ContratoWhereInput
+  }
+
+  /**
+   * NotaFiscal.recebivel
+   */
+  export type NotaFiscal$recebivelArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Recebivel
+     */
+    select?: RecebivelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Recebivel
+     */
+    omit?: RecebivelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecebivelInclude<ExtArgs> | null
+    where?: RecebivelWhereInput
   }
 
   /**
@@ -60522,6 +60585,7 @@ export namespace Prisma {
     observacoes: 'observacoes',
     criado_em: 'criado_em',
     atualizado_em: 'atualizado_em',
+    recebivel_id: 'recebivel_id',
     nfsio_id: 'nfsio_id',
     asaas_invoice_id: 'asaas_invoice_id',
     nfse_provider: 'nfse_provider',
@@ -64075,6 +64139,7 @@ export namespace Prisma {
     conta_bancaria?: XOR<ContaBancariaNullableScalarRelationFilter, ContaBancariaWhereInput> | null
     criador?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
     boleto?: XOR<BoletoNullableScalarRelationFilter, BoletoWhereInput> | null
+    nota_fiscal?: XOR<NotaFiscalNullableScalarRelationFilter, NotaFiscalWhereInput> | null
   }
 
   export type RecebivelOrderByWithRelationInput = {
@@ -64104,6 +64169,7 @@ export namespace Prisma {
     conta_bancaria?: ContaBancariaOrderByWithRelationInput
     criador?: UsuarioOrderByWithRelationInput
     boleto?: BoletoOrderByWithRelationInput
+    nota_fiscal?: NotaFiscalOrderByWithRelationInput
   }
 
   export type RecebivelWhereUniqueInput = Prisma.AtLeast<{
@@ -64136,6 +64202,7 @@ export namespace Prisma {
     conta_bancaria?: XOR<ContaBancariaNullableScalarRelationFilter, ContaBancariaWhereInput> | null
     criador?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
     boleto?: XOR<BoletoNullableScalarRelationFilter, BoletoWhereInput> | null
+    nota_fiscal?: XOR<NotaFiscalNullableScalarRelationFilter, NotaFiscalWhereInput> | null
   }, "id">
 
   export type RecebivelOrderByWithAggregationInput = {
@@ -64679,6 +64746,7 @@ export namespace Prisma {
     observacoes?: StringNullableFilter<"NotaFiscal"> | string | null
     criado_em?: DateTimeFilter<"NotaFiscal"> | Date | string
     atualizado_em?: DateTimeFilter<"NotaFiscal"> | Date | string
+    recebivel_id?: StringNullableFilter<"NotaFiscal"> | string | null
     nfsio_id?: StringNullableFilter<"NotaFiscal"> | string | null
     asaas_invoice_id?: StringNullableFilter<"NotaFiscal"> | string | null
     nfse_provider?: StringNullableFilter<"NotaFiscal"> | string | null
@@ -64692,6 +64760,7 @@ export namespace Prisma {
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
     cliente?: XOR<ClienteScalarRelationFilter, ClienteWhereInput>
     contrato?: XOR<ContratoNullableScalarRelationFilter, ContratoWhereInput> | null
+    recebivel?: XOR<RecebivelNullableScalarRelationFilter, RecebivelWhereInput> | null
   }
 
   export type NotaFiscalOrderByWithRelationInput = {
@@ -64710,6 +64779,7 @@ export namespace Prisma {
     observacoes?: SortOrderInput | SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
+    recebivel_id?: SortOrderInput | SortOrder
     nfsio_id?: SortOrderInput | SortOrder
     asaas_invoice_id?: SortOrderInput | SortOrder
     nfse_provider?: SortOrderInput | SortOrder
@@ -64723,10 +64793,12 @@ export namespace Prisma {
     empresa?: EmpresaOrderByWithRelationInput
     cliente?: ClienteOrderByWithRelationInput
     contrato?: ContratoOrderByWithRelationInput
+    recebivel?: RecebivelOrderByWithRelationInput
   }
 
   export type NotaFiscalWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    recebivel_id?: string
     AND?: NotaFiscalWhereInput | NotaFiscalWhereInput[]
     OR?: NotaFiscalWhereInput[]
     NOT?: NotaFiscalWhereInput | NotaFiscalWhereInput[]
@@ -64757,7 +64829,8 @@ export namespace Prisma {
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
     cliente?: XOR<ClienteScalarRelationFilter, ClienteWhereInput>
     contrato?: XOR<ContratoNullableScalarRelationFilter, ContratoWhereInput> | null
-  }, "id">
+    recebivel?: XOR<RecebivelNullableScalarRelationFilter, RecebivelWhereInput> | null
+  }, "id" | "recebivel_id">
 
   export type NotaFiscalOrderByWithAggregationInput = {
     id?: SortOrder
@@ -64775,6 +64848,7 @@ export namespace Prisma {
     observacoes?: SortOrderInput | SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
+    recebivel_id?: SortOrderInput | SortOrder
     nfsio_id?: SortOrderInput | SortOrder
     asaas_invoice_id?: SortOrderInput | SortOrder
     nfse_provider?: SortOrderInput | SortOrder
@@ -64811,6 +64885,7 @@ export namespace Prisma {
     observacoes?: StringNullableWithAggregatesFilter<"NotaFiscal"> | string | null
     criado_em?: DateTimeWithAggregatesFilter<"NotaFiscal"> | Date | string
     atualizado_em?: DateTimeWithAggregatesFilter<"NotaFiscal"> | Date | string
+    recebivel_id?: StringNullableWithAggregatesFilter<"NotaFiscal"> | string | null
     nfsio_id?: StringNullableWithAggregatesFilter<"NotaFiscal"> | string | null
     asaas_invoice_id?: StringNullableWithAggregatesFilter<"NotaFiscal"> | string | null
     nfse_provider?: StringNullableWithAggregatesFilter<"NotaFiscal"> | string | null
@@ -68447,6 +68522,7 @@ export namespace Prisma {
     conta_bancaria?: ContaBancariaCreateNestedOneWithoutRecebiveisInput
     criador?: UsuarioCreateNestedOneWithoutRecebiveis_criadosInput
     boleto?: BoletoCreateNestedOneWithoutRecebivelInput
+    nota_fiscal?: NotaFiscalCreateNestedOneWithoutRecebivelInput
   }
 
   export type RecebivelUncheckedCreateInput = {
@@ -68470,6 +68546,7 @@ export namespace Prisma {
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
+    nota_fiscal?: NotaFiscalUncheckedCreateNestedOneWithoutRecebivelInput
   }
 
   export type RecebivelUpdateInput = {
@@ -68493,6 +68570,7 @@ export namespace Prisma {
     conta_bancaria?: ContaBancariaUpdateOneWithoutRecebiveisNestedInput
     criador?: UsuarioUpdateOneWithoutRecebiveis_criadosNestedInput
     boleto?: BoletoUpdateOneWithoutRecebivelNestedInput
+    nota_fiscal?: NotaFiscalUpdateOneWithoutRecebivelNestedInput
   }
 
   export type RecebivelUncheckedUpdateInput = {
@@ -68516,6 +68594,7 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
+    nota_fiscal?: NotaFiscalUncheckedUpdateOneWithoutRecebivelNestedInput
   }
 
   export type RecebivelCreateManyInput = {
@@ -69110,6 +69189,7 @@ export namespace Prisma {
     empresa: EmpresaCreateNestedOneWithoutNotas_fiscaisInput
     cliente: ClienteCreateNestedOneWithoutNotas_fiscaisInput
     contrato?: ContratoCreateNestedOneWithoutNotas_fiscaisInput
+    recebivel?: RecebivelCreateNestedOneWithoutNota_fiscalInput
   }
 
   export type NotaFiscalUncheckedCreateInput = {
@@ -69128,6 +69208,7 @@ export namespace Prisma {
     observacoes?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
+    recebivel_id?: string | null
     nfsio_id?: string | null
     asaas_invoice_id?: string | null
     nfse_provider?: string | null
@@ -69166,6 +69247,7 @@ export namespace Prisma {
     empresa?: EmpresaUpdateOneRequiredWithoutNotas_fiscaisNestedInput
     cliente?: ClienteUpdateOneRequiredWithoutNotas_fiscaisNestedInput
     contrato?: ContratoUpdateOneWithoutNotas_fiscaisNestedInput
+    recebivel?: RecebivelUpdateOneWithoutNota_fiscalNestedInput
   }
 
   export type NotaFiscalUncheckedUpdateInput = {
@@ -69184,6 +69266,7 @@ export namespace Prisma {
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    recebivel_id?: NullableStringFieldUpdateOperationsInput | string | null
     nfsio_id?: NullableStringFieldUpdateOperationsInput | string | null
     asaas_invoice_id?: NullableStringFieldUpdateOperationsInput | string | null
     nfse_provider?: NullableStringFieldUpdateOperationsInput | string | null
@@ -69212,6 +69295,7 @@ export namespace Prisma {
     observacoes?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
+    recebivel_id?: string | null
     nfsio_id?: string | null
     asaas_invoice_id?: string | null
     nfse_provider?: string | null
@@ -69265,6 +69349,7 @@ export namespace Prisma {
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    recebivel_id?: NullableStringFieldUpdateOperationsInput | string | null
     nfsio_id?: NullableStringFieldUpdateOperationsInput | string | null
     asaas_invoice_id?: NullableStringFieldUpdateOperationsInput | string | null
     nfse_provider?: NullableStringFieldUpdateOperationsInput | string | null
@@ -72183,6 +72268,11 @@ export namespace Prisma {
     isNot?: BoletoWhereInput | null
   }
 
+  export type NotaFiscalNullableScalarRelationFilter = {
+    is?: NotaFiscalWhereInput | null
+    isNot?: NotaFiscalWhereInput | null
+  }
+
   export type RecebivelCountOrderByAggregateInput = {
     id?: SortOrder
     empresa_id?: SortOrder
@@ -72552,6 +72642,11 @@ export namespace Prisma {
     not?: NestedEnumStatusNotaFilter<$PrismaModel> | $Enums.StatusNota
   }
 
+  export type RecebivelNullableScalarRelationFilter = {
+    is?: RecebivelWhereInput | null
+    isNot?: RecebivelWhereInput | null
+  }
+
   export type NotaFiscalCountOrderByAggregateInput = {
     id?: SortOrder
     empresa_id?: SortOrder
@@ -72568,6 +72663,7 @@ export namespace Prisma {
     observacoes?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
+    recebivel_id?: SortOrder
     nfsio_id?: SortOrder
     asaas_invoice_id?: SortOrder
     nfse_provider?: SortOrder
@@ -72601,6 +72697,7 @@ export namespace Prisma {
     observacoes?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
+    recebivel_id?: SortOrder
     nfsio_id?: SortOrder
     asaas_invoice_id?: SortOrder
     nfse_provider?: SortOrder
@@ -72629,6 +72726,7 @@ export namespace Prisma {
     observacoes?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
+    recebivel_id?: SortOrder
     nfsio_id?: SortOrder
     asaas_invoice_id?: SortOrder
     nfse_provider?: SortOrder
@@ -78033,10 +78131,22 @@ export namespace Prisma {
     connect?: BoletoWhereUniqueInput
   }
 
+  export type NotaFiscalCreateNestedOneWithoutRecebivelInput = {
+    create?: XOR<NotaFiscalCreateWithoutRecebivelInput, NotaFiscalUncheckedCreateWithoutRecebivelInput>
+    connectOrCreate?: NotaFiscalCreateOrConnectWithoutRecebivelInput
+    connect?: NotaFiscalWhereUniqueInput
+  }
+
   export type BoletoUncheckedCreateNestedOneWithoutRecebivelInput = {
     create?: XOR<BoletoCreateWithoutRecebivelInput, BoletoUncheckedCreateWithoutRecebivelInput>
     connectOrCreate?: BoletoCreateOrConnectWithoutRecebivelInput
     connect?: BoletoWhereUniqueInput
+  }
+
+  export type NotaFiscalUncheckedCreateNestedOneWithoutRecebivelInput = {
+    create?: XOR<NotaFiscalCreateWithoutRecebivelInput, NotaFiscalUncheckedCreateWithoutRecebivelInput>
+    connectOrCreate?: NotaFiscalCreateOrConnectWithoutRecebivelInput
+    connect?: NotaFiscalWhereUniqueInput
   }
 
   export type EnumStatusRecebivelFieldUpdateOperationsInput = {
@@ -78111,6 +78221,16 @@ export namespace Prisma {
     update?: XOR<XOR<BoletoUpdateToOneWithWhereWithoutRecebivelInput, BoletoUpdateWithoutRecebivelInput>, BoletoUncheckedUpdateWithoutRecebivelInput>
   }
 
+  export type NotaFiscalUpdateOneWithoutRecebivelNestedInput = {
+    create?: XOR<NotaFiscalCreateWithoutRecebivelInput, NotaFiscalUncheckedCreateWithoutRecebivelInput>
+    connectOrCreate?: NotaFiscalCreateOrConnectWithoutRecebivelInput
+    upsert?: NotaFiscalUpsertWithoutRecebivelInput
+    disconnect?: NotaFiscalWhereInput | boolean
+    delete?: NotaFiscalWhereInput | boolean
+    connect?: NotaFiscalWhereUniqueInput
+    update?: XOR<XOR<NotaFiscalUpdateToOneWithWhereWithoutRecebivelInput, NotaFiscalUpdateWithoutRecebivelInput>, NotaFiscalUncheckedUpdateWithoutRecebivelInput>
+  }
+
   export type BoletoUncheckedUpdateOneWithoutRecebivelNestedInput = {
     create?: XOR<BoletoCreateWithoutRecebivelInput, BoletoUncheckedCreateWithoutRecebivelInput>
     connectOrCreate?: BoletoCreateOrConnectWithoutRecebivelInput
@@ -78119,6 +78239,16 @@ export namespace Prisma {
     delete?: BoletoWhereInput | boolean
     connect?: BoletoWhereUniqueInput
     update?: XOR<XOR<BoletoUpdateToOneWithWhereWithoutRecebivelInput, BoletoUpdateWithoutRecebivelInput>, BoletoUncheckedUpdateWithoutRecebivelInput>
+  }
+
+  export type NotaFiscalUncheckedUpdateOneWithoutRecebivelNestedInput = {
+    create?: XOR<NotaFiscalCreateWithoutRecebivelInput, NotaFiscalUncheckedCreateWithoutRecebivelInput>
+    connectOrCreate?: NotaFiscalCreateOrConnectWithoutRecebivelInput
+    upsert?: NotaFiscalUpsertWithoutRecebivelInput
+    disconnect?: NotaFiscalWhereInput | boolean
+    delete?: NotaFiscalWhereInput | boolean
+    connect?: NotaFiscalWhereUniqueInput
+    update?: XOR<XOR<NotaFiscalUpdateToOneWithWhereWithoutRecebivelInput, NotaFiscalUpdateWithoutRecebivelInput>, NotaFiscalUncheckedUpdateWithoutRecebivelInput>
   }
 
   export type EmpresaCreateNestedOneWithoutContas_pagarInput = {
@@ -78329,6 +78459,12 @@ export namespace Prisma {
     connect?: ContratoWhereUniqueInput
   }
 
+  export type RecebivelCreateNestedOneWithoutNota_fiscalInput = {
+    create?: XOR<RecebivelCreateWithoutNota_fiscalInput, RecebivelUncheckedCreateWithoutNota_fiscalInput>
+    connectOrCreate?: RecebivelCreateOrConnectWithoutNota_fiscalInput
+    connect?: RecebivelWhereUniqueInput
+  }
+
   export type EnumStatusNotaFieldUpdateOperationsInput = {
     set?: $Enums.StatusNota
   }
@@ -78357,6 +78493,16 @@ export namespace Prisma {
     delete?: ContratoWhereInput | boolean
     connect?: ContratoWhereUniqueInput
     update?: XOR<XOR<ContratoUpdateToOneWithWhereWithoutNotas_fiscaisInput, ContratoUpdateWithoutNotas_fiscaisInput>, ContratoUncheckedUpdateWithoutNotas_fiscaisInput>
+  }
+
+  export type RecebivelUpdateOneWithoutNota_fiscalNestedInput = {
+    create?: XOR<RecebivelCreateWithoutNota_fiscalInput, RecebivelUncheckedCreateWithoutNota_fiscalInput>
+    connectOrCreate?: RecebivelCreateOrConnectWithoutNota_fiscalInput
+    upsert?: RecebivelUpsertWithoutNota_fiscalInput
+    disconnect?: RecebivelWhereInput | boolean
+    delete?: RecebivelWhereInput | boolean
+    connect?: RecebivelWhereUniqueInput
+    update?: XOR<XOR<RecebivelUpdateToOneWithWhereWithoutNota_fiscalInput, RecebivelUpdateWithoutNota_fiscalInput>, RecebivelUncheckedUpdateWithoutNota_fiscalInput>
   }
 
   export type EmpresaCreateNestedOneWithoutBoletosInput = {
@@ -79944,6 +80090,7 @@ export namespace Prisma {
     conta_bancaria?: ContaBancariaCreateNestedOneWithoutRecebiveisInput
     criador?: UsuarioCreateNestedOneWithoutRecebiveis_criadosInput
     boleto?: BoletoCreateNestedOneWithoutRecebivelInput
+    nota_fiscal?: NotaFiscalCreateNestedOneWithoutRecebivelInput
   }
 
   export type RecebivelUncheckedCreateWithoutEmpresaInput = {
@@ -79966,6 +80113,7 @@ export namespace Prisma {
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
+    nota_fiscal?: NotaFiscalUncheckedCreateNestedOneWithoutRecebivelInput
   }
 
   export type RecebivelCreateOrConnectWithoutEmpresaInput = {
@@ -80191,6 +80339,7 @@ export namespace Prisma {
     email_enviado_em?: Date | string | null
     cliente: ClienteCreateNestedOneWithoutNotas_fiscaisInput
     contrato?: ContratoCreateNestedOneWithoutNotas_fiscaisInput
+    recebivel?: RecebivelCreateNestedOneWithoutNota_fiscalInput
   }
 
   export type NotaFiscalUncheckedCreateWithoutEmpresaInput = {
@@ -80208,6 +80357,7 @@ export namespace Prisma {
     observacoes?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
+    recebivel_id?: string | null
     nfsio_id?: string | null
     asaas_invoice_id?: string | null
     nfse_provider?: string | null
@@ -81122,6 +81272,7 @@ export namespace Prisma {
     observacoes?: StringNullableFilter<"NotaFiscal"> | string | null
     criado_em?: DateTimeFilter<"NotaFiscal"> | Date | string
     atualizado_em?: DateTimeFilter<"NotaFiscal"> | Date | string
+    recebivel_id?: StringNullableFilter<"NotaFiscal"> | string | null
     nfsio_id?: StringNullableFilter<"NotaFiscal"> | string | null
     asaas_invoice_id?: StringNullableFilter<"NotaFiscal"> | string | null
     nfse_provider?: StringNullableFilter<"NotaFiscal"> | string | null
@@ -81705,6 +81856,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasCreateNestedOneWithoutRecebiveisInput
     conta_bancaria?: ContaBancariaCreateNestedOneWithoutRecebiveisInput
     boleto?: BoletoCreateNestedOneWithoutRecebivelInput
+    nota_fiscal?: NotaFiscalCreateNestedOneWithoutRecebivelInput
   }
 
   export type RecebivelUncheckedCreateWithoutCriadorInput = {
@@ -81727,6 +81879,7 @@ export namespace Prisma {
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
+    nota_fiscal?: NotaFiscalUncheckedCreateNestedOneWithoutRecebivelInput
   }
 
   export type RecebivelCreateOrConnectWithoutCriadorInput = {
@@ -84508,6 +84661,7 @@ export namespace Prisma {
     conta_bancaria?: ContaBancariaCreateNestedOneWithoutRecebiveisInput
     criador?: UsuarioCreateNestedOneWithoutRecebiveis_criadosInput
     boleto?: BoletoCreateNestedOneWithoutRecebivelInput
+    nota_fiscal?: NotaFiscalCreateNestedOneWithoutRecebivelInput
   }
 
   export type RecebivelUncheckedCreateWithoutClienteInput = {
@@ -84530,6 +84684,7 @@ export namespace Prisma {
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
+    nota_fiscal?: NotaFiscalUncheckedCreateNestedOneWithoutRecebivelInput
   }
 
   export type RecebivelCreateOrConnectWithoutClienteInput = {
@@ -84659,6 +84814,7 @@ export namespace Prisma {
     email_enviado_em?: Date | string | null
     empresa: EmpresaCreateNestedOneWithoutNotas_fiscaisInput
     contrato?: ContratoCreateNestedOneWithoutNotas_fiscaisInput
+    recebivel?: RecebivelCreateNestedOneWithoutNota_fiscalInput
   }
 
   export type NotaFiscalUncheckedCreateWithoutClienteInput = {
@@ -84676,6 +84832,7 @@ export namespace Prisma {
     observacoes?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
+    recebivel_id?: string | null
     nfsio_id?: string | null
     asaas_invoice_id?: string | null
     nfse_provider?: string | null
@@ -88277,6 +88434,7 @@ export namespace Prisma {
     conta_bancaria?: ContaBancariaCreateNestedOneWithoutRecebiveisInput
     criador?: UsuarioCreateNestedOneWithoutRecebiveis_criadosInput
     boleto?: BoletoCreateNestedOneWithoutRecebivelInput
+    nota_fiscal?: NotaFiscalCreateNestedOneWithoutRecebivelInput
   }
 
   export type RecebivelUncheckedCreateWithoutContratoInput = {
@@ -88299,6 +88457,7 @@ export namespace Prisma {
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
+    nota_fiscal?: NotaFiscalUncheckedCreateNestedOneWithoutRecebivelInput
   }
 
   export type RecebivelCreateOrConnectWithoutContratoInput = {
@@ -88382,6 +88541,7 @@ export namespace Prisma {
     email_enviado_em?: Date | string | null
     empresa: EmpresaCreateNestedOneWithoutNotas_fiscaisInput
     cliente: ClienteCreateNestedOneWithoutNotas_fiscaisInput
+    recebivel?: RecebivelCreateNestedOneWithoutNota_fiscalInput
   }
 
   export type NotaFiscalUncheckedCreateWithoutContratoInput = {
@@ -88399,6 +88559,7 @@ export namespace Prisma {
     observacoes?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
+    recebivel_id?: string | null
     nfsio_id?: string | null
     asaas_invoice_id?: string | null
     nfse_provider?: string | null
@@ -93141,6 +93302,7 @@ export namespace Prisma {
     conta_bancaria?: ContaBancariaCreateNestedOneWithoutRecebiveisInput
     criador?: UsuarioCreateNestedOneWithoutRecebiveis_criadosInput
     boleto?: BoletoCreateNestedOneWithoutRecebivelInput
+    nota_fiscal?: NotaFiscalCreateNestedOneWithoutRecebivelInput
   }
 
   export type RecebivelUncheckedCreateWithoutPlano_contasInput = {
@@ -93163,6 +93325,7 @@ export namespace Prisma {
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
+    nota_fiscal?: NotaFiscalUncheckedCreateNestedOneWithoutRecebivelInput
   }
 
   export type RecebivelCreateOrConnectWithoutPlano_contasInput = {
@@ -93629,6 +93792,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasCreateNestedOneWithoutRecebiveisInput
     criador?: UsuarioCreateNestedOneWithoutRecebiveis_criadosInput
     boleto?: BoletoCreateNestedOneWithoutRecebivelInput
+    nota_fiscal?: NotaFiscalCreateNestedOneWithoutRecebivelInput
   }
 
   export type RecebivelUncheckedCreateWithoutConta_bancariaInput = {
@@ -93651,6 +93815,7 @@ export namespace Prisma {
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
+    nota_fiscal?: NotaFiscalUncheckedCreateNestedOneWithoutRecebivelInput
   }
 
   export type RecebivelCreateOrConnectWithoutConta_bancariaInput = {
@@ -94742,6 +94907,67 @@ export namespace Prisma {
     create: XOR<BoletoCreateWithoutRecebivelInput, BoletoUncheckedCreateWithoutRecebivelInput>
   }
 
+  export type NotaFiscalCreateWithoutRecebivelInput = {
+    id?: string
+    criado_por?: string | null
+    numero?: string | null
+    competencia: Date | string
+    valor: Decimal | DecimalJsLike | number | string
+    descricao: string
+    status?: $Enums.StatusNota
+    data_emissao?: Date | string | null
+    data_vencimento?: Date | string | null
+    observacoes?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    nfsio_id?: string | null
+    asaas_invoice_id?: string | null
+    nfse_provider?: string | null
+    numero_nfse?: string | null
+    codigo_servico?: string | null
+    aliquota_iss?: Decimal | DecimalJsLike | number | string | null
+    pdf_url?: string | null
+    xml_url?: string | null
+    email_enviado?: boolean
+    email_enviado_em?: Date | string | null
+    empresa: EmpresaCreateNestedOneWithoutNotas_fiscaisInput
+    cliente: ClienteCreateNestedOneWithoutNotas_fiscaisInput
+    contrato?: ContratoCreateNestedOneWithoutNotas_fiscaisInput
+  }
+
+  export type NotaFiscalUncheckedCreateWithoutRecebivelInput = {
+    id?: string
+    empresa_id: string
+    cliente_id: string
+    contrato_id?: string | null
+    criado_por?: string | null
+    numero?: string | null
+    competencia: Date | string
+    valor: Decimal | DecimalJsLike | number | string
+    descricao: string
+    status?: $Enums.StatusNota
+    data_emissao?: Date | string | null
+    data_vencimento?: Date | string | null
+    observacoes?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    nfsio_id?: string | null
+    asaas_invoice_id?: string | null
+    nfse_provider?: string | null
+    numero_nfse?: string | null
+    codigo_servico?: string | null
+    aliquota_iss?: Decimal | DecimalJsLike | number | string | null
+    pdf_url?: string | null
+    xml_url?: string | null
+    email_enviado?: boolean
+    email_enviado_em?: Date | string | null
+  }
+
+  export type NotaFiscalCreateOrConnectWithoutRecebivelInput = {
+    where: NotaFiscalWhereUniqueInput
+    create: XOR<NotaFiscalCreateWithoutRecebivelInput, NotaFiscalUncheckedCreateWithoutRecebivelInput>
+  }
+
   export type EmpresaUpsertWithoutRecebiveisInput = {
     update: XOR<EmpresaUpdateWithoutRecebiveisInput, EmpresaUncheckedUpdateWithoutRecebiveisInput>
     create: XOR<EmpresaCreateWithoutRecebiveisInput, EmpresaUncheckedCreateWithoutRecebiveisInput>
@@ -95225,6 +95451,73 @@ export namespace Prisma {
     nosso_numero?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotaFiscalUpsertWithoutRecebivelInput = {
+    update: XOR<NotaFiscalUpdateWithoutRecebivelInput, NotaFiscalUncheckedUpdateWithoutRecebivelInput>
+    create: XOR<NotaFiscalCreateWithoutRecebivelInput, NotaFiscalUncheckedCreateWithoutRecebivelInput>
+    where?: NotaFiscalWhereInput
+  }
+
+  export type NotaFiscalUpdateToOneWithWhereWithoutRecebivelInput = {
+    where?: NotaFiscalWhereInput
+    data: XOR<NotaFiscalUpdateWithoutRecebivelInput, NotaFiscalUncheckedUpdateWithoutRecebivelInput>
+  }
+
+  export type NotaFiscalUpdateWithoutRecebivelInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    numero?: NullableStringFieldUpdateOperationsInput | string | null
+    competencia?: DateTimeFieldUpdateOperationsInput | Date | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    descricao?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusNotaFieldUpdateOperationsInput | $Enums.StatusNota
+    data_emissao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    nfsio_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nfse_provider?: NullableStringFieldUpdateOperationsInput | string | null
+    numero_nfse?: NullableStringFieldUpdateOperationsInput | string | null
+    codigo_servico?: NullableStringFieldUpdateOperationsInput | string | null
+    aliquota_iss?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    pdf_url?: NullableStringFieldUpdateOperationsInput | string | null
+    xml_url?: NullableStringFieldUpdateOperationsInput | string | null
+    email_enviado?: BoolFieldUpdateOperationsInput | boolean
+    email_enviado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    empresa?: EmpresaUpdateOneRequiredWithoutNotas_fiscaisNestedInput
+    cliente?: ClienteUpdateOneRequiredWithoutNotas_fiscaisNestedInput
+    contrato?: ContratoUpdateOneWithoutNotas_fiscaisNestedInput
+  }
+
+  export type NotaFiscalUncheckedUpdateWithoutRecebivelInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: StringFieldUpdateOperationsInput | string
+    contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    numero?: NullableStringFieldUpdateOperationsInput | string | null
+    competencia?: DateTimeFieldUpdateOperationsInput | Date | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    descricao?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusNotaFieldUpdateOperationsInput | $Enums.StatusNota
+    data_emissao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    nfsio_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nfse_provider?: NullableStringFieldUpdateOperationsInput | string | null
+    numero_nfse?: NullableStringFieldUpdateOperationsInput | string | null
+    codigo_servico?: NullableStringFieldUpdateOperationsInput | string | null
+    aliquota_iss?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    pdf_url?: NullableStringFieldUpdateOperationsInput | string | null
+    xml_url?: NullableStringFieldUpdateOperationsInput | string | null
+    email_enviado?: BoolFieldUpdateOperationsInput | boolean
+    email_enviado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type EmpresaCreateWithoutContas_pagarInput = {
@@ -97208,6 +97501,57 @@ export namespace Prisma {
     create: XOR<ContratoCreateWithoutNotas_fiscaisInput, ContratoUncheckedCreateWithoutNotas_fiscaisInput>
   }
 
+  export type RecebivelCreateWithoutNota_fiscalInput = {
+    id?: string
+    descricao: string
+    valor: Decimal | DecimalJsLike | number | string
+    data_vencimento: Date | string
+    status?: $Enums.StatusRecebivel
+    data_pagamento?: Date | string | null
+    valor_pago?: Decimal | DecimalJsLike | number | string | null
+    forma_pagamento?: string | null
+    numero_parcela?: number | null
+    total_parcelas?: number | null
+    observacoes?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutRecebiveisInput
+    cliente?: ClienteCreateNestedOneWithoutRecebiveisInput
+    contrato?: ContratoCreateNestedOneWithoutRecebiveisInput
+    plano_contas?: PlanoDeContasCreateNestedOneWithoutRecebiveisInput
+    conta_bancaria?: ContaBancariaCreateNestedOneWithoutRecebiveisInput
+    criador?: UsuarioCreateNestedOneWithoutRecebiveis_criadosInput
+    boleto?: BoletoCreateNestedOneWithoutRecebivelInput
+  }
+
+  export type RecebivelUncheckedCreateWithoutNota_fiscalInput = {
+    id?: string
+    empresa_id: string
+    cliente_id?: string | null
+    contrato_id?: string | null
+    plano_contas_id?: string | null
+    conta_bancaria_id?: string | null
+    criado_por?: string | null
+    descricao: string
+    valor: Decimal | DecimalJsLike | number | string
+    data_vencimento: Date | string
+    status?: $Enums.StatusRecebivel
+    data_pagamento?: Date | string | null
+    valor_pago?: Decimal | DecimalJsLike | number | string | null
+    forma_pagamento?: string | null
+    numero_parcela?: number | null
+    total_parcelas?: number | null
+    observacoes?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
+  }
+
+  export type RecebivelCreateOrConnectWithoutNota_fiscalInput = {
+    where: RecebivelWhereUniqueInput
+    create: XOR<RecebivelCreateWithoutNota_fiscalInput, RecebivelUncheckedCreateWithoutNota_fiscalInput>
+  }
+
   export type EmpresaUpsertWithoutNotas_fiscaisInput = {
     update: XOR<EmpresaUpdateWithoutNotas_fiscaisInput, EmpresaUncheckedUpdateWithoutNotas_fiscaisInput>
     create: XOR<EmpresaCreateWithoutNotas_fiscaisInput, EmpresaUncheckedCreateWithoutNotas_fiscaisInput>
@@ -97487,6 +97831,63 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedUpdateManyWithoutContratoNestedInput
   }
 
+  export type RecebivelUpsertWithoutNota_fiscalInput = {
+    update: XOR<RecebivelUpdateWithoutNota_fiscalInput, RecebivelUncheckedUpdateWithoutNota_fiscalInput>
+    create: XOR<RecebivelCreateWithoutNota_fiscalInput, RecebivelUncheckedCreateWithoutNota_fiscalInput>
+    where?: RecebivelWhereInput
+  }
+
+  export type RecebivelUpdateToOneWithWhereWithoutNota_fiscalInput = {
+    where?: RecebivelWhereInput
+    data: XOR<RecebivelUpdateWithoutNota_fiscalInput, RecebivelUncheckedUpdateWithoutNota_fiscalInput>
+  }
+
+  export type RecebivelUpdateWithoutNota_fiscalInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    descricao?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    data_vencimento?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumStatusRecebivelFieldUpdateOperationsInput | $Enums.StatusRecebivel
+    data_pagamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    valor_pago?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    forma_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
+    numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
+    total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutRecebiveisNestedInput
+    cliente?: ClienteUpdateOneWithoutRecebiveisNestedInput
+    contrato?: ContratoUpdateOneWithoutRecebiveisNestedInput
+    plano_contas?: PlanoDeContasUpdateOneWithoutRecebiveisNestedInput
+    conta_bancaria?: ContaBancariaUpdateOneWithoutRecebiveisNestedInput
+    criador?: UsuarioUpdateOneWithoutRecebiveis_criadosNestedInput
+    boleto?: BoletoUpdateOneWithoutRecebivelNestedInput
+  }
+
+  export type RecebivelUncheckedUpdateWithoutNota_fiscalInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
+    plano_contas_id?: NullableStringFieldUpdateOperationsInput | string | null
+    conta_bancaria_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    data_vencimento?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumStatusRecebivelFieldUpdateOperationsInput | $Enums.StatusRecebivel
+    data_pagamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    valor_pago?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    forma_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
+    numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
+    total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
+  }
+
   export type EmpresaCreateWithoutBoletosInput = {
     id?: string
     nome: string
@@ -97586,6 +97987,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasCreateNestedOneWithoutRecebiveisInput
     conta_bancaria?: ContaBancariaCreateNestedOneWithoutRecebiveisInput
     criador?: UsuarioCreateNestedOneWithoutRecebiveis_criadosInput
+    nota_fiscal?: NotaFiscalCreateNestedOneWithoutRecebivelInput
   }
 
   export type RecebivelUncheckedCreateWithoutBoletoInput = {
@@ -97608,6 +98010,7 @@ export namespace Prisma {
     observacoes?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
+    nota_fiscal?: NotaFiscalUncheckedCreateNestedOneWithoutRecebivelInput
   }
 
   export type RecebivelCreateOrConnectWithoutBoletoInput = {
@@ -97816,6 +98219,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasUpdateOneWithoutRecebiveisNestedInput
     conta_bancaria?: ContaBancariaUpdateOneWithoutRecebiveisNestedInput
     criador?: UsuarioUpdateOneWithoutRecebiveis_criadosNestedInput
+    nota_fiscal?: NotaFiscalUpdateOneWithoutRecebivelNestedInput
   }
 
   export type RecebivelUncheckedUpdateWithoutBoletoInput = {
@@ -97838,6 +98242,7 @@ export namespace Prisma {
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    nota_fiscal?: NotaFiscalUncheckedUpdateOneWithoutRecebivelNestedInput
   }
 
   export type ClienteUpsertWithoutBoletosInput = {
@@ -99333,6 +99738,7 @@ export namespace Prisma {
     observacoes?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
+    recebivel_id?: string | null
     nfsio_id?: string | null
     asaas_invoice_id?: string | null
     nfse_provider?: string | null
@@ -100227,6 +100633,7 @@ export namespace Prisma {
     conta_bancaria?: ContaBancariaUpdateOneWithoutRecebiveisNestedInput
     criador?: UsuarioUpdateOneWithoutRecebiveis_criadosNestedInput
     boleto?: BoletoUpdateOneWithoutRecebivelNestedInput
+    nota_fiscal?: NotaFiscalUpdateOneWithoutRecebivelNestedInput
   }
 
   export type RecebivelUncheckedUpdateWithoutEmpresaInput = {
@@ -100249,6 +100656,7 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
+    nota_fiscal?: NotaFiscalUncheckedUpdateOneWithoutRecebivelNestedInput
   }
 
   export type RecebivelUncheckedUpdateManyWithoutEmpresaInput = {
@@ -100504,6 +100912,7 @@ export namespace Prisma {
     email_enviado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     cliente?: ClienteUpdateOneRequiredWithoutNotas_fiscaisNestedInput
     contrato?: ContratoUpdateOneWithoutNotas_fiscaisNestedInput
+    recebivel?: RecebivelUpdateOneWithoutNota_fiscalNestedInput
   }
 
   export type NotaFiscalUncheckedUpdateWithoutEmpresaInput = {
@@ -100521,6 +100930,7 @@ export namespace Prisma {
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    recebivel_id?: NullableStringFieldUpdateOperationsInput | string | null
     nfsio_id?: NullableStringFieldUpdateOperationsInput | string | null
     asaas_invoice_id?: NullableStringFieldUpdateOperationsInput | string | null
     nfse_provider?: NullableStringFieldUpdateOperationsInput | string | null
@@ -100548,6 +100958,7 @@ export namespace Prisma {
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    recebivel_id?: NullableStringFieldUpdateOperationsInput | string | null
     nfsio_id?: NullableStringFieldUpdateOperationsInput | string | null
     asaas_invoice_id?: NullableStringFieldUpdateOperationsInput | string | null
     nfse_provider?: NullableStringFieldUpdateOperationsInput | string | null
@@ -101556,6 +101967,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasUpdateOneWithoutRecebiveisNestedInput
     conta_bancaria?: ContaBancariaUpdateOneWithoutRecebiveisNestedInput
     boleto?: BoletoUpdateOneWithoutRecebivelNestedInput
+    nota_fiscal?: NotaFiscalUpdateOneWithoutRecebivelNestedInput
   }
 
   export type RecebivelUncheckedUpdateWithoutCriadorInput = {
@@ -101578,6 +101990,7 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
+    nota_fiscal?: NotaFiscalUncheckedUpdateOneWithoutRecebivelNestedInput
   }
 
   export type RecebivelUncheckedUpdateManyWithoutCriadorInput = {
@@ -102362,6 +102775,7 @@ export namespace Prisma {
     observacoes?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
+    recebivel_id?: string | null
     nfsio_id?: string | null
     asaas_invoice_id?: string | null
     nfse_provider?: string | null
@@ -102838,6 +103252,7 @@ export namespace Prisma {
     conta_bancaria?: ContaBancariaUpdateOneWithoutRecebiveisNestedInput
     criador?: UsuarioUpdateOneWithoutRecebiveis_criadosNestedInput
     boleto?: BoletoUpdateOneWithoutRecebivelNestedInput
+    nota_fiscal?: NotaFiscalUpdateOneWithoutRecebivelNestedInput
   }
 
   export type RecebivelUncheckedUpdateWithoutClienteInput = {
@@ -102860,6 +103275,7 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
+    nota_fiscal?: NotaFiscalUncheckedUpdateOneWithoutRecebivelNestedInput
   }
 
   export type RecebivelUncheckedUpdateManyWithoutClienteInput = {
@@ -103016,6 +103432,7 @@ export namespace Prisma {
     email_enviado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     empresa?: EmpresaUpdateOneRequiredWithoutNotas_fiscaisNestedInput
     contrato?: ContratoUpdateOneWithoutNotas_fiscaisNestedInput
+    recebivel?: RecebivelUpdateOneWithoutNota_fiscalNestedInput
   }
 
   export type NotaFiscalUncheckedUpdateWithoutClienteInput = {
@@ -103033,6 +103450,7 @@ export namespace Prisma {
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    recebivel_id?: NullableStringFieldUpdateOperationsInput | string | null
     nfsio_id?: NullableStringFieldUpdateOperationsInput | string | null
     asaas_invoice_id?: NullableStringFieldUpdateOperationsInput | string | null
     nfse_provider?: NullableStringFieldUpdateOperationsInput | string | null
@@ -103060,6 +103478,7 @@ export namespace Prisma {
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    recebivel_id?: NullableStringFieldUpdateOperationsInput | string | null
     nfsio_id?: NullableStringFieldUpdateOperationsInput | string | null
     asaas_invoice_id?: NullableStringFieldUpdateOperationsInput | string | null
     nfse_provider?: NullableStringFieldUpdateOperationsInput | string | null
@@ -103529,6 +103948,7 @@ export namespace Prisma {
     observacoes?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
+    recebivel_id?: string | null
     nfsio_id?: string | null
     asaas_invoice_id?: string | null
     nfse_provider?: string | null
@@ -103577,6 +103997,7 @@ export namespace Prisma {
     conta_bancaria?: ContaBancariaUpdateOneWithoutRecebiveisNestedInput
     criador?: UsuarioUpdateOneWithoutRecebiveis_criadosNestedInput
     boleto?: BoletoUpdateOneWithoutRecebivelNestedInput
+    nota_fiscal?: NotaFiscalUpdateOneWithoutRecebivelNestedInput
   }
 
   export type RecebivelUncheckedUpdateWithoutContratoInput = {
@@ -103599,6 +104020,7 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
+    nota_fiscal?: NotaFiscalUncheckedUpdateOneWithoutRecebivelNestedInput
   }
 
   export type RecebivelUncheckedUpdateManyWithoutContratoInput = {
@@ -103701,6 +104123,7 @@ export namespace Prisma {
     email_enviado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     empresa?: EmpresaUpdateOneRequiredWithoutNotas_fiscaisNestedInput
     cliente?: ClienteUpdateOneRequiredWithoutNotas_fiscaisNestedInput
+    recebivel?: RecebivelUpdateOneWithoutNota_fiscalNestedInput
   }
 
   export type NotaFiscalUncheckedUpdateWithoutContratoInput = {
@@ -103718,6 +104141,7 @@ export namespace Prisma {
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    recebivel_id?: NullableStringFieldUpdateOperationsInput | string | null
     nfsio_id?: NullableStringFieldUpdateOperationsInput | string | null
     asaas_invoice_id?: NullableStringFieldUpdateOperationsInput | string | null
     nfse_provider?: NullableStringFieldUpdateOperationsInput | string | null
@@ -103745,6 +104169,7 @@ export namespace Prisma {
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    recebivel_id?: NullableStringFieldUpdateOperationsInput | string | null
     nfsio_id?: NullableStringFieldUpdateOperationsInput | string | null
     asaas_invoice_id?: NullableStringFieldUpdateOperationsInput | string | null
     nfse_provider?: NullableStringFieldUpdateOperationsInput | string | null
@@ -104569,6 +104994,7 @@ export namespace Prisma {
     conta_bancaria?: ContaBancariaUpdateOneWithoutRecebiveisNestedInput
     criador?: UsuarioUpdateOneWithoutRecebiveis_criadosNestedInput
     boleto?: BoletoUpdateOneWithoutRecebivelNestedInput
+    nota_fiscal?: NotaFiscalUpdateOneWithoutRecebivelNestedInput
   }
 
   export type RecebivelUncheckedUpdateWithoutPlano_contasInput = {
@@ -104591,6 +105017,7 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
+    nota_fiscal?: NotaFiscalUncheckedUpdateOneWithoutRecebivelNestedInput
   }
 
   export type RecebivelUncheckedUpdateManyWithoutPlano_contasInput = {
@@ -104854,6 +105281,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasUpdateOneWithoutRecebiveisNestedInput
     criador?: UsuarioUpdateOneWithoutRecebiveis_criadosNestedInput
     boleto?: BoletoUpdateOneWithoutRecebivelNestedInput
+    nota_fiscal?: NotaFiscalUpdateOneWithoutRecebivelNestedInput
   }
 
   export type RecebivelUncheckedUpdateWithoutConta_bancariaInput = {
@@ -104876,6 +105304,7 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
+    nota_fiscal?: NotaFiscalUncheckedUpdateOneWithoutRecebivelNestedInput
   }
 
   export type RecebivelUncheckedUpdateManyWithoutConta_bancariaInput = {

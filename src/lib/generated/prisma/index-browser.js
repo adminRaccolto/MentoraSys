@@ -648,6 +648,7 @@ exports.Prisma.NotaFiscalScalarFieldEnum = {
   observacoes: 'observacoes',
   criado_em: 'criado_em',
   atualizado_em: 'atualizado_em',
+  recebivel_id: 'recebivel_id',
   nfsio_id: 'nfsio_id',
   asaas_invoice_id: 'asaas_invoice_id',
   nfse_provider: 'nfse_provider',
