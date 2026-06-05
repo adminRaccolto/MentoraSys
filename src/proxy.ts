@@ -39,7 +39,8 @@ export async function proxy(request: NextRequest) {
     pathname.startsWith("/p/") ||
     pathname.startsWith("/portal") ||
     pathname.startsWith("/convite/") ||
-    pathname.startsWith("/membro/");
+    pathname.startsWith("/membro/") ||
+    pathname.startsWith("/diagnostico/");
 
   if (!user && !isAuthRoute) {
     const url = request.nextUrl.clone();
