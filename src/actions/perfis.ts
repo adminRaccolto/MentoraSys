@@ -6,18 +6,23 @@ import { prisma } from "@/lib/prisma";
 import { verificarPermissao, obterEmpresaAtiva } from "@/lib/permissoes";
 import { createClient } from "@/lib/supabase/server";
 
-const TODOS_RECURSOS = [
-  "clientes", "servicos", "crm", "propostas", "contratos",
-  "projetos", "modelos", "agenda", "financeiro", "faturamento",
-  "diagnosticos", "configuracoes",
-];
-const TODAS_ACOES = ["criar", "editar", "excluir"];
+// Garante que todos os pares recurso/acao existam e retorna seus IDs
+// Usa createMany com skipDuplicates + findMany — 2 queries em vez de N upserts
+async function garantirPermissoes(pares: { recurso: string; acao: string }[]) {
+  if (pares.length === 0) return [];
 
-async function garantirPermissao(tx: Parameters<Parameters<typeof prisma.$transaction>[0]>[0], recurso: string, acao: string) {
-  return tx.permissao.upsert({
-    where: { recurso_acao: { recurso, acao } },
-    update: {},
-    create: { recurso, acao, descricao: `${acao} ${recurso}` },
+  await prisma.permissao.createMany({
+    data: pares.map(({ recurso, acao }) => ({
+      recurso,
+      acao,
+      descricao: `${acao} ${recurso}`,
+    })),
+    skipDuplicates: true,
+  });
+
+  return prisma.permissao.findMany({
+    where: { OR: pares.map(({ recurso, acao }) => ({ recurso, acao })) },
+    select: { id: true },
   });
 }
 
@@ -51,21 +56,20 @@ const schemaCreate = z.object({
 export async function criarPerfil(input: z.input<typeof schemaCreate>) {
   await verificarPermissao("configuracoes", "criar");
   const empresaId = await obterEmpresaAtiva();
-
   const data = schemaCreate.parse(input);
 
-  const perfil = await prisma.$transaction(async (tx) => {
-    const p = await tx.perfil.create({
-      data: { empresa_id: empresaId, nome: data.nome, descricao: data.descricao || null },
-    });
-
-    for (const { recurso, acao } of data.permissoes) {
-      const perm = await garantirPermissao(tx, recurso, acao);
-      await tx.perfilPermissao.create({ data: { perfil_id: p.id, permissao_id: perm.id } });
-    }
-
-    return p;
+  // Cria o perfil sem transaction (as permissões vêm a seguir em bulk)
+  const perfil = await prisma.perfil.create({
+    data: { empresa_id: empresaId, nome: data.nome, descricao: data.descricao || null },
   });
+
+  if (data.permissoes.length > 0) {
+    const permissoes = await garantirPermissoes(data.permissoes);
+    await prisma.perfilPermissao.createMany({
+      data: permissoes.map((p) => ({ perfil_id: perfil.id, permissao_id: p.id })),
+      skipDuplicates: true,
+    });
+  }
 
   revalidatePath("/configuracoes");
   return { ok: true as const, id: perfil.id };
@@ -88,19 +92,21 @@ export async function editarPerfil(id: string, input: z.input<typeof schemaEdit>
 
   const data = schemaEdit.parse(input);
 
-  await prisma.$transaction(async (tx) => {
-    await tx.perfil.update({
-      where: { id },
-      data: { nome: data.nome, descricao: data.descricao || null },
-    });
-
-    await tx.perfilPermissao.deleteMany({ where: { perfil_id: id } });
-
-    for (const { recurso, acao } of data.permissoes) {
-      const perm = await garantirPermissao(tx, recurso, acao);
-      await tx.perfilPermissao.create({ data: { perfil_id: id, permissao_id: perm.id } });
-    }
+  // Atualiza nome/descricao e recria permissões em bulk (sem transaction longa)
+  await prisma.perfil.update({
+    where: { id },
+    data: { nome: data.nome, descricao: data.descricao || null },
   });
+
+  await prisma.perfilPermissao.deleteMany({ where: { perfil_id: id } });
+
+  if (data.permissoes.length > 0) {
+    const permissoes = await garantirPermissoes(data.permissoes);
+    await prisma.perfilPermissao.createMany({
+      data: permissoes.map((p) => ({ perfil_id: id, permissao_id: p.id })),
+      skipDuplicates: true,
+    });
+  }
 
   revalidatePath("/configuracoes");
   return { ok: true as const };
@@ -126,4 +132,3 @@ export async function excluirPerfil(id: string) {
   revalidatePath("/configuracoes");
   return { ok: true as const };
 }
-

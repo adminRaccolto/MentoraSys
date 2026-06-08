@@ -59,22 +59,29 @@ const PERFIS_PADRAO: {
   },
 ];
 
-async function garantirPermissao(tx: DbClient, recurso: string, acao: string) {
-  return tx.permissao.upsert({
-    where: { recurso_acao: { recurso, acao } },
-    update: {},
-    create: { recurso, acao, descricao: `${acao} ${recurso}` },
+export async function criarPerfisPadrao(empresaId: string, _tx: DbClient = prisma) {
+  // Garante todos os pares recurso/acao de uma vez (bulk upsert via createMany+skipDuplicates)
+  const todosOsPares = PERFIS_PADRAO.flatMap((d) => d.permissoes);
+  await prisma.permissao.createMany({
+    data: todosOsPares.map(({ recurso, acao }) => ({ recurso, acao, descricao: `${acao} ${recurso}` })),
+    skipDuplicates: true,
   });
-}
+  const todasPermissoes = await prisma.permissao.findMany({
+    where: { OR: todosOsPares.map(({ recurso, acao }) => ({ recurso, acao })) },
+    select: { id: true, recurso: true, acao: true },
+  });
+  const permMap = new Map(todasPermissoes.map((p) => [`${p.recurso}:${p.acao}`, p.id]));
 
-export async function criarPerfisPadrao(empresaId: string, tx: DbClient = prisma) {
   for (const def of PERFIS_PADRAO) {
-    const perfil = await tx.perfil.create({
+    const perfil = await prisma.perfil.create({
       data: { empresa_id: empresaId, nome: def.nome, descricao: def.descricao },
     });
-    for (const { recurso, acao } of def.permissoes) {
-      const perm = await garantirPermissao(tx, recurso, acao);
-      await tx.perfilPermissao.create({ data: { perfil_id: perfil.id, permissao_id: perm.id } });
+    const links = def.permissoes
+      .map(({ recurso, acao }) => permMap.get(`${recurso}:${acao}`))
+      .filter((id): id is string => !!id)
+      .map((permissao_id) => ({ perfil_id: perfil.id, permissao_id }));
+    if (links.length > 0) {
+      await prisma.perfilPermissao.createMany({ data: links, skipDuplicates: true });
     }
   }
 }
