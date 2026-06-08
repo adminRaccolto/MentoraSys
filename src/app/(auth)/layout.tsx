@@ -19,7 +19,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         {/* logo centralizada */}
         <div className="relative z-10 flex items-center justify-center w-full h-full">
           <Image
-            src="/logo-raccolto.png"
+            src="/logo-raccolto.svg"
             alt="Raccolto"
             width={260}
             height={120}
@@ -35,7 +35,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           {/* logo mobile */}
           <div className="flex justify-center mb-8 lg:hidden">
             <Image
-              src="/logo-raccolto.png"
+              src="/logo-raccolto.svg"
               alt="Raccolto"
               width={160}
               height={70}
