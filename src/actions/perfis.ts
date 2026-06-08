@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { verificarPermissao, obterEmpresaAtiva } from "@/lib/permissoes";
+import { createClient } from "@/lib/supabase/server";
 
 const TODOS_RECURSOS = [
   "clientes", "servicos", "crm", "propostas", "contratos",
@@ -17,6 +18,25 @@ async function garantirPermissao(tx: Parameters<Parameters<typeof prisma.$transa
     where: { recurso_acao: { recurso, acao } },
     update: {},
     create: { recurso, acao, descricao: `${acao} ${recurso}` },
+  });
+}
+
+// ─── Listar perfis de uma empresa (para seleção ao criar usuário) ─────────────
+
+export async function listarPerfisEmpresa(empresaId: string) {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return [];
+
+  const membro = await prisma.membroEmpresa.findFirst({
+    where: { usuario_id: user.id, empresa_id: empresaId, ativo: true },
+  });
+  if (!membro) return [];
+
+  return prisma.perfil.findMany({
+    where: { empresa_id: empresaId },
+    select: { id: true, nome: true },
+    orderBy: { nome: "asc" },
   });
 }
 

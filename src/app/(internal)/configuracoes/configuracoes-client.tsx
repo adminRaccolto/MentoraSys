@@ -39,7 +39,7 @@ import {
   removerCertificado,
 } from "@/actions/configuracoes";
 import { convidarMembro, removerMembro, alterarPerfilMembro, cancelarConvite, criarUsuarioDireto } from "@/actions/equipe";
-import { criarPerfil, editarPerfil, excluirPerfil } from "@/actions/perfis";
+import { criarPerfil, editarPerfil, excluirPerfil, listarPerfisEmpresa } from "@/actions/perfis";
 import { criarEmpresa } from "@/actions/empresas";
 
 const RECURSOS = [
@@ -343,6 +343,56 @@ export default function ConfiguracoesClient({ empresa, usuario, membros: membros
   const [novoEmail, setNovoEmail] = useState("");
   const [novaSenha, setNovaSenha] = useState("");
   const [novoPerfilId, setNovoPerfilId] = useState(perfisInicial[0]?.id ?? "");
+  const [novaEmpresaId, setNovaEmpresaId] = useState(empresaAtualId);
+  const [novaEmpresaConviteId, setNovaEmpresaConviteId] = useState(empresaAtualId);
+  const [perfisEmpresaAlvo, setPerfisEmpresaAlvo] = useState<{ id: string; nome: string }[]>(
+    perfisInicial.map((p) => ({ id: p.id, nome: p.nome }))
+  );
+  const [perfisConviteAlvo, setPerfisConviteAlvo] = useState<{ id: string; nome: string }[]>(
+    perfisInicial.map((p) => ({ id: p.id, nome: p.nome }))
+  );
+  const [carregandoPerfis, setCarregandoPerfis] = useState(false);
+  const [carregandoPerfisConvite, setCarregandoPerfisConvite] = useState(false);
+
+  const handleEmpresaDiretoChange = async (id: string) => {
+    setNovaEmpresaId(id);
+    setNovoPerfilId("");
+    if (id === empresaAtualId) {
+      setPerfisEmpresaAlvo(perfis.map((p) => ({ id: p.id, nome: p.nome })));
+      setNovoPerfilId(perfis[0]?.id ?? "");
+      return;
+    }
+    setCarregandoPerfis(true);
+    try {
+      const novos = await listarPerfisEmpresa(id);
+      setPerfisEmpresaAlvo(novos);
+      if (novos.length > 0) setNovoPerfilId(novos[0].id);
+    } catch {
+      setPerfisEmpresaAlvo([]);
+    } finally {
+      setCarregandoPerfis(false);
+    }
+  };
+
+  const handleEmpresaConviteChange = async (id: string) => {
+    setNovaEmpresaConviteId(id);
+    setConvitePerfilId("");
+    if (id === empresaAtualId) {
+      setPerfisConviteAlvo(perfis.map((p) => ({ id: p.id, nome: p.nome })));
+      setConvitePerfilId(perfis[0]?.id ?? "");
+      return;
+    }
+    setCarregandoPerfisConvite(true);
+    try {
+      const novos = await listarPerfisEmpresa(id);
+      setPerfisConviteAlvo(novos);
+      if (novos.length > 0) setConvitePerfilId(novos[0].id);
+    } catch {
+      setPerfisConviteAlvo([]);
+    } finally {
+      setCarregandoPerfisConvite(false);
+    }
+  };
 
   // Perfis de Acesso
   const [perfis, setPerfis] = useState(perfisInicial);
@@ -941,6 +991,23 @@ export default function ConfiguracoesClient({ empresa, usuario, membros: membros
               <div className="space-y-3">
                 <p className="text-xs text-muted-foreground">Cria a conta imediatamente. O usuário já pode fazer login com as credenciais definidas.</p>
                 <div className="grid grid-cols-2 gap-2">
+                  {minhasEmpresas.length > 1 && (
+                    <div className="col-span-2 space-y-1">
+                      <label className="text-xs font-medium">Empresa *</label>
+                      <Select value={novaEmpresaId} onValueChange={(v) => { if (v) handleEmpresaDiretoChange(v); }}>
+                        <SelectTrigger className="h-9 text-sm">
+                          <SelectValue placeholder="Selecione a empresa">
+                            {(value: string | null) => value ? (minhasEmpresas.find((e) => e.id === value)?.nome ?? value) : undefined}
+                          </SelectValue>
+                        </SelectTrigger>
+                        <SelectContent>
+                          {minhasEmpresas.map((e) => (
+                            <SelectItem key={e.id} value={e.id} className="text-sm">{e.nome}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  )}
                   <div className="space-y-1">
                     <label className="text-xs font-medium">Nome *</label>
                     <Input placeholder="Nome completo" value={novoNome} onChange={e => setNovoNome(e.target.value)} className="h-9 text-sm" />
@@ -955,14 +1022,14 @@ export default function ConfiguracoesClient({ empresa, usuario, membros: membros
                   </div>
                   <div className="space-y-1">
                     <label className="text-xs font-medium">Perfil *</label>
-                    <Select value={novoPerfilId} onValueChange={v => { if (v) setNovoPerfilId(v); }}>
+                    <Select value={novoPerfilId} onValueChange={v => { if (v) setNovoPerfilId(v); }} disabled={carregandoPerfis}>
                       <SelectTrigger className="h-9 text-sm">
-                        <SelectValue placeholder="Selecione">
-                          {(value: string | null) => value ? (perfis.find((p) => p.id === value)?.nome ?? value) : undefined}
+                        <SelectValue placeholder={carregandoPerfis ? "Carregando..." : "Selecione"}>
+                          {(value: string | null) => value ? (perfisEmpresaAlvo.find((p) => p.id === value)?.nome ?? value) : undefined}
                         </SelectValue>
                       </SelectTrigger>
                       <SelectContent>
-                        {perfis.map(p => <SelectItem key={p.id} value={p.id} className="text-sm">{p.nome}</SelectItem>)}
+                        {perfisEmpresaAlvo.map(p => <SelectItem key={p.id} value={p.id} className="text-sm">{p.nome}</SelectItem>)}
                       </SelectContent>
                     </Select>
                   </div>
@@ -971,20 +1038,18 @@ export default function ConfiguracoesClient({ empresa, usuario, membros: membros
                   <Button
                     size="sm"
                     className="gap-1.5"
-                    disabled={criando || !novoNome || !novoEmail || !novaSenha || !novoPerfilId}
+                    disabled={criando || !novoNome || !novoEmail || !novaSenha || !novoPerfilId || !novaEmpresaId}
                     onClick={async () => {
                       setErroCriar(null);
                       setCriando(true);
                       try {
-                        const res = await criarUsuarioDireto({ nome: novoNome, email: novoEmail, senha: novaSenha, perfil_id: novoPerfilId });
+                        const res = await criarUsuarioDireto({ nome: novoNome, email: novoEmail, senha: novaSenha, perfil_id: novoPerfilId, empresa_id: novaEmpresaId });
                         if (res.ok) {
                           toast.success(`Usuário ${novoEmail} criado com sucesso`);
                           setNovoNome(""); setNovoEmail(""); setNovaSenha("");
                         } else {
                           setErroCriar(res.error);
                         }
-                      } catch (e: unknown) {
-                        setErroCriar(e instanceof Error ? e.message : "Erro ao criar usuário");
                       } finally {
                         setCriando(false);
                       }
@@ -1002,6 +1067,20 @@ export default function ConfiguracoesClient({ empresa, usuario, membros: membros
             {abaEquipe === "convite" && (
               <div className="space-y-3">
                 <p className="text-xs text-muted-foreground">Gera um link de convite válido por 7 dias. O usuário define a própria senha ao aceitar.</p>
+                {minhasEmpresas.length > 1 && (
+                  <Select value={novaEmpresaConviteId} onValueChange={(v) => { if (v) handleEmpresaConviteChange(v); }}>
+                    <SelectTrigger className="h-9 text-sm">
+                      <SelectValue placeholder="Selecione a empresa">
+                        {(value: string | null) => value ? (minhasEmpresas.find((e) => e.id === value)?.nome ?? value) : undefined}
+                      </SelectValue>
+                    </SelectTrigger>
+                    <SelectContent>
+                      {minhasEmpresas.map((e) => (
+                        <SelectItem key={e.id} value={e.id} className="text-sm">{e.nome}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                )}
                 <div className="flex gap-2">
                   <Input
                     type="email"
@@ -1010,14 +1089,14 @@ export default function ConfiguracoesClient({ empresa, usuario, membros: membros
                     onChange={(e) => setConviteEmail(e.target.value)}
                     className="h-9 text-sm flex-1"
                   />
-                  <Select value={convitePerfilId} onValueChange={(v) => { if (v) setConvitePerfilId(v); }}>
+                  <Select value={convitePerfilId} onValueChange={(v) => { if (v) setConvitePerfilId(v); }} disabled={carregandoPerfisConvite}>
                     <SelectTrigger className="h-9 text-sm w-36">
-                      <SelectValue placeholder="Perfil">
-                        {(value: string | null) => value ? (perfis.find((p) => p.id === value)?.nome ?? value) : undefined}
+                      <SelectValue placeholder={carregandoPerfisConvite ? "Carregando..." : "Perfil"}>
+                        {(value: string | null) => value ? (perfisConviteAlvo.find((p) => p.id === value)?.nome ?? value) : undefined}
                       </SelectValue>
                     </SelectTrigger>
                     <SelectContent>
-                      {perfis.map((p) => (
+                      {perfisConviteAlvo.map((p) => (
                         <SelectItem key={p.id} value={p.id} className="text-sm">{p.nome}</SelectItem>
                       ))}
                     </SelectContent>
@@ -1025,13 +1104,13 @@ export default function ConfiguracoesClient({ empresa, usuario, membros: membros
                   <Button
                     size="sm"
                     className="h-9 gap-1.5 shrink-0"
-                    disabled={enviandoConvite || !conviteEmail || !convitePerfilId}
+                    disabled={enviandoConvite || !conviteEmail || !convitePerfilId || !novaEmpresaConviteId}
                     onClick={async () => {
                       setErroConvite(null);
                       setLinkConviteGerado(null);
                       setEnviandoConvite(true);
                       try {
-                        const res = await convidarMembro({ email: conviteEmail, perfil_id: convitePerfilId });
+                        const res = await convidarMembro({ email: conviteEmail, perfil_id: convitePerfilId, empresa_id: novaEmpresaConviteId });
                         if (res.ok) {
                           const expira = new Date();
                           expira.setDate(expira.getDate() + 7);
