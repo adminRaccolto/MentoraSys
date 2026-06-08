@@ -3,6 +3,7 @@
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { createClient } from "@/lib/supabase/server";
+import { obterEmpresaAtiva } from "@/lib/permissoes";
 import { criarPerfisPadrao, criarPlanoContasPadrao } from "@/lib/defaults-empresa";
 
 const schema = z.object({
@@ -73,19 +74,24 @@ export async function inicializarEmpresaExistente() {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return { ok: false as const, error: "Não autenticado" };
 
+  // Usa a empresa ATIVA (cookie empresa_ativa), não a primeira do usuário
+  let empresaId: string;
+  try {
+    empresaId = await obterEmpresaAtiva();
+  } catch {
+    return { ok: false as const, error: "Nenhuma empresa selecionada" };
+  }
+
   const membro = await prisma.membroEmpresa.findFirst({
-    where: { usuario_id: user.id, ativo: true },
+    where: { usuario_id: user.id, empresa_id: empresaId, ativo: true },
     include: { perfil: { include: { permissoes: { include: { permissao: true } } } } },
-    orderBy: { criado_em: "asc" },
   });
-  if (!membro) return { ok: false as const, error: "Nenhuma empresa vinculada" };
+  if (!membro) return { ok: false as const, error: "Sem acesso a esta empresa" };
 
   const temPermissao = membro.perfil.permissoes.some(
     (pp) => pp.permissao.recurso === "configuracoes" && pp.permissao.acao === "criar"
   );
   if (!temPermissao) return { ok: false as const, error: "Sem permissão" };
-
-  const empresaId = membro.empresa_id;
 
   try {
     // Sem transaction — muitas queries sequenciais ultrapassam o timeout de 5s
