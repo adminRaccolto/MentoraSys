@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 
 type Tx = Parameters<Parameters<typeof prisma.$transaction>[0]>[0];
+type DbClient = Tx | typeof prisma;
 
 // ─── Perfis padrão ────────────────────────────────────────────────────────────
 
@@ -58,7 +59,7 @@ const PERFIS_PADRAO: {
   },
 ];
 
-async function garantirPermissao(tx: Tx, recurso: string, acao: string) {
+async function garantirPermissao(tx: DbClient, recurso: string, acao: string) {
   return tx.permissao.upsert({
     where: { recurso_acao: { recurso, acao } },
     update: {},
@@ -66,7 +67,7 @@ async function garantirPermissao(tx: Tx, recurso: string, acao: string) {
   });
 }
 
-export async function criarPerfisPadrao(empresaId: string, tx: Tx) {
+export async function criarPerfisPadrao(empresaId: string, tx: DbClient = prisma) {
   for (const def of PERFIS_PADRAO) {
     const perfil = await tx.perfil.create({
       data: { empresa_id: empresaId, nome: def.nome, descricao: def.descricao },
@@ -80,7 +81,7 @@ export async function criarPerfisPadrao(empresaId: string, tx: Tx) {
 
 // ─── Plano de contas padrão ───────────────────────────────────────────────────
 
-export async function criarPlanoContasPadrao(empresaId: string, tx: Tx) {
+export async function criarPlanoContasPadrao(empresaId: string, tx: DbClient = prisma) {
   const grupo = async (
     nome: string,
     tipo: "RECEITA" | "DESPESA" | "CUSTO" | "INVESTIMENTO" | "TESOURARIA",
