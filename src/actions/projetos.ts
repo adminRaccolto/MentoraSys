@@ -26,17 +26,36 @@ export async function criarProjeto(input: Input) {
 
   const data = schema.parse(input);
 
-  const projeto = await prisma.projeto.create({
-    data: {
-      empresa_id: empresaId,
-      cliente_id: data.cliente_id,
-      contrato_id: data.contrato_id || null,
-      titulo: data.titulo,
-      descricao: data.descricao || null,
-      data_inicio: data.data_inicio ? parseLocalDate(data.data_inicio) : null,
-      data_fim: data.data_fim ? parseLocalDate(data.data_fim) : null,
-      criado_por: user?.id,
-    },
+  const ETAPAS_PADRAO = [
+    { titulo: "A Iniciar",    ordem: 1 },
+    { titulo: "Em Execução",  ordem: 2 },
+    { titulo: "Aprovação",    ordem: 3 },
+    { titulo: "Finalizado",   ordem: 4 },
+  ];
+
+  const projeto = await prisma.$transaction(async (tx) => {
+    const p = await tx.projeto.create({
+      data: {
+        empresa_id: empresaId,
+        cliente_id: data.cliente_id,
+        contrato_id: data.contrato_id || null,
+        titulo: data.titulo,
+        descricao: data.descricao || null,
+        data_inicio: data.data_inicio ? parseLocalDate(data.data_inicio) : null,
+        data_fim: data.data_fim ? parseLocalDate(data.data_fim) : null,
+        criado_por: user?.id,
+      },
+    });
+
+    await tx.etapa.createMany({
+      data: ETAPAS_PADRAO.map((e) => ({
+        projeto_id: p.id,
+        titulo: e.titulo,
+        ordem: e.ordem,
+      })),
+    });
+
+    return p;
   });
 
   revalidatePath("/projetos");

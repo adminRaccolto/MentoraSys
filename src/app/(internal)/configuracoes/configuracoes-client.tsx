@@ -40,7 +40,7 @@ import {
 } from "@/actions/configuracoes";
 import { convidarMembro, removerMembro, alterarPerfilMembro, cancelarConvite, criarUsuarioDireto } from "@/actions/equipe";
 import { criarPerfil, editarPerfil, excluirPerfil, listarPerfisEmpresa } from "@/actions/perfis";
-import { criarEmpresa } from "@/actions/empresas";
+import { criarEmpresa, inicializarEmpresaExistente } from "@/actions/empresas";
 
 const RECURSOS = [
   { key: "clientes", label: "Clientes" },
@@ -1242,6 +1242,28 @@ export default function ConfiguracoesClient({ empresa, usuario, membros: membros
           </div>
 
           <Separator />
+
+          {/* Inicializar dados padrão na empresa ativa */}
+          <Button
+            variant="outline"
+            size="sm"
+            className="w-full gap-2 text-xs"
+            onClick={async () => {
+              try {
+                const res = await inicializarEmpresaExistente();
+                if (res.ok) {
+                  toast.success("Perfis e plano de contas padrão aplicados!");
+                } else {
+                  toast.error(res.error ?? "Erro ao inicializar");
+                }
+              } catch {
+                toast.error("Erro ao inicializar dados padrão");
+              }
+            }}
+          >
+            <ChevronRight className="size-3.5" />
+            Aplicar dados padrão (perfis + plano de contas)
+          </Button>
 
           {!criandoEmpresa ? (
             <Button variant="ghost" className="w-full gap-2 text-muted-foreground" onClick={() => setCriandoEmpresa(true)}>
