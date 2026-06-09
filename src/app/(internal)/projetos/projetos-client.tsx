@@ -184,33 +184,36 @@ export default function ProjetosClient({ projetos: inicial, clientes, contratos 
 
       {/* Modal novo projeto */}
       <Dialog open={modalAberto} onOpenChange={setModalAberto}>
-        <DialogContent className="max-w-lg">
+        <DialogContent className="max-w-2xl">
           <DialogHeader>
-            <DialogTitle>Novo projeto</DialogTitle>
+            <DialogTitle className="text-xl">Novo projeto</DialogTitle>
           </DialogHeader>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <div className="space-y-1">
-              <Label>Cliente *</Label>
-              <Select value={watch("cliente_id") ?? ""} onValueChange={(v) => setValue("cliente_id", v ?? "")}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Selecione um cliente">
-                    {(value: string | null) => value ? (clientes.find((c) => c.id === value)?.nome ?? value) : undefined}
-                  </SelectValue>
-                </SelectTrigger>
-                <SelectContent>
-                  {clientes.map((c) => (
-                    <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.cliente_id && <p className="text-destructive text-xs">{errors.cliente_id.message}</p>}
-            </div>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 pt-2">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-1.5">
+                <Label className="text-sm font-medium">Cliente *</Label>
+                <Select value={watch("cliente_id") ?? ""} onValueChange={(v) => setValue("cliente_id", v ?? "")}>
+                  <SelectTrigger className="h-10">
+                    <SelectValue placeholder="Selecione um cliente">
+                      {(value: string | null) => value ? (clientes.find((c) => c.id === value)?.nome ?? value) : undefined}
+                    </SelectValue>
+                  </SelectTrigger>
+                  <SelectContent>
+                    {clientes.map((c) => (
+                      <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                {errors.cliente_id && <p className="text-destructive text-xs">{errors.cliente_id.message}</p>}
+              </div>
 
-            {contratos.length > 0 && (
-              <div className="space-y-1">
-                <Label>Contrato vinculado <span className="text-muted-foreground text-xs">(opcional)</span></Label>
+              <div className="space-y-1.5">
+                <Label className="text-sm font-medium">
+                  Contrato vinculado{" "}
+                  <span className="text-muted-foreground font-normal">(opcional)</span>
+                </Label>
                 <Select
-                  value={watch("contrato_id") ?? ""}
+                  value={watch("contrato_id") ?? "nenhum"}
                   onValueChange={(v) => {
                     if (v === null || v === "nenhum") {
                       setValue("contrato_id", undefined);
@@ -221,7 +224,7 @@ export default function ProjetosClient({ projetos: inicial, clientes, contratos 
                     if (c) setValue("cliente_id", c.cliente_id);
                   }}
                 >
-                  <SelectTrigger>
+                  <SelectTrigger className="h-10">
                     <SelectValue placeholder="Nenhum">
                       {(value: string | null) => {
                         if (!value || value === "nenhum") return undefined;
@@ -238,33 +241,35 @@ export default function ProjetosClient({ projetos: inicial, clientes, contratos 
                   </SelectContent>
                 </Select>
               </div>
-            )}
+            </div>
 
-            <div className="space-y-1">
-              <Label>Título *</Label>
-              <Input {...register("titulo")} placeholder="Ex.: Consultoria Financeira Q3" />
+            <div className="space-y-1.5">
+              <Label className="text-sm font-medium">Título *</Label>
+              <Input className="h-10" {...register("titulo")} placeholder="Ex.: Consultoria Financeira Q3" />
               {errors.titulo && <p className="text-destructive text-xs">{errors.titulo.message}</p>}
             </div>
 
-            <div className="space-y-1">
-              <Label>Descrição</Label>
-              <Textarea {...register("descricao")} rows={2} placeholder="Objetivo e escopo do projeto..." />
+            <div className="space-y-1.5">
+              <Label className="text-sm font-medium">Descrição <span className="text-muted-foreground font-normal">(opcional)</span></Label>
+              <Textarea {...register("descricao")} rows={3} placeholder="Objetivo e escopo do projeto..." className="resize-none" />
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
-              <div className="space-y-1">
-                <Label>Data de início</Label>
-                <Input {...register("data_inicio")} type="date" />
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-1.5">
+                <Label className="text-sm font-medium">Data de início</Label>
+                <Input {...register("data_inicio")} type="date" className="h-10" />
               </div>
-              <div className="space-y-1">
-                <Label>Data de término</Label>
-                <Input {...register("data_fim")} type="date" />
+              <div className="space-y-1.5">
+                <Label className="text-sm font-medium">Data de término</Label>
+                <Input {...register("data_fim")} type="date" className="h-10" />
               </div>
             </div>
 
-            <DialogFooter>
+            <DialogFooter className="pt-2">
               <Button type="button" variant="outline" onClick={() => setModalAberto(false)}>Cancelar</Button>
-              <Button type="submit" disabled={isPending}>{isPending ? "Criando..." : "Criar projeto"}</Button>
+              <Button type="submit" disabled={isPending} className="min-w-32">
+                {isPending ? "Criando..." : "Criar projeto"}
+              </Button>
             </DialogFooter>
           </form>
         </DialogContent>
