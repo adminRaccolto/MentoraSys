@@ -375,6 +375,7 @@ exports.Prisma.ProjetoScalarFieldEnum = {
   empresa_id: 'empresa_id',
   contrato_id: 'contrato_id',
   cliente_id: 'cliente_id',
+  interno: 'interno',
   criado_por: 'criado_por',
   titulo: 'titulo',
   descricao: 'descricao',
@@ -474,12 +475,24 @@ exports.Prisma.TarefaEtiquetaScalarFieldEnum = {
   etiqueta_id: 'etiqueta_id'
 };
 
+exports.Prisma.PastaDocumentoScalarFieldEnum = {
+  id: 'id',
+  empresa_id: 'empresa_id',
+  nome: 'nome',
+  descricao: 'descricao',
+  parent_id: 'parent_id',
+  criado_por: 'criado_por',
+  criado_em: 'criado_em',
+  atualizado_em: 'atualizado_em'
+};
+
 exports.Prisma.DocumentoScalarFieldEnum = {
   id: 'id',
   empresa_id: 'empresa_id',
   projeto_id: 'projeto_id',
   cliente_id: 'cliente_id',
   contrato_id: 'contrato_id',
+  pasta_id: 'pasta_id',
   criado_por: 'criado_por',
   titulo: 'titulo',
   descricao: 'descricao',
@@ -896,7 +909,8 @@ exports.TipoDiagnostico = exports.$Enums.TipoDiagnostico = {
   CINCO_W_DOIS_H: 'CINCO_W_DOIS_H',
   ORGANOGRAMA: 'ORGANOGRAMA',
   MAPA_PROCESSO: 'MAPA_PROCESSO',
-  GANTT: 'GANTT'
+  GANTT: 'GANTT',
+  MAPA_MENTAL: 'MAPA_MENTAL'
 };
 
 exports.MomentoDiagnostico = exports.$Enums.MomentoDiagnostico = {
@@ -939,6 +953,7 @@ exports.Prisma.ModelName = {
   ItemChecklist: 'ItemChecklist',
   EtiquetaTarefa: 'EtiquetaTarefa',
   TarefaEtiqueta: 'TarefaEtiqueta',
+  PastaDocumento: 'PastaDocumento',
   Documento: 'Documento',
   PlanoDeContas: 'PlanoDeContas',
   Banco: 'Banco',

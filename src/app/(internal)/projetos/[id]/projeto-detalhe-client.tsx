@@ -33,6 +33,7 @@ interface Tarefa {
   id: string; titulo: string; descricao: string | null;
   status: string; data_prazo: Date | null; concluida_em: Date | null;
   responsavel: Responsavel | null;
+  etiquetas: { etiqueta: { id: string; nome: string; cor: string } }[];
 }
 interface Etapa {
   id: string; titulo: string; descricao: string | null;
@@ -49,7 +50,7 @@ interface Projeto {
   id: string; titulo: string; descricao: string | null;
   status: StatusProjeto;
   data_inicio: Date | null; data_fim: Date | null;
-  cliente: { id: string; nome: string; email: string | null };
+  cliente: { id: string; nome: string; email: string | null } | null;
   contrato: { id: string; titulo: string } | null;
   etapas: Etapa[];
   documentos: Documento[];
@@ -135,7 +136,7 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros, usuari
     startTransition(async () => {
       try {
         await editarProjeto(projeto.id, {
-          cliente_id: projeto.cliente.id,
+          cliente_id: projeto.cliente?.id,
           titulo: projeto.titulo,
           status,
         });
@@ -199,7 +200,7 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros, usuari
         setProjeto((p) => ({
           ...p,
           etapas: p.etapas.map((e) =>
-            e.id === etapaId ? { ...e, tarefas: [...e.tarefas, res.data as Tarefa] } : e
+            e.id === etapaId ? { ...e, tarefas: [...e.tarefas, { ...res.data, etiquetas: [] } as Tarefa] } : e
           ),
         }));
         setNovaTarefaTitulo("");
@@ -291,6 +292,7 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros, usuari
   const gerarLink = () => {
     startTransition(async () => {
       try {
+        if (!projeto.cliente) return;
         const res = await gerarLinkPortal(projeto.cliente.id);
         const url = `${window.location.origin}/portal/acesso/${res.token}`;
         setLinkPortalGerado(url);
@@ -322,7 +324,7 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros, usuari
                 ← Projetos
               </button>
               <h1 className="text-xl font-bold leading-tight text-white">{projeto.titulo}</h1>
-              <p className="text-sm text-white/70">{projeto.cliente.nome}</p>
+              {projeto.cliente && <p className="text-sm text-white/70">{projeto.cliente.nome}</p>}
             </div>
             <div className="flex items-center gap-2 shrink-0">
               <Select value={projeto.status} onValueChange={(v) => v && mudarStatus(v)}>
@@ -615,8 +617,8 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros, usuari
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
                 <p className="text-muted-foreground text-xs uppercase tracking-wide mb-0.5">Cliente</p>
-                <p className="font-medium">{projeto.cliente.nome}</p>
-                {projeto.cliente.email && <p className="text-muted-foreground">{projeto.cliente.email}</p>}
+                <p className="font-medium">{projeto.cliente?.nome ?? "Projeto interno"}</p>
+                {projeto.cliente?.email && <p className="text-muted-foreground">{projeto.cliente.email}</p>}
               </div>
               {projeto.contrato && (
                 <div>
@@ -646,7 +648,7 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros, usuari
           <div className="space-y-2">
             <p className="text-sm font-medium">Portal do cliente</p>
             <p className="text-xs text-muted-foreground">
-              Gere um link de acesso para que <strong>{projeto.cliente.nome}</strong> possa acompanhar este projeto.
+              Gere um link de acesso para que <strong>{projeto.cliente?.nome ?? "o cliente"}</strong> possa acompanhar este projeto.
               O link expira em 7 dias.
             </p>
             <Button variant="outline" size="sm" onClick={gerarLink} disabled={isPending}>

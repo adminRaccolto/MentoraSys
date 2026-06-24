@@ -135,53 +135,52 @@ export default async function PreviewModeloPage({ params, searchParams }: Props)
       vars["contrato.cliente_contato_email"] = contrato.cliente_contato_email ?? "";
       vars["contrato.cliente_contato_tel"] = contrato.cliente_contato_tel ?? "";
 
-      // Fonte 1: recebíveis já gerados (contrato assinado)
+      type ParcelaJson = { numero: number; vencimento: string; valor: number };
+
+      const linhasParcela = (ps: ParcelaJson[]) =>
+        ps.map((p) => `<tr>
+          <td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;text-align:center;">${p.numero}/${ps.length}</td>
+          <td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">${new Date(p.vencimento + "T12:00:00").toLocaleDateString("pt-BR")}</td>
+          <td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;text-align:right;">${Number(p.valor).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</td>
+        </tr>`).join("");
+
+      // Fonte 1: recebíveis já lançados
       if (recebiveis.length > 0) {
-        const linhas = recebiveis
-          .map(
-            (r) => `<tr>
-              <td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;text-align:center;">${r.numero_parcela ?? "—"}${r.total_parcelas ? `/${r.total_parcelas}` : ""}</td>
-              <td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">${fmt(r.data_vencimento)}</td>
-              <td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;text-align:right;">${fmtMoney(r.valor)}</td>
-            </tr>`
-          )
-          .join("");
+        const linhas = recebiveis.map((r) => `<tr>
+          <td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;text-align:center;">${r.numero_parcela ?? "—"}${r.total_parcelas ? `/${r.total_parcelas}` : ""}</td>
+          <td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">${fmt(r.data_vencimento)}</td>
+          <td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;text-align:right;">${fmtMoney(r.valor)}</td>
+        </tr>`).join("");
+        vars["contrato.tabela_parcelas"] = buildTabelaParcelas(linhas);
+
+      // Fonte 2: parcelas_json do próprio contrato (grid editado pelo usuário)
+      } else if (Array.isArray(contrato.parcelas_json) && (contrato.parcelas_json as ParcelaJson[]).length > 0) {
+        vars["contrato.tabela_parcelas"] = buildTabelaParcelas(
+          linhasParcela(contrato.parcelas_json as ParcelaJson[])
+        );
+
+      // Fonte 3: parcelas_json da proposta vinculada
+      } else if (Array.isArray(contrato.proposta?.parcelas_json) && (contrato.proposta!.parcelas_json as ParcelaJson[]).length > 0) {
+        vars["contrato.tabela_parcelas"] = buildTabelaParcelas(
+          linhasParcela(contrato.proposta!.parcelas_json as ParcelaJson[])
+        );
+
+      // Fonte 4: calcular igualmente a partir dos campos do contrato (último recurso)
+      } else if (contrato.numero_parcelas && contrato.primeiro_vencimento && Number(contrato.valor_total) > 0) {
+        const n = contrato.numero_parcelas;
+        const valorParcela = Number(contrato.valor_total) / n;
+        const linhas = Array.from({ length: n }, (_, i) => {
+          const dt = new Date(contrato.primeiro_vencimento!);
+          dt.setMonth(dt.getMonth() + i);
+          return `<tr>
+            <td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;text-align:center;">${i + 1}/${n}</td>
+            <td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">${dt.toLocaleDateString("pt-BR")}</td>
+            <td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;text-align:right;">${valorParcela.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</td>
+          </tr>`;
+        }).join("");
         vars["contrato.tabela_parcelas"] = buildTabelaParcelas(linhas);
       } else {
-        // Fonte 2: parcelas_json da proposta vinculada
-        type ParcelaJson = { numero: number; vencimento: string; valor: number };
-        const propostaParcelas = Array.isArray(contrato.proposta?.parcelas_json)
-          ? (contrato.proposta!.parcelas_json as ParcelaJson[])
-          : [];
-
-        if (propostaParcelas.length > 0) {
-          const linhas = propostaParcelas
-            .map(
-              (p) => `<tr>
-                <td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;text-align:center;">${p.numero}/${propostaParcelas.length}</td>
-                <td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">${new Date(p.vencimento + "T12:00:00").toLocaleDateString("pt-BR")}</td>
-                <td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;text-align:right;">${Number(p.valor).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</td>
-              </tr>`
-            )
-            .join("");
-          vars["contrato.tabela_parcelas"] = buildTabelaParcelas(linhas);
-        } else if (contrato.numero_parcelas && contrato.primeiro_vencimento && Number(contrato.valor_total) > 0) {
-          // Fonte 3: calcular a partir dos campos do contrato
-          const n = contrato.numero_parcelas;
-          const valorParcela = Number(contrato.valor_total) / n;
-          const linhas = Array.from({ length: n }, (_, i) => {
-            const dt = new Date(contrato.primeiro_vencimento!);
-            dt.setMonth(dt.getMonth() + i);
-            return `<tr>
-              <td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;text-align:center;">${i + 1}/${n}</td>
-              <td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">${dt.toLocaleDateString("pt-BR")}</td>
-              <td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;text-align:right;">${valorParcela.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</td>
-            </tr>`;
-          }).join("");
-          vars["contrato.tabela_parcelas"] = buildTabelaParcelas(linhas);
-        } else {
-          vars["contrato.tabela_parcelas"] = "";
-        }
+        vars["contrato.tabela_parcelas"] = "";
       }
     }
   }

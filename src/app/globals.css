@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "mind-elixir/dist/MindElixir.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -130,4 +131,29 @@
   html {
     @apply font-sans;
   }
+}
+
+/* ─── Mind Elixir editor ─────────────────────────────────────────────── */
+.mind-elixir-container {
+  --bgcolor: #f8fafc;
+  --color: #1e293b;
+  --main-bgcolor: #1b4f72;
+  --main-color: #fff;
+  --root-bgcolor: #1b4f72;
+  --root-color: #fff;
+  --root-border-color: #1b4f72;
+  --selected: #d4ac0d;
+  --panel-bgcolor: #fff;
+  --panel-color: #1e293b;
+  --panel-border-color: #e2e8f0;
+}
+
+.mind-node-btn {
+  @apply size-6 rounded-full bg-white border border-border shadow-sm flex items-center justify-center z-20 hover:bg-primary hover:text-white transition-colors;
+}
+.mind-node-btn--child {
+  @apply text-primary;
+}
+.mind-node-btn--sib {
+  @apply text-indigo-600;
 }

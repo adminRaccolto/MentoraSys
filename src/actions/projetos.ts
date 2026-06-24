@@ -8,13 +8,17 @@ import { verificarPermissao, obterEmpresaAtiva } from "@/lib/permissoes";
 import { createClient } from "@/lib/supabase/server";
 
 const schema = z.object({
-  cliente_id: z.string().min(1, "Cliente obrigatório"),
+  cliente_id: z.string().optional(),
   contrato_id: z.string().optional(),
+  interno: z.boolean().default(false),
   titulo: z.string().min(2, "Título obrigatório"),
   descricao: z.string().optional(),
   data_inicio: z.string().optional(),
   data_fim: z.string().optional(),
-});
+}).refine(
+  (d) => d.interno || !!d.cliente_id,
+  { message: "Selecione um cliente ou marque como projeto interno", path: ["cliente_id"] }
+);
 
 type Input = z.input<typeof schema>;
 
@@ -37,8 +41,9 @@ export async function criarProjeto(input: Input) {
     const p = await tx.projeto.create({
       data: {
         empresa_id: empresaId,
-        cliente_id: data.cliente_id,
+        cliente_id: data.cliente_id || null,
         contrato_id: data.contrato_id || null,
+        interno: data.interno ?? false,
         titulo: data.titulo,
         descricao: data.descricao || null,
         data_inicio: data.data_inicio ? parseLocalDate(data.data_inicio) : null,

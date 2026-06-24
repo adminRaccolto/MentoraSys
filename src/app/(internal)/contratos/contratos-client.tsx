@@ -153,6 +153,7 @@ interface PropostaAceita {
   primeiro_vencimento: Date | null;
   forma_pagamento: string | null;
   periodicidade: string | null;
+  parcelas_json: unknown;
   cliente: { nome: string };
 }
 
@@ -304,6 +305,7 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
     setContratoEditando(null);
     if (proposta) {
       const c = clientes.find((cl) => cl.id === proposta.cliente_id);
+      const parcelasPropostos = Array.isArray(proposta.parcelas_json) ? (proposta.parcelas_json as any[]) : [];
       reset({
         cliente_id: proposta.cliente_id,
         proposta_id: proposta.id,
@@ -318,6 +320,7 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
         gerar_financeiro: true,
         gerar_projeto: false,
         renovacao_automatica: false,
+        parcelas_json: parcelasPropostos,
         cliente_nome: c?.nome ?? "",
         cliente_cpf_cnpj: c?.cpf_cnpj ?? "",
         cliente_contato_nome: c?.contato_principal ?? "",

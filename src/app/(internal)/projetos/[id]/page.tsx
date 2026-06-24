@@ -28,6 +28,9 @@ export default async function ProjetoDetalhePage({ params }: Props) {
               orderBy: { criado_em: "asc" },
               include: {
                 responsavel: { select: { id: true, nome: true } },
+                etiquetas: {
+                  include: { etiqueta: { select: { id: true, nome: true, cor: true } } },
+                },
               },
             },
           },

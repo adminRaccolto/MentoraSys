@@ -46,6 +46,7 @@ model Empresa {
   contratos  Contrato[]
   projetos         Projeto[]
   documentos       Documento[]
+  pastas_documento PastaDocumento[]
   plano_contas     PlanoDeContas[]
   contas_bancarias ContaBancaria[]
   transferencias_tesouraria TransferenciaTesouraria[]
@@ -544,7 +545,8 @@ model Projeto {
   id            String        @id @default(cuid())
   empresa_id    String
   contrato_id   String?       @unique
-  cliente_id    String
+  cliente_id    String?
+  interno       Boolean       @default(false)
   criado_por    String?
   titulo        String
   descricao     String?
@@ -556,7 +558,7 @@ model Projeto {
 
   empresa   Empresa     @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
   contrato  Contrato?   @relation(fields: [contrato_id], references: [id])
-  cliente   Cliente     @relation(fields: [cliente_id], references: [id])
+  cliente   Cliente?    @relation(fields: [cliente_id], references: [id])
   criador   Usuario?    @relation(fields: [criado_por], references: [id])
   etapas    Etapa[]
   tarefas   Tarefa[]
@@ -713,12 +715,31 @@ model TarefaEtiqueta {
 
 // ─── DOCUMENTOS ───────────────────────────────────────────────────────────────
 
+model PastaDocumento {
+  id            String   @id @default(cuid())
+  empresa_id    String
+  nome          String
+  descricao     String?
+  parent_id     String?
+  criado_por    String?
+  criado_em     DateTime @default(now())
+  atualizado_em DateTime @updatedAt
+
+  empresa    Empresa          @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  parent     PastaDocumento?  @relation("PastaHierarquia", fields: [parent_id], references: [id], onDelete: Cascade)
+  filhos     PastaDocumento[] @relation("PastaHierarquia")
+  documentos Documento[]
+
+  @@map("pastas_documento")
+}
+
 model Documento {
   id              String             @id @default(cuid())
   empresa_id      String
   projeto_id      String?
   cliente_id      String?
   contrato_id     String?
+  pasta_id        String?
   criado_por      String?
   titulo          String
   descricao       String?
@@ -729,11 +750,12 @@ model Documento {
   mime_type       String             @default("application/octet-stream")
   criado_em       DateTime           @default(now())
 
-  empresa   Empresa   @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
-  projeto   Projeto?  @relation(fields: [projeto_id],  references: [id])
-  cliente   Cliente?  @relation(fields: [cliente_id],  references: [id])
-  contrato  Contrato? @relation(fields: [contrato_id], references: [id])
-  criador   Usuario?  @relation(fields: [criado_por],  references: [id])
+  empresa   Empresa         @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  projeto   Projeto?        @relation(fields: [projeto_id],  references: [id])
+  cliente   Cliente?        @relation(fields: [cliente_id],  references: [id])
+  contrato  Contrato?       @relation(fields: [contrato_id], references: [id])
+  pasta     PastaDocumento? @relation(fields: [pasta_id],    references: [id])
+  criador   Usuario?        @relation(fields: [criado_por],  references: [id])
 
   @@map("documentos")
 }
@@ -1092,6 +1114,7 @@ enum TipoDiagnostico {
   ORGANOGRAMA
   MAPA_PROCESSO
   GANTT
+  MAPA_MENTAL
 }
 
 model Diagnostico {

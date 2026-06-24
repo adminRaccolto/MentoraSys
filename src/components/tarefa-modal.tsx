@@ -58,7 +58,7 @@ interface Props {
 const STATUS_OPTS = [
   { value: "PENDENTE",     label: "Pendente",     cor: "bg-slate-100 text-slate-700" },
   { value: "EM_ANDAMENTO", label: "Em Andamento", cor: "bg-blue-100 text-blue-700" },
-  { value: "CONCLUIDA",    label: "Concluída",    cor: "bg-green-100 text-green-700" },
+  { value: "CONCLUIDA",    label: "Concluída",    cor: "bg-emerald-100 text-emerald-700" },
   { value: "CANCELADA",    label: "Cancelada",    cor: "bg-red-100 text-red-700" },
 ];
 
@@ -68,6 +68,20 @@ const PRIO_OPTS: { value: PrioridadeTarefa; label: string; cor: string }[] = [
   { value: "MEDIA",   label: "→ Média",   cor: "text-blue-600" },
   { value: "BAIXA",   label: "↓ Baixa",   cor: "text-slate-500" },
 ];
+
+const PRIO_BADGE: Record<string, string> = {
+  URGENTE: "bg-red-100 text-red-700 border-red-200",
+  ALTA:    "bg-orange-100 text-orange-700 border-orange-200",
+  MEDIA:   "bg-sky-100 text-sky-700 border-sky-200",
+  BAIXA:   "bg-slate-100 text-slate-600 border-slate-200",
+};
+
+const PRIO_LABEL: Record<string, string> = {
+  URGENTE: "⚡ Urgente",
+  ALTA:    "↑ Alta",
+  MEDIA:   "→ Média",
+  BAIXA:   "↓ Baixa",
+};
 
 const fmt = (d: Date | string | null) =>
   d ? new Date(d).toLocaleDateString("pt-BR", { day: "2-digit", month: "short" }) : null;
@@ -260,14 +274,19 @@ export default function TarefaModal({ tarefa: ini_, membros, usuarioAtualId, onC
       <DialogContent className="w-[96vw] max-w-[96vw] sm:max-w-[96vw] h-[88vh] max-h-[88vh] p-0 gap-0 overflow-hidden flex flex-col">
 
         {/* ── barra superior ───────────────────────────────────────────── */}
-        <div className="flex items-center gap-4 px-6 py-3 border-b bg-muted/20 shrink-0">
-          <span className="text-xs text-muted-foreground truncate">
-            {t.projeto.titulo} › {t.etapa.titulo}
+        <div className="flex items-center gap-3 px-5 py-2.5 border-b bg-muted/20 shrink-0">
+          <span className="text-xs text-muted-foreground truncate flex-1 min-w-0">
+            {t.projeto.titulo} <span className="opacity-50">›</span> {t.etapa.titulo}
           </span>
-          <span className={`ml-auto text-xs font-medium px-2.5 py-1 rounded-full ${statusCfg?.cor}`}>
+          {/* Priority badge */}
+          <span className={`shrink-0 text-[11px] font-semibold px-2 py-0.5 rounded-full border ${PRIO_BADGE[t.prioridade]}`}>
+            {PRIO_LABEL[t.prioridade]}
+          </span>
+          {/* Status pill */}
+          <span className={`shrink-0 text-xs font-semibold px-2.5 py-1 rounded-full ${statusCfg?.cor}`}>
             {statusCfg?.label}
           </span>
-          <button onClick={onClose} className="p-1.5 rounded-md hover:bg-muted transition-colors">
+          <button onClick={onClose} className="shrink-0 p-1.5 rounded-md hover:bg-muted transition-colors ml-1">
             <X className="size-4" />
           </button>
         </div>
@@ -295,6 +314,21 @@ export default function TarefaModal({ tarefa: ini_, membros, usuarioAtualId, onC
                 onClick={() => setEditTitle(true)}>
                 {t.titulo}
               </h2>
+            )}
+
+            {/* Etiquetas */}
+            {t.etiquetas.length > 0 && (
+              <div className="flex flex-wrap gap-1.5">
+                {t.etiquetas.map(({ etiqueta }) => (
+                  <span
+                    key={etiqueta.id}
+                    className="inline-flex items-center text-xs px-2.5 py-1 rounded-full font-semibold text-white leading-none"
+                    style={{ backgroundColor: etiqueta.cor }}
+                  >
+                    {etiqueta.nome}
+                  </span>
+                ))}
+              </div>
             )}
 
             {/* descrição */}
@@ -393,52 +427,87 @@ export default function TarefaModal({ tarefa: ini_, membros, usuarioAtualId, onC
           </div>
 
           {/* ══ COL 2 — Metadados ════════════════════════════════════════ */}
-          <div className="w-[22%] shrink-0 overflow-y-auto p-6 space-y-5 bg-muted/10">
+          <div className="w-[22%] shrink-0 overflow-y-auto p-5 space-y-5 bg-muted/10 border-r">
 
-            <Meta icon={<Flag className="size-3" />} label="Status">
+            {/* Status */}
+            <div className="space-y-1.5">
+              <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1">
+                <Flag className="size-3" /> Status
+              </p>
               <Select value={t.status} onValueChange={v => v && salvarCampo({ status: v })}>
-                <SelectTrigger className="h-8 text-xs"><SelectValue /></SelectTrigger>
+                <SelectTrigger className="h-9 text-xs">
+                  <SelectValue />
+                </SelectTrigger>
                 <SelectContent>
-                  {STATUS_OPTS.map(s => <SelectItem key={s.value} value={s.value}>{s.label}</SelectItem>)}
+                  {STATUS_OPTS.map(s => (
+                    <SelectItem key={s.value} value={s.value}>
+                      <span className={`inline-block px-1.5 py-0.5 rounded-full text-xs font-medium ${s.cor}`}>
+                        {s.label}
+                      </span>
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
-            </Meta>
+            </div>
 
-            <Meta icon={<AlertCircle className="size-3" />} label="Prioridade">
+            {/* Prioridade */}
+            <div className="space-y-1.5">
+              <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1">
+                <AlertCircle className="size-3" /> Prioridade
+              </p>
+              <span className={`inline-flex items-center text-xs font-semibold px-2.5 py-1 rounded-full border mb-1 ${PRIO_BADGE[t.prioridade]}`}>
+                {PRIO_LABEL[t.prioridade]}
+              </span>
               <Select value={t.prioridade} onValueChange={(v: string | null) => v && salvarCampo({ prioridade: v as PrioridadeTarefa })}>
-                <SelectTrigger className="h-8 text-xs"><SelectValue /></SelectTrigger>
+                <SelectTrigger className="h-8 text-xs w-full"><SelectValue /></SelectTrigger>
                 <SelectContent>
                   {PRIO_OPTS.map(p => <SelectItem key={p.value} value={p.value}><span className={p.cor}>{p.label}</span></SelectItem>)}
                 </SelectContent>
               </Select>
-            </Meta>
+            </div>
 
-            <Meta icon={<User className="size-3" />} label="Responsável">
+            {/* Responsável */}
+            <div className="space-y-1.5">
+              <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1">
+                <User className="size-3" /> Responsável
+              </p>
+              {t.responsavel && (
+                <div className="flex items-center gap-2 mb-1.5 p-2 bg-background rounded-lg border">
+                  <div className="size-7 rounded-full bg-primary/15 text-primary text-[10px] font-bold flex items-center justify-center shrink-0">
+                    {t.responsavel.nome.split(" ").slice(0,2).map(p => p[0]).join("").toUpperCase()}
+                  </div>
+                  <span className="text-xs font-medium truncate">{t.responsavel.nome.split(" ")[0]}</span>
+                </div>
+              )}
               <Select value={t.responsavel?.id ?? "none"}
                 onValueChange={(v: string | null) => salvarCampo({ responsavel_id: !v || v === "none" ? "" : v })}>
-                <SelectTrigger className="h-8 text-xs"><SelectValue placeholder="Sem responsável" /></SelectTrigger>
+                <SelectTrigger className="h-8 text-xs"><SelectValue placeholder="Atribuir…" /></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="none">Sem responsável</SelectItem>
                   {membros.map(m => <SelectItem key={m.id} value={m.id}>{m.nome}</SelectItem>)}
                 </SelectContent>
               </Select>
-            </Meta>
+            </div>
 
-            <Meta icon={<Clock className="size-3" />} label="Prazo">
-              <Input type="date" className="h-8 text-xs"
+            {/* Prazo */}
+            <div className="space-y-1.5">
+              <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1">
+                <Clock className="size-3" /> Prazo
+              </p>
+              <Input type="date" className="h-9 text-xs"
                 value={t.data_prazo ? new Date(t.data_prazo).toISOString().split("T")[0] : ""}
                 onChange={e => salvarCampo({ data_prazo: e.target.value })} />
               {t.data_prazo && (
-                <p className={`text-xs mt-0.5 ${new Date(t.data_prazo) < new Date() && t.status !== "CONCLUIDA" ? "text-red-500 font-medium" : "text-muted-foreground"}`}>
-                  {fmt(t.data_prazo)}
+                <p className={`text-xs font-medium ${new Date(t.data_prazo) < new Date() && t.status !== "CONCLUIDA" ? "text-red-500" : "text-muted-foreground"}`}>
+                  {new Date(t.data_prazo) < new Date() && t.status !== "CONCLUIDA" ? "⚠ " : ""}{fmt(t.data_prazo)}
                 </p>
               )}
-            </Meta>
+            </div>
 
-            {/* aprovação rápida */}
+            {/* Aprovação */}
             {!aprovPendente && (
-              <div className="pt-2 border-t space-y-2">
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1">
+              <div className="pt-3 border-t space-y-2">
+                <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1">
                   <Shield className="size-3" /> Aprovação
                 </p>
                 <Select value={aprovadorId} onValueChange={(v: string | null) => setAprovadorId(v ?? "")}>

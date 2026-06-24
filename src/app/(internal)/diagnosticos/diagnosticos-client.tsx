@@ -28,7 +28,7 @@ import { criarDiagnostico, excluirDiagnostico } from "@/actions/diagnosticos";
 
 interface Diagnostico {
   id: string;
-  tipo: "SWOT" | "CANVAS" | "CINCO_W_DOIS_H" | "ORGANOGRAMA" | "MAPA_PROCESSO" | "GANTT";
+  tipo: "SWOT" | "CANVAS" | "CINCO_W_DOIS_H" | "ORGANOGRAMA" | "MAPA_PROCESSO" | "GANTT" | "MAPA_MENTAL";
   titulo: string;
   atualizado_em: string;
   cliente: { id: string; nome: string } | null;
@@ -42,7 +42,7 @@ interface Props {
 }
 
 const schema = z.object({
-  tipo: z.enum(["SWOT", "CANVAS", "CINCO_W_DOIS_H", "ORGANOGRAMA", "MAPA_PROCESSO", "GANTT"]),
+  tipo: z.enum(["SWOT", "CANVAS", "CINCO_W_DOIS_H", "ORGANOGRAMA", "MAPA_PROCESSO", "GANTT", "MAPA_MENTAL"]),
   titulo: z.string().min(1, "Título obrigatório"),
   cliente_id: z.string().optional(),
   projeto_id: z.string().optional(),
@@ -56,6 +56,7 @@ const TIPO_LABEL: Record<string, string> = {
   ORGANOGRAMA:    "Organograma",
   MAPA_PROCESSO:  "Mapa de Processos",
   GANTT:          "Cronograma Gantt",
+  MAPA_MENTAL:    "Mapa Mental",
 };
 
 const TIPO_COLOR: Record<string, string> = {
@@ -65,6 +66,7 @@ const TIPO_COLOR: Record<string, string> = {
   ORGANOGRAMA:    "bg-green-100 text-green-700",
   MAPA_PROCESSO:  "bg-orange-100 text-orange-700",
   GANTT:          "bg-sky-100 text-sky-700",
+  MAPA_MENTAL:    "bg-indigo-100 text-indigo-700",
 };
 
 const TABS = [
@@ -75,6 +77,7 @@ const TABS = [
   { label: "Organograma",  value: "ORGANOGRAMA" },
   { label: "Processos",    value: "MAPA_PROCESSO" },
   { label: "Gantt",        value: "GANTT" },
+  { label: "Mapa Mental",  value: "MAPA_MENTAL" },
 ] as const;
 
 export default function DiagnosticosClient({ diagnosticos, clientes, projetos }: Props) {
@@ -222,7 +225,7 @@ export default function DiagnosticosClient({ diagnosticos, clientes, projetos }:
               <Label>Tipo *</Label>
               <Select
                 value={form.watch("tipo")}
-                onValueChange={(v) => form.setValue("tipo", v as "SWOT" | "CANVAS" | "CINCO_W_DOIS_H" | "ORGANOGRAMA" | "MAPA_PROCESSO" | "GANTT")}
+                onValueChange={(v) => form.setValue("tipo", v as "SWOT" | "CANVAS" | "CINCO_W_DOIS_H" | "ORGANOGRAMA" | "MAPA_PROCESSO" | "GANTT" | "MAPA_MENTAL")}
               >
                 <SelectTrigger>
                   <SelectValue>
@@ -236,6 +239,7 @@ export default function DiagnosticosClient({ diagnosticos, clientes, projetos }:
                   <SelectItem value="ORGANOGRAMA">Organograma</SelectItem>
                   <SelectItem value="MAPA_PROCESSO">Mapa de Processos</SelectItem>
                   <SelectItem value="GANTT">Cronograma Gantt</SelectItem>
+                  <SelectItem value="MAPA_MENTAL">Mapa Mental</SelectItem>
                 </SelectContent>
               </Select>
             </div>

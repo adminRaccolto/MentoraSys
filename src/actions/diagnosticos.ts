@@ -9,7 +9,7 @@ import { registrar } from "@/lib/auditoria";
 import { TipoDiagnostico } from "@/lib/generated/prisma";
 
 const schemaCreate = z.object({
-  tipo: z.enum(["SWOT", "CANVAS", "CINCO_W_DOIS_H", "ORGANOGRAMA", "MAPA_PROCESSO", "GANTT"]),
+  tipo: z.enum(["SWOT", "CANVAS", "CINCO_W_DOIS_H", "ORGANOGRAMA", "MAPA_PROCESSO", "GANTT", "MAPA_MENTAL"]),
   titulo: z.string().min(1, "Título obrigatório"),
   cliente_id: z.string().optional(),
   projeto_id: z.string().optional(),
@@ -102,6 +102,9 @@ function conteudoPadrao(tipo: TipoDiagnostico): object {
       estrutura_custos: "",
       fontes_receita: "",
     };
+  }
+  if (tipo === "MAPA_MENTAL") {
+    return { nodeData: { id: "me-root", topic: "Mapa Mental", children: [] } };
   }
   // CINCO_W_DOIS_H
   return {

@@ -15,7 +15,7 @@ interface Etapa {
   nome: string;
   descricao: string;
   responsavel: string;
-  tipo: "PROCESSO" | "DECISAO" | "INICIO" | "FIM" | "DOCUMENTO";
+  tipo: "PROCESSO" | "DECISAO" | "INICIO" | "FIM" | "DOCUMENTO" | "SUBPROCESSO" | "TAREFA";
   cor: string;
 }
 
@@ -31,11 +31,13 @@ interface Props {
 const uuid = () => Math.random().toString(36).slice(2, 10);
 
 const TIPOS = [
-  { value: "INICIO",    label: "Início",     cor: "bg-green-500",  shape: "rounded-full px-4 py-2" },
-  { value: "PROCESSO",  label: "Processo",   cor: "bg-blue-500",   shape: "rounded px-4 py-2" },
-  { value: "DECISAO",   label: "Decisão",    cor: "bg-amber-500",  shape: "rounded px-4 py-2" },
-  { value: "DOCUMENTO", label: "Documento",  cor: "bg-purple-500", shape: "rounded px-4 py-2" },
-  { value: "FIM",       label: "Fim",        cor: "bg-red-500",    shape: "rounded-full px-4 py-2" },
+  { value: "INICIO",      label: "Início",       cor: "bg-green-500",  shape: "rounded-full px-4 py-2" },
+  { value: "PROCESSO",    label: "Processo",     cor: "bg-blue-500",   shape: "rounded px-4 py-2" },
+  { value: "SUBPROCESSO", label: "Subprocesso",  cor: "bg-indigo-500", shape: "rounded px-4 py-2 border-b-2 border-white/50" },
+  { value: "TAREFA",      label: "Tarefa",       cor: "bg-teal-500",   shape: "rounded px-4 py-2" },
+  { value: "DECISAO",     label: "Decisão",      cor: "bg-amber-500",  shape: "rounded px-4 py-2" },
+  { value: "DOCUMENTO",   label: "Documento",    cor: "bg-purple-500", shape: "rounded px-4 py-2" },
+  { value: "FIM",         label: "Fim",          cor: "bg-red-500",    shape: "rounded-full px-4 py-2" },
 ] as const;
 
 type TipoEtapa = typeof TIPOS[number]["value"];

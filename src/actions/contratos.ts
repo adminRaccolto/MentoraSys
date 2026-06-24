@@ -167,7 +167,26 @@ export async function excluirContrato(id: string) {
   const existente = await prisma.contrato.findFirst({ where: { id, empresa_id: empresaId } });
   if (!existente) throw new Error("Contrato não encontrado");
 
-  await prisma.contrato.delete({ where: { id } });
+  await prisma.$transaction(async (tx) => {
+    // Notas fiscais ligadas aos recebíveis deste contrato perdem o vínculo
+    const recebiveiIds = (
+      await tx.recebivel.findMany({ where: { contrato_id: id }, select: { id: true } })
+    ).map((r) => r.id);
+    if (recebiveiIds.length > 0) {
+      await tx.notaFiscal.updateMany({
+        where: { recebivel_id: { in: recebiveiIds } },
+        data: { recebivel_id: null, contrato_id: null },
+      });
+    }
+    // Notas fiscais diretamente vinculadas ao contrato
+    await tx.notaFiscal.updateMany({ where: { contrato_id: id }, data: { contrato_id: null } });
+    // Recebíveis do contrato (boletos cascadeiam automaticamente)
+    await tx.recebivel.deleteMany({ where: { contrato_id: id } });
+    // Projeto e eventos perdem o vínculo mas não são excluídos
+    await tx.projeto.updateMany({ where: { contrato_id: id }, data: { contrato_id: null } });
+    await tx.evento.updateMany({ where: { contrato_id: id }, data: { contrato_id: null } });
+    await tx.contrato.delete({ where: { id } });
+  });
 
   await registrar({ recurso: "contratos", acao: "excluir", registroId: id });
   revalidatePath("/contratos");

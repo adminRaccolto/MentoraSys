@@ -7,6 +7,7 @@ import EditorCincoW from "./editor-cinco-w";
 import EditorOrganograma from "./editor-organograma";
 import EditorMapaProcesso from "./editor-mapa-processo";
 import EditorGantt from "./editor-gantt";
+import EditorMapaMental from "./editor-mapa-mental";
 
 export default async function DiagnosticoEditorPage({
   params,
@@ -40,5 +41,6 @@ export default async function DiagnosticoEditorPage({
   if (diagnostico.tipo === "ORGANOGRAMA")   return <EditorOrganograma {...base} />;
   if (diagnostico.tipo === "MAPA_PROCESSO") return <EditorMapaProcesso {...base} />;
   if (diagnostico.tipo === "GANTT")         return <EditorGantt {...base} />;
+  if (diagnostico.tipo === "MAPA_MENTAL")   return <EditorMapaMental {...base} />;
   return <EditorCincoW {...base} />;
 }

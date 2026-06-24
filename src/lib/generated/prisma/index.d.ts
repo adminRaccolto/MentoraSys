@@ -149,6 +149,11 @@ export type EtiquetaTarefa = $Result.DefaultSelection<Prisma.$EtiquetaTarefaPayl
  */
 export type TarefaEtiqueta = $Result.DefaultSelection<Prisma.$TarefaEtiquetaPayload>
 /**
+ * Model PastaDocumento
+ * 
+ */
+export type PastaDocumento = $Result.DefaultSelection<Prisma.$PastaDocumentoPayload>
+/**
  * Model Documento
  * 
  */
@@ -432,7 +437,8 @@ export const TipoDiagnostico: {
   CINCO_W_DOIS_H: 'CINCO_W_DOIS_H',
   ORGANOGRAMA: 'ORGANOGRAMA',
   MAPA_PROCESSO: 'MAPA_PROCESSO',
-  GANTT: 'GANTT'
+  GANTT: 'GANTT',
+  MAPA_MENTAL: 'MAPA_MENTAL'
 };
 
 export type TipoDiagnostico = (typeof TipoDiagnostico)[keyof typeof TipoDiagnostico]
@@ -935,6 +941,16 @@ export class PrismaClient<
     * ```
     */
   get tarefaEtiqueta(): Prisma.TarefaEtiquetaDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.pastaDocumento`: Exposes CRUD operations for the **PastaDocumento** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PastaDocumentos
+    * const pastaDocumentos = await prisma.pastaDocumento.findMany()
+    * ```
+    */
+  get pastaDocumento(): Prisma.PastaDocumentoDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.documento`: Exposes CRUD operations for the **Documento** model.
@@ -1556,6 +1572,7 @@ export namespace Prisma {
     ItemChecklist: 'ItemChecklist',
     EtiquetaTarefa: 'EtiquetaTarefa',
     TarefaEtiqueta: 'TarefaEtiqueta',
+    PastaDocumento: 'PastaDocumento',
     Documento: 'Documento',
     PlanoDeContas: 'PlanoDeContas',
     Banco: 'Banco',
@@ -1587,7 +1604,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "lead" | "atividadeCRM" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "projeto" | "etapa" | "tarefa" | "comentarioTarefa" | "anexoTarefa" | "atividadeTarefa" | "aprovacaoTarefa" | "itemChecklist" | "etiquetaTarefa" | "tarefaEtiqueta" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "recebivel" | "contaPagar" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "boleto" | "diagnostico" | "tokenPortal" | "aplicacaoDiagnostico"
+      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "lead" | "atividadeCRM" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "projeto" | "etapa" | "tarefa" | "comentarioTarefa" | "anexoTarefa" | "atividadeTarefa" | "aprovacaoTarefa" | "itemChecklist" | "etiquetaTarefa" | "tarefaEtiqueta" | "pastaDocumento" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "recebivel" | "contaPagar" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "boleto" | "diagnostico" | "tokenPortal" | "aplicacaoDiagnostico"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3589,6 +3606,80 @@ export namespace Prisma {
           }
         }
       }
+      PastaDocumento: {
+        payload: Prisma.$PastaDocumentoPayload<ExtArgs>
+        fields: Prisma.PastaDocumentoFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PastaDocumentoFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PastaDocumentoPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PastaDocumentoFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PastaDocumentoPayload>
+          }
+          findFirst: {
+            args: Prisma.PastaDocumentoFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PastaDocumentoPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PastaDocumentoFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PastaDocumentoPayload>
+          }
+          findMany: {
+            args: Prisma.PastaDocumentoFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PastaDocumentoPayload>[]
+          }
+          create: {
+            args: Prisma.PastaDocumentoCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PastaDocumentoPayload>
+          }
+          createMany: {
+            args: Prisma.PastaDocumentoCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PastaDocumentoCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PastaDocumentoPayload>[]
+          }
+          delete: {
+            args: Prisma.PastaDocumentoDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PastaDocumentoPayload>
+          }
+          update: {
+            args: Prisma.PastaDocumentoUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PastaDocumentoPayload>
+          }
+          deleteMany: {
+            args: Prisma.PastaDocumentoDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PastaDocumentoUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PastaDocumentoUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PastaDocumentoPayload>[]
+          }
+          upsert: {
+            args: Prisma.PastaDocumentoUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PastaDocumentoPayload>
+          }
+          aggregate: {
+            args: Prisma.PastaDocumentoAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePastaDocumento>
+          }
+          groupBy: {
+            args: Prisma.PastaDocumentoGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PastaDocumentoGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PastaDocumentoCountArgs<ExtArgs>
+            result: $Utils.Optional<PastaDocumentoCountAggregateOutputType> | number
+          }
+        }
+      }
       Documento: {
         payload: Prisma.$DocumentoPayload<ExtArgs>
         fields: Prisma.DocumentoFieldRefs
@@ -4908,6 +4999,7 @@ export namespace Prisma {
     itemChecklist?: ItemChecklistOmit
     etiquetaTarefa?: EtiquetaTarefaOmit
     tarefaEtiqueta?: TarefaEtiquetaOmit
+    pastaDocumento?: PastaDocumentoOmit
     documento?: DocumentoOmit
     planoDeContas?: PlanoDeContasOmit
     banco?: BancoOmit
@@ -5015,6 +5107,7 @@ export namespace Prisma {
     contratos: number
     projetos: number
     documentos: number
+    pastas_documento: number
     plano_contas: number
     contas_bancarias: number
     transferencias_tesouraria: number
@@ -5043,6 +5136,7 @@ export namespace Prisma {
     contratos?: boolean | EmpresaCountOutputTypeCountContratosArgs
     projetos?: boolean | EmpresaCountOutputTypeCountProjetosArgs
     documentos?: boolean | EmpresaCountOutputTypeCountDocumentosArgs
+    pastas_documento?: boolean | EmpresaCountOutputTypeCountPastas_documentoArgs
     plano_contas?: boolean | EmpresaCountOutputTypeCountPlano_contasArgs
     contas_bancarias?: boolean | EmpresaCountOutputTypeCountContas_bancariasArgs
     transferencias_tesouraria?: boolean | EmpresaCountOutputTypeCountTransferencias_tesourariaArgs
@@ -5145,6 +5239,13 @@ export namespace Prisma {
    */
   export type EmpresaCountOutputTypeCountDocumentosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: DocumentoWhereInput
+  }
+
+  /**
+   * EmpresaCountOutputType without action
+   */
+  export type EmpresaCountOutputTypeCountPastas_documentoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PastaDocumentoWhereInput
   }
 
   /**
@@ -6042,6 +6143,46 @@ export namespace Prisma {
 
 
   /**
+   * Count Type PastaDocumentoCountOutputType
+   */
+
+  export type PastaDocumentoCountOutputType = {
+    filhos: number
+    documentos: number
+  }
+
+  export type PastaDocumentoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    filhos?: boolean | PastaDocumentoCountOutputTypeCountFilhosArgs
+    documentos?: boolean | PastaDocumentoCountOutputTypeCountDocumentosArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * PastaDocumentoCountOutputType without action
+   */
+  export type PastaDocumentoCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PastaDocumentoCountOutputType
+     */
+    select?: PastaDocumentoCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * PastaDocumentoCountOutputType without action
+   */
+  export type PastaDocumentoCountOutputTypeCountFilhosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PastaDocumentoWhereInput
+  }
+
+  /**
+   * PastaDocumentoCountOutputType without action
+   */
+  export type PastaDocumentoCountOutputTypeCountDocumentosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DocumentoWhereInput
+  }
+
+
+  /**
    * Count Type PlanoDeContasCountOutputType
    */
 
@@ -6403,6 +6544,7 @@ export namespace Prisma {
     contratos?: boolean | Empresa$contratosArgs<ExtArgs>
     projetos?: boolean | Empresa$projetosArgs<ExtArgs>
     documentos?: boolean | Empresa$documentosArgs<ExtArgs>
+    pastas_documento?: boolean | Empresa$pastas_documentoArgs<ExtArgs>
     plano_contas?: boolean | Empresa$plano_contasArgs<ExtArgs>
     contas_bancarias?: boolean | Empresa$contas_bancariasArgs<ExtArgs>
     transferencias_tesouraria?: boolean | Empresa$transferencias_tesourariaArgs<ExtArgs>
@@ -6472,6 +6614,7 @@ export namespace Prisma {
     contratos?: boolean | Empresa$contratosArgs<ExtArgs>
     projetos?: boolean | Empresa$projetosArgs<ExtArgs>
     documentos?: boolean | Empresa$documentosArgs<ExtArgs>
+    pastas_documento?: boolean | Empresa$pastas_documentoArgs<ExtArgs>
     plano_contas?: boolean | Empresa$plano_contasArgs<ExtArgs>
     contas_bancarias?: boolean | Empresa$contas_bancariasArgs<ExtArgs>
     transferencias_tesouraria?: boolean | Empresa$transferencias_tesourariaArgs<ExtArgs>
@@ -6505,6 +6648,7 @@ export namespace Prisma {
       contratos: Prisma.$ContratoPayload<ExtArgs>[]
       projetos: Prisma.$ProjetoPayload<ExtArgs>[]
       documentos: Prisma.$DocumentoPayload<ExtArgs>[]
+      pastas_documento: Prisma.$PastaDocumentoPayload<ExtArgs>[]
       plano_contas: Prisma.$PlanoDeContasPayload<ExtArgs>[]
       contas_bancarias: Prisma.$ContaBancariaPayload<ExtArgs>[]
       transferencias_tesouraria: Prisma.$TransferenciaTesourariaPayload<ExtArgs>[]
@@ -6936,6 +7080,7 @@ export namespace Prisma {
     contratos<T extends Empresa$contratosArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$contratosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContratoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     projetos<T extends Empresa$projetosArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$projetosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjetoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     documentos<T extends Empresa$documentosArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$documentosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DocumentoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    pastas_documento<T extends Empresa$pastas_documentoArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$pastas_documentoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PastaDocumentoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     plano_contas<T extends Empresa$plano_contasArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$plano_contasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlanoDeContasPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     contas_bancarias<T extends Empresa$contas_bancariasArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$contas_bancariasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContaBancariaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     transferencias_tesouraria<T extends Empresa$transferencias_tesourariaArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$transferencias_tesourariaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransferenciaTesourariaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -7643,6 +7788,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: DocumentoScalarFieldEnum | DocumentoScalarFieldEnum[]
+  }
+
+  /**
+   * Empresa.pastas_documento
+   */
+  export type Empresa$pastas_documentoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PastaDocumento
+     */
+    select?: PastaDocumentoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PastaDocumento
+     */
+    omit?: PastaDocumentoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PastaDocumentoInclude<ExtArgs> | null
+    where?: PastaDocumentoWhereInput
+    orderBy?: PastaDocumentoOrderByWithRelationInput | PastaDocumentoOrderByWithRelationInput[]
+    cursor?: PastaDocumentoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PastaDocumentoScalarFieldEnum | PastaDocumentoScalarFieldEnum[]
   }
 
   /**
@@ -28452,6 +28621,7 @@ export namespace Prisma {
     empresa_id: string | null
     contrato_id: string | null
     cliente_id: string | null
+    interno: boolean | null
     criado_por: string | null
     titulo: string | null
     descricao: string | null
@@ -28467,6 +28637,7 @@ export namespace Prisma {
     empresa_id: string | null
     contrato_id: string | null
     cliente_id: string | null
+    interno: boolean | null
     criado_por: string | null
     titulo: string | null
     descricao: string | null
@@ -28482,6 +28653,7 @@ export namespace Prisma {
     empresa_id: number
     contrato_id: number
     cliente_id: number
+    interno: number
     criado_por: number
     titulo: number
     descricao: number
@@ -28499,6 +28671,7 @@ export namespace Prisma {
     empresa_id?: true
     contrato_id?: true
     cliente_id?: true
+    interno?: true
     criado_por?: true
     titulo?: true
     descricao?: true
@@ -28514,6 +28687,7 @@ export namespace Prisma {
     empresa_id?: true
     contrato_id?: true
     cliente_id?: true
+    interno?: true
     criado_por?: true
     titulo?: true
     descricao?: true
@@ -28529,6 +28703,7 @@ export namespace Prisma {
     empresa_id?: true
     contrato_id?: true
     cliente_id?: true
+    interno?: true
     criado_por?: true
     titulo?: true
     descricao?: true
@@ -28616,7 +28791,8 @@ export namespace Prisma {
     id: string
     empresa_id: string
     contrato_id: string | null
-    cliente_id: string
+    cliente_id: string | null
+    interno: boolean
     criado_por: string | null
     titulo: string
     descricao: string | null
@@ -28649,6 +28825,7 @@ export namespace Prisma {
     empresa_id?: boolean
     contrato_id?: boolean
     cliente_id?: boolean
+    interno?: boolean
     criado_por?: boolean
     titulo?: boolean
     descricao?: boolean
@@ -28659,7 +28836,7 @@ export namespace Prisma {
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     contrato?: boolean | Projeto$contratoArgs<ExtArgs>
-    cliente?: boolean | ClienteDefaultArgs<ExtArgs>
+    cliente?: boolean | Projeto$clienteArgs<ExtArgs>
     criador?: boolean | Projeto$criadorArgs<ExtArgs>
     etapas?: boolean | Projeto$etapasArgs<ExtArgs>
     tarefas?: boolean | Projeto$tarefasArgs<ExtArgs>
@@ -28675,6 +28852,7 @@ export namespace Prisma {
     empresa_id?: boolean
     contrato_id?: boolean
     cliente_id?: boolean
+    interno?: boolean
     criado_por?: boolean
     titulo?: boolean
     descricao?: boolean
@@ -28685,7 +28863,7 @@ export namespace Prisma {
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     contrato?: boolean | Projeto$contratoArgs<ExtArgs>
-    cliente?: boolean | ClienteDefaultArgs<ExtArgs>
+    cliente?: boolean | Projeto$clienteArgs<ExtArgs>
     criador?: boolean | Projeto$criadorArgs<ExtArgs>
   }, ExtArgs["result"]["projeto"]>
 
@@ -28694,6 +28872,7 @@ export namespace Prisma {
     empresa_id?: boolean
     contrato_id?: boolean
     cliente_id?: boolean
+    interno?: boolean
     criado_por?: boolean
     titulo?: boolean
     descricao?: boolean
@@ -28704,7 +28883,7 @@ export namespace Prisma {
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     contrato?: boolean | Projeto$contratoArgs<ExtArgs>
-    cliente?: boolean | ClienteDefaultArgs<ExtArgs>
+    cliente?: boolean | Projeto$clienteArgs<ExtArgs>
     criador?: boolean | Projeto$criadorArgs<ExtArgs>
   }, ExtArgs["result"]["projeto"]>
 
@@ -28713,6 +28892,7 @@ export namespace Prisma {
     empresa_id?: boolean
     contrato_id?: boolean
     cliente_id?: boolean
+    interno?: boolean
     criado_por?: boolean
     titulo?: boolean
     descricao?: boolean
@@ -28723,11 +28903,11 @@ export namespace Prisma {
     atualizado_em?: boolean
   }
 
-  export type ProjetoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "contrato_id" | "cliente_id" | "criado_por" | "titulo" | "descricao" | "status" | "data_inicio" | "data_fim" | "criado_em" | "atualizado_em", ExtArgs["result"]["projeto"]>
+  export type ProjetoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "contrato_id" | "cliente_id" | "interno" | "criado_por" | "titulo" | "descricao" | "status" | "data_inicio" | "data_fim" | "criado_em" | "atualizado_em", ExtArgs["result"]["projeto"]>
   export type ProjetoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     contrato?: boolean | Projeto$contratoArgs<ExtArgs>
-    cliente?: boolean | ClienteDefaultArgs<ExtArgs>
+    cliente?: boolean | Projeto$clienteArgs<ExtArgs>
     criador?: boolean | Projeto$criadorArgs<ExtArgs>
     etapas?: boolean | Projeto$etapasArgs<ExtArgs>
     tarefas?: boolean | Projeto$tarefasArgs<ExtArgs>
@@ -28740,13 +28920,13 @@ export namespace Prisma {
   export type ProjetoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     contrato?: boolean | Projeto$contratoArgs<ExtArgs>
-    cliente?: boolean | ClienteDefaultArgs<ExtArgs>
+    cliente?: boolean | Projeto$clienteArgs<ExtArgs>
     criador?: boolean | Projeto$criadorArgs<ExtArgs>
   }
   export type ProjetoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     contrato?: boolean | Projeto$contratoArgs<ExtArgs>
-    cliente?: boolean | ClienteDefaultArgs<ExtArgs>
+    cliente?: boolean | Projeto$clienteArgs<ExtArgs>
     criador?: boolean | Projeto$criadorArgs<ExtArgs>
   }
 
@@ -28755,7 +28935,7 @@ export namespace Prisma {
     objects: {
       empresa: Prisma.$EmpresaPayload<ExtArgs>
       contrato: Prisma.$ContratoPayload<ExtArgs> | null
-      cliente: Prisma.$ClientePayload<ExtArgs>
+      cliente: Prisma.$ClientePayload<ExtArgs> | null
       criador: Prisma.$UsuarioPayload<ExtArgs> | null
       etapas: Prisma.$EtapaPayload<ExtArgs>[]
       tarefas: Prisma.$TarefaPayload<ExtArgs>[]
@@ -28768,7 +28948,8 @@ export namespace Prisma {
       id: string
       empresa_id: string
       contrato_id: string | null
-      cliente_id: string
+      cliente_id: string | null
+      interno: boolean
       criado_por: string | null
       titulo: string
       descricao: string | null
@@ -29173,7 +29354,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     empresa<T extends EmpresaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmpresaDefaultArgs<ExtArgs>>): Prisma__EmpresaClient<$Result.GetResult<Prisma.$EmpresaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     contrato<T extends Projeto$contratoArgs<ExtArgs> = {}>(args?: Subset<T, Projeto$contratoArgs<ExtArgs>>): Prisma__ContratoClient<$Result.GetResult<Prisma.$ContratoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    cliente<T extends ClienteDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ClienteDefaultArgs<ExtArgs>>): Prisma__ClienteClient<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    cliente<T extends Projeto$clienteArgs<ExtArgs> = {}>(args?: Subset<T, Projeto$clienteArgs<ExtArgs>>): Prisma__ClienteClient<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     criador<T extends Projeto$criadorArgs<ExtArgs> = {}>(args?: Subset<T, Projeto$criadorArgs<ExtArgs>>): Prisma__UsuarioClient<$Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     etapas<T extends Projeto$etapasArgs<ExtArgs> = {}>(args?: Subset<T, Projeto$etapasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EtapaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     tarefas<T extends Projeto$tarefasArgs<ExtArgs> = {}>(args?: Subset<T, Projeto$tarefasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TarefaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -29214,6 +29395,7 @@ export namespace Prisma {
     readonly empresa_id: FieldRef<"Projeto", 'String'>
     readonly contrato_id: FieldRef<"Projeto", 'String'>
     readonly cliente_id: FieldRef<"Projeto", 'String'>
+    readonly interno: FieldRef<"Projeto", 'Boolean'>
     readonly criado_por: FieldRef<"Projeto", 'String'>
     readonly titulo: FieldRef<"Projeto", 'String'>
     readonly descricao: FieldRef<"Projeto", 'String'>
@@ -29639,6 +29821,25 @@ export namespace Prisma {
      */
     include?: ContratoInclude<ExtArgs> | null
     where?: ContratoWhereInput
+  }
+
+  /**
+   * Projeto.cliente
+   */
+  export type Projeto$clienteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cliente
+     */
+    select?: ClienteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Cliente
+     */
+    omit?: ClienteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClienteInclude<ExtArgs> | null
+    where?: ClienteWhereInput
   }
 
   /**
@@ -40156,6 +40357,1193 @@ export namespace Prisma {
 
 
   /**
+   * Model PastaDocumento
+   */
+
+  export type AggregatePastaDocumento = {
+    _count: PastaDocumentoCountAggregateOutputType | null
+    _min: PastaDocumentoMinAggregateOutputType | null
+    _max: PastaDocumentoMaxAggregateOutputType | null
+  }
+
+  export type PastaDocumentoMinAggregateOutputType = {
+    id: string | null
+    empresa_id: string | null
+    nome: string | null
+    descricao: string | null
+    parent_id: string | null
+    criado_por: string | null
+    criado_em: Date | null
+    atualizado_em: Date | null
+  }
+
+  export type PastaDocumentoMaxAggregateOutputType = {
+    id: string | null
+    empresa_id: string | null
+    nome: string | null
+    descricao: string | null
+    parent_id: string | null
+    criado_por: string | null
+    criado_em: Date | null
+    atualizado_em: Date | null
+  }
+
+  export type PastaDocumentoCountAggregateOutputType = {
+    id: number
+    empresa_id: number
+    nome: number
+    descricao: number
+    parent_id: number
+    criado_por: number
+    criado_em: number
+    atualizado_em: number
+    _all: number
+  }
+
+
+  export type PastaDocumentoMinAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    nome?: true
+    descricao?: true
+    parent_id?: true
+    criado_por?: true
+    criado_em?: true
+    atualizado_em?: true
+  }
+
+  export type PastaDocumentoMaxAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    nome?: true
+    descricao?: true
+    parent_id?: true
+    criado_por?: true
+    criado_em?: true
+    atualizado_em?: true
+  }
+
+  export type PastaDocumentoCountAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    nome?: true
+    descricao?: true
+    parent_id?: true
+    criado_por?: true
+    criado_em?: true
+    atualizado_em?: true
+    _all?: true
+  }
+
+  export type PastaDocumentoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PastaDocumento to aggregate.
+     */
+    where?: PastaDocumentoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PastaDocumentos to fetch.
+     */
+    orderBy?: PastaDocumentoOrderByWithRelationInput | PastaDocumentoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PastaDocumentoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PastaDocumentos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PastaDocumentos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PastaDocumentos
+    **/
+    _count?: true | PastaDocumentoCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PastaDocumentoMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PastaDocumentoMaxAggregateInputType
+  }
+
+  export type GetPastaDocumentoAggregateType<T extends PastaDocumentoAggregateArgs> = {
+        [P in keyof T & keyof AggregatePastaDocumento]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePastaDocumento[P]>
+      : GetScalarType<T[P], AggregatePastaDocumento[P]>
+  }
+
+
+
+
+  export type PastaDocumentoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PastaDocumentoWhereInput
+    orderBy?: PastaDocumentoOrderByWithAggregationInput | PastaDocumentoOrderByWithAggregationInput[]
+    by: PastaDocumentoScalarFieldEnum[] | PastaDocumentoScalarFieldEnum
+    having?: PastaDocumentoScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PastaDocumentoCountAggregateInputType | true
+    _min?: PastaDocumentoMinAggregateInputType
+    _max?: PastaDocumentoMaxAggregateInputType
+  }
+
+  export type PastaDocumentoGroupByOutputType = {
+    id: string
+    empresa_id: string
+    nome: string
+    descricao: string | null
+    parent_id: string | null
+    criado_por: string | null
+    criado_em: Date
+    atualizado_em: Date
+    _count: PastaDocumentoCountAggregateOutputType | null
+    _min: PastaDocumentoMinAggregateOutputType | null
+    _max: PastaDocumentoMaxAggregateOutputType | null
+  }
+
+  type GetPastaDocumentoGroupByPayload<T extends PastaDocumentoGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PastaDocumentoGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PastaDocumentoGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PastaDocumentoGroupByOutputType[P]>
+            : GetScalarType<T[P], PastaDocumentoGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PastaDocumentoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    nome?: boolean
+    descricao?: boolean
+    parent_id?: boolean
+    criado_por?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    parent?: boolean | PastaDocumento$parentArgs<ExtArgs>
+    filhos?: boolean | PastaDocumento$filhosArgs<ExtArgs>
+    documentos?: boolean | PastaDocumento$documentosArgs<ExtArgs>
+    _count?: boolean | PastaDocumentoCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["pastaDocumento"]>
+
+  export type PastaDocumentoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    nome?: boolean
+    descricao?: boolean
+    parent_id?: boolean
+    criado_por?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    parent?: boolean | PastaDocumento$parentArgs<ExtArgs>
+  }, ExtArgs["result"]["pastaDocumento"]>
+
+  export type PastaDocumentoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    nome?: boolean
+    descricao?: boolean
+    parent_id?: boolean
+    criado_por?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    parent?: boolean | PastaDocumento$parentArgs<ExtArgs>
+  }, ExtArgs["result"]["pastaDocumento"]>
+
+  export type PastaDocumentoSelectScalar = {
+    id?: boolean
+    empresa_id?: boolean
+    nome?: boolean
+    descricao?: boolean
+    parent_id?: boolean
+    criado_por?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+  }
+
+  export type PastaDocumentoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "nome" | "descricao" | "parent_id" | "criado_por" | "criado_em" | "atualizado_em", ExtArgs["result"]["pastaDocumento"]>
+  export type PastaDocumentoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    parent?: boolean | PastaDocumento$parentArgs<ExtArgs>
+    filhos?: boolean | PastaDocumento$filhosArgs<ExtArgs>
+    documentos?: boolean | PastaDocumento$documentosArgs<ExtArgs>
+    _count?: boolean | PastaDocumentoCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type PastaDocumentoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    parent?: boolean | PastaDocumento$parentArgs<ExtArgs>
+  }
+  export type PastaDocumentoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    parent?: boolean | PastaDocumento$parentArgs<ExtArgs>
+  }
+
+  export type $PastaDocumentoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PastaDocumento"
+    objects: {
+      empresa: Prisma.$EmpresaPayload<ExtArgs>
+      parent: Prisma.$PastaDocumentoPayload<ExtArgs> | null
+      filhos: Prisma.$PastaDocumentoPayload<ExtArgs>[]
+      documentos: Prisma.$DocumentoPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      empresa_id: string
+      nome: string
+      descricao: string | null
+      parent_id: string | null
+      criado_por: string | null
+      criado_em: Date
+      atualizado_em: Date
+    }, ExtArgs["result"]["pastaDocumento"]>
+    composites: {}
+  }
+
+  type PastaDocumentoGetPayload<S extends boolean | null | undefined | PastaDocumentoDefaultArgs> = $Result.GetResult<Prisma.$PastaDocumentoPayload, S>
+
+  type PastaDocumentoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PastaDocumentoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PastaDocumentoCountAggregateInputType | true
+    }
+
+  export interface PastaDocumentoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PastaDocumento'], meta: { name: 'PastaDocumento' } }
+    /**
+     * Find zero or one PastaDocumento that matches the filter.
+     * @param {PastaDocumentoFindUniqueArgs} args - Arguments to find a PastaDocumento
+     * @example
+     * // Get one PastaDocumento
+     * const pastaDocumento = await prisma.pastaDocumento.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PastaDocumentoFindUniqueArgs>(args: SelectSubset<T, PastaDocumentoFindUniqueArgs<ExtArgs>>): Prisma__PastaDocumentoClient<$Result.GetResult<Prisma.$PastaDocumentoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PastaDocumento that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PastaDocumentoFindUniqueOrThrowArgs} args - Arguments to find a PastaDocumento
+     * @example
+     * // Get one PastaDocumento
+     * const pastaDocumento = await prisma.pastaDocumento.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PastaDocumentoFindUniqueOrThrowArgs>(args: SelectSubset<T, PastaDocumentoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PastaDocumentoClient<$Result.GetResult<Prisma.$PastaDocumentoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PastaDocumento that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PastaDocumentoFindFirstArgs} args - Arguments to find a PastaDocumento
+     * @example
+     * // Get one PastaDocumento
+     * const pastaDocumento = await prisma.pastaDocumento.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PastaDocumentoFindFirstArgs>(args?: SelectSubset<T, PastaDocumentoFindFirstArgs<ExtArgs>>): Prisma__PastaDocumentoClient<$Result.GetResult<Prisma.$PastaDocumentoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PastaDocumento that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PastaDocumentoFindFirstOrThrowArgs} args - Arguments to find a PastaDocumento
+     * @example
+     * // Get one PastaDocumento
+     * const pastaDocumento = await prisma.pastaDocumento.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PastaDocumentoFindFirstOrThrowArgs>(args?: SelectSubset<T, PastaDocumentoFindFirstOrThrowArgs<ExtArgs>>): Prisma__PastaDocumentoClient<$Result.GetResult<Prisma.$PastaDocumentoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PastaDocumentos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PastaDocumentoFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PastaDocumentos
+     * const pastaDocumentos = await prisma.pastaDocumento.findMany()
+     * 
+     * // Get first 10 PastaDocumentos
+     * const pastaDocumentos = await prisma.pastaDocumento.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const pastaDocumentoWithIdOnly = await prisma.pastaDocumento.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PastaDocumentoFindManyArgs>(args?: SelectSubset<T, PastaDocumentoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PastaDocumentoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PastaDocumento.
+     * @param {PastaDocumentoCreateArgs} args - Arguments to create a PastaDocumento.
+     * @example
+     * // Create one PastaDocumento
+     * const PastaDocumento = await prisma.pastaDocumento.create({
+     *   data: {
+     *     // ... data to create a PastaDocumento
+     *   }
+     * })
+     * 
+     */
+    create<T extends PastaDocumentoCreateArgs>(args: SelectSubset<T, PastaDocumentoCreateArgs<ExtArgs>>): Prisma__PastaDocumentoClient<$Result.GetResult<Prisma.$PastaDocumentoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PastaDocumentos.
+     * @param {PastaDocumentoCreateManyArgs} args - Arguments to create many PastaDocumentos.
+     * @example
+     * // Create many PastaDocumentos
+     * const pastaDocumento = await prisma.pastaDocumento.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PastaDocumentoCreateManyArgs>(args?: SelectSubset<T, PastaDocumentoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PastaDocumentos and returns the data saved in the database.
+     * @param {PastaDocumentoCreateManyAndReturnArgs} args - Arguments to create many PastaDocumentos.
+     * @example
+     * // Create many PastaDocumentos
+     * const pastaDocumento = await prisma.pastaDocumento.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PastaDocumentos and only return the `id`
+     * const pastaDocumentoWithIdOnly = await prisma.pastaDocumento.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PastaDocumentoCreateManyAndReturnArgs>(args?: SelectSubset<T, PastaDocumentoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PastaDocumentoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a PastaDocumento.
+     * @param {PastaDocumentoDeleteArgs} args - Arguments to delete one PastaDocumento.
+     * @example
+     * // Delete one PastaDocumento
+     * const PastaDocumento = await prisma.pastaDocumento.delete({
+     *   where: {
+     *     // ... filter to delete one PastaDocumento
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PastaDocumentoDeleteArgs>(args: SelectSubset<T, PastaDocumentoDeleteArgs<ExtArgs>>): Prisma__PastaDocumentoClient<$Result.GetResult<Prisma.$PastaDocumentoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PastaDocumento.
+     * @param {PastaDocumentoUpdateArgs} args - Arguments to update one PastaDocumento.
+     * @example
+     * // Update one PastaDocumento
+     * const pastaDocumento = await prisma.pastaDocumento.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PastaDocumentoUpdateArgs>(args: SelectSubset<T, PastaDocumentoUpdateArgs<ExtArgs>>): Prisma__PastaDocumentoClient<$Result.GetResult<Prisma.$PastaDocumentoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PastaDocumentos.
+     * @param {PastaDocumentoDeleteManyArgs} args - Arguments to filter PastaDocumentos to delete.
+     * @example
+     * // Delete a few PastaDocumentos
+     * const { count } = await prisma.pastaDocumento.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PastaDocumentoDeleteManyArgs>(args?: SelectSubset<T, PastaDocumentoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PastaDocumentos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PastaDocumentoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PastaDocumentos
+     * const pastaDocumento = await prisma.pastaDocumento.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PastaDocumentoUpdateManyArgs>(args: SelectSubset<T, PastaDocumentoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PastaDocumentos and returns the data updated in the database.
+     * @param {PastaDocumentoUpdateManyAndReturnArgs} args - Arguments to update many PastaDocumentos.
+     * @example
+     * // Update many PastaDocumentos
+     * const pastaDocumento = await prisma.pastaDocumento.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more PastaDocumentos and only return the `id`
+     * const pastaDocumentoWithIdOnly = await prisma.pastaDocumento.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PastaDocumentoUpdateManyAndReturnArgs>(args: SelectSubset<T, PastaDocumentoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PastaDocumentoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one PastaDocumento.
+     * @param {PastaDocumentoUpsertArgs} args - Arguments to update or create a PastaDocumento.
+     * @example
+     * // Update or create a PastaDocumento
+     * const pastaDocumento = await prisma.pastaDocumento.upsert({
+     *   create: {
+     *     // ... data to create a PastaDocumento
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PastaDocumento we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PastaDocumentoUpsertArgs>(args: SelectSubset<T, PastaDocumentoUpsertArgs<ExtArgs>>): Prisma__PastaDocumentoClient<$Result.GetResult<Prisma.$PastaDocumentoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PastaDocumentos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PastaDocumentoCountArgs} args - Arguments to filter PastaDocumentos to count.
+     * @example
+     * // Count the number of PastaDocumentos
+     * const count = await prisma.pastaDocumento.count({
+     *   where: {
+     *     // ... the filter for the PastaDocumentos we want to count
+     *   }
+     * })
+    **/
+    count<T extends PastaDocumentoCountArgs>(
+      args?: Subset<T, PastaDocumentoCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PastaDocumentoCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PastaDocumento.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PastaDocumentoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PastaDocumentoAggregateArgs>(args: Subset<T, PastaDocumentoAggregateArgs>): Prisma.PrismaPromise<GetPastaDocumentoAggregateType<T>>
+
+    /**
+     * Group by PastaDocumento.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PastaDocumentoGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PastaDocumentoGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PastaDocumentoGroupByArgs['orderBy'] }
+        : { orderBy?: PastaDocumentoGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PastaDocumentoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPastaDocumentoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PastaDocumento model
+   */
+  readonly fields: PastaDocumentoFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PastaDocumento.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PastaDocumentoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    empresa<T extends EmpresaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmpresaDefaultArgs<ExtArgs>>): Prisma__EmpresaClient<$Result.GetResult<Prisma.$EmpresaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    parent<T extends PastaDocumento$parentArgs<ExtArgs> = {}>(args?: Subset<T, PastaDocumento$parentArgs<ExtArgs>>): Prisma__PastaDocumentoClient<$Result.GetResult<Prisma.$PastaDocumentoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    filhos<T extends PastaDocumento$filhosArgs<ExtArgs> = {}>(args?: Subset<T, PastaDocumento$filhosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PastaDocumentoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    documentos<T extends PastaDocumento$documentosArgs<ExtArgs> = {}>(args?: Subset<T, PastaDocumento$documentosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DocumentoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PastaDocumento model
+   */
+  interface PastaDocumentoFieldRefs {
+    readonly id: FieldRef<"PastaDocumento", 'String'>
+    readonly empresa_id: FieldRef<"PastaDocumento", 'String'>
+    readonly nome: FieldRef<"PastaDocumento", 'String'>
+    readonly descricao: FieldRef<"PastaDocumento", 'String'>
+    readonly parent_id: FieldRef<"PastaDocumento", 'String'>
+    readonly criado_por: FieldRef<"PastaDocumento", 'String'>
+    readonly criado_em: FieldRef<"PastaDocumento", 'DateTime'>
+    readonly atualizado_em: FieldRef<"PastaDocumento", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PastaDocumento findUnique
+   */
+  export type PastaDocumentoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PastaDocumento
+     */
+    select?: PastaDocumentoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PastaDocumento
+     */
+    omit?: PastaDocumentoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PastaDocumentoInclude<ExtArgs> | null
+    /**
+     * Filter, which PastaDocumento to fetch.
+     */
+    where: PastaDocumentoWhereUniqueInput
+  }
+
+  /**
+   * PastaDocumento findUniqueOrThrow
+   */
+  export type PastaDocumentoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PastaDocumento
+     */
+    select?: PastaDocumentoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PastaDocumento
+     */
+    omit?: PastaDocumentoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PastaDocumentoInclude<ExtArgs> | null
+    /**
+     * Filter, which PastaDocumento to fetch.
+     */
+    where: PastaDocumentoWhereUniqueInput
+  }
+
+  /**
+   * PastaDocumento findFirst
+   */
+  export type PastaDocumentoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PastaDocumento
+     */
+    select?: PastaDocumentoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PastaDocumento
+     */
+    omit?: PastaDocumentoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PastaDocumentoInclude<ExtArgs> | null
+    /**
+     * Filter, which PastaDocumento to fetch.
+     */
+    where?: PastaDocumentoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PastaDocumentos to fetch.
+     */
+    orderBy?: PastaDocumentoOrderByWithRelationInput | PastaDocumentoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PastaDocumentos.
+     */
+    cursor?: PastaDocumentoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PastaDocumentos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PastaDocumentos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PastaDocumentos.
+     */
+    distinct?: PastaDocumentoScalarFieldEnum | PastaDocumentoScalarFieldEnum[]
+  }
+
+  /**
+   * PastaDocumento findFirstOrThrow
+   */
+  export type PastaDocumentoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PastaDocumento
+     */
+    select?: PastaDocumentoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PastaDocumento
+     */
+    omit?: PastaDocumentoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PastaDocumentoInclude<ExtArgs> | null
+    /**
+     * Filter, which PastaDocumento to fetch.
+     */
+    where?: PastaDocumentoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PastaDocumentos to fetch.
+     */
+    orderBy?: PastaDocumentoOrderByWithRelationInput | PastaDocumentoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PastaDocumentos.
+     */
+    cursor?: PastaDocumentoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PastaDocumentos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PastaDocumentos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PastaDocumentos.
+     */
+    distinct?: PastaDocumentoScalarFieldEnum | PastaDocumentoScalarFieldEnum[]
+  }
+
+  /**
+   * PastaDocumento findMany
+   */
+  export type PastaDocumentoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PastaDocumento
+     */
+    select?: PastaDocumentoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PastaDocumento
+     */
+    omit?: PastaDocumentoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PastaDocumentoInclude<ExtArgs> | null
+    /**
+     * Filter, which PastaDocumentos to fetch.
+     */
+    where?: PastaDocumentoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PastaDocumentos to fetch.
+     */
+    orderBy?: PastaDocumentoOrderByWithRelationInput | PastaDocumentoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PastaDocumentos.
+     */
+    cursor?: PastaDocumentoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PastaDocumentos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PastaDocumentos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PastaDocumentos.
+     */
+    distinct?: PastaDocumentoScalarFieldEnum | PastaDocumentoScalarFieldEnum[]
+  }
+
+  /**
+   * PastaDocumento create
+   */
+  export type PastaDocumentoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PastaDocumento
+     */
+    select?: PastaDocumentoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PastaDocumento
+     */
+    omit?: PastaDocumentoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PastaDocumentoInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PastaDocumento.
+     */
+    data: XOR<PastaDocumentoCreateInput, PastaDocumentoUncheckedCreateInput>
+  }
+
+  /**
+   * PastaDocumento createMany
+   */
+  export type PastaDocumentoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PastaDocumentos.
+     */
+    data: PastaDocumentoCreateManyInput | PastaDocumentoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PastaDocumento createManyAndReturn
+   */
+  export type PastaDocumentoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PastaDocumento
+     */
+    select?: PastaDocumentoSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PastaDocumento
+     */
+    omit?: PastaDocumentoOmit<ExtArgs> | null
+    /**
+     * The data used to create many PastaDocumentos.
+     */
+    data: PastaDocumentoCreateManyInput | PastaDocumentoCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PastaDocumentoIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PastaDocumento update
+   */
+  export type PastaDocumentoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PastaDocumento
+     */
+    select?: PastaDocumentoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PastaDocumento
+     */
+    omit?: PastaDocumentoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PastaDocumentoInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PastaDocumento.
+     */
+    data: XOR<PastaDocumentoUpdateInput, PastaDocumentoUncheckedUpdateInput>
+    /**
+     * Choose, which PastaDocumento to update.
+     */
+    where: PastaDocumentoWhereUniqueInput
+  }
+
+  /**
+   * PastaDocumento updateMany
+   */
+  export type PastaDocumentoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PastaDocumentos.
+     */
+    data: XOR<PastaDocumentoUpdateManyMutationInput, PastaDocumentoUncheckedUpdateManyInput>
+    /**
+     * Filter which PastaDocumentos to update
+     */
+    where?: PastaDocumentoWhereInput
+    /**
+     * Limit how many PastaDocumentos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PastaDocumento updateManyAndReturn
+   */
+  export type PastaDocumentoUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PastaDocumento
+     */
+    select?: PastaDocumentoSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PastaDocumento
+     */
+    omit?: PastaDocumentoOmit<ExtArgs> | null
+    /**
+     * The data used to update PastaDocumentos.
+     */
+    data: XOR<PastaDocumentoUpdateManyMutationInput, PastaDocumentoUncheckedUpdateManyInput>
+    /**
+     * Filter which PastaDocumentos to update
+     */
+    where?: PastaDocumentoWhereInput
+    /**
+     * Limit how many PastaDocumentos to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PastaDocumentoIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PastaDocumento upsert
+   */
+  export type PastaDocumentoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PastaDocumento
+     */
+    select?: PastaDocumentoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PastaDocumento
+     */
+    omit?: PastaDocumentoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PastaDocumentoInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PastaDocumento to update in case it exists.
+     */
+    where: PastaDocumentoWhereUniqueInput
+    /**
+     * In case the PastaDocumento found by the `where` argument doesn't exist, create a new PastaDocumento with this data.
+     */
+    create: XOR<PastaDocumentoCreateInput, PastaDocumentoUncheckedCreateInput>
+    /**
+     * In case the PastaDocumento was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PastaDocumentoUpdateInput, PastaDocumentoUncheckedUpdateInput>
+  }
+
+  /**
+   * PastaDocumento delete
+   */
+  export type PastaDocumentoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PastaDocumento
+     */
+    select?: PastaDocumentoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PastaDocumento
+     */
+    omit?: PastaDocumentoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PastaDocumentoInclude<ExtArgs> | null
+    /**
+     * Filter which PastaDocumento to delete.
+     */
+    where: PastaDocumentoWhereUniqueInput
+  }
+
+  /**
+   * PastaDocumento deleteMany
+   */
+  export type PastaDocumentoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PastaDocumentos to delete
+     */
+    where?: PastaDocumentoWhereInput
+    /**
+     * Limit how many PastaDocumentos to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PastaDocumento.parent
+   */
+  export type PastaDocumento$parentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PastaDocumento
+     */
+    select?: PastaDocumentoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PastaDocumento
+     */
+    omit?: PastaDocumentoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PastaDocumentoInclude<ExtArgs> | null
+    where?: PastaDocumentoWhereInput
+  }
+
+  /**
+   * PastaDocumento.filhos
+   */
+  export type PastaDocumento$filhosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PastaDocumento
+     */
+    select?: PastaDocumentoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PastaDocumento
+     */
+    omit?: PastaDocumentoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PastaDocumentoInclude<ExtArgs> | null
+    where?: PastaDocumentoWhereInput
+    orderBy?: PastaDocumentoOrderByWithRelationInput | PastaDocumentoOrderByWithRelationInput[]
+    cursor?: PastaDocumentoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PastaDocumentoScalarFieldEnum | PastaDocumentoScalarFieldEnum[]
+  }
+
+  /**
+   * PastaDocumento.documentos
+   */
+  export type PastaDocumento$documentosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Documento
+     */
+    select?: DocumentoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Documento
+     */
+    omit?: DocumentoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DocumentoInclude<ExtArgs> | null
+    where?: DocumentoWhereInput
+    orderBy?: DocumentoOrderByWithRelationInput | DocumentoOrderByWithRelationInput[]
+    cursor?: DocumentoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DocumentoScalarFieldEnum | DocumentoScalarFieldEnum[]
+  }
+
+  /**
+   * PastaDocumento without action
+   */
+  export type PastaDocumentoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PastaDocumento
+     */
+    select?: PastaDocumentoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PastaDocumento
+     */
+    omit?: PastaDocumentoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PastaDocumentoInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model Documento
    */
 
@@ -40181,6 +41569,7 @@ export namespace Prisma {
     projeto_id: string | null
     cliente_id: string | null
     contrato_id: string | null
+    pasta_id: string | null
     criado_por: string | null
     titulo: string | null
     descricao: string | null
@@ -40198,6 +41587,7 @@ export namespace Prisma {
     projeto_id: string | null
     cliente_id: string | null
     contrato_id: string | null
+    pasta_id: string | null
     criado_por: string | null
     titulo: string | null
     descricao: string | null
@@ -40215,6 +41605,7 @@ export namespace Prisma {
     projeto_id: number
     cliente_id: number
     contrato_id: number
+    pasta_id: number
     criado_por: number
     titulo: number
     descricao: number
@@ -40242,6 +41633,7 @@ export namespace Prisma {
     projeto_id?: true
     cliente_id?: true
     contrato_id?: true
+    pasta_id?: true
     criado_por?: true
     titulo?: true
     descricao?: true
@@ -40259,6 +41651,7 @@ export namespace Prisma {
     projeto_id?: true
     cliente_id?: true
     contrato_id?: true
+    pasta_id?: true
     criado_por?: true
     titulo?: true
     descricao?: true
@@ -40276,6 +41669,7 @@ export namespace Prisma {
     projeto_id?: true
     cliente_id?: true
     contrato_id?: true
+    pasta_id?: true
     criado_por?: true
     titulo?: true
     descricao?: true
@@ -40380,6 +41774,7 @@ export namespace Prisma {
     projeto_id: string | null
     cliente_id: string | null
     contrato_id: string | null
+    pasta_id: string | null
     criado_por: string | null
     titulo: string
     descricao: string | null
@@ -40416,6 +41811,7 @@ export namespace Prisma {
     projeto_id?: boolean
     cliente_id?: boolean
     contrato_id?: boolean
+    pasta_id?: boolean
     criado_por?: boolean
     titulo?: boolean
     descricao?: boolean
@@ -40429,6 +41825,7 @@ export namespace Prisma {
     projeto?: boolean | Documento$projetoArgs<ExtArgs>
     cliente?: boolean | Documento$clienteArgs<ExtArgs>
     contrato?: boolean | Documento$contratoArgs<ExtArgs>
+    pasta?: boolean | Documento$pastaArgs<ExtArgs>
     criador?: boolean | Documento$criadorArgs<ExtArgs>
   }, ExtArgs["result"]["documento"]>
 
@@ -40438,6 +41835,7 @@ export namespace Prisma {
     projeto_id?: boolean
     cliente_id?: boolean
     contrato_id?: boolean
+    pasta_id?: boolean
     criado_por?: boolean
     titulo?: boolean
     descricao?: boolean
@@ -40451,6 +41849,7 @@ export namespace Prisma {
     projeto?: boolean | Documento$projetoArgs<ExtArgs>
     cliente?: boolean | Documento$clienteArgs<ExtArgs>
     contrato?: boolean | Documento$contratoArgs<ExtArgs>
+    pasta?: boolean | Documento$pastaArgs<ExtArgs>
     criador?: boolean | Documento$criadorArgs<ExtArgs>
   }, ExtArgs["result"]["documento"]>
 
@@ -40460,6 +41859,7 @@ export namespace Prisma {
     projeto_id?: boolean
     cliente_id?: boolean
     contrato_id?: boolean
+    pasta_id?: boolean
     criado_por?: boolean
     titulo?: boolean
     descricao?: boolean
@@ -40473,6 +41873,7 @@ export namespace Prisma {
     projeto?: boolean | Documento$projetoArgs<ExtArgs>
     cliente?: boolean | Documento$clienteArgs<ExtArgs>
     contrato?: boolean | Documento$contratoArgs<ExtArgs>
+    pasta?: boolean | Documento$pastaArgs<ExtArgs>
     criador?: boolean | Documento$criadorArgs<ExtArgs>
   }, ExtArgs["result"]["documento"]>
 
@@ -40482,6 +41883,7 @@ export namespace Prisma {
     projeto_id?: boolean
     cliente_id?: boolean
     contrato_id?: boolean
+    pasta_id?: boolean
     criado_por?: boolean
     titulo?: boolean
     descricao?: boolean
@@ -40493,12 +41895,13 @@ export namespace Prisma {
     criado_em?: boolean
   }
 
-  export type DocumentoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "projeto_id" | "cliente_id" | "contrato_id" | "criado_por" | "titulo" | "descricao" | "categoria" | "arquivo_url" | "arquivo_nome" | "arquivo_tamanho" | "mime_type" | "criado_em", ExtArgs["result"]["documento"]>
+  export type DocumentoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "projeto_id" | "cliente_id" | "contrato_id" | "pasta_id" | "criado_por" | "titulo" | "descricao" | "categoria" | "arquivo_url" | "arquivo_nome" | "arquivo_tamanho" | "mime_type" | "criado_em", ExtArgs["result"]["documento"]>
   export type DocumentoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     projeto?: boolean | Documento$projetoArgs<ExtArgs>
     cliente?: boolean | Documento$clienteArgs<ExtArgs>
     contrato?: boolean | Documento$contratoArgs<ExtArgs>
+    pasta?: boolean | Documento$pastaArgs<ExtArgs>
     criador?: boolean | Documento$criadorArgs<ExtArgs>
   }
   export type DocumentoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -40506,6 +41909,7 @@ export namespace Prisma {
     projeto?: boolean | Documento$projetoArgs<ExtArgs>
     cliente?: boolean | Documento$clienteArgs<ExtArgs>
     contrato?: boolean | Documento$contratoArgs<ExtArgs>
+    pasta?: boolean | Documento$pastaArgs<ExtArgs>
     criador?: boolean | Documento$criadorArgs<ExtArgs>
   }
   export type DocumentoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -40513,6 +41917,7 @@ export namespace Prisma {
     projeto?: boolean | Documento$projetoArgs<ExtArgs>
     cliente?: boolean | Documento$clienteArgs<ExtArgs>
     contrato?: boolean | Documento$contratoArgs<ExtArgs>
+    pasta?: boolean | Documento$pastaArgs<ExtArgs>
     criador?: boolean | Documento$criadorArgs<ExtArgs>
   }
 
@@ -40523,6 +41928,7 @@ export namespace Prisma {
       projeto: Prisma.$ProjetoPayload<ExtArgs> | null
       cliente: Prisma.$ClientePayload<ExtArgs> | null
       contrato: Prisma.$ContratoPayload<ExtArgs> | null
+      pasta: Prisma.$PastaDocumentoPayload<ExtArgs> | null
       criador: Prisma.$UsuarioPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -40531,6 +41937,7 @@ export namespace Prisma {
       projeto_id: string | null
       cliente_id: string | null
       contrato_id: string | null
+      pasta_id: string | null
       criado_por: string | null
       titulo: string
       descricao: string | null
@@ -40938,6 +42345,7 @@ export namespace Prisma {
     projeto<T extends Documento$projetoArgs<ExtArgs> = {}>(args?: Subset<T, Documento$projetoArgs<ExtArgs>>): Prisma__ProjetoClient<$Result.GetResult<Prisma.$ProjetoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     cliente<T extends Documento$clienteArgs<ExtArgs> = {}>(args?: Subset<T, Documento$clienteArgs<ExtArgs>>): Prisma__ClienteClient<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     contrato<T extends Documento$contratoArgs<ExtArgs> = {}>(args?: Subset<T, Documento$contratoArgs<ExtArgs>>): Prisma__ContratoClient<$Result.GetResult<Prisma.$ContratoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    pasta<T extends Documento$pastaArgs<ExtArgs> = {}>(args?: Subset<T, Documento$pastaArgs<ExtArgs>>): Prisma__PastaDocumentoClient<$Result.GetResult<Prisma.$PastaDocumentoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     criador<T extends Documento$criadorArgs<ExtArgs> = {}>(args?: Subset<T, Documento$criadorArgs<ExtArgs>>): Prisma__UsuarioClient<$Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -40973,6 +42381,7 @@ export namespace Prisma {
     readonly projeto_id: FieldRef<"Documento", 'String'>
     readonly cliente_id: FieldRef<"Documento", 'String'>
     readonly contrato_id: FieldRef<"Documento", 'String'>
+    readonly pasta_id: FieldRef<"Documento", 'String'>
     readonly criado_por: FieldRef<"Documento", 'String'>
     readonly titulo: FieldRef<"Documento", 'String'>
     readonly descricao: FieldRef<"Documento", 'String'>
@@ -41437,6 +42846,25 @@ export namespace Prisma {
      */
     include?: ContratoInclude<ExtArgs> | null
     where?: ContratoWhereInput
+  }
+
+  /**
+   * Documento.pasta
+   */
+  export type Documento$pastaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PastaDocumento
+     */
+    select?: PastaDocumentoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PastaDocumento
+     */
+    omit?: PastaDocumentoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PastaDocumentoInclude<ExtArgs> | null
+    where?: PastaDocumentoWhereInput
   }
 
   /**
@@ -60348,6 +61776,7 @@ export namespace Prisma {
     empresa_id: 'empresa_id',
     contrato_id: 'contrato_id',
     cliente_id: 'cliente_id',
+    interno: 'interno',
     criado_por: 'criado_por',
     titulo: 'titulo',
     descricao: 'descricao',
@@ -60477,12 +61906,27 @@ export namespace Prisma {
   export type TarefaEtiquetaScalarFieldEnum = (typeof TarefaEtiquetaScalarFieldEnum)[keyof typeof TarefaEtiquetaScalarFieldEnum]
 
 
+  export const PastaDocumentoScalarFieldEnum: {
+    id: 'id',
+    empresa_id: 'empresa_id',
+    nome: 'nome',
+    descricao: 'descricao',
+    parent_id: 'parent_id',
+    criado_por: 'criado_por',
+    criado_em: 'criado_em',
+    atualizado_em: 'atualizado_em'
+  };
+
+  export type PastaDocumentoScalarFieldEnum = (typeof PastaDocumentoScalarFieldEnum)[keyof typeof PastaDocumentoScalarFieldEnum]
+
+
   export const DocumentoScalarFieldEnum: {
     id: 'id',
     empresa_id: 'empresa_id',
     projeto_id: 'projeto_id',
     cliente_id: 'cliente_id',
     contrato_id: 'contrato_id',
+    pasta_id: 'pasta_id',
     criado_por: 'criado_por',
     titulo: 'titulo',
     descricao: 'descricao',
@@ -61256,6 +62700,7 @@ export namespace Prisma {
     contratos?: ContratoListRelationFilter
     projetos?: ProjetoListRelationFilter
     documentos?: DocumentoListRelationFilter
+    pastas_documento?: PastaDocumentoListRelationFilter
     plano_contas?: PlanoDeContasListRelationFilter
     contas_bancarias?: ContaBancariaListRelationFilter
     transferencias_tesouraria?: TransferenciaTesourariaListRelationFilter
@@ -61294,6 +62739,7 @@ export namespace Prisma {
     contratos?: ContratoOrderByRelationAggregateInput
     projetos?: ProjetoOrderByRelationAggregateInput
     documentos?: DocumentoOrderByRelationAggregateInput
+    pastas_documento?: PastaDocumentoOrderByRelationAggregateInput
     plano_contas?: PlanoDeContasOrderByRelationAggregateInput
     contas_bancarias?: ContaBancariaOrderByRelationAggregateInput
     transferencias_tesouraria?: TransferenciaTesourariaOrderByRelationAggregateInput
@@ -61335,6 +62781,7 @@ export namespace Prisma {
     contratos?: ContratoListRelationFilter
     projetos?: ProjetoListRelationFilter
     documentos?: DocumentoListRelationFilter
+    pastas_documento?: PastaDocumentoListRelationFilter
     plano_contas?: PlanoDeContasListRelationFilter
     contas_bancarias?: ContaBancariaListRelationFilter
     transferencias_tesouraria?: TransferenciaTesourariaListRelationFilter
@@ -63028,7 +64475,8 @@ export namespace Prisma {
     id?: StringFilter<"Projeto"> | string
     empresa_id?: StringFilter<"Projeto"> | string
     contrato_id?: StringNullableFilter<"Projeto"> | string | null
-    cliente_id?: StringFilter<"Projeto"> | string
+    cliente_id?: StringNullableFilter<"Projeto"> | string | null
+    interno?: BoolFilter<"Projeto"> | boolean
     criado_por?: StringNullableFilter<"Projeto"> | string | null
     titulo?: StringFilter<"Projeto"> | string
     descricao?: StringNullableFilter<"Projeto"> | string | null
@@ -63039,7 +64487,7 @@ export namespace Prisma {
     atualizado_em?: DateTimeFilter<"Projeto"> | Date | string
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
     contrato?: XOR<ContratoNullableScalarRelationFilter, ContratoWhereInput> | null
-    cliente?: XOR<ClienteScalarRelationFilter, ClienteWhereInput>
+    cliente?: XOR<ClienteNullableScalarRelationFilter, ClienteWhereInput> | null
     criador?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
     etapas?: EtapaListRelationFilter
     tarefas?: TarefaListRelationFilter
@@ -63053,7 +64501,8 @@ export namespace Prisma {
     id?: SortOrder
     empresa_id?: SortOrder
     contrato_id?: SortOrderInput | SortOrder
-    cliente_id?: SortOrder
+    cliente_id?: SortOrderInput | SortOrder
+    interno?: SortOrder
     criado_por?: SortOrderInput | SortOrder
     titulo?: SortOrder
     descricao?: SortOrderInput | SortOrder
@@ -63081,7 +64530,8 @@ export namespace Prisma {
     OR?: ProjetoWhereInput[]
     NOT?: ProjetoWhereInput | ProjetoWhereInput[]
     empresa_id?: StringFilter<"Projeto"> | string
-    cliente_id?: StringFilter<"Projeto"> | string
+    cliente_id?: StringNullableFilter<"Projeto"> | string | null
+    interno?: BoolFilter<"Projeto"> | boolean
     criado_por?: StringNullableFilter<"Projeto"> | string | null
     titulo?: StringFilter<"Projeto"> | string
     descricao?: StringNullableFilter<"Projeto"> | string | null
@@ -63092,7 +64542,7 @@ export namespace Prisma {
     atualizado_em?: DateTimeFilter<"Projeto"> | Date | string
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
     contrato?: XOR<ContratoNullableScalarRelationFilter, ContratoWhereInput> | null
-    cliente?: XOR<ClienteScalarRelationFilter, ClienteWhereInput>
+    cliente?: XOR<ClienteNullableScalarRelationFilter, ClienteWhereInput> | null
     criador?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
     etapas?: EtapaListRelationFilter
     tarefas?: TarefaListRelationFilter
@@ -63106,7 +64556,8 @@ export namespace Prisma {
     id?: SortOrder
     empresa_id?: SortOrder
     contrato_id?: SortOrderInput | SortOrder
-    cliente_id?: SortOrder
+    cliente_id?: SortOrderInput | SortOrder
+    interno?: SortOrder
     criado_por?: SortOrderInput | SortOrder
     titulo?: SortOrder
     descricao?: SortOrderInput | SortOrder
@@ -63127,7 +64578,8 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Projeto"> | string
     empresa_id?: StringWithAggregatesFilter<"Projeto"> | string
     contrato_id?: StringNullableWithAggregatesFilter<"Projeto"> | string | null
-    cliente_id?: StringWithAggregatesFilter<"Projeto"> | string
+    cliente_id?: StringNullableWithAggregatesFilter<"Projeto"> | string | null
+    interno?: BoolWithAggregatesFilter<"Projeto"> | boolean
     criado_por?: StringNullableWithAggregatesFilter<"Projeto"> | string | null
     titulo?: StringWithAggregatesFilter<"Projeto"> | string
     descricao?: StringNullableWithAggregatesFilter<"Projeto"> | string | null
@@ -63775,6 +65227,85 @@ export namespace Prisma {
     etiqueta_id?: StringWithAggregatesFilter<"TarefaEtiqueta"> | string
   }
 
+  export type PastaDocumentoWhereInput = {
+    AND?: PastaDocumentoWhereInput | PastaDocumentoWhereInput[]
+    OR?: PastaDocumentoWhereInput[]
+    NOT?: PastaDocumentoWhereInput | PastaDocumentoWhereInput[]
+    id?: StringFilter<"PastaDocumento"> | string
+    empresa_id?: StringFilter<"PastaDocumento"> | string
+    nome?: StringFilter<"PastaDocumento"> | string
+    descricao?: StringNullableFilter<"PastaDocumento"> | string | null
+    parent_id?: StringNullableFilter<"PastaDocumento"> | string | null
+    criado_por?: StringNullableFilter<"PastaDocumento"> | string | null
+    criado_em?: DateTimeFilter<"PastaDocumento"> | Date | string
+    atualizado_em?: DateTimeFilter<"PastaDocumento"> | Date | string
+    empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
+    parent?: XOR<PastaDocumentoNullableScalarRelationFilter, PastaDocumentoWhereInput> | null
+    filhos?: PastaDocumentoListRelationFilter
+    documentos?: DocumentoListRelationFilter
+  }
+
+  export type PastaDocumentoOrderByWithRelationInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    nome?: SortOrder
+    descricao?: SortOrderInput | SortOrder
+    parent_id?: SortOrderInput | SortOrder
+    criado_por?: SortOrderInput | SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+    empresa?: EmpresaOrderByWithRelationInput
+    parent?: PastaDocumentoOrderByWithRelationInput
+    filhos?: PastaDocumentoOrderByRelationAggregateInput
+    documentos?: DocumentoOrderByRelationAggregateInput
+  }
+
+  export type PastaDocumentoWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: PastaDocumentoWhereInput | PastaDocumentoWhereInput[]
+    OR?: PastaDocumentoWhereInput[]
+    NOT?: PastaDocumentoWhereInput | PastaDocumentoWhereInput[]
+    empresa_id?: StringFilter<"PastaDocumento"> | string
+    nome?: StringFilter<"PastaDocumento"> | string
+    descricao?: StringNullableFilter<"PastaDocumento"> | string | null
+    parent_id?: StringNullableFilter<"PastaDocumento"> | string | null
+    criado_por?: StringNullableFilter<"PastaDocumento"> | string | null
+    criado_em?: DateTimeFilter<"PastaDocumento"> | Date | string
+    atualizado_em?: DateTimeFilter<"PastaDocumento"> | Date | string
+    empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
+    parent?: XOR<PastaDocumentoNullableScalarRelationFilter, PastaDocumentoWhereInput> | null
+    filhos?: PastaDocumentoListRelationFilter
+    documentos?: DocumentoListRelationFilter
+  }, "id">
+
+  export type PastaDocumentoOrderByWithAggregationInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    nome?: SortOrder
+    descricao?: SortOrderInput | SortOrder
+    parent_id?: SortOrderInput | SortOrder
+    criado_por?: SortOrderInput | SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+    _count?: PastaDocumentoCountOrderByAggregateInput
+    _max?: PastaDocumentoMaxOrderByAggregateInput
+    _min?: PastaDocumentoMinOrderByAggregateInput
+  }
+
+  export type PastaDocumentoScalarWhereWithAggregatesInput = {
+    AND?: PastaDocumentoScalarWhereWithAggregatesInput | PastaDocumentoScalarWhereWithAggregatesInput[]
+    OR?: PastaDocumentoScalarWhereWithAggregatesInput[]
+    NOT?: PastaDocumentoScalarWhereWithAggregatesInput | PastaDocumentoScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"PastaDocumento"> | string
+    empresa_id?: StringWithAggregatesFilter<"PastaDocumento"> | string
+    nome?: StringWithAggregatesFilter<"PastaDocumento"> | string
+    descricao?: StringNullableWithAggregatesFilter<"PastaDocumento"> | string | null
+    parent_id?: StringNullableWithAggregatesFilter<"PastaDocumento"> | string | null
+    criado_por?: StringNullableWithAggregatesFilter<"PastaDocumento"> | string | null
+    criado_em?: DateTimeWithAggregatesFilter<"PastaDocumento"> | Date | string
+    atualizado_em?: DateTimeWithAggregatesFilter<"PastaDocumento"> | Date | string
+  }
+
   export type DocumentoWhereInput = {
     AND?: DocumentoWhereInput | DocumentoWhereInput[]
     OR?: DocumentoWhereInput[]
@@ -63784,6 +65315,7 @@ export namespace Prisma {
     projeto_id?: StringNullableFilter<"Documento"> | string | null
     cliente_id?: StringNullableFilter<"Documento"> | string | null
     contrato_id?: StringNullableFilter<"Documento"> | string | null
+    pasta_id?: StringNullableFilter<"Documento"> | string | null
     criado_por?: StringNullableFilter<"Documento"> | string | null
     titulo?: StringFilter<"Documento"> | string
     descricao?: StringNullableFilter<"Documento"> | string | null
@@ -63797,6 +65329,7 @@ export namespace Prisma {
     projeto?: XOR<ProjetoNullableScalarRelationFilter, ProjetoWhereInput> | null
     cliente?: XOR<ClienteNullableScalarRelationFilter, ClienteWhereInput> | null
     contrato?: XOR<ContratoNullableScalarRelationFilter, ContratoWhereInput> | null
+    pasta?: XOR<PastaDocumentoNullableScalarRelationFilter, PastaDocumentoWhereInput> | null
     criador?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
   }
 
@@ -63806,6 +65339,7 @@ export namespace Prisma {
     projeto_id?: SortOrderInput | SortOrder
     cliente_id?: SortOrderInput | SortOrder
     contrato_id?: SortOrderInput | SortOrder
+    pasta_id?: SortOrderInput | SortOrder
     criado_por?: SortOrderInput | SortOrder
     titulo?: SortOrder
     descricao?: SortOrderInput | SortOrder
@@ -63819,6 +65353,7 @@ export namespace Prisma {
     projeto?: ProjetoOrderByWithRelationInput
     cliente?: ClienteOrderByWithRelationInput
     contrato?: ContratoOrderByWithRelationInput
+    pasta?: PastaDocumentoOrderByWithRelationInput
     criador?: UsuarioOrderByWithRelationInput
   }
 
@@ -63831,6 +65366,7 @@ export namespace Prisma {
     projeto_id?: StringNullableFilter<"Documento"> | string | null
     cliente_id?: StringNullableFilter<"Documento"> | string | null
     contrato_id?: StringNullableFilter<"Documento"> | string | null
+    pasta_id?: StringNullableFilter<"Documento"> | string | null
     criado_por?: StringNullableFilter<"Documento"> | string | null
     titulo?: StringFilter<"Documento"> | string
     descricao?: StringNullableFilter<"Documento"> | string | null
@@ -63844,6 +65380,7 @@ export namespace Prisma {
     projeto?: XOR<ProjetoNullableScalarRelationFilter, ProjetoWhereInput> | null
     cliente?: XOR<ClienteNullableScalarRelationFilter, ClienteWhereInput> | null
     contrato?: XOR<ContratoNullableScalarRelationFilter, ContratoWhereInput> | null
+    pasta?: XOR<PastaDocumentoNullableScalarRelationFilter, PastaDocumentoWhereInput> | null
     criador?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
   }, "id">
 
@@ -63853,6 +65390,7 @@ export namespace Prisma {
     projeto_id?: SortOrderInput | SortOrder
     cliente_id?: SortOrderInput | SortOrder
     contrato_id?: SortOrderInput | SortOrder
+    pasta_id?: SortOrderInput | SortOrder
     criado_por?: SortOrderInput | SortOrder
     titulo?: SortOrder
     descricao?: SortOrderInput | SortOrder
@@ -63878,6 +65416,7 @@ export namespace Prisma {
     projeto_id?: StringNullableWithAggregatesFilter<"Documento"> | string | null
     cliente_id?: StringNullableWithAggregatesFilter<"Documento"> | string | null
     contrato_id?: StringNullableWithAggregatesFilter<"Documento"> | string | null
+    pasta_id?: StringNullableWithAggregatesFilter<"Documento"> | string | null
     criado_por?: StringNullableWithAggregatesFilter<"Documento"> | string | null
     titulo?: StringWithAggregatesFilter<"Documento"> | string
     descricao?: StringNullableWithAggregatesFilter<"Documento"> | string | null
@@ -65426,6 +66965,7 @@ export namespace Prisma {
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
@@ -65464,6 +67004,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -65502,6 +67043,7 @@ export namespace Prisma {
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
@@ -65540,6 +67082,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -67416,6 +68959,7 @@ export namespace Prisma {
 
   export type ProjetoCreateInput = {
     id?: string
+    interno?: boolean
     titulo: string
     descricao?: string | null
     status?: $Enums.StatusProjeto
@@ -67425,7 +68969,7 @@ export namespace Prisma {
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutProjetosInput
     contrato?: ContratoCreateNestedOneWithoutProjetoInput
-    cliente: ClienteCreateNestedOneWithoutProjetosInput
+    cliente?: ClienteCreateNestedOneWithoutProjetosInput
     criador?: UsuarioCreateNestedOneWithoutProjetos_criadosInput
     etapas?: EtapaCreateNestedManyWithoutProjetoInput
     tarefas?: TarefaCreateNestedManyWithoutProjetoInput
@@ -67439,7 +68983,8 @@ export namespace Prisma {
     id?: string
     empresa_id: string
     contrato_id?: string | null
-    cliente_id: string
+    cliente_id?: string | null
+    interno?: boolean
     criado_por?: string | null
     titulo: string
     descricao?: string | null
@@ -67458,6 +69003,7 @@ export namespace Prisma {
 
   export type ProjetoUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    interno?: BoolFieldUpdateOperationsInput | boolean
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
@@ -67467,7 +69013,7 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutProjetosNestedInput
     contrato?: ContratoUpdateOneWithoutProjetoNestedInput
-    cliente?: ClienteUpdateOneRequiredWithoutProjetosNestedInput
+    cliente?: ClienteUpdateOneWithoutProjetosNestedInput
     criador?: UsuarioUpdateOneWithoutProjetos_criadosNestedInput
     etapas?: EtapaUpdateManyWithoutProjetoNestedInput
     tarefas?: TarefaUpdateManyWithoutProjetoNestedInput
@@ -67481,7 +69027,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     empresa_id?: StringFieldUpdateOperationsInput | string
     contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
-    cliente_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    interno?: BoolFieldUpdateOperationsInput | boolean
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
@@ -67502,7 +69049,8 @@ export namespace Prisma {
     id?: string
     empresa_id: string
     contrato_id?: string | null
-    cliente_id: string
+    cliente_id?: string | null
+    interno?: boolean
     criado_por?: string | null
     titulo: string
     descricao?: string | null
@@ -67515,6 +69063,7 @@ export namespace Prisma {
 
   export type ProjetoUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    interno?: BoolFieldUpdateOperationsInput | boolean
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
@@ -67528,7 +69077,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     empresa_id?: StringFieldUpdateOperationsInput | string
     contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
-    cliente_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    interno?: BoolFieldUpdateOperationsInput | boolean
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
@@ -68178,6 +69728,89 @@ export namespace Prisma {
     etiqueta_id?: StringFieldUpdateOperationsInput | string
   }
 
+  export type PastaDocumentoCreateInput = {
+    id?: string
+    nome: string
+    descricao?: string | null
+    criado_por?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutPastas_documentoInput
+    parent?: PastaDocumentoCreateNestedOneWithoutFilhosInput
+    filhos?: PastaDocumentoCreateNestedManyWithoutParentInput
+    documentos?: DocumentoCreateNestedManyWithoutPastaInput
+  }
+
+  export type PastaDocumentoUncheckedCreateInput = {
+    id?: string
+    empresa_id: string
+    nome: string
+    descricao?: string | null
+    parent_id?: string | null
+    criado_por?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    filhos?: PastaDocumentoUncheckedCreateNestedManyWithoutParentInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutPastaInput
+  }
+
+  export type PastaDocumentoUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutPastas_documentoNestedInput
+    parent?: PastaDocumentoUpdateOneWithoutFilhosNestedInput
+    filhos?: PastaDocumentoUpdateManyWithoutParentNestedInput
+    documentos?: DocumentoUpdateManyWithoutPastaNestedInput
+  }
+
+  export type PastaDocumentoUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    parent_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    filhos?: PastaDocumentoUncheckedUpdateManyWithoutParentNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutPastaNestedInput
+  }
+
+  export type PastaDocumentoCreateManyInput = {
+    id?: string
+    empresa_id: string
+    nome: string
+    descricao?: string | null
+    parent_id?: string | null
+    criado_por?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type PastaDocumentoUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PastaDocumentoUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    parent_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type DocumentoCreateInput = {
     id?: string
     titulo: string
@@ -68192,6 +69825,7 @@ export namespace Prisma {
     projeto?: ProjetoCreateNestedOneWithoutDocumentosInput
     cliente?: ClienteCreateNestedOneWithoutDocumentosInput
     contrato?: ContratoCreateNestedOneWithoutDocumentosInput
+    pasta?: PastaDocumentoCreateNestedOneWithoutDocumentosInput
     criador?: UsuarioCreateNestedOneWithoutDocumentos_criadosInput
   }
 
@@ -68201,6 +69835,7 @@ export namespace Prisma {
     projeto_id?: string | null
     cliente_id?: string | null
     contrato_id?: string | null
+    pasta_id?: string | null
     criado_por?: string | null
     titulo: string
     descricao?: string | null
@@ -68226,6 +69861,7 @@ export namespace Prisma {
     projeto?: ProjetoUpdateOneWithoutDocumentosNestedInput
     cliente?: ClienteUpdateOneWithoutDocumentosNestedInput
     contrato?: ContratoUpdateOneWithoutDocumentosNestedInput
+    pasta?: PastaDocumentoUpdateOneWithoutDocumentosNestedInput
     criador?: UsuarioUpdateOneWithoutDocumentos_criadosNestedInput
   }
 
@@ -68235,6 +69871,7 @@ export namespace Prisma {
     projeto_id?: NullableStringFieldUpdateOperationsInput | string | null
     cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
     contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
+    pasta_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
@@ -68252,6 +69889,7 @@ export namespace Prisma {
     projeto_id?: string | null
     cliente_id?: string | null
     contrato_id?: string | null
+    pasta_id?: string | null
     criado_por?: string | null
     titulo: string
     descricao?: string | null
@@ -68281,6 +69919,7 @@ export namespace Prisma {
     projeto_id?: NullableStringFieldUpdateOperationsInput | string | null
     cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
     contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
+    pasta_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
@@ -70079,6 +71718,12 @@ export namespace Prisma {
     none?: DocumentoWhereInput
   }
 
+  export type PastaDocumentoListRelationFilter = {
+    every?: PastaDocumentoWhereInput
+    some?: PastaDocumentoWhereInput
+    none?: PastaDocumentoWhereInput
+  }
+
   export type PlanoDeContasListRelationFilter = {
     every?: PlanoDeContasWhereInput
     some?: PlanoDeContasWhereInput
@@ -70209,6 +71854,10 @@ export namespace Prisma {
   }
 
   export type DocumentoOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PastaDocumentoOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -71699,6 +73348,7 @@ export namespace Prisma {
     empresa_id?: SortOrder
     contrato_id?: SortOrder
     cliente_id?: SortOrder
+    interno?: SortOrder
     criado_por?: SortOrder
     titulo?: SortOrder
     descricao?: SortOrder
@@ -71714,6 +73364,7 @@ export namespace Prisma {
     empresa_id?: SortOrder
     contrato_id?: SortOrder
     cliente_id?: SortOrder
+    interno?: SortOrder
     criado_por?: SortOrder
     titulo?: SortOrder
     descricao?: SortOrder
@@ -71729,6 +73380,7 @@ export namespace Prisma {
     empresa_id?: SortOrder
     contrato_id?: SortOrder
     cliente_id?: SortOrder
+    interno?: SortOrder
     criado_por?: SortOrder
     titulo?: SortOrder
     descricao?: SortOrder
@@ -72161,6 +73813,44 @@ export namespace Prisma {
     etiqueta_id?: SortOrder
   }
 
+  export type PastaDocumentoNullableScalarRelationFilter = {
+    is?: PastaDocumentoWhereInput | null
+    isNot?: PastaDocumentoWhereInput | null
+  }
+
+  export type PastaDocumentoCountOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    nome?: SortOrder
+    descricao?: SortOrder
+    parent_id?: SortOrder
+    criado_por?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+  }
+
+  export type PastaDocumentoMaxOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    nome?: SortOrder
+    descricao?: SortOrder
+    parent_id?: SortOrder
+    criado_por?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+  }
+
+  export type PastaDocumentoMinOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    nome?: SortOrder
+    descricao?: SortOrder
+    parent_id?: SortOrder
+    criado_por?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+  }
+
   export type EnumCategoriaDocumentoFilter<$PrismaModel = never> = {
     equals?: $Enums.CategoriaDocumento | EnumCategoriaDocumentoFieldRefInput<$PrismaModel>
     in?: $Enums.CategoriaDocumento[] | ListEnumCategoriaDocumentoFieldRefInput<$PrismaModel>
@@ -72174,6 +73864,7 @@ export namespace Prisma {
     projeto_id?: SortOrder
     cliente_id?: SortOrder
     contrato_id?: SortOrder
+    pasta_id?: SortOrder
     criado_por?: SortOrder
     titulo?: SortOrder
     descricao?: SortOrder
@@ -72195,6 +73886,7 @@ export namespace Prisma {
     projeto_id?: SortOrder
     cliente_id?: SortOrder
     contrato_id?: SortOrder
+    pasta_id?: SortOrder
     criado_por?: SortOrder
     titulo?: SortOrder
     descricao?: SortOrder
@@ -72212,6 +73904,7 @@ export namespace Prisma {
     projeto_id?: SortOrder
     cliente_id?: SortOrder
     contrato_id?: SortOrder
+    pasta_id?: SortOrder
     criado_por?: SortOrder
     titulo?: SortOrder
     descricao?: SortOrder
@@ -73275,6 +74968,13 @@ export namespace Prisma {
     connect?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
   }
 
+  export type PastaDocumentoCreateNestedManyWithoutEmpresaInput = {
+    create?: XOR<PastaDocumentoCreateWithoutEmpresaInput, PastaDocumentoUncheckedCreateWithoutEmpresaInput> | PastaDocumentoCreateWithoutEmpresaInput[] | PastaDocumentoUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: PastaDocumentoCreateOrConnectWithoutEmpresaInput | PastaDocumentoCreateOrConnectWithoutEmpresaInput[]
+    createMany?: PastaDocumentoCreateManyEmpresaInputEnvelope
+    connect?: PastaDocumentoWhereUniqueInput | PastaDocumentoWhereUniqueInput[]
+  }
+
   export type PlanoDeContasCreateNestedManyWithoutEmpresaInput = {
     create?: XOR<PlanoDeContasCreateWithoutEmpresaInput, PlanoDeContasUncheckedCreateWithoutEmpresaInput> | PlanoDeContasCreateWithoutEmpresaInput[] | PlanoDeContasUncheckedCreateWithoutEmpresaInput[]
     connectOrCreate?: PlanoDeContasCreateOrConnectWithoutEmpresaInput | PlanoDeContasCreateOrConnectWithoutEmpresaInput[]
@@ -73448,6 +75148,13 @@ export namespace Prisma {
     connectOrCreate?: DocumentoCreateOrConnectWithoutEmpresaInput | DocumentoCreateOrConnectWithoutEmpresaInput[]
     createMany?: DocumentoCreateManyEmpresaInputEnvelope
     connect?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+  }
+
+  export type PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput = {
+    create?: XOR<PastaDocumentoCreateWithoutEmpresaInput, PastaDocumentoUncheckedCreateWithoutEmpresaInput> | PastaDocumentoCreateWithoutEmpresaInput[] | PastaDocumentoUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: PastaDocumentoCreateOrConnectWithoutEmpresaInput | PastaDocumentoCreateOrConnectWithoutEmpresaInput[]
+    createMany?: PastaDocumentoCreateManyEmpresaInputEnvelope
+    connect?: PastaDocumentoWhereUniqueInput | PastaDocumentoWhereUniqueInput[]
   }
 
   export type PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput = {
@@ -73720,6 +75427,20 @@ export namespace Prisma {
     update?: DocumentoUpdateWithWhereUniqueWithoutEmpresaInput | DocumentoUpdateWithWhereUniqueWithoutEmpresaInput[]
     updateMany?: DocumentoUpdateManyWithWhereWithoutEmpresaInput | DocumentoUpdateManyWithWhereWithoutEmpresaInput[]
     deleteMany?: DocumentoScalarWhereInput | DocumentoScalarWhereInput[]
+  }
+
+  export type PastaDocumentoUpdateManyWithoutEmpresaNestedInput = {
+    create?: XOR<PastaDocumentoCreateWithoutEmpresaInput, PastaDocumentoUncheckedCreateWithoutEmpresaInput> | PastaDocumentoCreateWithoutEmpresaInput[] | PastaDocumentoUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: PastaDocumentoCreateOrConnectWithoutEmpresaInput | PastaDocumentoCreateOrConnectWithoutEmpresaInput[]
+    upsert?: PastaDocumentoUpsertWithWhereUniqueWithoutEmpresaInput | PastaDocumentoUpsertWithWhereUniqueWithoutEmpresaInput[]
+    createMany?: PastaDocumentoCreateManyEmpresaInputEnvelope
+    set?: PastaDocumentoWhereUniqueInput | PastaDocumentoWhereUniqueInput[]
+    disconnect?: PastaDocumentoWhereUniqueInput | PastaDocumentoWhereUniqueInput[]
+    delete?: PastaDocumentoWhereUniqueInput | PastaDocumentoWhereUniqueInput[]
+    connect?: PastaDocumentoWhereUniqueInput | PastaDocumentoWhereUniqueInput[]
+    update?: PastaDocumentoUpdateWithWhereUniqueWithoutEmpresaInput | PastaDocumentoUpdateWithWhereUniqueWithoutEmpresaInput[]
+    updateMany?: PastaDocumentoUpdateManyWithWhereWithoutEmpresaInput | PastaDocumentoUpdateManyWithWhereWithoutEmpresaInput[]
+    deleteMany?: PastaDocumentoScalarWhereInput | PastaDocumentoScalarWhereInput[]
   }
 
   export type PlanoDeContasUpdateManyWithoutEmpresaNestedInput = {
@@ -74070,6 +75791,20 @@ export namespace Prisma {
     update?: DocumentoUpdateWithWhereUniqueWithoutEmpresaInput | DocumentoUpdateWithWhereUniqueWithoutEmpresaInput[]
     updateMany?: DocumentoUpdateManyWithWhereWithoutEmpresaInput | DocumentoUpdateManyWithWhereWithoutEmpresaInput[]
     deleteMany?: DocumentoScalarWhereInput | DocumentoScalarWhereInput[]
+  }
+
+  export type PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput = {
+    create?: XOR<PastaDocumentoCreateWithoutEmpresaInput, PastaDocumentoUncheckedCreateWithoutEmpresaInput> | PastaDocumentoCreateWithoutEmpresaInput[] | PastaDocumentoUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: PastaDocumentoCreateOrConnectWithoutEmpresaInput | PastaDocumentoCreateOrConnectWithoutEmpresaInput[]
+    upsert?: PastaDocumentoUpsertWithWhereUniqueWithoutEmpresaInput | PastaDocumentoUpsertWithWhereUniqueWithoutEmpresaInput[]
+    createMany?: PastaDocumentoCreateManyEmpresaInputEnvelope
+    set?: PastaDocumentoWhereUniqueInput | PastaDocumentoWhereUniqueInput[]
+    disconnect?: PastaDocumentoWhereUniqueInput | PastaDocumentoWhereUniqueInput[]
+    delete?: PastaDocumentoWhereUniqueInput | PastaDocumentoWhereUniqueInput[]
+    connect?: PastaDocumentoWhereUniqueInput | PastaDocumentoWhereUniqueInput[]
+    update?: PastaDocumentoUpdateWithWhereUniqueWithoutEmpresaInput | PastaDocumentoUpdateWithWhereUniqueWithoutEmpresaInput[]
+    updateMany?: PastaDocumentoUpdateManyWithWhereWithoutEmpresaInput | PastaDocumentoUpdateManyWithWhereWithoutEmpresaInput[]
+    deleteMany?: PastaDocumentoScalarWhereInput | PastaDocumentoScalarWhereInput[]
   }
 
   export type PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput = {
@@ -76936,10 +78671,12 @@ export namespace Prisma {
     update?: XOR<XOR<ContratoUpdateToOneWithWhereWithoutProjetoInput, ContratoUpdateWithoutProjetoInput>, ContratoUncheckedUpdateWithoutProjetoInput>
   }
 
-  export type ClienteUpdateOneRequiredWithoutProjetosNestedInput = {
+  export type ClienteUpdateOneWithoutProjetosNestedInput = {
     create?: XOR<ClienteCreateWithoutProjetosInput, ClienteUncheckedCreateWithoutProjetosInput>
     connectOrCreate?: ClienteCreateOrConnectWithoutProjetosInput
     upsert?: ClienteUpsertWithoutProjetosInput
+    disconnect?: ClienteWhereInput | boolean
+    delete?: ClienteWhereInput | boolean
     connect?: ClienteWhereUniqueInput
     update?: XOR<XOR<ClienteUpdateToOneWithWhereWithoutProjetosInput, ClienteUpdateWithoutProjetosInput>, ClienteUncheckedUpdateWithoutProjetosInput>
   }
@@ -77724,6 +79461,120 @@ export namespace Prisma {
     update?: XOR<XOR<EtiquetaTarefaUpdateToOneWithWhereWithoutTarefasInput, EtiquetaTarefaUpdateWithoutTarefasInput>, EtiquetaTarefaUncheckedUpdateWithoutTarefasInput>
   }
 
+  export type EmpresaCreateNestedOneWithoutPastas_documentoInput = {
+    create?: XOR<EmpresaCreateWithoutPastas_documentoInput, EmpresaUncheckedCreateWithoutPastas_documentoInput>
+    connectOrCreate?: EmpresaCreateOrConnectWithoutPastas_documentoInput
+    connect?: EmpresaWhereUniqueInput
+  }
+
+  export type PastaDocumentoCreateNestedOneWithoutFilhosInput = {
+    create?: XOR<PastaDocumentoCreateWithoutFilhosInput, PastaDocumentoUncheckedCreateWithoutFilhosInput>
+    connectOrCreate?: PastaDocumentoCreateOrConnectWithoutFilhosInput
+    connect?: PastaDocumentoWhereUniqueInput
+  }
+
+  export type PastaDocumentoCreateNestedManyWithoutParentInput = {
+    create?: XOR<PastaDocumentoCreateWithoutParentInput, PastaDocumentoUncheckedCreateWithoutParentInput> | PastaDocumentoCreateWithoutParentInput[] | PastaDocumentoUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: PastaDocumentoCreateOrConnectWithoutParentInput | PastaDocumentoCreateOrConnectWithoutParentInput[]
+    createMany?: PastaDocumentoCreateManyParentInputEnvelope
+    connect?: PastaDocumentoWhereUniqueInput | PastaDocumentoWhereUniqueInput[]
+  }
+
+  export type DocumentoCreateNestedManyWithoutPastaInput = {
+    create?: XOR<DocumentoCreateWithoutPastaInput, DocumentoUncheckedCreateWithoutPastaInput> | DocumentoCreateWithoutPastaInput[] | DocumentoUncheckedCreateWithoutPastaInput[]
+    connectOrCreate?: DocumentoCreateOrConnectWithoutPastaInput | DocumentoCreateOrConnectWithoutPastaInput[]
+    createMany?: DocumentoCreateManyPastaInputEnvelope
+    connect?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+  }
+
+  export type PastaDocumentoUncheckedCreateNestedManyWithoutParentInput = {
+    create?: XOR<PastaDocumentoCreateWithoutParentInput, PastaDocumentoUncheckedCreateWithoutParentInput> | PastaDocumentoCreateWithoutParentInput[] | PastaDocumentoUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: PastaDocumentoCreateOrConnectWithoutParentInput | PastaDocumentoCreateOrConnectWithoutParentInput[]
+    createMany?: PastaDocumentoCreateManyParentInputEnvelope
+    connect?: PastaDocumentoWhereUniqueInput | PastaDocumentoWhereUniqueInput[]
+  }
+
+  export type DocumentoUncheckedCreateNestedManyWithoutPastaInput = {
+    create?: XOR<DocumentoCreateWithoutPastaInput, DocumentoUncheckedCreateWithoutPastaInput> | DocumentoCreateWithoutPastaInput[] | DocumentoUncheckedCreateWithoutPastaInput[]
+    connectOrCreate?: DocumentoCreateOrConnectWithoutPastaInput | DocumentoCreateOrConnectWithoutPastaInput[]
+    createMany?: DocumentoCreateManyPastaInputEnvelope
+    connect?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+  }
+
+  export type EmpresaUpdateOneRequiredWithoutPastas_documentoNestedInput = {
+    create?: XOR<EmpresaCreateWithoutPastas_documentoInput, EmpresaUncheckedCreateWithoutPastas_documentoInput>
+    connectOrCreate?: EmpresaCreateOrConnectWithoutPastas_documentoInput
+    upsert?: EmpresaUpsertWithoutPastas_documentoInput
+    connect?: EmpresaWhereUniqueInput
+    update?: XOR<XOR<EmpresaUpdateToOneWithWhereWithoutPastas_documentoInput, EmpresaUpdateWithoutPastas_documentoInput>, EmpresaUncheckedUpdateWithoutPastas_documentoInput>
+  }
+
+  export type PastaDocumentoUpdateOneWithoutFilhosNestedInput = {
+    create?: XOR<PastaDocumentoCreateWithoutFilhosInput, PastaDocumentoUncheckedCreateWithoutFilhosInput>
+    connectOrCreate?: PastaDocumentoCreateOrConnectWithoutFilhosInput
+    upsert?: PastaDocumentoUpsertWithoutFilhosInput
+    disconnect?: PastaDocumentoWhereInput | boolean
+    delete?: PastaDocumentoWhereInput | boolean
+    connect?: PastaDocumentoWhereUniqueInput
+    update?: XOR<XOR<PastaDocumentoUpdateToOneWithWhereWithoutFilhosInput, PastaDocumentoUpdateWithoutFilhosInput>, PastaDocumentoUncheckedUpdateWithoutFilhosInput>
+  }
+
+  export type PastaDocumentoUpdateManyWithoutParentNestedInput = {
+    create?: XOR<PastaDocumentoCreateWithoutParentInput, PastaDocumentoUncheckedCreateWithoutParentInput> | PastaDocumentoCreateWithoutParentInput[] | PastaDocumentoUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: PastaDocumentoCreateOrConnectWithoutParentInput | PastaDocumentoCreateOrConnectWithoutParentInput[]
+    upsert?: PastaDocumentoUpsertWithWhereUniqueWithoutParentInput | PastaDocumentoUpsertWithWhereUniqueWithoutParentInput[]
+    createMany?: PastaDocumentoCreateManyParentInputEnvelope
+    set?: PastaDocumentoWhereUniqueInput | PastaDocumentoWhereUniqueInput[]
+    disconnect?: PastaDocumentoWhereUniqueInput | PastaDocumentoWhereUniqueInput[]
+    delete?: PastaDocumentoWhereUniqueInput | PastaDocumentoWhereUniqueInput[]
+    connect?: PastaDocumentoWhereUniqueInput | PastaDocumentoWhereUniqueInput[]
+    update?: PastaDocumentoUpdateWithWhereUniqueWithoutParentInput | PastaDocumentoUpdateWithWhereUniqueWithoutParentInput[]
+    updateMany?: PastaDocumentoUpdateManyWithWhereWithoutParentInput | PastaDocumentoUpdateManyWithWhereWithoutParentInput[]
+    deleteMany?: PastaDocumentoScalarWhereInput | PastaDocumentoScalarWhereInput[]
+  }
+
+  export type DocumentoUpdateManyWithoutPastaNestedInput = {
+    create?: XOR<DocumentoCreateWithoutPastaInput, DocumentoUncheckedCreateWithoutPastaInput> | DocumentoCreateWithoutPastaInput[] | DocumentoUncheckedCreateWithoutPastaInput[]
+    connectOrCreate?: DocumentoCreateOrConnectWithoutPastaInput | DocumentoCreateOrConnectWithoutPastaInput[]
+    upsert?: DocumentoUpsertWithWhereUniqueWithoutPastaInput | DocumentoUpsertWithWhereUniqueWithoutPastaInput[]
+    createMany?: DocumentoCreateManyPastaInputEnvelope
+    set?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+    disconnect?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+    delete?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+    connect?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+    update?: DocumentoUpdateWithWhereUniqueWithoutPastaInput | DocumentoUpdateWithWhereUniqueWithoutPastaInput[]
+    updateMany?: DocumentoUpdateManyWithWhereWithoutPastaInput | DocumentoUpdateManyWithWhereWithoutPastaInput[]
+    deleteMany?: DocumentoScalarWhereInput | DocumentoScalarWhereInput[]
+  }
+
+  export type PastaDocumentoUncheckedUpdateManyWithoutParentNestedInput = {
+    create?: XOR<PastaDocumentoCreateWithoutParentInput, PastaDocumentoUncheckedCreateWithoutParentInput> | PastaDocumentoCreateWithoutParentInput[] | PastaDocumentoUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: PastaDocumentoCreateOrConnectWithoutParentInput | PastaDocumentoCreateOrConnectWithoutParentInput[]
+    upsert?: PastaDocumentoUpsertWithWhereUniqueWithoutParentInput | PastaDocumentoUpsertWithWhereUniqueWithoutParentInput[]
+    createMany?: PastaDocumentoCreateManyParentInputEnvelope
+    set?: PastaDocumentoWhereUniqueInput | PastaDocumentoWhereUniqueInput[]
+    disconnect?: PastaDocumentoWhereUniqueInput | PastaDocumentoWhereUniqueInput[]
+    delete?: PastaDocumentoWhereUniqueInput | PastaDocumentoWhereUniqueInput[]
+    connect?: PastaDocumentoWhereUniqueInput | PastaDocumentoWhereUniqueInput[]
+    update?: PastaDocumentoUpdateWithWhereUniqueWithoutParentInput | PastaDocumentoUpdateWithWhereUniqueWithoutParentInput[]
+    updateMany?: PastaDocumentoUpdateManyWithWhereWithoutParentInput | PastaDocumentoUpdateManyWithWhereWithoutParentInput[]
+    deleteMany?: PastaDocumentoScalarWhereInput | PastaDocumentoScalarWhereInput[]
+  }
+
+  export type DocumentoUncheckedUpdateManyWithoutPastaNestedInput = {
+    create?: XOR<DocumentoCreateWithoutPastaInput, DocumentoUncheckedCreateWithoutPastaInput> | DocumentoCreateWithoutPastaInput[] | DocumentoUncheckedCreateWithoutPastaInput[]
+    connectOrCreate?: DocumentoCreateOrConnectWithoutPastaInput | DocumentoCreateOrConnectWithoutPastaInput[]
+    upsert?: DocumentoUpsertWithWhereUniqueWithoutPastaInput | DocumentoUpsertWithWhereUniqueWithoutPastaInput[]
+    createMany?: DocumentoCreateManyPastaInputEnvelope
+    set?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+    disconnect?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+    delete?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+    connect?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+    update?: DocumentoUpdateWithWhereUniqueWithoutPastaInput | DocumentoUpdateWithWhereUniqueWithoutPastaInput[]
+    updateMany?: DocumentoUpdateManyWithWhereWithoutPastaInput | DocumentoUpdateManyWithWhereWithoutPastaInput[]
+    deleteMany?: DocumentoScalarWhereInput | DocumentoScalarWhereInput[]
+  }
+
   export type EmpresaCreateNestedOneWithoutDocumentosInput = {
     create?: XOR<EmpresaCreateWithoutDocumentosInput, EmpresaUncheckedCreateWithoutDocumentosInput>
     connectOrCreate?: EmpresaCreateOrConnectWithoutDocumentosInput
@@ -77746,6 +79597,12 @@ export namespace Prisma {
     create?: XOR<ContratoCreateWithoutDocumentosInput, ContratoUncheckedCreateWithoutDocumentosInput>
     connectOrCreate?: ContratoCreateOrConnectWithoutDocumentosInput
     connect?: ContratoWhereUniqueInput
+  }
+
+  export type PastaDocumentoCreateNestedOneWithoutDocumentosInput = {
+    create?: XOR<PastaDocumentoCreateWithoutDocumentosInput, PastaDocumentoUncheckedCreateWithoutDocumentosInput>
+    connectOrCreate?: PastaDocumentoCreateOrConnectWithoutDocumentosInput
+    connect?: PastaDocumentoWhereUniqueInput
   }
 
   export type UsuarioCreateNestedOneWithoutDocumentos_criadosInput = {
@@ -77794,6 +79651,16 @@ export namespace Prisma {
     delete?: ContratoWhereInput | boolean
     connect?: ContratoWhereUniqueInput
     update?: XOR<XOR<ContratoUpdateToOneWithWhereWithoutDocumentosInput, ContratoUpdateWithoutDocumentosInput>, ContratoUncheckedUpdateWithoutDocumentosInput>
+  }
+
+  export type PastaDocumentoUpdateOneWithoutDocumentosNestedInput = {
+    create?: XOR<PastaDocumentoCreateWithoutDocumentosInput, PastaDocumentoUncheckedCreateWithoutDocumentosInput>
+    connectOrCreate?: PastaDocumentoCreateOrConnectWithoutDocumentosInput
+    upsert?: PastaDocumentoUpsertWithoutDocumentosInput
+    disconnect?: PastaDocumentoWhereInput | boolean
+    delete?: PastaDocumentoWhereInput | boolean
+    connect?: PastaDocumentoWhereUniqueInput
+    update?: XOR<XOR<PastaDocumentoUpdateToOneWithWhereWithoutDocumentosInput, PastaDocumentoUpdateWithoutDocumentosInput>, PastaDocumentoUncheckedUpdateWithoutDocumentosInput>
   }
 
   export type UsuarioUpdateOneWithoutDocumentos_criadosNestedInput = {
@@ -80023,6 +81890,7 @@ export namespace Prisma {
 
   export type ProjetoCreateWithoutEmpresaInput = {
     id?: string
+    interno?: boolean
     titulo: string
     descricao?: string | null
     status?: $Enums.StatusProjeto
@@ -80031,7 +81899,7 @@ export namespace Prisma {
     criado_em?: Date | string
     atualizado_em?: Date | string
     contrato?: ContratoCreateNestedOneWithoutProjetoInput
-    cliente: ClienteCreateNestedOneWithoutProjetosInput
+    cliente?: ClienteCreateNestedOneWithoutProjetosInput
     criador?: UsuarioCreateNestedOneWithoutProjetos_criadosInput
     etapas?: EtapaCreateNestedManyWithoutProjetoInput
     tarefas?: TarefaCreateNestedManyWithoutProjetoInput
@@ -80044,7 +81912,8 @@ export namespace Prisma {
   export type ProjetoUncheckedCreateWithoutEmpresaInput = {
     id?: string
     contrato_id?: string | null
-    cliente_id: string
+    cliente_id?: string | null
+    interno?: boolean
     criado_por?: string | null
     titulo: string
     descricao?: string | null
@@ -80084,6 +81953,7 @@ export namespace Prisma {
     projeto?: ProjetoCreateNestedOneWithoutDocumentosInput
     cliente?: ClienteCreateNestedOneWithoutDocumentosInput
     contrato?: ContratoCreateNestedOneWithoutDocumentosInput
+    pasta?: PastaDocumentoCreateNestedOneWithoutDocumentosInput
     criador?: UsuarioCreateNestedOneWithoutDocumentos_criadosInput
   }
 
@@ -80092,6 +81962,7 @@ export namespace Prisma {
     projeto_id?: string | null
     cliente_id?: string | null
     contrato_id?: string | null
+    pasta_id?: string | null
     criado_por?: string | null
     titulo: string
     descricao?: string | null
@@ -80110,6 +81981,40 @@ export namespace Prisma {
 
   export type DocumentoCreateManyEmpresaInputEnvelope = {
     data: DocumentoCreateManyEmpresaInput | DocumentoCreateManyEmpresaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PastaDocumentoCreateWithoutEmpresaInput = {
+    id?: string
+    nome: string
+    descricao?: string | null
+    criado_por?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    parent?: PastaDocumentoCreateNestedOneWithoutFilhosInput
+    filhos?: PastaDocumentoCreateNestedManyWithoutParentInput
+    documentos?: DocumentoCreateNestedManyWithoutPastaInput
+  }
+
+  export type PastaDocumentoUncheckedCreateWithoutEmpresaInput = {
+    id?: string
+    nome: string
+    descricao?: string | null
+    parent_id?: string | null
+    criado_por?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    filhos?: PastaDocumentoUncheckedCreateNestedManyWithoutParentInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutPastaInput
+  }
+
+  export type PastaDocumentoCreateOrConnectWithoutEmpresaInput = {
+    where: PastaDocumentoWhereUniqueInput
+    create: XOR<PastaDocumentoCreateWithoutEmpresaInput, PastaDocumentoUncheckedCreateWithoutEmpresaInput>
+  }
+
+  export type PastaDocumentoCreateManyEmpresaInputEnvelope = {
+    data: PastaDocumentoCreateManyEmpresaInput | PastaDocumentoCreateManyEmpresaInput[]
     skipDuplicates?: boolean
   }
 
@@ -81064,7 +82969,8 @@ export namespace Prisma {
     id?: StringFilter<"Projeto"> | string
     empresa_id?: StringFilter<"Projeto"> | string
     contrato_id?: StringNullableFilter<"Projeto"> | string | null
-    cliente_id?: StringFilter<"Projeto"> | string
+    cliente_id?: StringNullableFilter<"Projeto"> | string | null
+    interno?: BoolFilter<"Projeto"> | boolean
     criado_por?: StringNullableFilter<"Projeto"> | string | null
     titulo?: StringFilter<"Projeto"> | string
     descricao?: StringNullableFilter<"Projeto"> | string | null
@@ -81100,6 +83006,7 @@ export namespace Prisma {
     projeto_id?: StringNullableFilter<"Documento"> | string | null
     cliente_id?: StringNullableFilter<"Documento"> | string | null
     contrato_id?: StringNullableFilter<"Documento"> | string | null
+    pasta_id?: StringNullableFilter<"Documento"> | string | null
     criado_por?: StringNullableFilter<"Documento"> | string | null
     titulo?: StringFilter<"Documento"> | string
     descricao?: StringNullableFilter<"Documento"> | string | null
@@ -81109,6 +83016,36 @@ export namespace Prisma {
     arquivo_tamanho?: IntFilter<"Documento"> | number
     mime_type?: StringFilter<"Documento"> | string
     criado_em?: DateTimeFilter<"Documento"> | Date | string
+  }
+
+  export type PastaDocumentoUpsertWithWhereUniqueWithoutEmpresaInput = {
+    where: PastaDocumentoWhereUniqueInput
+    update: XOR<PastaDocumentoUpdateWithoutEmpresaInput, PastaDocumentoUncheckedUpdateWithoutEmpresaInput>
+    create: XOR<PastaDocumentoCreateWithoutEmpresaInput, PastaDocumentoUncheckedCreateWithoutEmpresaInput>
+  }
+
+  export type PastaDocumentoUpdateWithWhereUniqueWithoutEmpresaInput = {
+    where: PastaDocumentoWhereUniqueInput
+    data: XOR<PastaDocumentoUpdateWithoutEmpresaInput, PastaDocumentoUncheckedUpdateWithoutEmpresaInput>
+  }
+
+  export type PastaDocumentoUpdateManyWithWhereWithoutEmpresaInput = {
+    where: PastaDocumentoScalarWhereInput
+    data: XOR<PastaDocumentoUpdateManyMutationInput, PastaDocumentoUncheckedUpdateManyWithoutEmpresaInput>
+  }
+
+  export type PastaDocumentoScalarWhereInput = {
+    AND?: PastaDocumentoScalarWhereInput | PastaDocumentoScalarWhereInput[]
+    OR?: PastaDocumentoScalarWhereInput[]
+    NOT?: PastaDocumentoScalarWhereInput | PastaDocumentoScalarWhereInput[]
+    id?: StringFilter<"PastaDocumento"> | string
+    empresa_id?: StringFilter<"PastaDocumento"> | string
+    nome?: StringFilter<"PastaDocumento"> | string
+    descricao?: StringNullableFilter<"PastaDocumento"> | string | null
+    parent_id?: StringNullableFilter<"PastaDocumento"> | string | null
+    criado_por?: StringNullableFilter<"PastaDocumento"> | string | null
+    criado_em?: DateTimeFilter<"PastaDocumento"> | Date | string
+    atualizado_em?: DateTimeFilter<"PastaDocumento"> | Date | string
   }
 
   export type PlanoDeContasUpsertWithWhereUniqueWithoutEmpresaInput = {
@@ -81921,6 +83858,7 @@ export namespace Prisma {
 
   export type ProjetoCreateWithoutCriadorInput = {
     id?: string
+    interno?: boolean
     titulo: string
     descricao?: string | null
     status?: $Enums.StatusProjeto
@@ -81930,7 +83868,7 @@ export namespace Prisma {
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutProjetosInput
     contrato?: ContratoCreateNestedOneWithoutProjetoInput
-    cliente: ClienteCreateNestedOneWithoutProjetosInput
+    cliente?: ClienteCreateNestedOneWithoutProjetosInput
     etapas?: EtapaCreateNestedManyWithoutProjetoInput
     tarefas?: TarefaCreateNestedManyWithoutProjetoInput
     documentos?: DocumentoCreateNestedManyWithoutProjetoInput
@@ -81943,7 +83881,8 @@ export namespace Prisma {
     id?: string
     empresa_id: string
     contrato_id?: string | null
-    cliente_id: string
+    cliente_id?: string | null
+    interno?: boolean
     titulo: string
     descricao?: string | null
     status?: $Enums.StatusProjeto
@@ -82035,6 +83974,7 @@ export namespace Prisma {
     projeto?: ProjetoCreateNestedOneWithoutDocumentosInput
     cliente?: ClienteCreateNestedOneWithoutDocumentosInput
     contrato?: ContratoCreateNestedOneWithoutDocumentosInput
+    pasta?: PastaDocumentoCreateNestedOneWithoutDocumentosInput
   }
 
   export type DocumentoUncheckedCreateWithoutCriadorInput = {
@@ -82043,6 +83983,7 @@ export namespace Prisma {
     projeto_id?: string | null
     cliente_id?: string | null
     contrato_id?: string | null
+    pasta_id?: string | null
     titulo: string
     descricao?: string | null
     categoria?: $Enums.CategoriaDocumento
@@ -83055,6 +84996,7 @@ export namespace Prisma {
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
@@ -83092,6 +85034,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -83237,6 +85180,7 @@ export namespace Prisma {
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
@@ -83274,6 +85218,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -83342,6 +85287,7 @@ export namespace Prisma {
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
@@ -83379,6 +85325,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -83476,6 +85423,7 @@ export namespace Prisma {
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
@@ -83513,6 +85461,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -83724,6 +85673,7 @@ export namespace Prisma {
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
@@ -83761,6 +85711,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -83875,6 +85826,7 @@ export namespace Prisma {
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
@@ -83912,6 +85864,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -84016,6 +85969,7 @@ export namespace Prisma {
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
@@ -84053,6 +86007,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -84252,6 +86207,7 @@ export namespace Prisma {
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
@@ -84289,6 +86245,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -84484,6 +86441,7 @@ export namespace Prisma {
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
@@ -84521,6 +86479,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -84808,6 +86767,7 @@ export namespace Prisma {
 
   export type ProjetoCreateWithoutClienteInput = {
     id?: string
+    interno?: boolean
     titulo: string
     descricao?: string | null
     status?: $Enums.StatusProjeto
@@ -84830,6 +86790,7 @@ export namespace Prisma {
     id?: string
     empresa_id: string
     contrato_id?: string | null
+    interno?: boolean
     criado_por?: string | null
     titulo: string
     descricao?: string | null
@@ -85178,6 +87139,7 @@ export namespace Prisma {
     empresa: EmpresaCreateNestedOneWithoutDocumentosInput
     projeto?: ProjetoCreateNestedOneWithoutDocumentosInput
     contrato?: ContratoCreateNestedOneWithoutDocumentosInput
+    pasta?: PastaDocumentoCreateNestedOneWithoutDocumentosInput
     criador?: UsuarioCreateNestedOneWithoutDocumentos_criadosInput
   }
 
@@ -85186,6 +87148,7 @@ export namespace Prisma {
     empresa_id: string
     projeto_id?: string | null
     contrato_id?: string | null
+    pasta_id?: string | null
     criado_por?: string | null
     titulo: string
     descricao?: string | null
@@ -85279,6 +87242,7 @@ export namespace Prisma {
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
@@ -85316,6 +87280,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -85795,6 +87760,7 @@ export namespace Prisma {
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
@@ -85832,6 +87798,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -85950,6 +87917,7 @@ export namespace Prisma {
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
@@ -85987,6 +87955,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -86095,6 +88064,7 @@ export namespace Prisma {
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
@@ -86132,6 +88102,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -86433,6 +88404,7 @@ export namespace Prisma {
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
@@ -86470,6 +88442,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -86925,6 +88898,7 @@ export namespace Prisma {
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
@@ -86962,6 +88936,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -87428,6 +89403,7 @@ export namespace Prisma {
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
@@ -87465,6 +89441,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -88292,6 +90269,7 @@ export namespace Prisma {
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
@@ -88329,6 +90307,7 @@ export namespace Prisma {
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -88630,6 +90609,7 @@ export namespace Prisma {
 
   export type ProjetoCreateWithoutContratoInput = {
     id?: string
+    interno?: boolean
     titulo: string
     descricao?: string | null
     status?: $Enums.StatusProjeto
@@ -88638,7 +90618,7 @@ export namespace Prisma {
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutProjetosInput
-    cliente: ClienteCreateNestedOneWithoutProjetosInput
+    cliente?: ClienteCreateNestedOneWithoutProjetosInput
     criador?: UsuarioCreateNestedOneWithoutProjetos_criadosInput
     etapas?: EtapaCreateNestedManyWithoutProjetoInput
     tarefas?: TarefaCreateNestedManyWithoutProjetoInput
@@ -88651,7 +90631,8 @@ export namespace Prisma {
   export type ProjetoUncheckedCreateWithoutContratoInput = {
     id?: string
     empresa_id: string
-    cliente_id: string
+    cliente_id?: string | null
+    interno?: boolean
     criado_por?: string | null
     titulo: string
     descricao?: string | null
@@ -88862,6 +90843,7 @@ export namespace Prisma {
     empresa: EmpresaCreateNestedOneWithoutDocumentosInput
     projeto?: ProjetoCreateNestedOneWithoutDocumentosInput
     cliente?: ClienteCreateNestedOneWithoutDocumentosInput
+    pasta?: PastaDocumentoCreateNestedOneWithoutDocumentosInput
     criador?: UsuarioCreateNestedOneWithoutDocumentos_criadosInput
   }
 
@@ -88870,6 +90852,7 @@ export namespace Prisma {
     empresa_id: string
     projeto_id?: string | null
     cliente_id?: string | null
+    pasta_id?: string | null
     criado_por?: string | null
     titulo: string
     descricao?: string | null
@@ -88923,6 +90906,7 @@ export namespace Prisma {
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
@@ -88960,6 +90944,7 @@ export namespace Prisma {
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -89291,6 +91276,7 @@ export namespace Prisma {
 
   export type ProjetoUpdateWithoutContratoInput = {
     id?: StringFieldUpdateOperationsInput | string
+    interno?: BoolFieldUpdateOperationsInput | boolean
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
@@ -89299,7 +91285,7 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutProjetosNestedInput
-    cliente?: ClienteUpdateOneRequiredWithoutProjetosNestedInput
+    cliente?: ClienteUpdateOneWithoutProjetosNestedInput
     criador?: UsuarioUpdateOneWithoutProjetos_criadosNestedInput
     etapas?: EtapaUpdateManyWithoutProjetoNestedInput
     tarefas?: TarefaUpdateManyWithoutProjetoNestedInput
@@ -89312,7 +91298,8 @@ export namespace Prisma {
   export type ProjetoUncheckedUpdateWithoutContratoInput = {
     id?: StringFieldUpdateOperationsInput | string
     empresa_id?: StringFieldUpdateOperationsInput | string
-    cliente_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    interno?: BoolFieldUpdateOperationsInput | boolean
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
@@ -89414,6 +91401,7 @@ export namespace Prisma {
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
@@ -89451,6 +91439,7 @@ export namespace Prisma {
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -89820,6 +91809,7 @@ export namespace Prisma {
     empresa: EmpresaCreateNestedOneWithoutDocumentosInput
     cliente?: ClienteCreateNestedOneWithoutDocumentosInput
     contrato?: ContratoCreateNestedOneWithoutDocumentosInput
+    pasta?: PastaDocumentoCreateNestedOneWithoutDocumentosInput
     criador?: UsuarioCreateNestedOneWithoutDocumentos_criadosInput
   }
 
@@ -89828,6 +91818,7 @@ export namespace Prisma {
     empresa_id: string
     cliente_id?: string | null
     contrato_id?: string | null
+    pasta_id?: string | null
     criado_por?: string | null
     titulo: string
     descricao?: string | null
@@ -90001,6 +91992,7 @@ export namespace Prisma {
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
@@ -90038,6 +92030,7 @@ export namespace Prisma {
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -90433,6 +92426,7 @@ export namespace Prisma {
 
   export type ProjetoCreateWithoutEtapasInput = {
     id?: string
+    interno?: boolean
     titulo: string
     descricao?: string | null
     status?: $Enums.StatusProjeto
@@ -90442,7 +92436,7 @@ export namespace Prisma {
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutProjetosInput
     contrato?: ContratoCreateNestedOneWithoutProjetoInput
-    cliente: ClienteCreateNestedOneWithoutProjetosInput
+    cliente?: ClienteCreateNestedOneWithoutProjetosInput
     criador?: UsuarioCreateNestedOneWithoutProjetos_criadosInput
     tarefas?: TarefaCreateNestedManyWithoutProjetoInput
     documentos?: DocumentoCreateNestedManyWithoutProjetoInput
@@ -90455,7 +92449,8 @@ export namespace Prisma {
     id?: string
     empresa_id: string
     contrato_id?: string | null
-    cliente_id: string
+    cliente_id?: string | null
+    interno?: boolean
     criado_por?: string | null
     titulo: string
     descricao?: string | null
@@ -90541,6 +92536,7 @@ export namespace Prisma {
 
   export type ProjetoUpdateWithoutEtapasInput = {
     id?: StringFieldUpdateOperationsInput | string
+    interno?: BoolFieldUpdateOperationsInput | boolean
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
@@ -90550,7 +92546,7 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutProjetosNestedInput
     contrato?: ContratoUpdateOneWithoutProjetoNestedInput
-    cliente?: ClienteUpdateOneRequiredWithoutProjetosNestedInput
+    cliente?: ClienteUpdateOneWithoutProjetosNestedInput
     criador?: UsuarioUpdateOneWithoutProjetos_criadosNestedInput
     tarefas?: TarefaUpdateManyWithoutProjetoNestedInput
     documentos?: DocumentoUpdateManyWithoutProjetoNestedInput
@@ -90563,7 +92559,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     empresa_id?: StringFieldUpdateOperationsInput | string
     contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
-    cliente_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    interno?: BoolFieldUpdateOperationsInput | boolean
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
@@ -90628,6 +92625,7 @@ export namespace Prisma {
 
   export type ProjetoCreateWithoutTarefasInput = {
     id?: string
+    interno?: boolean
     titulo: string
     descricao?: string | null
     status?: $Enums.StatusProjeto
@@ -90637,7 +92635,7 @@ export namespace Prisma {
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutProjetosInput
     contrato?: ContratoCreateNestedOneWithoutProjetoInput
-    cliente: ClienteCreateNestedOneWithoutProjetosInput
+    cliente?: ClienteCreateNestedOneWithoutProjetosInput
     criador?: UsuarioCreateNestedOneWithoutProjetos_criadosInput
     etapas?: EtapaCreateNestedManyWithoutProjetoInput
     documentos?: DocumentoCreateNestedManyWithoutProjetoInput
@@ -90650,7 +92648,8 @@ export namespace Prisma {
     id?: string
     empresa_id: string
     contrato_id?: string | null
-    cliente_id: string
+    cliente_id?: string | null
+    interno?: boolean
     criado_por?: string | null
     titulo: string
     descricao?: string | null
@@ -90936,6 +92935,7 @@ export namespace Prisma {
 
   export type ProjetoUpdateWithoutTarefasInput = {
     id?: StringFieldUpdateOperationsInput | string
+    interno?: BoolFieldUpdateOperationsInput | boolean
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
@@ -90945,7 +92945,7 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutProjetosNestedInput
     contrato?: ContratoUpdateOneWithoutProjetoNestedInput
-    cliente?: ClienteUpdateOneRequiredWithoutProjetosNestedInput
+    cliente?: ClienteUpdateOneWithoutProjetosNestedInput
     criador?: UsuarioUpdateOneWithoutProjetos_criadosNestedInput
     etapas?: EtapaUpdateManyWithoutProjetoNestedInput
     documentos?: DocumentoUpdateManyWithoutProjetoNestedInput
@@ -90958,7 +92958,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     empresa_id?: StringFieldUpdateOperationsInput | string
     contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
-    cliente_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    interno?: BoolFieldUpdateOperationsInput | boolean
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
@@ -92319,6 +94320,7 @@ export namespace Prisma {
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
@@ -92356,6 +94358,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -92427,6 +94430,7 @@ export namespace Prisma {
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
@@ -92464,6 +94468,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -92639,6 +94644,348 @@ export namespace Prisma {
     cor?: StringFieldUpdateOperationsInput | string
   }
 
+  export type EmpresaCreateWithoutPastas_documentoInput = {
+    id?: string
+    nome: string
+    slug: string
+    cnpj?: string | null
+    logo_url?: string | null
+    plano?: $Enums.PlanoTipo
+    status?: $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
+    perfis?: PerfilCreateNestedManyWithoutEmpresaInput
+    convites?: ConviteEmpresaCreateNestedManyWithoutEmpresaInput
+    convites_cliente?: ConviteClienteCreateNestedManyWithoutEmpresaInput
+    clientes?: ClienteCreateNestedManyWithoutEmpresaInput
+    servicos?: ServicoCreateNestedManyWithoutEmpresaInput
+    leads?: LeadCreateNestedManyWithoutEmpresaInput
+    propostas?: PropostaCreateNestedManyWithoutEmpresaInput
+    contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
+    documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
+    contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
+    boletos?: BoletoCreateNestedManyWithoutEmpresaInput
+    recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
+    contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
+    eventos?: EventoCreateNestedManyWithoutEmpresaInput
+    registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
+    notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
+    notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
+    diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+  }
+
+  export type EmpresaUncheckedCreateWithoutPastas_documentoInput = {
+    id?: string
+    nome: string
+    slug: string
+    cnpj?: string | null
+    logo_url?: string | null
+    plano?: $Enums.PlanoTipo
+    status?: $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
+    perfis?: PerfilUncheckedCreateNestedManyWithoutEmpresaInput
+    convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
+    convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutEmpresaInput
+    clientes?: ClienteUncheckedCreateNestedManyWithoutEmpresaInput
+    servicos?: ServicoUncheckedCreateNestedManyWithoutEmpresaInput
+    leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
+    propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
+    contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
+    contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
+    boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
+    recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
+    contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
+    registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
+    notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
+    notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+  }
+
+  export type EmpresaCreateOrConnectWithoutPastas_documentoInput = {
+    where: EmpresaWhereUniqueInput
+    create: XOR<EmpresaCreateWithoutPastas_documentoInput, EmpresaUncheckedCreateWithoutPastas_documentoInput>
+  }
+
+  export type PastaDocumentoCreateWithoutFilhosInput = {
+    id?: string
+    nome: string
+    descricao?: string | null
+    criado_por?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutPastas_documentoInput
+    parent?: PastaDocumentoCreateNestedOneWithoutFilhosInput
+    documentos?: DocumentoCreateNestedManyWithoutPastaInput
+  }
+
+  export type PastaDocumentoUncheckedCreateWithoutFilhosInput = {
+    id?: string
+    empresa_id: string
+    nome: string
+    descricao?: string | null
+    parent_id?: string | null
+    criado_por?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutPastaInput
+  }
+
+  export type PastaDocumentoCreateOrConnectWithoutFilhosInput = {
+    where: PastaDocumentoWhereUniqueInput
+    create: XOR<PastaDocumentoCreateWithoutFilhosInput, PastaDocumentoUncheckedCreateWithoutFilhosInput>
+  }
+
+  export type PastaDocumentoCreateWithoutParentInput = {
+    id?: string
+    nome: string
+    descricao?: string | null
+    criado_por?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutPastas_documentoInput
+    filhos?: PastaDocumentoCreateNestedManyWithoutParentInput
+    documentos?: DocumentoCreateNestedManyWithoutPastaInput
+  }
+
+  export type PastaDocumentoUncheckedCreateWithoutParentInput = {
+    id?: string
+    empresa_id: string
+    nome: string
+    descricao?: string | null
+    criado_por?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    filhos?: PastaDocumentoUncheckedCreateNestedManyWithoutParentInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutPastaInput
+  }
+
+  export type PastaDocumentoCreateOrConnectWithoutParentInput = {
+    where: PastaDocumentoWhereUniqueInput
+    create: XOR<PastaDocumentoCreateWithoutParentInput, PastaDocumentoUncheckedCreateWithoutParentInput>
+  }
+
+  export type PastaDocumentoCreateManyParentInputEnvelope = {
+    data: PastaDocumentoCreateManyParentInput | PastaDocumentoCreateManyParentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type DocumentoCreateWithoutPastaInput = {
+    id?: string
+    titulo: string
+    descricao?: string | null
+    categoria?: $Enums.CategoriaDocumento
+    arquivo_url: string
+    arquivo_nome: string
+    arquivo_tamanho?: number
+    mime_type?: string
+    criado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutDocumentosInput
+    projeto?: ProjetoCreateNestedOneWithoutDocumentosInput
+    cliente?: ClienteCreateNestedOneWithoutDocumentosInput
+    contrato?: ContratoCreateNestedOneWithoutDocumentosInput
+    criador?: UsuarioCreateNestedOneWithoutDocumentos_criadosInput
+  }
+
+  export type DocumentoUncheckedCreateWithoutPastaInput = {
+    id?: string
+    empresa_id: string
+    projeto_id?: string | null
+    cliente_id?: string | null
+    contrato_id?: string | null
+    criado_por?: string | null
+    titulo: string
+    descricao?: string | null
+    categoria?: $Enums.CategoriaDocumento
+    arquivo_url: string
+    arquivo_nome: string
+    arquivo_tamanho?: number
+    mime_type?: string
+    criado_em?: Date | string
+  }
+
+  export type DocumentoCreateOrConnectWithoutPastaInput = {
+    where: DocumentoWhereUniqueInput
+    create: XOR<DocumentoCreateWithoutPastaInput, DocumentoUncheckedCreateWithoutPastaInput>
+  }
+
+  export type DocumentoCreateManyPastaInputEnvelope = {
+    data: DocumentoCreateManyPastaInput | DocumentoCreateManyPastaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EmpresaUpsertWithoutPastas_documentoInput = {
+    update: XOR<EmpresaUpdateWithoutPastas_documentoInput, EmpresaUncheckedUpdateWithoutPastas_documentoInput>
+    create: XOR<EmpresaCreateWithoutPastas_documentoInput, EmpresaUncheckedCreateWithoutPastas_documentoInput>
+    where?: EmpresaWhereInput
+  }
+
+  export type EmpresaUpdateToOneWithWhereWithoutPastas_documentoInput = {
+    where?: EmpresaWhereInput
+    data: XOR<EmpresaUpdateWithoutPastas_documentoInput, EmpresaUncheckedUpdateWithoutPastas_documentoInput>
+  }
+
+  export type EmpresaUpdateWithoutPastas_documentoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    logo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
+    status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
+    perfis?: PerfilUpdateManyWithoutEmpresaNestedInput
+    convites?: ConviteEmpresaUpdateManyWithoutEmpresaNestedInput
+    convites_cliente?: ConviteClienteUpdateManyWithoutEmpresaNestedInput
+    clientes?: ClienteUpdateManyWithoutEmpresaNestedInput
+    servicos?: ServicoUpdateManyWithoutEmpresaNestedInput
+    leads?: LeadUpdateManyWithoutEmpresaNestedInput
+    propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
+    contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
+    documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
+    contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
+    boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
+    recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
+    contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
+    eventos?: EventoUpdateManyWithoutEmpresaNestedInput
+    registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
+    notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
+    notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
+    diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+  }
+
+  export type EmpresaUncheckedUpdateWithoutPastas_documentoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    logo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
+    status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
+    perfis?: PerfilUncheckedUpdateManyWithoutEmpresaNestedInput
+    convites?: ConviteEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
+    convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutEmpresaNestedInput
+    clientes?: ClienteUncheckedUpdateManyWithoutEmpresaNestedInput
+    servicos?: ServicoUncheckedUpdateManyWithoutEmpresaNestedInput
+    leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
+    propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
+    contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
+    contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
+    recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
+    contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
+    registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
+    notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
+    notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+  }
+
+  export type PastaDocumentoUpsertWithoutFilhosInput = {
+    update: XOR<PastaDocumentoUpdateWithoutFilhosInput, PastaDocumentoUncheckedUpdateWithoutFilhosInput>
+    create: XOR<PastaDocumentoCreateWithoutFilhosInput, PastaDocumentoUncheckedCreateWithoutFilhosInput>
+    where?: PastaDocumentoWhereInput
+  }
+
+  export type PastaDocumentoUpdateToOneWithWhereWithoutFilhosInput = {
+    where?: PastaDocumentoWhereInput
+    data: XOR<PastaDocumentoUpdateWithoutFilhosInput, PastaDocumentoUncheckedUpdateWithoutFilhosInput>
+  }
+
+  export type PastaDocumentoUpdateWithoutFilhosInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutPastas_documentoNestedInput
+    parent?: PastaDocumentoUpdateOneWithoutFilhosNestedInput
+    documentos?: DocumentoUpdateManyWithoutPastaNestedInput
+  }
+
+  export type PastaDocumentoUncheckedUpdateWithoutFilhosInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    parent_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    documentos?: DocumentoUncheckedUpdateManyWithoutPastaNestedInput
+  }
+
+  export type PastaDocumentoUpsertWithWhereUniqueWithoutParentInput = {
+    where: PastaDocumentoWhereUniqueInput
+    update: XOR<PastaDocumentoUpdateWithoutParentInput, PastaDocumentoUncheckedUpdateWithoutParentInput>
+    create: XOR<PastaDocumentoCreateWithoutParentInput, PastaDocumentoUncheckedCreateWithoutParentInput>
+  }
+
+  export type PastaDocumentoUpdateWithWhereUniqueWithoutParentInput = {
+    where: PastaDocumentoWhereUniqueInput
+    data: XOR<PastaDocumentoUpdateWithoutParentInput, PastaDocumentoUncheckedUpdateWithoutParentInput>
+  }
+
+  export type PastaDocumentoUpdateManyWithWhereWithoutParentInput = {
+    where: PastaDocumentoScalarWhereInput
+    data: XOR<PastaDocumentoUpdateManyMutationInput, PastaDocumentoUncheckedUpdateManyWithoutParentInput>
+  }
+
+  export type DocumentoUpsertWithWhereUniqueWithoutPastaInput = {
+    where: DocumentoWhereUniqueInput
+    update: XOR<DocumentoUpdateWithoutPastaInput, DocumentoUncheckedUpdateWithoutPastaInput>
+    create: XOR<DocumentoCreateWithoutPastaInput, DocumentoUncheckedCreateWithoutPastaInput>
+  }
+
+  export type DocumentoUpdateWithWhereUniqueWithoutPastaInput = {
+    where: DocumentoWhereUniqueInput
+    data: XOR<DocumentoUpdateWithoutPastaInput, DocumentoUncheckedUpdateWithoutPastaInput>
+  }
+
+  export type DocumentoUpdateManyWithWhereWithoutPastaInput = {
+    where: DocumentoScalarWhereInput
+    data: XOR<DocumentoUpdateManyMutationInput, DocumentoUncheckedUpdateManyWithoutPastaInput>
+  }
+
   export type EmpresaCreateWithoutDocumentosInput = {
     id?: string
     nome: string
@@ -92660,6 +95007,7 @@ export namespace Prisma {
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
@@ -92697,6 +95045,7 @@ export namespace Prisma {
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -92720,6 +95069,7 @@ export namespace Prisma {
 
   export type ProjetoCreateWithoutDocumentosInput = {
     id?: string
+    interno?: boolean
     titulo: string
     descricao?: string | null
     status?: $Enums.StatusProjeto
@@ -92729,7 +95079,7 @@ export namespace Prisma {
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutProjetosInput
     contrato?: ContratoCreateNestedOneWithoutProjetoInput
-    cliente: ClienteCreateNestedOneWithoutProjetosInput
+    cliente?: ClienteCreateNestedOneWithoutProjetosInput
     criador?: UsuarioCreateNestedOneWithoutProjetos_criadosInput
     etapas?: EtapaCreateNestedManyWithoutProjetoInput
     tarefas?: TarefaCreateNestedManyWithoutProjetoInput
@@ -92742,7 +95092,8 @@ export namespace Prisma {
     id?: string
     empresa_id: string
     contrato_id?: string | null
-    cliente_id: string
+    cliente_id?: string | null
+    interno?: boolean
     criado_por?: string | null
     titulo: string
     descricao?: string | null
@@ -92949,6 +95300,35 @@ export namespace Prisma {
     create: XOR<ContratoCreateWithoutDocumentosInput, ContratoUncheckedCreateWithoutDocumentosInput>
   }
 
+  export type PastaDocumentoCreateWithoutDocumentosInput = {
+    id?: string
+    nome: string
+    descricao?: string | null
+    criado_por?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutPastas_documentoInput
+    parent?: PastaDocumentoCreateNestedOneWithoutFilhosInput
+    filhos?: PastaDocumentoCreateNestedManyWithoutParentInput
+  }
+
+  export type PastaDocumentoUncheckedCreateWithoutDocumentosInput = {
+    id?: string
+    empresa_id: string
+    nome: string
+    descricao?: string | null
+    parent_id?: string | null
+    criado_por?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    filhos?: PastaDocumentoUncheckedCreateNestedManyWithoutParentInput
+  }
+
+  export type PastaDocumentoCreateOrConnectWithoutDocumentosInput = {
+    where: PastaDocumentoWhereUniqueInput
+    create: XOR<PastaDocumentoCreateWithoutDocumentosInput, PastaDocumentoUncheckedCreateWithoutDocumentosInput>
+  }
+
   export type UsuarioCreateWithoutDocumentos_criadosInput = {
     id: string
     nome: string
@@ -93042,6 +95422,7 @@ export namespace Prisma {
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
@@ -93079,6 +95460,7 @@ export namespace Prisma {
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -93108,6 +95490,7 @@ export namespace Prisma {
 
   export type ProjetoUpdateWithoutDocumentosInput = {
     id?: StringFieldUpdateOperationsInput | string
+    interno?: BoolFieldUpdateOperationsInput | boolean
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
@@ -93117,7 +95500,7 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutProjetosNestedInput
     contrato?: ContratoUpdateOneWithoutProjetoNestedInput
-    cliente?: ClienteUpdateOneRequiredWithoutProjetosNestedInput
+    cliente?: ClienteUpdateOneWithoutProjetosNestedInput
     criador?: UsuarioUpdateOneWithoutProjetos_criadosNestedInput
     etapas?: EtapaUpdateManyWithoutProjetoNestedInput
     tarefas?: TarefaUpdateManyWithoutProjetoNestedInput
@@ -93130,7 +95513,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     empresa_id?: StringFieldUpdateOperationsInput | string
     contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
-    cliente_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    interno?: BoolFieldUpdateOperationsInput | boolean
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
@@ -93344,6 +95728,41 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutContratoNestedInput
   }
 
+  export type PastaDocumentoUpsertWithoutDocumentosInput = {
+    update: XOR<PastaDocumentoUpdateWithoutDocumentosInput, PastaDocumentoUncheckedUpdateWithoutDocumentosInput>
+    create: XOR<PastaDocumentoCreateWithoutDocumentosInput, PastaDocumentoUncheckedCreateWithoutDocumentosInput>
+    where?: PastaDocumentoWhereInput
+  }
+
+  export type PastaDocumentoUpdateToOneWithWhereWithoutDocumentosInput = {
+    where?: PastaDocumentoWhereInput
+    data: XOR<PastaDocumentoUpdateWithoutDocumentosInput, PastaDocumentoUncheckedUpdateWithoutDocumentosInput>
+  }
+
+  export type PastaDocumentoUpdateWithoutDocumentosInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutPastas_documentoNestedInput
+    parent?: PastaDocumentoUpdateOneWithoutFilhosNestedInput
+    filhos?: PastaDocumentoUpdateManyWithoutParentNestedInput
+  }
+
+  export type PastaDocumentoUncheckedUpdateWithoutDocumentosInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    parent_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    filhos?: PastaDocumentoUncheckedUpdateManyWithoutParentNestedInput
+  }
+
   export type UsuarioUpsertWithoutDocumentos_criadosInput = {
     update: XOR<UsuarioUpdateWithoutDocumentos_criadosInput, UsuarioUncheckedUpdateWithoutDocumentos_criadosInput>
     create: XOR<UsuarioCreateWithoutDocumentos_criadosInput, UsuarioUncheckedCreateWithoutDocumentos_criadosInput>
@@ -93433,6 +95852,7 @@ export namespace Prisma {
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
@@ -93470,6 +95890,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -93742,6 +96163,7 @@ export namespace Prisma {
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
@@ -93779,6 +96201,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -93987,6 +96410,7 @@ export namespace Prisma {
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
@@ -94024,6 +96448,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -94266,6 +96691,7 @@ export namespace Prisma {
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
@@ -94303,6 +96729,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -94429,6 +96856,7 @@ export namespace Prisma {
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
@@ -94466,6 +96894,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -94609,6 +97038,7 @@ export namespace Prisma {
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
@@ -94646,6 +97076,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -94785,6 +97216,7 @@ export namespace Prisma {
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
@@ -94822,6 +97254,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -95304,6 +97737,7 @@ export namespace Prisma {
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
@@ -95341,6 +97775,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -95849,6 +98284,7 @@ export namespace Prisma {
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
@@ -95886,6 +98322,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -96080,6 +98517,7 @@ export namespace Prisma {
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
@@ -96117,6 +98555,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -96313,6 +98752,7 @@ export namespace Prisma {
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
@@ -96350,6 +98790,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -96403,6 +98844,7 @@ export namespace Prisma {
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
@@ -96440,6 +98882,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -96477,6 +98920,7 @@ export namespace Prisma {
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
@@ -96514,6 +98958,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -96783,6 +99228,7 @@ export namespace Prisma {
 
   export type ProjetoCreateWithoutEventosInput = {
     id?: string
+    interno?: boolean
     titulo: string
     descricao?: string | null
     status?: $Enums.StatusProjeto
@@ -96792,7 +99238,7 @@ export namespace Prisma {
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutProjetosInput
     contrato?: ContratoCreateNestedOneWithoutProjetoInput
-    cliente: ClienteCreateNestedOneWithoutProjetosInput
+    cliente?: ClienteCreateNestedOneWithoutProjetosInput
     criador?: UsuarioCreateNestedOneWithoutProjetos_criadosInput
     etapas?: EtapaCreateNestedManyWithoutProjetoInput
     tarefas?: TarefaCreateNestedManyWithoutProjetoInput
@@ -96805,7 +99251,8 @@ export namespace Prisma {
     id?: string
     empresa_id: string
     contrato_id?: string | null
-    cliente_id: string
+    cliente_id?: string | null
+    interno?: boolean
     criado_por?: string | null
     titulo: string
     descricao?: string | null
@@ -96859,6 +99306,7 @@ export namespace Prisma {
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
@@ -96896,6 +99344,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -97189,6 +99638,7 @@ export namespace Prisma {
 
   export type ProjetoUpdateWithoutEventosInput = {
     id?: StringFieldUpdateOperationsInput | string
+    interno?: BoolFieldUpdateOperationsInput | boolean
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
@@ -97198,7 +99648,7 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutProjetosNestedInput
     contrato?: ContratoUpdateOneWithoutProjetoNestedInput
-    cliente?: ClienteUpdateOneRequiredWithoutProjetosNestedInput
+    cliente?: ClienteUpdateOneWithoutProjetosNestedInput
     criador?: UsuarioUpdateOneWithoutProjetos_criadosNestedInput
     etapas?: EtapaUpdateManyWithoutProjetoNestedInput
     tarefas?: TarefaUpdateManyWithoutProjetoNestedInput
@@ -97211,7 +99661,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     empresa_id?: StringFieldUpdateOperationsInput | string
     contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
-    cliente_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    interno?: BoolFieldUpdateOperationsInput | boolean
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
@@ -97249,6 +99700,7 @@ export namespace Prisma {
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
@@ -97286,6 +99738,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -97339,6 +99792,7 @@ export namespace Prisma {
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
@@ -97376,6 +99830,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -97413,6 +99868,7 @@ export namespace Prisma {
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
@@ -97450,6 +99906,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -97503,6 +99960,7 @@ export namespace Prisma {
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
@@ -97540,6 +99998,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -97577,6 +100036,7 @@ export namespace Prisma {
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
@@ -97614,6 +100074,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -97912,6 +100373,7 @@ export namespace Prisma {
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
@@ -97949,6 +100411,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -98249,6 +100712,7 @@ export namespace Prisma {
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
@@ -98286,6 +100750,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -98483,6 +100948,7 @@ export namespace Prisma {
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
@@ -98520,6 +100986,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -98713,6 +101180,7 @@ export namespace Prisma {
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
@@ -98750,6 +101218,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -98857,6 +101326,7 @@ export namespace Prisma {
 
   export type ProjetoCreateWithoutDiagnosticosInput = {
     id?: string
+    interno?: boolean
     titulo: string
     descricao?: string | null
     status?: $Enums.StatusProjeto
@@ -98866,7 +101336,7 @@ export namespace Prisma {
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutProjetosInput
     contrato?: ContratoCreateNestedOneWithoutProjetoInput
-    cliente: ClienteCreateNestedOneWithoutProjetosInput
+    cliente?: ClienteCreateNestedOneWithoutProjetosInput
     criador?: UsuarioCreateNestedOneWithoutProjetos_criadosInput
     etapas?: EtapaCreateNestedManyWithoutProjetoInput
     tarefas?: TarefaCreateNestedManyWithoutProjetoInput
@@ -98879,7 +101349,8 @@ export namespace Prisma {
     id?: string
     empresa_id: string
     contrato_id?: string | null
-    cliente_id: string
+    cliente_id?: string | null
+    interno?: boolean
     criado_por?: string | null
     titulo: string
     descricao?: string | null
@@ -98933,6 +101404,7 @@ export namespace Prisma {
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
@@ -98970,6 +101442,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -99089,6 +101562,7 @@ export namespace Prisma {
 
   export type ProjetoUpdateWithoutDiagnosticosInput = {
     id?: StringFieldUpdateOperationsInput | string
+    interno?: BoolFieldUpdateOperationsInput | boolean
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
@@ -99098,7 +101572,7 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutProjetosNestedInput
     contrato?: ContratoUpdateOneWithoutProjetoNestedInput
-    cliente?: ClienteUpdateOneRequiredWithoutProjetosNestedInput
+    cliente?: ClienteUpdateOneWithoutProjetosNestedInput
     criador?: UsuarioUpdateOneWithoutProjetos_criadosNestedInput
     etapas?: EtapaUpdateManyWithoutProjetoNestedInput
     tarefas?: TarefaUpdateManyWithoutProjetoNestedInput
@@ -99111,7 +101585,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     empresa_id?: StringFieldUpdateOperationsInput | string
     contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
-    cliente_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    interno?: BoolFieldUpdateOperationsInput | boolean
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
@@ -99325,6 +101800,7 @@ export namespace Prisma {
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
@@ -99362,6 +101838,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
     contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -99384,6 +101861,7 @@ export namespace Prisma {
 
   export type ProjetoCreateWithoutAplicacoes_diagnosticoInput = {
     id?: string
+    interno?: boolean
     titulo: string
     descricao?: string | null
     status?: $Enums.StatusProjeto
@@ -99393,7 +101871,7 @@ export namespace Prisma {
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutProjetosInput
     contrato?: ContratoCreateNestedOneWithoutProjetoInput
-    cliente: ClienteCreateNestedOneWithoutProjetosInput
+    cliente?: ClienteCreateNestedOneWithoutProjetosInput
     criador?: UsuarioCreateNestedOneWithoutProjetos_criadosInput
     etapas?: EtapaCreateNestedManyWithoutProjetoInput
     tarefas?: TarefaCreateNestedManyWithoutProjetoInput
@@ -99406,7 +101884,8 @@ export namespace Prisma {
     id?: string
     empresa_id: string
     contrato_id?: string | null
-    cliente_id: string
+    cliente_id?: string | null
+    interno?: boolean
     criado_por?: string | null
     titulo: string
     descricao?: string | null
@@ -99545,6 +102024,7 @@ export namespace Prisma {
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
@@ -99582,6 +102062,7 @@ export namespace Prisma {
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -99610,6 +102091,7 @@ export namespace Prisma {
 
   export type ProjetoUpdateWithoutAplicacoes_diagnosticoInput = {
     id?: StringFieldUpdateOperationsInput | string
+    interno?: BoolFieldUpdateOperationsInput | boolean
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
@@ -99619,7 +102101,7 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutProjetosNestedInput
     contrato?: ContratoUpdateOneWithoutProjetoNestedInput
-    cliente?: ClienteUpdateOneRequiredWithoutProjetosNestedInput
+    cliente?: ClienteUpdateOneWithoutProjetosNestedInput
     criador?: UsuarioUpdateOneWithoutProjetos_criadosNestedInput
     etapas?: EtapaUpdateManyWithoutProjetoNestedInput
     tarefas?: TarefaUpdateManyWithoutProjetoNestedInput
@@ -99632,7 +102114,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     empresa_id?: StringFieldUpdateOperationsInput | string
     contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
-    cliente_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    interno?: BoolFieldUpdateOperationsInput | boolean
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
@@ -99908,7 +102391,8 @@ export namespace Prisma {
   export type ProjetoCreateManyEmpresaInput = {
     id?: string
     contrato_id?: string | null
-    cliente_id: string
+    cliente_id?: string | null
+    interno?: boolean
     criado_por?: string | null
     titulo: string
     descricao?: string | null
@@ -99924,6 +102408,7 @@ export namespace Prisma {
     projeto_id?: string | null
     cliente_id?: string | null
     contrato_id?: string | null
+    pasta_id?: string | null
     criado_por?: string | null
     titulo: string
     descricao?: string | null
@@ -99933,6 +102418,16 @@ export namespace Prisma {
     arquivo_tamanho?: number
     mime_type?: string
     criado_em?: Date | string
+  }
+
+  export type PastaDocumentoCreateManyEmpresaInput = {
+    id?: string
+    nome: string
+    descricao?: string | null
+    parent_id?: string | null
+    criado_por?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
   }
 
   export type PlanoDeContasCreateManyEmpresaInput = {
@@ -100699,6 +103194,7 @@ export namespace Prisma {
 
   export type ProjetoUpdateWithoutEmpresaInput = {
     id?: StringFieldUpdateOperationsInput | string
+    interno?: BoolFieldUpdateOperationsInput | boolean
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
@@ -100707,7 +103203,7 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     contrato?: ContratoUpdateOneWithoutProjetoNestedInput
-    cliente?: ClienteUpdateOneRequiredWithoutProjetosNestedInput
+    cliente?: ClienteUpdateOneWithoutProjetosNestedInput
     criador?: UsuarioUpdateOneWithoutProjetos_criadosNestedInput
     etapas?: EtapaUpdateManyWithoutProjetoNestedInput
     tarefas?: TarefaUpdateManyWithoutProjetoNestedInput
@@ -100720,7 +103216,8 @@ export namespace Prisma {
   export type ProjetoUncheckedUpdateWithoutEmpresaInput = {
     id?: StringFieldUpdateOperationsInput | string
     contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
-    cliente_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    interno?: BoolFieldUpdateOperationsInput | boolean
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
@@ -100740,7 +103237,8 @@ export namespace Prisma {
   export type ProjetoUncheckedUpdateManyWithoutEmpresaInput = {
     id?: StringFieldUpdateOperationsInput | string
     contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
-    cliente_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    interno?: BoolFieldUpdateOperationsInput | boolean
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
@@ -100764,6 +103262,7 @@ export namespace Prisma {
     projeto?: ProjetoUpdateOneWithoutDocumentosNestedInput
     cliente?: ClienteUpdateOneWithoutDocumentosNestedInput
     contrato?: ContratoUpdateOneWithoutDocumentosNestedInput
+    pasta?: PastaDocumentoUpdateOneWithoutDocumentosNestedInput
     criador?: UsuarioUpdateOneWithoutDocumentos_criadosNestedInput
   }
 
@@ -100772,6 +103271,7 @@ export namespace Prisma {
     projeto_id?: NullableStringFieldUpdateOperationsInput | string | null
     cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
     contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
+    pasta_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
@@ -100788,6 +103288,7 @@ export namespace Prisma {
     projeto_id?: NullableStringFieldUpdateOperationsInput | string | null
     cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
     contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
+    pasta_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
@@ -100797,6 +103298,40 @@ export namespace Prisma {
     arquivo_tamanho?: IntFieldUpdateOperationsInput | number
     mime_type?: StringFieldUpdateOperationsInput | string
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PastaDocumentoUpdateWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    parent?: PastaDocumentoUpdateOneWithoutFilhosNestedInput
+    filhos?: PastaDocumentoUpdateManyWithoutParentNestedInput
+    documentos?: DocumentoUpdateManyWithoutPastaNestedInput
+  }
+
+  export type PastaDocumentoUncheckedUpdateWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    parent_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    filhos?: PastaDocumentoUncheckedUpdateManyWithoutParentNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutPastaNestedInput
+  }
+
+  export type PastaDocumentoUncheckedUpdateManyWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    parent_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PlanoDeContasUpdateWithoutEmpresaInput = {
@@ -101574,7 +104109,8 @@ export namespace Prisma {
     id?: string
     empresa_id: string
     contrato_id?: string | null
-    cliente_id: string
+    cliente_id?: string | null
+    interno?: boolean
     titulo: string
     descricao?: string | null
     status?: $Enums.StatusProjeto
@@ -101605,6 +104141,7 @@ export namespace Prisma {
     projeto_id?: string | null
     cliente_id?: string | null
     contrato_id?: string | null
+    pasta_id?: string | null
     titulo: string
     descricao?: string | null
     categoria?: $Enums.CategoriaDocumento
@@ -102183,6 +104720,7 @@ export namespace Prisma {
 
   export type ProjetoUpdateWithoutCriadorInput = {
     id?: StringFieldUpdateOperationsInput | string
+    interno?: BoolFieldUpdateOperationsInput | boolean
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
@@ -102192,7 +104730,7 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutProjetosNestedInput
     contrato?: ContratoUpdateOneWithoutProjetoNestedInput
-    cliente?: ClienteUpdateOneRequiredWithoutProjetosNestedInput
+    cliente?: ClienteUpdateOneWithoutProjetosNestedInput
     etapas?: EtapaUpdateManyWithoutProjetoNestedInput
     tarefas?: TarefaUpdateManyWithoutProjetoNestedInput
     documentos?: DocumentoUpdateManyWithoutProjetoNestedInput
@@ -102205,7 +104743,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     empresa_id?: StringFieldUpdateOperationsInput | string
     contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
-    cliente_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    interno?: BoolFieldUpdateOperationsInput | boolean
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
@@ -102225,7 +104764,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     empresa_id?: StringFieldUpdateOperationsInput | string
     contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
-    cliente_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    interno?: BoolFieldUpdateOperationsInput | boolean
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
@@ -102306,6 +104846,7 @@ export namespace Prisma {
     projeto?: ProjetoUpdateOneWithoutDocumentosNestedInput
     cliente?: ClienteUpdateOneWithoutDocumentosNestedInput
     contrato?: ContratoUpdateOneWithoutDocumentosNestedInput
+    pasta?: PastaDocumentoUpdateOneWithoutDocumentosNestedInput
   }
 
   export type DocumentoUncheckedUpdateWithoutCriadorInput = {
@@ -102314,6 +104855,7 @@ export namespace Prisma {
     projeto_id?: NullableStringFieldUpdateOperationsInput | string | null
     cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
     contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
+    pasta_id?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     categoria?: EnumCategoriaDocumentoFieldUpdateOperationsInput | $Enums.CategoriaDocumento
@@ -102330,6 +104872,7 @@ export namespace Prisma {
     projeto_id?: NullableStringFieldUpdateOperationsInput | string | null
     cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
     contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
+    pasta_id?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     categoria?: EnumCategoriaDocumentoFieldUpdateOperationsInput | $Enums.CategoriaDocumento
@@ -103097,6 +105640,7 @@ export namespace Prisma {
     id?: string
     empresa_id: string
     contrato_id?: string | null
+    interno?: boolean
     criado_por?: string | null
     titulo: string
     descricao?: string | null
@@ -103222,6 +105766,7 @@ export namespace Prisma {
     empresa_id: string
     projeto_id?: string | null
     contrato_id?: string | null
+    pasta_id?: string | null
     criado_por?: string | null
     titulo: string
     descricao?: string | null
@@ -103576,6 +106121,7 @@ export namespace Prisma {
 
   export type ProjetoUpdateWithoutClienteInput = {
     id?: StringFieldUpdateOperationsInput | string
+    interno?: BoolFieldUpdateOperationsInput | boolean
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
@@ -103598,6 +106144,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     empresa_id?: StringFieldUpdateOperationsInput | string
     contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
+    interno?: BoolFieldUpdateOperationsInput | boolean
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
@@ -103618,6 +106165,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     empresa_id?: StringFieldUpdateOperationsInput | string
     contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
+    interno?: BoolFieldUpdateOperationsInput | boolean
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
@@ -103975,6 +106523,7 @@ export namespace Prisma {
     empresa?: EmpresaUpdateOneRequiredWithoutDocumentosNestedInput
     projeto?: ProjetoUpdateOneWithoutDocumentosNestedInput
     contrato?: ContratoUpdateOneWithoutDocumentosNestedInput
+    pasta?: PastaDocumentoUpdateOneWithoutDocumentosNestedInput
     criador?: UsuarioUpdateOneWithoutDocumentos_criadosNestedInput
   }
 
@@ -103983,6 +106532,7 @@ export namespace Prisma {
     empresa_id?: StringFieldUpdateOperationsInput | string
     projeto_id?: NullableStringFieldUpdateOperationsInput | string | null
     contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
+    pasta_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
@@ -103999,6 +106549,7 @@ export namespace Prisma {
     empresa_id?: StringFieldUpdateOperationsInput | string
     projeto_id?: NullableStringFieldUpdateOperationsInput | string | null
     contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
+    pasta_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
@@ -104405,6 +106956,7 @@ export namespace Prisma {
     empresa_id: string
     projeto_id?: string | null
     cliente_id?: string | null
+    pasta_id?: string | null
     criado_por?: string | null
     titulo: string
     descricao?: string | null
@@ -104646,6 +107198,7 @@ export namespace Prisma {
     empresa?: EmpresaUpdateOneRequiredWithoutDocumentosNestedInput
     projeto?: ProjetoUpdateOneWithoutDocumentosNestedInput
     cliente?: ClienteUpdateOneWithoutDocumentosNestedInput
+    pasta?: PastaDocumentoUpdateOneWithoutDocumentosNestedInput
     criador?: UsuarioUpdateOneWithoutDocumentos_criadosNestedInput
   }
 
@@ -104654,6 +107207,7 @@ export namespace Prisma {
     empresa_id?: StringFieldUpdateOperationsInput | string
     projeto_id?: NullableStringFieldUpdateOperationsInput | string | null
     cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    pasta_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
@@ -104670,6 +107224,7 @@ export namespace Prisma {
     empresa_id?: StringFieldUpdateOperationsInput | string
     projeto_id?: NullableStringFieldUpdateOperationsInput | string | null
     cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    pasta_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
@@ -104713,6 +107268,7 @@ export namespace Prisma {
     empresa_id: string
     cliente_id?: string | null
     contrato_id?: string | null
+    pasta_id?: string | null
     criado_por?: string | null
     titulo: string
     descricao?: string | null
@@ -104877,6 +107433,7 @@ export namespace Prisma {
     empresa?: EmpresaUpdateOneRequiredWithoutDocumentosNestedInput
     cliente?: ClienteUpdateOneWithoutDocumentosNestedInput
     contrato?: ContratoUpdateOneWithoutDocumentosNestedInput
+    pasta?: PastaDocumentoUpdateOneWithoutDocumentosNestedInput
     criador?: UsuarioUpdateOneWithoutDocumentos_criadosNestedInput
   }
 
@@ -104885,6 +107442,7 @@ export namespace Prisma {
     empresa_id?: StringFieldUpdateOperationsInput | string
     cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
     contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
+    pasta_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
@@ -104901,6 +107459,7 @@ export namespace Prisma {
     empresa_id?: StringFieldUpdateOperationsInput | string
     cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
     contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
+    pasta_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     titulo?: StringFieldUpdateOperationsInput | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
@@ -105321,6 +107880,118 @@ export namespace Prisma {
 
   export type TarefaEtiquetaUncheckedUpdateManyWithoutEtiquetaInput = {
     tarefa_id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PastaDocumentoCreateManyParentInput = {
+    id?: string
+    empresa_id: string
+    nome: string
+    descricao?: string | null
+    criado_por?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type DocumentoCreateManyPastaInput = {
+    id?: string
+    empresa_id: string
+    projeto_id?: string | null
+    cliente_id?: string | null
+    contrato_id?: string | null
+    criado_por?: string | null
+    titulo: string
+    descricao?: string | null
+    categoria?: $Enums.CategoriaDocumento
+    arquivo_url: string
+    arquivo_nome: string
+    arquivo_tamanho?: number
+    mime_type?: string
+    criado_em?: Date | string
+  }
+
+  export type PastaDocumentoUpdateWithoutParentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutPastas_documentoNestedInput
+    filhos?: PastaDocumentoUpdateManyWithoutParentNestedInput
+    documentos?: DocumentoUpdateManyWithoutPastaNestedInput
+  }
+
+  export type PastaDocumentoUncheckedUpdateWithoutParentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    filhos?: PastaDocumentoUncheckedUpdateManyWithoutParentNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutPastaNestedInput
+  }
+
+  export type PastaDocumentoUncheckedUpdateManyWithoutParentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DocumentoUpdateWithoutPastaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: EnumCategoriaDocumentoFieldUpdateOperationsInput | $Enums.CategoriaDocumento
+    arquivo_url?: StringFieldUpdateOperationsInput | string
+    arquivo_nome?: StringFieldUpdateOperationsInput | string
+    arquivo_tamanho?: IntFieldUpdateOperationsInput | number
+    mime_type?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutDocumentosNestedInput
+    projeto?: ProjetoUpdateOneWithoutDocumentosNestedInput
+    cliente?: ClienteUpdateOneWithoutDocumentosNestedInput
+    contrato?: ContratoUpdateOneWithoutDocumentosNestedInput
+    criador?: UsuarioUpdateOneWithoutDocumentos_criadosNestedInput
+  }
+
+  export type DocumentoUncheckedUpdateWithoutPastaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    projeto_id?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: EnumCategoriaDocumentoFieldUpdateOperationsInput | $Enums.CategoriaDocumento
+    arquivo_url?: StringFieldUpdateOperationsInput | string
+    arquivo_nome?: StringFieldUpdateOperationsInput | string
+    arquivo_tamanho?: IntFieldUpdateOperationsInput | number
+    mime_type?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DocumentoUncheckedUpdateManyWithoutPastaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    projeto_id?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    categoria?: EnumCategoriaDocumentoFieldUpdateOperationsInput | $Enums.CategoriaDocumento
+    arquivo_url?: StringFieldUpdateOperationsInput | string
+    arquivo_nome?: StringFieldUpdateOperationsInput | string
+    arquivo_tamanho?: IntFieldUpdateOperationsInput | number
+    mime_type?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PlanoDeContasCreateManyParentInput = {
