@@ -1,5 +1,6 @@
 "use client";
 
+import "mind-elixir/style.css";
 import { useEffect, useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Plus, GitBranch, Minus, Palette, Save } from "lucide-react";

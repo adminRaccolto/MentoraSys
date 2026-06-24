@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "mind-elixir/dist/MindElixir.css";
 
 @custom-variant dark (&:is(.dark *));
 
