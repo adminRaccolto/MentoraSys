@@ -692,15 +692,19 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros, usuari
         projetoId={projeto.id}
         etapas={projeto.etapas.map((e) => ({ id: e.id, titulo: e.titulo }))}
         membros={membros}
-        onImportado={(novasTarefas) => {
-          setProjeto((p) => ({
-            ...p,
-            etapas: p.etapas.map((e) => {
-              const doEtapa = novasTarefas.filter((t) => t.etapaId === e.id);
-              if (doEtapa.length === 0) return e;
-              return { ...e, tarefas: [...e.tarefas, ...doEtapa] as Tarefa[] };
-            }),
-          }));
+        onImportado={({ etapasCriadas, tarefas: novasTarefas }) => {
+          setProjeto((p) => {
+            const etapasExistentes = p.etapas.map((e) => ({
+              ...e,
+              tarefas: [...e.tarefas, ...novasTarefas.filter((t) => t.etapaId === e.id)] as Tarefa[],
+            }));
+            const etapasNovas = etapasCriadas.map((e) => ({
+              ...e,
+              tarefas: novasTarefas.filter((t) => t.etapaId === e.id) as Tarefa[],
+            }));
+            return { ...p, etapas: [...etapasExistentes, ...etapasNovas] };
+          });
+          setImportarAberto(false);
         }}
       />
     </Tabs>
