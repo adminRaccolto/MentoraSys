@@ -132,7 +132,7 @@ export default function CampanhaClient({ campanhasIniciais, empresaSlug }: Props
   }
 
   function copiarLink(slug: string) {
-    navigator.clipboard.writeText(`${baseUrl}/diagnostico/${slug}`);
+    navigator.clipboard.writeText(`${baseUrl}/funil/${slug}`);
     toast.success("Link copiado!");
   }
 
@@ -167,12 +167,12 @@ export default function CampanhaClient({ campanhasIniciais, empresaSlug }: Props
                 {c.subtitulo && <p className="text-sm text-muted-foreground">{c.subtitulo}</p>}
                 <div className="flex items-center gap-2 flex-wrap">
                   <code className="text-xs bg-muted px-2 py-0.5 rounded font-mono text-muted-foreground">
-                    /diagnostico/{c.slug}
+                    /funil/{c.slug}
                   </code>
                   <button onClick={() => copiarLink(c.slug)} className="text-xs text-primary hover:underline flex items-center gap-1">
                     <Copy className="size-3" /> Copiar link
                   </button>
-                  <a href={`/diagnostico/${c.slug}`} target="_blank" className="text-xs text-primary hover:underline flex items-center gap-1">
+                  <a href={`/funil/${c.slug}`} target="_blank" className="text-xs text-primary hover:underline flex items-center gap-1">
                     <ExternalLink className="size-3" /> Abrir
                   </a>
                 </div>
@@ -214,7 +214,7 @@ export default function CampanhaClient({ campanhasIniciais, empresaSlug }: Props
             <div className="space-y-1.5">
               <Label>Slug (URL) *</Label>
               <div className="flex items-center gap-1">
-                <span className="text-xs text-muted-foreground whitespace-nowrap">/diagnostico/</span>
+                <span className="text-xs text-muted-foreground whitespace-nowrap">/funil/</span>
                 <Input {...form.register("slug")} placeholder="conselho-agro" className="h-10" />
               </div>
               {form.formState.errors.slug && <p className="text-xs text-destructive">{form.formState.errors.slug.message}</p>}
