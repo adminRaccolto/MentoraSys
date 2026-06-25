@@ -69,15 +69,20 @@ export type Contato = $Result.DefaultSelection<Prisma.$ContatoPayload>
  */
 export type Servico = $Result.DefaultSelection<Prisma.$ServicoPayload>
 /**
+ * Model EtapaCrm
+ * 
+ */
+export type EtapaCrm = $Result.DefaultSelection<Prisma.$EtapaCrmPayload>
+/**
+ * Model ComentarioCrm
+ * 
+ */
+export type ComentarioCrm = $Result.DefaultSelection<Prisma.$ComentarioCrmPayload>
+/**
  * Model Lead
  * 
  */
 export type Lead = $Result.DefaultSelection<Prisma.$LeadPayload>
-/**
- * Model AtividadeCRM
- * 
- */
-export type AtividadeCRM = $Result.DefaultSelection<Prisma.$AtividadeCRMPayload>
 /**
  * Model Proposta
  * 
@@ -271,17 +276,6 @@ export const StatusCliente: {
 };
 
 export type StatusCliente = (typeof StatusCliente)[keyof typeof StatusCliente]
-
-
-export const StatusLead: {
-  NOVO: 'NOVO',
-  QUALIFICADO: 'QUALIFICADO',
-  PROPOSTA: 'PROPOSTA',
-  GANHO: 'GANHO',
-  PERDIDO: 'PERDIDO'
-};
-
-export type StatusLead = (typeof StatusLead)[keyof typeof StatusLead]
 
 
 export const StatusProposta: {
@@ -478,10 +472,6 @@ export const TipoCliente: typeof $Enums.TipoCliente
 export type StatusCliente = $Enums.StatusCliente
 
 export const StatusCliente: typeof $Enums.StatusCliente
-
-export type StatusLead = $Enums.StatusLead
-
-export const StatusLead: typeof $Enums.StatusLead
 
 export type StatusProposta = $Enums.StatusProposta
 
@@ -783,6 +773,26 @@ export class PrismaClient<
   get servico(): Prisma.ServicoDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.etapaCrm`: Exposes CRUD operations for the **EtapaCrm** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EtapaCrms
+    * const etapaCrms = await prisma.etapaCrm.findMany()
+    * ```
+    */
+  get etapaCrm(): Prisma.EtapaCrmDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.comentarioCrm`: Exposes CRUD operations for the **ComentarioCrm** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ComentarioCrms
+    * const comentarioCrms = await prisma.comentarioCrm.findMany()
+    * ```
+    */
+  get comentarioCrm(): Prisma.ComentarioCrmDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.lead`: Exposes CRUD operations for the **Lead** model.
     * Example usage:
     * ```ts
@@ -791,16 +801,6 @@ export class PrismaClient<
     * ```
     */
   get lead(): Prisma.LeadDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.atividadeCRM`: Exposes CRUD operations for the **AtividadeCRM** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more AtividadeCRMS
-    * const atividadeCRMS = await prisma.atividadeCRM.findMany()
-    * ```
-    */
-  get atividadeCRM(): Prisma.AtividadeCRMDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.proposta`: Exposes CRUD operations for the **Proposta** model.
@@ -1556,8 +1556,9 @@ export namespace Prisma {
     Cliente: 'Cliente',
     Contato: 'Contato',
     Servico: 'Servico',
+    EtapaCrm: 'EtapaCrm',
+    ComentarioCrm: 'ComentarioCrm',
     Lead: 'Lead',
-    AtividadeCRM: 'AtividadeCRM',
     Proposta: 'Proposta',
     AceiteOtp: 'AceiteOtp',
     ItemProposta: 'ItemProposta',
@@ -1604,7 +1605,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "lead" | "atividadeCRM" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "projeto" | "etapa" | "tarefa" | "comentarioTarefa" | "anexoTarefa" | "atividadeTarefa" | "aprovacaoTarefa" | "itemChecklist" | "etiquetaTarefa" | "tarefaEtiqueta" | "pastaDocumento" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "recebivel" | "contaPagar" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "boleto" | "diagnostico" | "tokenPortal" | "aplicacaoDiagnostico"
+      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "etapaCrm" | "comentarioCrm" | "lead" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "projeto" | "etapa" | "tarefa" | "comentarioTarefa" | "anexoTarefa" | "atividadeTarefa" | "aprovacaoTarefa" | "itemChecklist" | "etiquetaTarefa" | "tarefaEtiqueta" | "pastaDocumento" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "recebivel" | "contaPagar" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "boleto" | "diagnostico" | "tokenPortal" | "aplicacaoDiagnostico"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2422,6 +2423,154 @@ export namespace Prisma {
           }
         }
       }
+      EtapaCrm: {
+        payload: Prisma.$EtapaCrmPayload<ExtArgs>
+        fields: Prisma.EtapaCrmFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EtapaCrmFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EtapaCrmPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EtapaCrmFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EtapaCrmPayload>
+          }
+          findFirst: {
+            args: Prisma.EtapaCrmFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EtapaCrmPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EtapaCrmFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EtapaCrmPayload>
+          }
+          findMany: {
+            args: Prisma.EtapaCrmFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EtapaCrmPayload>[]
+          }
+          create: {
+            args: Prisma.EtapaCrmCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EtapaCrmPayload>
+          }
+          createMany: {
+            args: Prisma.EtapaCrmCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EtapaCrmCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EtapaCrmPayload>[]
+          }
+          delete: {
+            args: Prisma.EtapaCrmDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EtapaCrmPayload>
+          }
+          update: {
+            args: Prisma.EtapaCrmUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EtapaCrmPayload>
+          }
+          deleteMany: {
+            args: Prisma.EtapaCrmDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EtapaCrmUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EtapaCrmUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EtapaCrmPayload>[]
+          }
+          upsert: {
+            args: Prisma.EtapaCrmUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EtapaCrmPayload>
+          }
+          aggregate: {
+            args: Prisma.EtapaCrmAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEtapaCrm>
+          }
+          groupBy: {
+            args: Prisma.EtapaCrmGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EtapaCrmGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EtapaCrmCountArgs<ExtArgs>
+            result: $Utils.Optional<EtapaCrmCountAggregateOutputType> | number
+          }
+        }
+      }
+      ComentarioCrm: {
+        payload: Prisma.$ComentarioCrmPayload<ExtArgs>
+        fields: Prisma.ComentarioCrmFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ComentarioCrmFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComentarioCrmPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ComentarioCrmFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComentarioCrmPayload>
+          }
+          findFirst: {
+            args: Prisma.ComentarioCrmFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComentarioCrmPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ComentarioCrmFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComentarioCrmPayload>
+          }
+          findMany: {
+            args: Prisma.ComentarioCrmFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComentarioCrmPayload>[]
+          }
+          create: {
+            args: Prisma.ComentarioCrmCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComentarioCrmPayload>
+          }
+          createMany: {
+            args: Prisma.ComentarioCrmCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ComentarioCrmCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComentarioCrmPayload>[]
+          }
+          delete: {
+            args: Prisma.ComentarioCrmDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComentarioCrmPayload>
+          }
+          update: {
+            args: Prisma.ComentarioCrmUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComentarioCrmPayload>
+          }
+          deleteMany: {
+            args: Prisma.ComentarioCrmDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ComentarioCrmUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ComentarioCrmUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComentarioCrmPayload>[]
+          }
+          upsert: {
+            args: Prisma.ComentarioCrmUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComentarioCrmPayload>
+          }
+          aggregate: {
+            args: Prisma.ComentarioCrmAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateComentarioCrm>
+          }
+          groupBy: {
+            args: Prisma.ComentarioCrmGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ComentarioCrmGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ComentarioCrmCountArgs<ExtArgs>
+            result: $Utils.Optional<ComentarioCrmCountAggregateOutputType> | number
+          }
+        }
+      }
       Lead: {
         payload: Prisma.$LeadPayload<ExtArgs>
         fields: Prisma.LeadFieldRefs
@@ -2493,80 +2642,6 @@ export namespace Prisma {
           count: {
             args: Prisma.LeadCountArgs<ExtArgs>
             result: $Utils.Optional<LeadCountAggregateOutputType> | number
-          }
-        }
-      }
-      AtividadeCRM: {
-        payload: Prisma.$AtividadeCRMPayload<ExtArgs>
-        fields: Prisma.AtividadeCRMFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.AtividadeCRMFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AtividadeCRMPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.AtividadeCRMFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AtividadeCRMPayload>
-          }
-          findFirst: {
-            args: Prisma.AtividadeCRMFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AtividadeCRMPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.AtividadeCRMFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AtividadeCRMPayload>
-          }
-          findMany: {
-            args: Prisma.AtividadeCRMFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AtividadeCRMPayload>[]
-          }
-          create: {
-            args: Prisma.AtividadeCRMCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AtividadeCRMPayload>
-          }
-          createMany: {
-            args: Prisma.AtividadeCRMCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.AtividadeCRMCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AtividadeCRMPayload>[]
-          }
-          delete: {
-            args: Prisma.AtividadeCRMDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AtividadeCRMPayload>
-          }
-          update: {
-            args: Prisma.AtividadeCRMUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AtividadeCRMPayload>
-          }
-          deleteMany: {
-            args: Prisma.AtividadeCRMDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.AtividadeCRMUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.AtividadeCRMUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AtividadeCRMPayload>[]
-          }
-          upsert: {
-            args: Prisma.AtividadeCRMUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AtividadeCRMPayload>
-          }
-          aggregate: {
-            args: Prisma.AtividadeCRMAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateAtividadeCRM>
-          }
-          groupBy: {
-            args: Prisma.AtividadeCRMGroupByArgs<ExtArgs>
-            result: $Utils.Optional<AtividadeCRMGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.AtividadeCRMCountArgs<ExtArgs>
-            result: $Utils.Optional<AtividadeCRMCountAggregateOutputType> | number
           }
         }
       }
@@ -4983,8 +5058,9 @@ export namespace Prisma {
     cliente?: ClienteOmit
     contato?: ContatoOmit
     servico?: ServicoOmit
+    etapaCrm?: EtapaCrmOmit
+    comentarioCrm?: ComentarioCrmOmit
     lead?: LeadOmit
-    atividadeCRM?: AtividadeCRMOmit
     proposta?: PropostaOmit
     aceiteOtp?: AceiteOtpOmit
     itemProposta?: ItemPropostaOmit
@@ -5122,6 +5198,7 @@ export namespace Prisma {
     diagnosticos: number
     etiquetas_tarefa: number
     aplicacoes_diagnostico: number
+    etapas_crm: number
   }
 
   export type EmpresaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5151,6 +5228,7 @@ export namespace Prisma {
     diagnosticos?: boolean | EmpresaCountOutputTypeCountDiagnosticosArgs
     etiquetas_tarefa?: boolean | EmpresaCountOutputTypeCountEtiquetas_tarefaArgs
     aplicacoes_diagnostico?: boolean | EmpresaCountOutputTypeCountAplicacoes_diagnosticoArgs
+    etapas_crm?: boolean | EmpresaCountOutputTypeCountEtapas_crmArgs
   }
 
   // Custom InputTypes
@@ -5346,6 +5424,13 @@ export namespace Prisma {
     where?: AplicacaoDiagnosticoWhereInput
   }
 
+  /**
+   * EmpresaCountOutputType without action
+   */
+  export type EmpresaCountOutputTypeCountEtapas_crmArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EtapaCrmWhereInput
+  }
+
 
   /**
    * Count Type UsuarioCountOutputType
@@ -5355,7 +5440,7 @@ export namespace Prisma {
     membros: number
     convites: number
     leads: number
-    atividades_crm: number
+    comentarios_crm: number
     propostas_criadas: number
     contratos_criados: number
     projetos_criados: number
@@ -5378,7 +5463,7 @@ export namespace Prisma {
     membros?: boolean | UsuarioCountOutputTypeCountMembrosArgs
     convites?: boolean | UsuarioCountOutputTypeCountConvitesArgs
     leads?: boolean | UsuarioCountOutputTypeCountLeadsArgs
-    atividades_crm?: boolean | UsuarioCountOutputTypeCountAtividades_crmArgs
+    comentarios_crm?: boolean | UsuarioCountOutputTypeCountComentarios_crmArgs
     propostas_criadas?: boolean | UsuarioCountOutputTypeCountPropostas_criadasArgs
     contratos_criados?: boolean | UsuarioCountOutputTypeCountContratos_criadosArgs
     projetos_criados?: boolean | UsuarioCountOutputTypeCountProjetos_criadosArgs
@@ -5432,8 +5517,8 @@ export namespace Prisma {
   /**
    * UsuarioCountOutputType without action
    */
-  export type UsuarioCountOutputTypeCountAtividades_crmArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AtividadeCRMWhereInput
+  export type UsuarioCountOutputTypeCountComentarios_crmArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ComentarioCrmWhereInput
   }
 
   /**
@@ -5765,10 +5850,12 @@ export namespace Prisma {
 
   export type ServicoCountOutputType = {
     itens_proposta: number
+    leads: number
   }
 
   export type ServicoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     itens_proposta?: boolean | ServicoCountOutputTypeCountItens_propostaArgs
+    leads?: boolean | ServicoCountOutputTypeCountLeadsArgs
   }
 
   // Custom InputTypes
@@ -5789,18 +5876,56 @@ export namespace Prisma {
     where?: ItemPropostaWhereInput
   }
 
+  /**
+   * ServicoCountOutputType without action
+   */
+  export type ServicoCountOutputTypeCountLeadsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LeadWhereInput
+  }
+
+
+  /**
+   * Count Type EtapaCrmCountOutputType
+   */
+
+  export type EtapaCrmCountOutputType = {
+    leads: number
+  }
+
+  export type EtapaCrmCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    leads?: boolean | EtapaCrmCountOutputTypeCountLeadsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * EtapaCrmCountOutputType without action
+   */
+  export type EtapaCrmCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EtapaCrmCountOutputType
+     */
+    select?: EtapaCrmCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * EtapaCrmCountOutputType without action
+   */
+  export type EtapaCrmCountOutputTypeCountLeadsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LeadWhereInput
+  }
+
 
   /**
    * Count Type LeadCountOutputType
    */
 
   export type LeadCountOutputType = {
-    atividades: number
+    comentarios: number
     propostas: number
   }
 
   export type LeadCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    atividades?: boolean | LeadCountOutputTypeCountAtividadesArgs
+    comentarios?: boolean | LeadCountOutputTypeCountComentariosArgs
     propostas?: boolean | LeadCountOutputTypeCountPropostasArgs
   }
 
@@ -5818,8 +5943,8 @@ export namespace Prisma {
   /**
    * LeadCountOutputType without action
    */
-  export type LeadCountOutputTypeCountAtividadesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AtividadeCRMWhereInput
+  export type LeadCountOutputTypeCountComentariosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ComentarioCrmWhereInput
   }
 
   /**
@@ -6559,6 +6684,7 @@ export namespace Prisma {
     diagnosticos?: boolean | Empresa$diagnosticosArgs<ExtArgs>
     etiquetas_tarefa?: boolean | Empresa$etiquetas_tarefaArgs<ExtArgs>
     aplicacoes_diagnostico?: boolean | Empresa$aplicacoes_diagnosticoArgs<ExtArgs>
+    etapas_crm?: boolean | Empresa$etapas_crmArgs<ExtArgs>
     _count?: boolean | EmpresaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["empresa"]>
 
@@ -6629,6 +6755,7 @@ export namespace Prisma {
     diagnosticos?: boolean | Empresa$diagnosticosArgs<ExtArgs>
     etiquetas_tarefa?: boolean | Empresa$etiquetas_tarefaArgs<ExtArgs>
     aplicacoes_diagnostico?: boolean | Empresa$aplicacoes_diagnosticoArgs<ExtArgs>
+    etapas_crm?: boolean | Empresa$etapas_crmArgs<ExtArgs>
     _count?: boolean | EmpresaCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EmpresaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -6663,6 +6790,7 @@ export namespace Prisma {
       diagnosticos: Prisma.$DiagnosticoPayload<ExtArgs>[]
       etiquetas_tarefa: Prisma.$EtiquetaTarefaPayload<ExtArgs>[]
       aplicacoes_diagnostico: Prisma.$AplicacaoDiagnosticoPayload<ExtArgs>[]
+      etapas_crm: Prisma.$EtapaCrmPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7095,6 +7223,7 @@ export namespace Prisma {
     diagnosticos<T extends Empresa$diagnosticosArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$diagnosticosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiagnosticoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     etiquetas_tarefa<T extends Empresa$etiquetas_tarefaArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$etiquetas_tarefaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EtiquetaTarefaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     aplicacoes_diagnostico<T extends Empresa$aplicacoes_diagnosticoArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$aplicacoes_diagnosticoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AplicacaoDiagnosticoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    etapas_crm<T extends Empresa$etapas_crmArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$etapas_crmArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EtapaCrmPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8151,6 +8280,30 @@ export namespace Prisma {
   }
 
   /**
+   * Empresa.etapas_crm
+   */
+  export type Empresa$etapas_crmArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EtapaCrm
+     */
+    select?: EtapaCrmSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EtapaCrm
+     */
+    omit?: EtapaCrmOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EtapaCrmInclude<ExtArgs> | null
+    where?: EtapaCrmWhereInput
+    orderBy?: EtapaCrmOrderByWithRelationInput | EtapaCrmOrderByWithRelationInput[]
+    cursor?: EtapaCrmWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EtapaCrmScalarFieldEnum | EtapaCrmScalarFieldEnum[]
+  }
+
+  /**
    * Empresa without action
    */
   export type EmpresaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8344,7 +8497,7 @@ export namespace Prisma {
     membros?: boolean | Usuario$membrosArgs<ExtArgs>
     convites?: boolean | Usuario$convitesArgs<ExtArgs>
     leads?: boolean | Usuario$leadsArgs<ExtArgs>
-    atividades_crm?: boolean | Usuario$atividades_crmArgs<ExtArgs>
+    comentarios_crm?: boolean | Usuario$comentarios_crmArgs<ExtArgs>
     propostas_criadas?: boolean | Usuario$propostas_criadasArgs<ExtArgs>
     contratos_criados?: boolean | Usuario$contratos_criadosArgs<ExtArgs>
     projetos_criados?: boolean | Usuario$projetos_criadosArgs<ExtArgs>
@@ -8396,7 +8549,7 @@ export namespace Prisma {
     membros?: boolean | Usuario$membrosArgs<ExtArgs>
     convites?: boolean | Usuario$convitesArgs<ExtArgs>
     leads?: boolean | Usuario$leadsArgs<ExtArgs>
-    atividades_crm?: boolean | Usuario$atividades_crmArgs<ExtArgs>
+    comentarios_crm?: boolean | Usuario$comentarios_crmArgs<ExtArgs>
     propostas_criadas?: boolean | Usuario$propostas_criadasArgs<ExtArgs>
     contratos_criados?: boolean | Usuario$contratos_criadosArgs<ExtArgs>
     projetos_criados?: boolean | Usuario$projetos_criadosArgs<ExtArgs>
@@ -8424,7 +8577,7 @@ export namespace Prisma {
       membros: Prisma.$MembroEmpresaPayload<ExtArgs>[]
       convites: Prisma.$ConviteEmpresaPayload<ExtArgs>[]
       leads: Prisma.$LeadPayload<ExtArgs>[]
-      atividades_crm: Prisma.$AtividadeCRMPayload<ExtArgs>[]
+      comentarios_crm: Prisma.$ComentarioCrmPayload<ExtArgs>[]
       propostas_criadas: Prisma.$PropostaPayload<ExtArgs>[]
       contratos_criados: Prisma.$ContratoPayload<ExtArgs>[]
       projetos_criados: Prisma.$ProjetoPayload<ExtArgs>[]
@@ -8846,7 +8999,7 @@ export namespace Prisma {
     membros<T extends Usuario$membrosArgs<ExtArgs> = {}>(args?: Subset<T, Usuario$membrosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MembroEmpresaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     convites<T extends Usuario$convitesArgs<ExtArgs> = {}>(args?: Subset<T, Usuario$convitesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConviteEmpresaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     leads<T extends Usuario$leadsArgs<ExtArgs> = {}>(args?: Subset<T, Usuario$leadsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LeadPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    atividades_crm<T extends Usuario$atividades_crmArgs<ExtArgs> = {}>(args?: Subset<T, Usuario$atividades_crmArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AtividadeCRMPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    comentarios_crm<T extends Usuario$comentarios_crmArgs<ExtArgs> = {}>(args?: Subset<T, Usuario$comentarios_crmArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComentarioCrmPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     propostas_criadas<T extends Usuario$propostas_criadasArgs<ExtArgs> = {}>(args?: Subset<T, Usuario$propostas_criadasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PropostaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     contratos_criados<T extends Usuario$contratos_criadosArgs<ExtArgs> = {}>(args?: Subset<T, Usuario$contratos_criadosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContratoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     projetos_criados<T extends Usuario$projetos_criadosArgs<ExtArgs> = {}>(args?: Subset<T, Usuario$projetos_criadosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjetoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -9363,27 +9516,27 @@ export namespace Prisma {
   }
 
   /**
-   * Usuario.atividades_crm
+   * Usuario.comentarios_crm
    */
-  export type Usuario$atividades_crmArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Usuario$comentarios_crmArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AtividadeCRM
+     * Select specific fields to fetch from the ComentarioCrm
      */
-    select?: AtividadeCRMSelect<ExtArgs> | null
+    select?: ComentarioCrmSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AtividadeCRM
+     * Omit specific fields from the ComentarioCrm
      */
-    omit?: AtividadeCRMOmit<ExtArgs> | null
+    omit?: ComentarioCrmOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AtividadeCRMInclude<ExtArgs> | null
-    where?: AtividadeCRMWhereInput
-    orderBy?: AtividadeCRMOrderByWithRelationInput | AtividadeCRMOrderByWithRelationInput[]
-    cursor?: AtividadeCRMWhereUniqueInput
+    include?: ComentarioCrmInclude<ExtArgs> | null
+    where?: ComentarioCrmWhereInput
+    orderBy?: ComentarioCrmOrderByWithRelationInput | ComentarioCrmOrderByWithRelationInput[]
+    cursor?: ComentarioCrmWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: AtividadeCRMScalarFieldEnum | AtividadeCRMScalarFieldEnum[]
+    distinct?: ComentarioCrmScalarFieldEnum | ComentarioCrmScalarFieldEnum[]
   }
 
   /**
@@ -19498,6 +19651,7 @@ export namespace Prisma {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     plano_contas?: boolean | Servico$plano_contasArgs<ExtArgs>
     itens_proposta?: boolean | Servico$itens_propostaArgs<ExtArgs>
+    leads?: boolean | Servico$leadsArgs<ExtArgs>
     _count?: boolean | ServicoCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["servico"]>
 
@@ -19546,6 +19700,7 @@ export namespace Prisma {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     plano_contas?: boolean | Servico$plano_contasArgs<ExtArgs>
     itens_proposta?: boolean | Servico$itens_propostaArgs<ExtArgs>
+    leads?: boolean | Servico$leadsArgs<ExtArgs>
     _count?: boolean | ServicoCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ServicoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -19563,6 +19718,7 @@ export namespace Prisma {
       empresa: Prisma.$EmpresaPayload<ExtArgs>
       plano_contas: Prisma.$PlanoDeContasPayload<ExtArgs> | null
       itens_proposta: Prisma.$ItemPropostaPayload<ExtArgs>[]
+      leads: Prisma.$LeadPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -19971,6 +20127,7 @@ export namespace Prisma {
     empresa<T extends EmpresaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmpresaDefaultArgs<ExtArgs>>): Prisma__EmpresaClient<$Result.GetResult<Prisma.$EmpresaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     plano_contas<T extends Servico$plano_contasArgs<ExtArgs> = {}>(args?: Subset<T, Servico$plano_contasArgs<ExtArgs>>): Prisma__PlanoDeContasClient<$Result.GetResult<Prisma.$PlanoDeContasPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     itens_proposta<T extends Servico$itens_propostaArgs<ExtArgs> = {}>(args?: Subset<T, Servico$itens_propostaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItemPropostaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    leads<T extends Servico$leadsArgs<ExtArgs> = {}>(args?: Subset<T, Servico$leadsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LeadPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -20453,6 +20610,30 @@ export namespace Prisma {
   }
 
   /**
+   * Servico.leads
+   */
+  export type Servico$leadsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Lead
+     */
+    select?: LeadSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Lead
+     */
+    omit?: LeadOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LeadInclude<ExtArgs> | null
+    where?: LeadWhereInput
+    orderBy?: LeadOrderByWithRelationInput | LeadOrderByWithRelationInput[]
+    cursor?: LeadWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LeadScalarFieldEnum | LeadScalarFieldEnum[]
+  }
+
+  /**
    * Servico without action
    */
   export type ServicoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -20472,6 +20653,2262 @@ export namespace Prisma {
 
 
   /**
+   * Model EtapaCrm
+   */
+
+  export type AggregateEtapaCrm = {
+    _count: EtapaCrmCountAggregateOutputType | null
+    _avg: EtapaCrmAvgAggregateOutputType | null
+    _sum: EtapaCrmSumAggregateOutputType | null
+    _min: EtapaCrmMinAggregateOutputType | null
+    _max: EtapaCrmMaxAggregateOutputType | null
+  }
+
+  export type EtapaCrmAvgAggregateOutputType = {
+    ordem: number | null
+  }
+
+  export type EtapaCrmSumAggregateOutputType = {
+    ordem: number | null
+  }
+
+  export type EtapaCrmMinAggregateOutputType = {
+    id: string | null
+    empresa_id: string | null
+    chave: string | null
+    nome: string | null
+    cor: string | null
+    ordem: number | null
+    criado_em: Date | null
+  }
+
+  export type EtapaCrmMaxAggregateOutputType = {
+    id: string | null
+    empresa_id: string | null
+    chave: string | null
+    nome: string | null
+    cor: string | null
+    ordem: number | null
+    criado_em: Date | null
+  }
+
+  export type EtapaCrmCountAggregateOutputType = {
+    id: number
+    empresa_id: number
+    chave: number
+    nome: number
+    cor: number
+    ordem: number
+    criado_em: number
+    _all: number
+  }
+
+
+  export type EtapaCrmAvgAggregateInputType = {
+    ordem?: true
+  }
+
+  export type EtapaCrmSumAggregateInputType = {
+    ordem?: true
+  }
+
+  export type EtapaCrmMinAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    chave?: true
+    nome?: true
+    cor?: true
+    ordem?: true
+    criado_em?: true
+  }
+
+  export type EtapaCrmMaxAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    chave?: true
+    nome?: true
+    cor?: true
+    ordem?: true
+    criado_em?: true
+  }
+
+  export type EtapaCrmCountAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    chave?: true
+    nome?: true
+    cor?: true
+    ordem?: true
+    criado_em?: true
+    _all?: true
+  }
+
+  export type EtapaCrmAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EtapaCrm to aggregate.
+     */
+    where?: EtapaCrmWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EtapaCrms to fetch.
+     */
+    orderBy?: EtapaCrmOrderByWithRelationInput | EtapaCrmOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EtapaCrmWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EtapaCrms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EtapaCrms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EtapaCrms
+    **/
+    _count?: true | EtapaCrmCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: EtapaCrmAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: EtapaCrmSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EtapaCrmMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EtapaCrmMaxAggregateInputType
+  }
+
+  export type GetEtapaCrmAggregateType<T extends EtapaCrmAggregateArgs> = {
+        [P in keyof T & keyof AggregateEtapaCrm]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEtapaCrm[P]>
+      : GetScalarType<T[P], AggregateEtapaCrm[P]>
+  }
+
+
+
+
+  export type EtapaCrmGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EtapaCrmWhereInput
+    orderBy?: EtapaCrmOrderByWithAggregationInput | EtapaCrmOrderByWithAggregationInput[]
+    by: EtapaCrmScalarFieldEnum[] | EtapaCrmScalarFieldEnum
+    having?: EtapaCrmScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EtapaCrmCountAggregateInputType | true
+    _avg?: EtapaCrmAvgAggregateInputType
+    _sum?: EtapaCrmSumAggregateInputType
+    _min?: EtapaCrmMinAggregateInputType
+    _max?: EtapaCrmMaxAggregateInputType
+  }
+
+  export type EtapaCrmGroupByOutputType = {
+    id: string
+    empresa_id: string
+    chave: string
+    nome: string
+    cor: string
+    ordem: number
+    criado_em: Date
+    _count: EtapaCrmCountAggregateOutputType | null
+    _avg: EtapaCrmAvgAggregateOutputType | null
+    _sum: EtapaCrmSumAggregateOutputType | null
+    _min: EtapaCrmMinAggregateOutputType | null
+    _max: EtapaCrmMaxAggregateOutputType | null
+  }
+
+  type GetEtapaCrmGroupByPayload<T extends EtapaCrmGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EtapaCrmGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EtapaCrmGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EtapaCrmGroupByOutputType[P]>
+            : GetScalarType<T[P], EtapaCrmGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EtapaCrmSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    chave?: boolean
+    nome?: boolean
+    cor?: boolean
+    ordem?: boolean
+    criado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    leads?: boolean | EtapaCrm$leadsArgs<ExtArgs>
+    _count?: boolean | EtapaCrmCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["etapaCrm"]>
+
+  export type EtapaCrmSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    chave?: boolean
+    nome?: boolean
+    cor?: boolean
+    ordem?: boolean
+    criado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["etapaCrm"]>
+
+  export type EtapaCrmSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    chave?: boolean
+    nome?: boolean
+    cor?: boolean
+    ordem?: boolean
+    criado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["etapaCrm"]>
+
+  export type EtapaCrmSelectScalar = {
+    id?: boolean
+    empresa_id?: boolean
+    chave?: boolean
+    nome?: boolean
+    cor?: boolean
+    ordem?: boolean
+    criado_em?: boolean
+  }
+
+  export type EtapaCrmOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "chave" | "nome" | "cor" | "ordem" | "criado_em", ExtArgs["result"]["etapaCrm"]>
+  export type EtapaCrmInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    leads?: boolean | EtapaCrm$leadsArgs<ExtArgs>
+    _count?: boolean | EtapaCrmCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type EtapaCrmIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }
+  export type EtapaCrmIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }
+
+  export type $EtapaCrmPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EtapaCrm"
+    objects: {
+      empresa: Prisma.$EmpresaPayload<ExtArgs>
+      leads: Prisma.$LeadPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      empresa_id: string
+      chave: string
+      nome: string
+      cor: string
+      ordem: number
+      criado_em: Date
+    }, ExtArgs["result"]["etapaCrm"]>
+    composites: {}
+  }
+
+  type EtapaCrmGetPayload<S extends boolean | null | undefined | EtapaCrmDefaultArgs> = $Result.GetResult<Prisma.$EtapaCrmPayload, S>
+
+  type EtapaCrmCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EtapaCrmFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EtapaCrmCountAggregateInputType | true
+    }
+
+  export interface EtapaCrmDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EtapaCrm'], meta: { name: 'EtapaCrm' } }
+    /**
+     * Find zero or one EtapaCrm that matches the filter.
+     * @param {EtapaCrmFindUniqueArgs} args - Arguments to find a EtapaCrm
+     * @example
+     * // Get one EtapaCrm
+     * const etapaCrm = await prisma.etapaCrm.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EtapaCrmFindUniqueArgs>(args: SelectSubset<T, EtapaCrmFindUniqueArgs<ExtArgs>>): Prisma__EtapaCrmClient<$Result.GetResult<Prisma.$EtapaCrmPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EtapaCrm that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EtapaCrmFindUniqueOrThrowArgs} args - Arguments to find a EtapaCrm
+     * @example
+     * // Get one EtapaCrm
+     * const etapaCrm = await prisma.etapaCrm.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EtapaCrmFindUniqueOrThrowArgs>(args: SelectSubset<T, EtapaCrmFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EtapaCrmClient<$Result.GetResult<Prisma.$EtapaCrmPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EtapaCrm that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EtapaCrmFindFirstArgs} args - Arguments to find a EtapaCrm
+     * @example
+     * // Get one EtapaCrm
+     * const etapaCrm = await prisma.etapaCrm.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EtapaCrmFindFirstArgs>(args?: SelectSubset<T, EtapaCrmFindFirstArgs<ExtArgs>>): Prisma__EtapaCrmClient<$Result.GetResult<Prisma.$EtapaCrmPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EtapaCrm that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EtapaCrmFindFirstOrThrowArgs} args - Arguments to find a EtapaCrm
+     * @example
+     * // Get one EtapaCrm
+     * const etapaCrm = await prisma.etapaCrm.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EtapaCrmFindFirstOrThrowArgs>(args?: SelectSubset<T, EtapaCrmFindFirstOrThrowArgs<ExtArgs>>): Prisma__EtapaCrmClient<$Result.GetResult<Prisma.$EtapaCrmPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EtapaCrms that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EtapaCrmFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EtapaCrms
+     * const etapaCrms = await prisma.etapaCrm.findMany()
+     * 
+     * // Get first 10 EtapaCrms
+     * const etapaCrms = await prisma.etapaCrm.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const etapaCrmWithIdOnly = await prisma.etapaCrm.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EtapaCrmFindManyArgs>(args?: SelectSubset<T, EtapaCrmFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EtapaCrmPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EtapaCrm.
+     * @param {EtapaCrmCreateArgs} args - Arguments to create a EtapaCrm.
+     * @example
+     * // Create one EtapaCrm
+     * const EtapaCrm = await prisma.etapaCrm.create({
+     *   data: {
+     *     // ... data to create a EtapaCrm
+     *   }
+     * })
+     * 
+     */
+    create<T extends EtapaCrmCreateArgs>(args: SelectSubset<T, EtapaCrmCreateArgs<ExtArgs>>): Prisma__EtapaCrmClient<$Result.GetResult<Prisma.$EtapaCrmPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EtapaCrms.
+     * @param {EtapaCrmCreateManyArgs} args - Arguments to create many EtapaCrms.
+     * @example
+     * // Create many EtapaCrms
+     * const etapaCrm = await prisma.etapaCrm.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EtapaCrmCreateManyArgs>(args?: SelectSubset<T, EtapaCrmCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many EtapaCrms and returns the data saved in the database.
+     * @param {EtapaCrmCreateManyAndReturnArgs} args - Arguments to create many EtapaCrms.
+     * @example
+     * // Create many EtapaCrms
+     * const etapaCrm = await prisma.etapaCrm.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many EtapaCrms and only return the `id`
+     * const etapaCrmWithIdOnly = await prisma.etapaCrm.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EtapaCrmCreateManyAndReturnArgs>(args?: SelectSubset<T, EtapaCrmCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EtapaCrmPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a EtapaCrm.
+     * @param {EtapaCrmDeleteArgs} args - Arguments to delete one EtapaCrm.
+     * @example
+     * // Delete one EtapaCrm
+     * const EtapaCrm = await prisma.etapaCrm.delete({
+     *   where: {
+     *     // ... filter to delete one EtapaCrm
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EtapaCrmDeleteArgs>(args: SelectSubset<T, EtapaCrmDeleteArgs<ExtArgs>>): Prisma__EtapaCrmClient<$Result.GetResult<Prisma.$EtapaCrmPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EtapaCrm.
+     * @param {EtapaCrmUpdateArgs} args - Arguments to update one EtapaCrm.
+     * @example
+     * // Update one EtapaCrm
+     * const etapaCrm = await prisma.etapaCrm.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EtapaCrmUpdateArgs>(args: SelectSubset<T, EtapaCrmUpdateArgs<ExtArgs>>): Prisma__EtapaCrmClient<$Result.GetResult<Prisma.$EtapaCrmPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EtapaCrms.
+     * @param {EtapaCrmDeleteManyArgs} args - Arguments to filter EtapaCrms to delete.
+     * @example
+     * // Delete a few EtapaCrms
+     * const { count } = await prisma.etapaCrm.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EtapaCrmDeleteManyArgs>(args?: SelectSubset<T, EtapaCrmDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EtapaCrms.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EtapaCrmUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EtapaCrms
+     * const etapaCrm = await prisma.etapaCrm.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EtapaCrmUpdateManyArgs>(args: SelectSubset<T, EtapaCrmUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EtapaCrms and returns the data updated in the database.
+     * @param {EtapaCrmUpdateManyAndReturnArgs} args - Arguments to update many EtapaCrms.
+     * @example
+     * // Update many EtapaCrms
+     * const etapaCrm = await prisma.etapaCrm.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more EtapaCrms and only return the `id`
+     * const etapaCrmWithIdOnly = await prisma.etapaCrm.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EtapaCrmUpdateManyAndReturnArgs>(args: SelectSubset<T, EtapaCrmUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EtapaCrmPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one EtapaCrm.
+     * @param {EtapaCrmUpsertArgs} args - Arguments to update or create a EtapaCrm.
+     * @example
+     * // Update or create a EtapaCrm
+     * const etapaCrm = await prisma.etapaCrm.upsert({
+     *   create: {
+     *     // ... data to create a EtapaCrm
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EtapaCrm we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EtapaCrmUpsertArgs>(args: SelectSubset<T, EtapaCrmUpsertArgs<ExtArgs>>): Prisma__EtapaCrmClient<$Result.GetResult<Prisma.$EtapaCrmPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of EtapaCrms.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EtapaCrmCountArgs} args - Arguments to filter EtapaCrms to count.
+     * @example
+     * // Count the number of EtapaCrms
+     * const count = await prisma.etapaCrm.count({
+     *   where: {
+     *     // ... the filter for the EtapaCrms we want to count
+     *   }
+     * })
+    **/
+    count<T extends EtapaCrmCountArgs>(
+      args?: Subset<T, EtapaCrmCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EtapaCrmCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EtapaCrm.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EtapaCrmAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EtapaCrmAggregateArgs>(args: Subset<T, EtapaCrmAggregateArgs>): Prisma.PrismaPromise<GetEtapaCrmAggregateType<T>>
+
+    /**
+     * Group by EtapaCrm.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EtapaCrmGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EtapaCrmGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EtapaCrmGroupByArgs['orderBy'] }
+        : { orderBy?: EtapaCrmGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EtapaCrmGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEtapaCrmGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EtapaCrm model
+   */
+  readonly fields: EtapaCrmFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EtapaCrm.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EtapaCrmClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    empresa<T extends EmpresaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmpresaDefaultArgs<ExtArgs>>): Prisma__EmpresaClient<$Result.GetResult<Prisma.$EmpresaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    leads<T extends EtapaCrm$leadsArgs<ExtArgs> = {}>(args?: Subset<T, EtapaCrm$leadsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LeadPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EtapaCrm model
+   */
+  interface EtapaCrmFieldRefs {
+    readonly id: FieldRef<"EtapaCrm", 'String'>
+    readonly empresa_id: FieldRef<"EtapaCrm", 'String'>
+    readonly chave: FieldRef<"EtapaCrm", 'String'>
+    readonly nome: FieldRef<"EtapaCrm", 'String'>
+    readonly cor: FieldRef<"EtapaCrm", 'String'>
+    readonly ordem: FieldRef<"EtapaCrm", 'Int'>
+    readonly criado_em: FieldRef<"EtapaCrm", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EtapaCrm findUnique
+   */
+  export type EtapaCrmFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EtapaCrm
+     */
+    select?: EtapaCrmSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EtapaCrm
+     */
+    omit?: EtapaCrmOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EtapaCrmInclude<ExtArgs> | null
+    /**
+     * Filter, which EtapaCrm to fetch.
+     */
+    where: EtapaCrmWhereUniqueInput
+  }
+
+  /**
+   * EtapaCrm findUniqueOrThrow
+   */
+  export type EtapaCrmFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EtapaCrm
+     */
+    select?: EtapaCrmSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EtapaCrm
+     */
+    omit?: EtapaCrmOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EtapaCrmInclude<ExtArgs> | null
+    /**
+     * Filter, which EtapaCrm to fetch.
+     */
+    where: EtapaCrmWhereUniqueInput
+  }
+
+  /**
+   * EtapaCrm findFirst
+   */
+  export type EtapaCrmFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EtapaCrm
+     */
+    select?: EtapaCrmSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EtapaCrm
+     */
+    omit?: EtapaCrmOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EtapaCrmInclude<ExtArgs> | null
+    /**
+     * Filter, which EtapaCrm to fetch.
+     */
+    where?: EtapaCrmWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EtapaCrms to fetch.
+     */
+    orderBy?: EtapaCrmOrderByWithRelationInput | EtapaCrmOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EtapaCrms.
+     */
+    cursor?: EtapaCrmWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EtapaCrms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EtapaCrms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EtapaCrms.
+     */
+    distinct?: EtapaCrmScalarFieldEnum | EtapaCrmScalarFieldEnum[]
+  }
+
+  /**
+   * EtapaCrm findFirstOrThrow
+   */
+  export type EtapaCrmFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EtapaCrm
+     */
+    select?: EtapaCrmSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EtapaCrm
+     */
+    omit?: EtapaCrmOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EtapaCrmInclude<ExtArgs> | null
+    /**
+     * Filter, which EtapaCrm to fetch.
+     */
+    where?: EtapaCrmWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EtapaCrms to fetch.
+     */
+    orderBy?: EtapaCrmOrderByWithRelationInput | EtapaCrmOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EtapaCrms.
+     */
+    cursor?: EtapaCrmWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EtapaCrms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EtapaCrms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EtapaCrms.
+     */
+    distinct?: EtapaCrmScalarFieldEnum | EtapaCrmScalarFieldEnum[]
+  }
+
+  /**
+   * EtapaCrm findMany
+   */
+  export type EtapaCrmFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EtapaCrm
+     */
+    select?: EtapaCrmSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EtapaCrm
+     */
+    omit?: EtapaCrmOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EtapaCrmInclude<ExtArgs> | null
+    /**
+     * Filter, which EtapaCrms to fetch.
+     */
+    where?: EtapaCrmWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EtapaCrms to fetch.
+     */
+    orderBy?: EtapaCrmOrderByWithRelationInput | EtapaCrmOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EtapaCrms.
+     */
+    cursor?: EtapaCrmWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EtapaCrms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EtapaCrms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EtapaCrms.
+     */
+    distinct?: EtapaCrmScalarFieldEnum | EtapaCrmScalarFieldEnum[]
+  }
+
+  /**
+   * EtapaCrm create
+   */
+  export type EtapaCrmCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EtapaCrm
+     */
+    select?: EtapaCrmSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EtapaCrm
+     */
+    omit?: EtapaCrmOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EtapaCrmInclude<ExtArgs> | null
+    /**
+     * The data needed to create a EtapaCrm.
+     */
+    data: XOR<EtapaCrmCreateInput, EtapaCrmUncheckedCreateInput>
+  }
+
+  /**
+   * EtapaCrm createMany
+   */
+  export type EtapaCrmCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EtapaCrms.
+     */
+    data: EtapaCrmCreateManyInput | EtapaCrmCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EtapaCrm createManyAndReturn
+   */
+  export type EtapaCrmCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EtapaCrm
+     */
+    select?: EtapaCrmSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EtapaCrm
+     */
+    omit?: EtapaCrmOmit<ExtArgs> | null
+    /**
+     * The data used to create many EtapaCrms.
+     */
+    data: EtapaCrmCreateManyInput | EtapaCrmCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EtapaCrmIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EtapaCrm update
+   */
+  export type EtapaCrmUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EtapaCrm
+     */
+    select?: EtapaCrmSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EtapaCrm
+     */
+    omit?: EtapaCrmOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EtapaCrmInclude<ExtArgs> | null
+    /**
+     * The data needed to update a EtapaCrm.
+     */
+    data: XOR<EtapaCrmUpdateInput, EtapaCrmUncheckedUpdateInput>
+    /**
+     * Choose, which EtapaCrm to update.
+     */
+    where: EtapaCrmWhereUniqueInput
+  }
+
+  /**
+   * EtapaCrm updateMany
+   */
+  export type EtapaCrmUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EtapaCrms.
+     */
+    data: XOR<EtapaCrmUpdateManyMutationInput, EtapaCrmUncheckedUpdateManyInput>
+    /**
+     * Filter which EtapaCrms to update
+     */
+    where?: EtapaCrmWhereInput
+    /**
+     * Limit how many EtapaCrms to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EtapaCrm updateManyAndReturn
+   */
+  export type EtapaCrmUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EtapaCrm
+     */
+    select?: EtapaCrmSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EtapaCrm
+     */
+    omit?: EtapaCrmOmit<ExtArgs> | null
+    /**
+     * The data used to update EtapaCrms.
+     */
+    data: XOR<EtapaCrmUpdateManyMutationInput, EtapaCrmUncheckedUpdateManyInput>
+    /**
+     * Filter which EtapaCrms to update
+     */
+    where?: EtapaCrmWhereInput
+    /**
+     * Limit how many EtapaCrms to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EtapaCrmIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EtapaCrm upsert
+   */
+  export type EtapaCrmUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EtapaCrm
+     */
+    select?: EtapaCrmSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EtapaCrm
+     */
+    omit?: EtapaCrmOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EtapaCrmInclude<ExtArgs> | null
+    /**
+     * The filter to search for the EtapaCrm to update in case it exists.
+     */
+    where: EtapaCrmWhereUniqueInput
+    /**
+     * In case the EtapaCrm found by the `where` argument doesn't exist, create a new EtapaCrm with this data.
+     */
+    create: XOR<EtapaCrmCreateInput, EtapaCrmUncheckedCreateInput>
+    /**
+     * In case the EtapaCrm was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EtapaCrmUpdateInput, EtapaCrmUncheckedUpdateInput>
+  }
+
+  /**
+   * EtapaCrm delete
+   */
+  export type EtapaCrmDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EtapaCrm
+     */
+    select?: EtapaCrmSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EtapaCrm
+     */
+    omit?: EtapaCrmOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EtapaCrmInclude<ExtArgs> | null
+    /**
+     * Filter which EtapaCrm to delete.
+     */
+    where: EtapaCrmWhereUniqueInput
+  }
+
+  /**
+   * EtapaCrm deleteMany
+   */
+  export type EtapaCrmDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EtapaCrms to delete
+     */
+    where?: EtapaCrmWhereInput
+    /**
+     * Limit how many EtapaCrms to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EtapaCrm.leads
+   */
+  export type EtapaCrm$leadsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Lead
+     */
+    select?: LeadSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Lead
+     */
+    omit?: LeadOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LeadInclude<ExtArgs> | null
+    where?: LeadWhereInput
+    orderBy?: LeadOrderByWithRelationInput | LeadOrderByWithRelationInput[]
+    cursor?: LeadWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LeadScalarFieldEnum | LeadScalarFieldEnum[]
+  }
+
+  /**
+   * EtapaCrm without action
+   */
+  export type EtapaCrmDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EtapaCrm
+     */
+    select?: EtapaCrmSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EtapaCrm
+     */
+    omit?: EtapaCrmOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EtapaCrmInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ComentarioCrm
+   */
+
+  export type AggregateComentarioCrm = {
+    _count: ComentarioCrmCountAggregateOutputType | null
+    _min: ComentarioCrmMinAggregateOutputType | null
+    _max: ComentarioCrmMaxAggregateOutputType | null
+  }
+
+  export type ComentarioCrmMinAggregateOutputType = {
+    id: string | null
+    lead_id: string | null
+    usuario_id: string | null
+    autor_nome: string | null
+    mensagem: string | null
+    criado_em: Date | null
+  }
+
+  export type ComentarioCrmMaxAggregateOutputType = {
+    id: string | null
+    lead_id: string | null
+    usuario_id: string | null
+    autor_nome: string | null
+    mensagem: string | null
+    criado_em: Date | null
+  }
+
+  export type ComentarioCrmCountAggregateOutputType = {
+    id: number
+    lead_id: number
+    usuario_id: number
+    autor_nome: number
+    mensagem: number
+    criado_em: number
+    _all: number
+  }
+
+
+  export type ComentarioCrmMinAggregateInputType = {
+    id?: true
+    lead_id?: true
+    usuario_id?: true
+    autor_nome?: true
+    mensagem?: true
+    criado_em?: true
+  }
+
+  export type ComentarioCrmMaxAggregateInputType = {
+    id?: true
+    lead_id?: true
+    usuario_id?: true
+    autor_nome?: true
+    mensagem?: true
+    criado_em?: true
+  }
+
+  export type ComentarioCrmCountAggregateInputType = {
+    id?: true
+    lead_id?: true
+    usuario_id?: true
+    autor_nome?: true
+    mensagem?: true
+    criado_em?: true
+    _all?: true
+  }
+
+  export type ComentarioCrmAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ComentarioCrm to aggregate.
+     */
+    where?: ComentarioCrmWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ComentarioCrms to fetch.
+     */
+    orderBy?: ComentarioCrmOrderByWithRelationInput | ComentarioCrmOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ComentarioCrmWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ComentarioCrms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ComentarioCrms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ComentarioCrms
+    **/
+    _count?: true | ComentarioCrmCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ComentarioCrmMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ComentarioCrmMaxAggregateInputType
+  }
+
+  export type GetComentarioCrmAggregateType<T extends ComentarioCrmAggregateArgs> = {
+        [P in keyof T & keyof AggregateComentarioCrm]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateComentarioCrm[P]>
+      : GetScalarType<T[P], AggregateComentarioCrm[P]>
+  }
+
+
+
+
+  export type ComentarioCrmGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ComentarioCrmWhereInput
+    orderBy?: ComentarioCrmOrderByWithAggregationInput | ComentarioCrmOrderByWithAggregationInput[]
+    by: ComentarioCrmScalarFieldEnum[] | ComentarioCrmScalarFieldEnum
+    having?: ComentarioCrmScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ComentarioCrmCountAggregateInputType | true
+    _min?: ComentarioCrmMinAggregateInputType
+    _max?: ComentarioCrmMaxAggregateInputType
+  }
+
+  export type ComentarioCrmGroupByOutputType = {
+    id: string
+    lead_id: string
+    usuario_id: string | null
+    autor_nome: string
+    mensagem: string
+    criado_em: Date
+    _count: ComentarioCrmCountAggregateOutputType | null
+    _min: ComentarioCrmMinAggregateOutputType | null
+    _max: ComentarioCrmMaxAggregateOutputType | null
+  }
+
+  type GetComentarioCrmGroupByPayload<T extends ComentarioCrmGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ComentarioCrmGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ComentarioCrmGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ComentarioCrmGroupByOutputType[P]>
+            : GetScalarType<T[P], ComentarioCrmGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ComentarioCrmSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    lead_id?: boolean
+    usuario_id?: boolean
+    autor_nome?: boolean
+    mensagem?: boolean
+    criado_em?: boolean
+    lead?: boolean | LeadDefaultArgs<ExtArgs>
+    usuario?: boolean | ComentarioCrm$usuarioArgs<ExtArgs>
+  }, ExtArgs["result"]["comentarioCrm"]>
+
+  export type ComentarioCrmSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    lead_id?: boolean
+    usuario_id?: boolean
+    autor_nome?: boolean
+    mensagem?: boolean
+    criado_em?: boolean
+    lead?: boolean | LeadDefaultArgs<ExtArgs>
+    usuario?: boolean | ComentarioCrm$usuarioArgs<ExtArgs>
+  }, ExtArgs["result"]["comentarioCrm"]>
+
+  export type ComentarioCrmSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    lead_id?: boolean
+    usuario_id?: boolean
+    autor_nome?: boolean
+    mensagem?: boolean
+    criado_em?: boolean
+    lead?: boolean | LeadDefaultArgs<ExtArgs>
+    usuario?: boolean | ComentarioCrm$usuarioArgs<ExtArgs>
+  }, ExtArgs["result"]["comentarioCrm"]>
+
+  export type ComentarioCrmSelectScalar = {
+    id?: boolean
+    lead_id?: boolean
+    usuario_id?: boolean
+    autor_nome?: boolean
+    mensagem?: boolean
+    criado_em?: boolean
+  }
+
+  export type ComentarioCrmOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "lead_id" | "usuario_id" | "autor_nome" | "mensagem" | "criado_em", ExtArgs["result"]["comentarioCrm"]>
+  export type ComentarioCrmInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    lead?: boolean | LeadDefaultArgs<ExtArgs>
+    usuario?: boolean | ComentarioCrm$usuarioArgs<ExtArgs>
+  }
+  export type ComentarioCrmIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    lead?: boolean | LeadDefaultArgs<ExtArgs>
+    usuario?: boolean | ComentarioCrm$usuarioArgs<ExtArgs>
+  }
+  export type ComentarioCrmIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    lead?: boolean | LeadDefaultArgs<ExtArgs>
+    usuario?: boolean | ComentarioCrm$usuarioArgs<ExtArgs>
+  }
+
+  export type $ComentarioCrmPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ComentarioCrm"
+    objects: {
+      lead: Prisma.$LeadPayload<ExtArgs>
+      usuario: Prisma.$UsuarioPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      lead_id: string
+      usuario_id: string | null
+      autor_nome: string
+      mensagem: string
+      criado_em: Date
+    }, ExtArgs["result"]["comentarioCrm"]>
+    composites: {}
+  }
+
+  type ComentarioCrmGetPayload<S extends boolean | null | undefined | ComentarioCrmDefaultArgs> = $Result.GetResult<Prisma.$ComentarioCrmPayload, S>
+
+  type ComentarioCrmCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ComentarioCrmFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ComentarioCrmCountAggregateInputType | true
+    }
+
+  export interface ComentarioCrmDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ComentarioCrm'], meta: { name: 'ComentarioCrm' } }
+    /**
+     * Find zero or one ComentarioCrm that matches the filter.
+     * @param {ComentarioCrmFindUniqueArgs} args - Arguments to find a ComentarioCrm
+     * @example
+     * // Get one ComentarioCrm
+     * const comentarioCrm = await prisma.comentarioCrm.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ComentarioCrmFindUniqueArgs>(args: SelectSubset<T, ComentarioCrmFindUniqueArgs<ExtArgs>>): Prisma__ComentarioCrmClient<$Result.GetResult<Prisma.$ComentarioCrmPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ComentarioCrm that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ComentarioCrmFindUniqueOrThrowArgs} args - Arguments to find a ComentarioCrm
+     * @example
+     * // Get one ComentarioCrm
+     * const comentarioCrm = await prisma.comentarioCrm.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ComentarioCrmFindUniqueOrThrowArgs>(args: SelectSubset<T, ComentarioCrmFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ComentarioCrmClient<$Result.GetResult<Prisma.$ComentarioCrmPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ComentarioCrm that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ComentarioCrmFindFirstArgs} args - Arguments to find a ComentarioCrm
+     * @example
+     * // Get one ComentarioCrm
+     * const comentarioCrm = await prisma.comentarioCrm.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ComentarioCrmFindFirstArgs>(args?: SelectSubset<T, ComentarioCrmFindFirstArgs<ExtArgs>>): Prisma__ComentarioCrmClient<$Result.GetResult<Prisma.$ComentarioCrmPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ComentarioCrm that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ComentarioCrmFindFirstOrThrowArgs} args - Arguments to find a ComentarioCrm
+     * @example
+     * // Get one ComentarioCrm
+     * const comentarioCrm = await prisma.comentarioCrm.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ComentarioCrmFindFirstOrThrowArgs>(args?: SelectSubset<T, ComentarioCrmFindFirstOrThrowArgs<ExtArgs>>): Prisma__ComentarioCrmClient<$Result.GetResult<Prisma.$ComentarioCrmPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ComentarioCrms that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ComentarioCrmFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ComentarioCrms
+     * const comentarioCrms = await prisma.comentarioCrm.findMany()
+     * 
+     * // Get first 10 ComentarioCrms
+     * const comentarioCrms = await prisma.comentarioCrm.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const comentarioCrmWithIdOnly = await prisma.comentarioCrm.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ComentarioCrmFindManyArgs>(args?: SelectSubset<T, ComentarioCrmFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComentarioCrmPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ComentarioCrm.
+     * @param {ComentarioCrmCreateArgs} args - Arguments to create a ComentarioCrm.
+     * @example
+     * // Create one ComentarioCrm
+     * const ComentarioCrm = await prisma.comentarioCrm.create({
+     *   data: {
+     *     // ... data to create a ComentarioCrm
+     *   }
+     * })
+     * 
+     */
+    create<T extends ComentarioCrmCreateArgs>(args: SelectSubset<T, ComentarioCrmCreateArgs<ExtArgs>>): Prisma__ComentarioCrmClient<$Result.GetResult<Prisma.$ComentarioCrmPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ComentarioCrms.
+     * @param {ComentarioCrmCreateManyArgs} args - Arguments to create many ComentarioCrms.
+     * @example
+     * // Create many ComentarioCrms
+     * const comentarioCrm = await prisma.comentarioCrm.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ComentarioCrmCreateManyArgs>(args?: SelectSubset<T, ComentarioCrmCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ComentarioCrms and returns the data saved in the database.
+     * @param {ComentarioCrmCreateManyAndReturnArgs} args - Arguments to create many ComentarioCrms.
+     * @example
+     * // Create many ComentarioCrms
+     * const comentarioCrm = await prisma.comentarioCrm.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ComentarioCrms and only return the `id`
+     * const comentarioCrmWithIdOnly = await prisma.comentarioCrm.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ComentarioCrmCreateManyAndReturnArgs>(args?: SelectSubset<T, ComentarioCrmCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComentarioCrmPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ComentarioCrm.
+     * @param {ComentarioCrmDeleteArgs} args - Arguments to delete one ComentarioCrm.
+     * @example
+     * // Delete one ComentarioCrm
+     * const ComentarioCrm = await prisma.comentarioCrm.delete({
+     *   where: {
+     *     // ... filter to delete one ComentarioCrm
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ComentarioCrmDeleteArgs>(args: SelectSubset<T, ComentarioCrmDeleteArgs<ExtArgs>>): Prisma__ComentarioCrmClient<$Result.GetResult<Prisma.$ComentarioCrmPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ComentarioCrm.
+     * @param {ComentarioCrmUpdateArgs} args - Arguments to update one ComentarioCrm.
+     * @example
+     * // Update one ComentarioCrm
+     * const comentarioCrm = await prisma.comentarioCrm.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ComentarioCrmUpdateArgs>(args: SelectSubset<T, ComentarioCrmUpdateArgs<ExtArgs>>): Prisma__ComentarioCrmClient<$Result.GetResult<Prisma.$ComentarioCrmPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ComentarioCrms.
+     * @param {ComentarioCrmDeleteManyArgs} args - Arguments to filter ComentarioCrms to delete.
+     * @example
+     * // Delete a few ComentarioCrms
+     * const { count } = await prisma.comentarioCrm.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ComentarioCrmDeleteManyArgs>(args?: SelectSubset<T, ComentarioCrmDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ComentarioCrms.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ComentarioCrmUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ComentarioCrms
+     * const comentarioCrm = await prisma.comentarioCrm.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ComentarioCrmUpdateManyArgs>(args: SelectSubset<T, ComentarioCrmUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ComentarioCrms and returns the data updated in the database.
+     * @param {ComentarioCrmUpdateManyAndReturnArgs} args - Arguments to update many ComentarioCrms.
+     * @example
+     * // Update many ComentarioCrms
+     * const comentarioCrm = await prisma.comentarioCrm.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ComentarioCrms and only return the `id`
+     * const comentarioCrmWithIdOnly = await prisma.comentarioCrm.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ComentarioCrmUpdateManyAndReturnArgs>(args: SelectSubset<T, ComentarioCrmUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComentarioCrmPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ComentarioCrm.
+     * @param {ComentarioCrmUpsertArgs} args - Arguments to update or create a ComentarioCrm.
+     * @example
+     * // Update or create a ComentarioCrm
+     * const comentarioCrm = await prisma.comentarioCrm.upsert({
+     *   create: {
+     *     // ... data to create a ComentarioCrm
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ComentarioCrm we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ComentarioCrmUpsertArgs>(args: SelectSubset<T, ComentarioCrmUpsertArgs<ExtArgs>>): Prisma__ComentarioCrmClient<$Result.GetResult<Prisma.$ComentarioCrmPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ComentarioCrms.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ComentarioCrmCountArgs} args - Arguments to filter ComentarioCrms to count.
+     * @example
+     * // Count the number of ComentarioCrms
+     * const count = await prisma.comentarioCrm.count({
+     *   where: {
+     *     // ... the filter for the ComentarioCrms we want to count
+     *   }
+     * })
+    **/
+    count<T extends ComentarioCrmCountArgs>(
+      args?: Subset<T, ComentarioCrmCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ComentarioCrmCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ComentarioCrm.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ComentarioCrmAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ComentarioCrmAggregateArgs>(args: Subset<T, ComentarioCrmAggregateArgs>): Prisma.PrismaPromise<GetComentarioCrmAggregateType<T>>
+
+    /**
+     * Group by ComentarioCrm.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ComentarioCrmGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ComentarioCrmGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ComentarioCrmGroupByArgs['orderBy'] }
+        : { orderBy?: ComentarioCrmGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ComentarioCrmGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetComentarioCrmGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ComentarioCrm model
+   */
+  readonly fields: ComentarioCrmFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ComentarioCrm.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ComentarioCrmClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    lead<T extends LeadDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LeadDefaultArgs<ExtArgs>>): Prisma__LeadClient<$Result.GetResult<Prisma.$LeadPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    usuario<T extends ComentarioCrm$usuarioArgs<ExtArgs> = {}>(args?: Subset<T, ComentarioCrm$usuarioArgs<ExtArgs>>): Prisma__UsuarioClient<$Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ComentarioCrm model
+   */
+  interface ComentarioCrmFieldRefs {
+    readonly id: FieldRef<"ComentarioCrm", 'String'>
+    readonly lead_id: FieldRef<"ComentarioCrm", 'String'>
+    readonly usuario_id: FieldRef<"ComentarioCrm", 'String'>
+    readonly autor_nome: FieldRef<"ComentarioCrm", 'String'>
+    readonly mensagem: FieldRef<"ComentarioCrm", 'String'>
+    readonly criado_em: FieldRef<"ComentarioCrm", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ComentarioCrm findUnique
+   */
+  export type ComentarioCrmFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ComentarioCrm
+     */
+    select?: ComentarioCrmSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ComentarioCrm
+     */
+    omit?: ComentarioCrmOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComentarioCrmInclude<ExtArgs> | null
+    /**
+     * Filter, which ComentarioCrm to fetch.
+     */
+    where: ComentarioCrmWhereUniqueInput
+  }
+
+  /**
+   * ComentarioCrm findUniqueOrThrow
+   */
+  export type ComentarioCrmFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ComentarioCrm
+     */
+    select?: ComentarioCrmSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ComentarioCrm
+     */
+    omit?: ComentarioCrmOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComentarioCrmInclude<ExtArgs> | null
+    /**
+     * Filter, which ComentarioCrm to fetch.
+     */
+    where: ComentarioCrmWhereUniqueInput
+  }
+
+  /**
+   * ComentarioCrm findFirst
+   */
+  export type ComentarioCrmFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ComentarioCrm
+     */
+    select?: ComentarioCrmSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ComentarioCrm
+     */
+    omit?: ComentarioCrmOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComentarioCrmInclude<ExtArgs> | null
+    /**
+     * Filter, which ComentarioCrm to fetch.
+     */
+    where?: ComentarioCrmWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ComentarioCrms to fetch.
+     */
+    orderBy?: ComentarioCrmOrderByWithRelationInput | ComentarioCrmOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ComentarioCrms.
+     */
+    cursor?: ComentarioCrmWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ComentarioCrms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ComentarioCrms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ComentarioCrms.
+     */
+    distinct?: ComentarioCrmScalarFieldEnum | ComentarioCrmScalarFieldEnum[]
+  }
+
+  /**
+   * ComentarioCrm findFirstOrThrow
+   */
+  export type ComentarioCrmFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ComentarioCrm
+     */
+    select?: ComentarioCrmSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ComentarioCrm
+     */
+    omit?: ComentarioCrmOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComentarioCrmInclude<ExtArgs> | null
+    /**
+     * Filter, which ComentarioCrm to fetch.
+     */
+    where?: ComentarioCrmWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ComentarioCrms to fetch.
+     */
+    orderBy?: ComentarioCrmOrderByWithRelationInput | ComentarioCrmOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ComentarioCrms.
+     */
+    cursor?: ComentarioCrmWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ComentarioCrms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ComentarioCrms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ComentarioCrms.
+     */
+    distinct?: ComentarioCrmScalarFieldEnum | ComentarioCrmScalarFieldEnum[]
+  }
+
+  /**
+   * ComentarioCrm findMany
+   */
+  export type ComentarioCrmFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ComentarioCrm
+     */
+    select?: ComentarioCrmSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ComentarioCrm
+     */
+    omit?: ComentarioCrmOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComentarioCrmInclude<ExtArgs> | null
+    /**
+     * Filter, which ComentarioCrms to fetch.
+     */
+    where?: ComentarioCrmWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ComentarioCrms to fetch.
+     */
+    orderBy?: ComentarioCrmOrderByWithRelationInput | ComentarioCrmOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ComentarioCrms.
+     */
+    cursor?: ComentarioCrmWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ComentarioCrms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ComentarioCrms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ComentarioCrms.
+     */
+    distinct?: ComentarioCrmScalarFieldEnum | ComentarioCrmScalarFieldEnum[]
+  }
+
+  /**
+   * ComentarioCrm create
+   */
+  export type ComentarioCrmCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ComentarioCrm
+     */
+    select?: ComentarioCrmSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ComentarioCrm
+     */
+    omit?: ComentarioCrmOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComentarioCrmInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ComentarioCrm.
+     */
+    data: XOR<ComentarioCrmCreateInput, ComentarioCrmUncheckedCreateInput>
+  }
+
+  /**
+   * ComentarioCrm createMany
+   */
+  export type ComentarioCrmCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ComentarioCrms.
+     */
+    data: ComentarioCrmCreateManyInput | ComentarioCrmCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ComentarioCrm createManyAndReturn
+   */
+  export type ComentarioCrmCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ComentarioCrm
+     */
+    select?: ComentarioCrmSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ComentarioCrm
+     */
+    omit?: ComentarioCrmOmit<ExtArgs> | null
+    /**
+     * The data used to create many ComentarioCrms.
+     */
+    data: ComentarioCrmCreateManyInput | ComentarioCrmCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComentarioCrmIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ComentarioCrm update
+   */
+  export type ComentarioCrmUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ComentarioCrm
+     */
+    select?: ComentarioCrmSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ComentarioCrm
+     */
+    omit?: ComentarioCrmOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComentarioCrmInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ComentarioCrm.
+     */
+    data: XOR<ComentarioCrmUpdateInput, ComentarioCrmUncheckedUpdateInput>
+    /**
+     * Choose, which ComentarioCrm to update.
+     */
+    where: ComentarioCrmWhereUniqueInput
+  }
+
+  /**
+   * ComentarioCrm updateMany
+   */
+  export type ComentarioCrmUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ComentarioCrms.
+     */
+    data: XOR<ComentarioCrmUpdateManyMutationInput, ComentarioCrmUncheckedUpdateManyInput>
+    /**
+     * Filter which ComentarioCrms to update
+     */
+    where?: ComentarioCrmWhereInput
+    /**
+     * Limit how many ComentarioCrms to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ComentarioCrm updateManyAndReturn
+   */
+  export type ComentarioCrmUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ComentarioCrm
+     */
+    select?: ComentarioCrmSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ComentarioCrm
+     */
+    omit?: ComentarioCrmOmit<ExtArgs> | null
+    /**
+     * The data used to update ComentarioCrms.
+     */
+    data: XOR<ComentarioCrmUpdateManyMutationInput, ComentarioCrmUncheckedUpdateManyInput>
+    /**
+     * Filter which ComentarioCrms to update
+     */
+    where?: ComentarioCrmWhereInput
+    /**
+     * Limit how many ComentarioCrms to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComentarioCrmIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ComentarioCrm upsert
+   */
+  export type ComentarioCrmUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ComentarioCrm
+     */
+    select?: ComentarioCrmSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ComentarioCrm
+     */
+    omit?: ComentarioCrmOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComentarioCrmInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ComentarioCrm to update in case it exists.
+     */
+    where: ComentarioCrmWhereUniqueInput
+    /**
+     * In case the ComentarioCrm found by the `where` argument doesn't exist, create a new ComentarioCrm with this data.
+     */
+    create: XOR<ComentarioCrmCreateInput, ComentarioCrmUncheckedCreateInput>
+    /**
+     * In case the ComentarioCrm was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ComentarioCrmUpdateInput, ComentarioCrmUncheckedUpdateInput>
+  }
+
+  /**
+   * ComentarioCrm delete
+   */
+  export type ComentarioCrmDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ComentarioCrm
+     */
+    select?: ComentarioCrmSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ComentarioCrm
+     */
+    omit?: ComentarioCrmOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComentarioCrmInclude<ExtArgs> | null
+    /**
+     * Filter which ComentarioCrm to delete.
+     */
+    where: ComentarioCrmWhereUniqueInput
+  }
+
+  /**
+   * ComentarioCrm deleteMany
+   */
+  export type ComentarioCrmDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ComentarioCrms to delete
+     */
+    where?: ComentarioCrmWhereInput
+    /**
+     * Limit how many ComentarioCrms to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ComentarioCrm.usuario
+   */
+  export type ComentarioCrm$usuarioArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Usuario
+     */
+    select?: UsuarioSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Usuario
+     */
+    omit?: UsuarioOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsuarioInclude<ExtArgs> | null
+    where?: UsuarioWhereInput
+  }
+
+  /**
+   * ComentarioCrm without action
+   */
+  export type ComentarioCrmDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ComentarioCrm
+     */
+    select?: ComentarioCrmSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ComentarioCrm
+     */
+    omit?: ComentarioCrmOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComentarioCrmInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model Lead
    */
 
@@ -20485,10 +22922,12 @@ export namespace Prisma {
 
   export type LeadAvgAggregateOutputType = {
     valor_estimado: Decimal | null
+    probabilidade: number | null
   }
 
   export type LeadSumAggregateOutputType = {
     valor_estimado: Decimal | null
+    probabilidade: number | null
   }
 
   export type LeadMinAggregateOutputType = {
@@ -20496,16 +22935,22 @@ export namespace Prisma {
     empresa_id: string | null
     cliente_id: string | null
     responsavel_id: string | null
+    servico_id: string | null
+    etapa_id: string | null
     nome: string | null
     empresa_nome: string | null
+    contato_nome: string | null
     email: string | null
     telefone: string | null
-    status: $Enums.StatusLead | null
+    whatsapp: string | null
+    etapa_chave: string | null
     valor_estimado: Decimal | null
+    probabilidade: number | null
+    previsao_fechamento: Date | null
+    proxima_acao: string | null
+    data_proxima_acao: Date | null
     origem: string | null
     observacoes: string | null
-    ganho_em: Date | null
-    perdido_em: Date | null
     motivo_perda: string | null
     criado_em: Date | null
     atualizado_em: Date | null
@@ -20516,16 +22961,22 @@ export namespace Prisma {
     empresa_id: string | null
     cliente_id: string | null
     responsavel_id: string | null
+    servico_id: string | null
+    etapa_id: string | null
     nome: string | null
     empresa_nome: string | null
+    contato_nome: string | null
     email: string | null
     telefone: string | null
-    status: $Enums.StatusLead | null
+    whatsapp: string | null
+    etapa_chave: string | null
     valor_estimado: Decimal | null
+    probabilidade: number | null
+    previsao_fechamento: Date | null
+    proxima_acao: string | null
+    data_proxima_acao: Date | null
     origem: string | null
     observacoes: string | null
-    ganho_em: Date | null
-    perdido_em: Date | null
     motivo_perda: string | null
     criado_em: Date | null
     atualizado_em: Date | null
@@ -20536,17 +22987,24 @@ export namespace Prisma {
     empresa_id: number
     cliente_id: number
     responsavel_id: number
+    servico_id: number
+    etapa_id: number
     nome: number
     empresa_nome: number
+    contato_nome: number
     email: number
     telefone: number
-    status: number
+    whatsapp: number
+    etapa_chave: number
     valor_estimado: number
+    probabilidade: number
+    previsao_fechamento: number
+    proxima_acao: number
+    data_proxima_acao: number
     origem: number
     observacoes: number
-    ganho_em: number
-    perdido_em: number
     motivo_perda: number
+    tags: number
     criado_em: number
     atualizado_em: number
     _all: number
@@ -20555,10 +23013,12 @@ export namespace Prisma {
 
   export type LeadAvgAggregateInputType = {
     valor_estimado?: true
+    probabilidade?: true
   }
 
   export type LeadSumAggregateInputType = {
     valor_estimado?: true
+    probabilidade?: true
   }
 
   export type LeadMinAggregateInputType = {
@@ -20566,16 +23026,22 @@ export namespace Prisma {
     empresa_id?: true
     cliente_id?: true
     responsavel_id?: true
+    servico_id?: true
+    etapa_id?: true
     nome?: true
     empresa_nome?: true
+    contato_nome?: true
     email?: true
     telefone?: true
-    status?: true
+    whatsapp?: true
+    etapa_chave?: true
     valor_estimado?: true
+    probabilidade?: true
+    previsao_fechamento?: true
+    proxima_acao?: true
+    data_proxima_acao?: true
     origem?: true
     observacoes?: true
-    ganho_em?: true
-    perdido_em?: true
     motivo_perda?: true
     criado_em?: true
     atualizado_em?: true
@@ -20586,16 +23052,22 @@ export namespace Prisma {
     empresa_id?: true
     cliente_id?: true
     responsavel_id?: true
+    servico_id?: true
+    etapa_id?: true
     nome?: true
     empresa_nome?: true
+    contato_nome?: true
     email?: true
     telefone?: true
-    status?: true
+    whatsapp?: true
+    etapa_chave?: true
     valor_estimado?: true
+    probabilidade?: true
+    previsao_fechamento?: true
+    proxima_acao?: true
+    data_proxima_acao?: true
     origem?: true
     observacoes?: true
-    ganho_em?: true
-    perdido_em?: true
     motivo_perda?: true
     criado_em?: true
     atualizado_em?: true
@@ -20606,17 +23078,24 @@ export namespace Prisma {
     empresa_id?: true
     cliente_id?: true
     responsavel_id?: true
+    servico_id?: true
+    etapa_id?: true
     nome?: true
     empresa_nome?: true
+    contato_nome?: true
     email?: true
     telefone?: true
-    status?: true
+    whatsapp?: true
+    etapa_chave?: true
     valor_estimado?: true
+    probabilidade?: true
+    previsao_fechamento?: true
+    proxima_acao?: true
+    data_proxima_acao?: true
     origem?: true
     observacoes?: true
-    ganho_em?: true
-    perdido_em?: true
     motivo_perda?: true
+    tags?: true
     criado_em?: true
     atualizado_em?: true
     _all?: true
@@ -20713,17 +23192,24 @@ export namespace Prisma {
     empresa_id: string
     cliente_id: string | null
     responsavel_id: string | null
+    servico_id: string | null
+    etapa_id: string | null
     nome: string
     empresa_nome: string | null
+    contato_nome: string | null
     email: string | null
     telefone: string | null
-    status: $Enums.StatusLead
+    whatsapp: string | null
+    etapa_chave: string
     valor_estimado: Decimal | null
+    probabilidade: number
+    previsao_fechamento: Date | null
+    proxima_acao: string | null
+    data_proxima_acao: Date | null
     origem: string | null
     observacoes: string | null
-    ganho_em: Date | null
-    perdido_em: Date | null
     motivo_perda: string | null
+    tags: string[]
     criado_em: Date
     atualizado_em: Date
     _count: LeadCountAggregateOutputType | null
@@ -20752,23 +23238,32 @@ export namespace Prisma {
     empresa_id?: boolean
     cliente_id?: boolean
     responsavel_id?: boolean
+    servico_id?: boolean
+    etapa_id?: boolean
     nome?: boolean
     empresa_nome?: boolean
+    contato_nome?: boolean
     email?: boolean
     telefone?: boolean
-    status?: boolean
+    whatsapp?: boolean
+    etapa_chave?: boolean
     valor_estimado?: boolean
+    probabilidade?: boolean
+    previsao_fechamento?: boolean
+    proxima_acao?: boolean
+    data_proxima_acao?: boolean
     origem?: boolean
     observacoes?: boolean
-    ganho_em?: boolean
-    perdido_em?: boolean
     motivo_perda?: boolean
+    tags?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     cliente?: boolean | Lead$clienteArgs<ExtArgs>
     responsavel?: boolean | Lead$responsavelArgs<ExtArgs>
-    atividades?: boolean | Lead$atividadesArgs<ExtArgs>
+    servico?: boolean | Lead$servicoArgs<ExtArgs>
+    etapa?: boolean | Lead$etapaArgs<ExtArgs>
+    comentarios?: boolean | Lead$comentariosArgs<ExtArgs>
     propostas?: boolean | Lead$propostasArgs<ExtArgs>
     _count?: boolean | LeadCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["lead"]>
@@ -20778,22 +23273,31 @@ export namespace Prisma {
     empresa_id?: boolean
     cliente_id?: boolean
     responsavel_id?: boolean
+    servico_id?: boolean
+    etapa_id?: boolean
     nome?: boolean
     empresa_nome?: boolean
+    contato_nome?: boolean
     email?: boolean
     telefone?: boolean
-    status?: boolean
+    whatsapp?: boolean
+    etapa_chave?: boolean
     valor_estimado?: boolean
+    probabilidade?: boolean
+    previsao_fechamento?: boolean
+    proxima_acao?: boolean
+    data_proxima_acao?: boolean
     origem?: boolean
     observacoes?: boolean
-    ganho_em?: boolean
-    perdido_em?: boolean
     motivo_perda?: boolean
+    tags?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     cliente?: boolean | Lead$clienteArgs<ExtArgs>
     responsavel?: boolean | Lead$responsavelArgs<ExtArgs>
+    servico?: boolean | Lead$servicoArgs<ExtArgs>
+    etapa?: boolean | Lead$etapaArgs<ExtArgs>
   }, ExtArgs["result"]["lead"]>
 
   export type LeadSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -20801,22 +23305,31 @@ export namespace Prisma {
     empresa_id?: boolean
     cliente_id?: boolean
     responsavel_id?: boolean
+    servico_id?: boolean
+    etapa_id?: boolean
     nome?: boolean
     empresa_nome?: boolean
+    contato_nome?: boolean
     email?: boolean
     telefone?: boolean
-    status?: boolean
+    whatsapp?: boolean
+    etapa_chave?: boolean
     valor_estimado?: boolean
+    probabilidade?: boolean
+    previsao_fechamento?: boolean
+    proxima_acao?: boolean
+    data_proxima_acao?: boolean
     origem?: boolean
     observacoes?: boolean
-    ganho_em?: boolean
-    perdido_em?: boolean
     motivo_perda?: boolean
+    tags?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     cliente?: boolean | Lead$clienteArgs<ExtArgs>
     responsavel?: boolean | Lead$responsavelArgs<ExtArgs>
+    servico?: boolean | Lead$servicoArgs<ExtArgs>
+    etapa?: boolean | Lead$etapaArgs<ExtArgs>
   }, ExtArgs["result"]["lead"]>
 
   export type LeadSelectScalar = {
@@ -20824,27 +23337,36 @@ export namespace Prisma {
     empresa_id?: boolean
     cliente_id?: boolean
     responsavel_id?: boolean
+    servico_id?: boolean
+    etapa_id?: boolean
     nome?: boolean
     empresa_nome?: boolean
+    contato_nome?: boolean
     email?: boolean
     telefone?: boolean
-    status?: boolean
+    whatsapp?: boolean
+    etapa_chave?: boolean
     valor_estimado?: boolean
+    probabilidade?: boolean
+    previsao_fechamento?: boolean
+    proxima_acao?: boolean
+    data_proxima_acao?: boolean
     origem?: boolean
     observacoes?: boolean
-    ganho_em?: boolean
-    perdido_em?: boolean
     motivo_perda?: boolean
+    tags?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
   }
 
-  export type LeadOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "cliente_id" | "responsavel_id" | "nome" | "empresa_nome" | "email" | "telefone" | "status" | "valor_estimado" | "origem" | "observacoes" | "ganho_em" | "perdido_em" | "motivo_perda" | "criado_em" | "atualizado_em", ExtArgs["result"]["lead"]>
+  export type LeadOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "cliente_id" | "responsavel_id" | "servico_id" | "etapa_id" | "nome" | "empresa_nome" | "contato_nome" | "email" | "telefone" | "whatsapp" | "etapa_chave" | "valor_estimado" | "probabilidade" | "previsao_fechamento" | "proxima_acao" | "data_proxima_acao" | "origem" | "observacoes" | "motivo_perda" | "tags" | "criado_em" | "atualizado_em", ExtArgs["result"]["lead"]>
   export type LeadInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     cliente?: boolean | Lead$clienteArgs<ExtArgs>
     responsavel?: boolean | Lead$responsavelArgs<ExtArgs>
-    atividades?: boolean | Lead$atividadesArgs<ExtArgs>
+    servico?: boolean | Lead$servicoArgs<ExtArgs>
+    etapa?: boolean | Lead$etapaArgs<ExtArgs>
+    comentarios?: boolean | Lead$comentariosArgs<ExtArgs>
     propostas?: boolean | Lead$propostasArgs<ExtArgs>
     _count?: boolean | LeadCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -20852,11 +23374,15 @@ export namespace Prisma {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     cliente?: boolean | Lead$clienteArgs<ExtArgs>
     responsavel?: boolean | Lead$responsavelArgs<ExtArgs>
+    servico?: boolean | Lead$servicoArgs<ExtArgs>
+    etapa?: boolean | Lead$etapaArgs<ExtArgs>
   }
   export type LeadIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     cliente?: boolean | Lead$clienteArgs<ExtArgs>
     responsavel?: boolean | Lead$responsavelArgs<ExtArgs>
+    servico?: boolean | Lead$servicoArgs<ExtArgs>
+    etapa?: boolean | Lead$etapaArgs<ExtArgs>
   }
 
   export type $LeadPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -20865,7 +23391,9 @@ export namespace Prisma {
       empresa: Prisma.$EmpresaPayload<ExtArgs>
       cliente: Prisma.$ClientePayload<ExtArgs> | null
       responsavel: Prisma.$UsuarioPayload<ExtArgs> | null
-      atividades: Prisma.$AtividadeCRMPayload<ExtArgs>[]
+      servico: Prisma.$ServicoPayload<ExtArgs> | null
+      etapa: Prisma.$EtapaCrmPayload<ExtArgs> | null
+      comentarios: Prisma.$ComentarioCrmPayload<ExtArgs>[]
       propostas: Prisma.$PropostaPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -20873,17 +23401,24 @@ export namespace Prisma {
       empresa_id: string
       cliente_id: string | null
       responsavel_id: string | null
+      servico_id: string | null
+      etapa_id: string | null
       nome: string
       empresa_nome: string | null
+      contato_nome: string | null
       email: string | null
       telefone: string | null
-      status: $Enums.StatusLead
+      whatsapp: string | null
+      etapa_chave: string
       valor_estimado: Prisma.Decimal | null
+      probabilidade: number
+      previsao_fechamento: Date | null
+      proxima_acao: string | null
+      data_proxima_acao: Date | null
       origem: string | null
       observacoes: string | null
-      ganho_em: Date | null
-      perdido_em: Date | null
       motivo_perda: string | null
+      tags: string[]
       criado_em: Date
       atualizado_em: Date
     }, ExtArgs["result"]["lead"]>
@@ -21283,7 +23818,9 @@ export namespace Prisma {
     empresa<T extends EmpresaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmpresaDefaultArgs<ExtArgs>>): Prisma__EmpresaClient<$Result.GetResult<Prisma.$EmpresaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     cliente<T extends Lead$clienteArgs<ExtArgs> = {}>(args?: Subset<T, Lead$clienteArgs<ExtArgs>>): Prisma__ClienteClient<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     responsavel<T extends Lead$responsavelArgs<ExtArgs> = {}>(args?: Subset<T, Lead$responsavelArgs<ExtArgs>>): Prisma__UsuarioClient<$Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    atividades<T extends Lead$atividadesArgs<ExtArgs> = {}>(args?: Subset<T, Lead$atividadesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AtividadeCRMPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    servico<T extends Lead$servicoArgs<ExtArgs> = {}>(args?: Subset<T, Lead$servicoArgs<ExtArgs>>): Prisma__ServicoClient<$Result.GetResult<Prisma.$ServicoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    etapa<T extends Lead$etapaArgs<ExtArgs> = {}>(args?: Subset<T, Lead$etapaArgs<ExtArgs>>): Prisma__EtapaCrmClient<$Result.GetResult<Prisma.$EtapaCrmPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    comentarios<T extends Lead$comentariosArgs<ExtArgs> = {}>(args?: Subset<T, Lead$comentariosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComentarioCrmPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     propostas<T extends Lead$propostasArgs<ExtArgs> = {}>(args?: Subset<T, Lead$propostasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PropostaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -21318,17 +23855,24 @@ export namespace Prisma {
     readonly empresa_id: FieldRef<"Lead", 'String'>
     readonly cliente_id: FieldRef<"Lead", 'String'>
     readonly responsavel_id: FieldRef<"Lead", 'String'>
+    readonly servico_id: FieldRef<"Lead", 'String'>
+    readonly etapa_id: FieldRef<"Lead", 'String'>
     readonly nome: FieldRef<"Lead", 'String'>
     readonly empresa_nome: FieldRef<"Lead", 'String'>
+    readonly contato_nome: FieldRef<"Lead", 'String'>
     readonly email: FieldRef<"Lead", 'String'>
     readonly telefone: FieldRef<"Lead", 'String'>
-    readonly status: FieldRef<"Lead", 'StatusLead'>
+    readonly whatsapp: FieldRef<"Lead", 'String'>
+    readonly etapa_chave: FieldRef<"Lead", 'String'>
     readonly valor_estimado: FieldRef<"Lead", 'Decimal'>
+    readonly probabilidade: FieldRef<"Lead", 'Int'>
+    readonly previsao_fechamento: FieldRef<"Lead", 'DateTime'>
+    readonly proxima_acao: FieldRef<"Lead", 'String'>
+    readonly data_proxima_acao: FieldRef<"Lead", 'DateTime'>
     readonly origem: FieldRef<"Lead", 'String'>
     readonly observacoes: FieldRef<"Lead", 'String'>
-    readonly ganho_em: FieldRef<"Lead", 'DateTime'>
-    readonly perdido_em: FieldRef<"Lead", 'DateTime'>
     readonly motivo_perda: FieldRef<"Lead", 'String'>
+    readonly tags: FieldRef<"Lead", 'String[]'>
     readonly criado_em: FieldRef<"Lead", 'DateTime'>
     readonly atualizado_em: FieldRef<"Lead", 'DateTime'>
   }
@@ -21770,27 +24314,65 @@ export namespace Prisma {
   }
 
   /**
-   * Lead.atividades
+   * Lead.servico
    */
-  export type Lead$atividadesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Lead$servicoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AtividadeCRM
+     * Select specific fields to fetch from the Servico
      */
-    select?: AtividadeCRMSelect<ExtArgs> | null
+    select?: ServicoSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AtividadeCRM
+     * Omit specific fields from the Servico
      */
-    omit?: AtividadeCRMOmit<ExtArgs> | null
+    omit?: ServicoOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AtividadeCRMInclude<ExtArgs> | null
-    where?: AtividadeCRMWhereInput
-    orderBy?: AtividadeCRMOrderByWithRelationInput | AtividadeCRMOrderByWithRelationInput[]
-    cursor?: AtividadeCRMWhereUniqueInput
+    include?: ServicoInclude<ExtArgs> | null
+    where?: ServicoWhereInput
+  }
+
+  /**
+   * Lead.etapa
+   */
+  export type Lead$etapaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EtapaCrm
+     */
+    select?: EtapaCrmSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EtapaCrm
+     */
+    omit?: EtapaCrmOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EtapaCrmInclude<ExtArgs> | null
+    where?: EtapaCrmWhereInput
+  }
+
+  /**
+   * Lead.comentarios
+   */
+  export type Lead$comentariosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ComentarioCrm
+     */
+    select?: ComentarioCrmSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ComentarioCrm
+     */
+    omit?: ComentarioCrmOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComentarioCrmInclude<ExtArgs> | null
+    where?: ComentarioCrmWhereInput
+    orderBy?: ComentarioCrmOrderByWithRelationInput | ComentarioCrmOrderByWithRelationInput[]
+    cursor?: ComentarioCrmWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: AtividadeCRMScalarFieldEnum | AtividadeCRMScalarFieldEnum[]
+    distinct?: ComentarioCrmScalarFieldEnum | ComentarioCrmScalarFieldEnum[]
   }
 
   /**
@@ -21833,1109 +24415,6 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: LeadInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model AtividadeCRM
-   */
-
-  export type AggregateAtividadeCRM = {
-    _count: AtividadeCRMCountAggregateOutputType | null
-    _min: AtividadeCRMMinAggregateOutputType | null
-    _max: AtividadeCRMMaxAggregateOutputType | null
-  }
-
-  export type AtividadeCRMMinAggregateOutputType = {
-    id: string | null
-    lead_id: string | null
-    usuario_id: string | null
-    tipo: string | null
-    descricao: string | null
-    data: Date | null
-  }
-
-  export type AtividadeCRMMaxAggregateOutputType = {
-    id: string | null
-    lead_id: string | null
-    usuario_id: string | null
-    tipo: string | null
-    descricao: string | null
-    data: Date | null
-  }
-
-  export type AtividadeCRMCountAggregateOutputType = {
-    id: number
-    lead_id: number
-    usuario_id: number
-    tipo: number
-    descricao: number
-    data: number
-    _all: number
-  }
-
-
-  export type AtividadeCRMMinAggregateInputType = {
-    id?: true
-    lead_id?: true
-    usuario_id?: true
-    tipo?: true
-    descricao?: true
-    data?: true
-  }
-
-  export type AtividadeCRMMaxAggregateInputType = {
-    id?: true
-    lead_id?: true
-    usuario_id?: true
-    tipo?: true
-    descricao?: true
-    data?: true
-  }
-
-  export type AtividadeCRMCountAggregateInputType = {
-    id?: true
-    lead_id?: true
-    usuario_id?: true
-    tipo?: true
-    descricao?: true
-    data?: true
-    _all?: true
-  }
-
-  export type AtividadeCRMAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which AtividadeCRM to aggregate.
-     */
-    where?: AtividadeCRMWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of AtividadeCRMS to fetch.
-     */
-    orderBy?: AtividadeCRMOrderByWithRelationInput | AtividadeCRMOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: AtividadeCRMWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` AtividadeCRMS from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` AtividadeCRMS.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned AtividadeCRMS
-    **/
-    _count?: true | AtividadeCRMCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: AtividadeCRMMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: AtividadeCRMMaxAggregateInputType
-  }
-
-  export type GetAtividadeCRMAggregateType<T extends AtividadeCRMAggregateArgs> = {
-        [P in keyof T & keyof AggregateAtividadeCRM]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateAtividadeCRM[P]>
-      : GetScalarType<T[P], AggregateAtividadeCRM[P]>
-  }
-
-
-
-
-  export type AtividadeCRMGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AtividadeCRMWhereInput
-    orderBy?: AtividadeCRMOrderByWithAggregationInput | AtividadeCRMOrderByWithAggregationInput[]
-    by: AtividadeCRMScalarFieldEnum[] | AtividadeCRMScalarFieldEnum
-    having?: AtividadeCRMScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: AtividadeCRMCountAggregateInputType | true
-    _min?: AtividadeCRMMinAggregateInputType
-    _max?: AtividadeCRMMaxAggregateInputType
-  }
-
-  export type AtividadeCRMGroupByOutputType = {
-    id: string
-    lead_id: string
-    usuario_id: string | null
-    tipo: string
-    descricao: string
-    data: Date
-    _count: AtividadeCRMCountAggregateOutputType | null
-    _min: AtividadeCRMMinAggregateOutputType | null
-    _max: AtividadeCRMMaxAggregateOutputType | null
-  }
-
-  type GetAtividadeCRMGroupByPayload<T extends AtividadeCRMGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<AtividadeCRMGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof AtividadeCRMGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], AtividadeCRMGroupByOutputType[P]>
-            : GetScalarType<T[P], AtividadeCRMGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type AtividadeCRMSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    lead_id?: boolean
-    usuario_id?: boolean
-    tipo?: boolean
-    descricao?: boolean
-    data?: boolean
-    lead?: boolean | LeadDefaultArgs<ExtArgs>
-    usuario?: boolean | AtividadeCRM$usuarioArgs<ExtArgs>
-  }, ExtArgs["result"]["atividadeCRM"]>
-
-  export type AtividadeCRMSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    lead_id?: boolean
-    usuario_id?: boolean
-    tipo?: boolean
-    descricao?: boolean
-    data?: boolean
-    lead?: boolean | LeadDefaultArgs<ExtArgs>
-    usuario?: boolean | AtividadeCRM$usuarioArgs<ExtArgs>
-  }, ExtArgs["result"]["atividadeCRM"]>
-
-  export type AtividadeCRMSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    lead_id?: boolean
-    usuario_id?: boolean
-    tipo?: boolean
-    descricao?: boolean
-    data?: boolean
-    lead?: boolean | LeadDefaultArgs<ExtArgs>
-    usuario?: boolean | AtividadeCRM$usuarioArgs<ExtArgs>
-  }, ExtArgs["result"]["atividadeCRM"]>
-
-  export type AtividadeCRMSelectScalar = {
-    id?: boolean
-    lead_id?: boolean
-    usuario_id?: boolean
-    tipo?: boolean
-    descricao?: boolean
-    data?: boolean
-  }
-
-  export type AtividadeCRMOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "lead_id" | "usuario_id" | "tipo" | "descricao" | "data", ExtArgs["result"]["atividadeCRM"]>
-  export type AtividadeCRMInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    lead?: boolean | LeadDefaultArgs<ExtArgs>
-    usuario?: boolean | AtividadeCRM$usuarioArgs<ExtArgs>
-  }
-  export type AtividadeCRMIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    lead?: boolean | LeadDefaultArgs<ExtArgs>
-    usuario?: boolean | AtividadeCRM$usuarioArgs<ExtArgs>
-  }
-  export type AtividadeCRMIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    lead?: boolean | LeadDefaultArgs<ExtArgs>
-    usuario?: boolean | AtividadeCRM$usuarioArgs<ExtArgs>
-  }
-
-  export type $AtividadeCRMPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "AtividadeCRM"
-    objects: {
-      lead: Prisma.$LeadPayload<ExtArgs>
-      usuario: Prisma.$UsuarioPayload<ExtArgs> | null
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      lead_id: string
-      usuario_id: string | null
-      tipo: string
-      descricao: string
-      data: Date
-    }, ExtArgs["result"]["atividadeCRM"]>
-    composites: {}
-  }
-
-  type AtividadeCRMGetPayload<S extends boolean | null | undefined | AtividadeCRMDefaultArgs> = $Result.GetResult<Prisma.$AtividadeCRMPayload, S>
-
-  type AtividadeCRMCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<AtividadeCRMFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: AtividadeCRMCountAggregateInputType | true
-    }
-
-  export interface AtividadeCRMDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AtividadeCRM'], meta: { name: 'AtividadeCRM' } }
-    /**
-     * Find zero or one AtividadeCRM that matches the filter.
-     * @param {AtividadeCRMFindUniqueArgs} args - Arguments to find a AtividadeCRM
-     * @example
-     * // Get one AtividadeCRM
-     * const atividadeCRM = await prisma.atividadeCRM.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends AtividadeCRMFindUniqueArgs>(args: SelectSubset<T, AtividadeCRMFindUniqueArgs<ExtArgs>>): Prisma__AtividadeCRMClient<$Result.GetResult<Prisma.$AtividadeCRMPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one AtividadeCRM that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {AtividadeCRMFindUniqueOrThrowArgs} args - Arguments to find a AtividadeCRM
-     * @example
-     * // Get one AtividadeCRM
-     * const atividadeCRM = await prisma.atividadeCRM.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends AtividadeCRMFindUniqueOrThrowArgs>(args: SelectSubset<T, AtividadeCRMFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AtividadeCRMClient<$Result.GetResult<Prisma.$AtividadeCRMPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first AtividadeCRM that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AtividadeCRMFindFirstArgs} args - Arguments to find a AtividadeCRM
-     * @example
-     * // Get one AtividadeCRM
-     * const atividadeCRM = await prisma.atividadeCRM.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends AtividadeCRMFindFirstArgs>(args?: SelectSubset<T, AtividadeCRMFindFirstArgs<ExtArgs>>): Prisma__AtividadeCRMClient<$Result.GetResult<Prisma.$AtividadeCRMPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first AtividadeCRM that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AtividadeCRMFindFirstOrThrowArgs} args - Arguments to find a AtividadeCRM
-     * @example
-     * // Get one AtividadeCRM
-     * const atividadeCRM = await prisma.atividadeCRM.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends AtividadeCRMFindFirstOrThrowArgs>(args?: SelectSubset<T, AtividadeCRMFindFirstOrThrowArgs<ExtArgs>>): Prisma__AtividadeCRMClient<$Result.GetResult<Prisma.$AtividadeCRMPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more AtividadeCRMS that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AtividadeCRMFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all AtividadeCRMS
-     * const atividadeCRMS = await prisma.atividadeCRM.findMany()
-     * 
-     * // Get first 10 AtividadeCRMS
-     * const atividadeCRMS = await prisma.atividadeCRM.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const atividadeCRMWithIdOnly = await prisma.atividadeCRM.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends AtividadeCRMFindManyArgs>(args?: SelectSubset<T, AtividadeCRMFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AtividadeCRMPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a AtividadeCRM.
-     * @param {AtividadeCRMCreateArgs} args - Arguments to create a AtividadeCRM.
-     * @example
-     * // Create one AtividadeCRM
-     * const AtividadeCRM = await prisma.atividadeCRM.create({
-     *   data: {
-     *     // ... data to create a AtividadeCRM
-     *   }
-     * })
-     * 
-     */
-    create<T extends AtividadeCRMCreateArgs>(args: SelectSubset<T, AtividadeCRMCreateArgs<ExtArgs>>): Prisma__AtividadeCRMClient<$Result.GetResult<Prisma.$AtividadeCRMPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many AtividadeCRMS.
-     * @param {AtividadeCRMCreateManyArgs} args - Arguments to create many AtividadeCRMS.
-     * @example
-     * // Create many AtividadeCRMS
-     * const atividadeCRM = await prisma.atividadeCRM.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends AtividadeCRMCreateManyArgs>(args?: SelectSubset<T, AtividadeCRMCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many AtividadeCRMS and returns the data saved in the database.
-     * @param {AtividadeCRMCreateManyAndReturnArgs} args - Arguments to create many AtividadeCRMS.
-     * @example
-     * // Create many AtividadeCRMS
-     * const atividadeCRM = await prisma.atividadeCRM.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many AtividadeCRMS and only return the `id`
-     * const atividadeCRMWithIdOnly = await prisma.atividadeCRM.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends AtividadeCRMCreateManyAndReturnArgs>(args?: SelectSubset<T, AtividadeCRMCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AtividadeCRMPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a AtividadeCRM.
-     * @param {AtividadeCRMDeleteArgs} args - Arguments to delete one AtividadeCRM.
-     * @example
-     * // Delete one AtividadeCRM
-     * const AtividadeCRM = await prisma.atividadeCRM.delete({
-     *   where: {
-     *     // ... filter to delete one AtividadeCRM
-     *   }
-     * })
-     * 
-     */
-    delete<T extends AtividadeCRMDeleteArgs>(args: SelectSubset<T, AtividadeCRMDeleteArgs<ExtArgs>>): Prisma__AtividadeCRMClient<$Result.GetResult<Prisma.$AtividadeCRMPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one AtividadeCRM.
-     * @param {AtividadeCRMUpdateArgs} args - Arguments to update one AtividadeCRM.
-     * @example
-     * // Update one AtividadeCRM
-     * const atividadeCRM = await prisma.atividadeCRM.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends AtividadeCRMUpdateArgs>(args: SelectSubset<T, AtividadeCRMUpdateArgs<ExtArgs>>): Prisma__AtividadeCRMClient<$Result.GetResult<Prisma.$AtividadeCRMPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more AtividadeCRMS.
-     * @param {AtividadeCRMDeleteManyArgs} args - Arguments to filter AtividadeCRMS to delete.
-     * @example
-     * // Delete a few AtividadeCRMS
-     * const { count } = await prisma.atividadeCRM.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends AtividadeCRMDeleteManyArgs>(args?: SelectSubset<T, AtividadeCRMDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more AtividadeCRMS.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AtividadeCRMUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many AtividadeCRMS
-     * const atividadeCRM = await prisma.atividadeCRM.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends AtividadeCRMUpdateManyArgs>(args: SelectSubset<T, AtividadeCRMUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more AtividadeCRMS and returns the data updated in the database.
-     * @param {AtividadeCRMUpdateManyAndReturnArgs} args - Arguments to update many AtividadeCRMS.
-     * @example
-     * // Update many AtividadeCRMS
-     * const atividadeCRM = await prisma.atividadeCRM.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more AtividadeCRMS and only return the `id`
-     * const atividadeCRMWithIdOnly = await prisma.atividadeCRM.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends AtividadeCRMUpdateManyAndReturnArgs>(args: SelectSubset<T, AtividadeCRMUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AtividadeCRMPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one AtividadeCRM.
-     * @param {AtividadeCRMUpsertArgs} args - Arguments to update or create a AtividadeCRM.
-     * @example
-     * // Update or create a AtividadeCRM
-     * const atividadeCRM = await prisma.atividadeCRM.upsert({
-     *   create: {
-     *     // ... data to create a AtividadeCRM
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the AtividadeCRM we want to update
-     *   }
-     * })
-     */
-    upsert<T extends AtividadeCRMUpsertArgs>(args: SelectSubset<T, AtividadeCRMUpsertArgs<ExtArgs>>): Prisma__AtividadeCRMClient<$Result.GetResult<Prisma.$AtividadeCRMPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of AtividadeCRMS.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AtividadeCRMCountArgs} args - Arguments to filter AtividadeCRMS to count.
-     * @example
-     * // Count the number of AtividadeCRMS
-     * const count = await prisma.atividadeCRM.count({
-     *   where: {
-     *     // ... the filter for the AtividadeCRMS we want to count
-     *   }
-     * })
-    **/
-    count<T extends AtividadeCRMCountArgs>(
-      args?: Subset<T, AtividadeCRMCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], AtividadeCRMCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a AtividadeCRM.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AtividadeCRMAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends AtividadeCRMAggregateArgs>(args: Subset<T, AtividadeCRMAggregateArgs>): Prisma.PrismaPromise<GetAtividadeCRMAggregateType<T>>
-
-    /**
-     * Group by AtividadeCRM.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AtividadeCRMGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends AtividadeCRMGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: AtividadeCRMGroupByArgs['orderBy'] }
-        : { orderBy?: AtividadeCRMGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, AtividadeCRMGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAtividadeCRMGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the AtividadeCRM model
-   */
-  readonly fields: AtividadeCRMFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for AtividadeCRM.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__AtividadeCRMClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    lead<T extends LeadDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LeadDefaultArgs<ExtArgs>>): Prisma__LeadClient<$Result.GetResult<Prisma.$LeadPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    usuario<T extends AtividadeCRM$usuarioArgs<ExtArgs> = {}>(args?: Subset<T, AtividadeCRM$usuarioArgs<ExtArgs>>): Prisma__UsuarioClient<$Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the AtividadeCRM model
-   */
-  interface AtividadeCRMFieldRefs {
-    readonly id: FieldRef<"AtividadeCRM", 'String'>
-    readonly lead_id: FieldRef<"AtividadeCRM", 'String'>
-    readonly usuario_id: FieldRef<"AtividadeCRM", 'String'>
-    readonly tipo: FieldRef<"AtividadeCRM", 'String'>
-    readonly descricao: FieldRef<"AtividadeCRM", 'String'>
-    readonly data: FieldRef<"AtividadeCRM", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * AtividadeCRM findUnique
-   */
-  export type AtividadeCRMFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AtividadeCRM
-     */
-    select?: AtividadeCRMSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the AtividadeCRM
-     */
-    omit?: AtividadeCRMOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AtividadeCRMInclude<ExtArgs> | null
-    /**
-     * Filter, which AtividadeCRM to fetch.
-     */
-    where: AtividadeCRMWhereUniqueInput
-  }
-
-  /**
-   * AtividadeCRM findUniqueOrThrow
-   */
-  export type AtividadeCRMFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AtividadeCRM
-     */
-    select?: AtividadeCRMSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the AtividadeCRM
-     */
-    omit?: AtividadeCRMOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AtividadeCRMInclude<ExtArgs> | null
-    /**
-     * Filter, which AtividadeCRM to fetch.
-     */
-    where: AtividadeCRMWhereUniqueInput
-  }
-
-  /**
-   * AtividadeCRM findFirst
-   */
-  export type AtividadeCRMFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AtividadeCRM
-     */
-    select?: AtividadeCRMSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the AtividadeCRM
-     */
-    omit?: AtividadeCRMOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AtividadeCRMInclude<ExtArgs> | null
-    /**
-     * Filter, which AtividadeCRM to fetch.
-     */
-    where?: AtividadeCRMWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of AtividadeCRMS to fetch.
-     */
-    orderBy?: AtividadeCRMOrderByWithRelationInput | AtividadeCRMOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for AtividadeCRMS.
-     */
-    cursor?: AtividadeCRMWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` AtividadeCRMS from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` AtividadeCRMS.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of AtividadeCRMS.
-     */
-    distinct?: AtividadeCRMScalarFieldEnum | AtividadeCRMScalarFieldEnum[]
-  }
-
-  /**
-   * AtividadeCRM findFirstOrThrow
-   */
-  export type AtividadeCRMFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AtividadeCRM
-     */
-    select?: AtividadeCRMSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the AtividadeCRM
-     */
-    omit?: AtividadeCRMOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AtividadeCRMInclude<ExtArgs> | null
-    /**
-     * Filter, which AtividadeCRM to fetch.
-     */
-    where?: AtividadeCRMWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of AtividadeCRMS to fetch.
-     */
-    orderBy?: AtividadeCRMOrderByWithRelationInput | AtividadeCRMOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for AtividadeCRMS.
-     */
-    cursor?: AtividadeCRMWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` AtividadeCRMS from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` AtividadeCRMS.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of AtividadeCRMS.
-     */
-    distinct?: AtividadeCRMScalarFieldEnum | AtividadeCRMScalarFieldEnum[]
-  }
-
-  /**
-   * AtividadeCRM findMany
-   */
-  export type AtividadeCRMFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AtividadeCRM
-     */
-    select?: AtividadeCRMSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the AtividadeCRM
-     */
-    omit?: AtividadeCRMOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AtividadeCRMInclude<ExtArgs> | null
-    /**
-     * Filter, which AtividadeCRMS to fetch.
-     */
-    where?: AtividadeCRMWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of AtividadeCRMS to fetch.
-     */
-    orderBy?: AtividadeCRMOrderByWithRelationInput | AtividadeCRMOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing AtividadeCRMS.
-     */
-    cursor?: AtividadeCRMWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` AtividadeCRMS from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` AtividadeCRMS.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of AtividadeCRMS.
-     */
-    distinct?: AtividadeCRMScalarFieldEnum | AtividadeCRMScalarFieldEnum[]
-  }
-
-  /**
-   * AtividadeCRM create
-   */
-  export type AtividadeCRMCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AtividadeCRM
-     */
-    select?: AtividadeCRMSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the AtividadeCRM
-     */
-    omit?: AtividadeCRMOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AtividadeCRMInclude<ExtArgs> | null
-    /**
-     * The data needed to create a AtividadeCRM.
-     */
-    data: XOR<AtividadeCRMCreateInput, AtividadeCRMUncheckedCreateInput>
-  }
-
-  /**
-   * AtividadeCRM createMany
-   */
-  export type AtividadeCRMCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many AtividadeCRMS.
-     */
-    data: AtividadeCRMCreateManyInput | AtividadeCRMCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * AtividadeCRM createManyAndReturn
-   */
-  export type AtividadeCRMCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AtividadeCRM
-     */
-    select?: AtividadeCRMSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the AtividadeCRM
-     */
-    omit?: AtividadeCRMOmit<ExtArgs> | null
-    /**
-     * The data used to create many AtividadeCRMS.
-     */
-    data: AtividadeCRMCreateManyInput | AtividadeCRMCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AtividadeCRMIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * AtividadeCRM update
-   */
-  export type AtividadeCRMUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AtividadeCRM
-     */
-    select?: AtividadeCRMSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the AtividadeCRM
-     */
-    omit?: AtividadeCRMOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AtividadeCRMInclude<ExtArgs> | null
-    /**
-     * The data needed to update a AtividadeCRM.
-     */
-    data: XOR<AtividadeCRMUpdateInput, AtividadeCRMUncheckedUpdateInput>
-    /**
-     * Choose, which AtividadeCRM to update.
-     */
-    where: AtividadeCRMWhereUniqueInput
-  }
-
-  /**
-   * AtividadeCRM updateMany
-   */
-  export type AtividadeCRMUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update AtividadeCRMS.
-     */
-    data: XOR<AtividadeCRMUpdateManyMutationInput, AtividadeCRMUncheckedUpdateManyInput>
-    /**
-     * Filter which AtividadeCRMS to update
-     */
-    where?: AtividadeCRMWhereInput
-    /**
-     * Limit how many AtividadeCRMS to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * AtividadeCRM updateManyAndReturn
-   */
-  export type AtividadeCRMUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AtividadeCRM
-     */
-    select?: AtividadeCRMSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the AtividadeCRM
-     */
-    omit?: AtividadeCRMOmit<ExtArgs> | null
-    /**
-     * The data used to update AtividadeCRMS.
-     */
-    data: XOR<AtividadeCRMUpdateManyMutationInput, AtividadeCRMUncheckedUpdateManyInput>
-    /**
-     * Filter which AtividadeCRMS to update
-     */
-    where?: AtividadeCRMWhereInput
-    /**
-     * Limit how many AtividadeCRMS to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AtividadeCRMIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * AtividadeCRM upsert
-   */
-  export type AtividadeCRMUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AtividadeCRM
-     */
-    select?: AtividadeCRMSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the AtividadeCRM
-     */
-    omit?: AtividadeCRMOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AtividadeCRMInclude<ExtArgs> | null
-    /**
-     * The filter to search for the AtividadeCRM to update in case it exists.
-     */
-    where: AtividadeCRMWhereUniqueInput
-    /**
-     * In case the AtividadeCRM found by the `where` argument doesn't exist, create a new AtividadeCRM with this data.
-     */
-    create: XOR<AtividadeCRMCreateInput, AtividadeCRMUncheckedCreateInput>
-    /**
-     * In case the AtividadeCRM was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<AtividadeCRMUpdateInput, AtividadeCRMUncheckedUpdateInput>
-  }
-
-  /**
-   * AtividadeCRM delete
-   */
-  export type AtividadeCRMDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AtividadeCRM
-     */
-    select?: AtividadeCRMSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the AtividadeCRM
-     */
-    omit?: AtividadeCRMOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AtividadeCRMInclude<ExtArgs> | null
-    /**
-     * Filter which AtividadeCRM to delete.
-     */
-    where: AtividadeCRMWhereUniqueInput
-  }
-
-  /**
-   * AtividadeCRM deleteMany
-   */
-  export type AtividadeCRMDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which AtividadeCRMS to delete
-     */
-    where?: AtividadeCRMWhereInput
-    /**
-     * Limit how many AtividadeCRMS to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * AtividadeCRM.usuario
-   */
-  export type AtividadeCRM$usuarioArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Usuario
-     */
-    select?: UsuarioSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Usuario
-     */
-    omit?: UsuarioOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UsuarioInclude<ExtArgs> | null
-    where?: UsuarioWhereInput
-  }
-
-  /**
-   * AtividadeCRM without action
-   */
-  export type AtividadeCRMDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AtividadeCRM
-     */
-    select?: AtividadeCRMSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the AtividadeCRM
-     */
-    omit?: AtividadeCRMOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AtividadeCRMInclude<ExtArgs> | null
   }
 
 
@@ -61628,39 +63107,59 @@ export namespace Prisma {
   export type ServicoScalarFieldEnum = (typeof ServicoScalarFieldEnum)[keyof typeof ServicoScalarFieldEnum]
 
 
+  export const EtapaCrmScalarFieldEnum: {
+    id: 'id',
+    empresa_id: 'empresa_id',
+    chave: 'chave',
+    nome: 'nome',
+    cor: 'cor',
+    ordem: 'ordem',
+    criado_em: 'criado_em'
+  };
+
+  export type EtapaCrmScalarFieldEnum = (typeof EtapaCrmScalarFieldEnum)[keyof typeof EtapaCrmScalarFieldEnum]
+
+
+  export const ComentarioCrmScalarFieldEnum: {
+    id: 'id',
+    lead_id: 'lead_id',
+    usuario_id: 'usuario_id',
+    autor_nome: 'autor_nome',
+    mensagem: 'mensagem',
+    criado_em: 'criado_em'
+  };
+
+  export type ComentarioCrmScalarFieldEnum = (typeof ComentarioCrmScalarFieldEnum)[keyof typeof ComentarioCrmScalarFieldEnum]
+
+
   export const LeadScalarFieldEnum: {
     id: 'id',
     empresa_id: 'empresa_id',
     cliente_id: 'cliente_id',
     responsavel_id: 'responsavel_id',
+    servico_id: 'servico_id',
+    etapa_id: 'etapa_id',
     nome: 'nome',
     empresa_nome: 'empresa_nome',
+    contato_nome: 'contato_nome',
     email: 'email',
     telefone: 'telefone',
-    status: 'status',
+    whatsapp: 'whatsapp',
+    etapa_chave: 'etapa_chave',
     valor_estimado: 'valor_estimado',
+    probabilidade: 'probabilidade',
+    previsao_fechamento: 'previsao_fechamento',
+    proxima_acao: 'proxima_acao',
+    data_proxima_acao: 'data_proxima_acao',
     origem: 'origem',
     observacoes: 'observacoes',
-    ganho_em: 'ganho_em',
-    perdido_em: 'perdido_em',
     motivo_perda: 'motivo_perda',
+    tags: 'tags',
     criado_em: 'criado_em',
     atualizado_em: 'atualizado_em'
   };
 
   export type LeadScalarFieldEnum = (typeof LeadScalarFieldEnum)[keyof typeof LeadScalarFieldEnum]
-
-
-  export const AtividadeCRMScalarFieldEnum: {
-    id: 'id',
-    lead_id: 'lead_id',
-    usuario_id: 'usuario_id',
-    tipo: 'tipo',
-    descricao: 'descricao',
-    data: 'data'
-  };
-
-  export type AtividadeCRMScalarFieldEnum = (typeof AtividadeCRMScalarFieldEnum)[keyof typeof AtividadeCRMScalarFieldEnum]
 
 
   export const PropostaScalarFieldEnum: {
@@ -62393,16 +63892,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'StatusLead'
+   * Reference to a field of type 'Int'
    */
-  export type EnumStatusLeadFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StatusLead'>
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
     
 
 
   /**
-   * Reference to a field of type 'StatusLead[]'
+   * Reference to a field of type 'Int[]'
    */
-  export type ListEnumStatusLeadFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StatusLead[]'>
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
@@ -62417,20 +63916,6 @@ export namespace Prisma {
    * Reference to a field of type 'StatusProposta[]'
    */
   export type ListEnumStatusPropostaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StatusProposta[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Int'
-   */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-  /**
-   * Reference to a field of type 'Int[]'
-   */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
@@ -62715,6 +64200,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoListRelationFilter
     etiquetas_tarefa?: EtiquetaTarefaListRelationFilter
     aplicacoes_diagnostico?: AplicacaoDiagnosticoListRelationFilter
+    etapas_crm?: EtapaCrmListRelationFilter
   }
 
   export type EmpresaOrderByWithRelationInput = {
@@ -62754,6 +64240,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoOrderByRelationAggregateInput
     etiquetas_tarefa?: EtiquetaTarefaOrderByRelationAggregateInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoOrderByRelationAggregateInput
+    etapas_crm?: EtapaCrmOrderByRelationAggregateInput
   }
 
   export type EmpresaWhereUniqueInput = Prisma.AtLeast<{
@@ -62796,6 +64283,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoListRelationFilter
     etiquetas_tarefa?: EtiquetaTarefaListRelationFilter
     aplicacoes_diagnostico?: AplicacaoDiagnosticoListRelationFilter
+    etapas_crm?: EtapaCrmListRelationFilter
   }, "id" | "slug" | "cnpj">
 
   export type EmpresaOrderByWithAggregationInput = {
@@ -62843,7 +64331,7 @@ export namespace Prisma {
     membros?: MembroEmpresaListRelationFilter
     convites?: ConviteEmpresaListRelationFilter
     leads?: LeadListRelationFilter
-    atividades_crm?: AtividadeCRMListRelationFilter
+    comentarios_crm?: ComentarioCrmListRelationFilter
     propostas_criadas?: PropostaListRelationFilter
     contratos_criados?: ContratoListRelationFilter
     projetos_criados?: ProjetoListRelationFilter
@@ -62872,7 +64360,7 @@ export namespace Prisma {
     membros?: MembroEmpresaOrderByRelationAggregateInput
     convites?: ConviteEmpresaOrderByRelationAggregateInput
     leads?: LeadOrderByRelationAggregateInput
-    atividades_crm?: AtividadeCRMOrderByRelationAggregateInput
+    comentarios_crm?: ComentarioCrmOrderByRelationAggregateInput
     propostas_criadas?: PropostaOrderByRelationAggregateInput
     contratos_criados?: ContratoOrderByRelationAggregateInput
     projetos_criados?: ProjetoOrderByRelationAggregateInput
@@ -62904,7 +64392,7 @@ export namespace Prisma {
     membros?: MembroEmpresaListRelationFilter
     convites?: ConviteEmpresaListRelationFilter
     leads?: LeadListRelationFilter
-    atividades_crm?: AtividadeCRMListRelationFilter
+    comentarios_crm?: ComentarioCrmListRelationFilter
     propostas_criadas?: PropostaListRelationFilter
     contratos_criados?: ContratoListRelationFilter
     projetos_criados?: ProjetoListRelationFilter
@@ -63610,6 +65098,7 @@ export namespace Prisma {
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
     plano_contas?: XOR<PlanoDeContasNullableScalarRelationFilter, PlanoDeContasWhereInput> | null
     itens_proposta?: ItemPropostaListRelationFilter
+    leads?: LeadListRelationFilter
   }
 
   export type ServicoOrderByWithRelationInput = {
@@ -63625,6 +65114,7 @@ export namespace Prisma {
     empresa?: EmpresaOrderByWithRelationInput
     plano_contas?: PlanoDeContasOrderByWithRelationInput
     itens_proposta?: ItemPropostaOrderByRelationAggregateInput
+    leads?: LeadOrderByRelationAggregateInput
   }
 
   export type ServicoWhereUniqueInput = Prisma.AtLeast<{
@@ -63643,6 +65133,7 @@ export namespace Prisma {
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
     plano_contas?: XOR<PlanoDeContasNullableScalarRelationFilter, PlanoDeContasWhereInput> | null
     itens_proposta?: ItemPropostaListRelationFilter
+    leads?: LeadListRelationFilter
   }, "id">
 
   export type ServicoOrderByWithAggregationInput = {
@@ -63677,6 +65168,140 @@ export namespace Prisma {
     atualizado_em?: DateTimeWithAggregatesFilter<"Servico"> | Date | string
   }
 
+  export type EtapaCrmWhereInput = {
+    AND?: EtapaCrmWhereInput | EtapaCrmWhereInput[]
+    OR?: EtapaCrmWhereInput[]
+    NOT?: EtapaCrmWhereInput | EtapaCrmWhereInput[]
+    id?: StringFilter<"EtapaCrm"> | string
+    empresa_id?: StringFilter<"EtapaCrm"> | string
+    chave?: StringFilter<"EtapaCrm"> | string
+    nome?: StringFilter<"EtapaCrm"> | string
+    cor?: StringFilter<"EtapaCrm"> | string
+    ordem?: IntFilter<"EtapaCrm"> | number
+    criado_em?: DateTimeFilter<"EtapaCrm"> | Date | string
+    empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
+    leads?: LeadListRelationFilter
+  }
+
+  export type EtapaCrmOrderByWithRelationInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    chave?: SortOrder
+    nome?: SortOrder
+    cor?: SortOrder
+    ordem?: SortOrder
+    criado_em?: SortOrder
+    empresa?: EmpresaOrderByWithRelationInput
+    leads?: LeadOrderByRelationAggregateInput
+  }
+
+  export type EtapaCrmWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    empresa_id_chave?: EtapaCrmEmpresa_idChaveCompoundUniqueInput
+    AND?: EtapaCrmWhereInput | EtapaCrmWhereInput[]
+    OR?: EtapaCrmWhereInput[]
+    NOT?: EtapaCrmWhereInput | EtapaCrmWhereInput[]
+    empresa_id?: StringFilter<"EtapaCrm"> | string
+    chave?: StringFilter<"EtapaCrm"> | string
+    nome?: StringFilter<"EtapaCrm"> | string
+    cor?: StringFilter<"EtapaCrm"> | string
+    ordem?: IntFilter<"EtapaCrm"> | number
+    criado_em?: DateTimeFilter<"EtapaCrm"> | Date | string
+    empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
+    leads?: LeadListRelationFilter
+  }, "id" | "empresa_id_chave">
+
+  export type EtapaCrmOrderByWithAggregationInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    chave?: SortOrder
+    nome?: SortOrder
+    cor?: SortOrder
+    ordem?: SortOrder
+    criado_em?: SortOrder
+    _count?: EtapaCrmCountOrderByAggregateInput
+    _avg?: EtapaCrmAvgOrderByAggregateInput
+    _max?: EtapaCrmMaxOrderByAggregateInput
+    _min?: EtapaCrmMinOrderByAggregateInput
+    _sum?: EtapaCrmSumOrderByAggregateInput
+  }
+
+  export type EtapaCrmScalarWhereWithAggregatesInput = {
+    AND?: EtapaCrmScalarWhereWithAggregatesInput | EtapaCrmScalarWhereWithAggregatesInput[]
+    OR?: EtapaCrmScalarWhereWithAggregatesInput[]
+    NOT?: EtapaCrmScalarWhereWithAggregatesInput | EtapaCrmScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"EtapaCrm"> | string
+    empresa_id?: StringWithAggregatesFilter<"EtapaCrm"> | string
+    chave?: StringWithAggregatesFilter<"EtapaCrm"> | string
+    nome?: StringWithAggregatesFilter<"EtapaCrm"> | string
+    cor?: StringWithAggregatesFilter<"EtapaCrm"> | string
+    ordem?: IntWithAggregatesFilter<"EtapaCrm"> | number
+    criado_em?: DateTimeWithAggregatesFilter<"EtapaCrm"> | Date | string
+  }
+
+  export type ComentarioCrmWhereInput = {
+    AND?: ComentarioCrmWhereInput | ComentarioCrmWhereInput[]
+    OR?: ComentarioCrmWhereInput[]
+    NOT?: ComentarioCrmWhereInput | ComentarioCrmWhereInput[]
+    id?: StringFilter<"ComentarioCrm"> | string
+    lead_id?: StringFilter<"ComentarioCrm"> | string
+    usuario_id?: StringNullableFilter<"ComentarioCrm"> | string | null
+    autor_nome?: StringFilter<"ComentarioCrm"> | string
+    mensagem?: StringFilter<"ComentarioCrm"> | string
+    criado_em?: DateTimeFilter<"ComentarioCrm"> | Date | string
+    lead?: XOR<LeadScalarRelationFilter, LeadWhereInput>
+    usuario?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
+  }
+
+  export type ComentarioCrmOrderByWithRelationInput = {
+    id?: SortOrder
+    lead_id?: SortOrder
+    usuario_id?: SortOrderInput | SortOrder
+    autor_nome?: SortOrder
+    mensagem?: SortOrder
+    criado_em?: SortOrder
+    lead?: LeadOrderByWithRelationInput
+    usuario?: UsuarioOrderByWithRelationInput
+  }
+
+  export type ComentarioCrmWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ComentarioCrmWhereInput | ComentarioCrmWhereInput[]
+    OR?: ComentarioCrmWhereInput[]
+    NOT?: ComentarioCrmWhereInput | ComentarioCrmWhereInput[]
+    lead_id?: StringFilter<"ComentarioCrm"> | string
+    usuario_id?: StringNullableFilter<"ComentarioCrm"> | string | null
+    autor_nome?: StringFilter<"ComentarioCrm"> | string
+    mensagem?: StringFilter<"ComentarioCrm"> | string
+    criado_em?: DateTimeFilter<"ComentarioCrm"> | Date | string
+    lead?: XOR<LeadScalarRelationFilter, LeadWhereInput>
+    usuario?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
+  }, "id">
+
+  export type ComentarioCrmOrderByWithAggregationInput = {
+    id?: SortOrder
+    lead_id?: SortOrder
+    usuario_id?: SortOrderInput | SortOrder
+    autor_nome?: SortOrder
+    mensagem?: SortOrder
+    criado_em?: SortOrder
+    _count?: ComentarioCrmCountOrderByAggregateInput
+    _max?: ComentarioCrmMaxOrderByAggregateInput
+    _min?: ComentarioCrmMinOrderByAggregateInput
+  }
+
+  export type ComentarioCrmScalarWhereWithAggregatesInput = {
+    AND?: ComentarioCrmScalarWhereWithAggregatesInput | ComentarioCrmScalarWhereWithAggregatesInput[]
+    OR?: ComentarioCrmScalarWhereWithAggregatesInput[]
+    NOT?: ComentarioCrmScalarWhereWithAggregatesInput | ComentarioCrmScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ComentarioCrm"> | string
+    lead_id?: StringWithAggregatesFilter<"ComentarioCrm"> | string
+    usuario_id?: StringNullableWithAggregatesFilter<"ComentarioCrm"> | string | null
+    autor_nome?: StringWithAggregatesFilter<"ComentarioCrm"> | string
+    mensagem?: StringWithAggregatesFilter<"ComentarioCrm"> | string
+    criado_em?: DateTimeWithAggregatesFilter<"ComentarioCrm"> | Date | string
+  }
+
   export type LeadWhereInput = {
     AND?: LeadWhereInput | LeadWhereInput[]
     OR?: LeadWhereInput[]
@@ -63685,23 +65310,32 @@ export namespace Prisma {
     empresa_id?: StringFilter<"Lead"> | string
     cliente_id?: StringNullableFilter<"Lead"> | string | null
     responsavel_id?: StringNullableFilter<"Lead"> | string | null
+    servico_id?: StringNullableFilter<"Lead"> | string | null
+    etapa_id?: StringNullableFilter<"Lead"> | string | null
     nome?: StringFilter<"Lead"> | string
     empresa_nome?: StringNullableFilter<"Lead"> | string | null
+    contato_nome?: StringNullableFilter<"Lead"> | string | null
     email?: StringNullableFilter<"Lead"> | string | null
     telefone?: StringNullableFilter<"Lead"> | string | null
-    status?: EnumStatusLeadFilter<"Lead"> | $Enums.StatusLead
+    whatsapp?: StringNullableFilter<"Lead"> | string | null
+    etapa_chave?: StringFilter<"Lead"> | string
     valor_estimado?: DecimalNullableFilter<"Lead"> | Decimal | DecimalJsLike | number | string | null
+    probabilidade?: IntFilter<"Lead"> | number
+    previsao_fechamento?: DateTimeNullableFilter<"Lead"> | Date | string | null
+    proxima_acao?: StringNullableFilter<"Lead"> | string | null
+    data_proxima_acao?: DateTimeNullableFilter<"Lead"> | Date | string | null
     origem?: StringNullableFilter<"Lead"> | string | null
     observacoes?: StringNullableFilter<"Lead"> | string | null
-    ganho_em?: DateTimeNullableFilter<"Lead"> | Date | string | null
-    perdido_em?: DateTimeNullableFilter<"Lead"> | Date | string | null
     motivo_perda?: StringNullableFilter<"Lead"> | string | null
+    tags?: StringNullableListFilter<"Lead">
     criado_em?: DateTimeFilter<"Lead"> | Date | string
     atualizado_em?: DateTimeFilter<"Lead"> | Date | string
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
     cliente?: XOR<ClienteNullableScalarRelationFilter, ClienteWhereInput> | null
     responsavel?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
-    atividades?: AtividadeCRMListRelationFilter
+    servico?: XOR<ServicoNullableScalarRelationFilter, ServicoWhereInput> | null
+    etapa?: XOR<EtapaCrmNullableScalarRelationFilter, EtapaCrmWhereInput> | null
+    comentarios?: ComentarioCrmListRelationFilter
     propostas?: PropostaListRelationFilter
   }
 
@@ -63710,23 +65344,32 @@ export namespace Prisma {
     empresa_id?: SortOrder
     cliente_id?: SortOrderInput | SortOrder
     responsavel_id?: SortOrderInput | SortOrder
+    servico_id?: SortOrderInput | SortOrder
+    etapa_id?: SortOrderInput | SortOrder
     nome?: SortOrder
     empresa_nome?: SortOrderInput | SortOrder
+    contato_nome?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
     telefone?: SortOrderInput | SortOrder
-    status?: SortOrder
+    whatsapp?: SortOrderInput | SortOrder
+    etapa_chave?: SortOrder
     valor_estimado?: SortOrderInput | SortOrder
+    probabilidade?: SortOrder
+    previsao_fechamento?: SortOrderInput | SortOrder
+    proxima_acao?: SortOrderInput | SortOrder
+    data_proxima_acao?: SortOrderInput | SortOrder
     origem?: SortOrderInput | SortOrder
     observacoes?: SortOrderInput | SortOrder
-    ganho_em?: SortOrderInput | SortOrder
-    perdido_em?: SortOrderInput | SortOrder
     motivo_perda?: SortOrderInput | SortOrder
+    tags?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     empresa?: EmpresaOrderByWithRelationInput
     cliente?: ClienteOrderByWithRelationInput
     responsavel?: UsuarioOrderByWithRelationInput
-    atividades?: AtividadeCRMOrderByRelationAggregateInput
+    servico?: ServicoOrderByWithRelationInput
+    etapa?: EtapaCrmOrderByWithRelationInput
+    comentarios?: ComentarioCrmOrderByRelationAggregateInput
     propostas?: PropostaOrderByRelationAggregateInput
   }
 
@@ -63738,23 +65381,32 @@ export namespace Prisma {
     empresa_id?: StringFilter<"Lead"> | string
     cliente_id?: StringNullableFilter<"Lead"> | string | null
     responsavel_id?: StringNullableFilter<"Lead"> | string | null
+    servico_id?: StringNullableFilter<"Lead"> | string | null
+    etapa_id?: StringNullableFilter<"Lead"> | string | null
     nome?: StringFilter<"Lead"> | string
     empresa_nome?: StringNullableFilter<"Lead"> | string | null
+    contato_nome?: StringNullableFilter<"Lead"> | string | null
     email?: StringNullableFilter<"Lead"> | string | null
     telefone?: StringNullableFilter<"Lead"> | string | null
-    status?: EnumStatusLeadFilter<"Lead"> | $Enums.StatusLead
+    whatsapp?: StringNullableFilter<"Lead"> | string | null
+    etapa_chave?: StringFilter<"Lead"> | string
     valor_estimado?: DecimalNullableFilter<"Lead"> | Decimal | DecimalJsLike | number | string | null
+    probabilidade?: IntFilter<"Lead"> | number
+    previsao_fechamento?: DateTimeNullableFilter<"Lead"> | Date | string | null
+    proxima_acao?: StringNullableFilter<"Lead"> | string | null
+    data_proxima_acao?: DateTimeNullableFilter<"Lead"> | Date | string | null
     origem?: StringNullableFilter<"Lead"> | string | null
     observacoes?: StringNullableFilter<"Lead"> | string | null
-    ganho_em?: DateTimeNullableFilter<"Lead"> | Date | string | null
-    perdido_em?: DateTimeNullableFilter<"Lead"> | Date | string | null
     motivo_perda?: StringNullableFilter<"Lead"> | string | null
+    tags?: StringNullableListFilter<"Lead">
     criado_em?: DateTimeFilter<"Lead"> | Date | string
     atualizado_em?: DateTimeFilter<"Lead"> | Date | string
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
     cliente?: XOR<ClienteNullableScalarRelationFilter, ClienteWhereInput> | null
     responsavel?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
-    atividades?: AtividadeCRMListRelationFilter
+    servico?: XOR<ServicoNullableScalarRelationFilter, ServicoWhereInput> | null
+    etapa?: XOR<EtapaCrmNullableScalarRelationFilter, EtapaCrmWhereInput> | null
+    comentarios?: ComentarioCrmListRelationFilter
     propostas?: PropostaListRelationFilter
   }, "id">
 
@@ -63763,17 +65415,24 @@ export namespace Prisma {
     empresa_id?: SortOrder
     cliente_id?: SortOrderInput | SortOrder
     responsavel_id?: SortOrderInput | SortOrder
+    servico_id?: SortOrderInput | SortOrder
+    etapa_id?: SortOrderInput | SortOrder
     nome?: SortOrder
     empresa_nome?: SortOrderInput | SortOrder
+    contato_nome?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
     telefone?: SortOrderInput | SortOrder
-    status?: SortOrder
+    whatsapp?: SortOrderInput | SortOrder
+    etapa_chave?: SortOrder
     valor_estimado?: SortOrderInput | SortOrder
+    probabilidade?: SortOrder
+    previsao_fechamento?: SortOrderInput | SortOrder
+    proxima_acao?: SortOrderInput | SortOrder
+    data_proxima_acao?: SortOrderInput | SortOrder
     origem?: SortOrderInput | SortOrder
     observacoes?: SortOrderInput | SortOrder
-    ganho_em?: SortOrderInput | SortOrder
-    perdido_em?: SortOrderInput | SortOrder
     motivo_perda?: SortOrderInput | SortOrder
+    tags?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     _count?: LeadCountOrderByAggregateInput
@@ -63791,82 +65450,26 @@ export namespace Prisma {
     empresa_id?: StringWithAggregatesFilter<"Lead"> | string
     cliente_id?: StringNullableWithAggregatesFilter<"Lead"> | string | null
     responsavel_id?: StringNullableWithAggregatesFilter<"Lead"> | string | null
+    servico_id?: StringNullableWithAggregatesFilter<"Lead"> | string | null
+    etapa_id?: StringNullableWithAggregatesFilter<"Lead"> | string | null
     nome?: StringWithAggregatesFilter<"Lead"> | string
     empresa_nome?: StringNullableWithAggregatesFilter<"Lead"> | string | null
+    contato_nome?: StringNullableWithAggregatesFilter<"Lead"> | string | null
     email?: StringNullableWithAggregatesFilter<"Lead"> | string | null
     telefone?: StringNullableWithAggregatesFilter<"Lead"> | string | null
-    status?: EnumStatusLeadWithAggregatesFilter<"Lead"> | $Enums.StatusLead
+    whatsapp?: StringNullableWithAggregatesFilter<"Lead"> | string | null
+    etapa_chave?: StringWithAggregatesFilter<"Lead"> | string
     valor_estimado?: DecimalNullableWithAggregatesFilter<"Lead"> | Decimal | DecimalJsLike | number | string | null
+    probabilidade?: IntWithAggregatesFilter<"Lead"> | number
+    previsao_fechamento?: DateTimeNullableWithAggregatesFilter<"Lead"> | Date | string | null
+    proxima_acao?: StringNullableWithAggregatesFilter<"Lead"> | string | null
+    data_proxima_acao?: DateTimeNullableWithAggregatesFilter<"Lead"> | Date | string | null
     origem?: StringNullableWithAggregatesFilter<"Lead"> | string | null
     observacoes?: StringNullableWithAggregatesFilter<"Lead"> | string | null
-    ganho_em?: DateTimeNullableWithAggregatesFilter<"Lead"> | Date | string | null
-    perdido_em?: DateTimeNullableWithAggregatesFilter<"Lead"> | Date | string | null
     motivo_perda?: StringNullableWithAggregatesFilter<"Lead"> | string | null
+    tags?: StringNullableListFilter<"Lead">
     criado_em?: DateTimeWithAggregatesFilter<"Lead"> | Date | string
     atualizado_em?: DateTimeWithAggregatesFilter<"Lead"> | Date | string
-  }
-
-  export type AtividadeCRMWhereInput = {
-    AND?: AtividadeCRMWhereInput | AtividadeCRMWhereInput[]
-    OR?: AtividadeCRMWhereInput[]
-    NOT?: AtividadeCRMWhereInput | AtividadeCRMWhereInput[]
-    id?: StringFilter<"AtividadeCRM"> | string
-    lead_id?: StringFilter<"AtividadeCRM"> | string
-    usuario_id?: StringNullableFilter<"AtividadeCRM"> | string | null
-    tipo?: StringFilter<"AtividadeCRM"> | string
-    descricao?: StringFilter<"AtividadeCRM"> | string
-    data?: DateTimeFilter<"AtividadeCRM"> | Date | string
-    lead?: XOR<LeadScalarRelationFilter, LeadWhereInput>
-    usuario?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
-  }
-
-  export type AtividadeCRMOrderByWithRelationInput = {
-    id?: SortOrder
-    lead_id?: SortOrder
-    usuario_id?: SortOrderInput | SortOrder
-    tipo?: SortOrder
-    descricao?: SortOrder
-    data?: SortOrder
-    lead?: LeadOrderByWithRelationInput
-    usuario?: UsuarioOrderByWithRelationInput
-  }
-
-  export type AtividadeCRMWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: AtividadeCRMWhereInput | AtividadeCRMWhereInput[]
-    OR?: AtividadeCRMWhereInput[]
-    NOT?: AtividadeCRMWhereInput | AtividadeCRMWhereInput[]
-    lead_id?: StringFilter<"AtividadeCRM"> | string
-    usuario_id?: StringNullableFilter<"AtividadeCRM"> | string | null
-    tipo?: StringFilter<"AtividadeCRM"> | string
-    descricao?: StringFilter<"AtividadeCRM"> | string
-    data?: DateTimeFilter<"AtividadeCRM"> | Date | string
-    lead?: XOR<LeadScalarRelationFilter, LeadWhereInput>
-    usuario?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
-  }, "id">
-
-  export type AtividadeCRMOrderByWithAggregationInput = {
-    id?: SortOrder
-    lead_id?: SortOrder
-    usuario_id?: SortOrderInput | SortOrder
-    tipo?: SortOrder
-    descricao?: SortOrder
-    data?: SortOrder
-    _count?: AtividadeCRMCountOrderByAggregateInput
-    _max?: AtividadeCRMMaxOrderByAggregateInput
-    _min?: AtividadeCRMMinOrderByAggregateInput
-  }
-
-  export type AtividadeCRMScalarWhereWithAggregatesInput = {
-    AND?: AtividadeCRMScalarWhereWithAggregatesInput | AtividadeCRMScalarWhereWithAggregatesInput[]
-    OR?: AtividadeCRMScalarWhereWithAggregatesInput[]
-    NOT?: AtividadeCRMScalarWhereWithAggregatesInput | AtividadeCRMScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"AtividadeCRM"> | string
-    lead_id?: StringWithAggregatesFilter<"AtividadeCRM"> | string
-    usuario_id?: StringNullableWithAggregatesFilter<"AtividadeCRM"> | string | null
-    tipo?: StringWithAggregatesFilter<"AtividadeCRM"> | string
-    descricao?: StringWithAggregatesFilter<"AtividadeCRM"> | string
-    data?: DateTimeWithAggregatesFilter<"AtividadeCRM"> | Date | string
   }
 
   export type PropostaWhereInput = {
@@ -66980,6 +68583,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateInput = {
@@ -67019,6 +68623,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUpdateInput = {
@@ -67058,6 +68663,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateInput = {
@@ -67097,6 +68703,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateManyInput = {
@@ -67148,7 +68755,7 @@ export namespace Prisma {
     membros?: MembroEmpresaCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaCreateNestedManyWithoutConvidadoInput
     leads?: LeadCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoCreateNestedManyWithoutCriadorInput
@@ -67177,7 +68784,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutConvidadoInput
     leads?: LeadUncheckedCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMUncheckedCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmUncheckedCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaUncheckedCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoUncheckedCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoUncheckedCreateNestedManyWithoutCriadorInput
@@ -67206,7 +68813,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUpdateManyWithoutCriadorNestedInput
@@ -67235,7 +68842,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUncheckedUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUncheckedUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUncheckedUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUncheckedUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUncheckedUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUncheckedUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUncheckedUpdateManyWithoutCriadorNestedInput
@@ -67985,6 +69592,7 @@ export namespace Prisma {
     empresa: EmpresaCreateNestedOneWithoutServicosInput
     plano_contas?: PlanoDeContasCreateNestedOneWithoutServicosInput
     itens_proposta?: ItemPropostaCreateNestedManyWithoutServicoInput
+    leads?: LeadCreateNestedManyWithoutServicoInput
   }
 
   export type ServicoUncheckedCreateInput = {
@@ -67998,6 +69606,7 @@ export namespace Prisma {
     criado_em?: Date | string
     atualizado_em?: Date | string
     itens_proposta?: ItemPropostaUncheckedCreateNestedManyWithoutServicoInput
+    leads?: LeadUncheckedCreateNestedManyWithoutServicoInput
   }
 
   export type ServicoUpdateInput = {
@@ -68011,6 +69620,7 @@ export namespace Prisma {
     empresa?: EmpresaUpdateOneRequiredWithoutServicosNestedInput
     plano_contas?: PlanoDeContasUpdateOneWithoutServicosNestedInput
     itens_proposta?: ItemPropostaUpdateManyWithoutServicoNestedInput
+    leads?: LeadUpdateManyWithoutServicoNestedInput
   }
 
   export type ServicoUncheckedUpdateInput = {
@@ -68024,6 +69634,7 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     itens_proposta?: ItemPropostaUncheckedUpdateManyWithoutServicoNestedInput
+    leads?: LeadUncheckedUpdateManyWithoutServicoNestedInput
   }
 
   export type ServicoCreateManyInput = {
@@ -68060,25 +69671,166 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type EtapaCrmCreateInput = {
+    id?: string
+    chave: string
+    nome: string
+    cor?: string
+    ordem?: number
+    criado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutEtapas_crmInput
+    leads?: LeadCreateNestedManyWithoutEtapaInput
+  }
+
+  export type EtapaCrmUncheckedCreateInput = {
+    id?: string
+    empresa_id: string
+    chave: string
+    nome: string
+    cor?: string
+    ordem?: number
+    criado_em?: Date | string
+    leads?: LeadUncheckedCreateNestedManyWithoutEtapaInput
+  }
+
+  export type EtapaCrmUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    chave?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cor?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutEtapas_crmNestedInput
+    leads?: LeadUpdateManyWithoutEtapaNestedInput
+  }
+
+  export type EtapaCrmUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    chave?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cor?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    leads?: LeadUncheckedUpdateManyWithoutEtapaNestedInput
+  }
+
+  export type EtapaCrmCreateManyInput = {
+    id?: string
+    empresa_id: string
+    chave: string
+    nome: string
+    cor?: string
+    ordem?: number
+    criado_em?: Date | string
+  }
+
+  export type EtapaCrmUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    chave?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cor?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EtapaCrmUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    chave?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cor?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ComentarioCrmCreateInput = {
+    id?: string
+    autor_nome: string
+    mensagem: string
+    criado_em?: Date | string
+    lead: LeadCreateNestedOneWithoutComentariosInput
+    usuario?: UsuarioCreateNestedOneWithoutComentarios_crmInput
+  }
+
+  export type ComentarioCrmUncheckedCreateInput = {
+    id?: string
+    lead_id: string
+    usuario_id?: string | null
+    autor_nome: string
+    mensagem: string
+    criado_em?: Date | string
+  }
+
+  export type ComentarioCrmUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    autor_nome?: StringFieldUpdateOperationsInput | string
+    mensagem?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    lead?: LeadUpdateOneRequiredWithoutComentariosNestedInput
+    usuario?: UsuarioUpdateOneWithoutComentarios_crmNestedInput
+  }
+
+  export type ComentarioCrmUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    lead_id?: StringFieldUpdateOperationsInput | string
+    usuario_id?: NullableStringFieldUpdateOperationsInput | string | null
+    autor_nome?: StringFieldUpdateOperationsInput | string
+    mensagem?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ComentarioCrmCreateManyInput = {
+    id?: string
+    lead_id: string
+    usuario_id?: string | null
+    autor_nome: string
+    mensagem: string
+    criado_em?: Date | string
+  }
+
+  export type ComentarioCrmUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    autor_nome?: StringFieldUpdateOperationsInput | string
+    mensagem?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ComentarioCrmUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    lead_id?: StringFieldUpdateOperationsInput | string
+    usuario_id?: NullableStringFieldUpdateOperationsInput | string | null
+    autor_nome?: StringFieldUpdateOperationsInput | string
+    mensagem?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type LeadCreateInput = {
     id?: string
     nome: string
     empresa_nome?: string | null
+    contato_nome?: string | null
     email?: string | null
     telefone?: string | null
-    status?: $Enums.StatusLead
+    whatsapp?: string | null
+    etapa_chave?: string
     valor_estimado?: Decimal | DecimalJsLike | number | string | null
+    probabilidade?: number
+    previsao_fechamento?: Date | string | null
+    proxima_acao?: string | null
+    data_proxima_acao?: Date | string | null
     origem?: string | null
     observacoes?: string | null
-    ganho_em?: Date | string | null
-    perdido_em?: Date | string | null
     motivo_perda?: string | null
+    tags?: LeadCreatetagsInput | string[]
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutLeadsInput
     cliente?: ClienteCreateNestedOneWithoutLeadsInput
     responsavel?: UsuarioCreateNestedOneWithoutLeadsInput
-    atividades?: AtividadeCRMCreateNestedManyWithoutLeadInput
+    servico?: ServicoCreateNestedOneWithoutLeadsInput
+    etapa?: EtapaCrmCreateNestedOneWithoutLeadsInput
+    comentarios?: ComentarioCrmCreateNestedManyWithoutLeadInput
     propostas?: PropostaCreateNestedManyWithoutLeadInput
   }
 
@@ -68087,20 +69839,27 @@ export namespace Prisma {
     empresa_id: string
     cliente_id?: string | null
     responsavel_id?: string | null
+    servico_id?: string | null
+    etapa_id?: string | null
     nome: string
     empresa_nome?: string | null
+    contato_nome?: string | null
     email?: string | null
     telefone?: string | null
-    status?: $Enums.StatusLead
+    whatsapp?: string | null
+    etapa_chave?: string
     valor_estimado?: Decimal | DecimalJsLike | number | string | null
+    probabilidade?: number
+    previsao_fechamento?: Date | string | null
+    proxima_acao?: string | null
+    data_proxima_acao?: Date | string | null
     origem?: string | null
     observacoes?: string | null
-    ganho_em?: Date | string | null
-    perdido_em?: Date | string | null
     motivo_perda?: string | null
+    tags?: LeadCreatetagsInput | string[]
     criado_em?: Date | string
     atualizado_em?: Date | string
-    atividades?: AtividadeCRMUncheckedCreateNestedManyWithoutLeadInput
+    comentarios?: ComentarioCrmUncheckedCreateNestedManyWithoutLeadInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutLeadInput
   }
 
@@ -68108,21 +69867,28 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
     empresa_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_nome?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumStatusLeadFieldUpdateOperationsInput | $Enums.StatusLead
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_chave?: StringFieldUpdateOperationsInput | string
     valor_estimado?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probabilidade?: IntFieldUpdateOperationsInput | number
+    previsao_fechamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    proxima_acao?: NullableStringFieldUpdateOperationsInput | string | null
+    data_proxima_acao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     origem?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
-    ganho_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    perdido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     motivo_perda?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: LeadUpdatetagsInput | string[]
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutLeadsNestedInput
     cliente?: ClienteUpdateOneWithoutLeadsNestedInput
     responsavel?: UsuarioUpdateOneWithoutLeadsNestedInput
-    atividades?: AtividadeCRMUpdateManyWithoutLeadNestedInput
+    servico?: ServicoUpdateOneWithoutLeadsNestedInput
+    etapa?: EtapaCrmUpdateOneWithoutLeadsNestedInput
+    comentarios?: ComentarioCrmUpdateManyWithoutLeadNestedInput
     propostas?: PropostaUpdateManyWithoutLeadNestedInput
   }
 
@@ -68131,20 +69897,27 @@ export namespace Prisma {
     empresa_id?: StringFieldUpdateOperationsInput | string
     cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
     responsavel_id?: NullableStringFieldUpdateOperationsInput | string | null
+    servico_id?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_id?: NullableStringFieldUpdateOperationsInput | string | null
     nome?: StringFieldUpdateOperationsInput | string
     empresa_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_nome?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumStatusLeadFieldUpdateOperationsInput | $Enums.StatusLead
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_chave?: StringFieldUpdateOperationsInput | string
     valor_estimado?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probabilidade?: IntFieldUpdateOperationsInput | number
+    previsao_fechamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    proxima_acao?: NullableStringFieldUpdateOperationsInput | string | null
+    data_proxima_acao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     origem?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
-    ganho_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    perdido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     motivo_perda?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: LeadUpdatetagsInput | string[]
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
-    atividades?: AtividadeCRMUncheckedUpdateManyWithoutLeadNestedInput
+    comentarios?: ComentarioCrmUncheckedUpdateManyWithoutLeadNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutLeadNestedInput
   }
 
@@ -68153,17 +69926,24 @@ export namespace Prisma {
     empresa_id: string
     cliente_id?: string | null
     responsavel_id?: string | null
+    servico_id?: string | null
+    etapa_id?: string | null
     nome: string
     empresa_nome?: string | null
+    contato_nome?: string | null
     email?: string | null
     telefone?: string | null
-    status?: $Enums.StatusLead
+    whatsapp?: string | null
+    etapa_chave?: string
     valor_estimado?: Decimal | DecimalJsLike | number | string | null
+    probabilidade?: number
+    previsao_fechamento?: Date | string | null
+    proxima_acao?: string | null
+    data_proxima_acao?: Date | string | null
     origem?: string | null
     observacoes?: string | null
-    ganho_em?: Date | string | null
-    perdido_em?: Date | string | null
     motivo_perda?: string | null
+    tags?: LeadCreatetagsInput | string[]
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -68172,15 +69952,20 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
     empresa_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_nome?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumStatusLeadFieldUpdateOperationsInput | $Enums.StatusLead
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_chave?: StringFieldUpdateOperationsInput | string
     valor_estimado?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probabilidade?: IntFieldUpdateOperationsInput | number
+    previsao_fechamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    proxima_acao?: NullableStringFieldUpdateOperationsInput | string | null
+    data_proxima_acao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     origem?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
-    ganho_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    perdido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     motivo_perda?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: LeadUpdatetagsInput | string[]
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -68190,80 +69975,26 @@ export namespace Prisma {
     empresa_id?: StringFieldUpdateOperationsInput | string
     cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
     responsavel_id?: NullableStringFieldUpdateOperationsInput | string | null
+    servico_id?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_id?: NullableStringFieldUpdateOperationsInput | string | null
     nome?: StringFieldUpdateOperationsInput | string
     empresa_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_nome?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumStatusLeadFieldUpdateOperationsInput | $Enums.StatusLead
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_chave?: StringFieldUpdateOperationsInput | string
     valor_estimado?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probabilidade?: IntFieldUpdateOperationsInput | number
+    previsao_fechamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    proxima_acao?: NullableStringFieldUpdateOperationsInput | string | null
+    data_proxima_acao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     origem?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
-    ganho_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    perdido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     motivo_perda?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: LeadUpdatetagsInput | string[]
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type AtividadeCRMCreateInput = {
-    id?: string
-    tipo: string
-    descricao: string
-    data?: Date | string
-    lead: LeadCreateNestedOneWithoutAtividadesInput
-    usuario?: UsuarioCreateNestedOneWithoutAtividades_crmInput
-  }
-
-  export type AtividadeCRMUncheckedCreateInput = {
-    id?: string
-    lead_id: string
-    usuario_id?: string | null
-    tipo: string
-    descricao: string
-    data?: Date | string
-  }
-
-  export type AtividadeCRMUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    tipo?: StringFieldUpdateOperationsInput | string
-    descricao?: StringFieldUpdateOperationsInput | string
-    data?: DateTimeFieldUpdateOperationsInput | Date | string
-    lead?: LeadUpdateOneRequiredWithoutAtividadesNestedInput
-    usuario?: UsuarioUpdateOneWithoutAtividades_crmNestedInput
-  }
-
-  export type AtividadeCRMUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    lead_id?: StringFieldUpdateOperationsInput | string
-    usuario_id?: NullableStringFieldUpdateOperationsInput | string | null
-    tipo?: StringFieldUpdateOperationsInput | string
-    descricao?: StringFieldUpdateOperationsInput | string
-    data?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type AtividadeCRMCreateManyInput = {
-    id?: string
-    lead_id: string
-    usuario_id?: string | null
-    tipo: string
-    descricao: string
-    data?: Date | string
-  }
-
-  export type AtividadeCRMUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    tipo?: StringFieldUpdateOperationsInput | string
-    descricao?: StringFieldUpdateOperationsInput | string
-    data?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type AtividadeCRMUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    lead_id?: StringFieldUpdateOperationsInput | string
-    usuario_id?: NullableStringFieldUpdateOperationsInput | string | null
-    tipo?: StringFieldUpdateOperationsInput | string
-    descricao?: StringFieldUpdateOperationsInput | string
-    data?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PropostaCreateInput = {
@@ -71808,6 +73539,12 @@ export namespace Prisma {
     none?: AplicacaoDiagnosticoWhereInput
   }
 
+  export type EtapaCrmListRelationFilter = {
+    every?: EtapaCrmWhereInput
+    some?: EtapaCrmWhereInput
+    none?: EtapaCrmWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -71914,6 +73651,10 @@ export namespace Prisma {
   }
 
   export type AplicacaoDiagnosticoOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type EtapaCrmOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -72050,10 +73791,10 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type AtividadeCRMListRelationFilter = {
-    every?: AtividadeCRMWhereInput
-    some?: AtividadeCRMWhereInput
-    none?: AtividadeCRMWhereInput
+  export type ComentarioCrmListRelationFilter = {
+    every?: ComentarioCrmWhereInput
+    some?: ComentarioCrmWhereInput
+    none?: ComentarioCrmWhereInput
   }
 
   export type TarefaListRelationFilter = {
@@ -72086,7 +73827,7 @@ export namespace Prisma {
     none?: AprovacaoTarefaWhereInput
   }
 
-  export type AtividadeCRMOrderByRelationAggregateInput = {
+  export type ComentarioCrmOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -72673,11 +74414,124 @@ export namespace Prisma {
     valor_base?: SortOrder
   }
 
-  export type EnumStatusLeadFilter<$PrismaModel = never> = {
-    equals?: $Enums.StatusLead | EnumStatusLeadFieldRefInput<$PrismaModel>
-    in?: $Enums.StatusLead[] | ListEnumStatusLeadFieldRefInput<$PrismaModel>
-    notIn?: $Enums.StatusLead[] | ListEnumStatusLeadFieldRefInput<$PrismaModel>
-    not?: NestedEnumStatusLeadFilter<$PrismaModel> | $Enums.StatusLead
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type EtapaCrmEmpresa_idChaveCompoundUniqueInput = {
+    empresa_id: string
+    chave: string
+  }
+
+  export type EtapaCrmCountOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    chave?: SortOrder
+    nome?: SortOrder
+    cor?: SortOrder
+    ordem?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type EtapaCrmAvgOrderByAggregateInput = {
+    ordem?: SortOrder
+  }
+
+  export type EtapaCrmMaxOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    chave?: SortOrder
+    nome?: SortOrder
+    cor?: SortOrder
+    ordem?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type EtapaCrmMinOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    chave?: SortOrder
+    nome?: SortOrder
+    cor?: SortOrder
+    ordem?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type EtapaCrmSumOrderByAggregateInput = {
+    ordem?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type LeadScalarRelationFilter = {
+    is?: LeadWhereInput
+    isNot?: LeadWhereInput
+  }
+
+  export type ComentarioCrmCountOrderByAggregateInput = {
+    id?: SortOrder
+    lead_id?: SortOrder
+    usuario_id?: SortOrder
+    autor_nome?: SortOrder
+    mensagem?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type ComentarioCrmMaxOrderByAggregateInput = {
+    id?: SortOrder
+    lead_id?: SortOrder
+    usuario_id?: SortOrder
+    autor_nome?: SortOrder
+    mensagem?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type ComentarioCrmMinOrderByAggregateInput = {
+    id?: SortOrder
+    lead_id?: SortOrder
+    usuario_id?: SortOrder
+    autor_nome?: SortOrder
+    mensagem?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
+  export type ServicoNullableScalarRelationFilter = {
+    is?: ServicoWhereInput | null
+    isNot?: ServicoWhereInput | null
+  }
+
+  export type EtapaCrmNullableScalarRelationFilter = {
+    is?: EtapaCrmWhereInput | null
+    isNot?: EtapaCrmWhereInput | null
   }
 
   export type LeadCountOrderByAggregateInput = {
@@ -72685,23 +74539,31 @@ export namespace Prisma {
     empresa_id?: SortOrder
     cliente_id?: SortOrder
     responsavel_id?: SortOrder
+    servico_id?: SortOrder
+    etapa_id?: SortOrder
     nome?: SortOrder
     empresa_nome?: SortOrder
+    contato_nome?: SortOrder
     email?: SortOrder
     telefone?: SortOrder
-    status?: SortOrder
+    whatsapp?: SortOrder
+    etapa_chave?: SortOrder
     valor_estimado?: SortOrder
+    probabilidade?: SortOrder
+    previsao_fechamento?: SortOrder
+    proxima_acao?: SortOrder
+    data_proxima_acao?: SortOrder
     origem?: SortOrder
     observacoes?: SortOrder
-    ganho_em?: SortOrder
-    perdido_em?: SortOrder
     motivo_perda?: SortOrder
+    tags?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
 
   export type LeadAvgOrderByAggregateInput = {
     valor_estimado?: SortOrder
+    probabilidade?: SortOrder
   }
 
   export type LeadMaxOrderByAggregateInput = {
@@ -72709,16 +74571,22 @@ export namespace Prisma {
     empresa_id?: SortOrder
     cliente_id?: SortOrder
     responsavel_id?: SortOrder
+    servico_id?: SortOrder
+    etapa_id?: SortOrder
     nome?: SortOrder
     empresa_nome?: SortOrder
+    contato_nome?: SortOrder
     email?: SortOrder
     telefone?: SortOrder
-    status?: SortOrder
+    whatsapp?: SortOrder
+    etapa_chave?: SortOrder
     valor_estimado?: SortOrder
+    probabilidade?: SortOrder
+    previsao_fechamento?: SortOrder
+    proxima_acao?: SortOrder
+    data_proxima_acao?: SortOrder
     origem?: SortOrder
     observacoes?: SortOrder
-    ganho_em?: SortOrder
-    perdido_em?: SortOrder
     motivo_perda?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
@@ -72729,16 +74597,22 @@ export namespace Prisma {
     empresa_id?: SortOrder
     cliente_id?: SortOrder
     responsavel_id?: SortOrder
+    servico_id?: SortOrder
+    etapa_id?: SortOrder
     nome?: SortOrder
     empresa_nome?: SortOrder
+    contato_nome?: SortOrder
     email?: SortOrder
     telefone?: SortOrder
-    status?: SortOrder
+    whatsapp?: SortOrder
+    etapa_chave?: SortOrder
     valor_estimado?: SortOrder
+    probabilidade?: SortOrder
+    previsao_fechamento?: SortOrder
+    proxima_acao?: SortOrder
+    data_proxima_acao?: SortOrder
     origem?: SortOrder
     observacoes?: SortOrder
-    ganho_em?: SortOrder
-    perdido_em?: SortOrder
     motivo_perda?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
@@ -72746,48 +74620,7 @@ export namespace Prisma {
 
   export type LeadSumOrderByAggregateInput = {
     valor_estimado?: SortOrder
-  }
-
-  export type EnumStatusLeadWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.StatusLead | EnumStatusLeadFieldRefInput<$PrismaModel>
-    in?: $Enums.StatusLead[] | ListEnumStatusLeadFieldRefInput<$PrismaModel>
-    notIn?: $Enums.StatusLead[] | ListEnumStatusLeadFieldRefInput<$PrismaModel>
-    not?: NestedEnumStatusLeadWithAggregatesFilter<$PrismaModel> | $Enums.StatusLead
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumStatusLeadFilter<$PrismaModel>
-    _max?: NestedEnumStatusLeadFilter<$PrismaModel>
-  }
-
-  export type LeadScalarRelationFilter = {
-    is?: LeadWhereInput
-    isNot?: LeadWhereInput
-  }
-
-  export type AtividadeCRMCountOrderByAggregateInput = {
-    id?: SortOrder
-    lead_id?: SortOrder
-    usuario_id?: SortOrder
-    tipo?: SortOrder
-    descricao?: SortOrder
-    data?: SortOrder
-  }
-
-  export type AtividadeCRMMaxOrderByAggregateInput = {
-    id?: SortOrder
-    lead_id?: SortOrder
-    usuario_id?: SortOrder
-    tipo?: SortOrder
-    descricao?: SortOrder
-    data?: SortOrder
-  }
-
-  export type AtividadeCRMMinOrderByAggregateInput = {
-    id?: SortOrder
-    lead_id?: SortOrder
-    usuario_id?: SortOrder
-    tipo?: SortOrder
-    descricao?: SortOrder
-    data?: SortOrder
+    probabilidade?: SortOrder
   }
 
   export type EnumStatusPropostaFilter<$PrismaModel = never> = {
@@ -73031,17 +74864,6 @@ export namespace Prisma {
     _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
   export type PropostaScalarRelationFilter = {
     is?: PropostaWhereInput
     isNot?: PropostaWhereInput
@@ -73083,27 +74905,6 @@ export namespace Prisma {
 
   export type AceiteOtpSumOrderByAggregateInput = {
     tentativas?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type ServicoNullableScalarRelationFilter = {
-    is?: ServicoWhereInput | null
-    isNot?: ServicoWhereInput | null
   }
 
   export type ItemPropostaCountOrderByAggregateInput = {
@@ -75073,6 +76874,13 @@ export namespace Prisma {
     connect?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
   }
 
+  export type EtapaCrmCreateNestedManyWithoutEmpresaInput = {
+    create?: XOR<EtapaCrmCreateWithoutEmpresaInput, EtapaCrmUncheckedCreateWithoutEmpresaInput> | EtapaCrmCreateWithoutEmpresaInput[] | EtapaCrmUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: EtapaCrmCreateOrConnectWithoutEmpresaInput | EtapaCrmCreateOrConnectWithoutEmpresaInput[]
+    createMany?: EtapaCrmCreateManyEmpresaInputEnvelope
+    connect?: EtapaCrmWhereUniqueInput | EtapaCrmWhereUniqueInput[]
+  }
+
   export type MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput = {
     create?: XOR<MembroEmpresaCreateWithoutEmpresaInput, MembroEmpresaUncheckedCreateWithoutEmpresaInput> | MembroEmpresaCreateWithoutEmpresaInput[] | MembroEmpresaUncheckedCreateWithoutEmpresaInput[]
     connectOrCreate?: MembroEmpresaCreateOrConnectWithoutEmpresaInput | MembroEmpresaCreateOrConnectWithoutEmpresaInput[]
@@ -75253,6 +77061,13 @@ export namespace Prisma {
     connectOrCreate?: AplicacaoDiagnosticoCreateOrConnectWithoutEmpresaInput | AplicacaoDiagnosticoCreateOrConnectWithoutEmpresaInput[]
     createMany?: AplicacaoDiagnosticoCreateManyEmpresaInputEnvelope
     connect?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
+  }
+
+  export type EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput = {
+    create?: XOR<EtapaCrmCreateWithoutEmpresaInput, EtapaCrmUncheckedCreateWithoutEmpresaInput> | EtapaCrmCreateWithoutEmpresaInput[] | EtapaCrmUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: EtapaCrmCreateOrConnectWithoutEmpresaInput | EtapaCrmCreateOrConnectWithoutEmpresaInput[]
+    createMany?: EtapaCrmCreateManyEmpresaInputEnvelope
+    connect?: EtapaCrmWhereUniqueInput | EtapaCrmWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -75639,6 +77454,20 @@ export namespace Prisma {
     deleteMany?: AplicacaoDiagnosticoScalarWhereInput | AplicacaoDiagnosticoScalarWhereInput[]
   }
 
+  export type EtapaCrmUpdateManyWithoutEmpresaNestedInput = {
+    create?: XOR<EtapaCrmCreateWithoutEmpresaInput, EtapaCrmUncheckedCreateWithoutEmpresaInput> | EtapaCrmCreateWithoutEmpresaInput[] | EtapaCrmUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: EtapaCrmCreateOrConnectWithoutEmpresaInput | EtapaCrmCreateOrConnectWithoutEmpresaInput[]
+    upsert?: EtapaCrmUpsertWithWhereUniqueWithoutEmpresaInput | EtapaCrmUpsertWithWhereUniqueWithoutEmpresaInput[]
+    createMany?: EtapaCrmCreateManyEmpresaInputEnvelope
+    set?: EtapaCrmWhereUniqueInput | EtapaCrmWhereUniqueInput[]
+    disconnect?: EtapaCrmWhereUniqueInput | EtapaCrmWhereUniqueInput[]
+    delete?: EtapaCrmWhereUniqueInput | EtapaCrmWhereUniqueInput[]
+    connect?: EtapaCrmWhereUniqueInput | EtapaCrmWhereUniqueInput[]
+    update?: EtapaCrmUpdateWithWhereUniqueWithoutEmpresaInput | EtapaCrmUpdateWithWhereUniqueWithoutEmpresaInput[]
+    updateMany?: EtapaCrmUpdateManyWithWhereWithoutEmpresaInput | EtapaCrmUpdateManyWithWhereWithoutEmpresaInput[]
+    deleteMany?: EtapaCrmScalarWhereInput | EtapaCrmScalarWhereInput[]
+  }
+
   export type MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput = {
     create?: XOR<MembroEmpresaCreateWithoutEmpresaInput, MembroEmpresaUncheckedCreateWithoutEmpresaInput> | MembroEmpresaCreateWithoutEmpresaInput[] | MembroEmpresaUncheckedCreateWithoutEmpresaInput[]
     connectOrCreate?: MembroEmpresaCreateOrConnectWithoutEmpresaInput | MembroEmpresaCreateOrConnectWithoutEmpresaInput[]
@@ -76003,6 +77832,20 @@ export namespace Prisma {
     deleteMany?: AplicacaoDiagnosticoScalarWhereInput | AplicacaoDiagnosticoScalarWhereInput[]
   }
 
+  export type EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput = {
+    create?: XOR<EtapaCrmCreateWithoutEmpresaInput, EtapaCrmUncheckedCreateWithoutEmpresaInput> | EtapaCrmCreateWithoutEmpresaInput[] | EtapaCrmUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: EtapaCrmCreateOrConnectWithoutEmpresaInput | EtapaCrmCreateOrConnectWithoutEmpresaInput[]
+    upsert?: EtapaCrmUpsertWithWhereUniqueWithoutEmpresaInput | EtapaCrmUpsertWithWhereUniqueWithoutEmpresaInput[]
+    createMany?: EtapaCrmCreateManyEmpresaInputEnvelope
+    set?: EtapaCrmWhereUniqueInput | EtapaCrmWhereUniqueInput[]
+    disconnect?: EtapaCrmWhereUniqueInput | EtapaCrmWhereUniqueInput[]
+    delete?: EtapaCrmWhereUniqueInput | EtapaCrmWhereUniqueInput[]
+    connect?: EtapaCrmWhereUniqueInput | EtapaCrmWhereUniqueInput[]
+    update?: EtapaCrmUpdateWithWhereUniqueWithoutEmpresaInput | EtapaCrmUpdateWithWhereUniqueWithoutEmpresaInput[]
+    updateMany?: EtapaCrmUpdateManyWithWhereWithoutEmpresaInput | EtapaCrmUpdateManyWithWhereWithoutEmpresaInput[]
+    deleteMany?: EtapaCrmScalarWhereInput | EtapaCrmScalarWhereInput[]
+  }
+
   export type MembroEmpresaCreateNestedManyWithoutUsuarioInput = {
     create?: XOR<MembroEmpresaCreateWithoutUsuarioInput, MembroEmpresaUncheckedCreateWithoutUsuarioInput> | MembroEmpresaCreateWithoutUsuarioInput[] | MembroEmpresaUncheckedCreateWithoutUsuarioInput[]
     connectOrCreate?: MembroEmpresaCreateOrConnectWithoutUsuarioInput | MembroEmpresaCreateOrConnectWithoutUsuarioInput[]
@@ -76024,11 +77867,11 @@ export namespace Prisma {
     connect?: LeadWhereUniqueInput | LeadWhereUniqueInput[]
   }
 
-  export type AtividadeCRMCreateNestedManyWithoutUsuarioInput = {
-    create?: XOR<AtividadeCRMCreateWithoutUsuarioInput, AtividadeCRMUncheckedCreateWithoutUsuarioInput> | AtividadeCRMCreateWithoutUsuarioInput[] | AtividadeCRMUncheckedCreateWithoutUsuarioInput[]
-    connectOrCreate?: AtividadeCRMCreateOrConnectWithoutUsuarioInput | AtividadeCRMCreateOrConnectWithoutUsuarioInput[]
-    createMany?: AtividadeCRMCreateManyUsuarioInputEnvelope
-    connect?: AtividadeCRMWhereUniqueInput | AtividadeCRMWhereUniqueInput[]
+  export type ComentarioCrmCreateNestedManyWithoutUsuarioInput = {
+    create?: XOR<ComentarioCrmCreateWithoutUsuarioInput, ComentarioCrmUncheckedCreateWithoutUsuarioInput> | ComentarioCrmCreateWithoutUsuarioInput[] | ComentarioCrmUncheckedCreateWithoutUsuarioInput[]
+    connectOrCreate?: ComentarioCrmCreateOrConnectWithoutUsuarioInput | ComentarioCrmCreateOrConnectWithoutUsuarioInput[]
+    createMany?: ComentarioCrmCreateManyUsuarioInputEnvelope
+    connect?: ComentarioCrmWhereUniqueInput | ComentarioCrmWhereUniqueInput[]
   }
 
   export type PropostaCreateNestedManyWithoutCriadorInput = {
@@ -76164,11 +78007,11 @@ export namespace Prisma {
     connect?: LeadWhereUniqueInput | LeadWhereUniqueInput[]
   }
 
-  export type AtividadeCRMUncheckedCreateNestedManyWithoutUsuarioInput = {
-    create?: XOR<AtividadeCRMCreateWithoutUsuarioInput, AtividadeCRMUncheckedCreateWithoutUsuarioInput> | AtividadeCRMCreateWithoutUsuarioInput[] | AtividadeCRMUncheckedCreateWithoutUsuarioInput[]
-    connectOrCreate?: AtividadeCRMCreateOrConnectWithoutUsuarioInput | AtividadeCRMCreateOrConnectWithoutUsuarioInput[]
-    createMany?: AtividadeCRMCreateManyUsuarioInputEnvelope
-    connect?: AtividadeCRMWhereUniqueInput | AtividadeCRMWhereUniqueInput[]
+  export type ComentarioCrmUncheckedCreateNestedManyWithoutUsuarioInput = {
+    create?: XOR<ComentarioCrmCreateWithoutUsuarioInput, ComentarioCrmUncheckedCreateWithoutUsuarioInput> | ComentarioCrmCreateWithoutUsuarioInput[] | ComentarioCrmUncheckedCreateWithoutUsuarioInput[]
+    connectOrCreate?: ComentarioCrmCreateOrConnectWithoutUsuarioInput | ComentarioCrmCreateOrConnectWithoutUsuarioInput[]
+    createMany?: ComentarioCrmCreateManyUsuarioInputEnvelope
+    connect?: ComentarioCrmWhereUniqueInput | ComentarioCrmWhereUniqueInput[]
   }
 
   export type PropostaUncheckedCreateNestedManyWithoutCriadorInput = {
@@ -76325,18 +78168,18 @@ export namespace Prisma {
     deleteMany?: LeadScalarWhereInput | LeadScalarWhereInput[]
   }
 
-  export type AtividadeCRMUpdateManyWithoutUsuarioNestedInput = {
-    create?: XOR<AtividadeCRMCreateWithoutUsuarioInput, AtividadeCRMUncheckedCreateWithoutUsuarioInput> | AtividadeCRMCreateWithoutUsuarioInput[] | AtividadeCRMUncheckedCreateWithoutUsuarioInput[]
-    connectOrCreate?: AtividadeCRMCreateOrConnectWithoutUsuarioInput | AtividadeCRMCreateOrConnectWithoutUsuarioInput[]
-    upsert?: AtividadeCRMUpsertWithWhereUniqueWithoutUsuarioInput | AtividadeCRMUpsertWithWhereUniqueWithoutUsuarioInput[]
-    createMany?: AtividadeCRMCreateManyUsuarioInputEnvelope
-    set?: AtividadeCRMWhereUniqueInput | AtividadeCRMWhereUniqueInput[]
-    disconnect?: AtividadeCRMWhereUniqueInput | AtividadeCRMWhereUniqueInput[]
-    delete?: AtividadeCRMWhereUniqueInput | AtividadeCRMWhereUniqueInput[]
-    connect?: AtividadeCRMWhereUniqueInput | AtividadeCRMWhereUniqueInput[]
-    update?: AtividadeCRMUpdateWithWhereUniqueWithoutUsuarioInput | AtividadeCRMUpdateWithWhereUniqueWithoutUsuarioInput[]
-    updateMany?: AtividadeCRMUpdateManyWithWhereWithoutUsuarioInput | AtividadeCRMUpdateManyWithWhereWithoutUsuarioInput[]
-    deleteMany?: AtividadeCRMScalarWhereInput | AtividadeCRMScalarWhereInput[]
+  export type ComentarioCrmUpdateManyWithoutUsuarioNestedInput = {
+    create?: XOR<ComentarioCrmCreateWithoutUsuarioInput, ComentarioCrmUncheckedCreateWithoutUsuarioInput> | ComentarioCrmCreateWithoutUsuarioInput[] | ComentarioCrmUncheckedCreateWithoutUsuarioInput[]
+    connectOrCreate?: ComentarioCrmCreateOrConnectWithoutUsuarioInput | ComentarioCrmCreateOrConnectWithoutUsuarioInput[]
+    upsert?: ComentarioCrmUpsertWithWhereUniqueWithoutUsuarioInput | ComentarioCrmUpsertWithWhereUniqueWithoutUsuarioInput[]
+    createMany?: ComentarioCrmCreateManyUsuarioInputEnvelope
+    set?: ComentarioCrmWhereUniqueInput | ComentarioCrmWhereUniqueInput[]
+    disconnect?: ComentarioCrmWhereUniqueInput | ComentarioCrmWhereUniqueInput[]
+    delete?: ComentarioCrmWhereUniqueInput | ComentarioCrmWhereUniqueInput[]
+    connect?: ComentarioCrmWhereUniqueInput | ComentarioCrmWhereUniqueInput[]
+    update?: ComentarioCrmUpdateWithWhereUniqueWithoutUsuarioInput | ComentarioCrmUpdateWithWhereUniqueWithoutUsuarioInput[]
+    updateMany?: ComentarioCrmUpdateManyWithWhereWithoutUsuarioInput | ComentarioCrmUpdateManyWithWhereWithoutUsuarioInput[]
+    deleteMany?: ComentarioCrmScalarWhereInput | ComentarioCrmScalarWhereInput[]
   }
 
   export type PropostaUpdateManyWithoutCriadorNestedInput = {
@@ -76605,18 +78448,18 @@ export namespace Prisma {
     deleteMany?: LeadScalarWhereInput | LeadScalarWhereInput[]
   }
 
-  export type AtividadeCRMUncheckedUpdateManyWithoutUsuarioNestedInput = {
-    create?: XOR<AtividadeCRMCreateWithoutUsuarioInput, AtividadeCRMUncheckedCreateWithoutUsuarioInput> | AtividadeCRMCreateWithoutUsuarioInput[] | AtividadeCRMUncheckedCreateWithoutUsuarioInput[]
-    connectOrCreate?: AtividadeCRMCreateOrConnectWithoutUsuarioInput | AtividadeCRMCreateOrConnectWithoutUsuarioInput[]
-    upsert?: AtividadeCRMUpsertWithWhereUniqueWithoutUsuarioInput | AtividadeCRMUpsertWithWhereUniqueWithoutUsuarioInput[]
-    createMany?: AtividadeCRMCreateManyUsuarioInputEnvelope
-    set?: AtividadeCRMWhereUniqueInput | AtividadeCRMWhereUniqueInput[]
-    disconnect?: AtividadeCRMWhereUniqueInput | AtividadeCRMWhereUniqueInput[]
-    delete?: AtividadeCRMWhereUniqueInput | AtividadeCRMWhereUniqueInput[]
-    connect?: AtividadeCRMWhereUniqueInput | AtividadeCRMWhereUniqueInput[]
-    update?: AtividadeCRMUpdateWithWhereUniqueWithoutUsuarioInput | AtividadeCRMUpdateWithWhereUniqueWithoutUsuarioInput[]
-    updateMany?: AtividadeCRMUpdateManyWithWhereWithoutUsuarioInput | AtividadeCRMUpdateManyWithWhereWithoutUsuarioInput[]
-    deleteMany?: AtividadeCRMScalarWhereInput | AtividadeCRMScalarWhereInput[]
+  export type ComentarioCrmUncheckedUpdateManyWithoutUsuarioNestedInput = {
+    create?: XOR<ComentarioCrmCreateWithoutUsuarioInput, ComentarioCrmUncheckedCreateWithoutUsuarioInput> | ComentarioCrmCreateWithoutUsuarioInput[] | ComentarioCrmUncheckedCreateWithoutUsuarioInput[]
+    connectOrCreate?: ComentarioCrmCreateOrConnectWithoutUsuarioInput | ComentarioCrmCreateOrConnectWithoutUsuarioInput[]
+    upsert?: ComentarioCrmUpsertWithWhereUniqueWithoutUsuarioInput | ComentarioCrmUpsertWithWhereUniqueWithoutUsuarioInput[]
+    createMany?: ComentarioCrmCreateManyUsuarioInputEnvelope
+    set?: ComentarioCrmWhereUniqueInput | ComentarioCrmWhereUniqueInput[]
+    disconnect?: ComentarioCrmWhereUniqueInput | ComentarioCrmWhereUniqueInput[]
+    delete?: ComentarioCrmWhereUniqueInput | ComentarioCrmWhereUniqueInput[]
+    connect?: ComentarioCrmWhereUniqueInput | ComentarioCrmWhereUniqueInput[]
+    update?: ComentarioCrmUpdateWithWhereUniqueWithoutUsuarioInput | ComentarioCrmUpdateWithWhereUniqueWithoutUsuarioInput[]
+    updateMany?: ComentarioCrmUpdateManyWithWhereWithoutUsuarioInput | ComentarioCrmUpdateManyWithWhereWithoutUsuarioInput[]
+    deleteMany?: ComentarioCrmScalarWhereInput | ComentarioCrmScalarWhereInput[]
   }
 
   export type PropostaUncheckedUpdateManyWithoutCriadorNestedInput = {
@@ -77780,11 +79623,25 @@ export namespace Prisma {
     connect?: ItemPropostaWhereUniqueInput | ItemPropostaWhereUniqueInput[]
   }
 
+  export type LeadCreateNestedManyWithoutServicoInput = {
+    create?: XOR<LeadCreateWithoutServicoInput, LeadUncheckedCreateWithoutServicoInput> | LeadCreateWithoutServicoInput[] | LeadUncheckedCreateWithoutServicoInput[]
+    connectOrCreate?: LeadCreateOrConnectWithoutServicoInput | LeadCreateOrConnectWithoutServicoInput[]
+    createMany?: LeadCreateManyServicoInputEnvelope
+    connect?: LeadWhereUniqueInput | LeadWhereUniqueInput[]
+  }
+
   export type ItemPropostaUncheckedCreateNestedManyWithoutServicoInput = {
     create?: XOR<ItemPropostaCreateWithoutServicoInput, ItemPropostaUncheckedCreateWithoutServicoInput> | ItemPropostaCreateWithoutServicoInput[] | ItemPropostaUncheckedCreateWithoutServicoInput[]
     connectOrCreate?: ItemPropostaCreateOrConnectWithoutServicoInput | ItemPropostaCreateOrConnectWithoutServicoInput[]
     createMany?: ItemPropostaCreateManyServicoInputEnvelope
     connect?: ItemPropostaWhereUniqueInput | ItemPropostaWhereUniqueInput[]
+  }
+
+  export type LeadUncheckedCreateNestedManyWithoutServicoInput = {
+    create?: XOR<LeadCreateWithoutServicoInput, LeadUncheckedCreateWithoutServicoInput> | LeadCreateWithoutServicoInput[] | LeadUncheckedCreateWithoutServicoInput[]
+    connectOrCreate?: LeadCreateOrConnectWithoutServicoInput | LeadCreateOrConnectWithoutServicoInput[]
+    createMany?: LeadCreateManyServicoInputEnvelope
+    connect?: LeadWhereUniqueInput | LeadWhereUniqueInput[]
   }
 
   export type EmpresaUpdateOneRequiredWithoutServicosNestedInput = {
@@ -77819,6 +79676,20 @@ export namespace Prisma {
     deleteMany?: ItemPropostaScalarWhereInput | ItemPropostaScalarWhereInput[]
   }
 
+  export type LeadUpdateManyWithoutServicoNestedInput = {
+    create?: XOR<LeadCreateWithoutServicoInput, LeadUncheckedCreateWithoutServicoInput> | LeadCreateWithoutServicoInput[] | LeadUncheckedCreateWithoutServicoInput[]
+    connectOrCreate?: LeadCreateOrConnectWithoutServicoInput | LeadCreateOrConnectWithoutServicoInput[]
+    upsert?: LeadUpsertWithWhereUniqueWithoutServicoInput | LeadUpsertWithWhereUniqueWithoutServicoInput[]
+    createMany?: LeadCreateManyServicoInputEnvelope
+    set?: LeadWhereUniqueInput | LeadWhereUniqueInput[]
+    disconnect?: LeadWhereUniqueInput | LeadWhereUniqueInput[]
+    delete?: LeadWhereUniqueInput | LeadWhereUniqueInput[]
+    connect?: LeadWhereUniqueInput | LeadWhereUniqueInput[]
+    update?: LeadUpdateWithWhereUniqueWithoutServicoInput | LeadUpdateWithWhereUniqueWithoutServicoInput[]
+    updateMany?: LeadUpdateManyWithWhereWithoutServicoInput | LeadUpdateManyWithWhereWithoutServicoInput[]
+    deleteMany?: LeadScalarWhereInput | LeadScalarWhereInput[]
+  }
+
   export type ItemPropostaUncheckedUpdateManyWithoutServicoNestedInput = {
     create?: XOR<ItemPropostaCreateWithoutServicoInput, ItemPropostaUncheckedCreateWithoutServicoInput> | ItemPropostaCreateWithoutServicoInput[] | ItemPropostaUncheckedCreateWithoutServicoInput[]
     connectOrCreate?: ItemPropostaCreateOrConnectWithoutServicoInput | ItemPropostaCreateOrConnectWithoutServicoInput[]
@@ -77831,6 +79702,118 @@ export namespace Prisma {
     update?: ItemPropostaUpdateWithWhereUniqueWithoutServicoInput | ItemPropostaUpdateWithWhereUniqueWithoutServicoInput[]
     updateMany?: ItemPropostaUpdateManyWithWhereWithoutServicoInput | ItemPropostaUpdateManyWithWhereWithoutServicoInput[]
     deleteMany?: ItemPropostaScalarWhereInput | ItemPropostaScalarWhereInput[]
+  }
+
+  export type LeadUncheckedUpdateManyWithoutServicoNestedInput = {
+    create?: XOR<LeadCreateWithoutServicoInput, LeadUncheckedCreateWithoutServicoInput> | LeadCreateWithoutServicoInput[] | LeadUncheckedCreateWithoutServicoInput[]
+    connectOrCreate?: LeadCreateOrConnectWithoutServicoInput | LeadCreateOrConnectWithoutServicoInput[]
+    upsert?: LeadUpsertWithWhereUniqueWithoutServicoInput | LeadUpsertWithWhereUniqueWithoutServicoInput[]
+    createMany?: LeadCreateManyServicoInputEnvelope
+    set?: LeadWhereUniqueInput | LeadWhereUniqueInput[]
+    disconnect?: LeadWhereUniqueInput | LeadWhereUniqueInput[]
+    delete?: LeadWhereUniqueInput | LeadWhereUniqueInput[]
+    connect?: LeadWhereUniqueInput | LeadWhereUniqueInput[]
+    update?: LeadUpdateWithWhereUniqueWithoutServicoInput | LeadUpdateWithWhereUniqueWithoutServicoInput[]
+    updateMany?: LeadUpdateManyWithWhereWithoutServicoInput | LeadUpdateManyWithWhereWithoutServicoInput[]
+    deleteMany?: LeadScalarWhereInput | LeadScalarWhereInput[]
+  }
+
+  export type EmpresaCreateNestedOneWithoutEtapas_crmInput = {
+    create?: XOR<EmpresaCreateWithoutEtapas_crmInput, EmpresaUncheckedCreateWithoutEtapas_crmInput>
+    connectOrCreate?: EmpresaCreateOrConnectWithoutEtapas_crmInput
+    connect?: EmpresaWhereUniqueInput
+  }
+
+  export type LeadCreateNestedManyWithoutEtapaInput = {
+    create?: XOR<LeadCreateWithoutEtapaInput, LeadUncheckedCreateWithoutEtapaInput> | LeadCreateWithoutEtapaInput[] | LeadUncheckedCreateWithoutEtapaInput[]
+    connectOrCreate?: LeadCreateOrConnectWithoutEtapaInput | LeadCreateOrConnectWithoutEtapaInput[]
+    createMany?: LeadCreateManyEtapaInputEnvelope
+    connect?: LeadWhereUniqueInput | LeadWhereUniqueInput[]
+  }
+
+  export type LeadUncheckedCreateNestedManyWithoutEtapaInput = {
+    create?: XOR<LeadCreateWithoutEtapaInput, LeadUncheckedCreateWithoutEtapaInput> | LeadCreateWithoutEtapaInput[] | LeadUncheckedCreateWithoutEtapaInput[]
+    connectOrCreate?: LeadCreateOrConnectWithoutEtapaInput | LeadCreateOrConnectWithoutEtapaInput[]
+    createMany?: LeadCreateManyEtapaInputEnvelope
+    connect?: LeadWhereUniqueInput | LeadWhereUniqueInput[]
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type EmpresaUpdateOneRequiredWithoutEtapas_crmNestedInput = {
+    create?: XOR<EmpresaCreateWithoutEtapas_crmInput, EmpresaUncheckedCreateWithoutEtapas_crmInput>
+    connectOrCreate?: EmpresaCreateOrConnectWithoutEtapas_crmInput
+    upsert?: EmpresaUpsertWithoutEtapas_crmInput
+    connect?: EmpresaWhereUniqueInput
+    update?: XOR<XOR<EmpresaUpdateToOneWithWhereWithoutEtapas_crmInput, EmpresaUpdateWithoutEtapas_crmInput>, EmpresaUncheckedUpdateWithoutEtapas_crmInput>
+  }
+
+  export type LeadUpdateManyWithoutEtapaNestedInput = {
+    create?: XOR<LeadCreateWithoutEtapaInput, LeadUncheckedCreateWithoutEtapaInput> | LeadCreateWithoutEtapaInput[] | LeadUncheckedCreateWithoutEtapaInput[]
+    connectOrCreate?: LeadCreateOrConnectWithoutEtapaInput | LeadCreateOrConnectWithoutEtapaInput[]
+    upsert?: LeadUpsertWithWhereUniqueWithoutEtapaInput | LeadUpsertWithWhereUniqueWithoutEtapaInput[]
+    createMany?: LeadCreateManyEtapaInputEnvelope
+    set?: LeadWhereUniqueInput | LeadWhereUniqueInput[]
+    disconnect?: LeadWhereUniqueInput | LeadWhereUniqueInput[]
+    delete?: LeadWhereUniqueInput | LeadWhereUniqueInput[]
+    connect?: LeadWhereUniqueInput | LeadWhereUniqueInput[]
+    update?: LeadUpdateWithWhereUniqueWithoutEtapaInput | LeadUpdateWithWhereUniqueWithoutEtapaInput[]
+    updateMany?: LeadUpdateManyWithWhereWithoutEtapaInput | LeadUpdateManyWithWhereWithoutEtapaInput[]
+    deleteMany?: LeadScalarWhereInput | LeadScalarWhereInput[]
+  }
+
+  export type LeadUncheckedUpdateManyWithoutEtapaNestedInput = {
+    create?: XOR<LeadCreateWithoutEtapaInput, LeadUncheckedCreateWithoutEtapaInput> | LeadCreateWithoutEtapaInput[] | LeadUncheckedCreateWithoutEtapaInput[]
+    connectOrCreate?: LeadCreateOrConnectWithoutEtapaInput | LeadCreateOrConnectWithoutEtapaInput[]
+    upsert?: LeadUpsertWithWhereUniqueWithoutEtapaInput | LeadUpsertWithWhereUniqueWithoutEtapaInput[]
+    createMany?: LeadCreateManyEtapaInputEnvelope
+    set?: LeadWhereUniqueInput | LeadWhereUniqueInput[]
+    disconnect?: LeadWhereUniqueInput | LeadWhereUniqueInput[]
+    delete?: LeadWhereUniqueInput | LeadWhereUniqueInput[]
+    connect?: LeadWhereUniqueInput | LeadWhereUniqueInput[]
+    update?: LeadUpdateWithWhereUniqueWithoutEtapaInput | LeadUpdateWithWhereUniqueWithoutEtapaInput[]
+    updateMany?: LeadUpdateManyWithWhereWithoutEtapaInput | LeadUpdateManyWithWhereWithoutEtapaInput[]
+    deleteMany?: LeadScalarWhereInput | LeadScalarWhereInput[]
+  }
+
+  export type LeadCreateNestedOneWithoutComentariosInput = {
+    create?: XOR<LeadCreateWithoutComentariosInput, LeadUncheckedCreateWithoutComentariosInput>
+    connectOrCreate?: LeadCreateOrConnectWithoutComentariosInput
+    connect?: LeadWhereUniqueInput
+  }
+
+  export type UsuarioCreateNestedOneWithoutComentarios_crmInput = {
+    create?: XOR<UsuarioCreateWithoutComentarios_crmInput, UsuarioUncheckedCreateWithoutComentarios_crmInput>
+    connectOrCreate?: UsuarioCreateOrConnectWithoutComentarios_crmInput
+    connect?: UsuarioWhereUniqueInput
+  }
+
+  export type LeadUpdateOneRequiredWithoutComentariosNestedInput = {
+    create?: XOR<LeadCreateWithoutComentariosInput, LeadUncheckedCreateWithoutComentariosInput>
+    connectOrCreate?: LeadCreateOrConnectWithoutComentariosInput
+    upsert?: LeadUpsertWithoutComentariosInput
+    connect?: LeadWhereUniqueInput
+    update?: XOR<XOR<LeadUpdateToOneWithWhereWithoutComentariosInput, LeadUpdateWithoutComentariosInput>, LeadUncheckedUpdateWithoutComentariosInput>
+  }
+
+  export type UsuarioUpdateOneWithoutComentarios_crmNestedInput = {
+    create?: XOR<UsuarioCreateWithoutComentarios_crmInput, UsuarioUncheckedCreateWithoutComentarios_crmInput>
+    connectOrCreate?: UsuarioCreateOrConnectWithoutComentarios_crmInput
+    upsert?: UsuarioUpsertWithoutComentarios_crmInput
+    disconnect?: UsuarioWhereInput | boolean
+    delete?: UsuarioWhereInput | boolean
+    connect?: UsuarioWhereUniqueInput
+    update?: XOR<XOR<UsuarioUpdateToOneWithWhereWithoutComentarios_crmInput, UsuarioUpdateWithoutComentarios_crmInput>, UsuarioUncheckedUpdateWithoutComentarios_crmInput>
+  }
+
+  export type LeadCreatetagsInput = {
+    set: string[]
   }
 
   export type EmpresaCreateNestedOneWithoutLeadsInput = {
@@ -77851,11 +79834,23 @@ export namespace Prisma {
     connect?: UsuarioWhereUniqueInput
   }
 
-  export type AtividadeCRMCreateNestedManyWithoutLeadInput = {
-    create?: XOR<AtividadeCRMCreateWithoutLeadInput, AtividadeCRMUncheckedCreateWithoutLeadInput> | AtividadeCRMCreateWithoutLeadInput[] | AtividadeCRMUncheckedCreateWithoutLeadInput[]
-    connectOrCreate?: AtividadeCRMCreateOrConnectWithoutLeadInput | AtividadeCRMCreateOrConnectWithoutLeadInput[]
-    createMany?: AtividadeCRMCreateManyLeadInputEnvelope
-    connect?: AtividadeCRMWhereUniqueInput | AtividadeCRMWhereUniqueInput[]
+  export type ServicoCreateNestedOneWithoutLeadsInput = {
+    create?: XOR<ServicoCreateWithoutLeadsInput, ServicoUncheckedCreateWithoutLeadsInput>
+    connectOrCreate?: ServicoCreateOrConnectWithoutLeadsInput
+    connect?: ServicoWhereUniqueInput
+  }
+
+  export type EtapaCrmCreateNestedOneWithoutLeadsInput = {
+    create?: XOR<EtapaCrmCreateWithoutLeadsInput, EtapaCrmUncheckedCreateWithoutLeadsInput>
+    connectOrCreate?: EtapaCrmCreateOrConnectWithoutLeadsInput
+    connect?: EtapaCrmWhereUniqueInput
+  }
+
+  export type ComentarioCrmCreateNestedManyWithoutLeadInput = {
+    create?: XOR<ComentarioCrmCreateWithoutLeadInput, ComentarioCrmUncheckedCreateWithoutLeadInput> | ComentarioCrmCreateWithoutLeadInput[] | ComentarioCrmUncheckedCreateWithoutLeadInput[]
+    connectOrCreate?: ComentarioCrmCreateOrConnectWithoutLeadInput | ComentarioCrmCreateOrConnectWithoutLeadInput[]
+    createMany?: ComentarioCrmCreateManyLeadInputEnvelope
+    connect?: ComentarioCrmWhereUniqueInput | ComentarioCrmWhereUniqueInput[]
   }
 
   export type PropostaCreateNestedManyWithoutLeadInput = {
@@ -77865,11 +79860,11 @@ export namespace Prisma {
     connect?: PropostaWhereUniqueInput | PropostaWhereUniqueInput[]
   }
 
-  export type AtividadeCRMUncheckedCreateNestedManyWithoutLeadInput = {
-    create?: XOR<AtividadeCRMCreateWithoutLeadInput, AtividadeCRMUncheckedCreateWithoutLeadInput> | AtividadeCRMCreateWithoutLeadInput[] | AtividadeCRMUncheckedCreateWithoutLeadInput[]
-    connectOrCreate?: AtividadeCRMCreateOrConnectWithoutLeadInput | AtividadeCRMCreateOrConnectWithoutLeadInput[]
-    createMany?: AtividadeCRMCreateManyLeadInputEnvelope
-    connect?: AtividadeCRMWhereUniqueInput | AtividadeCRMWhereUniqueInput[]
+  export type ComentarioCrmUncheckedCreateNestedManyWithoutLeadInput = {
+    create?: XOR<ComentarioCrmCreateWithoutLeadInput, ComentarioCrmUncheckedCreateWithoutLeadInput> | ComentarioCrmCreateWithoutLeadInput[] | ComentarioCrmUncheckedCreateWithoutLeadInput[]
+    connectOrCreate?: ComentarioCrmCreateOrConnectWithoutLeadInput | ComentarioCrmCreateOrConnectWithoutLeadInput[]
+    createMany?: ComentarioCrmCreateManyLeadInputEnvelope
+    connect?: ComentarioCrmWhereUniqueInput | ComentarioCrmWhereUniqueInput[]
   }
 
   export type PropostaUncheckedCreateNestedManyWithoutLeadInput = {
@@ -77879,8 +79874,9 @@ export namespace Prisma {
     connect?: PropostaWhereUniqueInput | PropostaWhereUniqueInput[]
   }
 
-  export type EnumStatusLeadFieldUpdateOperationsInput = {
-    set?: $Enums.StatusLead
+  export type LeadUpdatetagsInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type EmpresaUpdateOneRequiredWithoutLeadsNestedInput = {
@@ -77911,18 +79907,38 @@ export namespace Prisma {
     update?: XOR<XOR<UsuarioUpdateToOneWithWhereWithoutLeadsInput, UsuarioUpdateWithoutLeadsInput>, UsuarioUncheckedUpdateWithoutLeadsInput>
   }
 
-  export type AtividadeCRMUpdateManyWithoutLeadNestedInput = {
-    create?: XOR<AtividadeCRMCreateWithoutLeadInput, AtividadeCRMUncheckedCreateWithoutLeadInput> | AtividadeCRMCreateWithoutLeadInput[] | AtividadeCRMUncheckedCreateWithoutLeadInput[]
-    connectOrCreate?: AtividadeCRMCreateOrConnectWithoutLeadInput | AtividadeCRMCreateOrConnectWithoutLeadInput[]
-    upsert?: AtividadeCRMUpsertWithWhereUniqueWithoutLeadInput | AtividadeCRMUpsertWithWhereUniqueWithoutLeadInput[]
-    createMany?: AtividadeCRMCreateManyLeadInputEnvelope
-    set?: AtividadeCRMWhereUniqueInput | AtividadeCRMWhereUniqueInput[]
-    disconnect?: AtividadeCRMWhereUniqueInput | AtividadeCRMWhereUniqueInput[]
-    delete?: AtividadeCRMWhereUniqueInput | AtividadeCRMWhereUniqueInput[]
-    connect?: AtividadeCRMWhereUniqueInput | AtividadeCRMWhereUniqueInput[]
-    update?: AtividadeCRMUpdateWithWhereUniqueWithoutLeadInput | AtividadeCRMUpdateWithWhereUniqueWithoutLeadInput[]
-    updateMany?: AtividadeCRMUpdateManyWithWhereWithoutLeadInput | AtividadeCRMUpdateManyWithWhereWithoutLeadInput[]
-    deleteMany?: AtividadeCRMScalarWhereInput | AtividadeCRMScalarWhereInput[]
+  export type ServicoUpdateOneWithoutLeadsNestedInput = {
+    create?: XOR<ServicoCreateWithoutLeadsInput, ServicoUncheckedCreateWithoutLeadsInput>
+    connectOrCreate?: ServicoCreateOrConnectWithoutLeadsInput
+    upsert?: ServicoUpsertWithoutLeadsInput
+    disconnect?: ServicoWhereInput | boolean
+    delete?: ServicoWhereInput | boolean
+    connect?: ServicoWhereUniqueInput
+    update?: XOR<XOR<ServicoUpdateToOneWithWhereWithoutLeadsInput, ServicoUpdateWithoutLeadsInput>, ServicoUncheckedUpdateWithoutLeadsInput>
+  }
+
+  export type EtapaCrmUpdateOneWithoutLeadsNestedInput = {
+    create?: XOR<EtapaCrmCreateWithoutLeadsInput, EtapaCrmUncheckedCreateWithoutLeadsInput>
+    connectOrCreate?: EtapaCrmCreateOrConnectWithoutLeadsInput
+    upsert?: EtapaCrmUpsertWithoutLeadsInput
+    disconnect?: EtapaCrmWhereInput | boolean
+    delete?: EtapaCrmWhereInput | boolean
+    connect?: EtapaCrmWhereUniqueInput
+    update?: XOR<XOR<EtapaCrmUpdateToOneWithWhereWithoutLeadsInput, EtapaCrmUpdateWithoutLeadsInput>, EtapaCrmUncheckedUpdateWithoutLeadsInput>
+  }
+
+  export type ComentarioCrmUpdateManyWithoutLeadNestedInput = {
+    create?: XOR<ComentarioCrmCreateWithoutLeadInput, ComentarioCrmUncheckedCreateWithoutLeadInput> | ComentarioCrmCreateWithoutLeadInput[] | ComentarioCrmUncheckedCreateWithoutLeadInput[]
+    connectOrCreate?: ComentarioCrmCreateOrConnectWithoutLeadInput | ComentarioCrmCreateOrConnectWithoutLeadInput[]
+    upsert?: ComentarioCrmUpsertWithWhereUniqueWithoutLeadInput | ComentarioCrmUpsertWithWhereUniqueWithoutLeadInput[]
+    createMany?: ComentarioCrmCreateManyLeadInputEnvelope
+    set?: ComentarioCrmWhereUniqueInput | ComentarioCrmWhereUniqueInput[]
+    disconnect?: ComentarioCrmWhereUniqueInput | ComentarioCrmWhereUniqueInput[]
+    delete?: ComentarioCrmWhereUniqueInput | ComentarioCrmWhereUniqueInput[]
+    connect?: ComentarioCrmWhereUniqueInput | ComentarioCrmWhereUniqueInput[]
+    update?: ComentarioCrmUpdateWithWhereUniqueWithoutLeadInput | ComentarioCrmUpdateWithWhereUniqueWithoutLeadInput[]
+    updateMany?: ComentarioCrmUpdateManyWithWhereWithoutLeadInput | ComentarioCrmUpdateManyWithWhereWithoutLeadInput[]
+    deleteMany?: ComentarioCrmScalarWhereInput | ComentarioCrmScalarWhereInput[]
   }
 
   export type PropostaUpdateManyWithoutLeadNestedInput = {
@@ -77939,18 +79955,18 @@ export namespace Prisma {
     deleteMany?: PropostaScalarWhereInput | PropostaScalarWhereInput[]
   }
 
-  export type AtividadeCRMUncheckedUpdateManyWithoutLeadNestedInput = {
-    create?: XOR<AtividadeCRMCreateWithoutLeadInput, AtividadeCRMUncheckedCreateWithoutLeadInput> | AtividadeCRMCreateWithoutLeadInput[] | AtividadeCRMUncheckedCreateWithoutLeadInput[]
-    connectOrCreate?: AtividadeCRMCreateOrConnectWithoutLeadInput | AtividadeCRMCreateOrConnectWithoutLeadInput[]
-    upsert?: AtividadeCRMUpsertWithWhereUniqueWithoutLeadInput | AtividadeCRMUpsertWithWhereUniqueWithoutLeadInput[]
-    createMany?: AtividadeCRMCreateManyLeadInputEnvelope
-    set?: AtividadeCRMWhereUniqueInput | AtividadeCRMWhereUniqueInput[]
-    disconnect?: AtividadeCRMWhereUniqueInput | AtividadeCRMWhereUniqueInput[]
-    delete?: AtividadeCRMWhereUniqueInput | AtividadeCRMWhereUniqueInput[]
-    connect?: AtividadeCRMWhereUniqueInput | AtividadeCRMWhereUniqueInput[]
-    update?: AtividadeCRMUpdateWithWhereUniqueWithoutLeadInput | AtividadeCRMUpdateWithWhereUniqueWithoutLeadInput[]
-    updateMany?: AtividadeCRMUpdateManyWithWhereWithoutLeadInput | AtividadeCRMUpdateManyWithWhereWithoutLeadInput[]
-    deleteMany?: AtividadeCRMScalarWhereInput | AtividadeCRMScalarWhereInput[]
+  export type ComentarioCrmUncheckedUpdateManyWithoutLeadNestedInput = {
+    create?: XOR<ComentarioCrmCreateWithoutLeadInput, ComentarioCrmUncheckedCreateWithoutLeadInput> | ComentarioCrmCreateWithoutLeadInput[] | ComentarioCrmUncheckedCreateWithoutLeadInput[]
+    connectOrCreate?: ComentarioCrmCreateOrConnectWithoutLeadInput | ComentarioCrmCreateOrConnectWithoutLeadInput[]
+    upsert?: ComentarioCrmUpsertWithWhereUniqueWithoutLeadInput | ComentarioCrmUpsertWithWhereUniqueWithoutLeadInput[]
+    createMany?: ComentarioCrmCreateManyLeadInputEnvelope
+    set?: ComentarioCrmWhereUniqueInput | ComentarioCrmWhereUniqueInput[]
+    disconnect?: ComentarioCrmWhereUniqueInput | ComentarioCrmWhereUniqueInput[]
+    delete?: ComentarioCrmWhereUniqueInput | ComentarioCrmWhereUniqueInput[]
+    connect?: ComentarioCrmWhereUniqueInput | ComentarioCrmWhereUniqueInput[]
+    update?: ComentarioCrmUpdateWithWhereUniqueWithoutLeadInput | ComentarioCrmUpdateWithWhereUniqueWithoutLeadInput[]
+    updateMany?: ComentarioCrmUpdateManyWithWhereWithoutLeadInput | ComentarioCrmUpdateManyWithWhereWithoutLeadInput[]
+    deleteMany?: ComentarioCrmScalarWhereInput | ComentarioCrmScalarWhereInput[]
   }
 
   export type PropostaUncheckedUpdateManyWithoutLeadNestedInput = {
@@ -77965,36 +79981,6 @@ export namespace Prisma {
     update?: PropostaUpdateWithWhereUniqueWithoutLeadInput | PropostaUpdateWithWhereUniqueWithoutLeadInput[]
     updateMany?: PropostaUpdateManyWithWhereWithoutLeadInput | PropostaUpdateManyWithWhereWithoutLeadInput[]
     deleteMany?: PropostaScalarWhereInput | PropostaScalarWhereInput[]
-  }
-
-  export type LeadCreateNestedOneWithoutAtividadesInput = {
-    create?: XOR<LeadCreateWithoutAtividadesInput, LeadUncheckedCreateWithoutAtividadesInput>
-    connectOrCreate?: LeadCreateOrConnectWithoutAtividadesInput
-    connect?: LeadWhereUniqueInput
-  }
-
-  export type UsuarioCreateNestedOneWithoutAtividades_crmInput = {
-    create?: XOR<UsuarioCreateWithoutAtividades_crmInput, UsuarioUncheckedCreateWithoutAtividades_crmInput>
-    connectOrCreate?: UsuarioCreateOrConnectWithoutAtividades_crmInput
-    connect?: UsuarioWhereUniqueInput
-  }
-
-  export type LeadUpdateOneRequiredWithoutAtividadesNestedInput = {
-    create?: XOR<LeadCreateWithoutAtividadesInput, LeadUncheckedCreateWithoutAtividadesInput>
-    connectOrCreate?: LeadCreateOrConnectWithoutAtividadesInput
-    upsert?: LeadUpsertWithoutAtividadesInput
-    connect?: LeadWhereUniqueInput
-    update?: XOR<XOR<LeadUpdateToOneWithWhereWithoutAtividadesInput, LeadUpdateWithoutAtividadesInput>, LeadUncheckedUpdateWithoutAtividadesInput>
-  }
-
-  export type UsuarioUpdateOneWithoutAtividades_crmNestedInput = {
-    create?: XOR<UsuarioCreateWithoutAtividades_crmInput, UsuarioUncheckedCreateWithoutAtividades_crmInput>
-    connectOrCreate?: UsuarioCreateOrConnectWithoutAtividades_crmInput
-    upsert?: UsuarioUpsertWithoutAtividades_crmInput
-    disconnect?: UsuarioWhereInput | boolean
-    delete?: UsuarioWhereInput | boolean
-    connect?: UsuarioWhereUniqueInput
-    update?: XOR<XOR<UsuarioUpdateToOneWithWhereWithoutAtividades_crmInput, UsuarioUpdateWithoutAtividades_crmInput>, UsuarioUncheckedUpdateWithoutAtividades_crmInput>
   }
 
   export type EmpresaCreateNestedOneWithoutPropostasInput = {
@@ -78213,14 +80199,6 @@ export namespace Prisma {
     create?: XOR<PropostaCreateWithoutAceite_otpsInput, PropostaUncheckedCreateWithoutAceite_otpsInput>
     connectOrCreate?: PropostaCreateOrConnectWithoutAceite_otpsInput
     connect?: PropostaWhereUniqueInput
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type PropostaUpdateOneRequiredWithoutAceite_otpsNestedInput = {
@@ -81002,21 +82980,31 @@ export namespace Prisma {
     _max?: NestedEnumStatusClienteFilter<$PrismaModel>
   }
 
-  export type NestedEnumStatusLeadFilter<$PrismaModel = never> = {
-    equals?: $Enums.StatusLead | EnumStatusLeadFieldRefInput<$PrismaModel>
-    in?: $Enums.StatusLead[] | ListEnumStatusLeadFieldRefInput<$PrismaModel>
-    notIn?: $Enums.StatusLead[] | ListEnumStatusLeadFieldRefInput<$PrismaModel>
-    not?: NestedEnumStatusLeadFilter<$PrismaModel> | $Enums.StatusLead
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
-  export type NestedEnumStatusLeadWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.StatusLead | EnumStatusLeadFieldRefInput<$PrismaModel>
-    in?: $Enums.StatusLead[] | ListEnumStatusLeadFieldRefInput<$PrismaModel>
-    notIn?: $Enums.StatusLead[] | ListEnumStatusLeadFieldRefInput<$PrismaModel>
-    not?: NestedEnumStatusLeadWithAggregatesFilter<$PrismaModel> | $Enums.StatusLead
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumStatusLeadFilter<$PrismaModel>
-    _max?: NestedEnumStatusLeadFilter<$PrismaModel>
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedEnumStatusPropostaFilter<$PrismaModel = never> = {
@@ -81111,33 +83099,6 @@ export namespace Prisma {
     gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-  }
-
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedEnumStatusContratoFilter<$PrismaModel = never> = {
@@ -81630,6 +83591,7 @@ export namespace Prisma {
     atualizado_em?: Date | string
     plano_contas?: PlanoDeContasCreateNestedOneWithoutServicosInput
     itens_proposta?: ItemPropostaCreateNestedManyWithoutServicoInput
+    leads?: LeadCreateNestedManyWithoutServicoInput
   }
 
   export type ServicoUncheckedCreateWithoutEmpresaInput = {
@@ -81642,6 +83604,7 @@ export namespace Prisma {
     criado_em?: Date | string
     atualizado_em?: Date | string
     itens_proposta?: ItemPropostaUncheckedCreateNestedManyWithoutServicoInput
+    leads?: LeadUncheckedCreateNestedManyWithoutServicoInput
   }
 
   export type ServicoCreateOrConnectWithoutEmpresaInput = {
@@ -81658,20 +83621,27 @@ export namespace Prisma {
     id?: string
     nome: string
     empresa_nome?: string | null
+    contato_nome?: string | null
     email?: string | null
     telefone?: string | null
-    status?: $Enums.StatusLead
+    whatsapp?: string | null
+    etapa_chave?: string
     valor_estimado?: Decimal | DecimalJsLike | number | string | null
+    probabilidade?: number
+    previsao_fechamento?: Date | string | null
+    proxima_acao?: string | null
+    data_proxima_acao?: Date | string | null
     origem?: string | null
     observacoes?: string | null
-    ganho_em?: Date | string | null
-    perdido_em?: Date | string | null
     motivo_perda?: string | null
+    tags?: LeadCreatetagsInput | string[]
     criado_em?: Date | string
     atualizado_em?: Date | string
     cliente?: ClienteCreateNestedOneWithoutLeadsInput
     responsavel?: UsuarioCreateNestedOneWithoutLeadsInput
-    atividades?: AtividadeCRMCreateNestedManyWithoutLeadInput
+    servico?: ServicoCreateNestedOneWithoutLeadsInput
+    etapa?: EtapaCrmCreateNestedOneWithoutLeadsInput
+    comentarios?: ComentarioCrmCreateNestedManyWithoutLeadInput
     propostas?: PropostaCreateNestedManyWithoutLeadInput
   }
 
@@ -81679,20 +83649,27 @@ export namespace Prisma {
     id?: string
     cliente_id?: string | null
     responsavel_id?: string | null
+    servico_id?: string | null
+    etapa_id?: string | null
     nome: string
     empresa_nome?: string | null
+    contato_nome?: string | null
     email?: string | null
     telefone?: string | null
-    status?: $Enums.StatusLead
+    whatsapp?: string | null
+    etapa_chave?: string
     valor_estimado?: Decimal | DecimalJsLike | number | string | null
+    probabilidade?: number
+    previsao_fechamento?: Date | string | null
+    proxima_acao?: string | null
+    data_proxima_acao?: Date | string | null
     origem?: string | null
     observacoes?: string | null
-    ganho_em?: Date | string | null
-    perdido_em?: Date | string | null
     motivo_perda?: string | null
+    tags?: LeadCreatetagsInput | string[]
     criado_em?: Date | string
     atualizado_em?: Date | string
-    atividades?: AtividadeCRMUncheckedCreateNestedManyWithoutLeadInput
+    comentarios?: ComentarioCrmUncheckedCreateNestedManyWithoutLeadInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutLeadInput
   }
 
@@ -82600,6 +84577,36 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type EtapaCrmCreateWithoutEmpresaInput = {
+    id?: string
+    chave: string
+    nome: string
+    cor?: string
+    ordem?: number
+    criado_em?: Date | string
+    leads?: LeadCreateNestedManyWithoutEtapaInput
+  }
+
+  export type EtapaCrmUncheckedCreateWithoutEmpresaInput = {
+    id?: string
+    chave: string
+    nome: string
+    cor?: string
+    ordem?: number
+    criado_em?: Date | string
+    leads?: LeadUncheckedCreateNestedManyWithoutEtapaInput
+  }
+
+  export type EtapaCrmCreateOrConnectWithoutEmpresaInput = {
+    where: EtapaCrmWhereUniqueInput
+    create: XOR<EtapaCrmCreateWithoutEmpresaInput, EtapaCrmUncheckedCreateWithoutEmpresaInput>
+  }
+
+  export type EtapaCrmCreateManyEmpresaInputEnvelope = {
+    data: EtapaCrmCreateManyEmpresaInput | EtapaCrmCreateManyEmpresaInput[]
+    skipDuplicates?: boolean
+  }
+
   export type MembroEmpresaUpsertWithWhereUniqueWithoutEmpresaInput = {
     where: MembroEmpresaWhereUniqueInput
     update: XOR<MembroEmpresaUpdateWithoutEmpresaInput, MembroEmpresaUncheckedUpdateWithoutEmpresaInput>
@@ -82818,17 +84825,24 @@ export namespace Prisma {
     empresa_id?: StringFilter<"Lead"> | string
     cliente_id?: StringNullableFilter<"Lead"> | string | null
     responsavel_id?: StringNullableFilter<"Lead"> | string | null
+    servico_id?: StringNullableFilter<"Lead"> | string | null
+    etapa_id?: StringNullableFilter<"Lead"> | string | null
     nome?: StringFilter<"Lead"> | string
     empresa_nome?: StringNullableFilter<"Lead"> | string | null
+    contato_nome?: StringNullableFilter<"Lead"> | string | null
     email?: StringNullableFilter<"Lead"> | string | null
     telefone?: StringNullableFilter<"Lead"> | string | null
-    status?: EnumStatusLeadFilter<"Lead"> | $Enums.StatusLead
+    whatsapp?: StringNullableFilter<"Lead"> | string | null
+    etapa_chave?: StringFilter<"Lead"> | string
     valor_estimado?: DecimalNullableFilter<"Lead"> | Decimal | DecimalJsLike | number | string | null
+    probabilidade?: IntFilter<"Lead"> | number
+    previsao_fechamento?: DateTimeNullableFilter<"Lead"> | Date | string | null
+    proxima_acao?: StringNullableFilter<"Lead"> | string | null
+    data_proxima_acao?: DateTimeNullableFilter<"Lead"> | Date | string | null
     origem?: StringNullableFilter<"Lead"> | string | null
     observacoes?: StringNullableFilter<"Lead"> | string | null
-    ganho_em?: DateTimeNullableFilter<"Lead"> | Date | string | null
-    perdido_em?: DateTimeNullableFilter<"Lead"> | Date | string | null
     motivo_perda?: StringNullableFilter<"Lead"> | string | null
+    tags?: StringNullableListFilter<"Lead">
     criado_em?: DateTimeFilter<"Lead"> | Date | string
     atualizado_em?: DateTimeFilter<"Lead"> | Date | string
   }
@@ -83538,6 +85552,35 @@ export namespace Prisma {
     atualizado_em?: DateTimeFilter<"AplicacaoDiagnostico"> | Date | string
   }
 
+  export type EtapaCrmUpsertWithWhereUniqueWithoutEmpresaInput = {
+    where: EtapaCrmWhereUniqueInput
+    update: XOR<EtapaCrmUpdateWithoutEmpresaInput, EtapaCrmUncheckedUpdateWithoutEmpresaInput>
+    create: XOR<EtapaCrmCreateWithoutEmpresaInput, EtapaCrmUncheckedCreateWithoutEmpresaInput>
+  }
+
+  export type EtapaCrmUpdateWithWhereUniqueWithoutEmpresaInput = {
+    where: EtapaCrmWhereUniqueInput
+    data: XOR<EtapaCrmUpdateWithoutEmpresaInput, EtapaCrmUncheckedUpdateWithoutEmpresaInput>
+  }
+
+  export type EtapaCrmUpdateManyWithWhereWithoutEmpresaInput = {
+    where: EtapaCrmScalarWhereInput
+    data: XOR<EtapaCrmUpdateManyMutationInput, EtapaCrmUncheckedUpdateManyWithoutEmpresaInput>
+  }
+
+  export type EtapaCrmScalarWhereInput = {
+    AND?: EtapaCrmScalarWhereInput | EtapaCrmScalarWhereInput[]
+    OR?: EtapaCrmScalarWhereInput[]
+    NOT?: EtapaCrmScalarWhereInput | EtapaCrmScalarWhereInput[]
+    id?: StringFilter<"EtapaCrm"> | string
+    empresa_id?: StringFilter<"EtapaCrm"> | string
+    chave?: StringFilter<"EtapaCrm"> | string
+    nome?: StringFilter<"EtapaCrm"> | string
+    cor?: StringFilter<"EtapaCrm"> | string
+    ordem?: IntFilter<"EtapaCrm"> | number
+    criado_em?: DateTimeFilter<"EtapaCrm"> | Date | string
+  }
+
   export type MembroEmpresaCreateWithoutUsuarioInput = {
     id?: string
     ativo?: boolean
@@ -83600,20 +85643,27 @@ export namespace Prisma {
     id?: string
     nome: string
     empresa_nome?: string | null
+    contato_nome?: string | null
     email?: string | null
     telefone?: string | null
-    status?: $Enums.StatusLead
+    whatsapp?: string | null
+    etapa_chave?: string
     valor_estimado?: Decimal | DecimalJsLike | number | string | null
+    probabilidade?: number
+    previsao_fechamento?: Date | string | null
+    proxima_acao?: string | null
+    data_proxima_acao?: Date | string | null
     origem?: string | null
     observacoes?: string | null
-    ganho_em?: Date | string | null
-    perdido_em?: Date | string | null
     motivo_perda?: string | null
+    tags?: LeadCreatetagsInput | string[]
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutLeadsInput
     cliente?: ClienteCreateNestedOneWithoutLeadsInput
-    atividades?: AtividadeCRMCreateNestedManyWithoutLeadInput
+    servico?: ServicoCreateNestedOneWithoutLeadsInput
+    etapa?: EtapaCrmCreateNestedOneWithoutLeadsInput
+    comentarios?: ComentarioCrmCreateNestedManyWithoutLeadInput
     propostas?: PropostaCreateNestedManyWithoutLeadInput
   }
 
@@ -83621,20 +85671,27 @@ export namespace Prisma {
     id?: string
     empresa_id: string
     cliente_id?: string | null
+    servico_id?: string | null
+    etapa_id?: string | null
     nome: string
     empresa_nome?: string | null
+    contato_nome?: string | null
     email?: string | null
     telefone?: string | null
-    status?: $Enums.StatusLead
+    whatsapp?: string | null
+    etapa_chave?: string
     valor_estimado?: Decimal | DecimalJsLike | number | string | null
+    probabilidade?: number
+    previsao_fechamento?: Date | string | null
+    proxima_acao?: string | null
+    data_proxima_acao?: Date | string | null
     origem?: string | null
     observacoes?: string | null
-    ganho_em?: Date | string | null
-    perdido_em?: Date | string | null
     motivo_perda?: string | null
+    tags?: LeadCreatetagsInput | string[]
     criado_em?: Date | string
     atualizado_em?: Date | string
-    atividades?: AtividadeCRMUncheckedCreateNestedManyWithoutLeadInput
+    comentarios?: ComentarioCrmUncheckedCreateNestedManyWithoutLeadInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutLeadInput
   }
 
@@ -83648,29 +85705,29 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type AtividadeCRMCreateWithoutUsuarioInput = {
+  export type ComentarioCrmCreateWithoutUsuarioInput = {
     id?: string
-    tipo: string
-    descricao: string
-    data?: Date | string
-    lead: LeadCreateNestedOneWithoutAtividadesInput
+    autor_nome: string
+    mensagem: string
+    criado_em?: Date | string
+    lead: LeadCreateNestedOneWithoutComentariosInput
   }
 
-  export type AtividadeCRMUncheckedCreateWithoutUsuarioInput = {
+  export type ComentarioCrmUncheckedCreateWithoutUsuarioInput = {
     id?: string
     lead_id: string
-    tipo: string
-    descricao: string
-    data?: Date | string
+    autor_nome: string
+    mensagem: string
+    criado_em?: Date | string
   }
 
-  export type AtividadeCRMCreateOrConnectWithoutUsuarioInput = {
-    where: AtividadeCRMWhereUniqueInput
-    create: XOR<AtividadeCRMCreateWithoutUsuarioInput, AtividadeCRMUncheckedCreateWithoutUsuarioInput>
+  export type ComentarioCrmCreateOrConnectWithoutUsuarioInput = {
+    where: ComentarioCrmWhereUniqueInput
+    create: XOR<ComentarioCrmCreateWithoutUsuarioInput, ComentarioCrmUncheckedCreateWithoutUsuarioInput>
   }
 
-  export type AtividadeCRMCreateManyUsuarioInputEnvelope = {
-    data: AtividadeCRMCreateManyUsuarioInput | AtividadeCRMCreateManyUsuarioInput[]
+  export type ComentarioCrmCreateManyUsuarioInputEnvelope = {
+    data: ComentarioCrmCreateManyUsuarioInput | ComentarioCrmCreateManyUsuarioInput[]
     skipDuplicates?: boolean
   }
 
@@ -84560,32 +86617,32 @@ export namespace Prisma {
     data: XOR<LeadUpdateManyMutationInput, LeadUncheckedUpdateManyWithoutResponsavelInput>
   }
 
-  export type AtividadeCRMUpsertWithWhereUniqueWithoutUsuarioInput = {
-    where: AtividadeCRMWhereUniqueInput
-    update: XOR<AtividadeCRMUpdateWithoutUsuarioInput, AtividadeCRMUncheckedUpdateWithoutUsuarioInput>
-    create: XOR<AtividadeCRMCreateWithoutUsuarioInput, AtividadeCRMUncheckedCreateWithoutUsuarioInput>
+  export type ComentarioCrmUpsertWithWhereUniqueWithoutUsuarioInput = {
+    where: ComentarioCrmWhereUniqueInput
+    update: XOR<ComentarioCrmUpdateWithoutUsuarioInput, ComentarioCrmUncheckedUpdateWithoutUsuarioInput>
+    create: XOR<ComentarioCrmCreateWithoutUsuarioInput, ComentarioCrmUncheckedCreateWithoutUsuarioInput>
   }
 
-  export type AtividadeCRMUpdateWithWhereUniqueWithoutUsuarioInput = {
-    where: AtividadeCRMWhereUniqueInput
-    data: XOR<AtividadeCRMUpdateWithoutUsuarioInput, AtividadeCRMUncheckedUpdateWithoutUsuarioInput>
+  export type ComentarioCrmUpdateWithWhereUniqueWithoutUsuarioInput = {
+    where: ComentarioCrmWhereUniqueInput
+    data: XOR<ComentarioCrmUpdateWithoutUsuarioInput, ComentarioCrmUncheckedUpdateWithoutUsuarioInput>
   }
 
-  export type AtividadeCRMUpdateManyWithWhereWithoutUsuarioInput = {
-    where: AtividadeCRMScalarWhereInput
-    data: XOR<AtividadeCRMUpdateManyMutationInput, AtividadeCRMUncheckedUpdateManyWithoutUsuarioInput>
+  export type ComentarioCrmUpdateManyWithWhereWithoutUsuarioInput = {
+    where: ComentarioCrmScalarWhereInput
+    data: XOR<ComentarioCrmUpdateManyMutationInput, ComentarioCrmUncheckedUpdateManyWithoutUsuarioInput>
   }
 
-  export type AtividadeCRMScalarWhereInput = {
-    AND?: AtividadeCRMScalarWhereInput | AtividadeCRMScalarWhereInput[]
-    OR?: AtividadeCRMScalarWhereInput[]
-    NOT?: AtividadeCRMScalarWhereInput | AtividadeCRMScalarWhereInput[]
-    id?: StringFilter<"AtividadeCRM"> | string
-    lead_id?: StringFilter<"AtividadeCRM"> | string
-    usuario_id?: StringNullableFilter<"AtividadeCRM"> | string | null
-    tipo?: StringFilter<"AtividadeCRM"> | string
-    descricao?: StringFilter<"AtividadeCRM"> | string
-    data?: DateTimeFilter<"AtividadeCRM"> | Date | string
+  export type ComentarioCrmScalarWhereInput = {
+    AND?: ComentarioCrmScalarWhereInput | ComentarioCrmScalarWhereInput[]
+    OR?: ComentarioCrmScalarWhereInput[]
+    NOT?: ComentarioCrmScalarWhereInput | ComentarioCrmScalarWhereInput[]
+    id?: StringFilter<"ComentarioCrm"> | string
+    lead_id?: StringFilter<"ComentarioCrm"> | string
+    usuario_id?: StringNullableFilter<"ComentarioCrm"> | string | null
+    autor_nome?: StringFilter<"ComentarioCrm"> | string
+    mensagem?: StringFilter<"ComentarioCrm"> | string
+    criado_em?: DateTimeFilter<"ComentarioCrm"> | Date | string
   }
 
   export type PropostaUpsertWithWhereUniqueWithoutCriadorInput = {
@@ -84923,7 +86980,7 @@ export namespace Prisma {
     atualizado_em?: Date | string
     convites?: ConviteEmpresaCreateNestedManyWithoutConvidadoInput
     leads?: LeadCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoCreateNestedManyWithoutCriadorInput
@@ -84951,7 +87008,7 @@ export namespace Prisma {
     atualizado_em?: Date | string
     convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutConvidadoInput
     leads?: LeadUncheckedCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMUncheckedCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmUncheckedCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaUncheckedCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoUncheckedCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoUncheckedCreateNestedManyWithoutCriadorInput
@@ -85011,6 +87068,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutMembrosInput = {
@@ -85049,6 +87107,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutMembrosInput = {
@@ -85101,7 +87160,7 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     convites?: ConviteEmpresaUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUpdateManyWithoutCriadorNestedInput
@@ -85129,7 +87188,7 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     convites?: ConviteEmpresaUncheckedUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUncheckedUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUncheckedUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUncheckedUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUncheckedUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUncheckedUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUncheckedUpdateManyWithoutCriadorNestedInput
@@ -85195,6 +87254,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutMembrosInput = {
@@ -85233,6 +87293,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PerfilUpsertWithoutMembrosInput = {
@@ -85302,6 +87363,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutPerfisInput = {
@@ -85340,6 +87402,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutPerfisInput = {
@@ -85438,6 +87501,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutPerfisInput = {
@@ -85476,6 +87540,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type MembroEmpresaUpsertWithWhereUniqueWithoutPerfilInput = {
@@ -85688,6 +87753,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutConvitesInput = {
@@ -85726,6 +87792,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutConvitesInput = {
@@ -85742,7 +87809,7 @@ export namespace Prisma {
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutUsuarioInput
     leads?: LeadCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoCreateNestedManyWithoutCriadorInput
@@ -85770,7 +87837,7 @@ export namespace Prisma {
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutUsuarioInput
     leads?: LeadUncheckedCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMUncheckedCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmUncheckedCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaUncheckedCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoUncheckedCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoUncheckedCreateNestedManyWithoutCriadorInput
@@ -85841,6 +87908,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutConvitesInput = {
@@ -85879,6 +87947,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type UsuarioUpsertWithoutConvitesInput = {
@@ -85901,7 +87970,7 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutUsuarioNestedInput
     leads?: LeadUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUpdateManyWithoutCriadorNestedInput
@@ -85929,7 +87998,7 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutUsuarioNestedInput
     leads?: LeadUncheckedUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUncheckedUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUncheckedUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUncheckedUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUncheckedUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUncheckedUpdateManyWithoutCriadorNestedInput
@@ -85984,6 +88053,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutConvites_clienteInput = {
@@ -86022,6 +88092,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutConvites_clienteInput = {
@@ -86039,7 +88110,7 @@ export namespace Prisma {
     membros?: MembroEmpresaCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaCreateNestedManyWithoutConvidadoInput
     leads?: LeadCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoCreateNestedManyWithoutCriadorInput
@@ -86067,7 +88138,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutConvidadoInput
     leads?: LeadUncheckedCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMUncheckedCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmUncheckedCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaUncheckedCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoUncheckedCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoUncheckedCreateNestedManyWithoutCriadorInput
@@ -86222,6 +88293,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutConvites_clienteInput = {
@@ -86260,6 +88332,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type UsuarioUpsertWithoutConvites_clienteInput = {
@@ -86283,7 +88356,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUpdateManyWithoutCriadorNestedInput
@@ -86311,7 +88384,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUncheckedUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUncheckedUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUncheckedUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUncheckedUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUncheckedUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUncheckedUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUncheckedUpdateManyWithoutCriadorNestedInput
@@ -86456,6 +88529,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutClientesInput = {
@@ -86494,6 +88568,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutClientesInput = {
@@ -86535,20 +88610,27 @@ export namespace Prisma {
     id?: string
     nome: string
     empresa_nome?: string | null
+    contato_nome?: string | null
     email?: string | null
     telefone?: string | null
-    status?: $Enums.StatusLead
+    whatsapp?: string | null
+    etapa_chave?: string
     valor_estimado?: Decimal | DecimalJsLike | number | string | null
+    probabilidade?: number
+    previsao_fechamento?: Date | string | null
+    proxima_acao?: string | null
+    data_proxima_acao?: Date | string | null
     origem?: string | null
     observacoes?: string | null
-    ganho_em?: Date | string | null
-    perdido_em?: Date | string | null
     motivo_perda?: string | null
+    tags?: LeadCreatetagsInput | string[]
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutLeadsInput
     responsavel?: UsuarioCreateNestedOneWithoutLeadsInput
-    atividades?: AtividadeCRMCreateNestedManyWithoutLeadInput
+    servico?: ServicoCreateNestedOneWithoutLeadsInput
+    etapa?: EtapaCrmCreateNestedOneWithoutLeadsInput
+    comentarios?: ComentarioCrmCreateNestedManyWithoutLeadInput
     propostas?: PropostaCreateNestedManyWithoutLeadInput
   }
 
@@ -86556,20 +88638,27 @@ export namespace Prisma {
     id?: string
     empresa_id: string
     responsavel_id?: string | null
+    servico_id?: string | null
+    etapa_id?: string | null
     nome: string
     empresa_nome?: string | null
+    contato_nome?: string | null
     email?: string | null
     telefone?: string | null
-    status?: $Enums.StatusLead
+    whatsapp?: string | null
+    etapa_chave?: string
     valor_estimado?: Decimal | DecimalJsLike | number | string | null
+    probabilidade?: number
+    previsao_fechamento?: Date | string | null
+    proxima_acao?: string | null
+    data_proxima_acao?: Date | string | null
     origem?: string | null
     observacoes?: string | null
-    ganho_em?: Date | string | null
-    perdido_em?: Date | string | null
     motivo_perda?: string | null
+    tags?: LeadCreatetagsInput | string[]
     criado_em?: Date | string
     atualizado_em?: Date | string
-    atividades?: AtividadeCRMUncheckedCreateNestedManyWithoutLeadInput
+    comentarios?: ComentarioCrmUncheckedCreateNestedManyWithoutLeadInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutLeadInput
   }
 
@@ -87257,6 +89346,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutClientesInput = {
@@ -87295,6 +89385,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ContatoUpsertWithWhereUniqueWithoutClienteInput = {
@@ -87775,6 +89866,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutServicosInput = {
@@ -87813,6 +89905,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutServicosInput = {
@@ -87885,6 +89978,72 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type LeadCreateWithoutServicoInput = {
+    id?: string
+    nome: string
+    empresa_nome?: string | null
+    contato_nome?: string | null
+    email?: string | null
+    telefone?: string | null
+    whatsapp?: string | null
+    etapa_chave?: string
+    valor_estimado?: Decimal | DecimalJsLike | number | string | null
+    probabilidade?: number
+    previsao_fechamento?: Date | string | null
+    proxima_acao?: string | null
+    data_proxima_acao?: Date | string | null
+    origem?: string | null
+    observacoes?: string | null
+    motivo_perda?: string | null
+    tags?: LeadCreatetagsInput | string[]
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutLeadsInput
+    cliente?: ClienteCreateNestedOneWithoutLeadsInput
+    responsavel?: UsuarioCreateNestedOneWithoutLeadsInput
+    etapa?: EtapaCrmCreateNestedOneWithoutLeadsInput
+    comentarios?: ComentarioCrmCreateNestedManyWithoutLeadInput
+    propostas?: PropostaCreateNestedManyWithoutLeadInput
+  }
+
+  export type LeadUncheckedCreateWithoutServicoInput = {
+    id?: string
+    empresa_id: string
+    cliente_id?: string | null
+    responsavel_id?: string | null
+    etapa_id?: string | null
+    nome: string
+    empresa_nome?: string | null
+    contato_nome?: string | null
+    email?: string | null
+    telefone?: string | null
+    whatsapp?: string | null
+    etapa_chave?: string
+    valor_estimado?: Decimal | DecimalJsLike | number | string | null
+    probabilidade?: number
+    previsao_fechamento?: Date | string | null
+    proxima_acao?: string | null
+    data_proxima_acao?: Date | string | null
+    origem?: string | null
+    observacoes?: string | null
+    motivo_perda?: string | null
+    tags?: LeadCreatetagsInput | string[]
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    comentarios?: ComentarioCrmUncheckedCreateNestedManyWithoutLeadInput
+    propostas?: PropostaUncheckedCreateNestedManyWithoutLeadInput
+  }
+
+  export type LeadCreateOrConnectWithoutServicoInput = {
+    where: LeadWhereUniqueInput
+    create: XOR<LeadCreateWithoutServicoInput, LeadUncheckedCreateWithoutServicoInput>
+  }
+
+  export type LeadCreateManyServicoInputEnvelope = {
+    data: LeadCreateManyServicoInput | LeadCreateManyServicoInput[]
+    skipDuplicates?: boolean
+  }
+
   export type EmpresaUpsertWithoutServicosInput = {
     update: XOR<EmpresaUpdateWithoutServicosInput, EmpresaUncheckedUpdateWithoutServicosInput>
     create: XOR<EmpresaCreateWithoutServicosInput, EmpresaUncheckedCreateWithoutServicosInput>
@@ -87932,6 +90091,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutServicosInput = {
@@ -87970,6 +90130,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PlanoDeContasUpsertWithoutServicosInput = {
@@ -88043,6 +90204,532 @@ export namespace Prisma {
     ordem?: IntFilter<"ItemProposta"> | number
   }
 
+  export type LeadUpsertWithWhereUniqueWithoutServicoInput = {
+    where: LeadWhereUniqueInput
+    update: XOR<LeadUpdateWithoutServicoInput, LeadUncheckedUpdateWithoutServicoInput>
+    create: XOR<LeadCreateWithoutServicoInput, LeadUncheckedCreateWithoutServicoInput>
+  }
+
+  export type LeadUpdateWithWhereUniqueWithoutServicoInput = {
+    where: LeadWhereUniqueInput
+    data: XOR<LeadUpdateWithoutServicoInput, LeadUncheckedUpdateWithoutServicoInput>
+  }
+
+  export type LeadUpdateManyWithWhereWithoutServicoInput = {
+    where: LeadScalarWhereInput
+    data: XOR<LeadUpdateManyMutationInput, LeadUncheckedUpdateManyWithoutServicoInput>
+  }
+
+  export type EmpresaCreateWithoutEtapas_crmInput = {
+    id?: string
+    nome: string
+    slug: string
+    cnpj?: string | null
+    logo_url?: string | null
+    plano?: $Enums.PlanoTipo
+    status?: $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
+    perfis?: PerfilCreateNestedManyWithoutEmpresaInput
+    convites?: ConviteEmpresaCreateNestedManyWithoutEmpresaInput
+    convites_cliente?: ConviteClienteCreateNestedManyWithoutEmpresaInput
+    clientes?: ClienteCreateNestedManyWithoutEmpresaInput
+    servicos?: ServicoCreateNestedManyWithoutEmpresaInput
+    leads?: LeadCreateNestedManyWithoutEmpresaInput
+    propostas?: PropostaCreateNestedManyWithoutEmpresaInput
+    contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
+    documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
+    plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
+    contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
+    boletos?: BoletoCreateNestedManyWithoutEmpresaInput
+    recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
+    contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
+    eventos?: EventoCreateNestedManyWithoutEmpresaInput
+    registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
+    notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
+    notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
+    diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+  }
+
+  export type EmpresaUncheckedCreateWithoutEtapas_crmInput = {
+    id?: string
+    nome: string
+    slug: string
+    cnpj?: string | null
+    logo_url?: string | null
+    plano?: $Enums.PlanoTipo
+    status?: $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
+    perfis?: PerfilUncheckedCreateNestedManyWithoutEmpresaInput
+    convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
+    convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutEmpresaInput
+    clientes?: ClienteUncheckedCreateNestedManyWithoutEmpresaInput
+    servicos?: ServicoUncheckedCreateNestedManyWithoutEmpresaInput
+    leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
+    propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
+    contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
+    contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
+    boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
+    recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
+    contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
+    registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
+    notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
+    notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+  }
+
+  export type EmpresaCreateOrConnectWithoutEtapas_crmInput = {
+    where: EmpresaWhereUniqueInput
+    create: XOR<EmpresaCreateWithoutEtapas_crmInput, EmpresaUncheckedCreateWithoutEtapas_crmInput>
+  }
+
+  export type LeadCreateWithoutEtapaInput = {
+    id?: string
+    nome: string
+    empresa_nome?: string | null
+    contato_nome?: string | null
+    email?: string | null
+    telefone?: string | null
+    whatsapp?: string | null
+    etapa_chave?: string
+    valor_estimado?: Decimal | DecimalJsLike | number | string | null
+    probabilidade?: number
+    previsao_fechamento?: Date | string | null
+    proxima_acao?: string | null
+    data_proxima_acao?: Date | string | null
+    origem?: string | null
+    observacoes?: string | null
+    motivo_perda?: string | null
+    tags?: LeadCreatetagsInput | string[]
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutLeadsInput
+    cliente?: ClienteCreateNestedOneWithoutLeadsInput
+    responsavel?: UsuarioCreateNestedOneWithoutLeadsInput
+    servico?: ServicoCreateNestedOneWithoutLeadsInput
+    comentarios?: ComentarioCrmCreateNestedManyWithoutLeadInput
+    propostas?: PropostaCreateNestedManyWithoutLeadInput
+  }
+
+  export type LeadUncheckedCreateWithoutEtapaInput = {
+    id?: string
+    empresa_id: string
+    cliente_id?: string | null
+    responsavel_id?: string | null
+    servico_id?: string | null
+    nome: string
+    empresa_nome?: string | null
+    contato_nome?: string | null
+    email?: string | null
+    telefone?: string | null
+    whatsapp?: string | null
+    etapa_chave?: string
+    valor_estimado?: Decimal | DecimalJsLike | number | string | null
+    probabilidade?: number
+    previsao_fechamento?: Date | string | null
+    proxima_acao?: string | null
+    data_proxima_acao?: Date | string | null
+    origem?: string | null
+    observacoes?: string | null
+    motivo_perda?: string | null
+    tags?: LeadCreatetagsInput | string[]
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    comentarios?: ComentarioCrmUncheckedCreateNestedManyWithoutLeadInput
+    propostas?: PropostaUncheckedCreateNestedManyWithoutLeadInput
+  }
+
+  export type LeadCreateOrConnectWithoutEtapaInput = {
+    where: LeadWhereUniqueInput
+    create: XOR<LeadCreateWithoutEtapaInput, LeadUncheckedCreateWithoutEtapaInput>
+  }
+
+  export type LeadCreateManyEtapaInputEnvelope = {
+    data: LeadCreateManyEtapaInput | LeadCreateManyEtapaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EmpresaUpsertWithoutEtapas_crmInput = {
+    update: XOR<EmpresaUpdateWithoutEtapas_crmInput, EmpresaUncheckedUpdateWithoutEtapas_crmInput>
+    create: XOR<EmpresaCreateWithoutEtapas_crmInput, EmpresaUncheckedCreateWithoutEtapas_crmInput>
+    where?: EmpresaWhereInput
+  }
+
+  export type EmpresaUpdateToOneWithWhereWithoutEtapas_crmInput = {
+    where?: EmpresaWhereInput
+    data: XOR<EmpresaUpdateWithoutEtapas_crmInput, EmpresaUncheckedUpdateWithoutEtapas_crmInput>
+  }
+
+  export type EmpresaUpdateWithoutEtapas_crmInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    logo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
+    status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
+    perfis?: PerfilUpdateManyWithoutEmpresaNestedInput
+    convites?: ConviteEmpresaUpdateManyWithoutEmpresaNestedInput
+    convites_cliente?: ConviteClienteUpdateManyWithoutEmpresaNestedInput
+    clientes?: ClienteUpdateManyWithoutEmpresaNestedInput
+    servicos?: ServicoUpdateManyWithoutEmpresaNestedInput
+    leads?: LeadUpdateManyWithoutEmpresaNestedInput
+    propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
+    contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
+    documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
+    plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
+    contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
+    boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
+    recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
+    contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
+    eventos?: EventoUpdateManyWithoutEmpresaNestedInput
+    registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
+    notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
+    notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
+    diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+  }
+
+  export type EmpresaUncheckedUpdateWithoutEtapas_crmInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    logo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
+    status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
+    perfis?: PerfilUncheckedUpdateManyWithoutEmpresaNestedInput
+    convites?: ConviteEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
+    convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutEmpresaNestedInput
+    clientes?: ClienteUncheckedUpdateManyWithoutEmpresaNestedInput
+    servicos?: ServicoUncheckedUpdateManyWithoutEmpresaNestedInput
+    leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
+    propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
+    contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
+    contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
+    recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
+    contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
+    registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
+    notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
+    notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+  }
+
+  export type LeadUpsertWithWhereUniqueWithoutEtapaInput = {
+    where: LeadWhereUniqueInput
+    update: XOR<LeadUpdateWithoutEtapaInput, LeadUncheckedUpdateWithoutEtapaInput>
+    create: XOR<LeadCreateWithoutEtapaInput, LeadUncheckedCreateWithoutEtapaInput>
+  }
+
+  export type LeadUpdateWithWhereUniqueWithoutEtapaInput = {
+    where: LeadWhereUniqueInput
+    data: XOR<LeadUpdateWithoutEtapaInput, LeadUncheckedUpdateWithoutEtapaInput>
+  }
+
+  export type LeadUpdateManyWithWhereWithoutEtapaInput = {
+    where: LeadScalarWhereInput
+    data: XOR<LeadUpdateManyMutationInput, LeadUncheckedUpdateManyWithoutEtapaInput>
+  }
+
+  export type LeadCreateWithoutComentariosInput = {
+    id?: string
+    nome: string
+    empresa_nome?: string | null
+    contato_nome?: string | null
+    email?: string | null
+    telefone?: string | null
+    whatsapp?: string | null
+    etapa_chave?: string
+    valor_estimado?: Decimal | DecimalJsLike | number | string | null
+    probabilidade?: number
+    previsao_fechamento?: Date | string | null
+    proxima_acao?: string | null
+    data_proxima_acao?: Date | string | null
+    origem?: string | null
+    observacoes?: string | null
+    motivo_perda?: string | null
+    tags?: LeadCreatetagsInput | string[]
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutLeadsInput
+    cliente?: ClienteCreateNestedOneWithoutLeadsInput
+    responsavel?: UsuarioCreateNestedOneWithoutLeadsInput
+    servico?: ServicoCreateNestedOneWithoutLeadsInput
+    etapa?: EtapaCrmCreateNestedOneWithoutLeadsInput
+    propostas?: PropostaCreateNestedManyWithoutLeadInput
+  }
+
+  export type LeadUncheckedCreateWithoutComentariosInput = {
+    id?: string
+    empresa_id: string
+    cliente_id?: string | null
+    responsavel_id?: string | null
+    servico_id?: string | null
+    etapa_id?: string | null
+    nome: string
+    empresa_nome?: string | null
+    contato_nome?: string | null
+    email?: string | null
+    telefone?: string | null
+    whatsapp?: string | null
+    etapa_chave?: string
+    valor_estimado?: Decimal | DecimalJsLike | number | string | null
+    probabilidade?: number
+    previsao_fechamento?: Date | string | null
+    proxima_acao?: string | null
+    data_proxima_acao?: Date | string | null
+    origem?: string | null
+    observacoes?: string | null
+    motivo_perda?: string | null
+    tags?: LeadCreatetagsInput | string[]
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    propostas?: PropostaUncheckedCreateNestedManyWithoutLeadInput
+  }
+
+  export type LeadCreateOrConnectWithoutComentariosInput = {
+    where: LeadWhereUniqueInput
+    create: XOR<LeadCreateWithoutComentariosInput, LeadUncheckedCreateWithoutComentariosInput>
+  }
+
+  export type UsuarioCreateWithoutComentarios_crmInput = {
+    id: string
+    nome: string
+    email: string
+    avatar_url?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaCreateNestedManyWithoutUsuarioInput
+    convites?: ConviteEmpresaCreateNestedManyWithoutConvidadoInput
+    leads?: LeadCreateNestedManyWithoutResponsavelInput
+    propostas_criadas?: PropostaCreateNestedManyWithoutCriadorInput
+    contratos_criados?: ContratoCreateNestedManyWithoutCriadorInput
+    projetos_criados?: ProjetoCreateNestedManyWithoutCriadorInput
+    tarefas?: TarefaCreateNestedManyWithoutResponsavelInput
+    documentos_criados?: DocumentoCreateNestedManyWithoutCriadorInput
+    recebiveis_criados?: RecebivelCreateNestedManyWithoutCriadorInput
+    contas_pagar_criadas?: ContaPagarCreateNestedManyWithoutCriadorInput
+    eventos_responsavel?: EventoCreateNestedManyWithoutResponsavelInput
+    propostas_responsavel?: PropostaCreateNestedManyWithoutResponsavelInput
+    contratos_responsavel?: ContratoCreateNestedManyWithoutResponsavelInput
+    convites_cliente?: ConviteClienteCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
+  }
+
+  export type UsuarioUncheckedCreateWithoutComentarios_crmInput = {
+    id: string
+    nome: string
+    email: string
+    avatar_url?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaUncheckedCreateNestedManyWithoutUsuarioInput
+    convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutConvidadoInput
+    leads?: LeadUncheckedCreateNestedManyWithoutResponsavelInput
+    propostas_criadas?: PropostaUncheckedCreateNestedManyWithoutCriadorInput
+    contratos_criados?: ContratoUncheckedCreateNestedManyWithoutCriadorInput
+    projetos_criados?: ProjetoUncheckedCreateNestedManyWithoutCriadorInput
+    tarefas?: TarefaUncheckedCreateNestedManyWithoutResponsavelInput
+    documentos_criados?: DocumentoUncheckedCreateNestedManyWithoutCriadorInput
+    recebiveis_criados?: RecebivelUncheckedCreateNestedManyWithoutCriadorInput
+    contas_pagar_criadas?: ContaPagarUncheckedCreateNestedManyWithoutCriadorInput
+    eventos_responsavel?: EventoUncheckedCreateNestedManyWithoutResponsavelInput
+    propostas_responsavel?: PropostaUncheckedCreateNestedManyWithoutResponsavelInput
+    contratos_responsavel?: ContratoUncheckedCreateNestedManyWithoutResponsavelInput
+    convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaUncheckedCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
+  }
+
+  export type UsuarioCreateOrConnectWithoutComentarios_crmInput = {
+    where: UsuarioWhereUniqueInput
+    create: XOR<UsuarioCreateWithoutComentarios_crmInput, UsuarioUncheckedCreateWithoutComentarios_crmInput>
+  }
+
+  export type LeadUpsertWithoutComentariosInput = {
+    update: XOR<LeadUpdateWithoutComentariosInput, LeadUncheckedUpdateWithoutComentariosInput>
+    create: XOR<LeadCreateWithoutComentariosInput, LeadUncheckedCreateWithoutComentariosInput>
+    where?: LeadWhereInput
+  }
+
+  export type LeadUpdateToOneWithWhereWithoutComentariosInput = {
+    where?: LeadWhereInput
+    data: XOR<LeadUpdateWithoutComentariosInput, LeadUncheckedUpdateWithoutComentariosInput>
+  }
+
+  export type LeadUpdateWithoutComentariosInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    empresa_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_chave?: StringFieldUpdateOperationsInput | string
+    valor_estimado?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probabilidade?: IntFieldUpdateOperationsInput | number
+    previsao_fechamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    proxima_acao?: NullableStringFieldUpdateOperationsInput | string | null
+    data_proxima_acao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    origem?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    motivo_perda?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: LeadUpdatetagsInput | string[]
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutLeadsNestedInput
+    cliente?: ClienteUpdateOneWithoutLeadsNestedInput
+    responsavel?: UsuarioUpdateOneWithoutLeadsNestedInput
+    servico?: ServicoUpdateOneWithoutLeadsNestedInput
+    etapa?: EtapaCrmUpdateOneWithoutLeadsNestedInput
+    propostas?: PropostaUpdateManyWithoutLeadNestedInput
+  }
+
+  export type LeadUncheckedUpdateWithoutComentariosInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    responsavel_id?: NullableStringFieldUpdateOperationsInput | string | null
+    servico_id?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nome?: StringFieldUpdateOperationsInput | string
+    empresa_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_chave?: StringFieldUpdateOperationsInput | string
+    valor_estimado?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probabilidade?: IntFieldUpdateOperationsInput | number
+    previsao_fechamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    proxima_acao?: NullableStringFieldUpdateOperationsInput | string | null
+    data_proxima_acao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    origem?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    motivo_perda?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: LeadUpdatetagsInput | string[]
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    propostas?: PropostaUncheckedUpdateManyWithoutLeadNestedInput
+  }
+
+  export type UsuarioUpsertWithoutComentarios_crmInput = {
+    update: XOR<UsuarioUpdateWithoutComentarios_crmInput, UsuarioUncheckedUpdateWithoutComentarios_crmInput>
+    create: XOR<UsuarioCreateWithoutComentarios_crmInput, UsuarioUncheckedCreateWithoutComentarios_crmInput>
+    where?: UsuarioWhereInput
+  }
+
+  export type UsuarioUpdateToOneWithWhereWithoutComentarios_crmInput = {
+    where?: UsuarioWhereInput
+    data: XOR<UsuarioUpdateWithoutComentarios_crmInput, UsuarioUncheckedUpdateWithoutComentarios_crmInput>
+  }
+
+  export type UsuarioUpdateWithoutComentarios_crmInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUpdateManyWithoutUsuarioNestedInput
+    convites?: ConviteEmpresaUpdateManyWithoutConvidadoNestedInput
+    leads?: LeadUpdateManyWithoutResponsavelNestedInput
+    propostas_criadas?: PropostaUpdateManyWithoutCriadorNestedInput
+    contratos_criados?: ContratoUpdateManyWithoutCriadorNestedInput
+    projetos_criados?: ProjetoUpdateManyWithoutCriadorNestedInput
+    tarefas?: TarefaUpdateManyWithoutResponsavelNestedInput
+    documentos_criados?: DocumentoUpdateManyWithoutCriadorNestedInput
+    recebiveis_criados?: RecebivelUpdateManyWithoutCriadorNestedInput
+    contas_pagar_criadas?: ContaPagarUpdateManyWithoutCriadorNestedInput
+    eventos_responsavel?: EventoUpdateManyWithoutResponsavelNestedInput
+    propostas_responsavel?: PropostaUpdateManyWithoutResponsavelNestedInput
+    contratos_responsavel?: ContratoUpdateManyWithoutResponsavelNestedInput
+    convites_cliente?: ConviteClienteUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
+  }
+
+  export type UsuarioUncheckedUpdateWithoutComentarios_crmInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUncheckedUpdateManyWithoutUsuarioNestedInput
+    convites?: ConviteEmpresaUncheckedUpdateManyWithoutConvidadoNestedInput
+    leads?: LeadUncheckedUpdateManyWithoutResponsavelNestedInput
+    propostas_criadas?: PropostaUncheckedUpdateManyWithoutCriadorNestedInput
+    contratos_criados?: ContratoUncheckedUpdateManyWithoutCriadorNestedInput
+    projetos_criados?: ProjetoUncheckedUpdateManyWithoutCriadorNestedInput
+    tarefas?: TarefaUncheckedUpdateManyWithoutResponsavelNestedInput
+    documentos_criados?: DocumentoUncheckedUpdateManyWithoutCriadorNestedInput
+    recebiveis_criados?: RecebivelUncheckedUpdateManyWithoutCriadorNestedInput
+    contas_pagar_criadas?: ContaPagarUncheckedUpdateManyWithoutCriadorNestedInput
+    eventos_responsavel?: EventoUncheckedUpdateManyWithoutResponsavelNestedInput
+    propostas_responsavel?: PropostaUncheckedUpdateManyWithoutResponsavelNestedInput
+    contratos_responsavel?: ContratoUncheckedUpdateManyWithoutResponsavelNestedInput
+    convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUncheckedUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
+  }
+
   export type EmpresaCreateWithoutLeadsInput = {
     id?: string
     nome: string
@@ -88079,6 +90766,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutLeadsInput = {
@@ -88117,6 +90805,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutLeadsInput = {
@@ -88218,7 +90907,7 @@ export namespace Prisma {
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaCreateNestedManyWithoutConvidadoInput
-    atividades_crm?: AtividadeCRMCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoCreateNestedManyWithoutCriadorInput
@@ -88246,7 +90935,7 @@ export namespace Prisma {
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutConvidadoInput
-    atividades_crm?: AtividadeCRMUncheckedCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmUncheckedCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaUncheckedCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoUncheckedCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoUncheckedCreateNestedManyWithoutCriadorInput
@@ -88270,29 +90959,85 @@ export namespace Prisma {
     create: XOR<UsuarioCreateWithoutLeadsInput, UsuarioUncheckedCreateWithoutLeadsInput>
   }
 
-  export type AtividadeCRMCreateWithoutLeadInput = {
+  export type ServicoCreateWithoutLeadsInput = {
     id?: string
-    tipo: string
-    descricao: string
-    data?: Date | string
-    usuario?: UsuarioCreateNestedOneWithoutAtividades_crmInput
+    nome: string
+    descricao?: string | null
+    valor_base?: Decimal | DecimalJsLike | number | string | null
+    ativo?: boolean
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutServicosInput
+    plano_contas?: PlanoDeContasCreateNestedOneWithoutServicosInput
+    itens_proposta?: ItemPropostaCreateNestedManyWithoutServicoInput
   }
 
-  export type AtividadeCRMUncheckedCreateWithoutLeadInput = {
+  export type ServicoUncheckedCreateWithoutLeadsInput = {
+    id?: string
+    empresa_id: string
+    plano_contas_id?: string | null
+    nome: string
+    descricao?: string | null
+    valor_base?: Decimal | DecimalJsLike | number | string | null
+    ativo?: boolean
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    itens_proposta?: ItemPropostaUncheckedCreateNestedManyWithoutServicoInput
+  }
+
+  export type ServicoCreateOrConnectWithoutLeadsInput = {
+    where: ServicoWhereUniqueInput
+    create: XOR<ServicoCreateWithoutLeadsInput, ServicoUncheckedCreateWithoutLeadsInput>
+  }
+
+  export type EtapaCrmCreateWithoutLeadsInput = {
+    id?: string
+    chave: string
+    nome: string
+    cor?: string
+    ordem?: number
+    criado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutEtapas_crmInput
+  }
+
+  export type EtapaCrmUncheckedCreateWithoutLeadsInput = {
+    id?: string
+    empresa_id: string
+    chave: string
+    nome: string
+    cor?: string
+    ordem?: number
+    criado_em?: Date | string
+  }
+
+  export type EtapaCrmCreateOrConnectWithoutLeadsInput = {
+    where: EtapaCrmWhereUniqueInput
+    create: XOR<EtapaCrmCreateWithoutLeadsInput, EtapaCrmUncheckedCreateWithoutLeadsInput>
+  }
+
+  export type ComentarioCrmCreateWithoutLeadInput = {
+    id?: string
+    autor_nome: string
+    mensagem: string
+    criado_em?: Date | string
+    usuario?: UsuarioCreateNestedOneWithoutComentarios_crmInput
+  }
+
+  export type ComentarioCrmUncheckedCreateWithoutLeadInput = {
     id?: string
     usuario_id?: string | null
-    tipo: string
-    descricao: string
-    data?: Date | string
+    autor_nome: string
+    mensagem: string
+    criado_em?: Date | string
   }
 
-  export type AtividadeCRMCreateOrConnectWithoutLeadInput = {
-    where: AtividadeCRMWhereUniqueInput
-    create: XOR<AtividadeCRMCreateWithoutLeadInput, AtividadeCRMUncheckedCreateWithoutLeadInput>
+  export type ComentarioCrmCreateOrConnectWithoutLeadInput = {
+    where: ComentarioCrmWhereUniqueInput
+    create: XOR<ComentarioCrmCreateWithoutLeadInput, ComentarioCrmUncheckedCreateWithoutLeadInput>
   }
 
-  export type AtividadeCRMCreateManyLeadInputEnvelope = {
-    data: AtividadeCRMCreateManyLeadInput | AtividadeCRMCreateManyLeadInput[]
+  export type ComentarioCrmCreateManyLeadInputEnvelope = {
+    data: ComentarioCrmCreateManyLeadInput | ComentarioCrmCreateManyLeadInput[]
     skipDuplicates?: boolean
   }
 
@@ -88419,6 +91164,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutLeadsInput = {
@@ -88457,6 +91203,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutLeadsInput = {
@@ -88570,7 +91317,7 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUpdateManyWithoutConvidadoNestedInput
-    atividades_crm?: AtividadeCRMUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUpdateManyWithoutCriadorNestedInput
@@ -88598,7 +91345,7 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUncheckedUpdateManyWithoutConvidadoNestedInput
-    atividades_crm?: AtividadeCRMUncheckedUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUncheckedUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUncheckedUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUncheckedUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUncheckedUpdateManyWithoutCriadorNestedInput
@@ -88617,20 +91364,88 @@ export namespace Prisma {
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
   }
 
-  export type AtividadeCRMUpsertWithWhereUniqueWithoutLeadInput = {
-    where: AtividadeCRMWhereUniqueInput
-    update: XOR<AtividadeCRMUpdateWithoutLeadInput, AtividadeCRMUncheckedUpdateWithoutLeadInput>
-    create: XOR<AtividadeCRMCreateWithoutLeadInput, AtividadeCRMUncheckedCreateWithoutLeadInput>
+  export type ServicoUpsertWithoutLeadsInput = {
+    update: XOR<ServicoUpdateWithoutLeadsInput, ServicoUncheckedUpdateWithoutLeadsInput>
+    create: XOR<ServicoCreateWithoutLeadsInput, ServicoUncheckedCreateWithoutLeadsInput>
+    where?: ServicoWhereInput
   }
 
-  export type AtividadeCRMUpdateWithWhereUniqueWithoutLeadInput = {
-    where: AtividadeCRMWhereUniqueInput
-    data: XOR<AtividadeCRMUpdateWithoutLeadInput, AtividadeCRMUncheckedUpdateWithoutLeadInput>
+  export type ServicoUpdateToOneWithWhereWithoutLeadsInput = {
+    where?: ServicoWhereInput
+    data: XOR<ServicoUpdateWithoutLeadsInput, ServicoUncheckedUpdateWithoutLeadsInput>
   }
 
-  export type AtividadeCRMUpdateManyWithWhereWithoutLeadInput = {
-    where: AtividadeCRMScalarWhereInput
-    data: XOR<AtividadeCRMUpdateManyMutationInput, AtividadeCRMUncheckedUpdateManyWithoutLeadInput>
+  export type ServicoUpdateWithoutLeadsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    valor_base?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutServicosNestedInput
+    plano_contas?: PlanoDeContasUpdateOneWithoutServicosNestedInput
+    itens_proposta?: ItemPropostaUpdateManyWithoutServicoNestedInput
+  }
+
+  export type ServicoUncheckedUpdateWithoutLeadsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    plano_contas_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nome?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    valor_base?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    itens_proposta?: ItemPropostaUncheckedUpdateManyWithoutServicoNestedInput
+  }
+
+  export type EtapaCrmUpsertWithoutLeadsInput = {
+    update: XOR<EtapaCrmUpdateWithoutLeadsInput, EtapaCrmUncheckedUpdateWithoutLeadsInput>
+    create: XOR<EtapaCrmCreateWithoutLeadsInput, EtapaCrmUncheckedCreateWithoutLeadsInput>
+    where?: EtapaCrmWhereInput
+  }
+
+  export type EtapaCrmUpdateToOneWithWhereWithoutLeadsInput = {
+    where?: EtapaCrmWhereInput
+    data: XOR<EtapaCrmUpdateWithoutLeadsInput, EtapaCrmUncheckedUpdateWithoutLeadsInput>
+  }
+
+  export type EtapaCrmUpdateWithoutLeadsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    chave?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cor?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutEtapas_crmNestedInput
+  }
+
+  export type EtapaCrmUncheckedUpdateWithoutLeadsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    chave?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cor?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ComentarioCrmUpsertWithWhereUniqueWithoutLeadInput = {
+    where: ComentarioCrmWhereUniqueInput
+    update: XOR<ComentarioCrmUpdateWithoutLeadInput, ComentarioCrmUncheckedUpdateWithoutLeadInput>
+    create: XOR<ComentarioCrmCreateWithoutLeadInput, ComentarioCrmUncheckedCreateWithoutLeadInput>
+  }
+
+  export type ComentarioCrmUpdateWithWhereUniqueWithoutLeadInput = {
+    where: ComentarioCrmWhereUniqueInput
+    data: XOR<ComentarioCrmUpdateWithoutLeadInput, ComentarioCrmUncheckedUpdateWithoutLeadInput>
+  }
+
+  export type ComentarioCrmUpdateManyWithWhereWithoutLeadInput = {
+    where: ComentarioCrmScalarWhereInput
+    data: XOR<ComentarioCrmUpdateManyMutationInput, ComentarioCrmUncheckedUpdateManyWithoutLeadInput>
   }
 
   export type PropostaUpsertWithWhereUniqueWithoutLeadInput = {
@@ -88647,234 +91462,6 @@ export namespace Prisma {
   export type PropostaUpdateManyWithWhereWithoutLeadInput = {
     where: PropostaScalarWhereInput
     data: XOR<PropostaUpdateManyMutationInput, PropostaUncheckedUpdateManyWithoutLeadInput>
-  }
-
-  export type LeadCreateWithoutAtividadesInput = {
-    id?: string
-    nome: string
-    empresa_nome?: string | null
-    email?: string | null
-    telefone?: string | null
-    status?: $Enums.StatusLead
-    valor_estimado?: Decimal | DecimalJsLike | number | string | null
-    origem?: string | null
-    observacoes?: string | null
-    ganho_em?: Date | string | null
-    perdido_em?: Date | string | null
-    motivo_perda?: string | null
-    criado_em?: Date | string
-    atualizado_em?: Date | string
-    empresa: EmpresaCreateNestedOneWithoutLeadsInput
-    cliente?: ClienteCreateNestedOneWithoutLeadsInput
-    responsavel?: UsuarioCreateNestedOneWithoutLeadsInput
-    propostas?: PropostaCreateNestedManyWithoutLeadInput
-  }
-
-  export type LeadUncheckedCreateWithoutAtividadesInput = {
-    id?: string
-    empresa_id: string
-    cliente_id?: string | null
-    responsavel_id?: string | null
-    nome: string
-    empresa_nome?: string | null
-    email?: string | null
-    telefone?: string | null
-    status?: $Enums.StatusLead
-    valor_estimado?: Decimal | DecimalJsLike | number | string | null
-    origem?: string | null
-    observacoes?: string | null
-    ganho_em?: Date | string | null
-    perdido_em?: Date | string | null
-    motivo_perda?: string | null
-    criado_em?: Date | string
-    atualizado_em?: Date | string
-    propostas?: PropostaUncheckedCreateNestedManyWithoutLeadInput
-  }
-
-  export type LeadCreateOrConnectWithoutAtividadesInput = {
-    where: LeadWhereUniqueInput
-    create: XOR<LeadCreateWithoutAtividadesInput, LeadUncheckedCreateWithoutAtividadesInput>
-  }
-
-  export type UsuarioCreateWithoutAtividades_crmInput = {
-    id: string
-    nome: string
-    email: string
-    avatar_url?: string | null
-    criado_em?: Date | string
-    atualizado_em?: Date | string
-    membros?: MembroEmpresaCreateNestedManyWithoutUsuarioInput
-    convites?: ConviteEmpresaCreateNestedManyWithoutConvidadoInput
-    leads?: LeadCreateNestedManyWithoutResponsavelInput
-    propostas_criadas?: PropostaCreateNestedManyWithoutCriadorInput
-    contratos_criados?: ContratoCreateNestedManyWithoutCriadorInput
-    projetos_criados?: ProjetoCreateNestedManyWithoutCriadorInput
-    tarefas?: TarefaCreateNestedManyWithoutResponsavelInput
-    documentos_criados?: DocumentoCreateNestedManyWithoutCriadorInput
-    recebiveis_criados?: RecebivelCreateNestedManyWithoutCriadorInput
-    contas_pagar_criadas?: ContaPagarCreateNestedManyWithoutCriadorInput
-    eventos_responsavel?: EventoCreateNestedManyWithoutResponsavelInput
-    propostas_responsavel?: PropostaCreateNestedManyWithoutResponsavelInput
-    contratos_responsavel?: ContratoCreateNestedManyWithoutResponsavelInput
-    convites_cliente?: ConviteClienteCreateNestedManyWithoutCriadorInput
-    comentarios_tarefa?: ComentarioTarefaCreateNestedManyWithoutAutorInput
-    anexos_tarefa?: AnexoTarefaCreateNestedManyWithoutCriadorInput
-    atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
-    aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
-    aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
-  }
-
-  export type UsuarioUncheckedCreateWithoutAtividades_crmInput = {
-    id: string
-    nome: string
-    email: string
-    avatar_url?: string | null
-    criado_em?: Date | string
-    atualizado_em?: Date | string
-    membros?: MembroEmpresaUncheckedCreateNestedManyWithoutUsuarioInput
-    convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutConvidadoInput
-    leads?: LeadUncheckedCreateNestedManyWithoutResponsavelInput
-    propostas_criadas?: PropostaUncheckedCreateNestedManyWithoutCriadorInput
-    contratos_criados?: ContratoUncheckedCreateNestedManyWithoutCriadorInput
-    projetos_criados?: ProjetoUncheckedCreateNestedManyWithoutCriadorInput
-    tarefas?: TarefaUncheckedCreateNestedManyWithoutResponsavelInput
-    documentos_criados?: DocumentoUncheckedCreateNestedManyWithoutCriadorInput
-    recebiveis_criados?: RecebivelUncheckedCreateNestedManyWithoutCriadorInput
-    contas_pagar_criadas?: ContaPagarUncheckedCreateNestedManyWithoutCriadorInput
-    eventos_responsavel?: EventoUncheckedCreateNestedManyWithoutResponsavelInput
-    propostas_responsavel?: PropostaUncheckedCreateNestedManyWithoutResponsavelInput
-    contratos_responsavel?: ContratoUncheckedCreateNestedManyWithoutResponsavelInput
-    convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutCriadorInput
-    comentarios_tarefa?: ComentarioTarefaUncheckedCreateNestedManyWithoutAutorInput
-    anexos_tarefa?: AnexoTarefaUncheckedCreateNestedManyWithoutCriadorInput
-    atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
-    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
-    aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
-  }
-
-  export type UsuarioCreateOrConnectWithoutAtividades_crmInput = {
-    where: UsuarioWhereUniqueInput
-    create: XOR<UsuarioCreateWithoutAtividades_crmInput, UsuarioUncheckedCreateWithoutAtividades_crmInput>
-  }
-
-  export type LeadUpsertWithoutAtividadesInput = {
-    update: XOR<LeadUpdateWithoutAtividadesInput, LeadUncheckedUpdateWithoutAtividadesInput>
-    create: XOR<LeadCreateWithoutAtividadesInput, LeadUncheckedCreateWithoutAtividadesInput>
-    where?: LeadWhereInput
-  }
-
-  export type LeadUpdateToOneWithWhereWithoutAtividadesInput = {
-    where?: LeadWhereInput
-    data: XOR<LeadUpdateWithoutAtividadesInput, LeadUncheckedUpdateWithoutAtividadesInput>
-  }
-
-  export type LeadUpdateWithoutAtividadesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nome?: StringFieldUpdateOperationsInput | string
-    empresa_nome?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumStatusLeadFieldUpdateOperationsInput | $Enums.StatusLead
-    valor_estimado?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    origem?: NullableStringFieldUpdateOperationsInput | string | null
-    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
-    ganho_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    perdido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    motivo_perda?: NullableStringFieldUpdateOperationsInput | string | null
-    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
-    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
-    empresa?: EmpresaUpdateOneRequiredWithoutLeadsNestedInput
-    cliente?: ClienteUpdateOneWithoutLeadsNestedInput
-    responsavel?: UsuarioUpdateOneWithoutLeadsNestedInput
-    propostas?: PropostaUpdateManyWithoutLeadNestedInput
-  }
-
-  export type LeadUncheckedUpdateWithoutAtividadesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    empresa_id?: StringFieldUpdateOperationsInput | string
-    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
-    responsavel_id?: NullableStringFieldUpdateOperationsInput | string | null
-    nome?: StringFieldUpdateOperationsInput | string
-    empresa_nome?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumStatusLeadFieldUpdateOperationsInput | $Enums.StatusLead
-    valor_estimado?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    origem?: NullableStringFieldUpdateOperationsInput | string | null
-    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
-    ganho_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    perdido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    motivo_perda?: NullableStringFieldUpdateOperationsInput | string | null
-    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
-    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
-    propostas?: PropostaUncheckedUpdateManyWithoutLeadNestedInput
-  }
-
-  export type UsuarioUpsertWithoutAtividades_crmInput = {
-    update: XOR<UsuarioUpdateWithoutAtividades_crmInput, UsuarioUncheckedUpdateWithoutAtividades_crmInput>
-    create: XOR<UsuarioCreateWithoutAtividades_crmInput, UsuarioUncheckedCreateWithoutAtividades_crmInput>
-    where?: UsuarioWhereInput
-  }
-
-  export type UsuarioUpdateToOneWithWhereWithoutAtividades_crmInput = {
-    where?: UsuarioWhereInput
-    data: XOR<UsuarioUpdateWithoutAtividades_crmInput, UsuarioUncheckedUpdateWithoutAtividades_crmInput>
-  }
-
-  export type UsuarioUpdateWithoutAtividades_crmInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nome?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
-    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
-    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
-    membros?: MembroEmpresaUpdateManyWithoutUsuarioNestedInput
-    convites?: ConviteEmpresaUpdateManyWithoutConvidadoNestedInput
-    leads?: LeadUpdateManyWithoutResponsavelNestedInput
-    propostas_criadas?: PropostaUpdateManyWithoutCriadorNestedInput
-    contratos_criados?: ContratoUpdateManyWithoutCriadorNestedInput
-    projetos_criados?: ProjetoUpdateManyWithoutCriadorNestedInput
-    tarefas?: TarefaUpdateManyWithoutResponsavelNestedInput
-    documentos_criados?: DocumentoUpdateManyWithoutCriadorNestedInput
-    recebiveis_criados?: RecebivelUpdateManyWithoutCriadorNestedInput
-    contas_pagar_criadas?: ContaPagarUpdateManyWithoutCriadorNestedInput
-    eventos_responsavel?: EventoUpdateManyWithoutResponsavelNestedInput
-    propostas_responsavel?: PropostaUpdateManyWithoutResponsavelNestedInput
-    contratos_responsavel?: ContratoUpdateManyWithoutResponsavelNestedInput
-    convites_cliente?: ConviteClienteUpdateManyWithoutCriadorNestedInput
-    comentarios_tarefa?: ComentarioTarefaUpdateManyWithoutAutorNestedInput
-    anexos_tarefa?: AnexoTarefaUpdateManyWithoutCriadorNestedInput
-    atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
-    aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
-    aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
-  }
-
-  export type UsuarioUncheckedUpdateWithoutAtividades_crmInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nome?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
-    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
-    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
-    membros?: MembroEmpresaUncheckedUpdateManyWithoutUsuarioNestedInput
-    convites?: ConviteEmpresaUncheckedUpdateManyWithoutConvidadoNestedInput
-    leads?: LeadUncheckedUpdateManyWithoutResponsavelNestedInput
-    propostas_criadas?: PropostaUncheckedUpdateManyWithoutCriadorNestedInput
-    contratos_criados?: ContratoUncheckedUpdateManyWithoutCriadorNestedInput
-    projetos_criados?: ProjetoUncheckedUpdateManyWithoutCriadorNestedInput
-    tarefas?: TarefaUncheckedUpdateManyWithoutResponsavelNestedInput
-    documentos_criados?: DocumentoUncheckedUpdateManyWithoutCriadorNestedInput
-    recebiveis_criados?: RecebivelUncheckedUpdateManyWithoutCriadorNestedInput
-    contas_pagar_criadas?: ContaPagarUncheckedUpdateManyWithoutCriadorNestedInput
-    eventos_responsavel?: EventoUncheckedUpdateManyWithoutResponsavelNestedInput
-    propostas_responsavel?: PropostaUncheckedUpdateManyWithoutResponsavelNestedInput
-    contratos_responsavel?: ContratoUncheckedUpdateManyWithoutResponsavelNestedInput
-    convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutCriadorNestedInput
-    comentarios_tarefa?: ComentarioTarefaUncheckedUpdateManyWithoutAutorNestedInput
-    anexos_tarefa?: AnexoTarefaUncheckedUpdateManyWithoutCriadorNestedInput
-    atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
-    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
-    aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
   }
 
   export type EmpresaCreateWithoutPropostasInput = {
@@ -88913,6 +91500,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutPropostasInput = {
@@ -88951,6 +91539,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutPropostasInput = {
@@ -89047,21 +91636,28 @@ export namespace Prisma {
     id?: string
     nome: string
     empresa_nome?: string | null
+    contato_nome?: string | null
     email?: string | null
     telefone?: string | null
-    status?: $Enums.StatusLead
+    whatsapp?: string | null
+    etapa_chave?: string
     valor_estimado?: Decimal | DecimalJsLike | number | string | null
+    probabilidade?: number
+    previsao_fechamento?: Date | string | null
+    proxima_acao?: string | null
+    data_proxima_acao?: Date | string | null
     origem?: string | null
     observacoes?: string | null
-    ganho_em?: Date | string | null
-    perdido_em?: Date | string | null
     motivo_perda?: string | null
+    tags?: LeadCreatetagsInput | string[]
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutLeadsInput
     cliente?: ClienteCreateNestedOneWithoutLeadsInput
     responsavel?: UsuarioCreateNestedOneWithoutLeadsInput
-    atividades?: AtividadeCRMCreateNestedManyWithoutLeadInput
+    servico?: ServicoCreateNestedOneWithoutLeadsInput
+    etapa?: EtapaCrmCreateNestedOneWithoutLeadsInput
+    comentarios?: ComentarioCrmCreateNestedManyWithoutLeadInput
   }
 
   export type LeadUncheckedCreateWithoutPropostasInput = {
@@ -89069,20 +91665,27 @@ export namespace Prisma {
     empresa_id: string
     cliente_id?: string | null
     responsavel_id?: string | null
+    servico_id?: string | null
+    etapa_id?: string | null
     nome: string
     empresa_nome?: string | null
+    contato_nome?: string | null
     email?: string | null
     telefone?: string | null
-    status?: $Enums.StatusLead
+    whatsapp?: string | null
+    etapa_chave?: string
     valor_estimado?: Decimal | DecimalJsLike | number | string | null
+    probabilidade?: number
+    previsao_fechamento?: Date | string | null
+    proxima_acao?: string | null
+    data_proxima_acao?: Date | string | null
     origem?: string | null
     observacoes?: string | null
-    ganho_em?: Date | string | null
-    perdido_em?: Date | string | null
     motivo_perda?: string | null
+    tags?: LeadCreatetagsInput | string[]
     criado_em?: Date | string
     atualizado_em?: Date | string
-    atividades?: AtividadeCRMUncheckedCreateNestedManyWithoutLeadInput
+    comentarios?: ComentarioCrmUncheckedCreateNestedManyWithoutLeadInput
   }
 
   export type LeadCreateOrConnectWithoutPropostasInput = {
@@ -89100,7 +91703,7 @@ export namespace Prisma {
     membros?: MembroEmpresaCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaCreateNestedManyWithoutConvidadoInput
     leads?: LeadCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmCreateNestedManyWithoutUsuarioInput
     contratos_criados?: ContratoCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoCreateNestedManyWithoutCriadorInput
     tarefas?: TarefaCreateNestedManyWithoutResponsavelInput
@@ -89128,7 +91731,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutConvidadoInput
     leads?: LeadUncheckedCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMUncheckedCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmUncheckedCreateNestedManyWithoutUsuarioInput
     contratos_criados?: ContratoUncheckedCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoUncheckedCreateNestedManyWithoutCriadorInput
     tarefas?: TarefaUncheckedCreateNestedManyWithoutResponsavelInput
@@ -89161,7 +91764,7 @@ export namespace Prisma {
     membros?: MembroEmpresaCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaCreateNestedManyWithoutConvidadoInput
     leads?: LeadCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoCreateNestedManyWithoutCriadorInput
@@ -89189,7 +91792,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutConvidadoInput
     leads?: LeadUncheckedCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMUncheckedCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmUncheckedCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaUncheckedCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoUncheckedCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoUncheckedCreateNestedManyWithoutCriadorInput
@@ -89418,6 +92021,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutPropostasInput = {
@@ -89456,6 +92060,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutPropostasInput = {
@@ -89564,21 +92169,28 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
     empresa_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_nome?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumStatusLeadFieldUpdateOperationsInput | $Enums.StatusLead
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_chave?: StringFieldUpdateOperationsInput | string
     valor_estimado?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probabilidade?: IntFieldUpdateOperationsInput | number
+    previsao_fechamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    proxima_acao?: NullableStringFieldUpdateOperationsInput | string | null
+    data_proxima_acao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     origem?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
-    ganho_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    perdido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     motivo_perda?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: LeadUpdatetagsInput | string[]
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutLeadsNestedInput
     cliente?: ClienteUpdateOneWithoutLeadsNestedInput
     responsavel?: UsuarioUpdateOneWithoutLeadsNestedInput
-    atividades?: AtividadeCRMUpdateManyWithoutLeadNestedInput
+    servico?: ServicoUpdateOneWithoutLeadsNestedInput
+    etapa?: EtapaCrmUpdateOneWithoutLeadsNestedInput
+    comentarios?: ComentarioCrmUpdateManyWithoutLeadNestedInput
   }
 
   export type LeadUncheckedUpdateWithoutPropostasInput = {
@@ -89586,20 +92198,27 @@ export namespace Prisma {
     empresa_id?: StringFieldUpdateOperationsInput | string
     cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
     responsavel_id?: NullableStringFieldUpdateOperationsInput | string | null
+    servico_id?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_id?: NullableStringFieldUpdateOperationsInput | string | null
     nome?: StringFieldUpdateOperationsInput | string
     empresa_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_nome?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumStatusLeadFieldUpdateOperationsInput | $Enums.StatusLead
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_chave?: StringFieldUpdateOperationsInput | string
     valor_estimado?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probabilidade?: IntFieldUpdateOperationsInput | number
+    previsao_fechamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    proxima_acao?: NullableStringFieldUpdateOperationsInput | string | null
+    data_proxima_acao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     origem?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
-    ganho_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    perdido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     motivo_perda?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: LeadUpdatetagsInput | string[]
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
-    atividades?: AtividadeCRMUncheckedUpdateManyWithoutLeadNestedInput
+    comentarios?: ComentarioCrmUncheckedUpdateManyWithoutLeadNestedInput
   }
 
   export type UsuarioUpsertWithoutPropostas_criadasInput = {
@@ -89623,7 +92242,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUpdateManyWithoutUsuarioNestedInput
     contratos_criados?: ContratoUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUpdateManyWithoutCriadorNestedInput
     tarefas?: TarefaUpdateManyWithoutResponsavelNestedInput
@@ -89651,7 +92270,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUncheckedUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUncheckedUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUncheckedUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUncheckedUpdateManyWithoutUsuarioNestedInput
     contratos_criados?: ContratoUncheckedUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUncheckedUpdateManyWithoutCriadorNestedInput
     tarefas?: TarefaUncheckedUpdateManyWithoutResponsavelNestedInput
@@ -89690,7 +92309,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUpdateManyWithoutCriadorNestedInput
@@ -89718,7 +92337,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUncheckedUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUncheckedUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUncheckedUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUncheckedUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUncheckedUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUncheckedUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUncheckedUpdateManyWithoutCriadorNestedInput
@@ -90117,6 +92736,7 @@ export namespace Prisma {
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutServicosInput
     plano_contas?: PlanoDeContasCreateNestedOneWithoutServicosInput
+    leads?: LeadCreateNestedManyWithoutServicoInput
   }
 
   export type ServicoUncheckedCreateWithoutItens_propostaInput = {
@@ -90129,6 +92749,7 @@ export namespace Prisma {
     ativo?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
+    leads?: LeadUncheckedCreateNestedManyWithoutServicoInput
   }
 
   export type ServicoCreateOrConnectWithoutItens_propostaInput = {
@@ -90234,6 +92855,7 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutServicosNestedInput
     plano_contas?: PlanoDeContasUpdateOneWithoutServicosNestedInput
+    leads?: LeadUpdateManyWithoutServicoNestedInput
   }
 
   export type ServicoUncheckedUpdateWithoutItens_propostaInput = {
@@ -90246,6 +92868,7 @@ export namespace Prisma {
     ativo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    leads?: LeadUncheckedUpdateManyWithoutServicoNestedInput
   }
 
   export type EmpresaCreateWithoutContratosInput = {
@@ -90284,6 +92907,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutContratosInput = {
@@ -90322,6 +92946,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutContratosInput = {
@@ -90495,7 +93120,7 @@ export namespace Prisma {
     membros?: MembroEmpresaCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaCreateNestedManyWithoutConvidadoInput
     leads?: LeadCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoCreateNestedManyWithoutCriadorInput
     tarefas?: TarefaCreateNestedManyWithoutResponsavelInput
@@ -90523,7 +93148,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutConvidadoInput
     leads?: LeadUncheckedCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMUncheckedCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmUncheckedCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaUncheckedCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoUncheckedCreateNestedManyWithoutCriadorInput
     tarefas?: TarefaUncheckedCreateNestedManyWithoutResponsavelInput
@@ -90556,7 +93181,7 @@ export namespace Prisma {
     membros?: MembroEmpresaCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaCreateNestedManyWithoutConvidadoInput
     leads?: LeadCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoCreateNestedManyWithoutCriadorInput
@@ -90584,7 +93209,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutConvidadoInput
     leads?: LeadUncheckedCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMUncheckedCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmUncheckedCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaUncheckedCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoUncheckedCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoUncheckedCreateNestedManyWithoutCriadorInput
@@ -90921,6 +93546,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutContratosInput = {
@@ -90959,6 +93585,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PropostaUpsertWithoutContratoInput = {
@@ -91150,7 +93777,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUpdateManyWithoutCriadorNestedInput
     tarefas?: TarefaUpdateManyWithoutResponsavelNestedInput
@@ -91178,7 +93805,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUncheckedUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUncheckedUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUncheckedUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUncheckedUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUncheckedUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUncheckedUpdateManyWithoutCriadorNestedInput
     tarefas?: TarefaUncheckedUpdateManyWithoutResponsavelNestedInput
@@ -91217,7 +93844,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUpdateManyWithoutCriadorNestedInput
@@ -91245,7 +93872,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUncheckedUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUncheckedUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUncheckedUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUncheckedUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUncheckedUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUncheckedUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUncheckedUpdateManyWithoutCriadorNestedInput
@@ -91416,6 +94043,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutProjetosInput = {
@@ -91454,6 +94082,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutProjetosInput = {
@@ -91657,7 +94286,7 @@ export namespace Prisma {
     membros?: MembroEmpresaCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaCreateNestedManyWithoutConvidadoInput
     leads?: LeadCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoCreateNestedManyWithoutCriadorInput
     tarefas?: TarefaCreateNestedManyWithoutResponsavelInput
@@ -91685,7 +94314,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutConvidadoInput
     leads?: LeadUncheckedCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMUncheckedCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmUncheckedCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaUncheckedCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoUncheckedCreateNestedManyWithoutCriadorInput
     tarefas?: TarefaUncheckedCreateNestedManyWithoutResponsavelInput
@@ -92007,6 +94636,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutProjetosInput = {
@@ -92045,6 +94675,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ContratoUpsertWithoutProjetoInput = {
@@ -92266,7 +94897,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUpdateManyWithoutCriadorNestedInput
     tarefas?: TarefaUpdateManyWithoutResponsavelNestedInput
@@ -92294,7 +94925,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUncheckedUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUncheckedUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUncheckedUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUncheckedUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUncheckedUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUncheckedUpdateManyWithoutCriadorNestedInput
     tarefas?: TarefaUncheckedUpdateManyWithoutResponsavelNestedInput
@@ -92680,7 +95311,7 @@ export namespace Prisma {
     membros?: MembroEmpresaCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaCreateNestedManyWithoutConvidadoInput
     leads?: LeadCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoCreateNestedManyWithoutCriadorInput
@@ -92708,7 +95339,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutConvidadoInput
     leads?: LeadUncheckedCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMUncheckedCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmUncheckedCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaUncheckedCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoUncheckedCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoUncheckedCreateNestedManyWithoutCriadorInput
@@ -92996,7 +95627,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUpdateManyWithoutCriadorNestedInput
@@ -93024,7 +95655,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUncheckedUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUncheckedUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUncheckedUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUncheckedUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUncheckedUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUncheckedUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUncheckedUpdateManyWithoutCriadorNestedInput
@@ -93215,7 +95846,7 @@ export namespace Prisma {
     membros?: MembroEmpresaCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaCreateNestedManyWithoutConvidadoInput
     leads?: LeadCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoCreateNestedManyWithoutCriadorInput
@@ -93243,7 +95874,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutConvidadoInput
     leads?: LeadUncheckedCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMUncheckedCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmUncheckedCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaUncheckedCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoUncheckedCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoUncheckedCreateNestedManyWithoutCriadorInput
@@ -93340,7 +95971,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUpdateManyWithoutCriadorNestedInput
@@ -93368,7 +95999,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUncheckedUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUncheckedUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUncheckedUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUncheckedUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUncheckedUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUncheckedUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUncheckedUpdateManyWithoutCriadorNestedInput
@@ -93443,7 +96074,7 @@ export namespace Prisma {
     membros?: MembroEmpresaCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaCreateNestedManyWithoutConvidadoInput
     leads?: LeadCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoCreateNestedManyWithoutCriadorInput
@@ -93471,7 +96102,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutConvidadoInput
     leads?: LeadUncheckedCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMUncheckedCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmUncheckedCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaUncheckedCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoUncheckedCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoUncheckedCreateNestedManyWithoutCriadorInput
@@ -93568,7 +96199,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUpdateManyWithoutCriadorNestedInput
@@ -93596,7 +96227,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUncheckedUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUncheckedUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUncheckedUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUncheckedUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUncheckedUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUncheckedUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUncheckedUpdateManyWithoutCriadorNestedInput
@@ -93671,7 +96302,7 @@ export namespace Prisma {
     membros?: MembroEmpresaCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaCreateNestedManyWithoutConvidadoInput
     leads?: LeadCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoCreateNestedManyWithoutCriadorInput
@@ -93699,7 +96330,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutConvidadoInput
     leads?: LeadUncheckedCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMUncheckedCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmUncheckedCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaUncheckedCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoUncheckedCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoUncheckedCreateNestedManyWithoutCriadorInput
@@ -93796,7 +96427,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUpdateManyWithoutCriadorNestedInput
@@ -93824,7 +96455,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUncheckedUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUncheckedUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUncheckedUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUncheckedUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUncheckedUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUncheckedUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUncheckedUpdateManyWithoutCriadorNestedInput
@@ -93899,7 +96530,7 @@ export namespace Prisma {
     membros?: MembroEmpresaCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaCreateNestedManyWithoutConvidadoInput
     leads?: LeadCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoCreateNestedManyWithoutCriadorInput
@@ -93927,7 +96558,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutConvidadoInput
     leads?: LeadUncheckedCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMUncheckedCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmUncheckedCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaUncheckedCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoUncheckedCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoUncheckedCreateNestedManyWithoutCriadorInput
@@ -93960,7 +96591,7 @@ export namespace Prisma {
     membros?: MembroEmpresaCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaCreateNestedManyWithoutConvidadoInput
     leads?: LeadCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoCreateNestedManyWithoutCriadorInput
@@ -93988,7 +96619,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutConvidadoInput
     leads?: LeadUncheckedCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMUncheckedCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmUncheckedCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaUncheckedCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoUncheckedCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoUncheckedCreateNestedManyWithoutCriadorInput
@@ -94085,7 +96716,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUpdateManyWithoutCriadorNestedInput
@@ -94113,7 +96744,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUncheckedUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUncheckedUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUncheckedUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUncheckedUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUncheckedUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUncheckedUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUncheckedUpdateManyWithoutCriadorNestedInput
@@ -94152,7 +96783,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUpdateManyWithoutCriadorNestedInput
@@ -94180,7 +96811,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUncheckedUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUncheckedUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUncheckedUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUncheckedUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUncheckedUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUncheckedUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUncheckedUpdateManyWithoutCriadorNestedInput
@@ -94334,6 +96965,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutEtiquetas_tarefaInput = {
@@ -94372,6 +97004,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutEtiquetas_tarefaInput = {
@@ -94444,6 +97077,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutEtiquetas_tarefaInput = {
@@ -94482,6 +97116,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type TarefaEtiquetaUpsertWithWhereUniqueWithoutEtiquetaInput = {
@@ -94680,6 +97315,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutPastas_documentoInput = {
@@ -94718,6 +97354,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutPastas_documentoInput = {
@@ -94879,6 +97516,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutPastas_documentoInput = {
@@ -94917,6 +97555,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PastaDocumentoUpsertWithoutFilhosInput = {
@@ -95022,6 +97661,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutDocumentosInput = {
@@ -95060,6 +97700,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutDocumentosInput = {
@@ -95339,7 +97980,7 @@ export namespace Prisma {
     membros?: MembroEmpresaCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaCreateNestedManyWithoutConvidadoInput
     leads?: LeadCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoCreateNestedManyWithoutCriadorInput
@@ -95367,7 +98008,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutConvidadoInput
     leads?: LeadUncheckedCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMUncheckedCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmUncheckedCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaUncheckedCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoUncheckedCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoUncheckedCreateNestedManyWithoutCriadorInput
@@ -95437,6 +98078,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutDocumentosInput = {
@@ -95475,6 +98117,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ProjetoUpsertWithoutDocumentosInput = {
@@ -95784,7 +98427,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUpdateManyWithoutCriadorNestedInput
@@ -95812,7 +98455,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUncheckedUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUncheckedUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUncheckedUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUncheckedUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUncheckedUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUncheckedUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUncheckedUpdateManyWithoutCriadorNestedInput
@@ -95866,6 +98509,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutPlano_contasInput = {
@@ -95904,6 +98548,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutPlano_contasInput = {
@@ -96106,6 +98751,7 @@ export namespace Prisma {
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutServicosInput
     itens_proposta?: ItemPropostaCreateNestedManyWithoutServicoInput
+    leads?: LeadCreateNestedManyWithoutServicoInput
   }
 
   export type ServicoUncheckedCreateWithoutPlano_contasInput = {
@@ -96118,6 +98764,7 @@ export namespace Prisma {
     criado_em?: Date | string
     atualizado_em?: Date | string
     itens_proposta?: ItemPropostaUncheckedCreateNestedManyWithoutServicoInput
+    leads?: LeadUncheckedCreateNestedManyWithoutServicoInput
   }
 
   export type ServicoCreateOrConnectWithoutPlano_contasInput = {
@@ -96177,6 +98824,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutPlano_contasInput = {
@@ -96215,6 +98863,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PlanoDeContasUpsertWithoutFilhosInput = {
@@ -96424,6 +99073,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutContas_bancariasInput = {
@@ -96462,6 +99112,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutContas_bancariasInput = {
@@ -96705,6 +99356,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutContas_bancariasInput = {
@@ -96743,6 +99395,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type BancoUpsertWithoutContas_bancariasInput = {
@@ -96870,6 +99523,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutTransferencias_tesourariaInput = {
@@ -96908,6 +99562,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutTransferencias_tesourariaInput = {
@@ -97052,6 +99707,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutTransferencias_tesourariaInput = {
@@ -97090,6 +99746,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ContaBancariaUpsertWithoutTransferencias_origemInput = {
@@ -97230,6 +99887,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutRecebiveisInput = {
@@ -97268,6 +99926,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutRecebiveisInput = {
@@ -97551,7 +100210,7 @@ export namespace Prisma {
     membros?: MembroEmpresaCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaCreateNestedManyWithoutConvidadoInput
     leads?: LeadCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoCreateNestedManyWithoutCriadorInput
@@ -97579,7 +100238,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutConvidadoInput
     leads?: LeadUncheckedCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMUncheckedCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmUncheckedCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaUncheckedCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoUncheckedCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoUncheckedCreateNestedManyWithoutCriadorInput
@@ -97751,6 +100410,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutRecebiveisInput = {
@@ -97789,6 +100449,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutRecebiveisInput = {
@@ -98102,7 +100763,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUpdateManyWithoutCriadorNestedInput
@@ -98130,7 +100791,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUncheckedUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUncheckedUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUncheckedUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUncheckedUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUncheckedUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUncheckedUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUncheckedUpdateManyWithoutCriadorNestedInput
@@ -98298,6 +100959,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutContas_pagarInput = {
@@ -98336,6 +100998,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutContas_pagarInput = {
@@ -98433,7 +101096,7 @@ export namespace Prisma {
     membros?: MembroEmpresaCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaCreateNestedManyWithoutConvidadoInput
     leads?: LeadCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoCreateNestedManyWithoutCriadorInput
@@ -98461,7 +101124,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutConvidadoInput
     leads?: LeadUncheckedCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMUncheckedCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmUncheckedCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaUncheckedCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoUncheckedCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoUncheckedCreateNestedManyWithoutCriadorInput
@@ -98531,6 +101194,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutContas_pagarInput = {
@@ -98569,6 +101233,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PlanoDeContasUpsertWithoutContas_pagarInput = {
@@ -98684,7 +101349,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUpdateManyWithoutCriadorNestedInput
@@ -98712,7 +101377,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUncheckedUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUncheckedUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUncheckedUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUncheckedUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUncheckedUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUncheckedUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUncheckedUpdateManyWithoutCriadorNestedInput
@@ -98766,6 +101431,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutModelos_documentoInput = {
@@ -98804,6 +101470,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutModelos_documentoInput = {
@@ -98858,6 +101525,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutModelos_documentoInput = {
@@ -98896,6 +101564,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateWithoutEventosInput = {
@@ -98934,6 +101603,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutEventosInput = {
@@ -98972,6 +101642,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutEventosInput = {
@@ -98989,7 +101660,7 @@ export namespace Prisma {
     membros?: MembroEmpresaCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaCreateNestedManyWithoutConvidadoInput
     leads?: LeadCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoCreateNestedManyWithoutCriadorInput
@@ -99017,7 +101688,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutUsuarioInput
     convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutConvidadoInput
     leads?: LeadUncheckedCreateNestedManyWithoutResponsavelInput
-    atividades_crm?: AtividadeCRMUncheckedCreateNestedManyWithoutUsuarioInput
+    comentarios_crm?: ComentarioCrmUncheckedCreateNestedManyWithoutUsuarioInput
     propostas_criadas?: PropostaUncheckedCreateNestedManyWithoutCriadorInput
     contratos_criados?: ContratoUncheckedCreateNestedManyWithoutCriadorInput
     projetos_criados?: ProjetoUncheckedCreateNestedManyWithoutCriadorInput
@@ -99320,6 +101991,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutEventosInput = {
@@ -99358,6 +102030,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type UsuarioUpsertWithoutEventos_responsavelInput = {
@@ -99381,7 +102054,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUpdateManyWithoutCriadorNestedInput
@@ -99409,7 +102082,7 @@ export namespace Prisma {
     membros?: MembroEmpresaUncheckedUpdateManyWithoutUsuarioNestedInput
     convites?: ConviteEmpresaUncheckedUpdateManyWithoutConvidadoNestedInput
     leads?: LeadUncheckedUpdateManyWithoutResponsavelNestedInput
-    atividades_crm?: AtividadeCRMUncheckedUpdateManyWithoutUsuarioNestedInput
+    comentarios_crm?: ComentarioCrmUncheckedUpdateManyWithoutUsuarioNestedInput
     propostas_criadas?: PropostaUncheckedUpdateManyWithoutCriadorNestedInput
     contratos_criados?: ContratoUncheckedUpdateManyWithoutCriadorNestedInput
     projetos_criados?: ProjetoUncheckedUpdateManyWithoutCriadorNestedInput
@@ -99714,6 +102387,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutRegistros_auditoriaInput = {
@@ -99752,6 +102426,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutRegistros_auditoriaInput = {
@@ -99806,6 +102481,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutRegistros_auditoriaInput = {
@@ -99844,6 +102520,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateWithoutNotificacoesInput = {
@@ -99882,6 +102559,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutNotificacoesInput = {
@@ -99920,6 +102598,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutNotificacoesInput = {
@@ -99974,6 +102653,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutNotificacoesInput = {
@@ -100012,6 +102692,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateWithoutNotas_fiscaisInput = {
@@ -100050,6 +102731,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutNotas_fiscaisInput = {
@@ -100088,6 +102770,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutNotas_fiscaisInput = {
@@ -100387,6 +103070,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutNotas_fiscaisInput = {
@@ -100425,6 +103109,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutNotas_fiscaisInput = {
@@ -100726,6 +103411,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutBoletosInput = {
@@ -100764,6 +103450,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutBoletosInput = {
@@ -100962,6 +103649,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutBoletosInput = {
@@ -101000,6 +103688,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type RecebivelUpsertWithoutBoletoInput = {
@@ -101194,6 +103883,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutDiagnosticosInput = {
@@ -101232,6 +103922,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutDiagnosticosInput = {
@@ -101418,6 +104109,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutDiagnosticosInput = {
@@ -101456,6 +104148,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutDiagnosticosInput = {
@@ -101814,6 +104507,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutAplicacoes_diagnosticoInput = {
@@ -101852,6 +104546,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutAplicacoes_diagnosticoInput = {
@@ -102038,6 +104733,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutAplicacoes_diagnosticoInput = {
@@ -102076,6 +104772,7 @@ export namespace Prisma {
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ProjetoUpsertWithoutAplicacoes_diagnosticoInput = {
@@ -102300,17 +104997,24 @@ export namespace Prisma {
     id?: string
     cliente_id?: string | null
     responsavel_id?: string | null
+    servico_id?: string | null
+    etapa_id?: string | null
     nome: string
     empresa_nome?: string | null
+    contato_nome?: string | null
     email?: string | null
     telefone?: string | null
-    status?: $Enums.StatusLead
+    whatsapp?: string | null
+    etapa_chave?: string
     valor_estimado?: Decimal | DecimalJsLike | number | string | null
+    probabilidade?: number
+    previsao_fechamento?: Date | string | null
+    proxima_acao?: string | null
+    data_proxima_acao?: Date | string | null
     origem?: string | null
     observacoes?: string | null
-    ganho_em?: Date | string | null
-    perdido_em?: Date | string | null
     motivo_perda?: string | null
+    tags?: LeadCreatetagsInput | string[]
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -102640,6 +105344,15 @@ export namespace Prisma {
     atualizado_em?: Date | string
   }
 
+  export type EtapaCrmCreateManyEmpresaInput = {
+    id?: string
+    chave: string
+    nome: string
+    cor?: string
+    ordem?: number
+    criado_em?: Date | string
+  }
+
   export type MembroEmpresaUpdateWithoutEmpresaInput = {
     id?: StringFieldUpdateOperationsInput | string
     ativo?: BoolFieldUpdateOperationsInput | boolean
@@ -102871,6 +105584,7 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     plano_contas?: PlanoDeContasUpdateOneWithoutServicosNestedInput
     itens_proposta?: ItemPropostaUpdateManyWithoutServicoNestedInput
+    leads?: LeadUpdateManyWithoutServicoNestedInput
   }
 
   export type ServicoUncheckedUpdateWithoutEmpresaInput = {
@@ -102883,6 +105597,7 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     itens_proposta?: ItemPropostaUncheckedUpdateManyWithoutServicoNestedInput
+    leads?: LeadUncheckedUpdateManyWithoutServicoNestedInput
   }
 
   export type ServicoUncheckedUpdateManyWithoutEmpresaInput = {
@@ -102900,20 +105615,27 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
     empresa_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_nome?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumStatusLeadFieldUpdateOperationsInput | $Enums.StatusLead
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_chave?: StringFieldUpdateOperationsInput | string
     valor_estimado?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probabilidade?: IntFieldUpdateOperationsInput | number
+    previsao_fechamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    proxima_acao?: NullableStringFieldUpdateOperationsInput | string | null
+    data_proxima_acao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     origem?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
-    ganho_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    perdido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     motivo_perda?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: LeadUpdatetagsInput | string[]
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     cliente?: ClienteUpdateOneWithoutLeadsNestedInput
     responsavel?: UsuarioUpdateOneWithoutLeadsNestedInput
-    atividades?: AtividadeCRMUpdateManyWithoutLeadNestedInput
+    servico?: ServicoUpdateOneWithoutLeadsNestedInput
+    etapa?: EtapaCrmUpdateOneWithoutLeadsNestedInput
+    comentarios?: ComentarioCrmUpdateManyWithoutLeadNestedInput
     propostas?: PropostaUpdateManyWithoutLeadNestedInput
   }
 
@@ -102921,20 +105643,27 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
     responsavel_id?: NullableStringFieldUpdateOperationsInput | string | null
+    servico_id?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_id?: NullableStringFieldUpdateOperationsInput | string | null
     nome?: StringFieldUpdateOperationsInput | string
     empresa_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_nome?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumStatusLeadFieldUpdateOperationsInput | $Enums.StatusLead
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_chave?: StringFieldUpdateOperationsInput | string
     valor_estimado?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probabilidade?: IntFieldUpdateOperationsInput | number
+    previsao_fechamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    proxima_acao?: NullableStringFieldUpdateOperationsInput | string | null
+    data_proxima_acao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     origem?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
-    ganho_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    perdido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     motivo_perda?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: LeadUpdatetagsInput | string[]
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
-    atividades?: AtividadeCRMUncheckedUpdateManyWithoutLeadNestedInput
+    comentarios?: ComentarioCrmUncheckedUpdateManyWithoutLeadNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutLeadNestedInput
   }
 
@@ -102942,17 +105671,24 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
     responsavel_id?: NullableStringFieldUpdateOperationsInput | string | null
+    servico_id?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_id?: NullableStringFieldUpdateOperationsInput | string | null
     nome?: StringFieldUpdateOperationsInput | string
     empresa_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_nome?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumStatusLeadFieldUpdateOperationsInput | $Enums.StatusLead
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_chave?: StringFieldUpdateOperationsInput | string
     valor_estimado?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probabilidade?: IntFieldUpdateOperationsInput | number
+    previsao_fechamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    proxima_acao?: NullableStringFieldUpdateOperationsInput | string | null
+    data_proxima_acao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     origem?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
-    ganho_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    perdido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     motivo_perda?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: LeadUpdatetagsInput | string[]
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -103986,6 +106722,35 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type EtapaCrmUpdateWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    chave?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cor?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    leads?: LeadUpdateManyWithoutEtapaNestedInput
+  }
+
+  export type EtapaCrmUncheckedUpdateWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    chave?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cor?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    leads?: LeadUncheckedUpdateManyWithoutEtapaNestedInput
+  }
+
+  export type EtapaCrmUncheckedUpdateManyWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    chave?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cor?: StringFieldUpdateOperationsInput | string
+    ordem?: IntFieldUpdateOperationsInput | number
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type MembroEmpresaCreateManyUsuarioInput = {
     id?: string
     empresa_id: string
@@ -104009,27 +106774,34 @@ export namespace Prisma {
     id?: string
     empresa_id: string
     cliente_id?: string | null
+    servico_id?: string | null
+    etapa_id?: string | null
     nome: string
     empresa_nome?: string | null
+    contato_nome?: string | null
     email?: string | null
     telefone?: string | null
-    status?: $Enums.StatusLead
+    whatsapp?: string | null
+    etapa_chave?: string
     valor_estimado?: Decimal | DecimalJsLike | number | string | null
+    probabilidade?: number
+    previsao_fechamento?: Date | string | null
+    proxima_acao?: string | null
+    data_proxima_acao?: Date | string | null
     origem?: string | null
     observacoes?: string | null
-    ganho_em?: Date | string | null
-    perdido_em?: Date | string | null
     motivo_perda?: string | null
+    tags?: LeadCreatetagsInput | string[]
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
 
-  export type AtividadeCRMCreateManyUsuarioInput = {
+  export type ComentarioCrmCreateManyUsuarioInput = {
     id?: string
     lead_id: string
-    tipo: string
-    descricao: string
-    data?: Date | string
+    autor_nome: string
+    mensagem: string
+    criado_em?: Date | string
   }
 
   export type PropostaCreateManyCriadorInput = {
@@ -104402,20 +107174,27 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
     empresa_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_nome?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumStatusLeadFieldUpdateOperationsInput | $Enums.StatusLead
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_chave?: StringFieldUpdateOperationsInput | string
     valor_estimado?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probabilidade?: IntFieldUpdateOperationsInput | number
+    previsao_fechamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    proxima_acao?: NullableStringFieldUpdateOperationsInput | string | null
+    data_proxima_acao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     origem?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
-    ganho_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    perdido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     motivo_perda?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: LeadUpdatetagsInput | string[]
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutLeadsNestedInput
     cliente?: ClienteUpdateOneWithoutLeadsNestedInput
-    atividades?: AtividadeCRMUpdateManyWithoutLeadNestedInput
+    servico?: ServicoUpdateOneWithoutLeadsNestedInput
+    etapa?: EtapaCrmUpdateOneWithoutLeadsNestedInput
+    comentarios?: ComentarioCrmUpdateManyWithoutLeadNestedInput
     propostas?: PropostaUpdateManyWithoutLeadNestedInput
   }
 
@@ -104423,20 +107202,27 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     empresa_id?: StringFieldUpdateOperationsInput | string
     cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    servico_id?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_id?: NullableStringFieldUpdateOperationsInput | string | null
     nome?: StringFieldUpdateOperationsInput | string
     empresa_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_nome?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumStatusLeadFieldUpdateOperationsInput | $Enums.StatusLead
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_chave?: StringFieldUpdateOperationsInput | string
     valor_estimado?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probabilidade?: IntFieldUpdateOperationsInput | number
+    previsao_fechamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    proxima_acao?: NullableStringFieldUpdateOperationsInput | string | null
+    data_proxima_acao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     origem?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
-    ganho_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    perdido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     motivo_perda?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: LeadUpdatetagsInput | string[]
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
-    atividades?: AtividadeCRMUncheckedUpdateManyWithoutLeadNestedInput
+    comentarios?: ComentarioCrmUncheckedUpdateManyWithoutLeadNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutLeadNestedInput
   }
 
@@ -104444,43 +107230,50 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     empresa_id?: StringFieldUpdateOperationsInput | string
     cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    servico_id?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_id?: NullableStringFieldUpdateOperationsInput | string | null
     nome?: StringFieldUpdateOperationsInput | string
     empresa_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_nome?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumStatusLeadFieldUpdateOperationsInput | $Enums.StatusLead
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_chave?: StringFieldUpdateOperationsInput | string
     valor_estimado?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probabilidade?: IntFieldUpdateOperationsInput | number
+    previsao_fechamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    proxima_acao?: NullableStringFieldUpdateOperationsInput | string | null
+    data_proxima_acao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     origem?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
-    ganho_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    perdido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     motivo_perda?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: LeadUpdatetagsInput | string[]
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type AtividadeCRMUpdateWithoutUsuarioInput = {
+  export type ComentarioCrmUpdateWithoutUsuarioInput = {
     id?: StringFieldUpdateOperationsInput | string
-    tipo?: StringFieldUpdateOperationsInput | string
-    descricao?: StringFieldUpdateOperationsInput | string
-    data?: DateTimeFieldUpdateOperationsInput | Date | string
-    lead?: LeadUpdateOneRequiredWithoutAtividadesNestedInput
+    autor_nome?: StringFieldUpdateOperationsInput | string
+    mensagem?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    lead?: LeadUpdateOneRequiredWithoutComentariosNestedInput
   }
 
-  export type AtividadeCRMUncheckedUpdateWithoutUsuarioInput = {
+  export type ComentarioCrmUncheckedUpdateWithoutUsuarioInput = {
     id?: StringFieldUpdateOperationsInput | string
     lead_id?: StringFieldUpdateOperationsInput | string
-    tipo?: StringFieldUpdateOperationsInput | string
-    descricao?: StringFieldUpdateOperationsInput | string
-    data?: DateTimeFieldUpdateOperationsInput | Date | string
+    autor_nome?: StringFieldUpdateOperationsInput | string
+    mensagem?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type AtividadeCRMUncheckedUpdateManyWithoutUsuarioInput = {
+  export type ComentarioCrmUncheckedUpdateManyWithoutUsuarioInput = {
     id?: StringFieldUpdateOperationsInput | string
     lead_id?: StringFieldUpdateOperationsInput | string
-    tipo?: StringFieldUpdateOperationsInput | string
-    descricao?: StringFieldUpdateOperationsInput | string
-    data?: DateTimeFieldUpdateOperationsInput | Date | string
+    autor_nome?: StringFieldUpdateOperationsInput | string
+    mensagem?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PropostaUpdateWithoutCriadorInput = {
@@ -105548,17 +108341,24 @@ export namespace Prisma {
     id?: string
     empresa_id: string
     responsavel_id?: string | null
+    servico_id?: string | null
+    etapa_id?: string | null
     nome: string
     empresa_nome?: string | null
+    contato_nome?: string | null
     email?: string | null
     telefone?: string | null
-    status?: $Enums.StatusLead
+    whatsapp?: string | null
+    etapa_chave?: string
     valor_estimado?: Decimal | DecimalJsLike | number | string | null
+    probabilidade?: number
+    previsao_fechamento?: Date | string | null
+    proxima_acao?: string | null
+    data_proxima_acao?: Date | string | null
     origem?: string | null
     observacoes?: string | null
-    ganho_em?: Date | string | null
-    perdido_em?: Date | string | null
     motivo_perda?: string | null
+    tags?: LeadCreatetagsInput | string[]
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -105827,20 +108627,27 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
     empresa_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_nome?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumStatusLeadFieldUpdateOperationsInput | $Enums.StatusLead
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_chave?: StringFieldUpdateOperationsInput | string
     valor_estimado?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probabilidade?: IntFieldUpdateOperationsInput | number
+    previsao_fechamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    proxima_acao?: NullableStringFieldUpdateOperationsInput | string | null
+    data_proxima_acao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     origem?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
-    ganho_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    perdido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     motivo_perda?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: LeadUpdatetagsInput | string[]
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutLeadsNestedInput
     responsavel?: UsuarioUpdateOneWithoutLeadsNestedInput
-    atividades?: AtividadeCRMUpdateManyWithoutLeadNestedInput
+    servico?: ServicoUpdateOneWithoutLeadsNestedInput
+    etapa?: EtapaCrmUpdateOneWithoutLeadsNestedInput
+    comentarios?: ComentarioCrmUpdateManyWithoutLeadNestedInput
     propostas?: PropostaUpdateManyWithoutLeadNestedInput
   }
 
@@ -105848,20 +108655,27 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     empresa_id?: StringFieldUpdateOperationsInput | string
     responsavel_id?: NullableStringFieldUpdateOperationsInput | string | null
+    servico_id?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_id?: NullableStringFieldUpdateOperationsInput | string | null
     nome?: StringFieldUpdateOperationsInput | string
     empresa_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_nome?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumStatusLeadFieldUpdateOperationsInput | $Enums.StatusLead
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_chave?: StringFieldUpdateOperationsInput | string
     valor_estimado?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probabilidade?: IntFieldUpdateOperationsInput | number
+    previsao_fechamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    proxima_acao?: NullableStringFieldUpdateOperationsInput | string | null
+    data_proxima_acao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     origem?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
-    ganho_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    perdido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     motivo_perda?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: LeadUpdatetagsInput | string[]
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
-    atividades?: AtividadeCRMUncheckedUpdateManyWithoutLeadNestedInput
+    comentarios?: ComentarioCrmUncheckedUpdateManyWithoutLeadNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutLeadNestedInput
   }
 
@@ -105869,17 +108683,24 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     empresa_id?: StringFieldUpdateOperationsInput | string
     responsavel_id?: NullableStringFieldUpdateOperationsInput | string | null
+    servico_id?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_id?: NullableStringFieldUpdateOperationsInput | string | null
     nome?: StringFieldUpdateOperationsInput | string
     empresa_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_nome?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumStatusLeadFieldUpdateOperationsInput | $Enums.StatusLead
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_chave?: StringFieldUpdateOperationsInput | string
     valor_estimado?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probabilidade?: IntFieldUpdateOperationsInput | number
+    previsao_fechamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    proxima_acao?: NullableStringFieldUpdateOperationsInput | string | null
+    data_proxima_acao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     origem?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
-    ganho_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    perdido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     motivo_perda?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: LeadUpdatetagsInput | string[]
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -106616,6 +109437,32 @@ export namespace Prisma {
     ordem?: number
   }
 
+  export type LeadCreateManyServicoInput = {
+    id?: string
+    empresa_id: string
+    cliente_id?: string | null
+    responsavel_id?: string | null
+    etapa_id?: string | null
+    nome: string
+    empresa_nome?: string | null
+    contato_nome?: string | null
+    email?: string | null
+    telefone?: string | null
+    whatsapp?: string | null
+    etapa_chave?: string
+    valor_estimado?: Decimal | DecimalJsLike | number | string | null
+    probabilidade?: number
+    previsao_fechamento?: Date | string | null
+    proxima_acao?: string | null
+    data_proxima_acao?: Date | string | null
+    origem?: string | null
+    observacoes?: string | null
+    motivo_perda?: string | null
+    tags?: LeadCreatetagsInput | string[]
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
   export type ItemPropostaUpdateWithoutServicoInput = {
     id?: StringFieldUpdateOperationsInput | string
     descricao?: StringFieldUpdateOperationsInput | string
@@ -106646,12 +109493,202 @@ export namespace Prisma {
     ordem?: IntFieldUpdateOperationsInput | number
   }
 
-  export type AtividadeCRMCreateManyLeadInput = {
+  export type LeadUpdateWithoutServicoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    empresa_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_chave?: StringFieldUpdateOperationsInput | string
+    valor_estimado?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probabilidade?: IntFieldUpdateOperationsInput | number
+    previsao_fechamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    proxima_acao?: NullableStringFieldUpdateOperationsInput | string | null
+    data_proxima_acao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    origem?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    motivo_perda?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: LeadUpdatetagsInput | string[]
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutLeadsNestedInput
+    cliente?: ClienteUpdateOneWithoutLeadsNestedInput
+    responsavel?: UsuarioUpdateOneWithoutLeadsNestedInput
+    etapa?: EtapaCrmUpdateOneWithoutLeadsNestedInput
+    comentarios?: ComentarioCrmUpdateManyWithoutLeadNestedInput
+    propostas?: PropostaUpdateManyWithoutLeadNestedInput
+  }
+
+  export type LeadUncheckedUpdateWithoutServicoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    responsavel_id?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nome?: StringFieldUpdateOperationsInput | string
+    empresa_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_chave?: StringFieldUpdateOperationsInput | string
+    valor_estimado?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probabilidade?: IntFieldUpdateOperationsInput | number
+    previsao_fechamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    proxima_acao?: NullableStringFieldUpdateOperationsInput | string | null
+    data_proxima_acao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    origem?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    motivo_perda?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: LeadUpdatetagsInput | string[]
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    comentarios?: ComentarioCrmUncheckedUpdateManyWithoutLeadNestedInput
+    propostas?: PropostaUncheckedUpdateManyWithoutLeadNestedInput
+  }
+
+  export type LeadUncheckedUpdateManyWithoutServicoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    responsavel_id?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nome?: StringFieldUpdateOperationsInput | string
+    empresa_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_chave?: StringFieldUpdateOperationsInput | string
+    valor_estimado?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probabilidade?: IntFieldUpdateOperationsInput | number
+    previsao_fechamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    proxima_acao?: NullableStringFieldUpdateOperationsInput | string | null
+    data_proxima_acao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    origem?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    motivo_perda?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: LeadUpdatetagsInput | string[]
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LeadCreateManyEtapaInput = {
+    id?: string
+    empresa_id: string
+    cliente_id?: string | null
+    responsavel_id?: string | null
+    servico_id?: string | null
+    nome: string
+    empresa_nome?: string | null
+    contato_nome?: string | null
+    email?: string | null
+    telefone?: string | null
+    whatsapp?: string | null
+    etapa_chave?: string
+    valor_estimado?: Decimal | DecimalJsLike | number | string | null
+    probabilidade?: number
+    previsao_fechamento?: Date | string | null
+    proxima_acao?: string | null
+    data_proxima_acao?: Date | string | null
+    origem?: string | null
+    observacoes?: string | null
+    motivo_perda?: string | null
+    tags?: LeadCreatetagsInput | string[]
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type LeadUpdateWithoutEtapaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    empresa_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_chave?: StringFieldUpdateOperationsInput | string
+    valor_estimado?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probabilidade?: IntFieldUpdateOperationsInput | number
+    previsao_fechamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    proxima_acao?: NullableStringFieldUpdateOperationsInput | string | null
+    data_proxima_acao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    origem?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    motivo_perda?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: LeadUpdatetagsInput | string[]
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutLeadsNestedInput
+    cliente?: ClienteUpdateOneWithoutLeadsNestedInput
+    responsavel?: UsuarioUpdateOneWithoutLeadsNestedInput
+    servico?: ServicoUpdateOneWithoutLeadsNestedInput
+    comentarios?: ComentarioCrmUpdateManyWithoutLeadNestedInput
+    propostas?: PropostaUpdateManyWithoutLeadNestedInput
+  }
+
+  export type LeadUncheckedUpdateWithoutEtapaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    responsavel_id?: NullableStringFieldUpdateOperationsInput | string | null
+    servico_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nome?: StringFieldUpdateOperationsInput | string
+    empresa_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_chave?: StringFieldUpdateOperationsInput | string
+    valor_estimado?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probabilidade?: IntFieldUpdateOperationsInput | number
+    previsao_fechamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    proxima_acao?: NullableStringFieldUpdateOperationsInput | string | null
+    data_proxima_acao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    origem?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    motivo_perda?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: LeadUpdatetagsInput | string[]
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    comentarios?: ComentarioCrmUncheckedUpdateManyWithoutLeadNestedInput
+    propostas?: PropostaUncheckedUpdateManyWithoutLeadNestedInput
+  }
+
+  export type LeadUncheckedUpdateManyWithoutEtapaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    responsavel_id?: NullableStringFieldUpdateOperationsInput | string | null
+    servico_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nome?: StringFieldUpdateOperationsInput | string
+    empresa_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_chave?: StringFieldUpdateOperationsInput | string
+    valor_estimado?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probabilidade?: IntFieldUpdateOperationsInput | number
+    previsao_fechamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    proxima_acao?: NullableStringFieldUpdateOperationsInput | string | null
+    data_proxima_acao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    origem?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    motivo_perda?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: LeadUpdatetagsInput | string[]
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ComentarioCrmCreateManyLeadInput = {
     id?: string
     usuario_id?: string | null
-    tipo: string
-    descricao: string
-    data?: Date | string
+    autor_nome: string
+    mensagem: string
+    criado_em?: Date | string
   }
 
   export type PropostaCreateManyLeadInput = {
@@ -106684,28 +109721,28 @@ export namespace Prisma {
     atualizado_em?: Date | string
   }
 
-  export type AtividadeCRMUpdateWithoutLeadInput = {
+  export type ComentarioCrmUpdateWithoutLeadInput = {
     id?: StringFieldUpdateOperationsInput | string
-    tipo?: StringFieldUpdateOperationsInput | string
-    descricao?: StringFieldUpdateOperationsInput | string
-    data?: DateTimeFieldUpdateOperationsInput | Date | string
-    usuario?: UsuarioUpdateOneWithoutAtividades_crmNestedInput
+    autor_nome?: StringFieldUpdateOperationsInput | string
+    mensagem?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    usuario?: UsuarioUpdateOneWithoutComentarios_crmNestedInput
   }
 
-  export type AtividadeCRMUncheckedUpdateWithoutLeadInput = {
+  export type ComentarioCrmUncheckedUpdateWithoutLeadInput = {
     id?: StringFieldUpdateOperationsInput | string
     usuario_id?: NullableStringFieldUpdateOperationsInput | string | null
-    tipo?: StringFieldUpdateOperationsInput | string
-    descricao?: StringFieldUpdateOperationsInput | string
-    data?: DateTimeFieldUpdateOperationsInput | Date | string
+    autor_nome?: StringFieldUpdateOperationsInput | string
+    mensagem?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type AtividadeCRMUncheckedUpdateManyWithoutLeadInput = {
+  export type ComentarioCrmUncheckedUpdateManyWithoutLeadInput = {
     id?: StringFieldUpdateOperationsInput | string
     usuario_id?: NullableStringFieldUpdateOperationsInput | string | null
-    tipo?: StringFieldUpdateOperationsInput | string
-    descricao?: StringFieldUpdateOperationsInput | string
-    data?: DateTimeFieldUpdateOperationsInput | Date | string
+    autor_nome?: StringFieldUpdateOperationsInput | string
+    mensagem?: StringFieldUpdateOperationsInput | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PropostaUpdateWithoutLeadInput = {
@@ -108243,6 +111280,7 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutServicosNestedInput
     itens_proposta?: ItemPropostaUpdateManyWithoutServicoNestedInput
+    leads?: LeadUpdateManyWithoutServicoNestedInput
   }
 
   export type ServicoUncheckedUpdateWithoutPlano_contasInput = {
@@ -108255,6 +111293,7 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     itens_proposta?: ItemPropostaUncheckedUpdateManyWithoutServicoNestedInput
+    leads?: LeadUncheckedUpdateManyWithoutServicoNestedInput
   }
 
   export type ServicoUncheckedUpdateManyWithoutPlano_contasInput = {

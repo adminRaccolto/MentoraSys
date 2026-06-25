@@ -46,7 +46,7 @@ type ContaPagar = {
 type Lead = {
   id: string;
   nome: string;
-  status: string;
+  etapa_chave: string;
   valor_estimado: number | null;
   criado_em: string;
 };
@@ -286,8 +286,8 @@ const STATUS_PROPOSTA: { key: string; label: string; cor: string }[] = [
 
 function TabCrm({ leads, propostas, ano }: { leads: Lead[]; propostas: Proposta[]; ano: number }) {
   const totalLeads = leads.length;
-  const ganhos = leads.filter((l) => l.status === "GANHO").length;
-  const perdidos = leads.filter((l) => l.status === "PERDIDO").length;
+  const ganhos = leads.filter((l) => l.etapa_chave === "GANHO").length;
+  const perdidos = leads.filter((l) => l.etapa_chave === "PERDIDO").length;
   const conversoLeads = totalLeads ? Math.round((ganhos / totalLeads) * 100) : 0;
 
   const totalPropostas = propostas.length;
@@ -298,7 +298,7 @@ function TabCrm({ leads, propostas, ano }: { leads: Lead[]; propostas: Proposta[
     exportarCSV(
       leads.map((l) => ({
         Nome: l.nome,
-        Status: l.status,
+        Status: l.etapa_chave,
         "Valor Estimado": l.valor_estimado?.toFixed(2) ?? "",
         "Criado em": formatarData(l.criado_em),
       })),
@@ -341,7 +341,7 @@ function TabCrm({ leads, propostas, ano }: { leads: Lead[]; propostas: Proposta[
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
           {STATUS_LEAD.map((s) => {
-            const grupo = leads.filter((l) => l.status === s.key);
+            const grupo = leads.filter((l) => l.etapa_chave === s.key);
             const valor = grupo.reduce((sum, l) => sum + (l.valor_estimado ?? 0), 0);
             return (
               <div key={s.key} className={`rounded-lg border p-3 ${s.cor}`}>

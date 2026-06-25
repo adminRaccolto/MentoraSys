@@ -245,33 +245,50 @@ exports.Prisma.ServicoScalarFieldEnum = {
   atualizado_em: 'atualizado_em'
 };
 
+exports.Prisma.EtapaCrmScalarFieldEnum = {
+  id: 'id',
+  empresa_id: 'empresa_id',
+  chave: 'chave',
+  nome: 'nome',
+  cor: 'cor',
+  ordem: 'ordem',
+  criado_em: 'criado_em'
+};
+
+exports.Prisma.ComentarioCrmScalarFieldEnum = {
+  id: 'id',
+  lead_id: 'lead_id',
+  usuario_id: 'usuario_id',
+  autor_nome: 'autor_nome',
+  mensagem: 'mensagem',
+  criado_em: 'criado_em'
+};
+
 exports.Prisma.LeadScalarFieldEnum = {
   id: 'id',
   empresa_id: 'empresa_id',
   cliente_id: 'cliente_id',
   responsavel_id: 'responsavel_id',
+  servico_id: 'servico_id',
+  etapa_id: 'etapa_id',
   nome: 'nome',
   empresa_nome: 'empresa_nome',
+  contato_nome: 'contato_nome',
   email: 'email',
   telefone: 'telefone',
-  status: 'status',
+  whatsapp: 'whatsapp',
+  etapa_chave: 'etapa_chave',
   valor_estimado: 'valor_estimado',
+  probabilidade: 'probabilidade',
+  previsao_fechamento: 'previsao_fechamento',
+  proxima_acao: 'proxima_acao',
+  data_proxima_acao: 'data_proxima_acao',
   origem: 'origem',
   observacoes: 'observacoes',
-  ganho_em: 'ganho_em',
-  perdido_em: 'perdido_em',
   motivo_perda: 'motivo_perda',
+  tags: 'tags',
   criado_em: 'criado_em',
   atualizado_em: 'atualizado_em'
-};
-
-exports.Prisma.AtividadeCRMScalarFieldEnum = {
-  id: 'id',
-  lead_id: 'lead_id',
-  usuario_id: 'usuario_id',
-  tipo: 'tipo',
-  descricao: 'descricao',
-  data: 'data'
 };
 
 exports.Prisma.PropostaScalarFieldEnum = {
@@ -790,14 +807,6 @@ exports.StatusCliente = exports.$Enums.StatusCliente = {
   PROSPECT: 'PROSPECT'
 };
 
-exports.StatusLead = exports.$Enums.StatusLead = {
-  NOVO: 'NOVO',
-  QUALIFICADO: 'QUALIFICADO',
-  PROPOSTA: 'PROPOSTA',
-  GANHO: 'GANHO',
-  PERDIDO: 'PERDIDO'
-};
-
 exports.StatusProposta = exports.$Enums.StatusProposta = {
   RASCUNHO: 'RASCUNHO',
   ENVIADA: 'ENVIADA',
@@ -937,8 +946,9 @@ exports.Prisma.ModelName = {
   Cliente: 'Cliente',
   Contato: 'Contato',
   Servico: 'Servico',
+  EtapaCrm: 'EtapaCrm',
+  ComentarioCrm: 'ComentarioCrm',
   Lead: 'Lead',
-  AtividadeCRM: 'AtividadeCRM',
   Proposta: 'Proposta',
   AceiteOtp: 'AceiteOtp',
   ItemProposta: 'ItemProposta',

@@ -61,6 +61,7 @@ model Empresa {
   diagnosticos              Diagnostico[]
   etiquetas_tarefa          EtiquetaTarefa[]
   aplicacoes_diagnostico    AplicacaoDiagnostico[]
+  etapas_crm                EtapaCrm[]
 
   @@map("empresas")
 }
@@ -78,7 +79,7 @@ model Usuario {
   membros                MembroEmpresa[]
   convites               ConviteEmpresa[]
   leads                  Lead[]
-  atividades_crm         AtividadeCRM[]
+  comentarios_crm        ComentarioCrm[]
   propostas_criadas      Proposta[]
   contratos_criados      Contrato[]
   projetos_criados       Projeto[]
@@ -211,14 +212,6 @@ enum StatusCliente {
   PROSPECT
 }
 
-enum StatusLead {
-  NOVO
-  QUALIFICADO
-  PROPOSTA
-  GANHO
-  PERDIDO
-}
-
 enum StatusProposta {
   RASCUNHO
   ENVIADA
@@ -313,52 +306,78 @@ model Servico {
   empresa        Empresa        @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
   plano_contas   PlanoDeContas? @relation(fields: [plano_contas_id], references: [id], onDelete: SetNull)
   itens_proposta ItemProposta[]
+  leads          Lead[]
 
   @@map("servicos")
 }
 
 // ─── CRM ──────────────────────────────────────────────────────────────────────
 
-model Lead {
-  id             String     @id @default(cuid())
-  empresa_id     String
-  cliente_id     String?
-  responsavel_id String?
-  nome           String
-  empresa_nome   String?
-  email          String?
-  telefone       String?
-  status         StatusLead @default(NOVO)
-  valor_estimado Decimal?   @db.Decimal(10, 2)
-  origem         String?
-  observacoes    String?
-  ganho_em       DateTime?
-  perdido_em     DateTime?
-  motivo_perda   String?
-  criado_em      DateTime   @default(now())
-  atualizado_em  DateTime   @updatedAt
+model EtapaCrm {
+  id         String   @id @default(cuid())
+  empresa_id String
+  chave      String
+  nome       String
+  cor        String   @default("#1B4F72")
+  ordem      Int      @default(0)
+  criado_em  DateTime @default(now())
 
-  empresa     Empresa        @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
-  cliente     Cliente?       @relation(fields: [cliente_id], references: [id])
-  responsavel Usuario?       @relation(fields: [responsavel_id], references: [id])
-  atividades  AtividadeCRM[]
-  propostas   Proposta[]
+  empresa Empresa @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  leads   Lead[]
 
-  @@map("leads")
+  @@unique([empresa_id, chave])
+  @@map("etapas_crm")
 }
 
-model AtividadeCRM {
+model ComentarioCrm {
   id         String   @id @default(cuid())
   lead_id    String
   usuario_id String?
-  tipo       String
-  descricao  String
-  data       DateTime @default(now())
+  autor_nome String
+  mensagem   String
+  criado_em  DateTime @default(now())
 
   lead    Lead     @relation(fields: [lead_id], references: [id], onDelete: Cascade)
   usuario Usuario? @relation(fields: [usuario_id], references: [id])
 
-  @@map("atividades_crm")
+  @@map("comentarios_crm")
+}
+
+model Lead {
+  id                  String    @id @default(cuid())
+  empresa_id          String
+  cliente_id          String?
+  responsavel_id      String?
+  servico_id          String?
+  etapa_id            String?
+  nome                String
+  empresa_nome        String?
+  contato_nome        String?
+  email               String?
+  telefone            String?
+  whatsapp            String?
+  etapa_chave         String    @default("NOVO")
+  valor_estimado      Decimal?  @db.Decimal(10, 2)
+  probabilidade       Int       @default(10)
+  previsao_fechamento DateTime?
+  proxima_acao        String?
+  data_proxima_acao   DateTime?
+  origem              String?
+  observacoes         String?
+  motivo_perda        String?
+  tags                String[]  @default([])
+  criado_em           DateTime  @default(now())
+  atualizado_em       DateTime  @updatedAt
+
+  empresa     Empresa         @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  cliente     Cliente?        @relation(fields: [cliente_id], references: [id])
+  responsavel Usuario?        @relation(fields: [responsavel_id], references: [id])
+  servico     Servico?        @relation(fields: [servico_id], references: [id])
+  etapa       EtapaCrm?       @relation(fields: [etapa_id], references: [id])
+  comentarios ComentarioCrm[]
+  propostas   Proposta[]
+
+  @@map("leads")
 }
 
 // ─── PROPOSTAS ────────────────────────────────────────────────────────────────

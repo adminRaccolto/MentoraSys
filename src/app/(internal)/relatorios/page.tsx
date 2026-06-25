@@ -48,7 +48,7 @@ export default async function RelatoriosPage({
       select: {
         id: true,
         nome: true,
-        status: true,
+        etapa_chave: true,
         valor_estimado: true,
         criado_em: true,
       },

@@ -48,7 +48,7 @@ export default async function DashboardPage() {
       _sum: { valor: true },
     }),
     prisma.lead.groupBy({
-      by: ["status"],
+      by: ["etapa_chave"],
       where: { empresa_id: empresaId },
       _count: { id: true },
     }),
@@ -78,7 +78,7 @@ export default async function DashboardPage() {
   const aPagar = Number(contasPagarPendente._sum.valor ?? 0);
   const saldo = recebido - aPagar;
 
-  const leadMap = Object.fromEntries(leads.map((l) => [l.status, l._count.id]));
+  const leadMap = Object.fromEntries(leads.map((l) => [l.etapa_chave, l._count.id]));
   const propostaMap = Object.fromEntries(propostas.map((p) => [p.status, p._count.id]));
   const projetoMap = Object.fromEntries(projetos.map((p) => [p.status, p._count.id]));
 
