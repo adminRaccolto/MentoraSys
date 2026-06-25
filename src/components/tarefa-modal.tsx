@@ -163,6 +163,19 @@ export default function TarefaModal({ tarefa: ini_, membros, usuarioAtualId, onC
   // ─── salvar campo ────────────────────────────────────────────────────────
 
   // responsáveis (multi)
+  // nomesResp é o mapa id→nome para exibição mesmo quando membro não está em membros (ex: inativo)
+  const [nomesResp, setNomesResp] = useState<Record<string, string>>(() => {
+    const map: Record<string, string> = {};
+    if (ini_.responsaveis?.length) {
+      ini_.responsaveis.forEach(r => { map[r.usuario.id] = r.usuario.nome; });
+    } else if (ini_.responsavel) {
+      map[ini_.responsavel.id] = ini_.responsavel.nome;
+    }
+    // complementa com membros
+    membros.forEach(m => { if (!map[m.id]) map[m.id] = m.nome; });
+    return map;
+  });
+
   const [responsaveisIds, setResponsaveisIds] = useState<string[]>(
     () => ini_.responsaveis?.length
       ? ini_.responsaveis.map(r => r.usuario.id)
@@ -179,10 +192,11 @@ export default function TarefaModal({ tarefa: ini_, membros, usuarioAtualId, onC
     setSavingResp(true);
     try {
       await atualizarResponsaveisTarefa(t.id, t.projeto_id, novoIds);
+      // garante que o nome do novo membro fica no mapa
+      const novoMembro = membros.find(m => m.id === uid);
+      if (novoMembro) setNomesResp(prev => ({ ...prev, [uid]: novoMembro.nome }));
       const novasEntradas = novoIds
-        .map(id => membros.find(m => m.id === id))
-        .filter(Boolean)
-        .map(m => ({ usuario: { id: m!.id, nome: m!.nome } }));
+        .map(id => ({ usuario: { id, nome: nomesResp[id] ?? membros.find(m => m.id === id)?.nome ?? id } }));
       const updates: Partial<TarefaCompleta> = { responsaveis: novasEntradas };
       setT(prev => ({ ...prev, ...updates }));
       onUpdate(t.id, updates);
@@ -504,13 +518,12 @@ export default function TarefaModal({ tarefa: ini_, membros, usuarioAtualId, onC
               {responsaveisIds.length > 0 && (
                 <div className="flex flex-wrap gap-1 mb-1">
                   {responsaveisIds.map(uid => {
-                    const m = membros.find(x => x.id === uid);
-                    if (!m) return null;
+                    const nome = nomesResp[uid] ?? uid.slice(0, 8) + "…";
                     return (
                       <button key={uid} onClick={() => toggleResponsavel(uid)}
                         className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[11px] font-medium hover:bg-destructive/10 hover:text-destructive transition-colors">
-                        <span>{iniciais(m.nome)}</span>
-                        <span className="max-w-[80px] truncate">{m.nome.split(" ")[0]}</span>
+                        <span>{iniciais(nome)}</span>
+                        <span className="max-w-[80px] truncate">{nome.split(" ")[0]}</span>
                         <X className="size-2.5 opacity-60" />
                       </button>
                     );
