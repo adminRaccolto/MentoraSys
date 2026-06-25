@@ -62,6 +62,7 @@ model Empresa {
   etiquetas_tarefa     EtiquetaTarefa[]
   aplicacoes_diagnostico AplicacaoDiagnostico[]
   etapas_crm           EtapaCrm[]
+  campanhas_diagnostico CampanhaDiagnostico[]
 
   @@map("empresas")
 }
@@ -374,8 +375,9 @@ model Lead {
   responsavel Usuario?        @relation(fields: [responsavel_id], references: [id])
   servico     Servico?        @relation(fields: [servico_id], references: [id])
   etapa       EtapaCrm?       @relation(fields: [etapa_id], references: [id])
-  comentarios ComentarioCrm[]
-  propostas   Proposta[]
+  comentarios             ComentarioCrm[]
+  propostas               Proposta[]
+  diagnostico_participante DiagnosticoParticipante?
 
   @@map("leads")
 }
@@ -1206,4 +1208,46 @@ model AplicacaoDiagnostico {
 
   @@unique([projeto_id, momento])
   @@map("aplicacoes_diagnostico")
+}
+
+// ─── FUNIL DE DIAGNÓSTICO PÚBLICO (HOTPAGE) ───────────────────────────────────
+
+model CampanhaDiagnostico {
+  id             String   @id @default(cuid())
+  empresa_id     String
+  slug           String   @unique
+  titulo         String   @default("Diagnóstico Empresarial")
+  subtitulo      String?
+  video_youtube  String?
+  url_checkout   String?
+  ativo          Boolean  @default(true)
+  criado_em      DateTime @default(now())
+  atualizado_em  DateTime @updatedAt
+
+  empresa       Empresa                  @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  participantes DiagnosticoParticipante[]
+
+  @@map("campanhas_diagnostico")
+}
+
+model DiagnosticoParticipante {
+  id                 String    @id @default(cuid())
+  campanha_id        String
+  lead_id            String?   @unique
+  nome               String
+  cpf_cnpj           String
+  celular            String
+  email              String
+  celular_verificado Boolean   @default(false)
+  otp_code           String?
+  otp_expira_em      DateTime?
+  respostas          Json?
+  pontuacao          Int?
+  email_enviado      Boolean   @default(false)
+  criado_em          DateTime  @default(now())
+
+  campanha CampanhaDiagnostico @relation(fields: [campanha_id], references: [id], onDelete: Cascade)
+  lead     Lead?               @relation(fields: [lead_id], references: [id])
+
+  @@map("diagnostico_participantes")
 }

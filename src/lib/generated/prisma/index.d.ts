@@ -238,6 +238,16 @@ export type TokenPortal = $Result.DefaultSelection<Prisma.$TokenPortalPayload>
  * 
  */
 export type AplicacaoDiagnostico = $Result.DefaultSelection<Prisma.$AplicacaoDiagnosticoPayload>
+/**
+ * Model CampanhaDiagnostico
+ * 
+ */
+export type CampanhaDiagnostico = $Result.DefaultSelection<Prisma.$CampanhaDiagnosticoPayload>
+/**
+ * Model DiagnosticoParticipante
+ * 
+ */
+export type DiagnosticoParticipante = $Result.DefaultSelection<Prisma.$DiagnosticoParticipantePayload>
 
 /**
  * Enums
@@ -1111,6 +1121,26 @@ export class PrismaClient<
     * ```
     */
   get aplicacaoDiagnostico(): Prisma.AplicacaoDiagnosticoDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.campanhaDiagnostico`: Exposes CRUD operations for the **CampanhaDiagnostico** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CampanhaDiagnosticos
+    * const campanhaDiagnosticos = await prisma.campanhaDiagnostico.findMany()
+    * ```
+    */
+  get campanhaDiagnostico(): Prisma.CampanhaDiagnosticoDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.diagnosticoParticipante`: Exposes CRUD operations for the **DiagnosticoParticipante** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DiagnosticoParticipantes
+    * const diagnosticoParticipantes = await prisma.diagnosticoParticipante.findMany()
+    * ```
+    */
+  get diagnosticoParticipante(): Prisma.DiagnosticoParticipanteDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1589,7 +1619,9 @@ export namespace Prisma {
     Boleto: 'Boleto',
     Diagnostico: 'Diagnostico',
     TokenPortal: 'TokenPortal',
-    AplicacaoDiagnostico: 'AplicacaoDiagnostico'
+    AplicacaoDiagnostico: 'AplicacaoDiagnostico',
+    CampanhaDiagnostico: 'CampanhaDiagnostico',
+    DiagnosticoParticipante: 'DiagnosticoParticipante'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1605,7 +1637,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "etapaCrm" | "comentarioCrm" | "lead" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "projeto" | "etapa" | "tarefa" | "comentarioTarefa" | "anexoTarefa" | "atividadeTarefa" | "aprovacaoTarefa" | "itemChecklist" | "etiquetaTarefa" | "tarefaEtiqueta" | "pastaDocumento" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "recebivel" | "contaPagar" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "boleto" | "diagnostico" | "tokenPortal" | "aplicacaoDiagnostico"
+      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "etapaCrm" | "comentarioCrm" | "lead" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "projeto" | "etapa" | "tarefa" | "comentarioTarefa" | "anexoTarefa" | "atividadeTarefa" | "aprovacaoTarefa" | "itemChecklist" | "etiquetaTarefa" | "tarefaEtiqueta" | "pastaDocumento" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "recebivel" | "contaPagar" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "boleto" | "diagnostico" | "tokenPortal" | "aplicacaoDiagnostico" | "campanhaDiagnostico" | "diagnosticoParticipante"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -4939,6 +4971,154 @@ export namespace Prisma {
           }
         }
       }
+      CampanhaDiagnostico: {
+        payload: Prisma.$CampanhaDiagnosticoPayload<ExtArgs>
+        fields: Prisma.CampanhaDiagnosticoFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CampanhaDiagnosticoFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampanhaDiagnosticoPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CampanhaDiagnosticoFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampanhaDiagnosticoPayload>
+          }
+          findFirst: {
+            args: Prisma.CampanhaDiagnosticoFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampanhaDiagnosticoPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CampanhaDiagnosticoFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampanhaDiagnosticoPayload>
+          }
+          findMany: {
+            args: Prisma.CampanhaDiagnosticoFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampanhaDiagnosticoPayload>[]
+          }
+          create: {
+            args: Prisma.CampanhaDiagnosticoCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampanhaDiagnosticoPayload>
+          }
+          createMany: {
+            args: Prisma.CampanhaDiagnosticoCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CampanhaDiagnosticoCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampanhaDiagnosticoPayload>[]
+          }
+          delete: {
+            args: Prisma.CampanhaDiagnosticoDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampanhaDiagnosticoPayload>
+          }
+          update: {
+            args: Prisma.CampanhaDiagnosticoUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampanhaDiagnosticoPayload>
+          }
+          deleteMany: {
+            args: Prisma.CampanhaDiagnosticoDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CampanhaDiagnosticoUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CampanhaDiagnosticoUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampanhaDiagnosticoPayload>[]
+          }
+          upsert: {
+            args: Prisma.CampanhaDiagnosticoUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampanhaDiagnosticoPayload>
+          }
+          aggregate: {
+            args: Prisma.CampanhaDiagnosticoAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCampanhaDiagnostico>
+          }
+          groupBy: {
+            args: Prisma.CampanhaDiagnosticoGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CampanhaDiagnosticoGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CampanhaDiagnosticoCountArgs<ExtArgs>
+            result: $Utils.Optional<CampanhaDiagnosticoCountAggregateOutputType> | number
+          }
+        }
+      }
+      DiagnosticoParticipante: {
+        payload: Prisma.$DiagnosticoParticipantePayload<ExtArgs>
+        fields: Prisma.DiagnosticoParticipanteFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DiagnosticoParticipanteFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiagnosticoParticipantePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DiagnosticoParticipanteFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiagnosticoParticipantePayload>
+          }
+          findFirst: {
+            args: Prisma.DiagnosticoParticipanteFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiagnosticoParticipantePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DiagnosticoParticipanteFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiagnosticoParticipantePayload>
+          }
+          findMany: {
+            args: Prisma.DiagnosticoParticipanteFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiagnosticoParticipantePayload>[]
+          }
+          create: {
+            args: Prisma.DiagnosticoParticipanteCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiagnosticoParticipantePayload>
+          }
+          createMany: {
+            args: Prisma.DiagnosticoParticipanteCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.DiagnosticoParticipanteCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiagnosticoParticipantePayload>[]
+          }
+          delete: {
+            args: Prisma.DiagnosticoParticipanteDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiagnosticoParticipantePayload>
+          }
+          update: {
+            args: Prisma.DiagnosticoParticipanteUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiagnosticoParticipantePayload>
+          }
+          deleteMany: {
+            args: Prisma.DiagnosticoParticipanteDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DiagnosticoParticipanteUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.DiagnosticoParticipanteUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiagnosticoParticipantePayload>[]
+          }
+          upsert: {
+            args: Prisma.DiagnosticoParticipanteUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiagnosticoParticipantePayload>
+          }
+          aggregate: {
+            args: Prisma.DiagnosticoParticipanteAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDiagnosticoParticipante>
+          }
+          groupBy: {
+            args: Prisma.DiagnosticoParticipanteGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DiagnosticoParticipanteGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DiagnosticoParticipanteCountArgs<ExtArgs>
+            result: $Utils.Optional<DiagnosticoParticipanteCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -5092,6 +5272,8 @@ export namespace Prisma {
     diagnostico?: DiagnosticoOmit
     tokenPortal?: TokenPortalOmit
     aplicacaoDiagnostico?: AplicacaoDiagnosticoOmit
+    campanhaDiagnostico?: CampanhaDiagnosticoOmit
+    diagnosticoParticipante?: DiagnosticoParticipanteOmit
   }
 
   /* Types for Logging */
@@ -5199,6 +5381,7 @@ export namespace Prisma {
     etiquetas_tarefa: number
     aplicacoes_diagnostico: number
     etapas_crm: number
+    campanhas_diagnostico: number
   }
 
   export type EmpresaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5229,6 +5412,7 @@ export namespace Prisma {
     etiquetas_tarefa?: boolean | EmpresaCountOutputTypeCountEtiquetas_tarefaArgs
     aplicacoes_diagnostico?: boolean | EmpresaCountOutputTypeCountAplicacoes_diagnosticoArgs
     etapas_crm?: boolean | EmpresaCountOutputTypeCountEtapas_crmArgs
+    campanhas_diagnostico?: boolean | EmpresaCountOutputTypeCountCampanhas_diagnosticoArgs
   }
 
   // Custom InputTypes
@@ -5429,6 +5613,13 @@ export namespace Prisma {
    */
   export type EmpresaCountOutputTypeCountEtapas_crmArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: EtapaCrmWhereInput
+  }
+
+  /**
+   * EmpresaCountOutputType without action
+   */
+  export type EmpresaCountOutputTypeCountCampanhas_diagnosticoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CampanhaDiagnosticoWhereInput
   }
 
 
@@ -6455,6 +6646,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type CampanhaDiagnosticoCountOutputType
+   */
+
+  export type CampanhaDiagnosticoCountOutputType = {
+    participantes: number
+  }
+
+  export type CampanhaDiagnosticoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    participantes?: boolean | CampanhaDiagnosticoCountOutputTypeCountParticipantesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CampanhaDiagnosticoCountOutputType without action
+   */
+  export type CampanhaDiagnosticoCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampanhaDiagnosticoCountOutputType
+     */
+    select?: CampanhaDiagnosticoCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CampanhaDiagnosticoCountOutputType without action
+   */
+  export type CampanhaDiagnosticoCountOutputTypeCountParticipantesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DiagnosticoParticipanteWhereInput
+  }
+
+
+  /**
    * Models
    */
 
@@ -6685,6 +6907,7 @@ export namespace Prisma {
     etiquetas_tarefa?: boolean | Empresa$etiquetas_tarefaArgs<ExtArgs>
     aplicacoes_diagnostico?: boolean | Empresa$aplicacoes_diagnosticoArgs<ExtArgs>
     etapas_crm?: boolean | Empresa$etapas_crmArgs<ExtArgs>
+    campanhas_diagnostico?: boolean | Empresa$campanhas_diagnosticoArgs<ExtArgs>
     _count?: boolean | EmpresaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["empresa"]>
 
@@ -6756,6 +6979,7 @@ export namespace Prisma {
     etiquetas_tarefa?: boolean | Empresa$etiquetas_tarefaArgs<ExtArgs>
     aplicacoes_diagnostico?: boolean | Empresa$aplicacoes_diagnosticoArgs<ExtArgs>
     etapas_crm?: boolean | Empresa$etapas_crmArgs<ExtArgs>
+    campanhas_diagnostico?: boolean | Empresa$campanhas_diagnosticoArgs<ExtArgs>
     _count?: boolean | EmpresaCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EmpresaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -6791,6 +7015,7 @@ export namespace Prisma {
       etiquetas_tarefa: Prisma.$EtiquetaTarefaPayload<ExtArgs>[]
       aplicacoes_diagnostico: Prisma.$AplicacaoDiagnosticoPayload<ExtArgs>[]
       etapas_crm: Prisma.$EtapaCrmPayload<ExtArgs>[]
+      campanhas_diagnostico: Prisma.$CampanhaDiagnosticoPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7224,6 +7449,7 @@ export namespace Prisma {
     etiquetas_tarefa<T extends Empresa$etiquetas_tarefaArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$etiquetas_tarefaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EtiquetaTarefaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     aplicacoes_diagnostico<T extends Empresa$aplicacoes_diagnosticoArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$aplicacoes_diagnosticoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AplicacaoDiagnosticoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     etapas_crm<T extends Empresa$etapas_crmArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$etapas_crmArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EtapaCrmPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    campanhas_diagnostico<T extends Empresa$campanhas_diagnosticoArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$campanhas_diagnosticoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CampanhaDiagnosticoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8301,6 +8527,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: EtapaCrmScalarFieldEnum | EtapaCrmScalarFieldEnum[]
+  }
+
+  /**
+   * Empresa.campanhas_diagnostico
+   */
+  export type Empresa$campanhas_diagnosticoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampanhaDiagnostico
+     */
+    select?: CampanhaDiagnosticoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampanhaDiagnostico
+     */
+    omit?: CampanhaDiagnosticoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampanhaDiagnosticoInclude<ExtArgs> | null
+    where?: CampanhaDiagnosticoWhereInput
+    orderBy?: CampanhaDiagnosticoOrderByWithRelationInput | CampanhaDiagnosticoOrderByWithRelationInput[]
+    cursor?: CampanhaDiagnosticoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CampanhaDiagnosticoScalarFieldEnum | CampanhaDiagnosticoScalarFieldEnum[]
   }
 
   /**
@@ -23265,6 +23515,7 @@ export namespace Prisma {
     etapa?: boolean | Lead$etapaArgs<ExtArgs>
     comentarios?: boolean | Lead$comentariosArgs<ExtArgs>
     propostas?: boolean | Lead$propostasArgs<ExtArgs>
+    diagnostico_participante?: boolean | Lead$diagnostico_participanteArgs<ExtArgs>
     _count?: boolean | LeadCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["lead"]>
 
@@ -23368,6 +23619,7 @@ export namespace Prisma {
     etapa?: boolean | Lead$etapaArgs<ExtArgs>
     comentarios?: boolean | Lead$comentariosArgs<ExtArgs>
     propostas?: boolean | Lead$propostasArgs<ExtArgs>
+    diagnostico_participante?: boolean | Lead$diagnostico_participanteArgs<ExtArgs>
     _count?: boolean | LeadCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type LeadIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -23395,6 +23647,7 @@ export namespace Prisma {
       etapa: Prisma.$EtapaCrmPayload<ExtArgs> | null
       comentarios: Prisma.$ComentarioCrmPayload<ExtArgs>[]
       propostas: Prisma.$PropostaPayload<ExtArgs>[]
+      diagnostico_participante: Prisma.$DiagnosticoParticipantePayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -23822,6 +24075,7 @@ export namespace Prisma {
     etapa<T extends Lead$etapaArgs<ExtArgs> = {}>(args?: Subset<T, Lead$etapaArgs<ExtArgs>>): Prisma__EtapaCrmClient<$Result.GetResult<Prisma.$EtapaCrmPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     comentarios<T extends Lead$comentariosArgs<ExtArgs> = {}>(args?: Subset<T, Lead$comentariosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComentarioCrmPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     propostas<T extends Lead$propostasArgs<ExtArgs> = {}>(args?: Subset<T, Lead$propostasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PropostaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    diagnostico_participante<T extends Lead$diagnostico_participanteArgs<ExtArgs> = {}>(args?: Subset<T, Lead$diagnostico_participanteArgs<ExtArgs>>): Prisma__DiagnosticoParticipanteClient<$Result.GetResult<Prisma.$DiagnosticoParticipantePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -24397,6 +24651,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PropostaScalarFieldEnum | PropostaScalarFieldEnum[]
+  }
+
+  /**
+   * Lead.diagnostico_participante
+   */
+  export type Lead$diagnostico_participanteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DiagnosticoParticipante
+     */
+    select?: DiagnosticoParticipanteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DiagnosticoParticipante
+     */
+    omit?: DiagnosticoParticipanteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DiagnosticoParticipanteInclude<ExtArgs> | null
+    where?: DiagnosticoParticipanteWhereInput
   }
 
   /**
@@ -62936,6 +63209,2401 @@ export namespace Prisma {
 
 
   /**
+   * Model CampanhaDiagnostico
+   */
+
+  export type AggregateCampanhaDiagnostico = {
+    _count: CampanhaDiagnosticoCountAggregateOutputType | null
+    _min: CampanhaDiagnosticoMinAggregateOutputType | null
+    _max: CampanhaDiagnosticoMaxAggregateOutputType | null
+  }
+
+  export type CampanhaDiagnosticoMinAggregateOutputType = {
+    id: string | null
+    empresa_id: string | null
+    slug: string | null
+    titulo: string | null
+    subtitulo: string | null
+    video_youtube: string | null
+    url_checkout: string | null
+    ativo: boolean | null
+    criado_em: Date | null
+    atualizado_em: Date | null
+  }
+
+  export type CampanhaDiagnosticoMaxAggregateOutputType = {
+    id: string | null
+    empresa_id: string | null
+    slug: string | null
+    titulo: string | null
+    subtitulo: string | null
+    video_youtube: string | null
+    url_checkout: string | null
+    ativo: boolean | null
+    criado_em: Date | null
+    atualizado_em: Date | null
+  }
+
+  export type CampanhaDiagnosticoCountAggregateOutputType = {
+    id: number
+    empresa_id: number
+    slug: number
+    titulo: number
+    subtitulo: number
+    video_youtube: number
+    url_checkout: number
+    ativo: number
+    criado_em: number
+    atualizado_em: number
+    _all: number
+  }
+
+
+  export type CampanhaDiagnosticoMinAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    slug?: true
+    titulo?: true
+    subtitulo?: true
+    video_youtube?: true
+    url_checkout?: true
+    ativo?: true
+    criado_em?: true
+    atualizado_em?: true
+  }
+
+  export type CampanhaDiagnosticoMaxAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    slug?: true
+    titulo?: true
+    subtitulo?: true
+    video_youtube?: true
+    url_checkout?: true
+    ativo?: true
+    criado_em?: true
+    atualizado_em?: true
+  }
+
+  export type CampanhaDiagnosticoCountAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    slug?: true
+    titulo?: true
+    subtitulo?: true
+    video_youtube?: true
+    url_checkout?: true
+    ativo?: true
+    criado_em?: true
+    atualizado_em?: true
+    _all?: true
+  }
+
+  export type CampanhaDiagnosticoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CampanhaDiagnostico to aggregate.
+     */
+    where?: CampanhaDiagnosticoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CampanhaDiagnosticos to fetch.
+     */
+    orderBy?: CampanhaDiagnosticoOrderByWithRelationInput | CampanhaDiagnosticoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CampanhaDiagnosticoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CampanhaDiagnosticos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CampanhaDiagnosticos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CampanhaDiagnosticos
+    **/
+    _count?: true | CampanhaDiagnosticoCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CampanhaDiagnosticoMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CampanhaDiagnosticoMaxAggregateInputType
+  }
+
+  export type GetCampanhaDiagnosticoAggregateType<T extends CampanhaDiagnosticoAggregateArgs> = {
+        [P in keyof T & keyof AggregateCampanhaDiagnostico]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCampanhaDiagnostico[P]>
+      : GetScalarType<T[P], AggregateCampanhaDiagnostico[P]>
+  }
+
+
+
+
+  export type CampanhaDiagnosticoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CampanhaDiagnosticoWhereInput
+    orderBy?: CampanhaDiagnosticoOrderByWithAggregationInput | CampanhaDiagnosticoOrderByWithAggregationInput[]
+    by: CampanhaDiagnosticoScalarFieldEnum[] | CampanhaDiagnosticoScalarFieldEnum
+    having?: CampanhaDiagnosticoScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CampanhaDiagnosticoCountAggregateInputType | true
+    _min?: CampanhaDiagnosticoMinAggregateInputType
+    _max?: CampanhaDiagnosticoMaxAggregateInputType
+  }
+
+  export type CampanhaDiagnosticoGroupByOutputType = {
+    id: string
+    empresa_id: string
+    slug: string
+    titulo: string
+    subtitulo: string | null
+    video_youtube: string | null
+    url_checkout: string | null
+    ativo: boolean
+    criado_em: Date
+    atualizado_em: Date
+    _count: CampanhaDiagnosticoCountAggregateOutputType | null
+    _min: CampanhaDiagnosticoMinAggregateOutputType | null
+    _max: CampanhaDiagnosticoMaxAggregateOutputType | null
+  }
+
+  type GetCampanhaDiagnosticoGroupByPayload<T extends CampanhaDiagnosticoGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CampanhaDiagnosticoGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CampanhaDiagnosticoGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CampanhaDiagnosticoGroupByOutputType[P]>
+            : GetScalarType<T[P], CampanhaDiagnosticoGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CampanhaDiagnosticoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    slug?: boolean
+    titulo?: boolean
+    subtitulo?: boolean
+    video_youtube?: boolean
+    url_checkout?: boolean
+    ativo?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    participantes?: boolean | CampanhaDiagnostico$participantesArgs<ExtArgs>
+    _count?: boolean | CampanhaDiagnosticoCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["campanhaDiagnostico"]>
+
+  export type CampanhaDiagnosticoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    slug?: boolean
+    titulo?: boolean
+    subtitulo?: boolean
+    video_youtube?: boolean
+    url_checkout?: boolean
+    ativo?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["campanhaDiagnostico"]>
+
+  export type CampanhaDiagnosticoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    slug?: boolean
+    titulo?: boolean
+    subtitulo?: boolean
+    video_youtube?: boolean
+    url_checkout?: boolean
+    ativo?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["campanhaDiagnostico"]>
+
+  export type CampanhaDiagnosticoSelectScalar = {
+    id?: boolean
+    empresa_id?: boolean
+    slug?: boolean
+    titulo?: boolean
+    subtitulo?: boolean
+    video_youtube?: boolean
+    url_checkout?: boolean
+    ativo?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+  }
+
+  export type CampanhaDiagnosticoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "slug" | "titulo" | "subtitulo" | "video_youtube" | "url_checkout" | "ativo" | "criado_em" | "atualizado_em", ExtArgs["result"]["campanhaDiagnostico"]>
+  export type CampanhaDiagnosticoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    participantes?: boolean | CampanhaDiagnostico$participantesArgs<ExtArgs>
+    _count?: boolean | CampanhaDiagnosticoCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type CampanhaDiagnosticoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }
+  export type CampanhaDiagnosticoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }
+
+  export type $CampanhaDiagnosticoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CampanhaDiagnostico"
+    objects: {
+      empresa: Prisma.$EmpresaPayload<ExtArgs>
+      participantes: Prisma.$DiagnosticoParticipantePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      empresa_id: string
+      slug: string
+      titulo: string
+      subtitulo: string | null
+      video_youtube: string | null
+      url_checkout: string | null
+      ativo: boolean
+      criado_em: Date
+      atualizado_em: Date
+    }, ExtArgs["result"]["campanhaDiagnostico"]>
+    composites: {}
+  }
+
+  type CampanhaDiagnosticoGetPayload<S extends boolean | null | undefined | CampanhaDiagnosticoDefaultArgs> = $Result.GetResult<Prisma.$CampanhaDiagnosticoPayload, S>
+
+  type CampanhaDiagnosticoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CampanhaDiagnosticoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CampanhaDiagnosticoCountAggregateInputType | true
+    }
+
+  export interface CampanhaDiagnosticoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CampanhaDiagnostico'], meta: { name: 'CampanhaDiagnostico' } }
+    /**
+     * Find zero or one CampanhaDiagnostico that matches the filter.
+     * @param {CampanhaDiagnosticoFindUniqueArgs} args - Arguments to find a CampanhaDiagnostico
+     * @example
+     * // Get one CampanhaDiagnostico
+     * const campanhaDiagnostico = await prisma.campanhaDiagnostico.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CampanhaDiagnosticoFindUniqueArgs>(args: SelectSubset<T, CampanhaDiagnosticoFindUniqueArgs<ExtArgs>>): Prisma__CampanhaDiagnosticoClient<$Result.GetResult<Prisma.$CampanhaDiagnosticoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CampanhaDiagnostico that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CampanhaDiagnosticoFindUniqueOrThrowArgs} args - Arguments to find a CampanhaDiagnostico
+     * @example
+     * // Get one CampanhaDiagnostico
+     * const campanhaDiagnostico = await prisma.campanhaDiagnostico.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CampanhaDiagnosticoFindUniqueOrThrowArgs>(args: SelectSubset<T, CampanhaDiagnosticoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CampanhaDiagnosticoClient<$Result.GetResult<Prisma.$CampanhaDiagnosticoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CampanhaDiagnostico that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CampanhaDiagnosticoFindFirstArgs} args - Arguments to find a CampanhaDiagnostico
+     * @example
+     * // Get one CampanhaDiagnostico
+     * const campanhaDiagnostico = await prisma.campanhaDiagnostico.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CampanhaDiagnosticoFindFirstArgs>(args?: SelectSubset<T, CampanhaDiagnosticoFindFirstArgs<ExtArgs>>): Prisma__CampanhaDiagnosticoClient<$Result.GetResult<Prisma.$CampanhaDiagnosticoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CampanhaDiagnostico that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CampanhaDiagnosticoFindFirstOrThrowArgs} args - Arguments to find a CampanhaDiagnostico
+     * @example
+     * // Get one CampanhaDiagnostico
+     * const campanhaDiagnostico = await prisma.campanhaDiagnostico.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CampanhaDiagnosticoFindFirstOrThrowArgs>(args?: SelectSubset<T, CampanhaDiagnosticoFindFirstOrThrowArgs<ExtArgs>>): Prisma__CampanhaDiagnosticoClient<$Result.GetResult<Prisma.$CampanhaDiagnosticoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CampanhaDiagnosticos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CampanhaDiagnosticoFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CampanhaDiagnosticos
+     * const campanhaDiagnosticos = await prisma.campanhaDiagnostico.findMany()
+     * 
+     * // Get first 10 CampanhaDiagnosticos
+     * const campanhaDiagnosticos = await prisma.campanhaDiagnostico.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const campanhaDiagnosticoWithIdOnly = await prisma.campanhaDiagnostico.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CampanhaDiagnosticoFindManyArgs>(args?: SelectSubset<T, CampanhaDiagnosticoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CampanhaDiagnosticoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CampanhaDiagnostico.
+     * @param {CampanhaDiagnosticoCreateArgs} args - Arguments to create a CampanhaDiagnostico.
+     * @example
+     * // Create one CampanhaDiagnostico
+     * const CampanhaDiagnostico = await prisma.campanhaDiagnostico.create({
+     *   data: {
+     *     // ... data to create a CampanhaDiagnostico
+     *   }
+     * })
+     * 
+     */
+    create<T extends CampanhaDiagnosticoCreateArgs>(args: SelectSubset<T, CampanhaDiagnosticoCreateArgs<ExtArgs>>): Prisma__CampanhaDiagnosticoClient<$Result.GetResult<Prisma.$CampanhaDiagnosticoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CampanhaDiagnosticos.
+     * @param {CampanhaDiagnosticoCreateManyArgs} args - Arguments to create many CampanhaDiagnosticos.
+     * @example
+     * // Create many CampanhaDiagnosticos
+     * const campanhaDiagnostico = await prisma.campanhaDiagnostico.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CampanhaDiagnosticoCreateManyArgs>(args?: SelectSubset<T, CampanhaDiagnosticoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CampanhaDiagnosticos and returns the data saved in the database.
+     * @param {CampanhaDiagnosticoCreateManyAndReturnArgs} args - Arguments to create many CampanhaDiagnosticos.
+     * @example
+     * // Create many CampanhaDiagnosticos
+     * const campanhaDiagnostico = await prisma.campanhaDiagnostico.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CampanhaDiagnosticos and only return the `id`
+     * const campanhaDiagnosticoWithIdOnly = await prisma.campanhaDiagnostico.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CampanhaDiagnosticoCreateManyAndReturnArgs>(args?: SelectSubset<T, CampanhaDiagnosticoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CampanhaDiagnosticoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CampanhaDiagnostico.
+     * @param {CampanhaDiagnosticoDeleteArgs} args - Arguments to delete one CampanhaDiagnostico.
+     * @example
+     * // Delete one CampanhaDiagnostico
+     * const CampanhaDiagnostico = await prisma.campanhaDiagnostico.delete({
+     *   where: {
+     *     // ... filter to delete one CampanhaDiagnostico
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CampanhaDiagnosticoDeleteArgs>(args: SelectSubset<T, CampanhaDiagnosticoDeleteArgs<ExtArgs>>): Prisma__CampanhaDiagnosticoClient<$Result.GetResult<Prisma.$CampanhaDiagnosticoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CampanhaDiagnostico.
+     * @param {CampanhaDiagnosticoUpdateArgs} args - Arguments to update one CampanhaDiagnostico.
+     * @example
+     * // Update one CampanhaDiagnostico
+     * const campanhaDiagnostico = await prisma.campanhaDiagnostico.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CampanhaDiagnosticoUpdateArgs>(args: SelectSubset<T, CampanhaDiagnosticoUpdateArgs<ExtArgs>>): Prisma__CampanhaDiagnosticoClient<$Result.GetResult<Prisma.$CampanhaDiagnosticoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CampanhaDiagnosticos.
+     * @param {CampanhaDiagnosticoDeleteManyArgs} args - Arguments to filter CampanhaDiagnosticos to delete.
+     * @example
+     * // Delete a few CampanhaDiagnosticos
+     * const { count } = await prisma.campanhaDiagnostico.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CampanhaDiagnosticoDeleteManyArgs>(args?: SelectSubset<T, CampanhaDiagnosticoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CampanhaDiagnosticos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CampanhaDiagnosticoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CampanhaDiagnosticos
+     * const campanhaDiagnostico = await prisma.campanhaDiagnostico.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CampanhaDiagnosticoUpdateManyArgs>(args: SelectSubset<T, CampanhaDiagnosticoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CampanhaDiagnosticos and returns the data updated in the database.
+     * @param {CampanhaDiagnosticoUpdateManyAndReturnArgs} args - Arguments to update many CampanhaDiagnosticos.
+     * @example
+     * // Update many CampanhaDiagnosticos
+     * const campanhaDiagnostico = await prisma.campanhaDiagnostico.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CampanhaDiagnosticos and only return the `id`
+     * const campanhaDiagnosticoWithIdOnly = await prisma.campanhaDiagnostico.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CampanhaDiagnosticoUpdateManyAndReturnArgs>(args: SelectSubset<T, CampanhaDiagnosticoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CampanhaDiagnosticoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CampanhaDiagnostico.
+     * @param {CampanhaDiagnosticoUpsertArgs} args - Arguments to update or create a CampanhaDiagnostico.
+     * @example
+     * // Update or create a CampanhaDiagnostico
+     * const campanhaDiagnostico = await prisma.campanhaDiagnostico.upsert({
+     *   create: {
+     *     // ... data to create a CampanhaDiagnostico
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CampanhaDiagnostico we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CampanhaDiagnosticoUpsertArgs>(args: SelectSubset<T, CampanhaDiagnosticoUpsertArgs<ExtArgs>>): Prisma__CampanhaDiagnosticoClient<$Result.GetResult<Prisma.$CampanhaDiagnosticoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CampanhaDiagnosticos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CampanhaDiagnosticoCountArgs} args - Arguments to filter CampanhaDiagnosticos to count.
+     * @example
+     * // Count the number of CampanhaDiagnosticos
+     * const count = await prisma.campanhaDiagnostico.count({
+     *   where: {
+     *     // ... the filter for the CampanhaDiagnosticos we want to count
+     *   }
+     * })
+    **/
+    count<T extends CampanhaDiagnosticoCountArgs>(
+      args?: Subset<T, CampanhaDiagnosticoCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CampanhaDiagnosticoCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CampanhaDiagnostico.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CampanhaDiagnosticoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CampanhaDiagnosticoAggregateArgs>(args: Subset<T, CampanhaDiagnosticoAggregateArgs>): Prisma.PrismaPromise<GetCampanhaDiagnosticoAggregateType<T>>
+
+    /**
+     * Group by CampanhaDiagnostico.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CampanhaDiagnosticoGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CampanhaDiagnosticoGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CampanhaDiagnosticoGroupByArgs['orderBy'] }
+        : { orderBy?: CampanhaDiagnosticoGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CampanhaDiagnosticoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCampanhaDiagnosticoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CampanhaDiagnostico model
+   */
+  readonly fields: CampanhaDiagnosticoFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CampanhaDiagnostico.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CampanhaDiagnosticoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    empresa<T extends EmpresaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmpresaDefaultArgs<ExtArgs>>): Prisma__EmpresaClient<$Result.GetResult<Prisma.$EmpresaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    participantes<T extends CampanhaDiagnostico$participantesArgs<ExtArgs> = {}>(args?: Subset<T, CampanhaDiagnostico$participantesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiagnosticoParticipantePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CampanhaDiagnostico model
+   */
+  interface CampanhaDiagnosticoFieldRefs {
+    readonly id: FieldRef<"CampanhaDiagnostico", 'String'>
+    readonly empresa_id: FieldRef<"CampanhaDiagnostico", 'String'>
+    readonly slug: FieldRef<"CampanhaDiagnostico", 'String'>
+    readonly titulo: FieldRef<"CampanhaDiagnostico", 'String'>
+    readonly subtitulo: FieldRef<"CampanhaDiagnostico", 'String'>
+    readonly video_youtube: FieldRef<"CampanhaDiagnostico", 'String'>
+    readonly url_checkout: FieldRef<"CampanhaDiagnostico", 'String'>
+    readonly ativo: FieldRef<"CampanhaDiagnostico", 'Boolean'>
+    readonly criado_em: FieldRef<"CampanhaDiagnostico", 'DateTime'>
+    readonly atualizado_em: FieldRef<"CampanhaDiagnostico", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CampanhaDiagnostico findUnique
+   */
+  export type CampanhaDiagnosticoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampanhaDiagnostico
+     */
+    select?: CampanhaDiagnosticoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampanhaDiagnostico
+     */
+    omit?: CampanhaDiagnosticoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampanhaDiagnosticoInclude<ExtArgs> | null
+    /**
+     * Filter, which CampanhaDiagnostico to fetch.
+     */
+    where: CampanhaDiagnosticoWhereUniqueInput
+  }
+
+  /**
+   * CampanhaDiagnostico findUniqueOrThrow
+   */
+  export type CampanhaDiagnosticoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampanhaDiagnostico
+     */
+    select?: CampanhaDiagnosticoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampanhaDiagnostico
+     */
+    omit?: CampanhaDiagnosticoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampanhaDiagnosticoInclude<ExtArgs> | null
+    /**
+     * Filter, which CampanhaDiagnostico to fetch.
+     */
+    where: CampanhaDiagnosticoWhereUniqueInput
+  }
+
+  /**
+   * CampanhaDiagnostico findFirst
+   */
+  export type CampanhaDiagnosticoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampanhaDiagnostico
+     */
+    select?: CampanhaDiagnosticoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampanhaDiagnostico
+     */
+    omit?: CampanhaDiagnosticoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampanhaDiagnosticoInclude<ExtArgs> | null
+    /**
+     * Filter, which CampanhaDiagnostico to fetch.
+     */
+    where?: CampanhaDiagnosticoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CampanhaDiagnosticos to fetch.
+     */
+    orderBy?: CampanhaDiagnosticoOrderByWithRelationInput | CampanhaDiagnosticoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CampanhaDiagnosticos.
+     */
+    cursor?: CampanhaDiagnosticoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CampanhaDiagnosticos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CampanhaDiagnosticos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CampanhaDiagnosticos.
+     */
+    distinct?: CampanhaDiagnosticoScalarFieldEnum | CampanhaDiagnosticoScalarFieldEnum[]
+  }
+
+  /**
+   * CampanhaDiagnostico findFirstOrThrow
+   */
+  export type CampanhaDiagnosticoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampanhaDiagnostico
+     */
+    select?: CampanhaDiagnosticoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampanhaDiagnostico
+     */
+    omit?: CampanhaDiagnosticoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampanhaDiagnosticoInclude<ExtArgs> | null
+    /**
+     * Filter, which CampanhaDiagnostico to fetch.
+     */
+    where?: CampanhaDiagnosticoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CampanhaDiagnosticos to fetch.
+     */
+    orderBy?: CampanhaDiagnosticoOrderByWithRelationInput | CampanhaDiagnosticoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CampanhaDiagnosticos.
+     */
+    cursor?: CampanhaDiagnosticoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CampanhaDiagnosticos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CampanhaDiagnosticos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CampanhaDiagnosticos.
+     */
+    distinct?: CampanhaDiagnosticoScalarFieldEnum | CampanhaDiagnosticoScalarFieldEnum[]
+  }
+
+  /**
+   * CampanhaDiagnostico findMany
+   */
+  export type CampanhaDiagnosticoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampanhaDiagnostico
+     */
+    select?: CampanhaDiagnosticoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampanhaDiagnostico
+     */
+    omit?: CampanhaDiagnosticoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampanhaDiagnosticoInclude<ExtArgs> | null
+    /**
+     * Filter, which CampanhaDiagnosticos to fetch.
+     */
+    where?: CampanhaDiagnosticoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CampanhaDiagnosticos to fetch.
+     */
+    orderBy?: CampanhaDiagnosticoOrderByWithRelationInput | CampanhaDiagnosticoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CampanhaDiagnosticos.
+     */
+    cursor?: CampanhaDiagnosticoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CampanhaDiagnosticos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CampanhaDiagnosticos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CampanhaDiagnosticos.
+     */
+    distinct?: CampanhaDiagnosticoScalarFieldEnum | CampanhaDiagnosticoScalarFieldEnum[]
+  }
+
+  /**
+   * CampanhaDiagnostico create
+   */
+  export type CampanhaDiagnosticoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampanhaDiagnostico
+     */
+    select?: CampanhaDiagnosticoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampanhaDiagnostico
+     */
+    omit?: CampanhaDiagnosticoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampanhaDiagnosticoInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CampanhaDiagnostico.
+     */
+    data: XOR<CampanhaDiagnosticoCreateInput, CampanhaDiagnosticoUncheckedCreateInput>
+  }
+
+  /**
+   * CampanhaDiagnostico createMany
+   */
+  export type CampanhaDiagnosticoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CampanhaDiagnosticos.
+     */
+    data: CampanhaDiagnosticoCreateManyInput | CampanhaDiagnosticoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CampanhaDiagnostico createManyAndReturn
+   */
+  export type CampanhaDiagnosticoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampanhaDiagnostico
+     */
+    select?: CampanhaDiagnosticoSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampanhaDiagnostico
+     */
+    omit?: CampanhaDiagnosticoOmit<ExtArgs> | null
+    /**
+     * The data used to create many CampanhaDiagnosticos.
+     */
+    data: CampanhaDiagnosticoCreateManyInput | CampanhaDiagnosticoCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampanhaDiagnosticoIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CampanhaDiagnostico update
+   */
+  export type CampanhaDiagnosticoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampanhaDiagnostico
+     */
+    select?: CampanhaDiagnosticoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampanhaDiagnostico
+     */
+    omit?: CampanhaDiagnosticoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampanhaDiagnosticoInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CampanhaDiagnostico.
+     */
+    data: XOR<CampanhaDiagnosticoUpdateInput, CampanhaDiagnosticoUncheckedUpdateInput>
+    /**
+     * Choose, which CampanhaDiagnostico to update.
+     */
+    where: CampanhaDiagnosticoWhereUniqueInput
+  }
+
+  /**
+   * CampanhaDiagnostico updateMany
+   */
+  export type CampanhaDiagnosticoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CampanhaDiagnosticos.
+     */
+    data: XOR<CampanhaDiagnosticoUpdateManyMutationInput, CampanhaDiagnosticoUncheckedUpdateManyInput>
+    /**
+     * Filter which CampanhaDiagnosticos to update
+     */
+    where?: CampanhaDiagnosticoWhereInput
+    /**
+     * Limit how many CampanhaDiagnosticos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CampanhaDiagnostico updateManyAndReturn
+   */
+  export type CampanhaDiagnosticoUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampanhaDiagnostico
+     */
+    select?: CampanhaDiagnosticoSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampanhaDiagnostico
+     */
+    omit?: CampanhaDiagnosticoOmit<ExtArgs> | null
+    /**
+     * The data used to update CampanhaDiagnosticos.
+     */
+    data: XOR<CampanhaDiagnosticoUpdateManyMutationInput, CampanhaDiagnosticoUncheckedUpdateManyInput>
+    /**
+     * Filter which CampanhaDiagnosticos to update
+     */
+    where?: CampanhaDiagnosticoWhereInput
+    /**
+     * Limit how many CampanhaDiagnosticos to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampanhaDiagnosticoIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CampanhaDiagnostico upsert
+   */
+  export type CampanhaDiagnosticoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampanhaDiagnostico
+     */
+    select?: CampanhaDiagnosticoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampanhaDiagnostico
+     */
+    omit?: CampanhaDiagnosticoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampanhaDiagnosticoInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CampanhaDiagnostico to update in case it exists.
+     */
+    where: CampanhaDiagnosticoWhereUniqueInput
+    /**
+     * In case the CampanhaDiagnostico found by the `where` argument doesn't exist, create a new CampanhaDiagnostico with this data.
+     */
+    create: XOR<CampanhaDiagnosticoCreateInput, CampanhaDiagnosticoUncheckedCreateInput>
+    /**
+     * In case the CampanhaDiagnostico was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CampanhaDiagnosticoUpdateInput, CampanhaDiagnosticoUncheckedUpdateInput>
+  }
+
+  /**
+   * CampanhaDiagnostico delete
+   */
+  export type CampanhaDiagnosticoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampanhaDiagnostico
+     */
+    select?: CampanhaDiagnosticoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampanhaDiagnostico
+     */
+    omit?: CampanhaDiagnosticoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampanhaDiagnosticoInclude<ExtArgs> | null
+    /**
+     * Filter which CampanhaDiagnostico to delete.
+     */
+    where: CampanhaDiagnosticoWhereUniqueInput
+  }
+
+  /**
+   * CampanhaDiagnostico deleteMany
+   */
+  export type CampanhaDiagnosticoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CampanhaDiagnosticos to delete
+     */
+    where?: CampanhaDiagnosticoWhereInput
+    /**
+     * Limit how many CampanhaDiagnosticos to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CampanhaDiagnostico.participantes
+   */
+  export type CampanhaDiagnostico$participantesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DiagnosticoParticipante
+     */
+    select?: DiagnosticoParticipanteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DiagnosticoParticipante
+     */
+    omit?: DiagnosticoParticipanteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DiagnosticoParticipanteInclude<ExtArgs> | null
+    where?: DiagnosticoParticipanteWhereInput
+    orderBy?: DiagnosticoParticipanteOrderByWithRelationInput | DiagnosticoParticipanteOrderByWithRelationInput[]
+    cursor?: DiagnosticoParticipanteWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DiagnosticoParticipanteScalarFieldEnum | DiagnosticoParticipanteScalarFieldEnum[]
+  }
+
+  /**
+   * CampanhaDiagnostico without action
+   */
+  export type CampanhaDiagnosticoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampanhaDiagnostico
+     */
+    select?: CampanhaDiagnosticoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampanhaDiagnostico
+     */
+    omit?: CampanhaDiagnosticoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampanhaDiagnosticoInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model DiagnosticoParticipante
+   */
+
+  export type AggregateDiagnosticoParticipante = {
+    _count: DiagnosticoParticipanteCountAggregateOutputType | null
+    _avg: DiagnosticoParticipanteAvgAggregateOutputType | null
+    _sum: DiagnosticoParticipanteSumAggregateOutputType | null
+    _min: DiagnosticoParticipanteMinAggregateOutputType | null
+    _max: DiagnosticoParticipanteMaxAggregateOutputType | null
+  }
+
+  export type DiagnosticoParticipanteAvgAggregateOutputType = {
+    pontuacao: number | null
+  }
+
+  export type DiagnosticoParticipanteSumAggregateOutputType = {
+    pontuacao: number | null
+  }
+
+  export type DiagnosticoParticipanteMinAggregateOutputType = {
+    id: string | null
+    campanha_id: string | null
+    lead_id: string | null
+    nome: string | null
+    cpf_cnpj: string | null
+    celular: string | null
+    email: string | null
+    celular_verificado: boolean | null
+    otp_code: string | null
+    otp_expira_em: Date | null
+    pontuacao: number | null
+    email_enviado: boolean | null
+    criado_em: Date | null
+  }
+
+  export type DiagnosticoParticipanteMaxAggregateOutputType = {
+    id: string | null
+    campanha_id: string | null
+    lead_id: string | null
+    nome: string | null
+    cpf_cnpj: string | null
+    celular: string | null
+    email: string | null
+    celular_verificado: boolean | null
+    otp_code: string | null
+    otp_expira_em: Date | null
+    pontuacao: number | null
+    email_enviado: boolean | null
+    criado_em: Date | null
+  }
+
+  export type DiagnosticoParticipanteCountAggregateOutputType = {
+    id: number
+    campanha_id: number
+    lead_id: number
+    nome: number
+    cpf_cnpj: number
+    celular: number
+    email: number
+    celular_verificado: number
+    otp_code: number
+    otp_expira_em: number
+    respostas: number
+    pontuacao: number
+    email_enviado: number
+    criado_em: number
+    _all: number
+  }
+
+
+  export type DiagnosticoParticipanteAvgAggregateInputType = {
+    pontuacao?: true
+  }
+
+  export type DiagnosticoParticipanteSumAggregateInputType = {
+    pontuacao?: true
+  }
+
+  export type DiagnosticoParticipanteMinAggregateInputType = {
+    id?: true
+    campanha_id?: true
+    lead_id?: true
+    nome?: true
+    cpf_cnpj?: true
+    celular?: true
+    email?: true
+    celular_verificado?: true
+    otp_code?: true
+    otp_expira_em?: true
+    pontuacao?: true
+    email_enviado?: true
+    criado_em?: true
+  }
+
+  export type DiagnosticoParticipanteMaxAggregateInputType = {
+    id?: true
+    campanha_id?: true
+    lead_id?: true
+    nome?: true
+    cpf_cnpj?: true
+    celular?: true
+    email?: true
+    celular_verificado?: true
+    otp_code?: true
+    otp_expira_em?: true
+    pontuacao?: true
+    email_enviado?: true
+    criado_em?: true
+  }
+
+  export type DiagnosticoParticipanteCountAggregateInputType = {
+    id?: true
+    campanha_id?: true
+    lead_id?: true
+    nome?: true
+    cpf_cnpj?: true
+    celular?: true
+    email?: true
+    celular_verificado?: true
+    otp_code?: true
+    otp_expira_em?: true
+    respostas?: true
+    pontuacao?: true
+    email_enviado?: true
+    criado_em?: true
+    _all?: true
+  }
+
+  export type DiagnosticoParticipanteAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DiagnosticoParticipante to aggregate.
+     */
+    where?: DiagnosticoParticipanteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DiagnosticoParticipantes to fetch.
+     */
+    orderBy?: DiagnosticoParticipanteOrderByWithRelationInput | DiagnosticoParticipanteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DiagnosticoParticipanteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DiagnosticoParticipantes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DiagnosticoParticipantes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DiagnosticoParticipantes
+    **/
+    _count?: true | DiagnosticoParticipanteCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: DiagnosticoParticipanteAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: DiagnosticoParticipanteSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DiagnosticoParticipanteMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DiagnosticoParticipanteMaxAggregateInputType
+  }
+
+  export type GetDiagnosticoParticipanteAggregateType<T extends DiagnosticoParticipanteAggregateArgs> = {
+        [P in keyof T & keyof AggregateDiagnosticoParticipante]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDiagnosticoParticipante[P]>
+      : GetScalarType<T[P], AggregateDiagnosticoParticipante[P]>
+  }
+
+
+
+
+  export type DiagnosticoParticipanteGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DiagnosticoParticipanteWhereInput
+    orderBy?: DiagnosticoParticipanteOrderByWithAggregationInput | DiagnosticoParticipanteOrderByWithAggregationInput[]
+    by: DiagnosticoParticipanteScalarFieldEnum[] | DiagnosticoParticipanteScalarFieldEnum
+    having?: DiagnosticoParticipanteScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DiagnosticoParticipanteCountAggregateInputType | true
+    _avg?: DiagnosticoParticipanteAvgAggregateInputType
+    _sum?: DiagnosticoParticipanteSumAggregateInputType
+    _min?: DiagnosticoParticipanteMinAggregateInputType
+    _max?: DiagnosticoParticipanteMaxAggregateInputType
+  }
+
+  export type DiagnosticoParticipanteGroupByOutputType = {
+    id: string
+    campanha_id: string
+    lead_id: string | null
+    nome: string
+    cpf_cnpj: string
+    celular: string
+    email: string
+    celular_verificado: boolean
+    otp_code: string | null
+    otp_expira_em: Date | null
+    respostas: JsonValue | null
+    pontuacao: number | null
+    email_enviado: boolean
+    criado_em: Date
+    _count: DiagnosticoParticipanteCountAggregateOutputType | null
+    _avg: DiagnosticoParticipanteAvgAggregateOutputType | null
+    _sum: DiagnosticoParticipanteSumAggregateOutputType | null
+    _min: DiagnosticoParticipanteMinAggregateOutputType | null
+    _max: DiagnosticoParticipanteMaxAggregateOutputType | null
+  }
+
+  type GetDiagnosticoParticipanteGroupByPayload<T extends DiagnosticoParticipanteGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DiagnosticoParticipanteGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DiagnosticoParticipanteGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DiagnosticoParticipanteGroupByOutputType[P]>
+            : GetScalarType<T[P], DiagnosticoParticipanteGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DiagnosticoParticipanteSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    campanha_id?: boolean
+    lead_id?: boolean
+    nome?: boolean
+    cpf_cnpj?: boolean
+    celular?: boolean
+    email?: boolean
+    celular_verificado?: boolean
+    otp_code?: boolean
+    otp_expira_em?: boolean
+    respostas?: boolean
+    pontuacao?: boolean
+    email_enviado?: boolean
+    criado_em?: boolean
+    campanha?: boolean | CampanhaDiagnosticoDefaultArgs<ExtArgs>
+    lead?: boolean | DiagnosticoParticipante$leadArgs<ExtArgs>
+  }, ExtArgs["result"]["diagnosticoParticipante"]>
+
+  export type DiagnosticoParticipanteSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    campanha_id?: boolean
+    lead_id?: boolean
+    nome?: boolean
+    cpf_cnpj?: boolean
+    celular?: boolean
+    email?: boolean
+    celular_verificado?: boolean
+    otp_code?: boolean
+    otp_expira_em?: boolean
+    respostas?: boolean
+    pontuacao?: boolean
+    email_enviado?: boolean
+    criado_em?: boolean
+    campanha?: boolean | CampanhaDiagnosticoDefaultArgs<ExtArgs>
+    lead?: boolean | DiagnosticoParticipante$leadArgs<ExtArgs>
+  }, ExtArgs["result"]["diagnosticoParticipante"]>
+
+  export type DiagnosticoParticipanteSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    campanha_id?: boolean
+    lead_id?: boolean
+    nome?: boolean
+    cpf_cnpj?: boolean
+    celular?: boolean
+    email?: boolean
+    celular_verificado?: boolean
+    otp_code?: boolean
+    otp_expira_em?: boolean
+    respostas?: boolean
+    pontuacao?: boolean
+    email_enviado?: boolean
+    criado_em?: boolean
+    campanha?: boolean | CampanhaDiagnosticoDefaultArgs<ExtArgs>
+    lead?: boolean | DiagnosticoParticipante$leadArgs<ExtArgs>
+  }, ExtArgs["result"]["diagnosticoParticipante"]>
+
+  export type DiagnosticoParticipanteSelectScalar = {
+    id?: boolean
+    campanha_id?: boolean
+    lead_id?: boolean
+    nome?: boolean
+    cpf_cnpj?: boolean
+    celular?: boolean
+    email?: boolean
+    celular_verificado?: boolean
+    otp_code?: boolean
+    otp_expira_em?: boolean
+    respostas?: boolean
+    pontuacao?: boolean
+    email_enviado?: boolean
+    criado_em?: boolean
+  }
+
+  export type DiagnosticoParticipanteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "campanha_id" | "lead_id" | "nome" | "cpf_cnpj" | "celular" | "email" | "celular_verificado" | "otp_code" | "otp_expira_em" | "respostas" | "pontuacao" | "email_enviado" | "criado_em", ExtArgs["result"]["diagnosticoParticipante"]>
+  export type DiagnosticoParticipanteInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    campanha?: boolean | CampanhaDiagnosticoDefaultArgs<ExtArgs>
+    lead?: boolean | DiagnosticoParticipante$leadArgs<ExtArgs>
+  }
+  export type DiagnosticoParticipanteIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    campanha?: boolean | CampanhaDiagnosticoDefaultArgs<ExtArgs>
+    lead?: boolean | DiagnosticoParticipante$leadArgs<ExtArgs>
+  }
+  export type DiagnosticoParticipanteIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    campanha?: boolean | CampanhaDiagnosticoDefaultArgs<ExtArgs>
+    lead?: boolean | DiagnosticoParticipante$leadArgs<ExtArgs>
+  }
+
+  export type $DiagnosticoParticipantePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DiagnosticoParticipante"
+    objects: {
+      campanha: Prisma.$CampanhaDiagnosticoPayload<ExtArgs>
+      lead: Prisma.$LeadPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      campanha_id: string
+      lead_id: string | null
+      nome: string
+      cpf_cnpj: string
+      celular: string
+      email: string
+      celular_verificado: boolean
+      otp_code: string | null
+      otp_expira_em: Date | null
+      respostas: Prisma.JsonValue | null
+      pontuacao: number | null
+      email_enviado: boolean
+      criado_em: Date
+    }, ExtArgs["result"]["diagnosticoParticipante"]>
+    composites: {}
+  }
+
+  type DiagnosticoParticipanteGetPayload<S extends boolean | null | undefined | DiagnosticoParticipanteDefaultArgs> = $Result.GetResult<Prisma.$DiagnosticoParticipantePayload, S>
+
+  type DiagnosticoParticipanteCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DiagnosticoParticipanteFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DiagnosticoParticipanteCountAggregateInputType | true
+    }
+
+  export interface DiagnosticoParticipanteDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DiagnosticoParticipante'], meta: { name: 'DiagnosticoParticipante' } }
+    /**
+     * Find zero or one DiagnosticoParticipante that matches the filter.
+     * @param {DiagnosticoParticipanteFindUniqueArgs} args - Arguments to find a DiagnosticoParticipante
+     * @example
+     * // Get one DiagnosticoParticipante
+     * const diagnosticoParticipante = await prisma.diagnosticoParticipante.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DiagnosticoParticipanteFindUniqueArgs>(args: SelectSubset<T, DiagnosticoParticipanteFindUniqueArgs<ExtArgs>>): Prisma__DiagnosticoParticipanteClient<$Result.GetResult<Prisma.$DiagnosticoParticipantePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one DiagnosticoParticipante that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DiagnosticoParticipanteFindUniqueOrThrowArgs} args - Arguments to find a DiagnosticoParticipante
+     * @example
+     * // Get one DiagnosticoParticipante
+     * const diagnosticoParticipante = await prisma.diagnosticoParticipante.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DiagnosticoParticipanteFindUniqueOrThrowArgs>(args: SelectSubset<T, DiagnosticoParticipanteFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DiagnosticoParticipanteClient<$Result.GetResult<Prisma.$DiagnosticoParticipantePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DiagnosticoParticipante that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DiagnosticoParticipanteFindFirstArgs} args - Arguments to find a DiagnosticoParticipante
+     * @example
+     * // Get one DiagnosticoParticipante
+     * const diagnosticoParticipante = await prisma.diagnosticoParticipante.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DiagnosticoParticipanteFindFirstArgs>(args?: SelectSubset<T, DiagnosticoParticipanteFindFirstArgs<ExtArgs>>): Prisma__DiagnosticoParticipanteClient<$Result.GetResult<Prisma.$DiagnosticoParticipantePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DiagnosticoParticipante that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DiagnosticoParticipanteFindFirstOrThrowArgs} args - Arguments to find a DiagnosticoParticipante
+     * @example
+     * // Get one DiagnosticoParticipante
+     * const diagnosticoParticipante = await prisma.diagnosticoParticipante.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DiagnosticoParticipanteFindFirstOrThrowArgs>(args?: SelectSubset<T, DiagnosticoParticipanteFindFirstOrThrowArgs<ExtArgs>>): Prisma__DiagnosticoParticipanteClient<$Result.GetResult<Prisma.$DiagnosticoParticipantePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more DiagnosticoParticipantes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DiagnosticoParticipanteFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DiagnosticoParticipantes
+     * const diagnosticoParticipantes = await prisma.diagnosticoParticipante.findMany()
+     * 
+     * // Get first 10 DiagnosticoParticipantes
+     * const diagnosticoParticipantes = await prisma.diagnosticoParticipante.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const diagnosticoParticipanteWithIdOnly = await prisma.diagnosticoParticipante.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends DiagnosticoParticipanteFindManyArgs>(args?: SelectSubset<T, DiagnosticoParticipanteFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiagnosticoParticipantePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a DiagnosticoParticipante.
+     * @param {DiagnosticoParticipanteCreateArgs} args - Arguments to create a DiagnosticoParticipante.
+     * @example
+     * // Create one DiagnosticoParticipante
+     * const DiagnosticoParticipante = await prisma.diagnosticoParticipante.create({
+     *   data: {
+     *     // ... data to create a DiagnosticoParticipante
+     *   }
+     * })
+     * 
+     */
+    create<T extends DiagnosticoParticipanteCreateArgs>(args: SelectSubset<T, DiagnosticoParticipanteCreateArgs<ExtArgs>>): Prisma__DiagnosticoParticipanteClient<$Result.GetResult<Prisma.$DiagnosticoParticipantePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many DiagnosticoParticipantes.
+     * @param {DiagnosticoParticipanteCreateManyArgs} args - Arguments to create many DiagnosticoParticipantes.
+     * @example
+     * // Create many DiagnosticoParticipantes
+     * const diagnosticoParticipante = await prisma.diagnosticoParticipante.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DiagnosticoParticipanteCreateManyArgs>(args?: SelectSubset<T, DiagnosticoParticipanteCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many DiagnosticoParticipantes and returns the data saved in the database.
+     * @param {DiagnosticoParticipanteCreateManyAndReturnArgs} args - Arguments to create many DiagnosticoParticipantes.
+     * @example
+     * // Create many DiagnosticoParticipantes
+     * const diagnosticoParticipante = await prisma.diagnosticoParticipante.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many DiagnosticoParticipantes and only return the `id`
+     * const diagnosticoParticipanteWithIdOnly = await prisma.diagnosticoParticipante.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends DiagnosticoParticipanteCreateManyAndReturnArgs>(args?: SelectSubset<T, DiagnosticoParticipanteCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiagnosticoParticipantePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a DiagnosticoParticipante.
+     * @param {DiagnosticoParticipanteDeleteArgs} args - Arguments to delete one DiagnosticoParticipante.
+     * @example
+     * // Delete one DiagnosticoParticipante
+     * const DiagnosticoParticipante = await prisma.diagnosticoParticipante.delete({
+     *   where: {
+     *     // ... filter to delete one DiagnosticoParticipante
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DiagnosticoParticipanteDeleteArgs>(args: SelectSubset<T, DiagnosticoParticipanteDeleteArgs<ExtArgs>>): Prisma__DiagnosticoParticipanteClient<$Result.GetResult<Prisma.$DiagnosticoParticipantePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one DiagnosticoParticipante.
+     * @param {DiagnosticoParticipanteUpdateArgs} args - Arguments to update one DiagnosticoParticipante.
+     * @example
+     * // Update one DiagnosticoParticipante
+     * const diagnosticoParticipante = await prisma.diagnosticoParticipante.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DiagnosticoParticipanteUpdateArgs>(args: SelectSubset<T, DiagnosticoParticipanteUpdateArgs<ExtArgs>>): Prisma__DiagnosticoParticipanteClient<$Result.GetResult<Prisma.$DiagnosticoParticipantePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more DiagnosticoParticipantes.
+     * @param {DiagnosticoParticipanteDeleteManyArgs} args - Arguments to filter DiagnosticoParticipantes to delete.
+     * @example
+     * // Delete a few DiagnosticoParticipantes
+     * const { count } = await prisma.diagnosticoParticipante.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DiagnosticoParticipanteDeleteManyArgs>(args?: SelectSubset<T, DiagnosticoParticipanteDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DiagnosticoParticipantes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DiagnosticoParticipanteUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DiagnosticoParticipantes
+     * const diagnosticoParticipante = await prisma.diagnosticoParticipante.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DiagnosticoParticipanteUpdateManyArgs>(args: SelectSubset<T, DiagnosticoParticipanteUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DiagnosticoParticipantes and returns the data updated in the database.
+     * @param {DiagnosticoParticipanteUpdateManyAndReturnArgs} args - Arguments to update many DiagnosticoParticipantes.
+     * @example
+     * // Update many DiagnosticoParticipantes
+     * const diagnosticoParticipante = await prisma.diagnosticoParticipante.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more DiagnosticoParticipantes and only return the `id`
+     * const diagnosticoParticipanteWithIdOnly = await prisma.diagnosticoParticipante.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends DiagnosticoParticipanteUpdateManyAndReturnArgs>(args: SelectSubset<T, DiagnosticoParticipanteUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiagnosticoParticipantePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one DiagnosticoParticipante.
+     * @param {DiagnosticoParticipanteUpsertArgs} args - Arguments to update or create a DiagnosticoParticipante.
+     * @example
+     * // Update or create a DiagnosticoParticipante
+     * const diagnosticoParticipante = await prisma.diagnosticoParticipante.upsert({
+     *   create: {
+     *     // ... data to create a DiagnosticoParticipante
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DiagnosticoParticipante we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DiagnosticoParticipanteUpsertArgs>(args: SelectSubset<T, DiagnosticoParticipanteUpsertArgs<ExtArgs>>): Prisma__DiagnosticoParticipanteClient<$Result.GetResult<Prisma.$DiagnosticoParticipantePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of DiagnosticoParticipantes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DiagnosticoParticipanteCountArgs} args - Arguments to filter DiagnosticoParticipantes to count.
+     * @example
+     * // Count the number of DiagnosticoParticipantes
+     * const count = await prisma.diagnosticoParticipante.count({
+     *   where: {
+     *     // ... the filter for the DiagnosticoParticipantes we want to count
+     *   }
+     * })
+    **/
+    count<T extends DiagnosticoParticipanteCountArgs>(
+      args?: Subset<T, DiagnosticoParticipanteCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DiagnosticoParticipanteCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DiagnosticoParticipante.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DiagnosticoParticipanteAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DiagnosticoParticipanteAggregateArgs>(args: Subset<T, DiagnosticoParticipanteAggregateArgs>): Prisma.PrismaPromise<GetDiagnosticoParticipanteAggregateType<T>>
+
+    /**
+     * Group by DiagnosticoParticipante.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DiagnosticoParticipanteGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DiagnosticoParticipanteGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DiagnosticoParticipanteGroupByArgs['orderBy'] }
+        : { orderBy?: DiagnosticoParticipanteGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DiagnosticoParticipanteGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDiagnosticoParticipanteGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DiagnosticoParticipante model
+   */
+  readonly fields: DiagnosticoParticipanteFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DiagnosticoParticipante.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DiagnosticoParticipanteClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    campanha<T extends CampanhaDiagnosticoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CampanhaDiagnosticoDefaultArgs<ExtArgs>>): Prisma__CampanhaDiagnosticoClient<$Result.GetResult<Prisma.$CampanhaDiagnosticoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    lead<T extends DiagnosticoParticipante$leadArgs<ExtArgs> = {}>(args?: Subset<T, DiagnosticoParticipante$leadArgs<ExtArgs>>): Prisma__LeadClient<$Result.GetResult<Prisma.$LeadPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the DiagnosticoParticipante model
+   */
+  interface DiagnosticoParticipanteFieldRefs {
+    readonly id: FieldRef<"DiagnosticoParticipante", 'String'>
+    readonly campanha_id: FieldRef<"DiagnosticoParticipante", 'String'>
+    readonly lead_id: FieldRef<"DiagnosticoParticipante", 'String'>
+    readonly nome: FieldRef<"DiagnosticoParticipante", 'String'>
+    readonly cpf_cnpj: FieldRef<"DiagnosticoParticipante", 'String'>
+    readonly celular: FieldRef<"DiagnosticoParticipante", 'String'>
+    readonly email: FieldRef<"DiagnosticoParticipante", 'String'>
+    readonly celular_verificado: FieldRef<"DiagnosticoParticipante", 'Boolean'>
+    readonly otp_code: FieldRef<"DiagnosticoParticipante", 'String'>
+    readonly otp_expira_em: FieldRef<"DiagnosticoParticipante", 'DateTime'>
+    readonly respostas: FieldRef<"DiagnosticoParticipante", 'Json'>
+    readonly pontuacao: FieldRef<"DiagnosticoParticipante", 'Int'>
+    readonly email_enviado: FieldRef<"DiagnosticoParticipante", 'Boolean'>
+    readonly criado_em: FieldRef<"DiagnosticoParticipante", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * DiagnosticoParticipante findUnique
+   */
+  export type DiagnosticoParticipanteFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DiagnosticoParticipante
+     */
+    select?: DiagnosticoParticipanteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DiagnosticoParticipante
+     */
+    omit?: DiagnosticoParticipanteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DiagnosticoParticipanteInclude<ExtArgs> | null
+    /**
+     * Filter, which DiagnosticoParticipante to fetch.
+     */
+    where: DiagnosticoParticipanteWhereUniqueInput
+  }
+
+  /**
+   * DiagnosticoParticipante findUniqueOrThrow
+   */
+  export type DiagnosticoParticipanteFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DiagnosticoParticipante
+     */
+    select?: DiagnosticoParticipanteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DiagnosticoParticipante
+     */
+    omit?: DiagnosticoParticipanteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DiagnosticoParticipanteInclude<ExtArgs> | null
+    /**
+     * Filter, which DiagnosticoParticipante to fetch.
+     */
+    where: DiagnosticoParticipanteWhereUniqueInput
+  }
+
+  /**
+   * DiagnosticoParticipante findFirst
+   */
+  export type DiagnosticoParticipanteFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DiagnosticoParticipante
+     */
+    select?: DiagnosticoParticipanteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DiagnosticoParticipante
+     */
+    omit?: DiagnosticoParticipanteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DiagnosticoParticipanteInclude<ExtArgs> | null
+    /**
+     * Filter, which DiagnosticoParticipante to fetch.
+     */
+    where?: DiagnosticoParticipanteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DiagnosticoParticipantes to fetch.
+     */
+    orderBy?: DiagnosticoParticipanteOrderByWithRelationInput | DiagnosticoParticipanteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DiagnosticoParticipantes.
+     */
+    cursor?: DiagnosticoParticipanteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DiagnosticoParticipantes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DiagnosticoParticipantes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DiagnosticoParticipantes.
+     */
+    distinct?: DiagnosticoParticipanteScalarFieldEnum | DiagnosticoParticipanteScalarFieldEnum[]
+  }
+
+  /**
+   * DiagnosticoParticipante findFirstOrThrow
+   */
+  export type DiagnosticoParticipanteFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DiagnosticoParticipante
+     */
+    select?: DiagnosticoParticipanteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DiagnosticoParticipante
+     */
+    omit?: DiagnosticoParticipanteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DiagnosticoParticipanteInclude<ExtArgs> | null
+    /**
+     * Filter, which DiagnosticoParticipante to fetch.
+     */
+    where?: DiagnosticoParticipanteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DiagnosticoParticipantes to fetch.
+     */
+    orderBy?: DiagnosticoParticipanteOrderByWithRelationInput | DiagnosticoParticipanteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DiagnosticoParticipantes.
+     */
+    cursor?: DiagnosticoParticipanteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DiagnosticoParticipantes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DiagnosticoParticipantes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DiagnosticoParticipantes.
+     */
+    distinct?: DiagnosticoParticipanteScalarFieldEnum | DiagnosticoParticipanteScalarFieldEnum[]
+  }
+
+  /**
+   * DiagnosticoParticipante findMany
+   */
+  export type DiagnosticoParticipanteFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DiagnosticoParticipante
+     */
+    select?: DiagnosticoParticipanteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DiagnosticoParticipante
+     */
+    omit?: DiagnosticoParticipanteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DiagnosticoParticipanteInclude<ExtArgs> | null
+    /**
+     * Filter, which DiagnosticoParticipantes to fetch.
+     */
+    where?: DiagnosticoParticipanteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DiagnosticoParticipantes to fetch.
+     */
+    orderBy?: DiagnosticoParticipanteOrderByWithRelationInput | DiagnosticoParticipanteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DiagnosticoParticipantes.
+     */
+    cursor?: DiagnosticoParticipanteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DiagnosticoParticipantes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DiagnosticoParticipantes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DiagnosticoParticipantes.
+     */
+    distinct?: DiagnosticoParticipanteScalarFieldEnum | DiagnosticoParticipanteScalarFieldEnum[]
+  }
+
+  /**
+   * DiagnosticoParticipante create
+   */
+  export type DiagnosticoParticipanteCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DiagnosticoParticipante
+     */
+    select?: DiagnosticoParticipanteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DiagnosticoParticipante
+     */
+    omit?: DiagnosticoParticipanteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DiagnosticoParticipanteInclude<ExtArgs> | null
+    /**
+     * The data needed to create a DiagnosticoParticipante.
+     */
+    data: XOR<DiagnosticoParticipanteCreateInput, DiagnosticoParticipanteUncheckedCreateInput>
+  }
+
+  /**
+   * DiagnosticoParticipante createMany
+   */
+  export type DiagnosticoParticipanteCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DiagnosticoParticipantes.
+     */
+    data: DiagnosticoParticipanteCreateManyInput | DiagnosticoParticipanteCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DiagnosticoParticipante createManyAndReturn
+   */
+  export type DiagnosticoParticipanteCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DiagnosticoParticipante
+     */
+    select?: DiagnosticoParticipanteSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DiagnosticoParticipante
+     */
+    omit?: DiagnosticoParticipanteOmit<ExtArgs> | null
+    /**
+     * The data used to create many DiagnosticoParticipantes.
+     */
+    data: DiagnosticoParticipanteCreateManyInput | DiagnosticoParticipanteCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DiagnosticoParticipanteIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DiagnosticoParticipante update
+   */
+  export type DiagnosticoParticipanteUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DiagnosticoParticipante
+     */
+    select?: DiagnosticoParticipanteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DiagnosticoParticipante
+     */
+    omit?: DiagnosticoParticipanteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DiagnosticoParticipanteInclude<ExtArgs> | null
+    /**
+     * The data needed to update a DiagnosticoParticipante.
+     */
+    data: XOR<DiagnosticoParticipanteUpdateInput, DiagnosticoParticipanteUncheckedUpdateInput>
+    /**
+     * Choose, which DiagnosticoParticipante to update.
+     */
+    where: DiagnosticoParticipanteWhereUniqueInput
+  }
+
+  /**
+   * DiagnosticoParticipante updateMany
+   */
+  export type DiagnosticoParticipanteUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DiagnosticoParticipantes.
+     */
+    data: XOR<DiagnosticoParticipanteUpdateManyMutationInput, DiagnosticoParticipanteUncheckedUpdateManyInput>
+    /**
+     * Filter which DiagnosticoParticipantes to update
+     */
+    where?: DiagnosticoParticipanteWhereInput
+    /**
+     * Limit how many DiagnosticoParticipantes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DiagnosticoParticipante updateManyAndReturn
+   */
+  export type DiagnosticoParticipanteUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DiagnosticoParticipante
+     */
+    select?: DiagnosticoParticipanteSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DiagnosticoParticipante
+     */
+    omit?: DiagnosticoParticipanteOmit<ExtArgs> | null
+    /**
+     * The data used to update DiagnosticoParticipantes.
+     */
+    data: XOR<DiagnosticoParticipanteUpdateManyMutationInput, DiagnosticoParticipanteUncheckedUpdateManyInput>
+    /**
+     * Filter which DiagnosticoParticipantes to update
+     */
+    where?: DiagnosticoParticipanteWhereInput
+    /**
+     * Limit how many DiagnosticoParticipantes to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DiagnosticoParticipanteIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DiagnosticoParticipante upsert
+   */
+  export type DiagnosticoParticipanteUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DiagnosticoParticipante
+     */
+    select?: DiagnosticoParticipanteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DiagnosticoParticipante
+     */
+    omit?: DiagnosticoParticipanteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DiagnosticoParticipanteInclude<ExtArgs> | null
+    /**
+     * The filter to search for the DiagnosticoParticipante to update in case it exists.
+     */
+    where: DiagnosticoParticipanteWhereUniqueInput
+    /**
+     * In case the DiagnosticoParticipante found by the `where` argument doesn't exist, create a new DiagnosticoParticipante with this data.
+     */
+    create: XOR<DiagnosticoParticipanteCreateInput, DiagnosticoParticipanteUncheckedCreateInput>
+    /**
+     * In case the DiagnosticoParticipante was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DiagnosticoParticipanteUpdateInput, DiagnosticoParticipanteUncheckedUpdateInput>
+  }
+
+  /**
+   * DiagnosticoParticipante delete
+   */
+  export type DiagnosticoParticipanteDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DiagnosticoParticipante
+     */
+    select?: DiagnosticoParticipanteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DiagnosticoParticipante
+     */
+    omit?: DiagnosticoParticipanteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DiagnosticoParticipanteInclude<ExtArgs> | null
+    /**
+     * Filter which DiagnosticoParticipante to delete.
+     */
+    where: DiagnosticoParticipanteWhereUniqueInput
+  }
+
+  /**
+   * DiagnosticoParticipante deleteMany
+   */
+  export type DiagnosticoParticipanteDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DiagnosticoParticipantes to delete
+     */
+    where?: DiagnosticoParticipanteWhereInput
+    /**
+     * Limit how many DiagnosticoParticipantes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * DiagnosticoParticipante.lead
+   */
+  export type DiagnosticoParticipante$leadArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Lead
+     */
+    select?: LeadSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Lead
+     */
+    omit?: LeadOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LeadInclude<ExtArgs> | null
+    where?: LeadWhereInput
+  }
+
+  /**
+   * DiagnosticoParticipante without action
+   */
+  export type DiagnosticoParticipanteDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DiagnosticoParticipante
+     */
+    select?: DiagnosticoParticipanteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DiagnosticoParticipante
+     */
+    omit?: DiagnosticoParticipanteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DiagnosticoParticipanteInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -63719,6 +66387,42 @@ export namespace Prisma {
   export type AplicacaoDiagnosticoScalarFieldEnum = (typeof AplicacaoDiagnosticoScalarFieldEnum)[keyof typeof AplicacaoDiagnosticoScalarFieldEnum]
 
 
+  export const CampanhaDiagnosticoScalarFieldEnum: {
+    id: 'id',
+    empresa_id: 'empresa_id',
+    slug: 'slug',
+    titulo: 'titulo',
+    subtitulo: 'subtitulo',
+    video_youtube: 'video_youtube',
+    url_checkout: 'url_checkout',
+    ativo: 'ativo',
+    criado_em: 'criado_em',
+    atualizado_em: 'atualizado_em'
+  };
+
+  export type CampanhaDiagnosticoScalarFieldEnum = (typeof CampanhaDiagnosticoScalarFieldEnum)[keyof typeof CampanhaDiagnosticoScalarFieldEnum]
+
+
+  export const DiagnosticoParticipanteScalarFieldEnum: {
+    id: 'id',
+    campanha_id: 'campanha_id',
+    lead_id: 'lead_id',
+    nome: 'nome',
+    cpf_cnpj: 'cpf_cnpj',
+    celular: 'celular',
+    email: 'email',
+    celular_verificado: 'celular_verificado',
+    otp_code: 'otp_code',
+    otp_expira_em: 'otp_expira_em',
+    respostas: 'respostas',
+    pontuacao: 'pontuacao',
+    email_enviado: 'email_enviado',
+    criado_em: 'criado_em'
+  };
+
+  export type DiagnosticoParticipanteScalarFieldEnum = (typeof DiagnosticoParticipanteScalarFieldEnum)[keyof typeof DiagnosticoParticipanteScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -64201,6 +66905,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaListRelationFilter
     aplicacoes_diagnostico?: AplicacaoDiagnosticoListRelationFilter
     etapas_crm?: EtapaCrmListRelationFilter
+    campanhas_diagnostico?: CampanhaDiagnosticoListRelationFilter
   }
 
   export type EmpresaOrderByWithRelationInput = {
@@ -64241,6 +66946,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaOrderByRelationAggregateInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoOrderByRelationAggregateInput
     etapas_crm?: EtapaCrmOrderByRelationAggregateInput
+    campanhas_diagnostico?: CampanhaDiagnosticoOrderByRelationAggregateInput
   }
 
   export type EmpresaWhereUniqueInput = Prisma.AtLeast<{
@@ -64284,6 +66990,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaListRelationFilter
     aplicacoes_diagnostico?: AplicacaoDiagnosticoListRelationFilter
     etapas_crm?: EtapaCrmListRelationFilter
+    campanhas_diagnostico?: CampanhaDiagnosticoListRelationFilter
   }, "id" | "slug" | "cnpj">
 
   export type EmpresaOrderByWithAggregationInput = {
@@ -65337,6 +68044,7 @@ export namespace Prisma {
     etapa?: XOR<EtapaCrmNullableScalarRelationFilter, EtapaCrmWhereInput> | null
     comentarios?: ComentarioCrmListRelationFilter
     propostas?: PropostaListRelationFilter
+    diagnostico_participante?: XOR<DiagnosticoParticipanteNullableScalarRelationFilter, DiagnosticoParticipanteWhereInput> | null
   }
 
   export type LeadOrderByWithRelationInput = {
@@ -65371,6 +68079,7 @@ export namespace Prisma {
     etapa?: EtapaCrmOrderByWithRelationInput
     comentarios?: ComentarioCrmOrderByRelationAggregateInput
     propostas?: PropostaOrderByRelationAggregateInput
+    diagnostico_participante?: DiagnosticoParticipanteOrderByWithRelationInput
   }
 
   export type LeadWhereUniqueInput = Prisma.AtLeast<{
@@ -65408,6 +68117,7 @@ export namespace Prisma {
     etapa?: XOR<EtapaCrmNullableScalarRelationFilter, EtapaCrmWhereInput> | null
     comentarios?: ComentarioCrmListRelationFilter
     propostas?: PropostaListRelationFilter
+    diagnostico_participante?: XOR<DiagnosticoParticipanteNullableScalarRelationFilter, DiagnosticoParticipanteWhereInput> | null
   }, "id">
 
   export type LeadOrderByWithAggregationInput = {
@@ -68546,6 +71256,194 @@ export namespace Prisma {
     atualizado_em?: DateTimeWithAggregatesFilter<"AplicacaoDiagnostico"> | Date | string
   }
 
+  export type CampanhaDiagnosticoWhereInput = {
+    AND?: CampanhaDiagnosticoWhereInput | CampanhaDiagnosticoWhereInput[]
+    OR?: CampanhaDiagnosticoWhereInput[]
+    NOT?: CampanhaDiagnosticoWhereInput | CampanhaDiagnosticoWhereInput[]
+    id?: StringFilter<"CampanhaDiagnostico"> | string
+    empresa_id?: StringFilter<"CampanhaDiagnostico"> | string
+    slug?: StringFilter<"CampanhaDiagnostico"> | string
+    titulo?: StringFilter<"CampanhaDiagnostico"> | string
+    subtitulo?: StringNullableFilter<"CampanhaDiagnostico"> | string | null
+    video_youtube?: StringNullableFilter<"CampanhaDiagnostico"> | string | null
+    url_checkout?: StringNullableFilter<"CampanhaDiagnostico"> | string | null
+    ativo?: BoolFilter<"CampanhaDiagnostico"> | boolean
+    criado_em?: DateTimeFilter<"CampanhaDiagnostico"> | Date | string
+    atualizado_em?: DateTimeFilter<"CampanhaDiagnostico"> | Date | string
+    empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
+    participantes?: DiagnosticoParticipanteListRelationFilter
+  }
+
+  export type CampanhaDiagnosticoOrderByWithRelationInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    slug?: SortOrder
+    titulo?: SortOrder
+    subtitulo?: SortOrderInput | SortOrder
+    video_youtube?: SortOrderInput | SortOrder
+    url_checkout?: SortOrderInput | SortOrder
+    ativo?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+    empresa?: EmpresaOrderByWithRelationInput
+    participantes?: DiagnosticoParticipanteOrderByRelationAggregateInput
+  }
+
+  export type CampanhaDiagnosticoWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    slug?: string
+    AND?: CampanhaDiagnosticoWhereInput | CampanhaDiagnosticoWhereInput[]
+    OR?: CampanhaDiagnosticoWhereInput[]
+    NOT?: CampanhaDiagnosticoWhereInput | CampanhaDiagnosticoWhereInput[]
+    empresa_id?: StringFilter<"CampanhaDiagnostico"> | string
+    titulo?: StringFilter<"CampanhaDiagnostico"> | string
+    subtitulo?: StringNullableFilter<"CampanhaDiagnostico"> | string | null
+    video_youtube?: StringNullableFilter<"CampanhaDiagnostico"> | string | null
+    url_checkout?: StringNullableFilter<"CampanhaDiagnostico"> | string | null
+    ativo?: BoolFilter<"CampanhaDiagnostico"> | boolean
+    criado_em?: DateTimeFilter<"CampanhaDiagnostico"> | Date | string
+    atualizado_em?: DateTimeFilter<"CampanhaDiagnostico"> | Date | string
+    empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
+    participantes?: DiagnosticoParticipanteListRelationFilter
+  }, "id" | "slug">
+
+  export type CampanhaDiagnosticoOrderByWithAggregationInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    slug?: SortOrder
+    titulo?: SortOrder
+    subtitulo?: SortOrderInput | SortOrder
+    video_youtube?: SortOrderInput | SortOrder
+    url_checkout?: SortOrderInput | SortOrder
+    ativo?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+    _count?: CampanhaDiagnosticoCountOrderByAggregateInput
+    _max?: CampanhaDiagnosticoMaxOrderByAggregateInput
+    _min?: CampanhaDiagnosticoMinOrderByAggregateInput
+  }
+
+  export type CampanhaDiagnosticoScalarWhereWithAggregatesInput = {
+    AND?: CampanhaDiagnosticoScalarWhereWithAggregatesInput | CampanhaDiagnosticoScalarWhereWithAggregatesInput[]
+    OR?: CampanhaDiagnosticoScalarWhereWithAggregatesInput[]
+    NOT?: CampanhaDiagnosticoScalarWhereWithAggregatesInput | CampanhaDiagnosticoScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"CampanhaDiagnostico"> | string
+    empresa_id?: StringWithAggregatesFilter<"CampanhaDiagnostico"> | string
+    slug?: StringWithAggregatesFilter<"CampanhaDiagnostico"> | string
+    titulo?: StringWithAggregatesFilter<"CampanhaDiagnostico"> | string
+    subtitulo?: StringNullableWithAggregatesFilter<"CampanhaDiagnostico"> | string | null
+    video_youtube?: StringNullableWithAggregatesFilter<"CampanhaDiagnostico"> | string | null
+    url_checkout?: StringNullableWithAggregatesFilter<"CampanhaDiagnostico"> | string | null
+    ativo?: BoolWithAggregatesFilter<"CampanhaDiagnostico"> | boolean
+    criado_em?: DateTimeWithAggregatesFilter<"CampanhaDiagnostico"> | Date | string
+    atualizado_em?: DateTimeWithAggregatesFilter<"CampanhaDiagnostico"> | Date | string
+  }
+
+  export type DiagnosticoParticipanteWhereInput = {
+    AND?: DiagnosticoParticipanteWhereInput | DiagnosticoParticipanteWhereInput[]
+    OR?: DiagnosticoParticipanteWhereInput[]
+    NOT?: DiagnosticoParticipanteWhereInput | DiagnosticoParticipanteWhereInput[]
+    id?: StringFilter<"DiagnosticoParticipante"> | string
+    campanha_id?: StringFilter<"DiagnosticoParticipante"> | string
+    lead_id?: StringNullableFilter<"DiagnosticoParticipante"> | string | null
+    nome?: StringFilter<"DiagnosticoParticipante"> | string
+    cpf_cnpj?: StringFilter<"DiagnosticoParticipante"> | string
+    celular?: StringFilter<"DiagnosticoParticipante"> | string
+    email?: StringFilter<"DiagnosticoParticipante"> | string
+    celular_verificado?: BoolFilter<"DiagnosticoParticipante"> | boolean
+    otp_code?: StringNullableFilter<"DiagnosticoParticipante"> | string | null
+    otp_expira_em?: DateTimeNullableFilter<"DiagnosticoParticipante"> | Date | string | null
+    respostas?: JsonNullableFilter<"DiagnosticoParticipante">
+    pontuacao?: IntNullableFilter<"DiagnosticoParticipante"> | number | null
+    email_enviado?: BoolFilter<"DiagnosticoParticipante"> | boolean
+    criado_em?: DateTimeFilter<"DiagnosticoParticipante"> | Date | string
+    campanha?: XOR<CampanhaDiagnosticoScalarRelationFilter, CampanhaDiagnosticoWhereInput>
+    lead?: XOR<LeadNullableScalarRelationFilter, LeadWhereInput> | null
+  }
+
+  export type DiagnosticoParticipanteOrderByWithRelationInput = {
+    id?: SortOrder
+    campanha_id?: SortOrder
+    lead_id?: SortOrderInput | SortOrder
+    nome?: SortOrder
+    cpf_cnpj?: SortOrder
+    celular?: SortOrder
+    email?: SortOrder
+    celular_verificado?: SortOrder
+    otp_code?: SortOrderInput | SortOrder
+    otp_expira_em?: SortOrderInput | SortOrder
+    respostas?: SortOrderInput | SortOrder
+    pontuacao?: SortOrderInput | SortOrder
+    email_enviado?: SortOrder
+    criado_em?: SortOrder
+    campanha?: CampanhaDiagnosticoOrderByWithRelationInput
+    lead?: LeadOrderByWithRelationInput
+  }
+
+  export type DiagnosticoParticipanteWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    lead_id?: string
+    AND?: DiagnosticoParticipanteWhereInput | DiagnosticoParticipanteWhereInput[]
+    OR?: DiagnosticoParticipanteWhereInput[]
+    NOT?: DiagnosticoParticipanteWhereInput | DiagnosticoParticipanteWhereInput[]
+    campanha_id?: StringFilter<"DiagnosticoParticipante"> | string
+    nome?: StringFilter<"DiagnosticoParticipante"> | string
+    cpf_cnpj?: StringFilter<"DiagnosticoParticipante"> | string
+    celular?: StringFilter<"DiagnosticoParticipante"> | string
+    email?: StringFilter<"DiagnosticoParticipante"> | string
+    celular_verificado?: BoolFilter<"DiagnosticoParticipante"> | boolean
+    otp_code?: StringNullableFilter<"DiagnosticoParticipante"> | string | null
+    otp_expira_em?: DateTimeNullableFilter<"DiagnosticoParticipante"> | Date | string | null
+    respostas?: JsonNullableFilter<"DiagnosticoParticipante">
+    pontuacao?: IntNullableFilter<"DiagnosticoParticipante"> | number | null
+    email_enviado?: BoolFilter<"DiagnosticoParticipante"> | boolean
+    criado_em?: DateTimeFilter<"DiagnosticoParticipante"> | Date | string
+    campanha?: XOR<CampanhaDiagnosticoScalarRelationFilter, CampanhaDiagnosticoWhereInput>
+    lead?: XOR<LeadNullableScalarRelationFilter, LeadWhereInput> | null
+  }, "id" | "lead_id">
+
+  export type DiagnosticoParticipanteOrderByWithAggregationInput = {
+    id?: SortOrder
+    campanha_id?: SortOrder
+    lead_id?: SortOrderInput | SortOrder
+    nome?: SortOrder
+    cpf_cnpj?: SortOrder
+    celular?: SortOrder
+    email?: SortOrder
+    celular_verificado?: SortOrder
+    otp_code?: SortOrderInput | SortOrder
+    otp_expira_em?: SortOrderInput | SortOrder
+    respostas?: SortOrderInput | SortOrder
+    pontuacao?: SortOrderInput | SortOrder
+    email_enviado?: SortOrder
+    criado_em?: SortOrder
+    _count?: DiagnosticoParticipanteCountOrderByAggregateInput
+    _avg?: DiagnosticoParticipanteAvgOrderByAggregateInput
+    _max?: DiagnosticoParticipanteMaxOrderByAggregateInput
+    _min?: DiagnosticoParticipanteMinOrderByAggregateInput
+    _sum?: DiagnosticoParticipanteSumOrderByAggregateInput
+  }
+
+  export type DiagnosticoParticipanteScalarWhereWithAggregatesInput = {
+    AND?: DiagnosticoParticipanteScalarWhereWithAggregatesInput | DiagnosticoParticipanteScalarWhereWithAggregatesInput[]
+    OR?: DiagnosticoParticipanteScalarWhereWithAggregatesInput[]
+    NOT?: DiagnosticoParticipanteScalarWhereWithAggregatesInput | DiagnosticoParticipanteScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"DiagnosticoParticipante"> | string
+    campanha_id?: StringWithAggregatesFilter<"DiagnosticoParticipante"> | string
+    lead_id?: StringNullableWithAggregatesFilter<"DiagnosticoParticipante"> | string | null
+    nome?: StringWithAggregatesFilter<"DiagnosticoParticipante"> | string
+    cpf_cnpj?: StringWithAggregatesFilter<"DiagnosticoParticipante"> | string
+    celular?: StringWithAggregatesFilter<"DiagnosticoParticipante"> | string
+    email?: StringWithAggregatesFilter<"DiagnosticoParticipante"> | string
+    celular_verificado?: BoolWithAggregatesFilter<"DiagnosticoParticipante"> | boolean
+    otp_code?: StringNullableWithAggregatesFilter<"DiagnosticoParticipante"> | string | null
+    otp_expira_em?: DateTimeNullableWithAggregatesFilter<"DiagnosticoParticipante"> | Date | string | null
+    respostas?: JsonNullableWithAggregatesFilter<"DiagnosticoParticipante">
+    pontuacao?: IntNullableWithAggregatesFilter<"DiagnosticoParticipante"> | number | null
+    email_enviado?: BoolWithAggregatesFilter<"DiagnosticoParticipante"> | boolean
+    criado_em?: DateTimeWithAggregatesFilter<"DiagnosticoParticipante"> | Date | string
+  }
+
   export type EmpresaCreateInput = {
     id?: string
     nome: string
@@ -68584,6 +71482,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateInput = {
@@ -68624,6 +71523,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUpdateInput = {
@@ -68664,6 +71564,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateInput = {
@@ -68704,6 +71605,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateManyInput = {
@@ -69832,6 +72734,7 @@ export namespace Prisma {
     etapa?: EtapaCrmCreateNestedOneWithoutLeadsInput
     comentarios?: ComentarioCrmCreateNestedManyWithoutLeadInput
     propostas?: PropostaCreateNestedManyWithoutLeadInput
+    diagnostico_participante?: DiagnosticoParticipanteCreateNestedOneWithoutLeadInput
   }
 
   export type LeadUncheckedCreateInput = {
@@ -69861,6 +72764,7 @@ export namespace Prisma {
     atualizado_em?: Date | string
     comentarios?: ComentarioCrmUncheckedCreateNestedManyWithoutLeadInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutLeadInput
+    diagnostico_participante?: DiagnosticoParticipanteUncheckedCreateNestedOneWithoutLeadInput
   }
 
   export type LeadUpdateInput = {
@@ -69890,6 +72794,7 @@ export namespace Prisma {
     etapa?: EtapaCrmUpdateOneWithoutLeadsNestedInput
     comentarios?: ComentarioCrmUpdateManyWithoutLeadNestedInput
     propostas?: PropostaUpdateManyWithoutLeadNestedInput
+    diagnostico_participante?: DiagnosticoParticipanteUpdateOneWithoutLeadNestedInput
   }
 
   export type LeadUncheckedUpdateInput = {
@@ -69919,6 +72824,7 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     comentarios?: ComentarioCrmUncheckedUpdateManyWithoutLeadNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutLeadNestedInput
+    diagnostico_participante?: DiagnosticoParticipanteUncheckedUpdateOneWithoutLeadNestedInput
   }
 
   export type LeadCreateManyInput = {
@@ -73305,6 +76211,217 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type CampanhaDiagnosticoCreateInput = {
+    id?: string
+    slug: string
+    titulo?: string
+    subtitulo?: string | null
+    video_youtube?: string | null
+    url_checkout?: string | null
+    ativo?: boolean
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutCampanhas_diagnosticoInput
+    participantes?: DiagnosticoParticipanteCreateNestedManyWithoutCampanhaInput
+  }
+
+  export type CampanhaDiagnosticoUncheckedCreateInput = {
+    id?: string
+    empresa_id: string
+    slug: string
+    titulo?: string
+    subtitulo?: string | null
+    video_youtube?: string | null
+    url_checkout?: string | null
+    ativo?: boolean
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    participantes?: DiagnosticoParticipanteUncheckedCreateNestedManyWithoutCampanhaInput
+  }
+
+  export type CampanhaDiagnosticoUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    subtitulo?: NullableStringFieldUpdateOperationsInput | string | null
+    video_youtube?: NullableStringFieldUpdateOperationsInput | string | null
+    url_checkout?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutCampanhas_diagnosticoNestedInput
+    participantes?: DiagnosticoParticipanteUpdateManyWithoutCampanhaNestedInput
+  }
+
+  export type CampanhaDiagnosticoUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    subtitulo?: NullableStringFieldUpdateOperationsInput | string | null
+    video_youtube?: NullableStringFieldUpdateOperationsInput | string | null
+    url_checkout?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    participantes?: DiagnosticoParticipanteUncheckedUpdateManyWithoutCampanhaNestedInput
+  }
+
+  export type CampanhaDiagnosticoCreateManyInput = {
+    id?: string
+    empresa_id: string
+    slug: string
+    titulo?: string
+    subtitulo?: string | null
+    video_youtube?: string | null
+    url_checkout?: string | null
+    ativo?: boolean
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type CampanhaDiagnosticoUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    subtitulo?: NullableStringFieldUpdateOperationsInput | string | null
+    video_youtube?: NullableStringFieldUpdateOperationsInput | string | null
+    url_checkout?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CampanhaDiagnosticoUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    subtitulo?: NullableStringFieldUpdateOperationsInput | string | null
+    video_youtube?: NullableStringFieldUpdateOperationsInput | string | null
+    url_checkout?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DiagnosticoParticipanteCreateInput = {
+    id?: string
+    nome: string
+    cpf_cnpj: string
+    celular: string
+    email: string
+    celular_verificado?: boolean
+    otp_code?: string | null
+    otp_expira_em?: Date | string | null
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    pontuacao?: number | null
+    email_enviado?: boolean
+    criado_em?: Date | string
+    campanha: CampanhaDiagnosticoCreateNestedOneWithoutParticipantesInput
+    lead?: LeadCreateNestedOneWithoutDiagnostico_participanteInput
+  }
+
+  export type DiagnosticoParticipanteUncheckedCreateInput = {
+    id?: string
+    campanha_id: string
+    lead_id?: string | null
+    nome: string
+    cpf_cnpj: string
+    celular: string
+    email: string
+    celular_verificado?: boolean
+    otp_code?: string | null
+    otp_expira_em?: Date | string | null
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    pontuacao?: number | null
+    email_enviado?: boolean
+    criado_em?: Date | string
+  }
+
+  export type DiagnosticoParticipanteUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cpf_cnpj?: StringFieldUpdateOperationsInput | string
+    celular?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    celular_verificado?: BoolFieldUpdateOperationsInput | boolean
+    otp_code?: NullableStringFieldUpdateOperationsInput | string | null
+    otp_expira_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    pontuacao?: NullableIntFieldUpdateOperationsInput | number | null
+    email_enviado?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    campanha?: CampanhaDiagnosticoUpdateOneRequiredWithoutParticipantesNestedInput
+    lead?: LeadUpdateOneWithoutDiagnostico_participanteNestedInput
+  }
+
+  export type DiagnosticoParticipanteUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    campanha_id?: StringFieldUpdateOperationsInput | string
+    lead_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nome?: StringFieldUpdateOperationsInput | string
+    cpf_cnpj?: StringFieldUpdateOperationsInput | string
+    celular?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    celular_verificado?: BoolFieldUpdateOperationsInput | boolean
+    otp_code?: NullableStringFieldUpdateOperationsInput | string | null
+    otp_expira_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    pontuacao?: NullableIntFieldUpdateOperationsInput | number | null
+    email_enviado?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DiagnosticoParticipanteCreateManyInput = {
+    id?: string
+    campanha_id: string
+    lead_id?: string | null
+    nome: string
+    cpf_cnpj: string
+    celular: string
+    email: string
+    celular_verificado?: boolean
+    otp_code?: string | null
+    otp_expira_em?: Date | string | null
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    pontuacao?: number | null
+    email_enviado?: boolean
+    criado_em?: Date | string
+  }
+
+  export type DiagnosticoParticipanteUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cpf_cnpj?: StringFieldUpdateOperationsInput | string
+    celular?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    celular_verificado?: BoolFieldUpdateOperationsInput | boolean
+    otp_code?: NullableStringFieldUpdateOperationsInput | string | null
+    otp_expira_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    pontuacao?: NullableIntFieldUpdateOperationsInput | number | null
+    email_enviado?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DiagnosticoParticipanteUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    campanha_id?: StringFieldUpdateOperationsInput | string
+    lead_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nome?: StringFieldUpdateOperationsInput | string
+    cpf_cnpj?: StringFieldUpdateOperationsInput | string
+    celular?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    celular_verificado?: BoolFieldUpdateOperationsInput | boolean
+    otp_code?: NullableStringFieldUpdateOperationsInput | string | null
+    otp_expira_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    pontuacao?: NullableIntFieldUpdateOperationsInput | number | null
+    email_enviado?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -73545,6 +76662,12 @@ export namespace Prisma {
     none?: EtapaCrmWhereInput
   }
 
+  export type CampanhaDiagnosticoListRelationFilter = {
+    every?: CampanhaDiagnosticoWhereInput
+    some?: CampanhaDiagnosticoWhereInput
+    none?: CampanhaDiagnosticoWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -73655,6 +76778,10 @@ export namespace Prisma {
   }
 
   export type EtapaCrmOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CampanhaDiagnosticoOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -74532,6 +77659,11 @@ export namespace Prisma {
   export type EtapaCrmNullableScalarRelationFilter = {
     is?: EtapaCrmWhereInput | null
     isNot?: EtapaCrmWhereInput | null
+  }
+
+  export type DiagnosticoParticipanteNullableScalarRelationFilter = {
+    is?: DiagnosticoParticipanteWhereInput | null
+    isNot?: DiagnosticoParticipanteWhereInput | null
   }
 
   export type LeadCountOrderByAggregateInput = {
@@ -76692,6 +79824,117 @@ export namespace Prisma {
     _max?: NestedEnumStatusAplicacaoDiagnosticoFilter<$PrismaModel>
   }
 
+  export type DiagnosticoParticipanteListRelationFilter = {
+    every?: DiagnosticoParticipanteWhereInput
+    some?: DiagnosticoParticipanteWhereInput
+    none?: DiagnosticoParticipanteWhereInput
+  }
+
+  export type DiagnosticoParticipanteOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CampanhaDiagnosticoCountOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    slug?: SortOrder
+    titulo?: SortOrder
+    subtitulo?: SortOrder
+    video_youtube?: SortOrder
+    url_checkout?: SortOrder
+    ativo?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+  }
+
+  export type CampanhaDiagnosticoMaxOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    slug?: SortOrder
+    titulo?: SortOrder
+    subtitulo?: SortOrder
+    video_youtube?: SortOrder
+    url_checkout?: SortOrder
+    ativo?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+  }
+
+  export type CampanhaDiagnosticoMinOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    slug?: SortOrder
+    titulo?: SortOrder
+    subtitulo?: SortOrder
+    video_youtube?: SortOrder
+    url_checkout?: SortOrder
+    ativo?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+  }
+
+  export type CampanhaDiagnosticoScalarRelationFilter = {
+    is?: CampanhaDiagnosticoWhereInput
+    isNot?: CampanhaDiagnosticoWhereInput
+  }
+
+  export type DiagnosticoParticipanteCountOrderByAggregateInput = {
+    id?: SortOrder
+    campanha_id?: SortOrder
+    lead_id?: SortOrder
+    nome?: SortOrder
+    cpf_cnpj?: SortOrder
+    celular?: SortOrder
+    email?: SortOrder
+    celular_verificado?: SortOrder
+    otp_code?: SortOrder
+    otp_expira_em?: SortOrder
+    respostas?: SortOrder
+    pontuacao?: SortOrder
+    email_enviado?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type DiagnosticoParticipanteAvgOrderByAggregateInput = {
+    pontuacao?: SortOrder
+  }
+
+  export type DiagnosticoParticipanteMaxOrderByAggregateInput = {
+    id?: SortOrder
+    campanha_id?: SortOrder
+    lead_id?: SortOrder
+    nome?: SortOrder
+    cpf_cnpj?: SortOrder
+    celular?: SortOrder
+    email?: SortOrder
+    celular_verificado?: SortOrder
+    otp_code?: SortOrder
+    otp_expira_em?: SortOrder
+    pontuacao?: SortOrder
+    email_enviado?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type DiagnosticoParticipanteMinOrderByAggregateInput = {
+    id?: SortOrder
+    campanha_id?: SortOrder
+    lead_id?: SortOrder
+    nome?: SortOrder
+    cpf_cnpj?: SortOrder
+    celular?: SortOrder
+    email?: SortOrder
+    celular_verificado?: SortOrder
+    otp_code?: SortOrder
+    otp_expira_em?: SortOrder
+    pontuacao?: SortOrder
+    email_enviado?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type DiagnosticoParticipanteSumOrderByAggregateInput = {
+    pontuacao?: SortOrder
+  }
+
   export type MembroEmpresaCreateNestedManyWithoutEmpresaInput = {
     create?: XOR<MembroEmpresaCreateWithoutEmpresaInput, MembroEmpresaUncheckedCreateWithoutEmpresaInput> | MembroEmpresaCreateWithoutEmpresaInput[] | MembroEmpresaUncheckedCreateWithoutEmpresaInput[]
     connectOrCreate?: MembroEmpresaCreateOrConnectWithoutEmpresaInput | MembroEmpresaCreateOrConnectWithoutEmpresaInput[]
@@ -76881,6 +80124,13 @@ export namespace Prisma {
     connect?: EtapaCrmWhereUniqueInput | EtapaCrmWhereUniqueInput[]
   }
 
+  export type CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput = {
+    create?: XOR<CampanhaDiagnosticoCreateWithoutEmpresaInput, CampanhaDiagnosticoUncheckedCreateWithoutEmpresaInput> | CampanhaDiagnosticoCreateWithoutEmpresaInput[] | CampanhaDiagnosticoUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: CampanhaDiagnosticoCreateOrConnectWithoutEmpresaInput | CampanhaDiagnosticoCreateOrConnectWithoutEmpresaInput[]
+    createMany?: CampanhaDiagnosticoCreateManyEmpresaInputEnvelope
+    connect?: CampanhaDiagnosticoWhereUniqueInput | CampanhaDiagnosticoWhereUniqueInput[]
+  }
+
   export type MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput = {
     create?: XOR<MembroEmpresaCreateWithoutEmpresaInput, MembroEmpresaUncheckedCreateWithoutEmpresaInput> | MembroEmpresaCreateWithoutEmpresaInput[] | MembroEmpresaUncheckedCreateWithoutEmpresaInput[]
     connectOrCreate?: MembroEmpresaCreateOrConnectWithoutEmpresaInput | MembroEmpresaCreateOrConnectWithoutEmpresaInput[]
@@ -77068,6 +80318,13 @@ export namespace Prisma {
     connectOrCreate?: EtapaCrmCreateOrConnectWithoutEmpresaInput | EtapaCrmCreateOrConnectWithoutEmpresaInput[]
     createMany?: EtapaCrmCreateManyEmpresaInputEnvelope
     connect?: EtapaCrmWhereUniqueInput | EtapaCrmWhereUniqueInput[]
+  }
+
+  export type CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput = {
+    create?: XOR<CampanhaDiagnosticoCreateWithoutEmpresaInput, CampanhaDiagnosticoUncheckedCreateWithoutEmpresaInput> | CampanhaDiagnosticoCreateWithoutEmpresaInput[] | CampanhaDiagnosticoUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: CampanhaDiagnosticoCreateOrConnectWithoutEmpresaInput | CampanhaDiagnosticoCreateOrConnectWithoutEmpresaInput[]
+    createMany?: CampanhaDiagnosticoCreateManyEmpresaInputEnvelope
+    connect?: CampanhaDiagnosticoWhereUniqueInput | CampanhaDiagnosticoWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -77468,6 +80725,20 @@ export namespace Prisma {
     deleteMany?: EtapaCrmScalarWhereInput | EtapaCrmScalarWhereInput[]
   }
 
+  export type CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput = {
+    create?: XOR<CampanhaDiagnosticoCreateWithoutEmpresaInput, CampanhaDiagnosticoUncheckedCreateWithoutEmpresaInput> | CampanhaDiagnosticoCreateWithoutEmpresaInput[] | CampanhaDiagnosticoUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: CampanhaDiagnosticoCreateOrConnectWithoutEmpresaInput | CampanhaDiagnosticoCreateOrConnectWithoutEmpresaInput[]
+    upsert?: CampanhaDiagnosticoUpsertWithWhereUniqueWithoutEmpresaInput | CampanhaDiagnosticoUpsertWithWhereUniqueWithoutEmpresaInput[]
+    createMany?: CampanhaDiagnosticoCreateManyEmpresaInputEnvelope
+    set?: CampanhaDiagnosticoWhereUniqueInput | CampanhaDiagnosticoWhereUniqueInput[]
+    disconnect?: CampanhaDiagnosticoWhereUniqueInput | CampanhaDiagnosticoWhereUniqueInput[]
+    delete?: CampanhaDiagnosticoWhereUniqueInput | CampanhaDiagnosticoWhereUniqueInput[]
+    connect?: CampanhaDiagnosticoWhereUniqueInput | CampanhaDiagnosticoWhereUniqueInput[]
+    update?: CampanhaDiagnosticoUpdateWithWhereUniqueWithoutEmpresaInput | CampanhaDiagnosticoUpdateWithWhereUniqueWithoutEmpresaInput[]
+    updateMany?: CampanhaDiagnosticoUpdateManyWithWhereWithoutEmpresaInput | CampanhaDiagnosticoUpdateManyWithWhereWithoutEmpresaInput[]
+    deleteMany?: CampanhaDiagnosticoScalarWhereInput | CampanhaDiagnosticoScalarWhereInput[]
+  }
+
   export type MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput = {
     create?: XOR<MembroEmpresaCreateWithoutEmpresaInput, MembroEmpresaUncheckedCreateWithoutEmpresaInput> | MembroEmpresaCreateWithoutEmpresaInput[] | MembroEmpresaUncheckedCreateWithoutEmpresaInput[]
     connectOrCreate?: MembroEmpresaCreateOrConnectWithoutEmpresaInput | MembroEmpresaCreateOrConnectWithoutEmpresaInput[]
@@ -77844,6 +81115,20 @@ export namespace Prisma {
     update?: EtapaCrmUpdateWithWhereUniqueWithoutEmpresaInput | EtapaCrmUpdateWithWhereUniqueWithoutEmpresaInput[]
     updateMany?: EtapaCrmUpdateManyWithWhereWithoutEmpresaInput | EtapaCrmUpdateManyWithWhereWithoutEmpresaInput[]
     deleteMany?: EtapaCrmScalarWhereInput | EtapaCrmScalarWhereInput[]
+  }
+
+  export type CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput = {
+    create?: XOR<CampanhaDiagnosticoCreateWithoutEmpresaInput, CampanhaDiagnosticoUncheckedCreateWithoutEmpresaInput> | CampanhaDiagnosticoCreateWithoutEmpresaInput[] | CampanhaDiagnosticoUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: CampanhaDiagnosticoCreateOrConnectWithoutEmpresaInput | CampanhaDiagnosticoCreateOrConnectWithoutEmpresaInput[]
+    upsert?: CampanhaDiagnosticoUpsertWithWhereUniqueWithoutEmpresaInput | CampanhaDiagnosticoUpsertWithWhereUniqueWithoutEmpresaInput[]
+    createMany?: CampanhaDiagnosticoCreateManyEmpresaInputEnvelope
+    set?: CampanhaDiagnosticoWhereUniqueInput | CampanhaDiagnosticoWhereUniqueInput[]
+    disconnect?: CampanhaDiagnosticoWhereUniqueInput | CampanhaDiagnosticoWhereUniqueInput[]
+    delete?: CampanhaDiagnosticoWhereUniqueInput | CampanhaDiagnosticoWhereUniqueInput[]
+    connect?: CampanhaDiagnosticoWhereUniqueInput | CampanhaDiagnosticoWhereUniqueInput[]
+    update?: CampanhaDiagnosticoUpdateWithWhereUniqueWithoutEmpresaInput | CampanhaDiagnosticoUpdateWithWhereUniqueWithoutEmpresaInput[]
+    updateMany?: CampanhaDiagnosticoUpdateManyWithWhereWithoutEmpresaInput | CampanhaDiagnosticoUpdateManyWithWhereWithoutEmpresaInput[]
+    deleteMany?: CampanhaDiagnosticoScalarWhereInput | CampanhaDiagnosticoScalarWhereInput[]
   }
 
   export type MembroEmpresaCreateNestedManyWithoutUsuarioInput = {
@@ -79860,6 +83145,12 @@ export namespace Prisma {
     connect?: PropostaWhereUniqueInput | PropostaWhereUniqueInput[]
   }
 
+  export type DiagnosticoParticipanteCreateNestedOneWithoutLeadInput = {
+    create?: XOR<DiagnosticoParticipanteCreateWithoutLeadInput, DiagnosticoParticipanteUncheckedCreateWithoutLeadInput>
+    connectOrCreate?: DiagnosticoParticipanteCreateOrConnectWithoutLeadInput
+    connect?: DiagnosticoParticipanteWhereUniqueInput
+  }
+
   export type ComentarioCrmUncheckedCreateNestedManyWithoutLeadInput = {
     create?: XOR<ComentarioCrmCreateWithoutLeadInput, ComentarioCrmUncheckedCreateWithoutLeadInput> | ComentarioCrmCreateWithoutLeadInput[] | ComentarioCrmUncheckedCreateWithoutLeadInput[]
     connectOrCreate?: ComentarioCrmCreateOrConnectWithoutLeadInput | ComentarioCrmCreateOrConnectWithoutLeadInput[]
@@ -79872,6 +83163,12 @@ export namespace Prisma {
     connectOrCreate?: PropostaCreateOrConnectWithoutLeadInput | PropostaCreateOrConnectWithoutLeadInput[]
     createMany?: PropostaCreateManyLeadInputEnvelope
     connect?: PropostaWhereUniqueInput | PropostaWhereUniqueInput[]
+  }
+
+  export type DiagnosticoParticipanteUncheckedCreateNestedOneWithoutLeadInput = {
+    create?: XOR<DiagnosticoParticipanteCreateWithoutLeadInput, DiagnosticoParticipanteUncheckedCreateWithoutLeadInput>
+    connectOrCreate?: DiagnosticoParticipanteCreateOrConnectWithoutLeadInput
+    connect?: DiagnosticoParticipanteWhereUniqueInput
   }
 
   export type LeadUpdatetagsInput = {
@@ -79955,6 +83252,16 @@ export namespace Prisma {
     deleteMany?: PropostaScalarWhereInput | PropostaScalarWhereInput[]
   }
 
+  export type DiagnosticoParticipanteUpdateOneWithoutLeadNestedInput = {
+    create?: XOR<DiagnosticoParticipanteCreateWithoutLeadInput, DiagnosticoParticipanteUncheckedCreateWithoutLeadInput>
+    connectOrCreate?: DiagnosticoParticipanteCreateOrConnectWithoutLeadInput
+    upsert?: DiagnosticoParticipanteUpsertWithoutLeadInput
+    disconnect?: DiagnosticoParticipanteWhereInput | boolean
+    delete?: DiagnosticoParticipanteWhereInput | boolean
+    connect?: DiagnosticoParticipanteWhereUniqueInput
+    update?: XOR<XOR<DiagnosticoParticipanteUpdateToOneWithWhereWithoutLeadInput, DiagnosticoParticipanteUpdateWithoutLeadInput>, DiagnosticoParticipanteUncheckedUpdateWithoutLeadInput>
+  }
+
   export type ComentarioCrmUncheckedUpdateManyWithoutLeadNestedInput = {
     create?: XOR<ComentarioCrmCreateWithoutLeadInput, ComentarioCrmUncheckedCreateWithoutLeadInput> | ComentarioCrmCreateWithoutLeadInput[] | ComentarioCrmUncheckedCreateWithoutLeadInput[]
     connectOrCreate?: ComentarioCrmCreateOrConnectWithoutLeadInput | ComentarioCrmCreateOrConnectWithoutLeadInput[]
@@ -79981,6 +83288,16 @@ export namespace Prisma {
     update?: PropostaUpdateWithWhereUniqueWithoutLeadInput | PropostaUpdateWithWhereUniqueWithoutLeadInput[]
     updateMany?: PropostaUpdateManyWithWhereWithoutLeadInput | PropostaUpdateManyWithWhereWithoutLeadInput[]
     deleteMany?: PropostaScalarWhereInput | PropostaScalarWhereInput[]
+  }
+
+  export type DiagnosticoParticipanteUncheckedUpdateOneWithoutLeadNestedInput = {
+    create?: XOR<DiagnosticoParticipanteCreateWithoutLeadInput, DiagnosticoParticipanteUncheckedCreateWithoutLeadInput>
+    connectOrCreate?: DiagnosticoParticipanteCreateOrConnectWithoutLeadInput
+    upsert?: DiagnosticoParticipanteUpsertWithoutLeadInput
+    disconnect?: DiagnosticoParticipanteWhereInput | boolean
+    delete?: DiagnosticoParticipanteWhereInput | boolean
+    connect?: DiagnosticoParticipanteWhereUniqueInput
+    update?: XOR<XOR<DiagnosticoParticipanteUpdateToOneWithWhereWithoutLeadInput, DiagnosticoParticipanteUpdateWithoutLeadInput>, DiagnosticoParticipanteUncheckedUpdateWithoutLeadInput>
   }
 
   export type EmpresaCreateNestedOneWithoutPropostasInput = {
@@ -82715,6 +86032,92 @@ export namespace Prisma {
     update?: XOR<XOR<ClienteUpdateToOneWithWhereWithoutAplicacoes_diagnosticoInput, ClienteUpdateWithoutAplicacoes_diagnosticoInput>, ClienteUncheckedUpdateWithoutAplicacoes_diagnosticoInput>
   }
 
+  export type EmpresaCreateNestedOneWithoutCampanhas_diagnosticoInput = {
+    create?: XOR<EmpresaCreateWithoutCampanhas_diagnosticoInput, EmpresaUncheckedCreateWithoutCampanhas_diagnosticoInput>
+    connectOrCreate?: EmpresaCreateOrConnectWithoutCampanhas_diagnosticoInput
+    connect?: EmpresaWhereUniqueInput
+  }
+
+  export type DiagnosticoParticipanteCreateNestedManyWithoutCampanhaInput = {
+    create?: XOR<DiagnosticoParticipanteCreateWithoutCampanhaInput, DiagnosticoParticipanteUncheckedCreateWithoutCampanhaInput> | DiagnosticoParticipanteCreateWithoutCampanhaInput[] | DiagnosticoParticipanteUncheckedCreateWithoutCampanhaInput[]
+    connectOrCreate?: DiagnosticoParticipanteCreateOrConnectWithoutCampanhaInput | DiagnosticoParticipanteCreateOrConnectWithoutCampanhaInput[]
+    createMany?: DiagnosticoParticipanteCreateManyCampanhaInputEnvelope
+    connect?: DiagnosticoParticipanteWhereUniqueInput | DiagnosticoParticipanteWhereUniqueInput[]
+  }
+
+  export type DiagnosticoParticipanteUncheckedCreateNestedManyWithoutCampanhaInput = {
+    create?: XOR<DiagnosticoParticipanteCreateWithoutCampanhaInput, DiagnosticoParticipanteUncheckedCreateWithoutCampanhaInput> | DiagnosticoParticipanteCreateWithoutCampanhaInput[] | DiagnosticoParticipanteUncheckedCreateWithoutCampanhaInput[]
+    connectOrCreate?: DiagnosticoParticipanteCreateOrConnectWithoutCampanhaInput | DiagnosticoParticipanteCreateOrConnectWithoutCampanhaInput[]
+    createMany?: DiagnosticoParticipanteCreateManyCampanhaInputEnvelope
+    connect?: DiagnosticoParticipanteWhereUniqueInput | DiagnosticoParticipanteWhereUniqueInput[]
+  }
+
+  export type EmpresaUpdateOneRequiredWithoutCampanhas_diagnosticoNestedInput = {
+    create?: XOR<EmpresaCreateWithoutCampanhas_diagnosticoInput, EmpresaUncheckedCreateWithoutCampanhas_diagnosticoInput>
+    connectOrCreate?: EmpresaCreateOrConnectWithoutCampanhas_diagnosticoInput
+    upsert?: EmpresaUpsertWithoutCampanhas_diagnosticoInput
+    connect?: EmpresaWhereUniqueInput
+    update?: XOR<XOR<EmpresaUpdateToOneWithWhereWithoutCampanhas_diagnosticoInput, EmpresaUpdateWithoutCampanhas_diagnosticoInput>, EmpresaUncheckedUpdateWithoutCampanhas_diagnosticoInput>
+  }
+
+  export type DiagnosticoParticipanteUpdateManyWithoutCampanhaNestedInput = {
+    create?: XOR<DiagnosticoParticipanteCreateWithoutCampanhaInput, DiagnosticoParticipanteUncheckedCreateWithoutCampanhaInput> | DiagnosticoParticipanteCreateWithoutCampanhaInput[] | DiagnosticoParticipanteUncheckedCreateWithoutCampanhaInput[]
+    connectOrCreate?: DiagnosticoParticipanteCreateOrConnectWithoutCampanhaInput | DiagnosticoParticipanteCreateOrConnectWithoutCampanhaInput[]
+    upsert?: DiagnosticoParticipanteUpsertWithWhereUniqueWithoutCampanhaInput | DiagnosticoParticipanteUpsertWithWhereUniqueWithoutCampanhaInput[]
+    createMany?: DiagnosticoParticipanteCreateManyCampanhaInputEnvelope
+    set?: DiagnosticoParticipanteWhereUniqueInput | DiagnosticoParticipanteWhereUniqueInput[]
+    disconnect?: DiagnosticoParticipanteWhereUniqueInput | DiagnosticoParticipanteWhereUniqueInput[]
+    delete?: DiagnosticoParticipanteWhereUniqueInput | DiagnosticoParticipanteWhereUniqueInput[]
+    connect?: DiagnosticoParticipanteWhereUniqueInput | DiagnosticoParticipanteWhereUniqueInput[]
+    update?: DiagnosticoParticipanteUpdateWithWhereUniqueWithoutCampanhaInput | DiagnosticoParticipanteUpdateWithWhereUniqueWithoutCampanhaInput[]
+    updateMany?: DiagnosticoParticipanteUpdateManyWithWhereWithoutCampanhaInput | DiagnosticoParticipanteUpdateManyWithWhereWithoutCampanhaInput[]
+    deleteMany?: DiagnosticoParticipanteScalarWhereInput | DiagnosticoParticipanteScalarWhereInput[]
+  }
+
+  export type DiagnosticoParticipanteUncheckedUpdateManyWithoutCampanhaNestedInput = {
+    create?: XOR<DiagnosticoParticipanteCreateWithoutCampanhaInput, DiagnosticoParticipanteUncheckedCreateWithoutCampanhaInput> | DiagnosticoParticipanteCreateWithoutCampanhaInput[] | DiagnosticoParticipanteUncheckedCreateWithoutCampanhaInput[]
+    connectOrCreate?: DiagnosticoParticipanteCreateOrConnectWithoutCampanhaInput | DiagnosticoParticipanteCreateOrConnectWithoutCampanhaInput[]
+    upsert?: DiagnosticoParticipanteUpsertWithWhereUniqueWithoutCampanhaInput | DiagnosticoParticipanteUpsertWithWhereUniqueWithoutCampanhaInput[]
+    createMany?: DiagnosticoParticipanteCreateManyCampanhaInputEnvelope
+    set?: DiagnosticoParticipanteWhereUniqueInput | DiagnosticoParticipanteWhereUniqueInput[]
+    disconnect?: DiagnosticoParticipanteWhereUniqueInput | DiagnosticoParticipanteWhereUniqueInput[]
+    delete?: DiagnosticoParticipanteWhereUniqueInput | DiagnosticoParticipanteWhereUniqueInput[]
+    connect?: DiagnosticoParticipanteWhereUniqueInput | DiagnosticoParticipanteWhereUniqueInput[]
+    update?: DiagnosticoParticipanteUpdateWithWhereUniqueWithoutCampanhaInput | DiagnosticoParticipanteUpdateWithWhereUniqueWithoutCampanhaInput[]
+    updateMany?: DiagnosticoParticipanteUpdateManyWithWhereWithoutCampanhaInput | DiagnosticoParticipanteUpdateManyWithWhereWithoutCampanhaInput[]
+    deleteMany?: DiagnosticoParticipanteScalarWhereInput | DiagnosticoParticipanteScalarWhereInput[]
+  }
+
+  export type CampanhaDiagnosticoCreateNestedOneWithoutParticipantesInput = {
+    create?: XOR<CampanhaDiagnosticoCreateWithoutParticipantesInput, CampanhaDiagnosticoUncheckedCreateWithoutParticipantesInput>
+    connectOrCreate?: CampanhaDiagnosticoCreateOrConnectWithoutParticipantesInput
+    connect?: CampanhaDiagnosticoWhereUniqueInput
+  }
+
+  export type LeadCreateNestedOneWithoutDiagnostico_participanteInput = {
+    create?: XOR<LeadCreateWithoutDiagnostico_participanteInput, LeadUncheckedCreateWithoutDiagnostico_participanteInput>
+    connectOrCreate?: LeadCreateOrConnectWithoutDiagnostico_participanteInput
+    connect?: LeadWhereUniqueInput
+  }
+
+  export type CampanhaDiagnosticoUpdateOneRequiredWithoutParticipantesNestedInput = {
+    create?: XOR<CampanhaDiagnosticoCreateWithoutParticipantesInput, CampanhaDiagnosticoUncheckedCreateWithoutParticipantesInput>
+    connectOrCreate?: CampanhaDiagnosticoCreateOrConnectWithoutParticipantesInput
+    upsert?: CampanhaDiagnosticoUpsertWithoutParticipantesInput
+    connect?: CampanhaDiagnosticoWhereUniqueInput
+    update?: XOR<XOR<CampanhaDiagnosticoUpdateToOneWithWhereWithoutParticipantesInput, CampanhaDiagnosticoUpdateWithoutParticipantesInput>, CampanhaDiagnosticoUncheckedUpdateWithoutParticipantesInput>
+  }
+
+  export type LeadUpdateOneWithoutDiagnostico_participanteNestedInput = {
+    create?: XOR<LeadCreateWithoutDiagnostico_participanteInput, LeadUncheckedCreateWithoutDiagnostico_participanteInput>
+    connectOrCreate?: LeadCreateOrConnectWithoutDiagnostico_participanteInput
+    upsert?: LeadUpsertWithoutDiagnostico_participanteInput
+    disconnect?: LeadWhereInput | boolean
+    delete?: LeadWhereInput | boolean
+    connect?: LeadWhereUniqueInput
+    update?: XOR<XOR<LeadUpdateToOneWithWhereWithoutDiagnostico_participanteInput, LeadUpdateWithoutDiagnostico_participanteInput>, LeadUncheckedUpdateWithoutDiagnostico_participanteInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -83643,6 +87046,7 @@ export namespace Prisma {
     etapa?: EtapaCrmCreateNestedOneWithoutLeadsInput
     comentarios?: ComentarioCrmCreateNestedManyWithoutLeadInput
     propostas?: PropostaCreateNestedManyWithoutLeadInput
+    diagnostico_participante?: DiagnosticoParticipanteCreateNestedOneWithoutLeadInput
   }
 
   export type LeadUncheckedCreateWithoutEmpresaInput = {
@@ -83671,6 +87075,7 @@ export namespace Prisma {
     atualizado_em?: Date | string
     comentarios?: ComentarioCrmUncheckedCreateNestedManyWithoutLeadInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutLeadInput
+    diagnostico_participante?: DiagnosticoParticipanteUncheckedCreateNestedOneWithoutLeadInput
   }
 
   export type LeadCreateOrConnectWithoutEmpresaInput = {
@@ -84604,6 +88009,42 @@ export namespace Prisma {
 
   export type EtapaCrmCreateManyEmpresaInputEnvelope = {
     data: EtapaCrmCreateManyEmpresaInput | EtapaCrmCreateManyEmpresaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CampanhaDiagnosticoCreateWithoutEmpresaInput = {
+    id?: string
+    slug: string
+    titulo?: string
+    subtitulo?: string | null
+    video_youtube?: string | null
+    url_checkout?: string | null
+    ativo?: boolean
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    participantes?: DiagnosticoParticipanteCreateNestedManyWithoutCampanhaInput
+  }
+
+  export type CampanhaDiagnosticoUncheckedCreateWithoutEmpresaInput = {
+    id?: string
+    slug: string
+    titulo?: string
+    subtitulo?: string | null
+    video_youtube?: string | null
+    url_checkout?: string | null
+    ativo?: boolean
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    participantes?: DiagnosticoParticipanteUncheckedCreateNestedManyWithoutCampanhaInput
+  }
+
+  export type CampanhaDiagnosticoCreateOrConnectWithoutEmpresaInput = {
+    where: CampanhaDiagnosticoWhereUniqueInput
+    create: XOR<CampanhaDiagnosticoCreateWithoutEmpresaInput, CampanhaDiagnosticoUncheckedCreateWithoutEmpresaInput>
+  }
+
+  export type CampanhaDiagnosticoCreateManyEmpresaInputEnvelope = {
+    data: CampanhaDiagnosticoCreateManyEmpresaInput | CampanhaDiagnosticoCreateManyEmpresaInput[]
     skipDuplicates?: boolean
   }
 
@@ -85581,6 +89022,38 @@ export namespace Prisma {
     criado_em?: DateTimeFilter<"EtapaCrm"> | Date | string
   }
 
+  export type CampanhaDiagnosticoUpsertWithWhereUniqueWithoutEmpresaInput = {
+    where: CampanhaDiagnosticoWhereUniqueInput
+    update: XOR<CampanhaDiagnosticoUpdateWithoutEmpresaInput, CampanhaDiagnosticoUncheckedUpdateWithoutEmpresaInput>
+    create: XOR<CampanhaDiagnosticoCreateWithoutEmpresaInput, CampanhaDiagnosticoUncheckedCreateWithoutEmpresaInput>
+  }
+
+  export type CampanhaDiagnosticoUpdateWithWhereUniqueWithoutEmpresaInput = {
+    where: CampanhaDiagnosticoWhereUniqueInput
+    data: XOR<CampanhaDiagnosticoUpdateWithoutEmpresaInput, CampanhaDiagnosticoUncheckedUpdateWithoutEmpresaInput>
+  }
+
+  export type CampanhaDiagnosticoUpdateManyWithWhereWithoutEmpresaInput = {
+    where: CampanhaDiagnosticoScalarWhereInput
+    data: XOR<CampanhaDiagnosticoUpdateManyMutationInput, CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaInput>
+  }
+
+  export type CampanhaDiagnosticoScalarWhereInput = {
+    AND?: CampanhaDiagnosticoScalarWhereInput | CampanhaDiagnosticoScalarWhereInput[]
+    OR?: CampanhaDiagnosticoScalarWhereInput[]
+    NOT?: CampanhaDiagnosticoScalarWhereInput | CampanhaDiagnosticoScalarWhereInput[]
+    id?: StringFilter<"CampanhaDiagnostico"> | string
+    empresa_id?: StringFilter<"CampanhaDiagnostico"> | string
+    slug?: StringFilter<"CampanhaDiagnostico"> | string
+    titulo?: StringFilter<"CampanhaDiagnostico"> | string
+    subtitulo?: StringNullableFilter<"CampanhaDiagnostico"> | string | null
+    video_youtube?: StringNullableFilter<"CampanhaDiagnostico"> | string | null
+    url_checkout?: StringNullableFilter<"CampanhaDiagnostico"> | string | null
+    ativo?: BoolFilter<"CampanhaDiagnostico"> | boolean
+    criado_em?: DateTimeFilter<"CampanhaDiagnostico"> | Date | string
+    atualizado_em?: DateTimeFilter<"CampanhaDiagnostico"> | Date | string
+  }
+
   export type MembroEmpresaCreateWithoutUsuarioInput = {
     id?: string
     ativo?: boolean
@@ -85665,6 +89138,7 @@ export namespace Prisma {
     etapa?: EtapaCrmCreateNestedOneWithoutLeadsInput
     comentarios?: ComentarioCrmCreateNestedManyWithoutLeadInput
     propostas?: PropostaCreateNestedManyWithoutLeadInput
+    diagnostico_participante?: DiagnosticoParticipanteCreateNestedOneWithoutLeadInput
   }
 
   export type LeadUncheckedCreateWithoutResponsavelInput = {
@@ -85693,6 +89167,7 @@ export namespace Prisma {
     atualizado_em?: Date | string
     comentarios?: ComentarioCrmUncheckedCreateNestedManyWithoutLeadInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutLeadInput
+    diagnostico_participante?: DiagnosticoParticipanteUncheckedCreateNestedOneWithoutLeadInput
   }
 
   export type LeadCreateOrConnectWithoutResponsavelInput = {
@@ -87069,6 +90544,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutMembrosInput = {
@@ -87108,6 +90584,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutMembrosInput = {
@@ -87255,6 +90732,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutMembrosInput = {
@@ -87294,6 +90772,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PerfilUpsertWithoutMembrosInput = {
@@ -87364,6 +90843,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutPerfisInput = {
@@ -87403,6 +90883,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutPerfisInput = {
@@ -87502,6 +90983,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutPerfisInput = {
@@ -87541,6 +91023,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type MembroEmpresaUpsertWithWhereUniqueWithoutPerfilInput = {
@@ -87754,6 +91237,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutConvitesInput = {
@@ -87793,6 +91277,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutConvitesInput = {
@@ -87909,6 +91394,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutConvitesInput = {
@@ -87948,6 +91434,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type UsuarioUpsertWithoutConvitesInput = {
@@ -88054,6 +91541,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutConvites_clienteInput = {
@@ -88093,6 +91581,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutConvites_clienteInput = {
@@ -88294,6 +91783,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutConvites_clienteInput = {
@@ -88333,6 +91823,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type UsuarioUpsertWithoutConvites_clienteInput = {
@@ -88530,6 +92021,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutClientesInput = {
@@ -88569,6 +92061,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutClientesInput = {
@@ -88632,6 +92125,7 @@ export namespace Prisma {
     etapa?: EtapaCrmCreateNestedOneWithoutLeadsInput
     comentarios?: ComentarioCrmCreateNestedManyWithoutLeadInput
     propostas?: PropostaCreateNestedManyWithoutLeadInput
+    diagnostico_participante?: DiagnosticoParticipanteCreateNestedOneWithoutLeadInput
   }
 
   export type LeadUncheckedCreateWithoutClienteInput = {
@@ -88660,6 +92154,7 @@ export namespace Prisma {
     atualizado_em?: Date | string
     comentarios?: ComentarioCrmUncheckedCreateNestedManyWithoutLeadInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutLeadInput
+    diagnostico_participante?: DiagnosticoParticipanteUncheckedCreateNestedOneWithoutLeadInput
   }
 
   export type LeadCreateOrConnectWithoutClienteInput = {
@@ -89347,6 +92842,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutClientesInput = {
@@ -89386,6 +92882,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ContatoUpsertWithWhereUniqueWithoutClienteInput = {
@@ -89867,6 +93364,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutServicosInput = {
@@ -89906,6 +93404,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutServicosInput = {
@@ -90004,6 +93503,7 @@ export namespace Prisma {
     etapa?: EtapaCrmCreateNestedOneWithoutLeadsInput
     comentarios?: ComentarioCrmCreateNestedManyWithoutLeadInput
     propostas?: PropostaCreateNestedManyWithoutLeadInput
+    diagnostico_participante?: DiagnosticoParticipanteCreateNestedOneWithoutLeadInput
   }
 
   export type LeadUncheckedCreateWithoutServicoInput = {
@@ -90032,6 +93532,7 @@ export namespace Prisma {
     atualizado_em?: Date | string
     comentarios?: ComentarioCrmUncheckedCreateNestedManyWithoutLeadInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutLeadInput
+    diagnostico_participante?: DiagnosticoParticipanteUncheckedCreateNestedOneWithoutLeadInput
   }
 
   export type LeadCreateOrConnectWithoutServicoInput = {
@@ -90092,6 +93593,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutServicosInput = {
@@ -90131,6 +93633,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PlanoDeContasUpsertWithoutServicosInput = {
@@ -90257,6 +93760,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutEtapas_crmInput = {
@@ -90296,6 +93800,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutEtapas_crmInput = {
@@ -90329,6 +93834,7 @@ export namespace Prisma {
     servico?: ServicoCreateNestedOneWithoutLeadsInput
     comentarios?: ComentarioCrmCreateNestedManyWithoutLeadInput
     propostas?: PropostaCreateNestedManyWithoutLeadInput
+    diagnostico_participante?: DiagnosticoParticipanteCreateNestedOneWithoutLeadInput
   }
 
   export type LeadUncheckedCreateWithoutEtapaInput = {
@@ -90357,6 +93863,7 @@ export namespace Prisma {
     atualizado_em?: Date | string
     comentarios?: ComentarioCrmUncheckedCreateNestedManyWithoutLeadInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutLeadInput
+    diagnostico_participante?: DiagnosticoParticipanteUncheckedCreateNestedOneWithoutLeadInput
   }
 
   export type LeadCreateOrConnectWithoutEtapaInput = {
@@ -90417,6 +93924,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutEtapas_crmInput = {
@@ -90456,6 +93964,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type LeadUpsertWithWhereUniqueWithoutEtapaInput = {
@@ -90500,6 +94009,7 @@ export namespace Prisma {
     servico?: ServicoCreateNestedOneWithoutLeadsInput
     etapa?: EtapaCrmCreateNestedOneWithoutLeadsInput
     propostas?: PropostaCreateNestedManyWithoutLeadInput
+    diagnostico_participante?: DiagnosticoParticipanteCreateNestedOneWithoutLeadInput
   }
 
   export type LeadUncheckedCreateWithoutComentariosInput = {
@@ -90528,6 +94038,7 @@ export namespace Prisma {
     criado_em?: Date | string
     atualizado_em?: Date | string
     propostas?: PropostaUncheckedCreateNestedManyWithoutLeadInput
+    diagnostico_participante?: DiagnosticoParticipanteUncheckedCreateNestedOneWithoutLeadInput
   }
 
   export type LeadCreateOrConnectWithoutComentariosInput = {
@@ -90633,6 +94144,7 @@ export namespace Prisma {
     servico?: ServicoUpdateOneWithoutLeadsNestedInput
     etapa?: EtapaCrmUpdateOneWithoutLeadsNestedInput
     propostas?: PropostaUpdateManyWithoutLeadNestedInput
+    diagnostico_participante?: DiagnosticoParticipanteUpdateOneWithoutLeadNestedInput
   }
 
   export type LeadUncheckedUpdateWithoutComentariosInput = {
@@ -90661,6 +94173,7 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     propostas?: PropostaUncheckedUpdateManyWithoutLeadNestedInput
+    diagnostico_participante?: DiagnosticoParticipanteUncheckedUpdateOneWithoutLeadNestedInput
   }
 
   export type UsuarioUpsertWithoutComentarios_crmInput = {
@@ -90767,6 +94280,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutLeadsInput = {
@@ -90806,6 +94320,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutLeadsInput = {
@@ -91117,6 +94632,43 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type DiagnosticoParticipanteCreateWithoutLeadInput = {
+    id?: string
+    nome: string
+    cpf_cnpj: string
+    celular: string
+    email: string
+    celular_verificado?: boolean
+    otp_code?: string | null
+    otp_expira_em?: Date | string | null
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    pontuacao?: number | null
+    email_enviado?: boolean
+    criado_em?: Date | string
+    campanha: CampanhaDiagnosticoCreateNestedOneWithoutParticipantesInput
+  }
+
+  export type DiagnosticoParticipanteUncheckedCreateWithoutLeadInput = {
+    id?: string
+    campanha_id: string
+    nome: string
+    cpf_cnpj: string
+    celular: string
+    email: string
+    celular_verificado?: boolean
+    otp_code?: string | null
+    otp_expira_em?: Date | string | null
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    pontuacao?: number | null
+    email_enviado?: boolean
+    criado_em?: Date | string
+  }
+
+  export type DiagnosticoParticipanteCreateOrConnectWithoutLeadInput = {
+    where: DiagnosticoParticipanteWhereUniqueInput
+    create: XOR<DiagnosticoParticipanteCreateWithoutLeadInput, DiagnosticoParticipanteUncheckedCreateWithoutLeadInput>
+  }
+
   export type EmpresaUpsertWithoutLeadsInput = {
     update: XOR<EmpresaUpdateWithoutLeadsInput, EmpresaUncheckedUpdateWithoutLeadsInput>
     create: XOR<EmpresaCreateWithoutLeadsInput, EmpresaUncheckedCreateWithoutLeadsInput>
@@ -91165,6 +94717,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutLeadsInput = {
@@ -91204,6 +94757,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutLeadsInput = {
@@ -91464,6 +95018,49 @@ export namespace Prisma {
     data: XOR<PropostaUpdateManyMutationInput, PropostaUncheckedUpdateManyWithoutLeadInput>
   }
 
+  export type DiagnosticoParticipanteUpsertWithoutLeadInput = {
+    update: XOR<DiagnosticoParticipanteUpdateWithoutLeadInput, DiagnosticoParticipanteUncheckedUpdateWithoutLeadInput>
+    create: XOR<DiagnosticoParticipanteCreateWithoutLeadInput, DiagnosticoParticipanteUncheckedCreateWithoutLeadInput>
+    where?: DiagnosticoParticipanteWhereInput
+  }
+
+  export type DiagnosticoParticipanteUpdateToOneWithWhereWithoutLeadInput = {
+    where?: DiagnosticoParticipanteWhereInput
+    data: XOR<DiagnosticoParticipanteUpdateWithoutLeadInput, DiagnosticoParticipanteUncheckedUpdateWithoutLeadInput>
+  }
+
+  export type DiagnosticoParticipanteUpdateWithoutLeadInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cpf_cnpj?: StringFieldUpdateOperationsInput | string
+    celular?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    celular_verificado?: BoolFieldUpdateOperationsInput | boolean
+    otp_code?: NullableStringFieldUpdateOperationsInput | string | null
+    otp_expira_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    pontuacao?: NullableIntFieldUpdateOperationsInput | number | null
+    email_enviado?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    campanha?: CampanhaDiagnosticoUpdateOneRequiredWithoutParticipantesNestedInput
+  }
+
+  export type DiagnosticoParticipanteUncheckedUpdateWithoutLeadInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    campanha_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cpf_cnpj?: StringFieldUpdateOperationsInput | string
+    celular?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    celular_verificado?: BoolFieldUpdateOperationsInput | boolean
+    otp_code?: NullableStringFieldUpdateOperationsInput | string | null
+    otp_expira_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    pontuacao?: NullableIntFieldUpdateOperationsInput | number | null
+    email_enviado?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type EmpresaCreateWithoutPropostasInput = {
     id?: string
     nome: string
@@ -91501,6 +95098,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutPropostasInput = {
@@ -91540,6 +95138,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutPropostasInput = {
@@ -91658,6 +95257,7 @@ export namespace Prisma {
     servico?: ServicoCreateNestedOneWithoutLeadsInput
     etapa?: EtapaCrmCreateNestedOneWithoutLeadsInput
     comentarios?: ComentarioCrmCreateNestedManyWithoutLeadInput
+    diagnostico_participante?: DiagnosticoParticipanteCreateNestedOneWithoutLeadInput
   }
 
   export type LeadUncheckedCreateWithoutPropostasInput = {
@@ -91686,6 +95286,7 @@ export namespace Prisma {
     criado_em?: Date | string
     atualizado_em?: Date | string
     comentarios?: ComentarioCrmUncheckedCreateNestedManyWithoutLeadInput
+    diagnostico_participante?: DiagnosticoParticipanteUncheckedCreateNestedOneWithoutLeadInput
   }
 
   export type LeadCreateOrConnectWithoutPropostasInput = {
@@ -92022,6 +95623,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutPropostasInput = {
@@ -92061,6 +95663,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutPropostasInput = {
@@ -92191,6 +95794,7 @@ export namespace Prisma {
     servico?: ServicoUpdateOneWithoutLeadsNestedInput
     etapa?: EtapaCrmUpdateOneWithoutLeadsNestedInput
     comentarios?: ComentarioCrmUpdateManyWithoutLeadNestedInput
+    diagnostico_participante?: DiagnosticoParticipanteUpdateOneWithoutLeadNestedInput
   }
 
   export type LeadUncheckedUpdateWithoutPropostasInput = {
@@ -92219,6 +95823,7 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     comentarios?: ComentarioCrmUncheckedUpdateManyWithoutLeadNestedInput
+    diagnostico_participante?: DiagnosticoParticipanteUncheckedUpdateOneWithoutLeadNestedInput
   }
 
   export type UsuarioUpsertWithoutPropostas_criadasInput = {
@@ -92908,6 +96513,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutContratosInput = {
@@ -92947,6 +96553,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutContratosInput = {
@@ -93547,6 +97154,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutContratosInput = {
@@ -93586,6 +97194,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PropostaUpsertWithoutContratoInput = {
@@ -94044,6 +97653,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutProjetosInput = {
@@ -94083,6 +97693,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutProjetosInput = {
@@ -94637,6 +98248,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutProjetosInput = {
@@ -94676,6 +98288,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ContratoUpsertWithoutProjetoInput = {
@@ -96966,6 +100579,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutEtiquetas_tarefaInput = {
@@ -97005,6 +100619,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutEtiquetas_tarefaInput = {
@@ -97078,6 +100693,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutEtiquetas_tarefaInput = {
@@ -97117,6 +100733,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type TarefaEtiquetaUpsertWithWhereUniqueWithoutEtiquetaInput = {
@@ -97316,6 +100933,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutPastas_documentoInput = {
@@ -97355,6 +100973,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutPastas_documentoInput = {
@@ -97517,6 +101136,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutPastas_documentoInput = {
@@ -97556,6 +101176,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PastaDocumentoUpsertWithoutFilhosInput = {
@@ -97662,6 +101283,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutDocumentosInput = {
@@ -97701,6 +101323,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutDocumentosInput = {
@@ -98079,6 +101702,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutDocumentosInput = {
@@ -98118,6 +101742,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ProjetoUpsertWithoutDocumentosInput = {
@@ -98510,6 +102135,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutPlano_contasInput = {
@@ -98549,6 +102175,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutPlano_contasInput = {
@@ -98825,6 +102452,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutPlano_contasInput = {
@@ -98864,6 +102492,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PlanoDeContasUpsertWithoutFilhosInput = {
@@ -99074,6 +102703,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutContas_bancariasInput = {
@@ -99113,6 +102743,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutContas_bancariasInput = {
@@ -99357,6 +102988,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutContas_bancariasInput = {
@@ -99396,6 +103028,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type BancoUpsertWithoutContas_bancariasInput = {
@@ -99524,6 +103157,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutTransferencias_tesourariaInput = {
@@ -99563,6 +103197,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutTransferencias_tesourariaInput = {
@@ -99708,6 +103343,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutTransferencias_tesourariaInput = {
@@ -99747,6 +103383,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ContaBancariaUpsertWithoutTransferencias_origemInput = {
@@ -99888,6 +103525,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutRecebiveisInput = {
@@ -99927,6 +103565,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutRecebiveisInput = {
@@ -100411,6 +104050,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutRecebiveisInput = {
@@ -100450,6 +104090,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutRecebiveisInput = {
@@ -100960,6 +104601,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutContas_pagarInput = {
@@ -100999,6 +104641,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutContas_pagarInput = {
@@ -101195,6 +104838,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutContas_pagarInput = {
@@ -101234,6 +104878,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PlanoDeContasUpsertWithoutContas_pagarInput = {
@@ -101432,6 +105077,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutModelos_documentoInput = {
@@ -101471,6 +105117,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutModelos_documentoInput = {
@@ -101526,6 +105173,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutModelos_documentoInput = {
@@ -101565,6 +105213,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateWithoutEventosInput = {
@@ -101604,6 +105253,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutEventosInput = {
@@ -101643,6 +105293,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutEventosInput = {
@@ -101992,6 +105643,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutEventosInput = {
@@ -102031,6 +105683,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type UsuarioUpsertWithoutEventos_responsavelInput = {
@@ -102388,6 +106041,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutRegistros_auditoriaInput = {
@@ -102427,6 +106081,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutRegistros_auditoriaInput = {
@@ -102482,6 +106137,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutRegistros_auditoriaInput = {
@@ -102521,6 +106177,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateWithoutNotificacoesInput = {
@@ -102560,6 +106217,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutNotificacoesInput = {
@@ -102599,6 +106257,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutNotificacoesInput = {
@@ -102654,6 +106313,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutNotificacoesInput = {
@@ -102693,6 +106353,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateWithoutNotas_fiscaisInput = {
@@ -102732,6 +106393,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutNotas_fiscaisInput = {
@@ -102771,6 +106433,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutNotas_fiscaisInput = {
@@ -103071,6 +106734,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutNotas_fiscaisInput = {
@@ -103110,6 +106774,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutNotas_fiscaisInput = {
@@ -103412,6 +107077,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutBoletosInput = {
@@ -103451,6 +107117,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutBoletosInput = {
@@ -103650,6 +107317,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutBoletosInput = {
@@ -103689,6 +107357,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type RecebivelUpsertWithoutBoletoInput = {
@@ -103884,6 +107553,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutDiagnosticosInput = {
@@ -103923,6 +107593,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutDiagnosticosInput = {
@@ -104110,6 +107781,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutDiagnosticosInput = {
@@ -104149,6 +107821,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutDiagnosticosInput = {
@@ -104508,6 +108181,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutAplicacoes_diagnosticoInput = {
@@ -104547,6 +108221,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutAplicacoes_diagnosticoInput = {
@@ -104734,6 +108409,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutAplicacoes_diagnosticoInput = {
@@ -104773,6 +108449,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ProjetoUpsertWithoutAplicacoes_diagnosticoInput = {
@@ -104917,6 +108594,460 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
+  }
+
+  export type EmpresaCreateWithoutCampanhas_diagnosticoInput = {
+    id?: string
+    nome: string
+    slug: string
+    cnpj?: string | null
+    logo_url?: string | null
+    plano?: $Enums.PlanoTipo
+    status?: $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
+    perfis?: PerfilCreateNestedManyWithoutEmpresaInput
+    convites?: ConviteEmpresaCreateNestedManyWithoutEmpresaInput
+    convites_cliente?: ConviteClienteCreateNestedManyWithoutEmpresaInput
+    clientes?: ClienteCreateNestedManyWithoutEmpresaInput
+    servicos?: ServicoCreateNestedManyWithoutEmpresaInput
+    leads?: LeadCreateNestedManyWithoutEmpresaInput
+    propostas?: PropostaCreateNestedManyWithoutEmpresaInput
+    contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
+    documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
+    plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
+    contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
+    boletos?: BoletoCreateNestedManyWithoutEmpresaInput
+    recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
+    contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
+    eventos?: EventoCreateNestedManyWithoutEmpresaInput
+    registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
+    notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
+    notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
+    diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+  }
+
+  export type EmpresaUncheckedCreateWithoutCampanhas_diagnosticoInput = {
+    id?: string
+    nome: string
+    slug: string
+    cnpj?: string | null
+    logo_url?: string | null
+    plano?: $Enums.PlanoTipo
+    status?: $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
+    perfis?: PerfilUncheckedCreateNestedManyWithoutEmpresaInput
+    convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
+    convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutEmpresaInput
+    clientes?: ClienteUncheckedCreateNestedManyWithoutEmpresaInput
+    servicos?: ServicoUncheckedCreateNestedManyWithoutEmpresaInput
+    leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
+    propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
+    contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
+    contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
+    boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
+    recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
+    contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
+    registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
+    notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
+    notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+  }
+
+  export type EmpresaCreateOrConnectWithoutCampanhas_diagnosticoInput = {
+    where: EmpresaWhereUniqueInput
+    create: XOR<EmpresaCreateWithoutCampanhas_diagnosticoInput, EmpresaUncheckedCreateWithoutCampanhas_diagnosticoInput>
+  }
+
+  export type DiagnosticoParticipanteCreateWithoutCampanhaInput = {
+    id?: string
+    nome: string
+    cpf_cnpj: string
+    celular: string
+    email: string
+    celular_verificado?: boolean
+    otp_code?: string | null
+    otp_expira_em?: Date | string | null
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    pontuacao?: number | null
+    email_enviado?: boolean
+    criado_em?: Date | string
+    lead?: LeadCreateNestedOneWithoutDiagnostico_participanteInput
+  }
+
+  export type DiagnosticoParticipanteUncheckedCreateWithoutCampanhaInput = {
+    id?: string
+    lead_id?: string | null
+    nome: string
+    cpf_cnpj: string
+    celular: string
+    email: string
+    celular_verificado?: boolean
+    otp_code?: string | null
+    otp_expira_em?: Date | string | null
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    pontuacao?: number | null
+    email_enviado?: boolean
+    criado_em?: Date | string
+  }
+
+  export type DiagnosticoParticipanteCreateOrConnectWithoutCampanhaInput = {
+    where: DiagnosticoParticipanteWhereUniqueInput
+    create: XOR<DiagnosticoParticipanteCreateWithoutCampanhaInput, DiagnosticoParticipanteUncheckedCreateWithoutCampanhaInput>
+  }
+
+  export type DiagnosticoParticipanteCreateManyCampanhaInputEnvelope = {
+    data: DiagnosticoParticipanteCreateManyCampanhaInput | DiagnosticoParticipanteCreateManyCampanhaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EmpresaUpsertWithoutCampanhas_diagnosticoInput = {
+    update: XOR<EmpresaUpdateWithoutCampanhas_diagnosticoInput, EmpresaUncheckedUpdateWithoutCampanhas_diagnosticoInput>
+    create: XOR<EmpresaCreateWithoutCampanhas_diagnosticoInput, EmpresaUncheckedCreateWithoutCampanhas_diagnosticoInput>
+    where?: EmpresaWhereInput
+  }
+
+  export type EmpresaUpdateToOneWithWhereWithoutCampanhas_diagnosticoInput = {
+    where?: EmpresaWhereInput
+    data: XOR<EmpresaUpdateWithoutCampanhas_diagnosticoInput, EmpresaUncheckedUpdateWithoutCampanhas_diagnosticoInput>
+  }
+
+  export type EmpresaUpdateWithoutCampanhas_diagnosticoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    logo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
+    status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
+    perfis?: PerfilUpdateManyWithoutEmpresaNestedInput
+    convites?: ConviteEmpresaUpdateManyWithoutEmpresaNestedInput
+    convites_cliente?: ConviteClienteUpdateManyWithoutEmpresaNestedInput
+    clientes?: ClienteUpdateManyWithoutEmpresaNestedInput
+    servicos?: ServicoUpdateManyWithoutEmpresaNestedInput
+    leads?: LeadUpdateManyWithoutEmpresaNestedInput
+    propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
+    contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
+    documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
+    plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
+    contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
+    boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
+    recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
+    contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
+    eventos?: EventoUpdateManyWithoutEmpresaNestedInput
+    registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
+    notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
+    notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
+    diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+  }
+
+  export type EmpresaUncheckedUpdateWithoutCampanhas_diagnosticoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    logo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
+    status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
+    perfis?: PerfilUncheckedUpdateManyWithoutEmpresaNestedInput
+    convites?: ConviteEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
+    convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutEmpresaNestedInput
+    clientes?: ClienteUncheckedUpdateManyWithoutEmpresaNestedInput
+    servicos?: ServicoUncheckedUpdateManyWithoutEmpresaNestedInput
+    leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
+    propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
+    contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
+    contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
+    recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
+    contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
+    registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
+    notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
+    notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+  }
+
+  export type DiagnosticoParticipanteUpsertWithWhereUniqueWithoutCampanhaInput = {
+    where: DiagnosticoParticipanteWhereUniqueInput
+    update: XOR<DiagnosticoParticipanteUpdateWithoutCampanhaInput, DiagnosticoParticipanteUncheckedUpdateWithoutCampanhaInput>
+    create: XOR<DiagnosticoParticipanteCreateWithoutCampanhaInput, DiagnosticoParticipanteUncheckedCreateWithoutCampanhaInput>
+  }
+
+  export type DiagnosticoParticipanteUpdateWithWhereUniqueWithoutCampanhaInput = {
+    where: DiagnosticoParticipanteWhereUniqueInput
+    data: XOR<DiagnosticoParticipanteUpdateWithoutCampanhaInput, DiagnosticoParticipanteUncheckedUpdateWithoutCampanhaInput>
+  }
+
+  export type DiagnosticoParticipanteUpdateManyWithWhereWithoutCampanhaInput = {
+    where: DiagnosticoParticipanteScalarWhereInput
+    data: XOR<DiagnosticoParticipanteUpdateManyMutationInput, DiagnosticoParticipanteUncheckedUpdateManyWithoutCampanhaInput>
+  }
+
+  export type DiagnosticoParticipanteScalarWhereInput = {
+    AND?: DiagnosticoParticipanteScalarWhereInput | DiagnosticoParticipanteScalarWhereInput[]
+    OR?: DiagnosticoParticipanteScalarWhereInput[]
+    NOT?: DiagnosticoParticipanteScalarWhereInput | DiagnosticoParticipanteScalarWhereInput[]
+    id?: StringFilter<"DiagnosticoParticipante"> | string
+    campanha_id?: StringFilter<"DiagnosticoParticipante"> | string
+    lead_id?: StringNullableFilter<"DiagnosticoParticipante"> | string | null
+    nome?: StringFilter<"DiagnosticoParticipante"> | string
+    cpf_cnpj?: StringFilter<"DiagnosticoParticipante"> | string
+    celular?: StringFilter<"DiagnosticoParticipante"> | string
+    email?: StringFilter<"DiagnosticoParticipante"> | string
+    celular_verificado?: BoolFilter<"DiagnosticoParticipante"> | boolean
+    otp_code?: StringNullableFilter<"DiagnosticoParticipante"> | string | null
+    otp_expira_em?: DateTimeNullableFilter<"DiagnosticoParticipante"> | Date | string | null
+    respostas?: JsonNullableFilter<"DiagnosticoParticipante">
+    pontuacao?: IntNullableFilter<"DiagnosticoParticipante"> | number | null
+    email_enviado?: BoolFilter<"DiagnosticoParticipante"> | boolean
+    criado_em?: DateTimeFilter<"DiagnosticoParticipante"> | Date | string
+  }
+
+  export type CampanhaDiagnosticoCreateWithoutParticipantesInput = {
+    id?: string
+    slug: string
+    titulo?: string
+    subtitulo?: string | null
+    video_youtube?: string | null
+    url_checkout?: string | null
+    ativo?: boolean
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutCampanhas_diagnosticoInput
+  }
+
+  export type CampanhaDiagnosticoUncheckedCreateWithoutParticipantesInput = {
+    id?: string
+    empresa_id: string
+    slug: string
+    titulo?: string
+    subtitulo?: string | null
+    video_youtube?: string | null
+    url_checkout?: string | null
+    ativo?: boolean
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type CampanhaDiagnosticoCreateOrConnectWithoutParticipantesInput = {
+    where: CampanhaDiagnosticoWhereUniqueInput
+    create: XOR<CampanhaDiagnosticoCreateWithoutParticipantesInput, CampanhaDiagnosticoUncheckedCreateWithoutParticipantesInput>
+  }
+
+  export type LeadCreateWithoutDiagnostico_participanteInput = {
+    id?: string
+    nome: string
+    empresa_nome?: string | null
+    contato_nome?: string | null
+    email?: string | null
+    telefone?: string | null
+    whatsapp?: string | null
+    etapa_chave?: string
+    valor_estimado?: Decimal | DecimalJsLike | number | string | null
+    probabilidade?: number
+    previsao_fechamento?: Date | string | null
+    proxima_acao?: string | null
+    data_proxima_acao?: Date | string | null
+    origem?: string | null
+    observacoes?: string | null
+    motivo_perda?: string | null
+    tags?: LeadCreatetagsInput | string[]
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutLeadsInput
+    cliente?: ClienteCreateNestedOneWithoutLeadsInput
+    responsavel?: UsuarioCreateNestedOneWithoutLeadsInput
+    servico?: ServicoCreateNestedOneWithoutLeadsInput
+    etapa?: EtapaCrmCreateNestedOneWithoutLeadsInput
+    comentarios?: ComentarioCrmCreateNestedManyWithoutLeadInput
+    propostas?: PropostaCreateNestedManyWithoutLeadInput
+  }
+
+  export type LeadUncheckedCreateWithoutDiagnostico_participanteInput = {
+    id?: string
+    empresa_id: string
+    cliente_id?: string | null
+    responsavel_id?: string | null
+    servico_id?: string | null
+    etapa_id?: string | null
+    nome: string
+    empresa_nome?: string | null
+    contato_nome?: string | null
+    email?: string | null
+    telefone?: string | null
+    whatsapp?: string | null
+    etapa_chave?: string
+    valor_estimado?: Decimal | DecimalJsLike | number | string | null
+    probabilidade?: number
+    previsao_fechamento?: Date | string | null
+    proxima_acao?: string | null
+    data_proxima_acao?: Date | string | null
+    origem?: string | null
+    observacoes?: string | null
+    motivo_perda?: string | null
+    tags?: LeadCreatetagsInput | string[]
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    comentarios?: ComentarioCrmUncheckedCreateNestedManyWithoutLeadInput
+    propostas?: PropostaUncheckedCreateNestedManyWithoutLeadInput
+  }
+
+  export type LeadCreateOrConnectWithoutDiagnostico_participanteInput = {
+    where: LeadWhereUniqueInput
+    create: XOR<LeadCreateWithoutDiagnostico_participanteInput, LeadUncheckedCreateWithoutDiagnostico_participanteInput>
+  }
+
+  export type CampanhaDiagnosticoUpsertWithoutParticipantesInput = {
+    update: XOR<CampanhaDiagnosticoUpdateWithoutParticipantesInput, CampanhaDiagnosticoUncheckedUpdateWithoutParticipantesInput>
+    create: XOR<CampanhaDiagnosticoCreateWithoutParticipantesInput, CampanhaDiagnosticoUncheckedCreateWithoutParticipantesInput>
+    where?: CampanhaDiagnosticoWhereInput
+  }
+
+  export type CampanhaDiagnosticoUpdateToOneWithWhereWithoutParticipantesInput = {
+    where?: CampanhaDiagnosticoWhereInput
+    data: XOR<CampanhaDiagnosticoUpdateWithoutParticipantesInput, CampanhaDiagnosticoUncheckedUpdateWithoutParticipantesInput>
+  }
+
+  export type CampanhaDiagnosticoUpdateWithoutParticipantesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    subtitulo?: NullableStringFieldUpdateOperationsInput | string | null
+    video_youtube?: NullableStringFieldUpdateOperationsInput | string | null
+    url_checkout?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutCampanhas_diagnosticoNestedInput
+  }
+
+  export type CampanhaDiagnosticoUncheckedUpdateWithoutParticipantesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    subtitulo?: NullableStringFieldUpdateOperationsInput | string | null
+    video_youtube?: NullableStringFieldUpdateOperationsInput | string | null
+    url_checkout?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LeadUpsertWithoutDiagnostico_participanteInput = {
+    update: XOR<LeadUpdateWithoutDiagnostico_participanteInput, LeadUncheckedUpdateWithoutDiagnostico_participanteInput>
+    create: XOR<LeadCreateWithoutDiagnostico_participanteInput, LeadUncheckedCreateWithoutDiagnostico_participanteInput>
+    where?: LeadWhereInput
+  }
+
+  export type LeadUpdateToOneWithWhereWithoutDiagnostico_participanteInput = {
+    where?: LeadWhereInput
+    data: XOR<LeadUpdateWithoutDiagnostico_participanteInput, LeadUncheckedUpdateWithoutDiagnostico_participanteInput>
+  }
+
+  export type LeadUpdateWithoutDiagnostico_participanteInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    empresa_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_chave?: StringFieldUpdateOperationsInput | string
+    valor_estimado?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probabilidade?: IntFieldUpdateOperationsInput | number
+    previsao_fechamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    proxima_acao?: NullableStringFieldUpdateOperationsInput | string | null
+    data_proxima_acao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    origem?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    motivo_perda?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: LeadUpdatetagsInput | string[]
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutLeadsNestedInput
+    cliente?: ClienteUpdateOneWithoutLeadsNestedInput
+    responsavel?: UsuarioUpdateOneWithoutLeadsNestedInput
+    servico?: ServicoUpdateOneWithoutLeadsNestedInput
+    etapa?: EtapaCrmUpdateOneWithoutLeadsNestedInput
+    comentarios?: ComentarioCrmUpdateManyWithoutLeadNestedInput
+    propostas?: PropostaUpdateManyWithoutLeadNestedInput
+  }
+
+  export type LeadUncheckedUpdateWithoutDiagnostico_participanteInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    responsavel_id?: NullableStringFieldUpdateOperationsInput | string | null
+    servico_id?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nome?: StringFieldUpdateOperationsInput | string
+    empresa_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    etapa_chave?: StringFieldUpdateOperationsInput | string
+    valor_estimado?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probabilidade?: IntFieldUpdateOperationsInput | number
+    previsao_fechamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    proxima_acao?: NullableStringFieldUpdateOperationsInput | string | null
+    data_proxima_acao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    origem?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    motivo_perda?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: LeadUpdatetagsInput | string[]
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    comentarios?: ComentarioCrmUncheckedUpdateManyWithoutLeadNestedInput
+    propostas?: PropostaUncheckedUpdateManyWithoutLeadNestedInput
   }
 
   export type MembroEmpresaCreateManyEmpresaInput = {
@@ -105353,6 +109484,18 @@ export namespace Prisma {
     criado_em?: Date | string
   }
 
+  export type CampanhaDiagnosticoCreateManyEmpresaInput = {
+    id?: string
+    slug: string
+    titulo?: string
+    subtitulo?: string | null
+    video_youtube?: string | null
+    url_checkout?: string | null
+    ativo?: boolean
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
   export type MembroEmpresaUpdateWithoutEmpresaInput = {
     id?: StringFieldUpdateOperationsInput | string
     ativo?: BoolFieldUpdateOperationsInput | boolean
@@ -105637,6 +109780,7 @@ export namespace Prisma {
     etapa?: EtapaCrmUpdateOneWithoutLeadsNestedInput
     comentarios?: ComentarioCrmUpdateManyWithoutLeadNestedInput
     propostas?: PropostaUpdateManyWithoutLeadNestedInput
+    diagnostico_participante?: DiagnosticoParticipanteUpdateOneWithoutLeadNestedInput
   }
 
   export type LeadUncheckedUpdateWithoutEmpresaInput = {
@@ -105665,6 +109809,7 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     comentarios?: ComentarioCrmUncheckedUpdateManyWithoutLeadNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutLeadNestedInput
+    diagnostico_participante?: DiagnosticoParticipanteUncheckedUpdateOneWithoutLeadNestedInput
   }
 
   export type LeadUncheckedUpdateManyWithoutEmpresaInput = {
@@ -106751,6 +110896,44 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type CampanhaDiagnosticoUpdateWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    subtitulo?: NullableStringFieldUpdateOperationsInput | string | null
+    video_youtube?: NullableStringFieldUpdateOperationsInput | string | null
+    url_checkout?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    participantes?: DiagnosticoParticipanteUpdateManyWithoutCampanhaNestedInput
+  }
+
+  export type CampanhaDiagnosticoUncheckedUpdateWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    subtitulo?: NullableStringFieldUpdateOperationsInput | string | null
+    video_youtube?: NullableStringFieldUpdateOperationsInput | string | null
+    url_checkout?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    participantes?: DiagnosticoParticipanteUncheckedUpdateManyWithoutCampanhaNestedInput
+  }
+
+  export type CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    subtitulo?: NullableStringFieldUpdateOperationsInput | string | null
+    video_youtube?: NullableStringFieldUpdateOperationsInput | string | null
+    url_checkout?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type MembroEmpresaCreateManyUsuarioInput = {
     id?: string
     empresa_id: string
@@ -107196,6 +111379,7 @@ export namespace Prisma {
     etapa?: EtapaCrmUpdateOneWithoutLeadsNestedInput
     comentarios?: ComentarioCrmUpdateManyWithoutLeadNestedInput
     propostas?: PropostaUpdateManyWithoutLeadNestedInput
+    diagnostico_participante?: DiagnosticoParticipanteUpdateOneWithoutLeadNestedInput
   }
 
   export type LeadUncheckedUpdateWithoutResponsavelInput = {
@@ -107224,6 +111408,7 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     comentarios?: ComentarioCrmUncheckedUpdateManyWithoutLeadNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutLeadNestedInput
+    diagnostico_participante?: DiagnosticoParticipanteUncheckedUpdateOneWithoutLeadNestedInput
   }
 
   export type LeadUncheckedUpdateManyWithoutResponsavelInput = {
@@ -108649,6 +112834,7 @@ export namespace Prisma {
     etapa?: EtapaCrmUpdateOneWithoutLeadsNestedInput
     comentarios?: ComentarioCrmUpdateManyWithoutLeadNestedInput
     propostas?: PropostaUpdateManyWithoutLeadNestedInput
+    diagnostico_participante?: DiagnosticoParticipanteUpdateOneWithoutLeadNestedInput
   }
 
   export type LeadUncheckedUpdateWithoutClienteInput = {
@@ -108677,6 +112863,7 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     comentarios?: ComentarioCrmUncheckedUpdateManyWithoutLeadNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutLeadNestedInput
+    diagnostico_participante?: DiagnosticoParticipanteUncheckedUpdateOneWithoutLeadNestedInput
   }
 
   export type LeadUncheckedUpdateManyWithoutClienteInput = {
@@ -109519,6 +113706,7 @@ export namespace Prisma {
     etapa?: EtapaCrmUpdateOneWithoutLeadsNestedInput
     comentarios?: ComentarioCrmUpdateManyWithoutLeadNestedInput
     propostas?: PropostaUpdateManyWithoutLeadNestedInput
+    diagnostico_participante?: DiagnosticoParticipanteUpdateOneWithoutLeadNestedInput
   }
 
   export type LeadUncheckedUpdateWithoutServicoInput = {
@@ -109547,6 +113735,7 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     comentarios?: ComentarioCrmUncheckedUpdateManyWithoutLeadNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutLeadNestedInput
+    diagnostico_participante?: DiagnosticoParticipanteUncheckedUpdateOneWithoutLeadNestedInput
   }
 
   export type LeadUncheckedUpdateManyWithoutServicoInput = {
@@ -109627,6 +113816,7 @@ export namespace Prisma {
     servico?: ServicoUpdateOneWithoutLeadsNestedInput
     comentarios?: ComentarioCrmUpdateManyWithoutLeadNestedInput
     propostas?: PropostaUpdateManyWithoutLeadNestedInput
+    diagnostico_participante?: DiagnosticoParticipanteUpdateOneWithoutLeadNestedInput
   }
 
   export type LeadUncheckedUpdateWithoutEtapaInput = {
@@ -109655,6 +113845,7 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     comentarios?: ComentarioCrmUncheckedUpdateManyWithoutLeadNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutLeadNestedInput
+    diagnostico_participante?: DiagnosticoParticipanteUncheckedUpdateOneWithoutLeadNestedInput
   }
 
   export type LeadUncheckedUpdateManyWithoutEtapaInput = {
@@ -111632,6 +115823,70 @@ export namespace Prisma {
     valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     data?: DateTimeFieldUpdateOperationsInput | Date | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DiagnosticoParticipanteCreateManyCampanhaInput = {
+    id?: string
+    lead_id?: string | null
+    nome: string
+    cpf_cnpj: string
+    celular: string
+    email: string
+    celular_verificado?: boolean
+    otp_code?: string | null
+    otp_expira_em?: Date | string | null
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    pontuacao?: number | null
+    email_enviado?: boolean
+    criado_em?: Date | string
+  }
+
+  export type DiagnosticoParticipanteUpdateWithoutCampanhaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cpf_cnpj?: StringFieldUpdateOperationsInput | string
+    celular?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    celular_verificado?: BoolFieldUpdateOperationsInput | boolean
+    otp_code?: NullableStringFieldUpdateOperationsInput | string | null
+    otp_expira_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    pontuacao?: NullableIntFieldUpdateOperationsInput | number | null
+    email_enviado?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    lead?: LeadUpdateOneWithoutDiagnostico_participanteNestedInput
+  }
+
+  export type DiagnosticoParticipanteUncheckedUpdateWithoutCampanhaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    lead_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nome?: StringFieldUpdateOperationsInput | string
+    cpf_cnpj?: StringFieldUpdateOperationsInput | string
+    celular?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    celular_verificado?: BoolFieldUpdateOperationsInput | boolean
+    otp_code?: NullableStringFieldUpdateOperationsInput | string | null
+    otp_expira_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    pontuacao?: NullableIntFieldUpdateOperationsInput | number | null
+    email_enviado?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DiagnosticoParticipanteUncheckedUpdateManyWithoutCampanhaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    lead_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nome?: StringFieldUpdateOperationsInput | string
+    cpf_cnpj?: StringFieldUpdateOperationsInput | string
+    celular?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    celular_verificado?: BoolFieldUpdateOperationsInput | boolean
+    otp_code?: NullableStringFieldUpdateOperationsInput | string | null
+    otp_expira_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    respostas?: NullableJsonNullValueInput | InputJsonValue
+    pontuacao?: NullableIntFieldUpdateOperationsInput | number | null
+    email_enviado?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

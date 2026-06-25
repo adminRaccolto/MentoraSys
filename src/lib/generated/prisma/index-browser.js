@@ -755,6 +755,36 @@ exports.Prisma.AplicacaoDiagnosticoScalarFieldEnum = {
   atualizado_em: 'atualizado_em'
 };
 
+exports.Prisma.CampanhaDiagnosticoScalarFieldEnum = {
+  id: 'id',
+  empresa_id: 'empresa_id',
+  slug: 'slug',
+  titulo: 'titulo',
+  subtitulo: 'subtitulo',
+  video_youtube: 'video_youtube',
+  url_checkout: 'url_checkout',
+  ativo: 'ativo',
+  criado_em: 'criado_em',
+  atualizado_em: 'atualizado_em'
+};
+
+exports.Prisma.DiagnosticoParticipanteScalarFieldEnum = {
+  id: 'id',
+  campanha_id: 'campanha_id',
+  lead_id: 'lead_id',
+  nome: 'nome',
+  cpf_cnpj: 'cpf_cnpj',
+  celular: 'celular',
+  email: 'email',
+  celular_verificado: 'celular_verificado',
+  otp_code: 'otp_code',
+  otp_expira_em: 'otp_expira_em',
+  respostas: 'respostas',
+  pontuacao: 'pontuacao',
+  email_enviado: 'email_enviado',
+  criado_em: 'criado_em'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -979,7 +1009,9 @@ exports.Prisma.ModelName = {
   Boleto: 'Boleto',
   Diagnostico: 'Diagnostico',
   TokenPortal: 'TokenPortal',
-  AplicacaoDiagnostico: 'AplicacaoDiagnostico'
+  AplicacaoDiagnostico: 'AplicacaoDiagnostico',
+  CampanhaDiagnostico: 'CampanhaDiagnostico',
+  DiagnosticoParticipante: 'DiagnosticoParticipante'
 };
 
 /**
