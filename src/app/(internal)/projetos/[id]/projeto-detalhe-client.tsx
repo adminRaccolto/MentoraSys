@@ -24,6 +24,7 @@ import { gerarLinkPortal } from "@/actions/portal";
 import TarefaModal, { type TarefaCompleta } from "@/components/tarefa-modal";
 import ProjetoKanban from "@/components/projeto-kanban";
 import DiagnosticoColetaAba from "@/components/diagnostico-coleta-aba";
+import ImportarTarefasModal from "@/components/importar-tarefas-modal";
 
 type StatusProjeto = "PLANEJAMENTO" | "EM_ANDAMENTO" | "CONCLUIDO" | "CANCELADO";
 type StatusEtapa = "PENDENTE" | "EM_ANDAMENTO" | "CONCLUIDA" | "CANCELADA";
@@ -101,6 +102,9 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros, usuari
   // modal de tarefa
   const [tarefaModal, setTarefaModal] = useState<TarefaCompleta | null>(null);
   const [carregandoTarefa, setCarregandoTarefa] = useState<string | null>(null);
+
+  // modal de importação
+  const [importarAberto, setImportarAberto] = useState(false);
 
   const abrirTarefa = async (tarefaId: string) => {
     setCarregandoTarefa(tarefaId);
@@ -415,6 +419,11 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros, usuari
         {/* ── Tab Lista ── */}
         <TabsContent value="etapas" className="flex-1 overflow-auto mt-0 p-6 data-[state=inactive]:hidden">
           <div className="max-w-3xl space-y-3">
+          <div className="flex justify-end mb-1">
+            <Button size="sm" variant="outline" onClick={() => setImportarAberto(true)}>
+              <Upload className="size-4 mr-1.5" /> Importar tarefas
+            </Button>
+          </div>
           {projeto.etapas.map((etapa) => {
             const aberta = etapasAbertas.has(etapa.id);
             const concluidas = etapa.tarefas.filter((t) => t.status === "CONCLUIDA").length;
@@ -677,6 +686,23 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros, usuari
           onUpdate={atualizarTarefaNaLista}
         />
       )}
+      <ImportarTarefasModal
+        aberto={importarAberto}
+        onFechar={() => setImportarAberto(false)}
+        projetoId={projeto.id}
+        etapas={projeto.etapas.map((e) => ({ id: e.id, titulo: e.titulo }))}
+        membros={membros}
+        onImportado={(novasTarefas) => {
+          setProjeto((p) => ({
+            ...p,
+            etapas: p.etapas.map((e) => {
+              const doEtapa = novasTarefas.filter((t) => t.etapaId === e.id);
+              if (doEtapa.length === 0) return e;
+              return { ...e, tarefas: [...e.tarefas, ...doEtapa] as Tarefa[] };
+            }),
+          }));
+        }}
+      />
     </Tabs>
   );
 }
