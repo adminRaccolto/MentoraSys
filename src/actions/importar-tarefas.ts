@@ -85,8 +85,8 @@ export async function importarTarefas(projetoId: string, tarefas: TarefaImportad
     etapaIdFinal: t.etapaId ?? nomeMapa.get(t.etapaNome?.trim().toLowerCase() ?? "") ?? etapasCriadas[0]?.id ?? "",
   }));
 
-  // ── Cria tarefas em batch ────────────────────────────────────────────────────
-  const criadas = await prisma.$transaction(
+  // ── Cria tarefas em batch paralelo (sem $transaction para evitar timeout) ───
+  const criadas = await Promise.all(
     tarefasResolvidas.map((t) =>
       prisma.tarefa.create({
         data: {
