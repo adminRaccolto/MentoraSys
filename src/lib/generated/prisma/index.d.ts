@@ -119,6 +119,11 @@ export type Etapa = $Result.DefaultSelection<Prisma.$EtapaPayload>
  */
 export type Tarefa = $Result.DefaultSelection<Prisma.$TarefaPayload>
 /**
+ * Model TarefaResponsavel
+ * 
+ */
+export type TarefaResponsavel = $Result.DefaultSelection<Prisma.$TarefaResponsavelPayload>
+/**
  * Model ComentarioTarefa
  * 
  */
@@ -883,6 +888,16 @@ export class PrismaClient<
   get tarefa(): Prisma.TarefaDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.tarefaResponsavel`: Exposes CRUD operations for the **TarefaResponsavel** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TarefaResponsavels
+    * const tarefaResponsavels = await prisma.tarefaResponsavel.findMany()
+    * ```
+    */
+  get tarefaResponsavel(): Prisma.TarefaResponsavelDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.comentarioTarefa`: Exposes CRUD operations for the **ComentarioTarefa** model.
     * Example usage:
     * ```ts
@@ -1596,6 +1611,7 @@ export namespace Prisma {
     Projeto: 'Projeto',
     Etapa: 'Etapa',
     Tarefa: 'Tarefa',
+    TarefaResponsavel: 'TarefaResponsavel',
     ComentarioTarefa: 'ComentarioTarefa',
     AnexoTarefa: 'AnexoTarefa',
     AtividadeTarefa: 'AtividadeTarefa',
@@ -1637,7 +1653,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "etapaCrm" | "comentarioCrm" | "lead" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "projeto" | "etapa" | "tarefa" | "comentarioTarefa" | "anexoTarefa" | "atividadeTarefa" | "aprovacaoTarefa" | "itemChecklist" | "etiquetaTarefa" | "tarefaEtiqueta" | "pastaDocumento" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "recebivel" | "contaPagar" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "boleto" | "diagnostico" | "tokenPortal" | "aplicacaoDiagnostico" | "campanhaDiagnostico" | "diagnosticoParticipante"
+      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "etapaCrm" | "comentarioCrm" | "lead" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "projeto" | "etapa" | "tarefa" | "tarefaResponsavel" | "comentarioTarefa" | "anexoTarefa" | "atividadeTarefa" | "aprovacaoTarefa" | "itemChecklist" | "etiquetaTarefa" | "tarefaEtiqueta" | "pastaDocumento" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "recebivel" | "contaPagar" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "boleto" | "diagnostico" | "tokenPortal" | "aplicacaoDiagnostico" | "campanhaDiagnostico" | "diagnosticoParticipante"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3192,6 +3208,80 @@ export namespace Prisma {
           count: {
             args: Prisma.TarefaCountArgs<ExtArgs>
             result: $Utils.Optional<TarefaCountAggregateOutputType> | number
+          }
+        }
+      }
+      TarefaResponsavel: {
+        payload: Prisma.$TarefaResponsavelPayload<ExtArgs>
+        fields: Prisma.TarefaResponsavelFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TarefaResponsavelFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaResponsavelPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TarefaResponsavelFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaResponsavelPayload>
+          }
+          findFirst: {
+            args: Prisma.TarefaResponsavelFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaResponsavelPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TarefaResponsavelFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaResponsavelPayload>
+          }
+          findMany: {
+            args: Prisma.TarefaResponsavelFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaResponsavelPayload>[]
+          }
+          create: {
+            args: Prisma.TarefaResponsavelCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaResponsavelPayload>
+          }
+          createMany: {
+            args: Prisma.TarefaResponsavelCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TarefaResponsavelCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaResponsavelPayload>[]
+          }
+          delete: {
+            args: Prisma.TarefaResponsavelDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaResponsavelPayload>
+          }
+          update: {
+            args: Prisma.TarefaResponsavelUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaResponsavelPayload>
+          }
+          deleteMany: {
+            args: Prisma.TarefaResponsavelDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TarefaResponsavelUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TarefaResponsavelUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaResponsavelPayload>[]
+          }
+          upsert: {
+            args: Prisma.TarefaResponsavelUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TarefaResponsavelPayload>
+          }
+          aggregate: {
+            args: Prisma.TarefaResponsavelAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTarefaResponsavel>
+          }
+          groupBy: {
+            args: Prisma.TarefaResponsavelGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TarefaResponsavelGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TarefaResponsavelCountArgs<ExtArgs>
+            result: $Utils.Optional<TarefaResponsavelCountAggregateOutputType> | number
           }
         }
       }
@@ -5248,6 +5338,7 @@ export namespace Prisma {
     projeto?: ProjetoOmit
     etapa?: EtapaOmit
     tarefa?: TarefaOmit
+    tarefaResponsavel?: TarefaResponsavelOmit
     comentarioTarefa?: ComentarioTarefaOmit
     anexoTarefa?: AnexoTarefaOmit
     atividadeTarefa?: AtividadeTarefaOmit
@@ -5648,6 +5739,7 @@ export namespace Prisma {
     atividades_tarefa: number
     aprovacoes_solicitadas: number
     aprovacoes_recebidas: number
+    tarefas_responsavel: number
   }
 
   export type UsuarioCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5671,6 +5763,7 @@ export namespace Prisma {
     atividades_tarefa?: boolean | UsuarioCountOutputTypeCountAtividades_tarefaArgs
     aprovacoes_solicitadas?: boolean | UsuarioCountOutputTypeCountAprovacoes_solicitadasArgs
     aprovacoes_recebidas?: boolean | UsuarioCountOutputTypeCountAprovacoes_recebidasArgs
+    tarefas_responsavel?: boolean | UsuarioCountOutputTypeCountTarefas_responsavelArgs
   }
 
   // Custom InputTypes
@@ -5822,6 +5915,13 @@ export namespace Prisma {
    */
   export type UsuarioCountOutputTypeCountAprovacoes_recebidasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AprovacaoTarefaWhereInput
+  }
+
+  /**
+   * UsuarioCountOutputType without action
+   */
+  export type UsuarioCountOutputTypeCountTarefas_responsavelArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TarefaResponsavelWhereInput
   }
 
 
@@ -6362,6 +6462,7 @@ export namespace Prisma {
     aprovacoes: number
     checklist: number
     etiquetas: number
+    responsaveis: number
   }
 
   export type TarefaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6371,6 +6472,7 @@ export namespace Prisma {
     aprovacoes?: boolean | TarefaCountOutputTypeCountAprovacoesArgs
     checklist?: boolean | TarefaCountOutputTypeCountChecklistArgs
     etiquetas?: boolean | TarefaCountOutputTypeCountEtiquetasArgs
+    responsaveis?: boolean | TarefaCountOutputTypeCountResponsaveisArgs
   }
 
   // Custom InputTypes
@@ -6424,6 +6526,13 @@ export namespace Prisma {
    */
   export type TarefaCountOutputTypeCountEtiquetasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TarefaEtiquetaWhereInput
+  }
+
+  /**
+   * TarefaCountOutputType without action
+   */
+  export type TarefaCountOutputTypeCountResponsaveisArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TarefaResponsavelWhereInput
   }
 
 
@@ -8764,6 +8873,7 @@ export namespace Prisma {
     atividades_tarefa?: boolean | Usuario$atividades_tarefaArgs<ExtArgs>
     aprovacoes_solicitadas?: boolean | Usuario$aprovacoes_solicitadasArgs<ExtArgs>
     aprovacoes_recebidas?: boolean | Usuario$aprovacoes_recebidasArgs<ExtArgs>
+    tarefas_responsavel?: boolean | Usuario$tarefas_responsavelArgs<ExtArgs>
     _count?: boolean | UsuarioCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["usuario"]>
 
@@ -8816,6 +8926,7 @@ export namespace Prisma {
     atividades_tarefa?: boolean | Usuario$atividades_tarefaArgs<ExtArgs>
     aprovacoes_solicitadas?: boolean | Usuario$aprovacoes_solicitadasArgs<ExtArgs>
     aprovacoes_recebidas?: boolean | Usuario$aprovacoes_recebidasArgs<ExtArgs>
+    tarefas_responsavel?: boolean | Usuario$tarefas_responsavelArgs<ExtArgs>
     _count?: boolean | UsuarioCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UsuarioIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -8844,6 +8955,7 @@ export namespace Prisma {
       atividades_tarefa: Prisma.$AtividadeTarefaPayload<ExtArgs>[]
       aprovacoes_solicitadas: Prisma.$AprovacaoTarefaPayload<ExtArgs>[]
       aprovacoes_recebidas: Prisma.$AprovacaoTarefaPayload<ExtArgs>[]
+      tarefas_responsavel: Prisma.$TarefaResponsavelPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -9266,6 +9378,7 @@ export namespace Prisma {
     atividades_tarefa<T extends Usuario$atividades_tarefaArgs<ExtArgs> = {}>(args?: Subset<T, Usuario$atividades_tarefaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AtividadeTarefaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     aprovacoes_solicitadas<T extends Usuario$aprovacoes_solicitadasArgs<ExtArgs> = {}>(args?: Subset<T, Usuario$aprovacoes_solicitadasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AprovacaoTarefaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     aprovacoes_recebidas<T extends Usuario$aprovacoes_recebidasArgs<ExtArgs> = {}>(args?: Subset<T, Usuario$aprovacoes_recebidasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AprovacaoTarefaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    tarefas_responsavel<T extends Usuario$tarefas_responsavelArgs<ExtArgs> = {}>(args?: Subset<T, Usuario$tarefas_responsavelArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TarefaResponsavelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10171,6 +10284,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AprovacaoTarefaScalarFieldEnum | AprovacaoTarefaScalarFieldEnum[]
+  }
+
+  /**
+   * Usuario.tarefas_responsavel
+   */
+  export type Usuario$tarefas_responsavelArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TarefaResponsavel
+     */
+    select?: TarefaResponsavelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TarefaResponsavel
+     */
+    omit?: TarefaResponsavelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaResponsavelInclude<ExtArgs> | null
+    where?: TarefaResponsavelWhereInput
+    orderBy?: TarefaResponsavelOrderByWithRelationInput | TarefaResponsavelOrderByWithRelationInput[]
+    cursor?: TarefaResponsavelWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TarefaResponsavelScalarFieldEnum | TarefaResponsavelScalarFieldEnum[]
   }
 
   /**
@@ -33239,6 +33376,7 @@ export namespace Prisma {
     aprovacoes?: boolean | Tarefa$aprovacoesArgs<ExtArgs>
     checklist?: boolean | Tarefa$checklistArgs<ExtArgs>
     etiquetas?: boolean | Tarefa$etiquetasArgs<ExtArgs>
+    responsaveis?: boolean | Tarefa$responsaveisArgs<ExtArgs>
     _count?: boolean | TarefaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["tarefa"]>
 
@@ -33307,6 +33445,7 @@ export namespace Prisma {
     aprovacoes?: boolean | Tarefa$aprovacoesArgs<ExtArgs>
     checklist?: boolean | Tarefa$checklistArgs<ExtArgs>
     etiquetas?: boolean | Tarefa$etiquetasArgs<ExtArgs>
+    responsaveis?: boolean | Tarefa$responsaveisArgs<ExtArgs>
     _count?: boolean | TarefaCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type TarefaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -33332,6 +33471,7 @@ export namespace Prisma {
       aprovacoes: Prisma.$AprovacaoTarefaPayload<ExtArgs>[]
       checklist: Prisma.$ItemChecklistPayload<ExtArgs>[]
       etiquetas: Prisma.$TarefaEtiquetaPayload<ExtArgs>[]
+      responsaveis: Prisma.$TarefaResponsavelPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -33750,6 +33890,7 @@ export namespace Prisma {
     aprovacoes<T extends Tarefa$aprovacoesArgs<ExtArgs> = {}>(args?: Subset<T, Tarefa$aprovacoesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AprovacaoTarefaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     checklist<T extends Tarefa$checklistArgs<ExtArgs> = {}>(args?: Subset<T, Tarefa$checklistArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItemChecklistPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     etiquetas<T extends Tarefa$etiquetasArgs<ExtArgs> = {}>(args?: Subset<T, Tarefa$etiquetasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TarefaEtiquetaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    responsaveis<T extends Tarefa$responsaveisArgs<ExtArgs> = {}>(args?: Subset<T, Tarefa$responsaveisArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TarefaResponsavelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -34356,6 +34497,30 @@ export namespace Prisma {
   }
 
   /**
+   * Tarefa.responsaveis
+   */
+  export type Tarefa$responsaveisArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TarefaResponsavel
+     */
+    select?: TarefaResponsavelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TarefaResponsavel
+     */
+    omit?: TarefaResponsavelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaResponsavelInclude<ExtArgs> | null
+    where?: TarefaResponsavelWhereInput
+    orderBy?: TarefaResponsavelOrderByWithRelationInput | TarefaResponsavelOrderByWithRelationInput[]
+    cursor?: TarefaResponsavelWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TarefaResponsavelScalarFieldEnum | TarefaResponsavelScalarFieldEnum[]
+  }
+
+  /**
    * Tarefa without action
    */
   export type TarefaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -34371,6 +34536,1038 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: TarefaInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TarefaResponsavel
+   */
+
+  export type AggregateTarefaResponsavel = {
+    _count: TarefaResponsavelCountAggregateOutputType | null
+    _min: TarefaResponsavelMinAggregateOutputType | null
+    _max: TarefaResponsavelMaxAggregateOutputType | null
+  }
+
+  export type TarefaResponsavelMinAggregateOutputType = {
+    tarefa_id: string | null
+    usuario_id: string | null
+  }
+
+  export type TarefaResponsavelMaxAggregateOutputType = {
+    tarefa_id: string | null
+    usuario_id: string | null
+  }
+
+  export type TarefaResponsavelCountAggregateOutputType = {
+    tarefa_id: number
+    usuario_id: number
+    _all: number
+  }
+
+
+  export type TarefaResponsavelMinAggregateInputType = {
+    tarefa_id?: true
+    usuario_id?: true
+  }
+
+  export type TarefaResponsavelMaxAggregateInputType = {
+    tarefa_id?: true
+    usuario_id?: true
+  }
+
+  export type TarefaResponsavelCountAggregateInputType = {
+    tarefa_id?: true
+    usuario_id?: true
+    _all?: true
+  }
+
+  export type TarefaResponsavelAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TarefaResponsavel to aggregate.
+     */
+    where?: TarefaResponsavelWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TarefaResponsavels to fetch.
+     */
+    orderBy?: TarefaResponsavelOrderByWithRelationInput | TarefaResponsavelOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TarefaResponsavelWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TarefaResponsavels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TarefaResponsavels.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TarefaResponsavels
+    **/
+    _count?: true | TarefaResponsavelCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TarefaResponsavelMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TarefaResponsavelMaxAggregateInputType
+  }
+
+  export type GetTarefaResponsavelAggregateType<T extends TarefaResponsavelAggregateArgs> = {
+        [P in keyof T & keyof AggregateTarefaResponsavel]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTarefaResponsavel[P]>
+      : GetScalarType<T[P], AggregateTarefaResponsavel[P]>
+  }
+
+
+
+
+  export type TarefaResponsavelGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TarefaResponsavelWhereInput
+    orderBy?: TarefaResponsavelOrderByWithAggregationInput | TarefaResponsavelOrderByWithAggregationInput[]
+    by: TarefaResponsavelScalarFieldEnum[] | TarefaResponsavelScalarFieldEnum
+    having?: TarefaResponsavelScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TarefaResponsavelCountAggregateInputType | true
+    _min?: TarefaResponsavelMinAggregateInputType
+    _max?: TarefaResponsavelMaxAggregateInputType
+  }
+
+  export type TarefaResponsavelGroupByOutputType = {
+    tarefa_id: string
+    usuario_id: string
+    _count: TarefaResponsavelCountAggregateOutputType | null
+    _min: TarefaResponsavelMinAggregateOutputType | null
+    _max: TarefaResponsavelMaxAggregateOutputType | null
+  }
+
+  type GetTarefaResponsavelGroupByPayload<T extends TarefaResponsavelGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TarefaResponsavelGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TarefaResponsavelGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TarefaResponsavelGroupByOutputType[P]>
+            : GetScalarType<T[P], TarefaResponsavelGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TarefaResponsavelSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    tarefa_id?: boolean
+    usuario_id?: boolean
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tarefaResponsavel"]>
+
+  export type TarefaResponsavelSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    tarefa_id?: boolean
+    usuario_id?: boolean
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tarefaResponsavel"]>
+
+  export type TarefaResponsavelSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    tarefa_id?: boolean
+    usuario_id?: boolean
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tarefaResponsavel"]>
+
+  export type TarefaResponsavelSelectScalar = {
+    tarefa_id?: boolean
+    usuario_id?: boolean
+  }
+
+  export type TarefaResponsavelOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"tarefa_id" | "usuario_id", ExtArgs["result"]["tarefaResponsavel"]>
+  export type TarefaResponsavelInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
+  }
+  export type TarefaResponsavelIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
+  }
+  export type TarefaResponsavelIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tarefa?: boolean | TarefaDefaultArgs<ExtArgs>
+    usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
+  }
+
+  export type $TarefaResponsavelPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TarefaResponsavel"
+    objects: {
+      tarefa: Prisma.$TarefaPayload<ExtArgs>
+      usuario: Prisma.$UsuarioPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      tarefa_id: string
+      usuario_id: string
+    }, ExtArgs["result"]["tarefaResponsavel"]>
+    composites: {}
+  }
+
+  type TarefaResponsavelGetPayload<S extends boolean | null | undefined | TarefaResponsavelDefaultArgs> = $Result.GetResult<Prisma.$TarefaResponsavelPayload, S>
+
+  type TarefaResponsavelCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TarefaResponsavelFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TarefaResponsavelCountAggregateInputType | true
+    }
+
+  export interface TarefaResponsavelDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TarefaResponsavel'], meta: { name: 'TarefaResponsavel' } }
+    /**
+     * Find zero or one TarefaResponsavel that matches the filter.
+     * @param {TarefaResponsavelFindUniqueArgs} args - Arguments to find a TarefaResponsavel
+     * @example
+     * // Get one TarefaResponsavel
+     * const tarefaResponsavel = await prisma.tarefaResponsavel.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TarefaResponsavelFindUniqueArgs>(args: SelectSubset<T, TarefaResponsavelFindUniqueArgs<ExtArgs>>): Prisma__TarefaResponsavelClient<$Result.GetResult<Prisma.$TarefaResponsavelPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TarefaResponsavel that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TarefaResponsavelFindUniqueOrThrowArgs} args - Arguments to find a TarefaResponsavel
+     * @example
+     * // Get one TarefaResponsavel
+     * const tarefaResponsavel = await prisma.tarefaResponsavel.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TarefaResponsavelFindUniqueOrThrowArgs>(args: SelectSubset<T, TarefaResponsavelFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TarefaResponsavelClient<$Result.GetResult<Prisma.$TarefaResponsavelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TarefaResponsavel that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TarefaResponsavelFindFirstArgs} args - Arguments to find a TarefaResponsavel
+     * @example
+     * // Get one TarefaResponsavel
+     * const tarefaResponsavel = await prisma.tarefaResponsavel.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TarefaResponsavelFindFirstArgs>(args?: SelectSubset<T, TarefaResponsavelFindFirstArgs<ExtArgs>>): Prisma__TarefaResponsavelClient<$Result.GetResult<Prisma.$TarefaResponsavelPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TarefaResponsavel that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TarefaResponsavelFindFirstOrThrowArgs} args - Arguments to find a TarefaResponsavel
+     * @example
+     * // Get one TarefaResponsavel
+     * const tarefaResponsavel = await prisma.tarefaResponsavel.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TarefaResponsavelFindFirstOrThrowArgs>(args?: SelectSubset<T, TarefaResponsavelFindFirstOrThrowArgs<ExtArgs>>): Prisma__TarefaResponsavelClient<$Result.GetResult<Prisma.$TarefaResponsavelPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TarefaResponsavels that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TarefaResponsavelFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TarefaResponsavels
+     * const tarefaResponsavels = await prisma.tarefaResponsavel.findMany()
+     * 
+     * // Get first 10 TarefaResponsavels
+     * const tarefaResponsavels = await prisma.tarefaResponsavel.findMany({ take: 10 })
+     * 
+     * // Only select the `tarefa_id`
+     * const tarefaResponsavelWithTarefa_idOnly = await prisma.tarefaResponsavel.findMany({ select: { tarefa_id: true } })
+     * 
+     */
+    findMany<T extends TarefaResponsavelFindManyArgs>(args?: SelectSubset<T, TarefaResponsavelFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TarefaResponsavelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TarefaResponsavel.
+     * @param {TarefaResponsavelCreateArgs} args - Arguments to create a TarefaResponsavel.
+     * @example
+     * // Create one TarefaResponsavel
+     * const TarefaResponsavel = await prisma.tarefaResponsavel.create({
+     *   data: {
+     *     // ... data to create a TarefaResponsavel
+     *   }
+     * })
+     * 
+     */
+    create<T extends TarefaResponsavelCreateArgs>(args: SelectSubset<T, TarefaResponsavelCreateArgs<ExtArgs>>): Prisma__TarefaResponsavelClient<$Result.GetResult<Prisma.$TarefaResponsavelPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TarefaResponsavels.
+     * @param {TarefaResponsavelCreateManyArgs} args - Arguments to create many TarefaResponsavels.
+     * @example
+     * // Create many TarefaResponsavels
+     * const tarefaResponsavel = await prisma.tarefaResponsavel.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TarefaResponsavelCreateManyArgs>(args?: SelectSubset<T, TarefaResponsavelCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TarefaResponsavels and returns the data saved in the database.
+     * @param {TarefaResponsavelCreateManyAndReturnArgs} args - Arguments to create many TarefaResponsavels.
+     * @example
+     * // Create many TarefaResponsavels
+     * const tarefaResponsavel = await prisma.tarefaResponsavel.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TarefaResponsavels and only return the `tarefa_id`
+     * const tarefaResponsavelWithTarefa_idOnly = await prisma.tarefaResponsavel.createManyAndReturn({
+     *   select: { tarefa_id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TarefaResponsavelCreateManyAndReturnArgs>(args?: SelectSubset<T, TarefaResponsavelCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TarefaResponsavelPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TarefaResponsavel.
+     * @param {TarefaResponsavelDeleteArgs} args - Arguments to delete one TarefaResponsavel.
+     * @example
+     * // Delete one TarefaResponsavel
+     * const TarefaResponsavel = await prisma.tarefaResponsavel.delete({
+     *   where: {
+     *     // ... filter to delete one TarefaResponsavel
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TarefaResponsavelDeleteArgs>(args: SelectSubset<T, TarefaResponsavelDeleteArgs<ExtArgs>>): Prisma__TarefaResponsavelClient<$Result.GetResult<Prisma.$TarefaResponsavelPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TarefaResponsavel.
+     * @param {TarefaResponsavelUpdateArgs} args - Arguments to update one TarefaResponsavel.
+     * @example
+     * // Update one TarefaResponsavel
+     * const tarefaResponsavel = await prisma.tarefaResponsavel.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TarefaResponsavelUpdateArgs>(args: SelectSubset<T, TarefaResponsavelUpdateArgs<ExtArgs>>): Prisma__TarefaResponsavelClient<$Result.GetResult<Prisma.$TarefaResponsavelPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TarefaResponsavels.
+     * @param {TarefaResponsavelDeleteManyArgs} args - Arguments to filter TarefaResponsavels to delete.
+     * @example
+     * // Delete a few TarefaResponsavels
+     * const { count } = await prisma.tarefaResponsavel.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TarefaResponsavelDeleteManyArgs>(args?: SelectSubset<T, TarefaResponsavelDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TarefaResponsavels.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TarefaResponsavelUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TarefaResponsavels
+     * const tarefaResponsavel = await prisma.tarefaResponsavel.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TarefaResponsavelUpdateManyArgs>(args: SelectSubset<T, TarefaResponsavelUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TarefaResponsavels and returns the data updated in the database.
+     * @param {TarefaResponsavelUpdateManyAndReturnArgs} args - Arguments to update many TarefaResponsavels.
+     * @example
+     * // Update many TarefaResponsavels
+     * const tarefaResponsavel = await prisma.tarefaResponsavel.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TarefaResponsavels and only return the `tarefa_id`
+     * const tarefaResponsavelWithTarefa_idOnly = await prisma.tarefaResponsavel.updateManyAndReturn({
+     *   select: { tarefa_id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TarefaResponsavelUpdateManyAndReturnArgs>(args: SelectSubset<T, TarefaResponsavelUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TarefaResponsavelPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TarefaResponsavel.
+     * @param {TarefaResponsavelUpsertArgs} args - Arguments to update or create a TarefaResponsavel.
+     * @example
+     * // Update or create a TarefaResponsavel
+     * const tarefaResponsavel = await prisma.tarefaResponsavel.upsert({
+     *   create: {
+     *     // ... data to create a TarefaResponsavel
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TarefaResponsavel we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TarefaResponsavelUpsertArgs>(args: SelectSubset<T, TarefaResponsavelUpsertArgs<ExtArgs>>): Prisma__TarefaResponsavelClient<$Result.GetResult<Prisma.$TarefaResponsavelPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TarefaResponsavels.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TarefaResponsavelCountArgs} args - Arguments to filter TarefaResponsavels to count.
+     * @example
+     * // Count the number of TarefaResponsavels
+     * const count = await prisma.tarefaResponsavel.count({
+     *   where: {
+     *     // ... the filter for the TarefaResponsavels we want to count
+     *   }
+     * })
+    **/
+    count<T extends TarefaResponsavelCountArgs>(
+      args?: Subset<T, TarefaResponsavelCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TarefaResponsavelCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TarefaResponsavel.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TarefaResponsavelAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TarefaResponsavelAggregateArgs>(args: Subset<T, TarefaResponsavelAggregateArgs>): Prisma.PrismaPromise<GetTarefaResponsavelAggregateType<T>>
+
+    /**
+     * Group by TarefaResponsavel.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TarefaResponsavelGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TarefaResponsavelGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TarefaResponsavelGroupByArgs['orderBy'] }
+        : { orderBy?: TarefaResponsavelGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TarefaResponsavelGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTarefaResponsavelGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TarefaResponsavel model
+   */
+  readonly fields: TarefaResponsavelFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TarefaResponsavel.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TarefaResponsavelClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tarefa<T extends TarefaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TarefaDefaultArgs<ExtArgs>>): Prisma__TarefaClient<$Result.GetResult<Prisma.$TarefaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    usuario<T extends UsuarioDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsuarioDefaultArgs<ExtArgs>>): Prisma__UsuarioClient<$Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TarefaResponsavel model
+   */
+  interface TarefaResponsavelFieldRefs {
+    readonly tarefa_id: FieldRef<"TarefaResponsavel", 'String'>
+    readonly usuario_id: FieldRef<"TarefaResponsavel", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TarefaResponsavel findUnique
+   */
+  export type TarefaResponsavelFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TarefaResponsavel
+     */
+    select?: TarefaResponsavelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TarefaResponsavel
+     */
+    omit?: TarefaResponsavelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaResponsavelInclude<ExtArgs> | null
+    /**
+     * Filter, which TarefaResponsavel to fetch.
+     */
+    where: TarefaResponsavelWhereUniqueInput
+  }
+
+  /**
+   * TarefaResponsavel findUniqueOrThrow
+   */
+  export type TarefaResponsavelFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TarefaResponsavel
+     */
+    select?: TarefaResponsavelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TarefaResponsavel
+     */
+    omit?: TarefaResponsavelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaResponsavelInclude<ExtArgs> | null
+    /**
+     * Filter, which TarefaResponsavel to fetch.
+     */
+    where: TarefaResponsavelWhereUniqueInput
+  }
+
+  /**
+   * TarefaResponsavel findFirst
+   */
+  export type TarefaResponsavelFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TarefaResponsavel
+     */
+    select?: TarefaResponsavelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TarefaResponsavel
+     */
+    omit?: TarefaResponsavelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaResponsavelInclude<ExtArgs> | null
+    /**
+     * Filter, which TarefaResponsavel to fetch.
+     */
+    where?: TarefaResponsavelWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TarefaResponsavels to fetch.
+     */
+    orderBy?: TarefaResponsavelOrderByWithRelationInput | TarefaResponsavelOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TarefaResponsavels.
+     */
+    cursor?: TarefaResponsavelWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TarefaResponsavels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TarefaResponsavels.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TarefaResponsavels.
+     */
+    distinct?: TarefaResponsavelScalarFieldEnum | TarefaResponsavelScalarFieldEnum[]
+  }
+
+  /**
+   * TarefaResponsavel findFirstOrThrow
+   */
+  export type TarefaResponsavelFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TarefaResponsavel
+     */
+    select?: TarefaResponsavelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TarefaResponsavel
+     */
+    omit?: TarefaResponsavelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaResponsavelInclude<ExtArgs> | null
+    /**
+     * Filter, which TarefaResponsavel to fetch.
+     */
+    where?: TarefaResponsavelWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TarefaResponsavels to fetch.
+     */
+    orderBy?: TarefaResponsavelOrderByWithRelationInput | TarefaResponsavelOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TarefaResponsavels.
+     */
+    cursor?: TarefaResponsavelWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TarefaResponsavels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TarefaResponsavels.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TarefaResponsavels.
+     */
+    distinct?: TarefaResponsavelScalarFieldEnum | TarefaResponsavelScalarFieldEnum[]
+  }
+
+  /**
+   * TarefaResponsavel findMany
+   */
+  export type TarefaResponsavelFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TarefaResponsavel
+     */
+    select?: TarefaResponsavelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TarefaResponsavel
+     */
+    omit?: TarefaResponsavelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaResponsavelInclude<ExtArgs> | null
+    /**
+     * Filter, which TarefaResponsavels to fetch.
+     */
+    where?: TarefaResponsavelWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TarefaResponsavels to fetch.
+     */
+    orderBy?: TarefaResponsavelOrderByWithRelationInput | TarefaResponsavelOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TarefaResponsavels.
+     */
+    cursor?: TarefaResponsavelWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TarefaResponsavels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TarefaResponsavels.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TarefaResponsavels.
+     */
+    distinct?: TarefaResponsavelScalarFieldEnum | TarefaResponsavelScalarFieldEnum[]
+  }
+
+  /**
+   * TarefaResponsavel create
+   */
+  export type TarefaResponsavelCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TarefaResponsavel
+     */
+    select?: TarefaResponsavelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TarefaResponsavel
+     */
+    omit?: TarefaResponsavelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaResponsavelInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TarefaResponsavel.
+     */
+    data: XOR<TarefaResponsavelCreateInput, TarefaResponsavelUncheckedCreateInput>
+  }
+
+  /**
+   * TarefaResponsavel createMany
+   */
+  export type TarefaResponsavelCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TarefaResponsavels.
+     */
+    data: TarefaResponsavelCreateManyInput | TarefaResponsavelCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TarefaResponsavel createManyAndReturn
+   */
+  export type TarefaResponsavelCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TarefaResponsavel
+     */
+    select?: TarefaResponsavelSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TarefaResponsavel
+     */
+    omit?: TarefaResponsavelOmit<ExtArgs> | null
+    /**
+     * The data used to create many TarefaResponsavels.
+     */
+    data: TarefaResponsavelCreateManyInput | TarefaResponsavelCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaResponsavelIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TarefaResponsavel update
+   */
+  export type TarefaResponsavelUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TarefaResponsavel
+     */
+    select?: TarefaResponsavelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TarefaResponsavel
+     */
+    omit?: TarefaResponsavelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaResponsavelInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TarefaResponsavel.
+     */
+    data: XOR<TarefaResponsavelUpdateInput, TarefaResponsavelUncheckedUpdateInput>
+    /**
+     * Choose, which TarefaResponsavel to update.
+     */
+    where: TarefaResponsavelWhereUniqueInput
+  }
+
+  /**
+   * TarefaResponsavel updateMany
+   */
+  export type TarefaResponsavelUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TarefaResponsavels.
+     */
+    data: XOR<TarefaResponsavelUpdateManyMutationInput, TarefaResponsavelUncheckedUpdateManyInput>
+    /**
+     * Filter which TarefaResponsavels to update
+     */
+    where?: TarefaResponsavelWhereInput
+    /**
+     * Limit how many TarefaResponsavels to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TarefaResponsavel updateManyAndReturn
+   */
+  export type TarefaResponsavelUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TarefaResponsavel
+     */
+    select?: TarefaResponsavelSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TarefaResponsavel
+     */
+    omit?: TarefaResponsavelOmit<ExtArgs> | null
+    /**
+     * The data used to update TarefaResponsavels.
+     */
+    data: XOR<TarefaResponsavelUpdateManyMutationInput, TarefaResponsavelUncheckedUpdateManyInput>
+    /**
+     * Filter which TarefaResponsavels to update
+     */
+    where?: TarefaResponsavelWhereInput
+    /**
+     * Limit how many TarefaResponsavels to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaResponsavelIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TarefaResponsavel upsert
+   */
+  export type TarefaResponsavelUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TarefaResponsavel
+     */
+    select?: TarefaResponsavelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TarefaResponsavel
+     */
+    omit?: TarefaResponsavelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaResponsavelInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TarefaResponsavel to update in case it exists.
+     */
+    where: TarefaResponsavelWhereUniqueInput
+    /**
+     * In case the TarefaResponsavel found by the `where` argument doesn't exist, create a new TarefaResponsavel with this data.
+     */
+    create: XOR<TarefaResponsavelCreateInput, TarefaResponsavelUncheckedCreateInput>
+    /**
+     * In case the TarefaResponsavel was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TarefaResponsavelUpdateInput, TarefaResponsavelUncheckedUpdateInput>
+  }
+
+  /**
+   * TarefaResponsavel delete
+   */
+  export type TarefaResponsavelDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TarefaResponsavel
+     */
+    select?: TarefaResponsavelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TarefaResponsavel
+     */
+    omit?: TarefaResponsavelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaResponsavelInclude<ExtArgs> | null
+    /**
+     * Filter which TarefaResponsavel to delete.
+     */
+    where: TarefaResponsavelWhereUniqueInput
+  }
+
+  /**
+   * TarefaResponsavel deleteMany
+   */
+  export type TarefaResponsavelDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TarefaResponsavels to delete
+     */
+    where?: TarefaResponsavelWhereInput
+    /**
+     * Limit how many TarefaResponsavels to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TarefaResponsavel without action
+   */
+  export type TarefaResponsavelDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TarefaResponsavel
+     */
+    select?: TarefaResponsavelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TarefaResponsavel
+     */
+    omit?: TarefaResponsavelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TarefaResponsavelInclude<ExtArgs> | null
   }
 
 
@@ -65992,6 +67189,14 @@ export namespace Prisma {
   export type TarefaScalarFieldEnum = (typeof TarefaScalarFieldEnum)[keyof typeof TarefaScalarFieldEnum]
 
 
+  export const TarefaResponsavelScalarFieldEnum: {
+    tarefa_id: 'tarefa_id',
+    usuario_id: 'usuario_id'
+  };
+
+  export type TarefaResponsavelScalarFieldEnum = (typeof TarefaResponsavelScalarFieldEnum)[keyof typeof TarefaResponsavelScalarFieldEnum]
+
+
   export const ComentarioTarefaScalarFieldEnum: {
     id: 'id',
     tarefa_id: 'tarefa_id',
@@ -67055,6 +68260,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaListRelationFilter
     aprovacoes_solicitadas?: AprovacaoTarefaListRelationFilter
     aprovacoes_recebidas?: AprovacaoTarefaListRelationFilter
+    tarefas_responsavel?: TarefaResponsavelListRelationFilter
   }
 
   export type UsuarioOrderByWithRelationInput = {
@@ -67084,6 +68290,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaOrderByRelationAggregateInput
     aprovacoes_solicitadas?: AprovacaoTarefaOrderByRelationAggregateInput
     aprovacoes_recebidas?: AprovacaoTarefaOrderByRelationAggregateInput
+    tarefas_responsavel?: TarefaResponsavelOrderByRelationAggregateInput
   }
 
   export type UsuarioWhereUniqueInput = Prisma.AtLeast<{
@@ -67116,6 +68323,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaListRelationFilter
     aprovacoes_solicitadas?: AprovacaoTarefaListRelationFilter
     aprovacoes_recebidas?: AprovacaoTarefaListRelationFilter
+    tarefas_responsavel?: TarefaResponsavelListRelationFilter
   }, "id" | "email">
 
   export type UsuarioOrderByWithAggregationInput = {
@@ -69014,6 +70222,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaListRelationFilter
     checklist?: ItemChecklistListRelationFilter
     etiquetas?: TarefaEtiquetaListRelationFilter
+    responsaveis?: TarefaResponsavelListRelationFilter
   }
 
   export type TarefaOrderByWithRelationInput = {
@@ -69039,6 +70248,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaOrderByRelationAggregateInput
     checklist?: ItemChecklistOrderByRelationAggregateInput
     etiquetas?: TarefaEtiquetaOrderByRelationAggregateInput
+    responsaveis?: TarefaResponsavelOrderByRelationAggregateInput
   }
 
   export type TarefaWhereUniqueInput = Prisma.AtLeast<{
@@ -69067,6 +70277,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaListRelationFilter
     checklist?: ItemChecklistListRelationFilter
     etiquetas?: TarefaEtiquetaListRelationFilter
+    responsaveis?: TarefaResponsavelListRelationFilter
   }, "id">
 
   export type TarefaOrderByWithAggregationInput = {
@@ -69107,6 +70318,50 @@ export namespace Prisma {
     concluida_em?: DateTimeNullableWithAggregatesFilter<"Tarefa"> | Date | string | null
     criado_em?: DateTimeWithAggregatesFilter<"Tarefa"> | Date | string
     atualizado_em?: DateTimeWithAggregatesFilter<"Tarefa"> | Date | string
+  }
+
+  export type TarefaResponsavelWhereInput = {
+    AND?: TarefaResponsavelWhereInput | TarefaResponsavelWhereInput[]
+    OR?: TarefaResponsavelWhereInput[]
+    NOT?: TarefaResponsavelWhereInput | TarefaResponsavelWhereInput[]
+    tarefa_id?: StringFilter<"TarefaResponsavel"> | string
+    usuario_id?: StringFilter<"TarefaResponsavel"> | string
+    tarefa?: XOR<TarefaScalarRelationFilter, TarefaWhereInput>
+    usuario?: XOR<UsuarioScalarRelationFilter, UsuarioWhereInput>
+  }
+
+  export type TarefaResponsavelOrderByWithRelationInput = {
+    tarefa_id?: SortOrder
+    usuario_id?: SortOrder
+    tarefa?: TarefaOrderByWithRelationInput
+    usuario?: UsuarioOrderByWithRelationInput
+  }
+
+  export type TarefaResponsavelWhereUniqueInput = Prisma.AtLeast<{
+    tarefa_id_usuario_id?: TarefaResponsavelTarefa_idUsuario_idCompoundUniqueInput
+    AND?: TarefaResponsavelWhereInput | TarefaResponsavelWhereInput[]
+    OR?: TarefaResponsavelWhereInput[]
+    NOT?: TarefaResponsavelWhereInput | TarefaResponsavelWhereInput[]
+    tarefa_id?: StringFilter<"TarefaResponsavel"> | string
+    usuario_id?: StringFilter<"TarefaResponsavel"> | string
+    tarefa?: XOR<TarefaScalarRelationFilter, TarefaWhereInput>
+    usuario?: XOR<UsuarioScalarRelationFilter, UsuarioWhereInput>
+  }, "tarefa_id_usuario_id">
+
+  export type TarefaResponsavelOrderByWithAggregationInput = {
+    tarefa_id?: SortOrder
+    usuario_id?: SortOrder
+    _count?: TarefaResponsavelCountOrderByAggregateInput
+    _max?: TarefaResponsavelMaxOrderByAggregateInput
+    _min?: TarefaResponsavelMinOrderByAggregateInput
+  }
+
+  export type TarefaResponsavelScalarWhereWithAggregatesInput = {
+    AND?: TarefaResponsavelScalarWhereWithAggregatesInput | TarefaResponsavelScalarWhereWithAggregatesInput[]
+    OR?: TarefaResponsavelScalarWhereWithAggregatesInput[]
+    NOT?: TarefaResponsavelScalarWhereWithAggregatesInput | TarefaResponsavelScalarWhereWithAggregatesInput[]
+    tarefa_id?: StringWithAggregatesFilter<"TarefaResponsavel"> | string
+    usuario_id?: StringWithAggregatesFilter<"TarefaResponsavel"> | string
   }
 
   export type ComentarioTarefaWhereInput = {
@@ -71674,6 +72929,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioUncheckedCreateInput = {
@@ -71703,6 +72959,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioUpdateInput = {
@@ -71732,6 +72989,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuarioUncheckedUpdateInput = {
@@ -71761,6 +73019,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuarioCreateManyInput = {
@@ -73840,6 +75099,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaCreateNestedManyWithoutTarefaInput
     checklist?: ItemChecklistCreateNestedManyWithoutTarefaInput
     etiquetas?: TarefaEtiquetaCreateNestedManyWithoutTarefaInput
+    responsaveis?: TarefaResponsavelCreateNestedManyWithoutTarefaInput
   }
 
   export type TarefaUncheckedCreateInput = {
@@ -73862,6 +75122,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaUncheckedCreateNestedManyWithoutTarefaInput
     checklist?: ItemChecklistUncheckedCreateNestedManyWithoutTarefaInput
     etiquetas?: TarefaEtiquetaUncheckedCreateNestedManyWithoutTarefaInput
+    responsaveis?: TarefaResponsavelUncheckedCreateNestedManyWithoutTarefaInput
   }
 
   export type TarefaUpdateInput = {
@@ -73884,6 +75145,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaUpdateManyWithoutTarefaNestedInput
     checklist?: ItemChecklistUpdateManyWithoutTarefaNestedInput
     etiquetas?: TarefaEtiquetaUpdateManyWithoutTarefaNestedInput
+    responsaveis?: TarefaResponsavelUpdateManyWithoutTarefaNestedInput
   }
 
   export type TarefaUncheckedUpdateInput = {
@@ -73906,6 +75168,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
     checklist?: ItemChecklistUncheckedUpdateManyWithoutTarefaNestedInput
     etiquetas?: TarefaEtiquetaUncheckedUpdateManyWithoutTarefaNestedInput
+    responsaveis?: TarefaResponsavelUncheckedUpdateManyWithoutTarefaNestedInput
   }
 
   export type TarefaCreateManyInput = {
@@ -73951,6 +75214,40 @@ export namespace Prisma {
     concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TarefaResponsavelCreateInput = {
+    tarefa: TarefaCreateNestedOneWithoutResponsaveisInput
+    usuario: UsuarioCreateNestedOneWithoutTarefas_responsavelInput
+  }
+
+  export type TarefaResponsavelUncheckedCreateInput = {
+    tarefa_id: string
+    usuario_id: string
+  }
+
+  export type TarefaResponsavelUpdateInput = {
+    tarefa?: TarefaUpdateOneRequiredWithoutResponsaveisNestedInput
+    usuario?: UsuarioUpdateOneRequiredWithoutTarefas_responsavelNestedInput
+  }
+
+  export type TarefaResponsavelUncheckedUpdateInput = {
+    tarefa_id?: StringFieldUpdateOperationsInput | string
+    usuario_id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TarefaResponsavelCreateManyInput = {
+    tarefa_id: string
+    usuario_id: string
+  }
+
+  export type TarefaResponsavelUpdateManyMutationInput = {
+
+  }
+
+  export type TarefaResponsavelUncheckedUpdateManyInput = {
+    tarefa_id?: StringFieldUpdateOperationsInput | string
+    usuario_id?: StringFieldUpdateOperationsInput | string
   }
 
   export type ComentarioTarefaCreateInput = {
@@ -76954,6 +78251,12 @@ export namespace Prisma {
     none?: AprovacaoTarefaWhereInput
   }
 
+  export type TarefaResponsavelListRelationFilter = {
+    every?: TarefaResponsavelWhereInput
+    some?: TarefaResponsavelWhereInput
+    none?: TarefaResponsavelWhereInput
+  }
+
   export type ComentarioCrmOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -76975,6 +78278,10 @@ export namespace Prisma {
   }
 
   export type AprovacaoTarefaOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TarefaResponsavelOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -78521,6 +79828,26 @@ export namespace Prisma {
   export type TarefaScalarRelationFilter = {
     is?: TarefaWhereInput
     isNot?: TarefaWhereInput
+  }
+
+  export type TarefaResponsavelTarefa_idUsuario_idCompoundUniqueInput = {
+    tarefa_id: string
+    usuario_id: string
+  }
+
+  export type TarefaResponsavelCountOrderByAggregateInput = {
+    tarefa_id?: SortOrder
+    usuario_id?: SortOrder
+  }
+
+  export type TarefaResponsavelMaxOrderByAggregateInput = {
+    tarefa_id?: SortOrder
+    usuario_id?: SortOrder
+  }
+
+  export type TarefaResponsavelMinOrderByAggregateInput = {
+    tarefa_id?: SortOrder
+    usuario_id?: SortOrder
   }
 
   export type ComentarioTarefaCountOrderByAggregateInput = {
@@ -81271,6 +82598,13 @@ export namespace Prisma {
     connect?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
   }
 
+  export type TarefaResponsavelCreateNestedManyWithoutUsuarioInput = {
+    create?: XOR<TarefaResponsavelCreateWithoutUsuarioInput, TarefaResponsavelUncheckedCreateWithoutUsuarioInput> | TarefaResponsavelCreateWithoutUsuarioInput[] | TarefaResponsavelUncheckedCreateWithoutUsuarioInput[]
+    connectOrCreate?: TarefaResponsavelCreateOrConnectWithoutUsuarioInput | TarefaResponsavelCreateOrConnectWithoutUsuarioInput[]
+    createMany?: TarefaResponsavelCreateManyUsuarioInputEnvelope
+    connect?: TarefaResponsavelWhereUniqueInput | TarefaResponsavelWhereUniqueInput[]
+  }
+
   export type MembroEmpresaUncheckedCreateNestedManyWithoutUsuarioInput = {
     create?: XOR<MembroEmpresaCreateWithoutUsuarioInput, MembroEmpresaUncheckedCreateWithoutUsuarioInput> | MembroEmpresaCreateWithoutUsuarioInput[] | MembroEmpresaUncheckedCreateWithoutUsuarioInput[]
     connectOrCreate?: MembroEmpresaCreateOrConnectWithoutUsuarioInput | MembroEmpresaCreateOrConnectWithoutUsuarioInput[]
@@ -81409,6 +82743,13 @@ export namespace Prisma {
     connectOrCreate?: AprovacaoTarefaCreateOrConnectWithoutAprovadorInput | AprovacaoTarefaCreateOrConnectWithoutAprovadorInput[]
     createMany?: AprovacaoTarefaCreateManyAprovadorInputEnvelope
     connect?: AprovacaoTarefaWhereUniqueInput | AprovacaoTarefaWhereUniqueInput[]
+  }
+
+  export type TarefaResponsavelUncheckedCreateNestedManyWithoutUsuarioInput = {
+    create?: XOR<TarefaResponsavelCreateWithoutUsuarioInput, TarefaResponsavelUncheckedCreateWithoutUsuarioInput> | TarefaResponsavelCreateWithoutUsuarioInput[] | TarefaResponsavelUncheckedCreateWithoutUsuarioInput[]
+    connectOrCreate?: TarefaResponsavelCreateOrConnectWithoutUsuarioInput | TarefaResponsavelCreateOrConnectWithoutUsuarioInput[]
+    createMany?: TarefaResponsavelCreateManyUsuarioInputEnvelope
+    connect?: TarefaResponsavelWhereUniqueInput | TarefaResponsavelWhereUniqueInput[]
   }
 
   export type MembroEmpresaUpdateManyWithoutUsuarioNestedInput = {
@@ -81691,6 +83032,20 @@ export namespace Prisma {
     deleteMany?: AprovacaoTarefaScalarWhereInput | AprovacaoTarefaScalarWhereInput[]
   }
 
+  export type TarefaResponsavelUpdateManyWithoutUsuarioNestedInput = {
+    create?: XOR<TarefaResponsavelCreateWithoutUsuarioInput, TarefaResponsavelUncheckedCreateWithoutUsuarioInput> | TarefaResponsavelCreateWithoutUsuarioInput[] | TarefaResponsavelUncheckedCreateWithoutUsuarioInput[]
+    connectOrCreate?: TarefaResponsavelCreateOrConnectWithoutUsuarioInput | TarefaResponsavelCreateOrConnectWithoutUsuarioInput[]
+    upsert?: TarefaResponsavelUpsertWithWhereUniqueWithoutUsuarioInput | TarefaResponsavelUpsertWithWhereUniqueWithoutUsuarioInput[]
+    createMany?: TarefaResponsavelCreateManyUsuarioInputEnvelope
+    set?: TarefaResponsavelWhereUniqueInput | TarefaResponsavelWhereUniqueInput[]
+    disconnect?: TarefaResponsavelWhereUniqueInput | TarefaResponsavelWhereUniqueInput[]
+    delete?: TarefaResponsavelWhereUniqueInput | TarefaResponsavelWhereUniqueInput[]
+    connect?: TarefaResponsavelWhereUniqueInput | TarefaResponsavelWhereUniqueInput[]
+    update?: TarefaResponsavelUpdateWithWhereUniqueWithoutUsuarioInput | TarefaResponsavelUpdateWithWhereUniqueWithoutUsuarioInput[]
+    updateMany?: TarefaResponsavelUpdateManyWithWhereWithoutUsuarioInput | TarefaResponsavelUpdateManyWithWhereWithoutUsuarioInput[]
+    deleteMany?: TarefaResponsavelScalarWhereInput | TarefaResponsavelScalarWhereInput[]
+  }
+
   export type MembroEmpresaUncheckedUpdateManyWithoutUsuarioNestedInput = {
     create?: XOR<MembroEmpresaCreateWithoutUsuarioInput, MembroEmpresaUncheckedCreateWithoutUsuarioInput> | MembroEmpresaCreateWithoutUsuarioInput[] | MembroEmpresaUncheckedCreateWithoutUsuarioInput[]
     connectOrCreate?: MembroEmpresaCreateOrConnectWithoutUsuarioInput | MembroEmpresaCreateOrConnectWithoutUsuarioInput[]
@@ -81969,6 +83324,20 @@ export namespace Prisma {
     update?: AprovacaoTarefaUpdateWithWhereUniqueWithoutAprovadorInput | AprovacaoTarefaUpdateWithWhereUniqueWithoutAprovadorInput[]
     updateMany?: AprovacaoTarefaUpdateManyWithWhereWithoutAprovadorInput | AprovacaoTarefaUpdateManyWithWhereWithoutAprovadorInput[]
     deleteMany?: AprovacaoTarefaScalarWhereInput | AprovacaoTarefaScalarWhereInput[]
+  }
+
+  export type TarefaResponsavelUncheckedUpdateManyWithoutUsuarioNestedInput = {
+    create?: XOR<TarefaResponsavelCreateWithoutUsuarioInput, TarefaResponsavelUncheckedCreateWithoutUsuarioInput> | TarefaResponsavelCreateWithoutUsuarioInput[] | TarefaResponsavelUncheckedCreateWithoutUsuarioInput[]
+    connectOrCreate?: TarefaResponsavelCreateOrConnectWithoutUsuarioInput | TarefaResponsavelCreateOrConnectWithoutUsuarioInput[]
+    upsert?: TarefaResponsavelUpsertWithWhereUniqueWithoutUsuarioInput | TarefaResponsavelUpsertWithWhereUniqueWithoutUsuarioInput[]
+    createMany?: TarefaResponsavelCreateManyUsuarioInputEnvelope
+    set?: TarefaResponsavelWhereUniqueInput | TarefaResponsavelWhereUniqueInput[]
+    disconnect?: TarefaResponsavelWhereUniqueInput | TarefaResponsavelWhereUniqueInput[]
+    delete?: TarefaResponsavelWhereUniqueInput | TarefaResponsavelWhereUniqueInput[]
+    connect?: TarefaResponsavelWhereUniqueInput | TarefaResponsavelWhereUniqueInput[]
+    update?: TarefaResponsavelUpdateWithWhereUniqueWithoutUsuarioInput | TarefaResponsavelUpdateWithWhereUniqueWithoutUsuarioInput[]
+    updateMany?: TarefaResponsavelUpdateManyWithWhereWithoutUsuarioInput | TarefaResponsavelUpdateManyWithWhereWithoutUsuarioInput[]
+    deleteMany?: TarefaResponsavelScalarWhereInput | TarefaResponsavelScalarWhereInput[]
   }
 
   export type UsuarioCreateNestedOneWithoutMembrosInput = {
@@ -84274,6 +85643,13 @@ export namespace Prisma {
     connect?: TarefaEtiquetaWhereUniqueInput | TarefaEtiquetaWhereUniqueInput[]
   }
 
+  export type TarefaResponsavelCreateNestedManyWithoutTarefaInput = {
+    create?: XOR<TarefaResponsavelCreateWithoutTarefaInput, TarefaResponsavelUncheckedCreateWithoutTarefaInput> | TarefaResponsavelCreateWithoutTarefaInput[] | TarefaResponsavelUncheckedCreateWithoutTarefaInput[]
+    connectOrCreate?: TarefaResponsavelCreateOrConnectWithoutTarefaInput | TarefaResponsavelCreateOrConnectWithoutTarefaInput[]
+    createMany?: TarefaResponsavelCreateManyTarefaInputEnvelope
+    connect?: TarefaResponsavelWhereUniqueInput | TarefaResponsavelWhereUniqueInput[]
+  }
+
   export type ComentarioTarefaUncheckedCreateNestedManyWithoutTarefaInput = {
     create?: XOR<ComentarioTarefaCreateWithoutTarefaInput, ComentarioTarefaUncheckedCreateWithoutTarefaInput> | ComentarioTarefaCreateWithoutTarefaInput[] | ComentarioTarefaUncheckedCreateWithoutTarefaInput[]
     connectOrCreate?: ComentarioTarefaCreateOrConnectWithoutTarefaInput | ComentarioTarefaCreateOrConnectWithoutTarefaInput[]
@@ -84314,6 +85690,13 @@ export namespace Prisma {
     connectOrCreate?: TarefaEtiquetaCreateOrConnectWithoutTarefaInput | TarefaEtiquetaCreateOrConnectWithoutTarefaInput[]
     createMany?: TarefaEtiquetaCreateManyTarefaInputEnvelope
     connect?: TarefaEtiquetaWhereUniqueInput | TarefaEtiquetaWhereUniqueInput[]
+  }
+
+  export type TarefaResponsavelUncheckedCreateNestedManyWithoutTarefaInput = {
+    create?: XOR<TarefaResponsavelCreateWithoutTarefaInput, TarefaResponsavelUncheckedCreateWithoutTarefaInput> | TarefaResponsavelCreateWithoutTarefaInput[] | TarefaResponsavelUncheckedCreateWithoutTarefaInput[]
+    connectOrCreate?: TarefaResponsavelCreateOrConnectWithoutTarefaInput | TarefaResponsavelCreateOrConnectWithoutTarefaInput[]
+    createMany?: TarefaResponsavelCreateManyTarefaInputEnvelope
+    connect?: TarefaResponsavelWhereUniqueInput | TarefaResponsavelWhereUniqueInput[]
   }
 
   export type EnumStatusTarefaFieldUpdateOperationsInput = {
@@ -84434,6 +85817,20 @@ export namespace Prisma {
     deleteMany?: TarefaEtiquetaScalarWhereInput | TarefaEtiquetaScalarWhereInput[]
   }
 
+  export type TarefaResponsavelUpdateManyWithoutTarefaNestedInput = {
+    create?: XOR<TarefaResponsavelCreateWithoutTarefaInput, TarefaResponsavelUncheckedCreateWithoutTarefaInput> | TarefaResponsavelCreateWithoutTarefaInput[] | TarefaResponsavelUncheckedCreateWithoutTarefaInput[]
+    connectOrCreate?: TarefaResponsavelCreateOrConnectWithoutTarefaInput | TarefaResponsavelCreateOrConnectWithoutTarefaInput[]
+    upsert?: TarefaResponsavelUpsertWithWhereUniqueWithoutTarefaInput | TarefaResponsavelUpsertWithWhereUniqueWithoutTarefaInput[]
+    createMany?: TarefaResponsavelCreateManyTarefaInputEnvelope
+    set?: TarefaResponsavelWhereUniqueInput | TarefaResponsavelWhereUniqueInput[]
+    disconnect?: TarefaResponsavelWhereUniqueInput | TarefaResponsavelWhereUniqueInput[]
+    delete?: TarefaResponsavelWhereUniqueInput | TarefaResponsavelWhereUniqueInput[]
+    connect?: TarefaResponsavelWhereUniqueInput | TarefaResponsavelWhereUniqueInput[]
+    update?: TarefaResponsavelUpdateWithWhereUniqueWithoutTarefaInput | TarefaResponsavelUpdateWithWhereUniqueWithoutTarefaInput[]
+    updateMany?: TarefaResponsavelUpdateManyWithWhereWithoutTarefaInput | TarefaResponsavelUpdateManyWithWhereWithoutTarefaInput[]
+    deleteMany?: TarefaResponsavelScalarWhereInput | TarefaResponsavelScalarWhereInput[]
+  }
+
   export type ComentarioTarefaUncheckedUpdateManyWithoutTarefaNestedInput = {
     create?: XOR<ComentarioTarefaCreateWithoutTarefaInput, ComentarioTarefaUncheckedCreateWithoutTarefaInput> | ComentarioTarefaCreateWithoutTarefaInput[] | ComentarioTarefaUncheckedCreateWithoutTarefaInput[]
     connectOrCreate?: ComentarioTarefaCreateOrConnectWithoutTarefaInput | ComentarioTarefaCreateOrConnectWithoutTarefaInput[]
@@ -84516,6 +85913,48 @@ export namespace Prisma {
     update?: TarefaEtiquetaUpdateWithWhereUniqueWithoutTarefaInput | TarefaEtiquetaUpdateWithWhereUniqueWithoutTarefaInput[]
     updateMany?: TarefaEtiquetaUpdateManyWithWhereWithoutTarefaInput | TarefaEtiquetaUpdateManyWithWhereWithoutTarefaInput[]
     deleteMany?: TarefaEtiquetaScalarWhereInput | TarefaEtiquetaScalarWhereInput[]
+  }
+
+  export type TarefaResponsavelUncheckedUpdateManyWithoutTarefaNestedInput = {
+    create?: XOR<TarefaResponsavelCreateWithoutTarefaInput, TarefaResponsavelUncheckedCreateWithoutTarefaInput> | TarefaResponsavelCreateWithoutTarefaInput[] | TarefaResponsavelUncheckedCreateWithoutTarefaInput[]
+    connectOrCreate?: TarefaResponsavelCreateOrConnectWithoutTarefaInput | TarefaResponsavelCreateOrConnectWithoutTarefaInput[]
+    upsert?: TarefaResponsavelUpsertWithWhereUniqueWithoutTarefaInput | TarefaResponsavelUpsertWithWhereUniqueWithoutTarefaInput[]
+    createMany?: TarefaResponsavelCreateManyTarefaInputEnvelope
+    set?: TarefaResponsavelWhereUniqueInput | TarefaResponsavelWhereUniqueInput[]
+    disconnect?: TarefaResponsavelWhereUniqueInput | TarefaResponsavelWhereUniqueInput[]
+    delete?: TarefaResponsavelWhereUniqueInput | TarefaResponsavelWhereUniqueInput[]
+    connect?: TarefaResponsavelWhereUniqueInput | TarefaResponsavelWhereUniqueInput[]
+    update?: TarefaResponsavelUpdateWithWhereUniqueWithoutTarefaInput | TarefaResponsavelUpdateWithWhereUniqueWithoutTarefaInput[]
+    updateMany?: TarefaResponsavelUpdateManyWithWhereWithoutTarefaInput | TarefaResponsavelUpdateManyWithWhereWithoutTarefaInput[]
+    deleteMany?: TarefaResponsavelScalarWhereInput | TarefaResponsavelScalarWhereInput[]
+  }
+
+  export type TarefaCreateNestedOneWithoutResponsaveisInput = {
+    create?: XOR<TarefaCreateWithoutResponsaveisInput, TarefaUncheckedCreateWithoutResponsaveisInput>
+    connectOrCreate?: TarefaCreateOrConnectWithoutResponsaveisInput
+    connect?: TarefaWhereUniqueInput
+  }
+
+  export type UsuarioCreateNestedOneWithoutTarefas_responsavelInput = {
+    create?: XOR<UsuarioCreateWithoutTarefas_responsavelInput, UsuarioUncheckedCreateWithoutTarefas_responsavelInput>
+    connectOrCreate?: UsuarioCreateOrConnectWithoutTarefas_responsavelInput
+    connect?: UsuarioWhereUniqueInput
+  }
+
+  export type TarefaUpdateOneRequiredWithoutResponsaveisNestedInput = {
+    create?: XOR<TarefaCreateWithoutResponsaveisInput, TarefaUncheckedCreateWithoutResponsaveisInput>
+    connectOrCreate?: TarefaCreateOrConnectWithoutResponsaveisInput
+    upsert?: TarefaUpsertWithoutResponsaveisInput
+    connect?: TarefaWhereUniqueInput
+    update?: XOR<XOR<TarefaUpdateToOneWithWhereWithoutResponsaveisInput, TarefaUpdateWithoutResponsaveisInput>, TarefaUncheckedUpdateWithoutResponsaveisInput>
+  }
+
+  export type UsuarioUpdateOneRequiredWithoutTarefas_responsavelNestedInput = {
+    create?: XOR<UsuarioCreateWithoutTarefas_responsavelInput, UsuarioUncheckedCreateWithoutTarefas_responsavelInput>
+    connectOrCreate?: UsuarioCreateOrConnectWithoutTarefas_responsavelInput
+    upsert?: UsuarioUpsertWithoutTarefas_responsavelInput
+    connect?: UsuarioWhereUniqueInput
+    update?: XOR<XOR<UsuarioUpdateToOneWithWhereWithoutTarefas_responsavelInput, UsuarioUpdateWithoutTarefas_responsavelInput>, UsuarioUncheckedUpdateWithoutTarefas_responsavelInput>
   }
 
   export type TarefaCreateNestedOneWithoutComentariosInput = {
@@ -89459,6 +90898,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaCreateNestedManyWithoutTarefaInput
     checklist?: ItemChecklistCreateNestedManyWithoutTarefaInput
     etiquetas?: TarefaEtiquetaCreateNestedManyWithoutTarefaInput
+    responsaveis?: TarefaResponsavelCreateNestedManyWithoutTarefaInput
   }
 
   export type TarefaUncheckedCreateWithoutResponsavelInput = {
@@ -89480,6 +90920,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaUncheckedCreateNestedManyWithoutTarefaInput
     checklist?: ItemChecklistUncheckedCreateNestedManyWithoutTarefaInput
     etiquetas?: TarefaEtiquetaUncheckedCreateNestedManyWithoutTarefaInput
+    responsaveis?: TarefaResponsavelUncheckedCreateNestedManyWithoutTarefaInput
   }
 
   export type TarefaCreateOrConnectWithoutResponsavelInput = {
@@ -90044,6 +91485,24 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type TarefaResponsavelCreateWithoutUsuarioInput = {
+    tarefa: TarefaCreateNestedOneWithoutResponsaveisInput
+  }
+
+  export type TarefaResponsavelUncheckedCreateWithoutUsuarioInput = {
+    tarefa_id: string
+  }
+
+  export type TarefaResponsavelCreateOrConnectWithoutUsuarioInput = {
+    where: TarefaResponsavelWhereUniqueInput
+    create: XOR<TarefaResponsavelCreateWithoutUsuarioInput, TarefaResponsavelUncheckedCreateWithoutUsuarioInput>
+  }
+
+  export type TarefaResponsavelCreateManyUsuarioInputEnvelope = {
+    data: TarefaResponsavelCreateManyUsuarioInput | TarefaResponsavelCreateManyUsuarioInput[]
+    skipDuplicates?: boolean
+  }
+
   export type MembroEmpresaUpsertWithWhereUniqueWithoutUsuarioInput = {
     where: MembroEmpresaWhereUniqueInput
     update: XOR<MembroEmpresaUpdateWithoutUsuarioInput, MembroEmpresaUncheckedUpdateWithoutUsuarioInput>
@@ -90446,6 +91905,30 @@ export namespace Prisma {
     data: XOR<AprovacaoTarefaUpdateManyMutationInput, AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorInput>
   }
 
+  export type TarefaResponsavelUpsertWithWhereUniqueWithoutUsuarioInput = {
+    where: TarefaResponsavelWhereUniqueInput
+    update: XOR<TarefaResponsavelUpdateWithoutUsuarioInput, TarefaResponsavelUncheckedUpdateWithoutUsuarioInput>
+    create: XOR<TarefaResponsavelCreateWithoutUsuarioInput, TarefaResponsavelUncheckedCreateWithoutUsuarioInput>
+  }
+
+  export type TarefaResponsavelUpdateWithWhereUniqueWithoutUsuarioInput = {
+    where: TarefaResponsavelWhereUniqueInput
+    data: XOR<TarefaResponsavelUpdateWithoutUsuarioInput, TarefaResponsavelUncheckedUpdateWithoutUsuarioInput>
+  }
+
+  export type TarefaResponsavelUpdateManyWithWhereWithoutUsuarioInput = {
+    where: TarefaResponsavelScalarWhereInput
+    data: XOR<TarefaResponsavelUpdateManyMutationInput, TarefaResponsavelUncheckedUpdateManyWithoutUsuarioInput>
+  }
+
+  export type TarefaResponsavelScalarWhereInput = {
+    AND?: TarefaResponsavelScalarWhereInput | TarefaResponsavelScalarWhereInput[]
+    OR?: TarefaResponsavelScalarWhereInput[]
+    NOT?: TarefaResponsavelScalarWhereInput | TarefaResponsavelScalarWhereInput[]
+    tarefa_id?: StringFilter<"TarefaResponsavel"> | string
+    usuario_id?: StringFilter<"TarefaResponsavel"> | string
+  }
+
   export type UsuarioCreateWithoutMembrosInput = {
     id: string
     nome: string
@@ -90472,6 +91955,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioUncheckedCreateWithoutMembrosInput = {
@@ -90500,6 +91984,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioCreateOrConnectWithoutMembrosInput = {
@@ -90654,6 +92139,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutMembrosInput = {
@@ -90682,6 +92168,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type EmpresaUpsertWithoutMembrosInput = {
@@ -91311,6 +92798,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioUncheckedCreateWithoutConvitesInput = {
@@ -91339,6 +92827,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioCreateOrConnectWithoutConvitesInput = {
@@ -91474,6 +92963,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutConvitesInput = {
@@ -91502,6 +92992,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type EmpresaCreateWithoutConvites_clienteInput = {
@@ -91615,6 +93106,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioUncheckedCreateWithoutConvites_clienteInput = {
@@ -91643,6 +93135,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioCreateOrConnectWithoutConvites_clienteInput = {
@@ -91863,6 +93356,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutConvites_clienteInput = {
@@ -91891,6 +93385,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type ClienteUpsertWithoutConviteInput = {
@@ -94072,6 +95567,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioUncheckedCreateWithoutComentarios_crmInput = {
@@ -94100,6 +95596,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioCreateOrConnectWithoutComentarios_crmInput = {
@@ -94213,6 +95710,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutComentarios_crmInput = {
@@ -94241,6 +95739,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type EmpresaCreateWithoutLeadsInput = {
@@ -94439,6 +95938,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioUncheckedCreateWithoutLeadsInput = {
@@ -94467,6 +95967,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioCreateOrConnectWithoutLeadsInput = {
@@ -94888,6 +96389,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutLeadsInput = {
@@ -94916,6 +96418,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type ServicoUpsertWithoutLeadsInput = {
@@ -95320,6 +96823,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioUncheckedCreateWithoutPropostas_criadasInput = {
@@ -95348,6 +96852,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioCreateOrConnectWithoutPropostas_criadasInput = {
@@ -95381,6 +96886,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioUncheckedCreateWithoutPropostas_responsavelInput = {
@@ -95409,6 +96915,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioCreateOrConnectWithoutPropostas_responsavelInput = {
@@ -95863,6 +97370,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutPropostas_criadasInput = {
@@ -95891,6 +97399,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuarioUpsertWithoutPropostas_responsavelInput = {
@@ -95930,6 +97439,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutPropostas_responsavelInput = {
@@ -95958,6 +97468,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type ItemPropostaUpsertWithWhereUniqueWithoutPropostaInput = {
@@ -96743,6 +98254,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioUncheckedCreateWithoutContratos_criadosInput = {
@@ -96771,6 +98283,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioCreateOrConnectWithoutContratos_criadosInput = {
@@ -96804,6 +98317,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioUncheckedCreateWithoutContratos_responsavelInput = {
@@ -96832,6 +98346,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioCreateOrConnectWithoutContratos_responsavelInput = {
@@ -97402,6 +98917,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutContratos_criadosInput = {
@@ -97430,6 +98946,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuarioUpsertWithoutContratos_responsavelInput = {
@@ -97469,6 +98986,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutContratos_responsavelInput = {
@@ -97497,6 +99015,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type ProjetoUpsertWithoutContratoInput = {
@@ -97913,6 +99432,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioUncheckedCreateWithoutProjetos_criadosInput = {
@@ -97941,6 +99461,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioCreateOrConnectWithoutProjetos_criadosInput = {
@@ -98003,6 +99524,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaCreateNestedManyWithoutTarefaInput
     checklist?: ItemChecklistCreateNestedManyWithoutTarefaInput
     etiquetas?: TarefaEtiquetaCreateNestedManyWithoutTarefaInput
+    responsaveis?: TarefaResponsavelCreateNestedManyWithoutTarefaInput
   }
 
   export type TarefaUncheckedCreateWithoutProjetoInput = {
@@ -98024,6 +99546,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaUncheckedCreateNestedManyWithoutTarefaInput
     checklist?: ItemChecklistUncheckedCreateNestedManyWithoutTarefaInput
     etiquetas?: TarefaEtiquetaUncheckedCreateNestedManyWithoutTarefaInput
+    responsaveis?: TarefaResponsavelUncheckedCreateNestedManyWithoutTarefaInput
   }
 
   export type TarefaCreateOrConnectWithoutProjetoInput = {
@@ -98526,6 +100049,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutProjetos_criadosInput = {
@@ -98554,6 +100078,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type EtapaUpsertWithWhereUniqueWithoutProjetoInput = {
@@ -98734,6 +100259,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaCreateNestedManyWithoutTarefaInput
     checklist?: ItemChecklistCreateNestedManyWithoutTarefaInput
     etiquetas?: TarefaEtiquetaCreateNestedManyWithoutTarefaInput
+    responsaveis?: TarefaResponsavelCreateNestedManyWithoutTarefaInput
   }
 
   export type TarefaUncheckedCreateWithoutEtapaInput = {
@@ -98755,6 +100281,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaUncheckedCreateNestedManyWithoutTarefaInput
     checklist?: ItemChecklistUncheckedCreateNestedManyWithoutTarefaInput
     etiquetas?: TarefaEtiquetaUncheckedCreateNestedManyWithoutTarefaInput
+    responsaveis?: TarefaResponsavelUncheckedCreateNestedManyWithoutTarefaInput
   }
 
   export type TarefaCreateOrConnectWithoutEtapaInput = {
@@ -98940,6 +100467,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioUncheckedCreateWithoutTarefasInput = {
@@ -98968,6 +100496,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioCreateOrConnectWithoutTarefasInput = {
@@ -99129,6 +100658,24 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type TarefaResponsavelCreateWithoutTarefaInput = {
+    usuario: UsuarioCreateNestedOneWithoutTarefas_responsavelInput
+  }
+
+  export type TarefaResponsavelUncheckedCreateWithoutTarefaInput = {
+    usuario_id: string
+  }
+
+  export type TarefaResponsavelCreateOrConnectWithoutTarefaInput = {
+    where: TarefaResponsavelWhereUniqueInput
+    create: XOR<TarefaResponsavelCreateWithoutTarefaInput, TarefaResponsavelUncheckedCreateWithoutTarefaInput>
+  }
+
+  export type TarefaResponsavelCreateManyTarefaInputEnvelope = {
+    data: TarefaResponsavelCreateManyTarefaInput | TarefaResponsavelCreateManyTarefaInput[]
+    skipDuplicates?: boolean
+  }
+
   export type EtapaUpsertWithoutTarefasInput = {
     update: XOR<EtapaUpdateWithoutTarefasInput, EtapaUncheckedUpdateWithoutTarefasInput>
     create: XOR<EtapaCreateWithoutTarefasInput, EtapaUncheckedCreateWithoutTarefasInput>
@@ -99256,6 +100803,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutTarefasInput = {
@@ -99284,6 +100832,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type ComentarioTarefaUpsertWithWhereUniqueWithoutTarefaInput = {
@@ -99402,6 +100951,258 @@ export namespace Prisma {
     etiqueta_id?: StringFilter<"TarefaEtiqueta"> | string
   }
 
+  export type TarefaResponsavelUpsertWithWhereUniqueWithoutTarefaInput = {
+    where: TarefaResponsavelWhereUniqueInput
+    update: XOR<TarefaResponsavelUpdateWithoutTarefaInput, TarefaResponsavelUncheckedUpdateWithoutTarefaInput>
+    create: XOR<TarefaResponsavelCreateWithoutTarefaInput, TarefaResponsavelUncheckedCreateWithoutTarefaInput>
+  }
+
+  export type TarefaResponsavelUpdateWithWhereUniqueWithoutTarefaInput = {
+    where: TarefaResponsavelWhereUniqueInput
+    data: XOR<TarefaResponsavelUpdateWithoutTarefaInput, TarefaResponsavelUncheckedUpdateWithoutTarefaInput>
+  }
+
+  export type TarefaResponsavelUpdateManyWithWhereWithoutTarefaInput = {
+    where: TarefaResponsavelScalarWhereInput
+    data: XOR<TarefaResponsavelUpdateManyMutationInput, TarefaResponsavelUncheckedUpdateManyWithoutTarefaInput>
+  }
+
+  export type TarefaCreateWithoutResponsaveisInput = {
+    id?: string
+    titulo: string
+    descricao?: string | null
+    status?: $Enums.StatusTarefa
+    prioridade?: $Enums.PrioridadeTarefa
+    ordem?: number
+    data_prazo?: Date | string | null
+    concluida_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    etapa: EtapaCreateNestedOneWithoutTarefasInput
+    projeto: ProjetoCreateNestedOneWithoutTarefasInput
+    responsavel?: UsuarioCreateNestedOneWithoutTarefasInput
+    comentarios?: ComentarioTarefaCreateNestedManyWithoutTarefaInput
+    anexos?: AnexoTarefaCreateNestedManyWithoutTarefaInput
+    atividades?: AtividadeTarefaCreateNestedManyWithoutTarefaInput
+    aprovacoes?: AprovacaoTarefaCreateNestedManyWithoutTarefaInput
+    checklist?: ItemChecklistCreateNestedManyWithoutTarefaInput
+    etiquetas?: TarefaEtiquetaCreateNestedManyWithoutTarefaInput
+  }
+
+  export type TarefaUncheckedCreateWithoutResponsaveisInput = {
+    id?: string
+    etapa_id: string
+    projeto_id: string
+    responsavel_id?: string | null
+    titulo: string
+    descricao?: string | null
+    status?: $Enums.StatusTarefa
+    prioridade?: $Enums.PrioridadeTarefa
+    ordem?: number
+    data_prazo?: Date | string | null
+    concluida_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    comentarios?: ComentarioTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    anexos?: AnexoTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    atividades?: AtividadeTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    aprovacoes?: AprovacaoTarefaUncheckedCreateNestedManyWithoutTarefaInput
+    checklist?: ItemChecklistUncheckedCreateNestedManyWithoutTarefaInput
+    etiquetas?: TarefaEtiquetaUncheckedCreateNestedManyWithoutTarefaInput
+  }
+
+  export type TarefaCreateOrConnectWithoutResponsaveisInput = {
+    where: TarefaWhereUniqueInput
+    create: XOR<TarefaCreateWithoutResponsaveisInput, TarefaUncheckedCreateWithoutResponsaveisInput>
+  }
+
+  export type UsuarioCreateWithoutTarefas_responsavelInput = {
+    id: string
+    nome: string
+    email: string
+    avatar_url?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaCreateNestedManyWithoutUsuarioInput
+    convites?: ConviteEmpresaCreateNestedManyWithoutConvidadoInput
+    leads?: LeadCreateNestedManyWithoutResponsavelInput
+    comentarios_crm?: ComentarioCrmCreateNestedManyWithoutUsuarioInput
+    propostas_criadas?: PropostaCreateNestedManyWithoutCriadorInput
+    contratos_criados?: ContratoCreateNestedManyWithoutCriadorInput
+    projetos_criados?: ProjetoCreateNestedManyWithoutCriadorInput
+    tarefas?: TarefaCreateNestedManyWithoutResponsavelInput
+    documentos_criados?: DocumentoCreateNestedManyWithoutCriadorInput
+    recebiveis_criados?: RecebivelCreateNestedManyWithoutCriadorInput
+    contas_pagar_criadas?: ContaPagarCreateNestedManyWithoutCriadorInput
+    eventos_responsavel?: EventoCreateNestedManyWithoutResponsavelInput
+    propostas_responsavel?: PropostaCreateNestedManyWithoutResponsavelInput
+    contratos_responsavel?: ContratoCreateNestedManyWithoutResponsavelInput
+    convites_cliente?: ConviteClienteCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
+  }
+
+  export type UsuarioUncheckedCreateWithoutTarefas_responsavelInput = {
+    id: string
+    nome: string
+    email: string
+    avatar_url?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaUncheckedCreateNestedManyWithoutUsuarioInput
+    convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutConvidadoInput
+    leads?: LeadUncheckedCreateNestedManyWithoutResponsavelInput
+    comentarios_crm?: ComentarioCrmUncheckedCreateNestedManyWithoutUsuarioInput
+    propostas_criadas?: PropostaUncheckedCreateNestedManyWithoutCriadorInput
+    contratos_criados?: ContratoUncheckedCreateNestedManyWithoutCriadorInput
+    projetos_criados?: ProjetoUncheckedCreateNestedManyWithoutCriadorInput
+    tarefas?: TarefaUncheckedCreateNestedManyWithoutResponsavelInput
+    documentos_criados?: DocumentoUncheckedCreateNestedManyWithoutCriadorInput
+    recebiveis_criados?: RecebivelUncheckedCreateNestedManyWithoutCriadorInput
+    contas_pagar_criadas?: ContaPagarUncheckedCreateNestedManyWithoutCriadorInput
+    eventos_responsavel?: EventoUncheckedCreateNestedManyWithoutResponsavelInput
+    propostas_responsavel?: PropostaUncheckedCreateNestedManyWithoutResponsavelInput
+    contratos_responsavel?: ContratoUncheckedCreateNestedManyWithoutResponsavelInput
+    convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutCriadorInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedCreateNestedManyWithoutAutorInput
+    anexos_tarefa?: AnexoTarefaUncheckedCreateNestedManyWithoutCriadorInput
+    atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
+  }
+
+  export type UsuarioCreateOrConnectWithoutTarefas_responsavelInput = {
+    where: UsuarioWhereUniqueInput
+    create: XOR<UsuarioCreateWithoutTarefas_responsavelInput, UsuarioUncheckedCreateWithoutTarefas_responsavelInput>
+  }
+
+  export type TarefaUpsertWithoutResponsaveisInput = {
+    update: XOR<TarefaUpdateWithoutResponsaveisInput, TarefaUncheckedUpdateWithoutResponsaveisInput>
+    create: XOR<TarefaCreateWithoutResponsaveisInput, TarefaUncheckedCreateWithoutResponsaveisInput>
+    where?: TarefaWhereInput
+  }
+
+  export type TarefaUpdateToOneWithWhereWithoutResponsaveisInput = {
+    where?: TarefaWhereInput
+    data: XOR<TarefaUpdateWithoutResponsaveisInput, TarefaUncheckedUpdateWithoutResponsaveisInput>
+  }
+
+  export type TarefaUpdateWithoutResponsaveisInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusTarefaFieldUpdateOperationsInput | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaFieldUpdateOperationsInput | $Enums.PrioridadeTarefa
+    ordem?: IntFieldUpdateOperationsInput | number
+    data_prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    etapa?: EtapaUpdateOneRequiredWithoutTarefasNestedInput
+    projeto?: ProjetoUpdateOneRequiredWithoutTarefasNestedInput
+    responsavel?: UsuarioUpdateOneWithoutTarefasNestedInput
+    comentarios?: ComentarioTarefaUpdateManyWithoutTarefaNestedInput
+    anexos?: AnexoTarefaUpdateManyWithoutTarefaNestedInput
+    atividades?: AtividadeTarefaUpdateManyWithoutTarefaNestedInput
+    aprovacoes?: AprovacaoTarefaUpdateManyWithoutTarefaNestedInput
+    checklist?: ItemChecklistUpdateManyWithoutTarefaNestedInput
+    etiquetas?: TarefaEtiquetaUpdateManyWithoutTarefaNestedInput
+  }
+
+  export type TarefaUncheckedUpdateWithoutResponsaveisInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    etapa_id?: StringFieldUpdateOperationsInput | string
+    projeto_id?: StringFieldUpdateOperationsInput | string
+    responsavel_id?: NullableStringFieldUpdateOperationsInput | string | null
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusTarefaFieldUpdateOperationsInput | $Enums.StatusTarefa
+    prioridade?: EnumPrioridadeTarefaFieldUpdateOperationsInput | $Enums.PrioridadeTarefa
+    ordem?: IntFieldUpdateOperationsInput | number
+    data_prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    comentarios?: ComentarioTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    anexos?: AnexoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    atividades?: AtividadeTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    aprovacoes?: AprovacaoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
+    checklist?: ItemChecklistUncheckedUpdateManyWithoutTarefaNestedInput
+    etiquetas?: TarefaEtiquetaUncheckedUpdateManyWithoutTarefaNestedInput
+  }
+
+  export type UsuarioUpsertWithoutTarefas_responsavelInput = {
+    update: XOR<UsuarioUpdateWithoutTarefas_responsavelInput, UsuarioUncheckedUpdateWithoutTarefas_responsavelInput>
+    create: XOR<UsuarioCreateWithoutTarefas_responsavelInput, UsuarioUncheckedCreateWithoutTarefas_responsavelInput>
+    where?: UsuarioWhereInput
+  }
+
+  export type UsuarioUpdateToOneWithWhereWithoutTarefas_responsavelInput = {
+    where?: UsuarioWhereInput
+    data: XOR<UsuarioUpdateWithoutTarefas_responsavelInput, UsuarioUncheckedUpdateWithoutTarefas_responsavelInput>
+  }
+
+  export type UsuarioUpdateWithoutTarefas_responsavelInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUpdateManyWithoutUsuarioNestedInput
+    convites?: ConviteEmpresaUpdateManyWithoutConvidadoNestedInput
+    leads?: LeadUpdateManyWithoutResponsavelNestedInput
+    comentarios_crm?: ComentarioCrmUpdateManyWithoutUsuarioNestedInput
+    propostas_criadas?: PropostaUpdateManyWithoutCriadorNestedInput
+    contratos_criados?: ContratoUpdateManyWithoutCriadorNestedInput
+    projetos_criados?: ProjetoUpdateManyWithoutCriadorNestedInput
+    tarefas?: TarefaUpdateManyWithoutResponsavelNestedInput
+    documentos_criados?: DocumentoUpdateManyWithoutCriadorNestedInput
+    recebiveis_criados?: RecebivelUpdateManyWithoutCriadorNestedInput
+    contas_pagar_criadas?: ContaPagarUpdateManyWithoutCriadorNestedInput
+    eventos_responsavel?: EventoUpdateManyWithoutResponsavelNestedInput
+    propostas_responsavel?: PropostaUpdateManyWithoutResponsavelNestedInput
+    contratos_responsavel?: ContratoUpdateManyWithoutResponsavelNestedInput
+    convites_cliente?: ConviteClienteUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
+  }
+
+  export type UsuarioUncheckedUpdateWithoutTarefas_responsavelInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUncheckedUpdateManyWithoutUsuarioNestedInput
+    convites?: ConviteEmpresaUncheckedUpdateManyWithoutConvidadoNestedInput
+    leads?: LeadUncheckedUpdateManyWithoutResponsavelNestedInput
+    comentarios_crm?: ComentarioCrmUncheckedUpdateManyWithoutUsuarioNestedInput
+    propostas_criadas?: PropostaUncheckedUpdateManyWithoutCriadorNestedInput
+    contratos_criados?: ContratoUncheckedUpdateManyWithoutCriadorNestedInput
+    projetos_criados?: ProjetoUncheckedUpdateManyWithoutCriadorNestedInput
+    tarefas?: TarefaUncheckedUpdateManyWithoutResponsavelNestedInput
+    documentos_criados?: DocumentoUncheckedUpdateManyWithoutCriadorNestedInput
+    recebiveis_criados?: RecebivelUncheckedUpdateManyWithoutCriadorNestedInput
+    contas_pagar_criadas?: ContaPagarUncheckedUpdateManyWithoutCriadorNestedInput
+    eventos_responsavel?: EventoUncheckedUpdateManyWithoutResponsavelNestedInput
+    propostas_responsavel?: PropostaUncheckedUpdateManyWithoutResponsavelNestedInput
+    contratos_responsavel?: ContratoUncheckedUpdateManyWithoutResponsavelNestedInput
+    convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutCriadorNestedInput
+    comentarios_tarefa?: ComentarioTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    anexos_tarefa?: AnexoTarefaUncheckedUpdateManyWithoutCriadorNestedInput
+    atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
+    aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
+    aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
+  }
+
   export type TarefaCreateWithoutComentariosInput = {
     id?: string
     titulo: string
@@ -99421,6 +101222,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaCreateNestedManyWithoutTarefaInput
     checklist?: ItemChecklistCreateNestedManyWithoutTarefaInput
     etiquetas?: TarefaEtiquetaCreateNestedManyWithoutTarefaInput
+    responsaveis?: TarefaResponsavelCreateNestedManyWithoutTarefaInput
   }
 
   export type TarefaUncheckedCreateWithoutComentariosInput = {
@@ -99442,6 +101244,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaUncheckedCreateNestedManyWithoutTarefaInput
     checklist?: ItemChecklistUncheckedCreateNestedManyWithoutTarefaInput
     etiquetas?: TarefaEtiquetaUncheckedCreateNestedManyWithoutTarefaInput
+    responsaveis?: TarefaResponsavelUncheckedCreateNestedManyWithoutTarefaInput
   }
 
   export type TarefaCreateOrConnectWithoutComentariosInput = {
@@ -99475,6 +101278,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioUncheckedCreateWithoutComentarios_tarefaInput = {
@@ -99503,6 +101307,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioCreateOrConnectWithoutComentarios_tarefaInput = {
@@ -99540,6 +101345,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaUpdateManyWithoutTarefaNestedInput
     checklist?: ItemChecklistUpdateManyWithoutTarefaNestedInput
     etiquetas?: TarefaEtiquetaUpdateManyWithoutTarefaNestedInput
+    responsaveis?: TarefaResponsavelUpdateManyWithoutTarefaNestedInput
   }
 
   export type TarefaUncheckedUpdateWithoutComentariosInput = {
@@ -99561,6 +101367,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
     checklist?: ItemChecklistUncheckedUpdateManyWithoutTarefaNestedInput
     etiquetas?: TarefaEtiquetaUncheckedUpdateManyWithoutTarefaNestedInput
+    responsaveis?: TarefaResponsavelUncheckedUpdateManyWithoutTarefaNestedInput
   }
 
   export type UsuarioUpsertWithoutComentarios_tarefaInput = {
@@ -99600,6 +101407,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutComentarios_tarefaInput = {
@@ -99628,6 +101436,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type TarefaCreateWithoutAnexosInput = {
@@ -99649,6 +101458,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaCreateNestedManyWithoutTarefaInput
     checklist?: ItemChecklistCreateNestedManyWithoutTarefaInput
     etiquetas?: TarefaEtiquetaCreateNestedManyWithoutTarefaInput
+    responsaveis?: TarefaResponsavelCreateNestedManyWithoutTarefaInput
   }
 
   export type TarefaUncheckedCreateWithoutAnexosInput = {
@@ -99670,6 +101480,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaUncheckedCreateNestedManyWithoutTarefaInput
     checklist?: ItemChecklistUncheckedCreateNestedManyWithoutTarefaInput
     etiquetas?: TarefaEtiquetaUncheckedCreateNestedManyWithoutTarefaInput
+    responsaveis?: TarefaResponsavelUncheckedCreateNestedManyWithoutTarefaInput
   }
 
   export type TarefaCreateOrConnectWithoutAnexosInput = {
@@ -99703,6 +101514,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioUncheckedCreateWithoutAnexos_tarefaInput = {
@@ -99731,6 +101543,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioCreateOrConnectWithoutAnexos_tarefaInput = {
@@ -99768,6 +101581,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaUpdateManyWithoutTarefaNestedInput
     checklist?: ItemChecklistUpdateManyWithoutTarefaNestedInput
     etiquetas?: TarefaEtiquetaUpdateManyWithoutTarefaNestedInput
+    responsaveis?: TarefaResponsavelUpdateManyWithoutTarefaNestedInput
   }
 
   export type TarefaUncheckedUpdateWithoutAnexosInput = {
@@ -99789,6 +101603,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
     checklist?: ItemChecklistUncheckedUpdateManyWithoutTarefaNestedInput
     etiquetas?: TarefaEtiquetaUncheckedUpdateManyWithoutTarefaNestedInput
+    responsaveis?: TarefaResponsavelUncheckedUpdateManyWithoutTarefaNestedInput
   }
 
   export type UsuarioUpsertWithoutAnexos_tarefaInput = {
@@ -99828,6 +101643,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutAnexos_tarefaInput = {
@@ -99856,6 +101672,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type TarefaCreateWithoutAtividadesInput = {
@@ -99877,6 +101694,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaCreateNestedManyWithoutTarefaInput
     checklist?: ItemChecklistCreateNestedManyWithoutTarefaInput
     etiquetas?: TarefaEtiquetaCreateNestedManyWithoutTarefaInput
+    responsaveis?: TarefaResponsavelCreateNestedManyWithoutTarefaInput
   }
 
   export type TarefaUncheckedCreateWithoutAtividadesInput = {
@@ -99898,6 +101716,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaUncheckedCreateNestedManyWithoutTarefaInput
     checklist?: ItemChecklistUncheckedCreateNestedManyWithoutTarefaInput
     etiquetas?: TarefaEtiquetaUncheckedCreateNestedManyWithoutTarefaInput
+    responsaveis?: TarefaResponsavelUncheckedCreateNestedManyWithoutTarefaInput
   }
 
   export type TarefaCreateOrConnectWithoutAtividadesInput = {
@@ -99931,6 +101750,7 @@ export namespace Prisma {
     anexos_tarefa?: AnexoTarefaCreateNestedManyWithoutCriadorInput
     aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioUncheckedCreateWithoutAtividades_tarefaInput = {
@@ -99959,6 +101779,7 @@ export namespace Prisma {
     anexos_tarefa?: AnexoTarefaUncheckedCreateNestedManyWithoutCriadorInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioCreateOrConnectWithoutAtividades_tarefaInput = {
@@ -99996,6 +101817,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaUpdateManyWithoutTarefaNestedInput
     checklist?: ItemChecklistUpdateManyWithoutTarefaNestedInput
     etiquetas?: TarefaEtiquetaUpdateManyWithoutTarefaNestedInput
+    responsaveis?: TarefaResponsavelUpdateManyWithoutTarefaNestedInput
   }
 
   export type TarefaUncheckedUpdateWithoutAtividadesInput = {
@@ -100017,6 +101839,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
     checklist?: ItemChecklistUncheckedUpdateManyWithoutTarefaNestedInput
     etiquetas?: TarefaEtiquetaUncheckedUpdateManyWithoutTarefaNestedInput
+    responsaveis?: TarefaResponsavelUncheckedUpdateManyWithoutTarefaNestedInput
   }
 
   export type UsuarioUpsertWithoutAtividades_tarefaInput = {
@@ -100056,6 +101879,7 @@ export namespace Prisma {
     anexos_tarefa?: AnexoTarefaUpdateManyWithoutCriadorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutAtividades_tarefaInput = {
@@ -100084,6 +101908,7 @@ export namespace Prisma {
     anexos_tarefa?: AnexoTarefaUncheckedUpdateManyWithoutCriadorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type TarefaCreateWithoutAprovacoesInput = {
@@ -100105,6 +101930,7 @@ export namespace Prisma {
     atividades?: AtividadeTarefaCreateNestedManyWithoutTarefaInput
     checklist?: ItemChecklistCreateNestedManyWithoutTarefaInput
     etiquetas?: TarefaEtiquetaCreateNestedManyWithoutTarefaInput
+    responsaveis?: TarefaResponsavelCreateNestedManyWithoutTarefaInput
   }
 
   export type TarefaUncheckedCreateWithoutAprovacoesInput = {
@@ -100126,6 +101952,7 @@ export namespace Prisma {
     atividades?: AtividadeTarefaUncheckedCreateNestedManyWithoutTarefaInput
     checklist?: ItemChecklistUncheckedCreateNestedManyWithoutTarefaInput
     etiquetas?: TarefaEtiquetaUncheckedCreateNestedManyWithoutTarefaInput
+    responsaveis?: TarefaResponsavelUncheckedCreateNestedManyWithoutTarefaInput
   }
 
   export type TarefaCreateOrConnectWithoutAprovacoesInput = {
@@ -100159,6 +101986,7 @@ export namespace Prisma {
     anexos_tarefa?: AnexoTarefaCreateNestedManyWithoutCriadorInput
     atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
     aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioUncheckedCreateWithoutAprovacoes_solicitadasInput = {
@@ -100187,6 +102015,7 @@ export namespace Prisma {
     anexos_tarefa?: AnexoTarefaUncheckedCreateNestedManyWithoutCriadorInput
     atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioCreateOrConnectWithoutAprovacoes_solicitadasInput = {
@@ -100220,6 +102049,7 @@ export namespace Prisma {
     anexos_tarefa?: AnexoTarefaCreateNestedManyWithoutCriadorInput
     atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
+    tarefas_responsavel?: TarefaResponsavelCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioUncheckedCreateWithoutAprovacoes_recebidasInput = {
@@ -100248,6 +102078,7 @@ export namespace Prisma {
     anexos_tarefa?: AnexoTarefaUncheckedCreateNestedManyWithoutCriadorInput
     atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioCreateOrConnectWithoutAprovacoes_recebidasInput = {
@@ -100285,6 +102116,7 @@ export namespace Prisma {
     atividades?: AtividadeTarefaUpdateManyWithoutTarefaNestedInput
     checklist?: ItemChecklistUpdateManyWithoutTarefaNestedInput
     etiquetas?: TarefaEtiquetaUpdateManyWithoutTarefaNestedInput
+    responsaveis?: TarefaResponsavelUpdateManyWithoutTarefaNestedInput
   }
 
   export type TarefaUncheckedUpdateWithoutAprovacoesInput = {
@@ -100306,6 +102138,7 @@ export namespace Prisma {
     atividades?: AtividadeTarefaUncheckedUpdateManyWithoutTarefaNestedInput
     checklist?: ItemChecklistUncheckedUpdateManyWithoutTarefaNestedInput
     etiquetas?: TarefaEtiquetaUncheckedUpdateManyWithoutTarefaNestedInput
+    responsaveis?: TarefaResponsavelUncheckedUpdateManyWithoutTarefaNestedInput
   }
 
   export type UsuarioUpsertWithoutAprovacoes_solicitadasInput = {
@@ -100345,6 +102178,7 @@ export namespace Prisma {
     anexos_tarefa?: AnexoTarefaUpdateManyWithoutCriadorNestedInput
     atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutAprovacoes_solicitadasInput = {
@@ -100373,6 +102207,7 @@ export namespace Prisma {
     anexos_tarefa?: AnexoTarefaUncheckedUpdateManyWithoutCriadorNestedInput
     atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuarioUpsertWithoutAprovacoes_recebidasInput = {
@@ -100412,6 +102247,7 @@ export namespace Prisma {
     anexos_tarefa?: AnexoTarefaUpdateManyWithoutCriadorNestedInput
     atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
+    tarefas_responsavel?: TarefaResponsavelUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutAprovacoes_recebidasInput = {
@@ -100440,6 +102276,7 @@ export namespace Prisma {
     anexos_tarefa?: AnexoTarefaUncheckedUpdateManyWithoutCriadorNestedInput
     atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type TarefaCreateWithoutChecklistInput = {
@@ -100461,6 +102298,7 @@ export namespace Prisma {
     atividades?: AtividadeTarefaCreateNestedManyWithoutTarefaInput
     aprovacoes?: AprovacaoTarefaCreateNestedManyWithoutTarefaInput
     etiquetas?: TarefaEtiquetaCreateNestedManyWithoutTarefaInput
+    responsaveis?: TarefaResponsavelCreateNestedManyWithoutTarefaInput
   }
 
   export type TarefaUncheckedCreateWithoutChecklistInput = {
@@ -100482,6 +102320,7 @@ export namespace Prisma {
     atividades?: AtividadeTarefaUncheckedCreateNestedManyWithoutTarefaInput
     aprovacoes?: AprovacaoTarefaUncheckedCreateNestedManyWithoutTarefaInput
     etiquetas?: TarefaEtiquetaUncheckedCreateNestedManyWithoutTarefaInput
+    responsaveis?: TarefaResponsavelUncheckedCreateNestedManyWithoutTarefaInput
   }
 
   export type TarefaCreateOrConnectWithoutChecklistInput = {
@@ -100519,6 +102358,7 @@ export namespace Prisma {
     atividades?: AtividadeTarefaUpdateManyWithoutTarefaNestedInput
     aprovacoes?: AprovacaoTarefaUpdateManyWithoutTarefaNestedInput
     etiquetas?: TarefaEtiquetaUpdateManyWithoutTarefaNestedInput
+    responsaveis?: TarefaResponsavelUpdateManyWithoutTarefaNestedInput
   }
 
   export type TarefaUncheckedUpdateWithoutChecklistInput = {
@@ -100540,6 +102380,7 @@ export namespace Prisma {
     atividades?: AtividadeTarefaUncheckedUpdateManyWithoutTarefaNestedInput
     aprovacoes?: AprovacaoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
     etiquetas?: TarefaEtiquetaUncheckedUpdateManyWithoutTarefaNestedInput
+    responsaveis?: TarefaResponsavelUncheckedUpdateManyWithoutTarefaNestedInput
   }
 
   export type EmpresaCreateWithoutEtiquetas_tarefaInput = {
@@ -100771,6 +102612,7 @@ export namespace Prisma {
     atividades?: AtividadeTarefaCreateNestedManyWithoutTarefaInput
     aprovacoes?: AprovacaoTarefaCreateNestedManyWithoutTarefaInput
     checklist?: ItemChecklistCreateNestedManyWithoutTarefaInput
+    responsaveis?: TarefaResponsavelCreateNestedManyWithoutTarefaInput
   }
 
   export type TarefaUncheckedCreateWithoutEtiquetasInput = {
@@ -100792,6 +102634,7 @@ export namespace Prisma {
     atividades?: AtividadeTarefaUncheckedCreateNestedManyWithoutTarefaInput
     aprovacoes?: AprovacaoTarefaUncheckedCreateNestedManyWithoutTarefaInput
     checklist?: ItemChecklistUncheckedCreateNestedManyWithoutTarefaInput
+    responsaveis?: TarefaResponsavelUncheckedCreateNestedManyWithoutTarefaInput
   }
 
   export type TarefaCreateOrConnectWithoutEtiquetasInput = {
@@ -100848,6 +102691,7 @@ export namespace Prisma {
     atividades?: AtividadeTarefaUpdateManyWithoutTarefaNestedInput
     aprovacoes?: AprovacaoTarefaUpdateManyWithoutTarefaNestedInput
     checklist?: ItemChecklistUpdateManyWithoutTarefaNestedInput
+    responsaveis?: TarefaResponsavelUpdateManyWithoutTarefaNestedInput
   }
 
   export type TarefaUncheckedUpdateWithoutEtiquetasInput = {
@@ -100869,6 +102713,7 @@ export namespace Prisma {
     atividades?: AtividadeTarefaUncheckedUpdateManyWithoutTarefaNestedInput
     aprovacoes?: AprovacaoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
     checklist?: ItemChecklistUncheckedUpdateManyWithoutTarefaNestedInput
+    responsaveis?: TarefaResponsavelUncheckedUpdateManyWithoutTarefaNestedInput
   }
 
   export type EtiquetaTarefaUpsertWithoutTarefasInput = {
@@ -101619,6 +103464,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioUncheckedCreateWithoutDocumentos_criadosInput = {
@@ -101647,6 +103493,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioCreateOrConnectWithoutDocumentos_criadosInput = {
@@ -102068,6 +103915,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutDocumentos_criadosInput = {
@@ -102096,6 +103944,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type EmpresaCreateWithoutPlano_contasInput = {
@@ -103865,6 +105714,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioUncheckedCreateWithoutRecebiveis_criadosInput = {
@@ -103893,6 +105743,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioCreateOrConnectWithoutRecebiveis_criadosInput = {
@@ -104420,6 +106271,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutRecebiveis_criadosInput = {
@@ -104448,6 +106300,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type BoletoUpsertWithoutRecebivelInput = {
@@ -104755,6 +106608,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioUncheckedCreateWithoutContas_pagar_criadasInput = {
@@ -104783,6 +106637,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioCreateOrConnectWithoutContas_pagar_criadasInput = {
@@ -105010,6 +106865,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutContas_pagar_criadasInput = {
@@ -105038,6 +106894,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type EmpresaCreateWithoutModelos_documentoInput = {
@@ -105327,6 +107184,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioUncheckedCreateWithoutEventos_responsavelInput = {
@@ -105355,6 +107213,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedCreateNestedManyWithoutAutorInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutSolicitanteInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedCreateNestedManyWithoutAprovadorInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedCreateNestedManyWithoutUsuarioInput
   }
 
   export type UsuarioCreateOrConnectWithoutEventos_responsavelInput = {
@@ -105723,6 +107582,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUpdateManyWithoutUsuarioNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutEventos_responsavelInput = {
@@ -105751,6 +107611,7 @@ export namespace Prisma {
     atividades_tarefa?: AtividadeTarefaUncheckedUpdateManyWithoutAutorNestedInput
     aprovacoes_solicitadas?: AprovacaoTarefaUncheckedUpdateManyWithoutSolicitanteNestedInput
     aprovacoes_recebidas?: AprovacaoTarefaUncheckedUpdateManyWithoutAprovadorNestedInput
+    tarefas_responsavel?: TarefaResponsavelUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
   export type ClienteUpsertWithoutEventosInput = {
@@ -111296,6 +113157,10 @@ export namespace Prisma {
     decidido_em?: Date | string | null
   }
 
+  export type TarefaResponsavelCreateManyUsuarioInput = {
+    tarefa_id: string
+  }
+
   export type MembroEmpresaUpdateWithoutUsuarioInput = {
     id?: StringFieldUpdateOperationsInput | string
     ativo?: BoolFieldUpdateOperationsInput | boolean
@@ -111772,6 +113637,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaUpdateManyWithoutTarefaNestedInput
     checklist?: ItemChecklistUpdateManyWithoutTarefaNestedInput
     etiquetas?: TarefaEtiquetaUpdateManyWithoutTarefaNestedInput
+    responsaveis?: TarefaResponsavelUpdateManyWithoutTarefaNestedInput
   }
 
   export type TarefaUncheckedUpdateWithoutResponsavelInput = {
@@ -111793,6 +113659,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
     checklist?: ItemChecklistUncheckedUpdateManyWithoutTarefaNestedInput
     etiquetas?: TarefaEtiquetaUncheckedUpdateManyWithoutTarefaNestedInput
+    responsaveis?: TarefaResponsavelUncheckedUpdateManyWithoutTarefaNestedInput
   }
 
   export type TarefaUncheckedUpdateManyWithoutResponsavelInput = {
@@ -112446,6 +114313,18 @@ export namespace Prisma {
     comentario?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     decidido_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type TarefaResponsavelUpdateWithoutUsuarioInput = {
+    tarefa?: TarefaUpdateOneRequiredWithoutResponsaveisNestedInput
+  }
+
+  export type TarefaResponsavelUncheckedUpdateWithoutUsuarioInput = {
+    tarefa_id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TarefaResponsavelUncheckedUpdateManyWithoutUsuarioInput = {
+    tarefa_id?: StringFieldUpdateOperationsInput | string
   }
 
   export type MembroEmpresaCreateManyPerfilInput = {
@@ -114610,6 +116489,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaUpdateManyWithoutTarefaNestedInput
     checklist?: ItemChecklistUpdateManyWithoutTarefaNestedInput
     etiquetas?: TarefaEtiquetaUpdateManyWithoutTarefaNestedInput
+    responsaveis?: TarefaResponsavelUpdateManyWithoutTarefaNestedInput
   }
 
   export type TarefaUncheckedUpdateWithoutProjetoInput = {
@@ -114631,6 +116511,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
     checklist?: ItemChecklistUncheckedUpdateManyWithoutTarefaNestedInput
     etiquetas?: TarefaEtiquetaUncheckedUpdateManyWithoutTarefaNestedInput
+    responsaveis?: TarefaResponsavelUncheckedUpdateManyWithoutTarefaNestedInput
   }
 
   export type TarefaUncheckedUpdateManyWithoutProjetoInput = {
@@ -114868,6 +116749,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaUpdateManyWithoutTarefaNestedInput
     checklist?: ItemChecklistUpdateManyWithoutTarefaNestedInput
     etiquetas?: TarefaEtiquetaUpdateManyWithoutTarefaNestedInput
+    responsaveis?: TarefaResponsavelUpdateManyWithoutTarefaNestedInput
   }
 
   export type TarefaUncheckedUpdateWithoutEtapaInput = {
@@ -114889,6 +116771,7 @@ export namespace Prisma {
     aprovacoes?: AprovacaoTarefaUncheckedUpdateManyWithoutTarefaNestedInput
     checklist?: ItemChecklistUncheckedUpdateManyWithoutTarefaNestedInput
     etiquetas?: TarefaEtiquetaUncheckedUpdateManyWithoutTarefaNestedInput
+    responsaveis?: TarefaResponsavelUncheckedUpdateManyWithoutTarefaNestedInput
   }
 
   export type TarefaUncheckedUpdateManyWithoutEtapaInput = {
@@ -114951,6 +116834,10 @@ export namespace Prisma {
 
   export type TarefaEtiquetaCreateManyTarefaInput = {
     etiqueta_id: string
+  }
+
+  export type TarefaResponsavelCreateManyTarefaInput = {
+    usuario_id: string
   }
 
   export type ComentarioTarefaUpdateWithoutTarefaInput = {
@@ -115092,6 +116979,18 @@ export namespace Prisma {
 
   export type TarefaEtiquetaUncheckedUpdateManyWithoutTarefaInput = {
     etiqueta_id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TarefaResponsavelUpdateWithoutTarefaInput = {
+    usuario?: UsuarioUpdateOneRequiredWithoutTarefas_responsavelNestedInput
+  }
+
+  export type TarefaResponsavelUncheckedUpdateWithoutTarefaInput = {
+    usuario_id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TarefaResponsavelUncheckedUpdateManyWithoutTarefaInput = {
+    usuario_id?: StringFieldUpdateOperationsInput | string
   }
 
   export type TarefaEtiquetaCreateManyEtiquetaInput = {

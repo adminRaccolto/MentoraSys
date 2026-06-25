@@ -30,6 +30,7 @@ type Tarefa = {
   data_prazo: Date | null;
   concluida_em: Date | null;
   responsavel: Responsavel | null;
+  responsaveis?: { usuario: Responsavel }[];
   etiquetas?: { etiqueta: { id: string; nome: string; cor: string } }[];
 };
 
@@ -171,26 +172,40 @@ function TarefaCard({
         </button>
       </div>
 
-      {/* Rodapé: prazo + responsável */}
-      {(tarefa.data_prazo || tarefa.responsavel) && (
-        <div className="flex items-center justify-between mt-2.5 pl-6 gap-2">
-          {tarefa.data_prazo ? (
-            <span className={`
-              inline-flex items-center gap-1 text-[11px] px-1.5 py-0.5 rounded-md font-medium leading-none
-              ${vencida
-                ? "bg-red-100 text-red-600"
-                : concluida
-                  ? "bg-emerald-50 text-emerald-600"
-                  : "bg-slate-100 text-slate-500"}
-            `}>
-              <Clock className="size-3 shrink-0" />
-              {new Date(tarefa.data_prazo).toLocaleDateString("pt-BR", { day: "2-digit", month: "short" })}
-            </span>
-          ) : <span />}
+      {/* Rodapé: prazo + responsáveis */}
+      {(() => {
+        const resps = tarefa.responsaveis?.length
+          ? tarefa.responsaveis.map(r => r.usuario)
+          : tarefa.responsavel ? [tarefa.responsavel] : [];
+        return (tarefa.data_prazo || resps.length > 0) ? (
+          <div className="flex items-center justify-between mt-2.5 pl-6 gap-2">
+            {tarefa.data_prazo ? (
+              <span className={`
+                inline-flex items-center gap-1 text-[11px] px-1.5 py-0.5 rounded-md font-medium leading-none
+                ${vencida
+                  ? "bg-red-100 text-red-600"
+                  : concluida
+                    ? "bg-emerald-50 text-emerald-600"
+                    : "bg-slate-100 text-slate-500"}
+              `}>
+                <Clock className="size-3 shrink-0" />
+                {new Date(tarefa.data_prazo).toLocaleDateString("pt-BR", { day: "2-digit", month: "short" })}
+              </span>
+            ) : <span />}
 
-          {tarefa.responsavel && <Avatar nome={tarefa.responsavel.nome} />}
-        </div>
-      )}
+            {resps.length > 0 && (
+              <div className="flex -space-x-1.5">
+                {resps.slice(0, 3).map(r => <Avatar key={r.id} nome={r.nome} />)}
+                {resps.length > 3 && (
+                  <div className="size-6 rounded-full bg-muted border-2 border-background text-[9px] font-bold text-muted-foreground flex items-center justify-center">
+                    +{resps.length - 3}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        ) : null;
+      })()}
     </div>
   );
 }
@@ -224,7 +239,10 @@ function EtapaColuna({
 
   // Tarefas visíveis (filtradas) — SortableContext sempre usa o conjunto completo
   const tarefasVisiveis = filtroResponsavelId
-    ? etapa.tarefas.filter((t) => t.responsavel?.id === filtroResponsavelId)
+    ? etapa.tarefas.filter((t) =>
+        t.responsavel?.id === filtroResponsavelId ||
+        t.responsaveis?.some(r => r.usuario.id === filtroResponsavelId)
+      )
     : etapa.tarefas;
 
   const concluidas = tarefasVisiveis.filter((t) => t.status === "CONCLUIDA").length;
@@ -391,10 +409,14 @@ export default function ProjetoKanban({ projetoId, etapas: etapasIniciais, onCha
   const [filtroResponsavelId, setFiltroResponsavelId] = useState<string | null>(null);
   const [, startTransition] = useTransition();
 
-  // Extrai responsáveis únicos de todas as tarefas
+  // Extrai responsáveis únicos de todas as tarefas (join table + campo legado)
   const responsaveisUnicos: Responsavel[] = Object.values(
     etapas.flatMap((e) => e.tarefas).reduce<Record<string, Responsavel>>((acc, t) => {
-      if (t.responsavel) acc[t.responsavel.id] = t.responsavel;
+      if (t.responsaveis?.length) {
+        t.responsaveis.forEach(r => { acc[r.usuario.id] = r.usuario; });
+      } else if (t.responsavel) {
+        acc[t.responsavel.id] = t.responsavel;
+      }
       return acc;
     }, {})
   );

@@ -97,6 +97,7 @@ model Usuario {
   atividades_tarefa      AtividadeTarefa[]
   aprovacoes_solicitadas AprovacaoTarefa[]  @relation("AprovacaoSolicitante")
   aprovacoes_recebidas   AprovacaoTarefa[]  @relation("AprovacaoAprovador")
+  tarefas_responsavel    TarefaResponsavel[]
 
   @@map("usuarios")
 }
@@ -634,8 +635,20 @@ model Tarefa {
   aprovacoes   AprovacaoTarefa[]
   checklist    ItemChecklist[]
   etiquetas    TarefaEtiqueta[]
+  responsaveis TarefaResponsavel[]
 
   @@map("tarefas")
+}
+
+model TarefaResponsavel {
+  tarefa_id  String
+  usuario_id String
+
+  tarefa  Tarefa  @relation(fields: [tarefa_id],  references: [id], onDelete: Cascade)
+  usuario Usuario @relation(fields: [usuario_id], references: [id], onDelete: Cascade)
+
+  @@id([tarefa_id, usuario_id])
+  @@map("tarefas_responsaveis")
 }
 
 model ComentarioTarefa {

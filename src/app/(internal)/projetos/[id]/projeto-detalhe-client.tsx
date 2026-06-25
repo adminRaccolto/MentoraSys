@@ -34,6 +34,7 @@ interface Tarefa {
   id: string; titulo: string; descricao: string | null;
   status: string; data_prazo: Date | null; concluida_em: Date | null;
   responsavel: Responsavel | null;
+  responsaveis: { usuario: Responsavel }[];
   etiquetas: { etiqueta: { id: string; nome: string; cor: string } }[];
 }
 interface Etapa {
@@ -127,6 +128,7 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros, usuari
                 ...(campos.titulo && { titulo: campos.titulo }),
                 ...(campos.status && { status: campos.status }),
                 ...(campos.responsavel !== undefined && { responsavel: campos.responsavel }),
+                ...(campos.responsaveis !== undefined && { responsaveis: campos.responsaveis }),
                 ...(campos.data_prazo !== undefined && { data_prazo: campos.data_prazo ? new Date(campos.data_prazo as string) : null }),
               }
             : t
@@ -700,7 +702,7 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros, usuari
             }));
             const etapasNovas = etapasCriadas.map((e) => ({
               ...e,
-              tarefas: novasTarefas.filter((t) => t.etapaId === e.id) as Tarefa[],
+              tarefas: novasTarefas.filter((t) => t.etapaId === e.id) as unknown as Tarefa[],
             }));
             return { ...p, etapas: [...etapasExistentes, ...etapasNovas] };
           });

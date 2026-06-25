@@ -30,7 +30,9 @@ export interface ResultadoImportacao {
   tarefas: {
     id: string; etapaId: string; titulo: string; descricao: string | null;
     status: string; data_prazo: Date | null; concluida_em: Date | null;
-    responsavel: { id: string; nome: string } | null; etiquetas: never[];
+    responsavel: { id: string; nome: string } | null;
+    responsaveis: { usuario: { id: string; nome: string } }[];
+    etiquetas: never[];
   }[];
 }
 
@@ -117,6 +119,7 @@ export async function importarTarefas(projetoId: string, tarefas: TarefaImportad
       data_prazo: t.data_prazo,
       concluida_em: null,
       responsavel: t.responsavel,
+      responsaveis: t.responsavel ? [{ usuario: t.responsavel }] : [],
       etiquetas: [],
     })),
   };

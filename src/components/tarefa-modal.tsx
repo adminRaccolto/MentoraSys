@@ -17,7 +17,7 @@ import {
   adicionarComentario, excluirComentario,
   adicionarItemChecklist, toggleItemChecklist, excluirItemChecklist,
   criarUrlUploadAnexo, confirmarUploadAnexo, excluirAnexoTarefa,
-  solicitarAprovacao, decidirAprovacao, editarTarefa,
+  solicitarAprovacao, decidirAprovacao, editarTarefa, atualizarResponsaveisTarefa,
 } from "@/actions/tarefas";
 import { PrioridadeTarefa } from "@/lib/generated/prisma";
 
@@ -35,6 +35,7 @@ export type TarefaCompleta = {
   status: string; prioridade: PrioridadeTarefa;
   data_prazo: Date | string | null; projeto_id: string;
   responsavel: Autor | null;
+  responsaveis: { usuario: Autor }[];
   etapa: { id: string; titulo: string };
   projeto: { id: string; titulo: string };
   comentarios: Comentario[];
@@ -54,6 +55,9 @@ interface Props {
 }
 
 // ─── helpers ──────────────────────────────────────────────────────────────────
+
+const iniciais = (nome: string) =>
+  nome.split(" ").slice(0, 2).map(p => p[0]).join("").toUpperCase();
 
 const STATUS_OPTS = [
   { value: "PENDENTE",     label: "Pendente",     cor: "bg-slate-100 text-slate-700" },
@@ -158,13 +162,41 @@ export default function TarefaModal({ tarefa: ini_, membros, usuarioAtualId, onC
 
   // ─── salvar campo ────────────────────────────────────────────────────────
 
-  const salvarCampo = async (campos: Partial<{ titulo: string; descricao: string; status: string; prioridade: PrioridadeTarefa; responsavel_id: string; data_prazo: string }>) => {
+  // responsáveis (multi)
+  const [responsaveisIds, setResponsaveisIds] = useState<string[]>(
+    () => ini_.responsaveis?.length
+      ? ini_.responsaveis.map(r => r.usuario.id)
+      : ini_.responsavel ? [ini_.responsavel.id] : []
+  );
+  const [savingResp, setSavingResp] = useState(false);
+  const [mostrarMembros, setMostrarMembros] = useState(false);
+
+  const toggleResponsavel = async (uid: string) => {
+    const novoIds = responsaveisIds.includes(uid)
+      ? responsaveisIds.filter(id => id !== uid)
+      : [...responsaveisIds, uid];
+    setResponsaveisIds(novoIds);
+    setSavingResp(true);
+    try {
+      await atualizarResponsaveisTarefa(t.id, t.projeto_id, novoIds);
+      const novasEntradas = novoIds
+        .map(id => membros.find(m => m.id === id))
+        .filter(Boolean)
+        .map(m => ({ usuario: { id: m!.id, nome: m!.nome } }));
+      const updates: Partial<TarefaCompleta> = { responsaveis: novasEntradas };
+      setT(prev => ({ ...prev, ...updates }));
+      onUpdate(t.id, updates);
+    } catch { toast.error("Erro ao salvar"); setResponsaveisIds(responsaveisIds); }
+    finally { setSavingResp(false); }
+  };
+
+  const salvarCampo = async (campos: Partial<{ titulo: string; descricao: string; status: string; prioridade: PrioridadeTarefa; data_prazo: string }>) => {
     startTransition(async () => {
       try {
         await editarTarefa(t.id, t.projeto_id, {
           titulo: campos.titulo ?? t.titulo,
           descricao: campos.descricao ?? t.descricao ?? undefined,
-          responsavel_id: campos.responsavel_id ?? t.responsavel?.id,
+          responsavel_id: responsaveisIds[0],
           data_prazo: campos.data_prazo ?? (t.data_prazo ? new Date(t.data_prazo).toISOString().split("T")[0] : undefined),
           status: campos.status ?? t.status,
           prioridade: campos.prioridade ?? t.prioridade,
@@ -175,10 +207,6 @@ export default function TarefaModal({ tarefa: ini_, membros, usuarioAtualId, onC
         if (campos.descricao !== undefined) updates.descricao  = campos.descricao;
         if (campos.status)        updates.status    = campos.status;
         if (campos.prioridade)    updates.prioridade = campos.prioridade;
-        if ("responsavel_id" in campos) {
-          const m = membros.find(m => m.id === campos.responsavel_id);
-          updates.responsavel = m ? { id: m.id, nome: m.nome } : null;
-        }
         if ("data_prazo" in campos) updates.data_prazo = campos.data_prazo ? new Date(campos.data_prazo) : null;
 
         setT(prev => ({ ...prev, ...updates }));
@@ -466,27 +494,54 @@ export default function TarefaModal({ tarefa: ini_, membros, usuarioAtualId, onC
               </Select>
             </div>
 
-            {/* Responsável */}
+            {/* Responsáveis (multi) */}
             <div className="space-y-1.5">
               <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1">
-                <User className="size-3" /> Responsável
+                <User className="size-3" /> Responsáveis {savingResp && <Loader2 className="size-3 animate-spin ml-1" />}
               </p>
-              {t.responsavel && (
-                <div className="flex items-center gap-2 mb-1.5 p-2 bg-background rounded-lg border">
-                  <div className="size-7 rounded-full bg-primary/15 text-primary text-[10px] font-bold flex items-center justify-center shrink-0">
-                    {t.responsavel.nome.split(" ").slice(0,2).map(p => p[0]).join("").toUpperCase()}
-                  </div>
-                  <span className="text-xs font-medium truncate">{t.responsavel.nome.split(" ")[0]}</span>
+
+              {/* chips dos selecionados */}
+              {responsaveisIds.length > 0 && (
+                <div className="flex flex-wrap gap-1 mb-1">
+                  {responsaveisIds.map(uid => {
+                    const m = membros.find(x => x.id === uid);
+                    if (!m) return null;
+                    return (
+                      <button key={uid} onClick={() => toggleResponsavel(uid)}
+                        className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[11px] font-medium hover:bg-destructive/10 hover:text-destructive transition-colors">
+                        <span>{iniciais(m.nome)}</span>
+                        <span className="max-w-[80px] truncate">{m.nome.split(" ")[0]}</span>
+                        <X className="size-2.5 opacity-60" />
+                      </button>
+                    );
+                  })}
                 </div>
               )}
-              <Select value={t.responsavel?.id ?? "none"}
-                onValueChange={(v: string | null) => salvarCampo({ responsavel_id: !v || v === "none" ? "" : v })}>
-                <SelectTrigger className="h-8 text-xs"><SelectValue placeholder="Atribuir…" /></SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="none">Sem responsável</SelectItem>
-                  {membros.map(m => <SelectItem key={m.id} value={m.id}>{m.nome}</SelectItem>)}
-                </SelectContent>
-              </Select>
+
+              {/* lista de membros (toggle) */}
+              <button onClick={() => setMostrarMembros(v => !v)}
+                className="w-full h-8 text-xs border rounded-md px-2 flex items-center gap-1.5 text-muted-foreground hover:bg-muted transition-colors">
+                <Plus className="size-3" />
+                {mostrarMembros ? "Fechar lista" : responsaveisIds.length === 0 ? "Atribuir responsável…" : "Adicionar mais…"}
+              </button>
+
+              {mostrarMembros && (
+                <div className="border rounded-md divide-y max-h-44 overflow-y-auto">
+                  {membros.map(m => {
+                    const ativo = responsaveisIds.includes(m.id);
+                    return (
+                      <button key={m.id} onClick={() => toggleResponsavel(m.id)}
+                        className={`w-full flex items-center gap-2 px-2.5 py-1.5 text-xs hover:bg-muted transition-colors ${ativo ? "bg-primary/5" : ""}`}>
+                        <div className="size-5 rounded-full bg-primary/15 text-primary text-[9px] font-bold flex items-center justify-center shrink-0">
+                          {iniciais(m.nome)}
+                        </div>
+                        <span className="flex-1 text-left truncate">{m.nome}</span>
+                        {ativo && <Check className="size-3 text-primary shrink-0" />}
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
             </div>
 
             {/* Prazo */}

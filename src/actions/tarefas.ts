@@ -35,7 +35,7 @@ type Input = z.input<typeof schema>;
 
 // ─── CRUD básico ─────────────────────────────────────────────────────────────
 
-export async function criarTarefa(etapaId: string, projetoId: string, input: Input) {
+export async function criarTarefa(etapaId: string, projetoId: string, input: Input & { responsaveis_ids?: string[] }) {
   await verificarPermissao("projetos", "editar");
   const empresaId = await obterEmpresaAtiva();
 
@@ -43,6 +43,7 @@ export async function criarTarefa(etapaId: string, projetoId: string, input: Inp
   if (!projeto) throw new Error("Projeto não encontrado");
 
   const data = schema.parse(input);
+  const ids = input.responsaveis_ids ?? (data.responsavel_id ? [data.responsavel_id] : []);
 
   const tarefa = await prisma.tarefa.create({
     data: {
@@ -50,10 +51,16 @@ export async function criarTarefa(etapaId: string, projetoId: string, input: Inp
       projeto_id: projetoId,
       titulo: data.titulo,
       descricao: data.descricao || null,
-      responsavel_id: data.responsavel_id || null,
+      responsavel_id: ids[0] ?? null,
       data_prazo: data.data_prazo ? new Date(data.data_prazo) : null,
+      responsaveis: ids.length > 0
+        ? { create: ids.map((uid) => ({ usuario_id: uid })) }
+        : undefined,
     },
-    include: { responsavel: { select: { id: true, nome: true } } },
+    include: {
+      responsavel: { select: { id: true, nome: true } },
+      responsaveis: { select: { usuario: { select: { id: true, nome: true } } } },
+    },
   });
 
   revalidatePath(`/projetos/${projetoId}`);
@@ -81,7 +88,10 @@ export async function editarTarefa(tarefaId: string, projetoId: string, input: I
       ...(input.status && { status: input.status as any }),
       ...(input.prioridade && { prioridade: input.prioridade }),
     },
-    include: { responsavel: { select: { id: true, nome: true } } },
+    include: {
+      responsavel: { select: { id: true, nome: true } },
+      responsaveis: { select: { usuario: { select: { id: true, nome: true } } } },
+    },
   });
 
   if (input.status && anterior?.status !== input.status) {
@@ -90,6 +100,32 @@ export async function editarTarefa(tarefaId: string, projetoId: string, input: I
 
   revalidatePath(`/projetos/${projetoId}`);
   return { data: tarefa };
+}
+
+export async function atualizarResponsaveisTarefa(tarefaId: string, projetoId: string, responsaveisIds: string[]) {
+  await verificarPermissao("projetos", "editar");
+  const empresaId = await obterEmpresaAtiva();
+  const autorId = await getAutorId();
+
+  const projeto = await prisma.projeto.findUnique({ where: { id: projetoId, empresa_id: empresaId } });
+  if (!projeto) throw new Error("Projeto não encontrado");
+
+  await prisma.tarefaResponsavel.deleteMany({ where: { tarefa_id: tarefaId } });
+
+  if (responsaveisIds.length > 0) {
+    await prisma.tarefaResponsavel.createMany({
+      data: responsaveisIds.map((uid) => ({ tarefa_id: tarefaId, usuario_id: uid })),
+    });
+  }
+
+  await prisma.tarefa.update({
+    where: { id: tarefaId },
+    data: { responsavel_id: responsaveisIds[0] ?? null },
+  });
+
+  await registrarAtividade(tarefaId, autorId, `Responsáveis atualizados`);
+  revalidatePath(`/projetos/${projetoId}`);
+  return { ok: true };
 }
 
 export async function concluirTarefa(tarefaId: string, projetoId: string, concluida: boolean) {
@@ -156,6 +192,7 @@ export async function carregarTarefaCompleta(tarefaId: string) {
     where: { id: tarefaId, projeto: { empresa_id: empresaId } },
     include: {
       responsavel: { select: { id: true, nome: true, avatar_url: true } },
+      responsaveis: { select: { usuario: { select: { id: true, nome: true, avatar_url: true } } } },
       etapa: { select: { id: true, titulo: true } },
       projeto: { select: { id: true, titulo: true } },
       comentarios: {

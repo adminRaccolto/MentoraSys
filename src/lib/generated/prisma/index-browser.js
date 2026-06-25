@@ -432,6 +432,11 @@ exports.Prisma.TarefaScalarFieldEnum = {
   atualizado_em: 'atualizado_em'
 };
 
+exports.Prisma.TarefaResponsavelScalarFieldEnum = {
+  tarefa_id: 'tarefa_id',
+  usuario_id: 'usuario_id'
+};
+
 exports.Prisma.ComentarioTarefaScalarFieldEnum = {
   id: 'id',
   tarefa_id: 'tarefa_id',
@@ -986,6 +991,7 @@ exports.Prisma.ModelName = {
   Projeto: 'Projeto',
   Etapa: 'Etapa',
   Tarefa: 'Tarefa',
+  TarefaResponsavel: 'TarefaResponsavel',
   ComentarioTarefa: 'ComentarioTarefa',
   AnexoTarefa: 'AnexoTarefa',
   AtividadeTarefa: 'AtividadeTarefa',
