@@ -1,8 +1,10 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_EMAIL_API_KEY);
-
 const FROM = process.env.RESEND_EMAIL_FROM ?? "Raccolto <noreply@raccolto.com.br>";
+
+function getResend() {
+  return new Resend(process.env.RESEND_EMAIL_API_KEY);
+}
 
 const LOGO_URL = "https://app.raccolto.com.br/favicon.png";
 
@@ -56,7 +58,7 @@ function emailWrapper(conteudo: string): string {
 // ─── OTP para aceite de proposta ─────────────────────────────────────────────
 
 export async function enviarOtpAceite(para: string, codigo: string, tituloProposta: string) {
-  await resend.emails.send({
+  await getResend().emails.send({
     from: FROM,
     to: para,
     subject: `Código de confirmação — ${tituloProposta}`,
@@ -92,7 +94,7 @@ export async function enviarConviteEquipe(
 
   const link = `${baseUrl}/membro/${token}`;
 
-  await resend.emails.send({
+  await getResend().emails.send({
     from: FROM,
     to: para,
     subject: `Convite para ${empresaNome} — Raccolto`,
@@ -131,7 +133,7 @@ export async function enviarLembrete(para: string, titulo: string, inicio: Date)
     minute: "2-digit",
   });
 
-  await resend.emails.send({
+  await getResend().emails.send({
     from: FROM,
     to: para,
     subject: `Lembrete: ${titulo}`,
