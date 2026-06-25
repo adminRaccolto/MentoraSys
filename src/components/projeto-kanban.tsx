@@ -324,13 +324,82 @@ function EtapaColuna({
   );
 }
 
+// ─── Filtro por responsável ───────────────────────────────────────────────────
+
+function FiltroPorResponsavel({
+  responsaveis,
+  selecionado,
+  onSelecionar,
+}: {
+  responsaveis: Responsavel[];
+  selecionado: string | null;
+  onSelecionar: (id: string | null) => void;
+}) {
+  if (responsaveis.length === 0) return null;
+  return (
+    <div className="flex items-center gap-2 px-2 pb-2 flex-wrap shrink-0">
+      <span className="text-xs text-muted-foreground font-medium mr-1">Filtrar:</span>
+      <button
+        onClick={() => onSelecionar(null)}
+        className={`text-xs px-3 py-1 rounded-full font-medium transition-colors ${
+          selecionado === null
+            ? "bg-primary text-primary-foreground"
+            : "bg-muted text-muted-foreground hover:bg-muted/80"
+        }`}
+      >
+        Todos
+      </button>
+      {responsaveis.map((r) => {
+        const iniciais = r.nome.split(" ").slice(0, 2).map((p) => p[0]).join("").toUpperCase();
+        const ativo = selecionado === r.id;
+        return (
+          <button
+            key={r.id}
+            onClick={() => onSelecionar(ativo ? null : r.id)}
+            title={r.nome}
+            className={`flex items-center gap-1.5 pl-1 pr-3 py-1 rounded-full text-xs font-medium transition-colors ${
+              ativo
+                ? "bg-primary text-primary-foreground"
+                : "bg-muted text-muted-foreground hover:bg-muted/80"
+            }`}
+          >
+            <div className={`size-5 rounded-full text-[9px] font-bold flex items-center justify-center shrink-0 ${
+              ativo ? "bg-white/20 text-white" : "bg-primary/15 text-primary"
+            }`}>
+              {iniciais}
+            </div>
+            {r.nome.split(" ")[0]}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 // ─── Board principal ──────────────────────────────────────────────────────────
 
 export default function ProjetoKanban({ projetoId, etapas: etapasIniciais, onChange, onAbrirTarefa }: Props) {
   const [etapas, setEtapas] = useState(etapasIniciais);
   const [draggingId, setDraggingId] = useState<string | null>(null);
   const [draggingTarefa, setDraggingTarefa] = useState<Tarefa | null>(null);
+  const [filtroResponsavelId, setFiltroResponsavelId] = useState<string | null>(null);
   const [, startTransition] = useTransition();
+
+  // Extrai responsáveis únicos de todas as tarefas
+  const responsaveisUnicos: Responsavel[] = Object.values(
+    etapas.flatMap((e) => e.tarefas).reduce<Record<string, Responsavel>>((acc, t) => {
+      if (t.responsavel) acc[t.responsavel.id] = t.responsavel;
+      return acc;
+    }, {})
+  );
+
+  // Etapas com tarefas filtradas (mantém etapas vazias para DnD)
+  const etapasFiltradas = filtroResponsavelId
+    ? etapas.map((e) => ({
+        ...e,
+        tarefas: e.tarefas.filter((t) => t.responsavel?.id === filtroResponsavelId),
+      }))
+    : etapas;
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 5 } })
@@ -434,24 +503,32 @@ export default function ProjetoKanban({ projetoId, etapas: etapasIniciais, onCha
       onDragOver={onDragOver}
       onDragEnd={onDragEnd}
     >
-      <div className="flex gap-4 overflow-x-auto pb-6 pt-2 px-2 h-full items-start">
-        {etapas.map((etapa) => (
-          <EtapaColuna
-            key={etapa.id}
-            etapa={etapa}
-            draggingId={draggingId}
-            onToggle={toggleTarefa}
-            onRemover={removerTarefa}
-            onAbrir={onAbrirTarefa}
-            onNovaTarefa={novaTarefa}
-          />
-        ))}
+      <div className="flex flex-col h-full min-h-0">
+        <FiltroPorResponsavel
+          responsaveis={responsaveisUnicos}
+          selecionado={filtroResponsavelId}
+          onSelecionar={setFiltroResponsavelId}
+        />
 
-        {etapas.length === 0 && (
-          <div className="flex-1 flex items-center justify-center py-24 text-muted-foreground text-sm">
-            Crie etapas na aba &quot;Lista&quot; para visualizar o Kanban.
-          </div>
-        )}
+        <div className="flex gap-4 overflow-x-auto pb-6 pt-1 px-2 flex-1 min-h-0 items-start">
+          {etapasFiltradas.map((etapa) => (
+            <EtapaColuna
+              key={etapa.id}
+              etapa={etapa}
+              draggingId={draggingId}
+              onToggle={toggleTarefa}
+              onRemover={removerTarefa}
+              onAbrir={onAbrirTarefa}
+              onNovaTarefa={novaTarefa}
+            />
+          ))}
+
+          {etapas.length === 0 && (
+            <div className="flex-1 flex items-center justify-center py-24 text-muted-foreground text-sm">
+              Crie etapas na aba &quot;Lista&quot; para visualizar o Kanban.
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Ghost card ao arrastar */}
