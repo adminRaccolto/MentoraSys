@@ -575,7 +575,7 @@ export default function CrmClient({ etapasIniciais, leadsIniciais, clientes, ser
 
       {/* ── Modal criar/editar ── */}
       <Dialog open={modalAberto} onOpenChange={(o) => { if (!o) fecharModal(); }}>
-        <DialogContent className="w-[95vw] sm:max-w-5xl p-8">
+        <DialogContent className="max-w-5xl w-[95vw] p-8">
           <DialogHeader>
             <DialogTitle>{editandoId ? "Editar oportunidade" : "Nova oportunidade"}</DialogTitle>
           </DialogHeader>
