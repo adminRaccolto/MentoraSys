@@ -198,9 +198,10 @@ function TarefaCard({
 // ─── Coluna Kanban ────────────────────────────────────────────────────────────
 
 function EtapaColuna({
-  etapa, draggingId, onToggle, onRemover, onAbrir, onNovaTarefa,
+  etapa, draggingId, filtroResponsavelId, onToggle, onRemover, onAbrir, onNovaTarefa,
 }: {
   etapa: Etapa; draggingId: string | null;
+  filtroResponsavelId: string | null;
   onToggle: (etapaId: string, tarefaId: string, concluida: boolean) => void;
   onRemover: (etapaId: string, tarefaId: string) => void;
   onAbrir: (tarefaId: string) => void;
@@ -221,7 +222,12 @@ function EtapaColuna({
     setAdicionando(false);
   };
 
-  const concluidas = etapa.tarefas.filter((t) => t.status === "CONCLUIDA").length;
+  // Tarefas visíveis (filtradas) — SortableContext sempre usa o conjunto completo
+  const tarefasVisiveis = filtroResponsavelId
+    ? etapa.tarefas.filter((t) => t.responsavel?.id === filtroResponsavelId)
+    : etapa.tarefas;
+
+  const concluidas = tarefasVisiveis.filter((t) => t.status === "CONCLUIDA").length;
   const dotCor = ETAPA_DOT[etapa.status] ?? "bg-slate-400";
 
   return (
@@ -239,19 +245,19 @@ function EtapaColuna({
         <div className={`size-2.5 rounded-full shrink-0 ${dotCor}`} />
         <span className="font-semibold text-sm flex-1 truncate">{etapa.titulo}</span>
         <div className="flex items-center gap-1.5">
-          {etapa.tarefas.length > 0 && (
+          {tarefasVisiveis.length > 0 && (
             <span className="text-[10px] text-muted-foreground">
-              {concluidas}/{etapa.tarefas.length}
+              {concluidas}/{tarefasVisiveis.length}
             </span>
           )}
           <span className="size-6 rounded-full bg-white/80 border border-slate-200 text-xs font-bold text-muted-foreground flex items-center justify-center">
-            {etapa.tarefas.length}
+            {tarefasVisiveis.length}
           </span>
         </div>
       </div>
 
       {/* Barra de progresso da coluna */}
-      {etapa.tarefas.length > 0 && (
+      {tarefasVisiveis.length > 0 && (
         <div className="mx-4 mb-2 h-0.5 bg-slate-200 rounded-full overflow-hidden">
           <div
             className="h-full bg-emerald-400 rounded-full transition-all duration-500"
@@ -260,10 +266,10 @@ function EtapaColuna({
         </div>
       )}
 
-      {/* Lista de cards */}
+      {/* Lista de cards — SortableContext sempre usa IDs completos para DnD funcionar */}
       <div className="flex-1 px-2 pb-1 space-y-2 min-h-[48px]">
         <SortableContext items={etapa.tarefas.map((t) => t.id)} strategy={verticalListSortingStrategy}>
-          {etapa.tarefas.map((tarefa) => (
+          {tarefasVisiveis.map((tarefa) => (
             <TarefaCard
               key={tarefa.id}
               tarefa={tarefa}
@@ -276,7 +282,7 @@ function EtapaColuna({
           ))}
         </SortableContext>
 
-        {etapa.tarefas.length === 0 && !adicionando && (
+        {tarefasVisiveis.length === 0 && !adicionando && (
           <div className="h-14 rounded-xl border-2 border-dashed border-slate-200 flex items-center justify-center">
             <span className="text-xs text-muted-foreground/50">Arraste cartões aqui</span>
           </div>
@@ -393,13 +399,6 @@ export default function ProjetoKanban({ projetoId, etapas: etapasIniciais, onCha
     }, {})
   );
 
-  // Etapas com tarefas filtradas (mantém etapas vazias para DnD)
-  const etapasFiltradas = filtroResponsavelId
-    ? etapas.map((e) => ({
-        ...e,
-        tarefas: e.tarefas.filter((t) => t.responsavel?.id === filtroResponsavelId),
-      }))
-    : etapas;
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 5 } })
@@ -511,11 +510,12 @@ export default function ProjetoKanban({ projetoId, etapas: etapasIniciais, onCha
         />
 
         <div className="flex gap-4 overflow-x-auto pb-6 pt-1 px-2 flex-1 min-h-0 items-start">
-          {etapasFiltradas.map((etapa) => (
+          {etapas.map((etapa) => (
             <EtapaColuna
               key={etapa.id}
               etapa={etapa}
               draggingId={draggingId}
+              filtroResponsavelId={filtroResponsavelId}
               onToggle={toggleTarefa}
               onRemover={removerTarefa}
               onAbrir={onAbrirTarefa}
