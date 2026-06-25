@@ -20,7 +20,6 @@ const ETAPAS_PADRAO = [
 ];
 
 export async function listarEtapas() {
-  await verificarPermissao("crm", "visualizar");
   const empresaId = await obterEmpresaAtiva();
 
   let etapas = await prisma.etapaCrm.findMany({
@@ -130,7 +129,6 @@ const schemaLead = z.object({
 type LeadInput = z.input<typeof schemaLead>;
 
 export async function listarLeads(filtros?: { etapa_chave?: string; responsavel_id?: string; servico_id?: string }) {
-  await verificarPermissao("crm", "visualizar");
   const empresaId = await obterEmpresaAtiva();
 
   return prisma.lead.findMany({
