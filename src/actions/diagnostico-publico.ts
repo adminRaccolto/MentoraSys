@@ -6,8 +6,6 @@ import { Resend } from "resend";
 import { enviarSms, gerarOtp } from "@/lib/sms";
 import { PERGUNTAS, calcularPontuacao, gerarRecomendacoes } from "@/lib/diagnostico-perguntas";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 // ─── Schemas ─────────────────────────────────────────────────────────────────
 
 const schemaEtapa1 = z.object({
@@ -284,6 +282,7 @@ async function enviarEmailDiagnostico(
 </body>
 </html>`;
 
+  const resend = new Resend(process.env.RESEND_API_KEY);
   await resend.emails.send({
     from: "O Conselho Agro <noreply@raccolto.com.br>",
     to: email,
