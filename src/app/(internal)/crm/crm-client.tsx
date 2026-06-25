@@ -575,126 +575,142 @@ export default function CrmClient({ etapasIniciais, leadsIniciais, clientes, ser
 
       {/* ── Modal criar/editar ── */}
       <Dialog open={modalAberto} onOpenChange={(o) => { if (!o) fecharModal(); }}>
-        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="w-[95vw] max-w-6xl">
           <DialogHeader>
             <DialogTitle>{editandoId ? "Editar oportunidade" : "Nova oportunidade"}</DialogTitle>
           </DialogHeader>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <form id="lead-form" onSubmit={handleSubmit} className="space-y-3 col-span-1">
-              <div className="grid grid-cols-2 gap-3">
-                <div className="col-span-2 space-y-1">
+
+          <div className="flex gap-8">
+            {/* Formulário — grade 4 colunas generosas */}
+            <form id="lead-form" onSubmit={handleSubmit} className="flex-1 min-w-0">
+              <div className="grid grid-cols-4 gap-x-5 gap-y-4">
+
+                {/* Linha 1: Título (col inteira) */}
+                <div className="col-span-4 space-y-1.5">
                   <Label>Título *</Label>
-                  <Input {...form.register("nome")} placeholder="Ex: Projeto de Gestão — Fazenda XYZ" />
+                  <Input className="h-10" {...form.register("nome")} placeholder="Ex: Projeto de Gestão — Fazenda XYZ" />
                   {form.formState.errors.nome && <p className="text-xs text-destructive">{form.formState.errors.nome.message}</p>}
                 </div>
-                <div className="col-span-2 space-y-1">
+
+                {/* Linha 2: Empresa (2 cols) | Contato | E-mail */}
+                <div className="col-span-2 space-y-1.5">
                   <Label>Empresa / Lead *</Label>
-                  <Input {...form.register("empresa_nome")} placeholder="Nome da empresa ou do lead" />
+                  <Input className="h-10" {...form.register("empresa_nome")} placeholder="Nome da empresa ou do lead" />
                   {form.formState.errors.empresa_nome && <p className="text-xs text-destructive">{form.formState.errors.empresa_nome.message}</p>}
                 </div>
-                <div className="space-y-1">
+                <div className="space-y-1.5">
                   <Label>Contato</Label>
-                  <Input {...form.register("contato_nome")} placeholder="Nome do contato" />
+                  <Input className="h-10" {...form.register("contato_nome")} placeholder="Nome do contato" />
                 </div>
-                <div className="space-y-1">
+                <div className="space-y-1.5">
                   <Label>E-mail</Label>
-                  <Input type="email" {...form.register("email")} />
+                  <Input className="h-10" type="email" {...form.register("email")} />
                   {form.formState.errors.email && <p className="text-xs text-destructive">{form.formState.errors.email.message}</p>}
                 </div>
-                <div className="space-y-1">
+
+                {/* Linha 3: Telefone | WhatsApp | Origem | Responsável */}
+                <div className="space-y-1.5">
                   <Label>Telefone</Label>
-                  <Input {...form.register("telefone")} />
+                  <Input className="h-10" {...form.register("telefone")} />
                 </div>
-                <div className="space-y-1">
+                <div className="space-y-1.5">
                   <Label>WhatsApp</Label>
-                  <Input {...form.register("whatsapp")} />
+                  <Input className="h-10" {...form.register("whatsapp")} />
                 </div>
-                <div className="space-y-1">
-                  <Label>Origem do lead</Label>
-                  <Input {...form.register("origem")} placeholder="Indicação, site, evento..." />
+                <div className="space-y-1.5">
+                  <Label>Origem</Label>
+                  <Input className="h-10" {...form.register("origem")} placeholder="Indicação, site, evento..." />
                 </div>
-                <div className="space-y-1">
-                  <Label>Serviço de interesse</Label>
-                  <Select value={form.watch("servico_id") ?? ""} onValueChange={(v) => form.setValue("servico_id", v ?? undefined)}>
-                    <SelectTrigger><SelectValue placeholder="Nenhum" /></SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="">Nenhum</SelectItem>
-                      {servicos.map((s) => <SelectItem key={s.id} value={s.id}>{s.nome}</SelectItem>)}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="space-y-1">
+                <div className="space-y-1.5">
                   <Label>Responsável</Label>
                   <Select value={form.watch("responsavel_id") ?? ""} onValueChange={(v) => form.setValue("responsavel_id", v ?? undefined)}>
-                    <SelectTrigger><SelectValue placeholder="Nenhum" /></SelectTrigger>
+                    <SelectTrigger className="h-10"><SelectValue placeholder="Nenhum" /></SelectTrigger>
                     <SelectContent>
                       <SelectItem value="">Nenhum</SelectItem>
                       {usuarios.map((u) => <SelectItem key={u.id} value={u.id}>{u.nome}</SelectItem>)}
                     </SelectContent>
                   </Select>
                 </div>
-                <div className="space-y-1">
-                  <Label>Cliente já existente</Label>
+
+                {/* Linha 4: Etapa | Valor estimado | Probabilidade | Serviço */}
+                <div className="space-y-1.5">
+                  <Label>Etapa</Label>
+                  <Select value={etapaWatch} onValueChange={(v) => { if (!v) return; form.setValue("etapa_chave", v); form.setValue("etapa_id", etapas.find((e) => e.chave === v)?.id ?? undefined); }}>
+                    <SelectTrigger className="h-10"><SelectValue /></SelectTrigger>
+                    <SelectContent>
+                      {etapas.map((e) => <SelectItem key={e.chave} value={e.chave}>{e.nome}</SelectItem>)}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-1.5">
+                  <Label>Valor estimado (R$)</Label>
+                  <Input className="h-10" type="number" step="0.01" {...form.register("valor_estimado")} />
+                </div>
+                <div className="space-y-1.5">
+                  <Label>Probabilidade (%)</Label>
+                  <Input className="h-10" type="number" min={0} max={100} {...form.register("probabilidade", { valueAsNumber: true })} />
+                </div>
+                <div className="space-y-1.5">
+                  <Label>Serviço</Label>
+                  <Select value={form.watch("servico_id") ?? ""} onValueChange={(v) => form.setValue("servico_id", v ?? undefined)}>
+                    <SelectTrigger className="h-10"><SelectValue placeholder="Nenhum" /></SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="">Nenhum</SelectItem>
+                      {servicos.map((s) => <SelectItem key={s.id} value={s.id}>{s.nome}</SelectItem>)}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* Linha 5: Previsão | Próxima ação | Data próx. ação | Cliente */}
+                <div className="space-y-1.5">
+                  <Label>Previsão fechamento</Label>
+                  <Input className="h-10" type="date" {...form.register("previsao_fechamento")} />
+                </div>
+                <div className="col-span-2 space-y-1.5">
+                  <Label>Próxima ação</Label>
+                  <Input className="h-10" {...form.register("proxima_acao")} placeholder="Ex: Enviar proposta, Ligar para cliente..." />
+                </div>
+                <div className="space-y-1.5">
+                  <Label>Data da próxima ação</Label>
+                  <Input className="h-10" type="date" {...form.register("data_proxima_acao")} />
+                </div>
+
+                {/* Linha 6: Tags (3 cols) | Motivo de perda */}
+                <div className="col-span-3 space-y-1.5">
+                  <Label>Tags <span className="text-sm text-muted-foreground font-normal">(separadas por vírgula)</span></Label>
+                  <Input className="h-10" {...form.register("tags_input")} placeholder="Ex: pecuária, soja, irrigação" />
+                </div>
+                <div className="space-y-1.5">
+                  <Label>Motivo de perda</Label>
+                  <Input className="h-10" {...form.register("motivo_perda")} />
+                </div>
+
+                {/* Linha 7: Cliente existente | Observações (3 cols) */}
+                <div className="space-y-1.5">
+                  <Label>Cliente existente</Label>
                   <Select value={form.watch("cliente_id") ?? ""} onValueChange={(v) => form.setValue("cliente_id", v ?? undefined)}>
-                    <SelectTrigger><SelectValue placeholder="Criar na conversão" /></SelectTrigger>
+                    <SelectTrigger className="h-10"><SelectValue placeholder="Criar na conversão" /></SelectTrigger>
                     <SelectContent>
                       <SelectItem value="">Criar na conversão</SelectItem>
                       {clientes.map((c) => <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>)}
                     </SelectContent>
                   </Select>
                 </div>
-                <div className="space-y-1">
-                  <Label>Etapa</Label>
-                  <Select value={etapaWatch} onValueChange={(v) => { if (!v) return; form.setValue("etapa_chave", v); form.setValue("etapa_id", etapas.find((e) => e.chave === v)?.id ?? undefined); }}>
-                    <SelectTrigger><SelectValue /></SelectTrigger>
-                    <SelectContent>
-                      {etapas.map((e) => <SelectItem key={e.chave} value={e.chave}>{e.nome}</SelectItem>)}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="space-y-1">
-                  <Label>Valor estimado (R$)</Label>
-                  <Input type="number" step="0.01" {...form.register("valor_estimado")} />
-                </div>
-                <div className="space-y-1">
-                  <Label>Probabilidade (%)</Label>
-                  <Input type="number" min={0} max={100} {...form.register("probabilidade", { valueAsNumber: true })} />
-                </div>
-                <div className="space-y-1">
-                  <Label>Previsão de fechamento</Label>
-                  <Input type="date" {...form.register("previsao_fechamento")} />
-                </div>
-                <div className="col-span-2 space-y-1">
-                  <Label>Próxima ação</Label>
-                  <Input {...form.register("proxima_acao")} placeholder="Ex: Enviar proposta, Ligar..." />
-                </div>
-                <div className="space-y-1">
-                  <Label>Data da próxima ação</Label>
-                  <Input type="date" {...form.register("data_proxima_acao")} />
-                </div>
-                <div className="space-y-1">
-                  <Label>Motivo de perda</Label>
-                  <Input {...form.register("motivo_perda")} />
-                </div>
-                <div className="col-span-2 space-y-1">
-                  <Label>Tags <span className="text-muted-foreground text-xs">(separadas por vírgula)</span></Label>
-                  <Input {...form.register("tags_input")} placeholder="Ex: pecuária, soja, irrigação" />
-                </div>
-                <div className="col-span-2 space-y-1">
+                <div className="col-span-3 space-y-1.5">
                   <Label>Observações</Label>
-                  <Textarea rows={3} {...form.register("observacoes")} className="resize-none" />
+                  <Textarea rows={2} {...form.register("observacoes")} className="resize-none" />
                 </div>
               </div>
             </form>
 
             {/* Histórico de comentários (somente ao editar) */}
             {editandoId && selected && (
-              <div className="col-span-1 flex flex-col gap-3">
+              <div className="w-72 shrink-0 flex flex-col gap-3 border-l border-border pl-6">
                 <div>
                   <p className="text-sm font-semibold">Histórico de interações</p>
-                  <p className="text-xs text-muted-foreground">Registro sequencial das interações deste lead.</p>
+                  <p className="text-xs text-muted-foreground">Registro do lead.</p>
                 </div>
-                <div className="space-y-2 max-h-64 overflow-y-auto pr-1">
+                <div className="space-y-2 flex-1 max-h-80 overflow-y-auto pr-1">
                   {selected.comentarios.length === 0 && (
                     <p className="text-xs text-muted-foreground text-center py-4">Nenhum comentário ainda.</p>
                   )}
