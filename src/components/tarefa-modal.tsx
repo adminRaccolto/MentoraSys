@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition, useRef } from "react";
+import { useState, useTransition, useRef, useEffect, useCallback } from "react";
 import { toast } from "sonner";
 import {
   X, MessageSquare, Paperclip, CheckSquare, Clock, User,
@@ -138,6 +138,59 @@ export default function TarefaModal({ tarefa: ini_, membros, usuarioAtualId, onC
   // comentário
   const [novoComent, setNovoComent] = useState("");
   const [sendingComent, setSendingComent] = useState(false);
+  const comentareaRef = useRef<HTMLTextAreaElement>(null);
+
+  // @menções
+  const [mencao, setMencao] = useState<{ query: string; start: number; cursor: number } | null>(null);
+  const [mencaoIdx, setMencaoIdx] = useState(0);
+
+  const membrosFiltrMencao = mencao
+    ? membros.filter(m => m.nome.toLowerCase().startsWith(mencao.query.toLowerCase())).slice(0, 6)
+    : [];
+
+  const fecharMencao = useCallback(() => setMencao(null), []);
+
+  const selecionarMencao = useCallback((membro: { id: string; nome: string }) => {
+    if (!mencao) return;
+    const primeiro = membro.nome.split(" ")[0];
+    const antes = novoComent.slice(0, mencao.start);
+    const depois = novoComent.slice(mencao.cursor);
+    const novo = `${antes}@${primeiro} ${depois}`;
+    setNovoComent(novo);
+    setMencao(null);
+    setTimeout(() => {
+      const el = comentareaRef.current;
+      if (!el) return;
+      const pos = antes.length + primeiro.length + 2;
+      el.focus();
+      el.setSelectionRange(pos, pos);
+    }, 0);
+  }, [mencao, novoComent]);
+
+  useEffect(() => { setMencaoIdx(0); }, [mencao?.query]);
+
+  const handleComentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const val = e.target.value;
+    setNovoComent(val);
+    const cursor = e.target.selectionStart ?? val.length;
+    const before = val.slice(0, cursor);
+    const match = before.match(/@(\w*)$/);
+    if (match) {
+      setMencao({ query: match[1], start: cursor - match[0].length, cursor });
+    } else {
+      setMencao(null);
+    }
+  };
+
+  const handleComentKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (mencao && membrosFiltrMencao.length > 0) {
+      if (e.key === "ArrowDown") { e.preventDefault(); setMencaoIdx(i => Math.min(i + 1, membrosFiltrMencao.length - 1)); return; }
+      if (e.key === "ArrowUp")   { e.preventDefault(); setMencaoIdx(i => Math.max(i - 1, 0)); return; }
+      if (e.key === "Enter")     { e.preventDefault(); selecionarMencao(membrosFiltrMencao[mencaoIdx]); return; }
+      if (e.key === "Escape")    { fecharMencao(); return; }
+    }
+    if (e.key === "Enter" && e.ctrlKey) enviarComent();
+  };
 
   // checklist
   const [novoItem, setNovoItem] = useState("");
@@ -469,10 +522,10 @@ export default function TarefaModal({ tarefa: ini_, membros, usuarioAtualId, onC
           </div>
 
           {/* ══ COL 2 — Metadados ════════════════════════════════════════ */}
-          <div className="w-[22%] shrink-0 overflow-y-auto p-5 space-y-5 bg-muted/10 border-r">
+          <div className="w-[22%] shrink-0 overflow-y-auto p-5 space-y-0 bg-muted/10 border-r">
 
             {/* Status */}
-            <div className="space-y-1.5">
+            <div className="space-y-1.5 pb-4">
               <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1">
                 <Flag className="size-3" /> Status
               </p>
@@ -493,15 +546,12 @@ export default function TarefaModal({ tarefa: ini_, membros, usuarioAtualId, onC
             </div>
 
             {/* Prioridade */}
-            <div className="space-y-1.5">
+            <div className="space-y-1.5 border-t pt-4 pb-4">
               <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1">
                 <AlertCircle className="size-3" /> Prioridade
               </p>
-              <span className={`inline-flex items-center text-xs font-semibold px-2.5 py-1 rounded-full border mb-1 ${PRIO_BADGE[t.prioridade]}`}>
-                {PRIO_LABEL[t.prioridade]}
-              </span>
               <Select value={t.prioridade} onValueChange={(v: string | null) => v && salvarCampo({ prioridade: v as PrioridadeTarefa })}>
-                <SelectTrigger className="h-8 text-xs w-full"><SelectValue /></SelectTrigger>
+                <SelectTrigger className="h-9 text-xs w-full"><SelectValue /></SelectTrigger>
                 <SelectContent>
                   {PRIO_OPTS.map(p => <SelectItem key={p.value} value={p.value}><span className={p.cor}>{p.label}</span></SelectItem>)}
                 </SelectContent>
@@ -509,7 +559,7 @@ export default function TarefaModal({ tarefa: ini_, membros, usuarioAtualId, onC
             </div>
 
             {/* Responsáveis (multi) */}
-            <div className="space-y-1.5">
+            <div className="space-y-1.5 border-t pt-4 pb-4">
               <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1">
                 <User className="size-3" /> Responsáveis {savingResp && <Loader2 className="size-3 animate-spin ml-1" />}
               </p>
@@ -558,7 +608,7 @@ export default function TarefaModal({ tarefa: ini_, membros, usuarioAtualId, onC
             </div>
 
             {/* Prazo */}
-            <div className="space-y-1.5">
+            <div className="space-y-1.5 border-t pt-4 pb-4">
               <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1">
                 <Clock className="size-3" /> Prazo
               </p>
@@ -574,7 +624,7 @@ export default function TarefaModal({ tarefa: ini_, membros, usuarioAtualId, onC
 
             {/* Aprovação */}
             {!aprovPendente && (
-              <div className="pt-3 border-t space-y-2">
+              <div className="pt-4 border-t space-y-2">
                 <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1">
                   <Shield className="size-3" /> Aprovação
                 </p>
@@ -632,7 +682,13 @@ export default function TarefaModal({ tarefa: ini_, membros, usuarioAtualId, onC
                               <span className="text-xs font-semibold">{c.autor?.nome ?? "Usuário"}</span>
                               <span className="text-[10px] text-muted-foreground">{fmtFull(c.criado_em)}</span>
                             </div>
-                            <p className="text-xs mt-0.5 whitespace-pre-wrap leading-relaxed">{c.conteudo}</p>
+                            <p className="text-xs mt-0.5 whitespace-pre-wrap leading-relaxed">
+                              {c.conteudo.split(/(@\S+)/g).map((part, i) =>
+                                part.startsWith("@")
+                                  ? <span key={i} className="text-primary font-semibold">{part}</span>
+                                  : part
+                              )}
+                            </p>
                           </div>
                           {c.autor?.id === usuarioAtualId && (
                             <button onClick={() => removerComent(c.id)}
@@ -645,10 +701,35 @@ export default function TarefaModal({ tarefa: ini_, membros, usuarioAtualId, onC
                   </div>
 
                   <div className="space-y-2 border-t pt-4 shrink-0">
-                    <Textarea value={novoComent} onChange={e => setNovoComent(e.target.value)}
-                      placeholder="Escreva um comentário… (Ctrl+Enter para enviar)"
-                      rows={3} className="text-xs resize-none"
-                      onKeyDown={e => { if (e.key === "Enter" && e.ctrlKey) enviarComent(); }} />
+                    <div className="relative">
+                      <Textarea
+                        ref={comentareaRef}
+                        value={novoComent}
+                        onChange={handleComentChange}
+                        onKeyDown={handleComentKeyDown}
+                        placeholder="Escreva um comentário… use @ para mencionar alguém"
+                        rows={3}
+                        className="text-xs resize-none"
+                      />
+
+                      {/* dropdown de @menções */}
+                      {mencao && membrosFiltrMencao.length > 0 && (
+                        <div className="absolute bottom-full mb-1 left-0 right-0 bg-popover border rounded-lg shadow-lg overflow-hidden z-50">
+                          {membrosFiltrMencao.map((m, i) => (
+                            <button
+                              key={m.id}
+                              onMouseDown={e => { e.preventDefault(); selecionarMencao(m); }}
+                              className={`w-full flex items-center gap-2 px-3 py-1.5 text-xs text-left transition-colors ${i === mencaoIdx ? "bg-primary/10 text-primary" : "hover:bg-muted"}`}
+                            >
+                              <div className="size-5 rounded-full bg-primary/15 text-primary text-[9px] font-bold flex items-center justify-center shrink-0">
+                                {iniciais(m.nome)}
+                              </div>
+                              <span className="truncate">{m.nome}</span>
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                     <Button size="sm" className="w-full h-8 text-xs"
                       onClick={enviarComent} disabled={!novoComent.trim() || sendingComent}>
                       {sendingComent ? <Loader2 className="size-3 animate-spin mr-1.5" /> : <MessageSquare className="size-3 mr-1.5" />}
