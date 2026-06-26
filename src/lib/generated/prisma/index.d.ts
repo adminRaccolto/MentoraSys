@@ -189,6 +189,11 @@ export type ContaBancaria = $Result.DefaultSelection<Prisma.$ContaBancariaPayloa
  */
 export type TransferenciaTesouraria = $Result.DefaultSelection<Prisma.$TransferenciaTesourariaPayload>
 /**
+ * Model CentroCusto
+ * 
+ */
+export type CentroCusto = $Result.DefaultSelection<Prisma.$CentroCustoPayload>
+/**
  * Model Recebivel
  * 
  */
@@ -1028,6 +1033,16 @@ export class PrismaClient<
   get transferenciaTesouraria(): Prisma.TransferenciaTesourariaDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.centroCusto`: Exposes CRUD operations for the **CentroCusto** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CentroCustos
+    * const centroCustos = await prisma.centroCusto.findMany()
+    * ```
+    */
+  get centroCusto(): Prisma.CentroCustoDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.recebivel`: Exposes CRUD operations for the **Recebivel** model.
     * Example usage:
     * ```ts
@@ -1625,6 +1640,7 @@ export namespace Prisma {
     Banco: 'Banco',
     ContaBancaria: 'ContaBancaria',
     TransferenciaTesouraria: 'TransferenciaTesouraria',
+    CentroCusto: 'CentroCusto',
     Recebivel: 'Recebivel',
     ContaPagar: 'ContaPagar',
     ModeloDocumento: 'ModeloDocumento',
@@ -1653,7 +1669,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "etapaCrm" | "comentarioCrm" | "lead" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "projeto" | "etapa" | "tarefa" | "tarefaResponsavel" | "comentarioTarefa" | "anexoTarefa" | "atividadeTarefa" | "aprovacaoTarefa" | "itemChecklist" | "etiquetaTarefa" | "tarefaEtiqueta" | "pastaDocumento" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "recebivel" | "contaPagar" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "boleto" | "diagnostico" | "tokenPortal" | "aplicacaoDiagnostico" | "campanhaDiagnostico" | "diagnosticoParticipante"
+      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "etapaCrm" | "comentarioCrm" | "lead" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "projeto" | "etapa" | "tarefa" | "tarefaResponsavel" | "comentarioTarefa" | "anexoTarefa" | "atividadeTarefa" | "aprovacaoTarefa" | "itemChecklist" | "etiquetaTarefa" | "tarefaEtiqueta" | "pastaDocumento" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "centroCusto" | "recebivel" | "contaPagar" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "boleto" | "diagnostico" | "tokenPortal" | "aplicacaoDiagnostico" | "campanhaDiagnostico" | "diagnosticoParticipante"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -4247,6 +4263,80 @@ export namespace Prisma {
           }
         }
       }
+      CentroCusto: {
+        payload: Prisma.$CentroCustoPayload<ExtArgs>
+        fields: Prisma.CentroCustoFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CentroCustoFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CentroCustoPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CentroCustoFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CentroCustoPayload>
+          }
+          findFirst: {
+            args: Prisma.CentroCustoFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CentroCustoPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CentroCustoFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CentroCustoPayload>
+          }
+          findMany: {
+            args: Prisma.CentroCustoFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CentroCustoPayload>[]
+          }
+          create: {
+            args: Prisma.CentroCustoCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CentroCustoPayload>
+          }
+          createMany: {
+            args: Prisma.CentroCustoCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CentroCustoCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CentroCustoPayload>[]
+          }
+          delete: {
+            args: Prisma.CentroCustoDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CentroCustoPayload>
+          }
+          update: {
+            args: Prisma.CentroCustoUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CentroCustoPayload>
+          }
+          deleteMany: {
+            args: Prisma.CentroCustoDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CentroCustoUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CentroCustoUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CentroCustoPayload>[]
+          }
+          upsert: {
+            args: Prisma.CentroCustoUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CentroCustoPayload>
+          }
+          aggregate: {
+            args: Prisma.CentroCustoAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCentroCusto>
+          }
+          groupBy: {
+            args: Prisma.CentroCustoGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CentroCustoGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CentroCustoCountArgs<ExtArgs>
+            result: $Utils.Optional<CentroCustoCountAggregateOutputType> | number
+          }
+        }
+      }
       Recebivel: {
         payload: Prisma.$RecebivelPayload<ExtArgs>
         fields: Prisma.RecebivelFieldRefs
@@ -5352,6 +5442,7 @@ export namespace Prisma {
     banco?: BancoOmit
     contaBancaria?: ContaBancariaOmit
     transferenciaTesouraria?: TransferenciaTesourariaOmit
+    centroCusto?: CentroCustoOmit
     recebivel?: RecebivelOmit
     contaPagar?: ContaPagarOmit
     modeloDocumento?: ModeloDocumentoOmit
@@ -5473,6 +5564,7 @@ export namespace Prisma {
     aplicacoes_diagnostico: number
     etapas_crm: number
     campanhas_diagnostico: number
+    centros_custo: number
   }
 
   export type EmpresaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5504,6 +5596,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: boolean | EmpresaCountOutputTypeCountAplicacoes_diagnosticoArgs
     etapas_crm?: boolean | EmpresaCountOutputTypeCountEtapas_crmArgs
     campanhas_diagnostico?: boolean | EmpresaCountOutputTypeCountCampanhas_diagnosticoArgs
+    centros_custo?: boolean | EmpresaCountOutputTypeCountCentros_custoArgs
   }
 
   // Custom InputTypes
@@ -5711,6 +5804,13 @@ export namespace Prisma {
    */
   export type EmpresaCountOutputTypeCountCampanhas_diagnosticoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CampanhaDiagnosticoWhereInput
+  }
+
+  /**
+   * EmpresaCountOutputType without action
+   */
+  export type EmpresaCountOutputTypeCountCentros_custoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CentroCustoWhereInput
   }
 
 
@@ -6755,6 +6855,46 @@ export namespace Prisma {
 
 
   /**
+   * Count Type CentroCustoCountOutputType
+   */
+
+  export type CentroCustoCountOutputType = {
+    recebiveis: number
+    contas_pagar: number
+  }
+
+  export type CentroCustoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    recebiveis?: boolean | CentroCustoCountOutputTypeCountRecebiveisArgs
+    contas_pagar?: boolean | CentroCustoCountOutputTypeCountContas_pagarArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CentroCustoCountOutputType without action
+   */
+  export type CentroCustoCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CentroCustoCountOutputType
+     */
+    select?: CentroCustoCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CentroCustoCountOutputType without action
+   */
+  export type CentroCustoCountOutputTypeCountRecebiveisArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RecebivelWhereInput
+  }
+
+  /**
+   * CentroCustoCountOutputType without action
+   */
+  export type CentroCustoCountOutputTypeCountContas_pagarArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContaPagarWhereInput
+  }
+
+
+  /**
    * Count Type CampanhaDiagnosticoCountOutputType
    */
 
@@ -7017,6 +7157,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: boolean | Empresa$aplicacoes_diagnosticoArgs<ExtArgs>
     etapas_crm?: boolean | Empresa$etapas_crmArgs<ExtArgs>
     campanhas_diagnostico?: boolean | Empresa$campanhas_diagnosticoArgs<ExtArgs>
+    centros_custo?: boolean | Empresa$centros_custoArgs<ExtArgs>
     _count?: boolean | EmpresaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["empresa"]>
 
@@ -7089,6 +7230,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: boolean | Empresa$aplicacoes_diagnosticoArgs<ExtArgs>
     etapas_crm?: boolean | Empresa$etapas_crmArgs<ExtArgs>
     campanhas_diagnostico?: boolean | Empresa$campanhas_diagnosticoArgs<ExtArgs>
+    centros_custo?: boolean | Empresa$centros_custoArgs<ExtArgs>
     _count?: boolean | EmpresaCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EmpresaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -7125,6 +7267,7 @@ export namespace Prisma {
       aplicacoes_diagnostico: Prisma.$AplicacaoDiagnosticoPayload<ExtArgs>[]
       etapas_crm: Prisma.$EtapaCrmPayload<ExtArgs>[]
       campanhas_diagnostico: Prisma.$CampanhaDiagnosticoPayload<ExtArgs>[]
+      centros_custo: Prisma.$CentroCustoPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7559,6 +7702,7 @@ export namespace Prisma {
     aplicacoes_diagnostico<T extends Empresa$aplicacoes_diagnosticoArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$aplicacoes_diagnosticoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AplicacaoDiagnosticoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     etapas_crm<T extends Empresa$etapas_crmArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$etapas_crmArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EtapaCrmPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     campanhas_diagnostico<T extends Empresa$campanhas_diagnosticoArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$campanhas_diagnosticoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CampanhaDiagnosticoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    centros_custo<T extends Empresa$centros_custoArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$centros_custoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CentroCustoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8660,6 +8804,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: CampanhaDiagnosticoScalarFieldEnum | CampanhaDiagnosticoScalarFieldEnum[]
+  }
+
+  /**
+   * Empresa.centros_custo
+   */
+  export type Empresa$centros_custoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CentroCusto
+     */
+    select?: CentroCustoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CentroCusto
+     */
+    omit?: CentroCustoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CentroCustoInclude<ExtArgs> | null
+    where?: CentroCustoWhereInput
+    orderBy?: CentroCustoOrderByWithRelationInput | CentroCustoOrderByWithRelationInput[]
+    cursor?: CentroCustoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CentroCustoScalarFieldEnum | CentroCustoScalarFieldEnum[]
   }
 
   /**
@@ -30517,6 +30685,7 @@ export namespace Prisma {
     status: $Enums.StatusProjeto | null
     data_inicio: Date | null
     data_fim: Date | null
+    e_centro_custo: boolean | null
     criado_em: Date | null
     atualizado_em: Date | null
   }
@@ -30533,6 +30702,7 @@ export namespace Prisma {
     status: $Enums.StatusProjeto | null
     data_inicio: Date | null
     data_fim: Date | null
+    e_centro_custo: boolean | null
     criado_em: Date | null
     atualizado_em: Date | null
   }
@@ -30549,6 +30719,7 @@ export namespace Prisma {
     status: number
     data_inicio: number
     data_fim: number
+    e_centro_custo: number
     criado_em: number
     atualizado_em: number
     _all: number
@@ -30567,6 +30738,7 @@ export namespace Prisma {
     status?: true
     data_inicio?: true
     data_fim?: true
+    e_centro_custo?: true
     criado_em?: true
     atualizado_em?: true
   }
@@ -30583,6 +30755,7 @@ export namespace Prisma {
     status?: true
     data_inicio?: true
     data_fim?: true
+    e_centro_custo?: true
     criado_em?: true
     atualizado_em?: true
   }
@@ -30599,6 +30772,7 @@ export namespace Prisma {
     status?: true
     data_inicio?: true
     data_fim?: true
+    e_centro_custo?: true
     criado_em?: true
     atualizado_em?: true
     _all?: true
@@ -30688,6 +30862,7 @@ export namespace Prisma {
     status: $Enums.StatusProjeto
     data_inicio: Date | null
     data_fim: Date | null
+    e_centro_custo: boolean
     criado_em: Date
     atualizado_em: Date
     _count: ProjetoCountAggregateOutputType | null
@@ -30721,6 +30896,7 @@ export namespace Prisma {
     status?: boolean
     data_inicio?: boolean
     data_fim?: boolean
+    e_centro_custo?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -30733,6 +30909,7 @@ export namespace Prisma {
     eventos?: boolean | Projeto$eventosArgs<ExtArgs>
     diagnosticos?: boolean | Projeto$diagnosticosArgs<ExtArgs>
     aplicacoes_diagnostico?: boolean | Projeto$aplicacoes_diagnosticoArgs<ExtArgs>
+    centro_custo?: boolean | Projeto$centro_custoArgs<ExtArgs>
     _count?: boolean | ProjetoCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["projeto"]>
 
@@ -30748,6 +30925,7 @@ export namespace Prisma {
     status?: boolean
     data_inicio?: boolean
     data_fim?: boolean
+    e_centro_custo?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -30768,6 +30946,7 @@ export namespace Prisma {
     status?: boolean
     data_inicio?: boolean
     data_fim?: boolean
+    e_centro_custo?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -30788,11 +30967,12 @@ export namespace Prisma {
     status?: boolean
     data_inicio?: boolean
     data_fim?: boolean
+    e_centro_custo?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
   }
 
-  export type ProjetoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "contrato_id" | "cliente_id" | "interno" | "criado_por" | "titulo" | "descricao" | "status" | "data_inicio" | "data_fim" | "criado_em" | "atualizado_em", ExtArgs["result"]["projeto"]>
+  export type ProjetoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "contrato_id" | "cliente_id" | "interno" | "criado_por" | "titulo" | "descricao" | "status" | "data_inicio" | "data_fim" | "e_centro_custo" | "criado_em" | "atualizado_em", ExtArgs["result"]["projeto"]>
   export type ProjetoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     contrato?: boolean | Projeto$contratoArgs<ExtArgs>
@@ -30804,6 +30984,7 @@ export namespace Prisma {
     eventos?: boolean | Projeto$eventosArgs<ExtArgs>
     diagnosticos?: boolean | Projeto$diagnosticosArgs<ExtArgs>
     aplicacoes_diagnostico?: boolean | Projeto$aplicacoes_diagnosticoArgs<ExtArgs>
+    centro_custo?: boolean | Projeto$centro_custoArgs<ExtArgs>
     _count?: boolean | ProjetoCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProjetoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -30832,6 +31013,7 @@ export namespace Prisma {
       eventos: Prisma.$EventoPayload<ExtArgs>[]
       diagnosticos: Prisma.$DiagnosticoPayload<ExtArgs>[]
       aplicacoes_diagnostico: Prisma.$AplicacaoDiagnosticoPayload<ExtArgs>[]
+      centro_custo: Prisma.$CentroCustoPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -30845,6 +31027,7 @@ export namespace Prisma {
       status: $Enums.StatusProjeto
       data_inicio: Date | null
       data_fim: Date | null
+      e_centro_custo: boolean
       criado_em: Date
       atualizado_em: Date
     }, ExtArgs["result"]["projeto"]>
@@ -31251,6 +31434,7 @@ export namespace Prisma {
     eventos<T extends Projeto$eventosArgs<ExtArgs> = {}>(args?: Subset<T, Projeto$eventosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     diagnosticos<T extends Projeto$diagnosticosArgs<ExtArgs> = {}>(args?: Subset<T, Projeto$diagnosticosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiagnosticoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     aplicacoes_diagnostico<T extends Projeto$aplicacoes_diagnosticoArgs<ExtArgs> = {}>(args?: Subset<T, Projeto$aplicacoes_diagnosticoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AplicacaoDiagnosticoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    centro_custo<T extends Projeto$centro_custoArgs<ExtArgs> = {}>(args?: Subset<T, Projeto$centro_custoArgs<ExtArgs>>): Prisma__CentroCustoClient<$Result.GetResult<Prisma.$CentroCustoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -31291,6 +31475,7 @@ export namespace Prisma {
     readonly status: FieldRef<"Projeto", 'StatusProjeto'>
     readonly data_inicio: FieldRef<"Projeto", 'DateTime'>
     readonly data_fim: FieldRef<"Projeto", 'DateTime'>
+    readonly e_centro_custo: FieldRef<"Projeto", 'Boolean'>
     readonly criado_em: FieldRef<"Projeto", 'DateTime'>
     readonly atualizado_em: FieldRef<"Projeto", 'DateTime'>
   }
@@ -31892,6 +32077,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AplicacaoDiagnosticoScalarFieldEnum | AplicacaoDiagnosticoScalarFieldEnum[]
+  }
+
+  /**
+   * Projeto.centro_custo
+   */
+  export type Projeto$centro_custoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CentroCusto
+     */
+    select?: CentroCustoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CentroCusto
+     */
+    omit?: CentroCustoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CentroCustoInclude<ExtArgs> | null
+    where?: CentroCustoWhereInput
   }
 
   /**
@@ -50680,6 +50884,1206 @@ export namespace Prisma {
 
 
   /**
+   * Model CentroCusto
+   */
+
+  export type AggregateCentroCusto = {
+    _count: CentroCustoCountAggregateOutputType | null
+    _min: CentroCustoMinAggregateOutputType | null
+    _max: CentroCustoMaxAggregateOutputType | null
+  }
+
+  export type CentroCustoMinAggregateOutputType = {
+    id: string | null
+    empresa_id: string | null
+    nome: string | null
+    codigo: string | null
+    descricao: string | null
+    ativo: boolean | null
+    projeto_id: string | null
+    criado_em: Date | null
+    atualizado_em: Date | null
+  }
+
+  export type CentroCustoMaxAggregateOutputType = {
+    id: string | null
+    empresa_id: string | null
+    nome: string | null
+    codigo: string | null
+    descricao: string | null
+    ativo: boolean | null
+    projeto_id: string | null
+    criado_em: Date | null
+    atualizado_em: Date | null
+  }
+
+  export type CentroCustoCountAggregateOutputType = {
+    id: number
+    empresa_id: number
+    nome: number
+    codigo: number
+    descricao: number
+    ativo: number
+    projeto_id: number
+    criado_em: number
+    atualizado_em: number
+    _all: number
+  }
+
+
+  export type CentroCustoMinAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    nome?: true
+    codigo?: true
+    descricao?: true
+    ativo?: true
+    projeto_id?: true
+    criado_em?: true
+    atualizado_em?: true
+  }
+
+  export type CentroCustoMaxAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    nome?: true
+    codigo?: true
+    descricao?: true
+    ativo?: true
+    projeto_id?: true
+    criado_em?: true
+    atualizado_em?: true
+  }
+
+  export type CentroCustoCountAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    nome?: true
+    codigo?: true
+    descricao?: true
+    ativo?: true
+    projeto_id?: true
+    criado_em?: true
+    atualizado_em?: true
+    _all?: true
+  }
+
+  export type CentroCustoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CentroCusto to aggregate.
+     */
+    where?: CentroCustoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CentroCustos to fetch.
+     */
+    orderBy?: CentroCustoOrderByWithRelationInput | CentroCustoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CentroCustoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CentroCustos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CentroCustos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CentroCustos
+    **/
+    _count?: true | CentroCustoCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CentroCustoMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CentroCustoMaxAggregateInputType
+  }
+
+  export type GetCentroCustoAggregateType<T extends CentroCustoAggregateArgs> = {
+        [P in keyof T & keyof AggregateCentroCusto]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCentroCusto[P]>
+      : GetScalarType<T[P], AggregateCentroCusto[P]>
+  }
+
+
+
+
+  export type CentroCustoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CentroCustoWhereInput
+    orderBy?: CentroCustoOrderByWithAggregationInput | CentroCustoOrderByWithAggregationInput[]
+    by: CentroCustoScalarFieldEnum[] | CentroCustoScalarFieldEnum
+    having?: CentroCustoScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CentroCustoCountAggregateInputType | true
+    _min?: CentroCustoMinAggregateInputType
+    _max?: CentroCustoMaxAggregateInputType
+  }
+
+  export type CentroCustoGroupByOutputType = {
+    id: string
+    empresa_id: string
+    nome: string
+    codigo: string | null
+    descricao: string | null
+    ativo: boolean
+    projeto_id: string | null
+    criado_em: Date
+    atualizado_em: Date
+    _count: CentroCustoCountAggregateOutputType | null
+    _min: CentroCustoMinAggregateOutputType | null
+    _max: CentroCustoMaxAggregateOutputType | null
+  }
+
+  type GetCentroCustoGroupByPayload<T extends CentroCustoGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CentroCustoGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CentroCustoGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CentroCustoGroupByOutputType[P]>
+            : GetScalarType<T[P], CentroCustoGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CentroCustoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    nome?: boolean
+    codigo?: boolean
+    descricao?: boolean
+    ativo?: boolean
+    projeto_id?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    projeto?: boolean | CentroCusto$projetoArgs<ExtArgs>
+    recebiveis?: boolean | CentroCusto$recebiveisArgs<ExtArgs>
+    contas_pagar?: boolean | CentroCusto$contas_pagarArgs<ExtArgs>
+    _count?: boolean | CentroCustoCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["centroCusto"]>
+
+  export type CentroCustoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    nome?: boolean
+    codigo?: boolean
+    descricao?: boolean
+    ativo?: boolean
+    projeto_id?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    projeto?: boolean | CentroCusto$projetoArgs<ExtArgs>
+  }, ExtArgs["result"]["centroCusto"]>
+
+  export type CentroCustoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    nome?: boolean
+    codigo?: boolean
+    descricao?: boolean
+    ativo?: boolean
+    projeto_id?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    projeto?: boolean | CentroCusto$projetoArgs<ExtArgs>
+  }, ExtArgs["result"]["centroCusto"]>
+
+  export type CentroCustoSelectScalar = {
+    id?: boolean
+    empresa_id?: boolean
+    nome?: boolean
+    codigo?: boolean
+    descricao?: boolean
+    ativo?: boolean
+    projeto_id?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+  }
+
+  export type CentroCustoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "nome" | "codigo" | "descricao" | "ativo" | "projeto_id" | "criado_em" | "atualizado_em", ExtArgs["result"]["centroCusto"]>
+  export type CentroCustoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    projeto?: boolean | CentroCusto$projetoArgs<ExtArgs>
+    recebiveis?: boolean | CentroCusto$recebiveisArgs<ExtArgs>
+    contas_pagar?: boolean | CentroCusto$contas_pagarArgs<ExtArgs>
+    _count?: boolean | CentroCustoCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type CentroCustoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    projeto?: boolean | CentroCusto$projetoArgs<ExtArgs>
+  }
+  export type CentroCustoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    projeto?: boolean | CentroCusto$projetoArgs<ExtArgs>
+  }
+
+  export type $CentroCustoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CentroCusto"
+    objects: {
+      empresa: Prisma.$EmpresaPayload<ExtArgs>
+      projeto: Prisma.$ProjetoPayload<ExtArgs> | null
+      recebiveis: Prisma.$RecebivelPayload<ExtArgs>[]
+      contas_pagar: Prisma.$ContaPagarPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      empresa_id: string
+      nome: string
+      codigo: string | null
+      descricao: string | null
+      ativo: boolean
+      projeto_id: string | null
+      criado_em: Date
+      atualizado_em: Date
+    }, ExtArgs["result"]["centroCusto"]>
+    composites: {}
+  }
+
+  type CentroCustoGetPayload<S extends boolean | null | undefined | CentroCustoDefaultArgs> = $Result.GetResult<Prisma.$CentroCustoPayload, S>
+
+  type CentroCustoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CentroCustoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CentroCustoCountAggregateInputType | true
+    }
+
+  export interface CentroCustoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CentroCusto'], meta: { name: 'CentroCusto' } }
+    /**
+     * Find zero or one CentroCusto that matches the filter.
+     * @param {CentroCustoFindUniqueArgs} args - Arguments to find a CentroCusto
+     * @example
+     * // Get one CentroCusto
+     * const centroCusto = await prisma.centroCusto.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CentroCustoFindUniqueArgs>(args: SelectSubset<T, CentroCustoFindUniqueArgs<ExtArgs>>): Prisma__CentroCustoClient<$Result.GetResult<Prisma.$CentroCustoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CentroCusto that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CentroCustoFindUniqueOrThrowArgs} args - Arguments to find a CentroCusto
+     * @example
+     * // Get one CentroCusto
+     * const centroCusto = await prisma.centroCusto.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CentroCustoFindUniqueOrThrowArgs>(args: SelectSubset<T, CentroCustoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CentroCustoClient<$Result.GetResult<Prisma.$CentroCustoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CentroCusto that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CentroCustoFindFirstArgs} args - Arguments to find a CentroCusto
+     * @example
+     * // Get one CentroCusto
+     * const centroCusto = await prisma.centroCusto.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CentroCustoFindFirstArgs>(args?: SelectSubset<T, CentroCustoFindFirstArgs<ExtArgs>>): Prisma__CentroCustoClient<$Result.GetResult<Prisma.$CentroCustoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CentroCusto that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CentroCustoFindFirstOrThrowArgs} args - Arguments to find a CentroCusto
+     * @example
+     * // Get one CentroCusto
+     * const centroCusto = await prisma.centroCusto.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CentroCustoFindFirstOrThrowArgs>(args?: SelectSubset<T, CentroCustoFindFirstOrThrowArgs<ExtArgs>>): Prisma__CentroCustoClient<$Result.GetResult<Prisma.$CentroCustoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CentroCustos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CentroCustoFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CentroCustos
+     * const centroCustos = await prisma.centroCusto.findMany()
+     * 
+     * // Get first 10 CentroCustos
+     * const centroCustos = await prisma.centroCusto.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const centroCustoWithIdOnly = await prisma.centroCusto.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CentroCustoFindManyArgs>(args?: SelectSubset<T, CentroCustoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CentroCustoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CentroCusto.
+     * @param {CentroCustoCreateArgs} args - Arguments to create a CentroCusto.
+     * @example
+     * // Create one CentroCusto
+     * const CentroCusto = await prisma.centroCusto.create({
+     *   data: {
+     *     // ... data to create a CentroCusto
+     *   }
+     * })
+     * 
+     */
+    create<T extends CentroCustoCreateArgs>(args: SelectSubset<T, CentroCustoCreateArgs<ExtArgs>>): Prisma__CentroCustoClient<$Result.GetResult<Prisma.$CentroCustoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CentroCustos.
+     * @param {CentroCustoCreateManyArgs} args - Arguments to create many CentroCustos.
+     * @example
+     * // Create many CentroCustos
+     * const centroCusto = await prisma.centroCusto.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CentroCustoCreateManyArgs>(args?: SelectSubset<T, CentroCustoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CentroCustos and returns the data saved in the database.
+     * @param {CentroCustoCreateManyAndReturnArgs} args - Arguments to create many CentroCustos.
+     * @example
+     * // Create many CentroCustos
+     * const centroCusto = await prisma.centroCusto.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CentroCustos and only return the `id`
+     * const centroCustoWithIdOnly = await prisma.centroCusto.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CentroCustoCreateManyAndReturnArgs>(args?: SelectSubset<T, CentroCustoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CentroCustoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CentroCusto.
+     * @param {CentroCustoDeleteArgs} args - Arguments to delete one CentroCusto.
+     * @example
+     * // Delete one CentroCusto
+     * const CentroCusto = await prisma.centroCusto.delete({
+     *   where: {
+     *     // ... filter to delete one CentroCusto
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CentroCustoDeleteArgs>(args: SelectSubset<T, CentroCustoDeleteArgs<ExtArgs>>): Prisma__CentroCustoClient<$Result.GetResult<Prisma.$CentroCustoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CentroCusto.
+     * @param {CentroCustoUpdateArgs} args - Arguments to update one CentroCusto.
+     * @example
+     * // Update one CentroCusto
+     * const centroCusto = await prisma.centroCusto.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CentroCustoUpdateArgs>(args: SelectSubset<T, CentroCustoUpdateArgs<ExtArgs>>): Prisma__CentroCustoClient<$Result.GetResult<Prisma.$CentroCustoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CentroCustos.
+     * @param {CentroCustoDeleteManyArgs} args - Arguments to filter CentroCustos to delete.
+     * @example
+     * // Delete a few CentroCustos
+     * const { count } = await prisma.centroCusto.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CentroCustoDeleteManyArgs>(args?: SelectSubset<T, CentroCustoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CentroCustos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CentroCustoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CentroCustos
+     * const centroCusto = await prisma.centroCusto.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CentroCustoUpdateManyArgs>(args: SelectSubset<T, CentroCustoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CentroCustos and returns the data updated in the database.
+     * @param {CentroCustoUpdateManyAndReturnArgs} args - Arguments to update many CentroCustos.
+     * @example
+     * // Update many CentroCustos
+     * const centroCusto = await prisma.centroCusto.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CentroCustos and only return the `id`
+     * const centroCustoWithIdOnly = await prisma.centroCusto.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CentroCustoUpdateManyAndReturnArgs>(args: SelectSubset<T, CentroCustoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CentroCustoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CentroCusto.
+     * @param {CentroCustoUpsertArgs} args - Arguments to update or create a CentroCusto.
+     * @example
+     * // Update or create a CentroCusto
+     * const centroCusto = await prisma.centroCusto.upsert({
+     *   create: {
+     *     // ... data to create a CentroCusto
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CentroCusto we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CentroCustoUpsertArgs>(args: SelectSubset<T, CentroCustoUpsertArgs<ExtArgs>>): Prisma__CentroCustoClient<$Result.GetResult<Prisma.$CentroCustoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CentroCustos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CentroCustoCountArgs} args - Arguments to filter CentroCustos to count.
+     * @example
+     * // Count the number of CentroCustos
+     * const count = await prisma.centroCusto.count({
+     *   where: {
+     *     // ... the filter for the CentroCustos we want to count
+     *   }
+     * })
+    **/
+    count<T extends CentroCustoCountArgs>(
+      args?: Subset<T, CentroCustoCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CentroCustoCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CentroCusto.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CentroCustoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CentroCustoAggregateArgs>(args: Subset<T, CentroCustoAggregateArgs>): Prisma.PrismaPromise<GetCentroCustoAggregateType<T>>
+
+    /**
+     * Group by CentroCusto.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CentroCustoGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CentroCustoGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CentroCustoGroupByArgs['orderBy'] }
+        : { orderBy?: CentroCustoGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CentroCustoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCentroCustoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CentroCusto model
+   */
+  readonly fields: CentroCustoFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CentroCusto.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CentroCustoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    empresa<T extends EmpresaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmpresaDefaultArgs<ExtArgs>>): Prisma__EmpresaClient<$Result.GetResult<Prisma.$EmpresaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    projeto<T extends CentroCusto$projetoArgs<ExtArgs> = {}>(args?: Subset<T, CentroCusto$projetoArgs<ExtArgs>>): Prisma__ProjetoClient<$Result.GetResult<Prisma.$ProjetoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    recebiveis<T extends CentroCusto$recebiveisArgs<ExtArgs> = {}>(args?: Subset<T, CentroCusto$recebiveisArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RecebivelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    contas_pagar<T extends CentroCusto$contas_pagarArgs<ExtArgs> = {}>(args?: Subset<T, CentroCusto$contas_pagarArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContaPagarPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CentroCusto model
+   */
+  interface CentroCustoFieldRefs {
+    readonly id: FieldRef<"CentroCusto", 'String'>
+    readonly empresa_id: FieldRef<"CentroCusto", 'String'>
+    readonly nome: FieldRef<"CentroCusto", 'String'>
+    readonly codigo: FieldRef<"CentroCusto", 'String'>
+    readonly descricao: FieldRef<"CentroCusto", 'String'>
+    readonly ativo: FieldRef<"CentroCusto", 'Boolean'>
+    readonly projeto_id: FieldRef<"CentroCusto", 'String'>
+    readonly criado_em: FieldRef<"CentroCusto", 'DateTime'>
+    readonly atualizado_em: FieldRef<"CentroCusto", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CentroCusto findUnique
+   */
+  export type CentroCustoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CentroCusto
+     */
+    select?: CentroCustoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CentroCusto
+     */
+    omit?: CentroCustoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CentroCustoInclude<ExtArgs> | null
+    /**
+     * Filter, which CentroCusto to fetch.
+     */
+    where: CentroCustoWhereUniqueInput
+  }
+
+  /**
+   * CentroCusto findUniqueOrThrow
+   */
+  export type CentroCustoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CentroCusto
+     */
+    select?: CentroCustoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CentroCusto
+     */
+    omit?: CentroCustoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CentroCustoInclude<ExtArgs> | null
+    /**
+     * Filter, which CentroCusto to fetch.
+     */
+    where: CentroCustoWhereUniqueInput
+  }
+
+  /**
+   * CentroCusto findFirst
+   */
+  export type CentroCustoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CentroCusto
+     */
+    select?: CentroCustoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CentroCusto
+     */
+    omit?: CentroCustoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CentroCustoInclude<ExtArgs> | null
+    /**
+     * Filter, which CentroCusto to fetch.
+     */
+    where?: CentroCustoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CentroCustos to fetch.
+     */
+    orderBy?: CentroCustoOrderByWithRelationInput | CentroCustoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CentroCustos.
+     */
+    cursor?: CentroCustoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CentroCustos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CentroCustos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CentroCustos.
+     */
+    distinct?: CentroCustoScalarFieldEnum | CentroCustoScalarFieldEnum[]
+  }
+
+  /**
+   * CentroCusto findFirstOrThrow
+   */
+  export type CentroCustoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CentroCusto
+     */
+    select?: CentroCustoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CentroCusto
+     */
+    omit?: CentroCustoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CentroCustoInclude<ExtArgs> | null
+    /**
+     * Filter, which CentroCusto to fetch.
+     */
+    where?: CentroCustoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CentroCustos to fetch.
+     */
+    orderBy?: CentroCustoOrderByWithRelationInput | CentroCustoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CentroCustos.
+     */
+    cursor?: CentroCustoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CentroCustos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CentroCustos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CentroCustos.
+     */
+    distinct?: CentroCustoScalarFieldEnum | CentroCustoScalarFieldEnum[]
+  }
+
+  /**
+   * CentroCusto findMany
+   */
+  export type CentroCustoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CentroCusto
+     */
+    select?: CentroCustoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CentroCusto
+     */
+    omit?: CentroCustoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CentroCustoInclude<ExtArgs> | null
+    /**
+     * Filter, which CentroCustos to fetch.
+     */
+    where?: CentroCustoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CentroCustos to fetch.
+     */
+    orderBy?: CentroCustoOrderByWithRelationInput | CentroCustoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CentroCustos.
+     */
+    cursor?: CentroCustoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CentroCustos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CentroCustos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CentroCustos.
+     */
+    distinct?: CentroCustoScalarFieldEnum | CentroCustoScalarFieldEnum[]
+  }
+
+  /**
+   * CentroCusto create
+   */
+  export type CentroCustoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CentroCusto
+     */
+    select?: CentroCustoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CentroCusto
+     */
+    omit?: CentroCustoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CentroCustoInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CentroCusto.
+     */
+    data: XOR<CentroCustoCreateInput, CentroCustoUncheckedCreateInput>
+  }
+
+  /**
+   * CentroCusto createMany
+   */
+  export type CentroCustoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CentroCustos.
+     */
+    data: CentroCustoCreateManyInput | CentroCustoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CentroCusto createManyAndReturn
+   */
+  export type CentroCustoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CentroCusto
+     */
+    select?: CentroCustoSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CentroCusto
+     */
+    omit?: CentroCustoOmit<ExtArgs> | null
+    /**
+     * The data used to create many CentroCustos.
+     */
+    data: CentroCustoCreateManyInput | CentroCustoCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CentroCustoIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CentroCusto update
+   */
+  export type CentroCustoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CentroCusto
+     */
+    select?: CentroCustoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CentroCusto
+     */
+    omit?: CentroCustoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CentroCustoInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CentroCusto.
+     */
+    data: XOR<CentroCustoUpdateInput, CentroCustoUncheckedUpdateInput>
+    /**
+     * Choose, which CentroCusto to update.
+     */
+    where: CentroCustoWhereUniqueInput
+  }
+
+  /**
+   * CentroCusto updateMany
+   */
+  export type CentroCustoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CentroCustos.
+     */
+    data: XOR<CentroCustoUpdateManyMutationInput, CentroCustoUncheckedUpdateManyInput>
+    /**
+     * Filter which CentroCustos to update
+     */
+    where?: CentroCustoWhereInput
+    /**
+     * Limit how many CentroCustos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CentroCusto updateManyAndReturn
+   */
+  export type CentroCustoUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CentroCusto
+     */
+    select?: CentroCustoSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CentroCusto
+     */
+    omit?: CentroCustoOmit<ExtArgs> | null
+    /**
+     * The data used to update CentroCustos.
+     */
+    data: XOR<CentroCustoUpdateManyMutationInput, CentroCustoUncheckedUpdateManyInput>
+    /**
+     * Filter which CentroCustos to update
+     */
+    where?: CentroCustoWhereInput
+    /**
+     * Limit how many CentroCustos to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CentroCustoIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CentroCusto upsert
+   */
+  export type CentroCustoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CentroCusto
+     */
+    select?: CentroCustoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CentroCusto
+     */
+    omit?: CentroCustoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CentroCustoInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CentroCusto to update in case it exists.
+     */
+    where: CentroCustoWhereUniqueInput
+    /**
+     * In case the CentroCusto found by the `where` argument doesn't exist, create a new CentroCusto with this data.
+     */
+    create: XOR<CentroCustoCreateInput, CentroCustoUncheckedCreateInput>
+    /**
+     * In case the CentroCusto was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CentroCustoUpdateInput, CentroCustoUncheckedUpdateInput>
+  }
+
+  /**
+   * CentroCusto delete
+   */
+  export type CentroCustoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CentroCusto
+     */
+    select?: CentroCustoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CentroCusto
+     */
+    omit?: CentroCustoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CentroCustoInclude<ExtArgs> | null
+    /**
+     * Filter which CentroCusto to delete.
+     */
+    where: CentroCustoWhereUniqueInput
+  }
+
+  /**
+   * CentroCusto deleteMany
+   */
+  export type CentroCustoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CentroCustos to delete
+     */
+    where?: CentroCustoWhereInput
+    /**
+     * Limit how many CentroCustos to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CentroCusto.projeto
+   */
+  export type CentroCusto$projetoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Projeto
+     */
+    select?: ProjetoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Projeto
+     */
+    omit?: ProjetoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjetoInclude<ExtArgs> | null
+    where?: ProjetoWhereInput
+  }
+
+  /**
+   * CentroCusto.recebiveis
+   */
+  export type CentroCusto$recebiveisArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Recebivel
+     */
+    select?: RecebivelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Recebivel
+     */
+    omit?: RecebivelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RecebivelInclude<ExtArgs> | null
+    where?: RecebivelWhereInput
+    orderBy?: RecebivelOrderByWithRelationInput | RecebivelOrderByWithRelationInput[]
+    cursor?: RecebivelWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RecebivelScalarFieldEnum | RecebivelScalarFieldEnum[]
+  }
+
+  /**
+   * CentroCusto.contas_pagar
+   */
+  export type CentroCusto$contas_pagarArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContaPagar
+     */
+    select?: ContaPagarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContaPagar
+     */
+    omit?: ContaPagarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContaPagarInclude<ExtArgs> | null
+    where?: ContaPagarWhereInput
+    orderBy?: ContaPagarOrderByWithRelationInput | ContaPagarOrderByWithRelationInput[]
+    cursor?: ContaPagarWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ContaPagarScalarFieldEnum | ContaPagarScalarFieldEnum[]
+  }
+
+  /**
+   * CentroCusto without action
+   */
+  export type CentroCustoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CentroCusto
+     */
+    select?: CentroCustoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CentroCusto
+     */
+    omit?: CentroCustoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CentroCustoInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model Recebivel
    */
 
@@ -50733,6 +52137,7 @@ export namespace Prisma {
     multa_valor: Decimal | null
     desconto_valor: Decimal | null
     recebivel_origem_id: string | null
+    centro_custo_id: string | null
     criado_em: Date | null
     atualizado_em: Date | null
   }
@@ -50759,6 +52164,7 @@ export namespace Prisma {
     multa_valor: Decimal | null
     desconto_valor: Decimal | null
     recebivel_origem_id: string | null
+    centro_custo_id: string | null
     criado_em: Date | null
     atualizado_em: Date | null
   }
@@ -50785,6 +52191,7 @@ export namespace Prisma {
     multa_valor: number
     desconto_valor: number
     recebivel_origem_id: number
+    centro_custo_id: number
     criado_em: number
     atualizado_em: number
     _all: number
@@ -50833,6 +52240,7 @@ export namespace Prisma {
     multa_valor?: true
     desconto_valor?: true
     recebivel_origem_id?: true
+    centro_custo_id?: true
     criado_em?: true
     atualizado_em?: true
   }
@@ -50859,6 +52267,7 @@ export namespace Prisma {
     multa_valor?: true
     desconto_valor?: true
     recebivel_origem_id?: true
+    centro_custo_id?: true
     criado_em?: true
     atualizado_em?: true
   }
@@ -50885,6 +52294,7 @@ export namespace Prisma {
     multa_valor?: true
     desconto_valor?: true
     recebivel_origem_id?: true
+    centro_custo_id?: true
     criado_em?: true
     atualizado_em?: true
     _all?: true
@@ -50998,6 +52408,7 @@ export namespace Prisma {
     multa_valor: Decimal | null
     desconto_valor: Decimal | null
     recebivel_origem_id: string | null
+    centro_custo_id: string | null
     criado_em: Date
     atualizado_em: Date
     _count: RecebivelCountAggregateOutputType | null
@@ -51043,6 +52454,7 @@ export namespace Prisma {
     multa_valor?: boolean
     desconto_valor?: boolean
     recebivel_origem_id?: boolean
+    centro_custo_id?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -51051,6 +52463,7 @@ export namespace Prisma {
     plano_contas?: boolean | Recebivel$plano_contasArgs<ExtArgs>
     conta_bancaria?: boolean | Recebivel$conta_bancariaArgs<ExtArgs>
     criador?: boolean | Recebivel$criadorArgs<ExtArgs>
+    centro_custo?: boolean | Recebivel$centro_custoArgs<ExtArgs>
     boleto?: boolean | Recebivel$boletoArgs<ExtArgs>
     nota_fiscal?: boolean | Recebivel$nota_fiscalArgs<ExtArgs>
   }, ExtArgs["result"]["recebivel"]>
@@ -51077,6 +52490,7 @@ export namespace Prisma {
     multa_valor?: boolean
     desconto_valor?: boolean
     recebivel_origem_id?: boolean
+    centro_custo_id?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -51085,6 +52499,7 @@ export namespace Prisma {
     plano_contas?: boolean | Recebivel$plano_contasArgs<ExtArgs>
     conta_bancaria?: boolean | Recebivel$conta_bancariaArgs<ExtArgs>
     criador?: boolean | Recebivel$criadorArgs<ExtArgs>
+    centro_custo?: boolean | Recebivel$centro_custoArgs<ExtArgs>
   }, ExtArgs["result"]["recebivel"]>
 
   export type RecebivelSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -51109,6 +52524,7 @@ export namespace Prisma {
     multa_valor?: boolean
     desconto_valor?: boolean
     recebivel_origem_id?: boolean
+    centro_custo_id?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -51117,6 +52533,7 @@ export namespace Prisma {
     plano_contas?: boolean | Recebivel$plano_contasArgs<ExtArgs>
     conta_bancaria?: boolean | Recebivel$conta_bancariaArgs<ExtArgs>
     criador?: boolean | Recebivel$criadorArgs<ExtArgs>
+    centro_custo?: boolean | Recebivel$centro_custoArgs<ExtArgs>
   }, ExtArgs["result"]["recebivel"]>
 
   export type RecebivelSelectScalar = {
@@ -51141,11 +52558,12 @@ export namespace Prisma {
     multa_valor?: boolean
     desconto_valor?: boolean
     recebivel_origem_id?: boolean
+    centro_custo_id?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
   }
 
-  export type RecebivelOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "cliente_id" | "contrato_id" | "plano_contas_id" | "conta_bancaria_id" | "criado_por" | "descricao" | "valor" | "data_vencimento" | "status" | "data_pagamento" | "valor_pago" | "forma_pagamento" | "numero_parcela" | "total_parcelas" | "observacoes" | "juros_valor" | "multa_valor" | "desconto_valor" | "recebivel_origem_id" | "criado_em" | "atualizado_em", ExtArgs["result"]["recebivel"]>
+  export type RecebivelOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "cliente_id" | "contrato_id" | "plano_contas_id" | "conta_bancaria_id" | "criado_por" | "descricao" | "valor" | "data_vencimento" | "status" | "data_pagamento" | "valor_pago" | "forma_pagamento" | "numero_parcela" | "total_parcelas" | "observacoes" | "juros_valor" | "multa_valor" | "desconto_valor" | "recebivel_origem_id" | "centro_custo_id" | "criado_em" | "atualizado_em", ExtArgs["result"]["recebivel"]>
   export type RecebivelInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     cliente?: boolean | Recebivel$clienteArgs<ExtArgs>
@@ -51153,6 +52571,7 @@ export namespace Prisma {
     plano_contas?: boolean | Recebivel$plano_contasArgs<ExtArgs>
     conta_bancaria?: boolean | Recebivel$conta_bancariaArgs<ExtArgs>
     criador?: boolean | Recebivel$criadorArgs<ExtArgs>
+    centro_custo?: boolean | Recebivel$centro_custoArgs<ExtArgs>
     boleto?: boolean | Recebivel$boletoArgs<ExtArgs>
     nota_fiscal?: boolean | Recebivel$nota_fiscalArgs<ExtArgs>
   }
@@ -51163,6 +52582,7 @@ export namespace Prisma {
     plano_contas?: boolean | Recebivel$plano_contasArgs<ExtArgs>
     conta_bancaria?: boolean | Recebivel$conta_bancariaArgs<ExtArgs>
     criador?: boolean | Recebivel$criadorArgs<ExtArgs>
+    centro_custo?: boolean | Recebivel$centro_custoArgs<ExtArgs>
   }
   export type RecebivelIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -51171,6 +52591,7 @@ export namespace Prisma {
     plano_contas?: boolean | Recebivel$plano_contasArgs<ExtArgs>
     conta_bancaria?: boolean | Recebivel$conta_bancariaArgs<ExtArgs>
     criador?: boolean | Recebivel$criadorArgs<ExtArgs>
+    centro_custo?: boolean | Recebivel$centro_custoArgs<ExtArgs>
   }
 
   export type $RecebivelPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -51182,6 +52603,7 @@ export namespace Prisma {
       plano_contas: Prisma.$PlanoDeContasPayload<ExtArgs> | null
       conta_bancaria: Prisma.$ContaBancariaPayload<ExtArgs> | null
       criador: Prisma.$UsuarioPayload<ExtArgs> | null
+      centro_custo: Prisma.$CentroCustoPayload<ExtArgs> | null
       boleto: Prisma.$BoletoPayload<ExtArgs> | null
       nota_fiscal: Prisma.$NotaFiscalPayload<ExtArgs> | null
     }
@@ -51207,6 +52629,7 @@ export namespace Prisma {
       multa_valor: Prisma.Decimal | null
       desconto_valor: Prisma.Decimal | null
       recebivel_origem_id: string | null
+      centro_custo_id: string | null
       criado_em: Date
       atualizado_em: Date
     }, ExtArgs["result"]["recebivel"]>
@@ -51609,6 +53032,7 @@ export namespace Prisma {
     plano_contas<T extends Recebivel$plano_contasArgs<ExtArgs> = {}>(args?: Subset<T, Recebivel$plano_contasArgs<ExtArgs>>): Prisma__PlanoDeContasClient<$Result.GetResult<Prisma.$PlanoDeContasPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     conta_bancaria<T extends Recebivel$conta_bancariaArgs<ExtArgs> = {}>(args?: Subset<T, Recebivel$conta_bancariaArgs<ExtArgs>>): Prisma__ContaBancariaClient<$Result.GetResult<Prisma.$ContaBancariaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     criador<T extends Recebivel$criadorArgs<ExtArgs> = {}>(args?: Subset<T, Recebivel$criadorArgs<ExtArgs>>): Prisma__UsuarioClient<$Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    centro_custo<T extends Recebivel$centro_custoArgs<ExtArgs> = {}>(args?: Subset<T, Recebivel$centro_custoArgs<ExtArgs>>): Prisma__CentroCustoClient<$Result.GetResult<Prisma.$CentroCustoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     boleto<T extends Recebivel$boletoArgs<ExtArgs> = {}>(args?: Subset<T, Recebivel$boletoArgs<ExtArgs>>): Prisma__BoletoClient<$Result.GetResult<Prisma.$BoletoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     nota_fiscal<T extends Recebivel$nota_fiscalArgs<ExtArgs> = {}>(args?: Subset<T, Recebivel$nota_fiscalArgs<ExtArgs>>): Prisma__NotaFiscalClient<$Result.GetResult<Prisma.$NotaFiscalPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
@@ -51661,6 +53085,7 @@ export namespace Prisma {
     readonly multa_valor: FieldRef<"Recebivel", 'Decimal'>
     readonly desconto_valor: FieldRef<"Recebivel", 'Decimal'>
     readonly recebivel_origem_id: FieldRef<"Recebivel", 'String'>
+    readonly centro_custo_id: FieldRef<"Recebivel", 'String'>
     readonly criado_em: FieldRef<"Recebivel", 'DateTime'>
     readonly atualizado_em: FieldRef<"Recebivel", 'DateTime'>
   }
@@ -52159,6 +53584,25 @@ export namespace Prisma {
   }
 
   /**
+   * Recebivel.centro_custo
+   */
+  export type Recebivel$centro_custoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CentroCusto
+     */
+    select?: CentroCustoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CentroCusto
+     */
+    omit?: CentroCustoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CentroCustoInclude<ExtArgs> | null
+    where?: CentroCustoWhereInput
+  }
+
+  /**
    * Recebivel.boleto
    */
   export type Recebivel$boletoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -52252,6 +53696,7 @@ export namespace Prisma {
     valor_pago: Decimal | null
     forma_pagamento: string | null
     observacoes: string | null
+    centro_custo_id: string | null
     criado_em: Date | null
     atualizado_em: Date | null
   }
@@ -52271,6 +53716,7 @@ export namespace Prisma {
     valor_pago: Decimal | null
     forma_pagamento: string | null
     observacoes: string | null
+    centro_custo_id: string | null
     criado_em: Date | null
     atualizado_em: Date | null
   }
@@ -52290,6 +53736,7 @@ export namespace Prisma {
     valor_pago: number
     forma_pagamento: number
     observacoes: number
+    centro_custo_id: number
     criado_em: number
     atualizado_em: number
     _all: number
@@ -52321,6 +53768,7 @@ export namespace Prisma {
     valor_pago?: true
     forma_pagamento?: true
     observacoes?: true
+    centro_custo_id?: true
     criado_em?: true
     atualizado_em?: true
   }
@@ -52340,6 +53788,7 @@ export namespace Prisma {
     valor_pago?: true
     forma_pagamento?: true
     observacoes?: true
+    centro_custo_id?: true
     criado_em?: true
     atualizado_em?: true
   }
@@ -52359,6 +53808,7 @@ export namespace Prisma {
     valor_pago?: true
     forma_pagamento?: true
     observacoes?: true
+    centro_custo_id?: true
     criado_em?: true
     atualizado_em?: true
     _all?: true
@@ -52465,6 +53915,7 @@ export namespace Prisma {
     valor_pago: Decimal | null
     forma_pagamento: string | null
     observacoes: string | null
+    centro_custo_id: string | null
     criado_em: Date
     atualizado_em: Date
     _count: ContaPagarCountAggregateOutputType | null
@@ -52503,12 +53954,14 @@ export namespace Prisma {
     valor_pago?: boolean
     forma_pagamento?: boolean
     observacoes?: boolean
+    centro_custo_id?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     plano_contas?: boolean | ContaPagar$plano_contasArgs<ExtArgs>
     conta_bancaria?: boolean | ContaPagar$conta_bancariaArgs<ExtArgs>
     criador?: boolean | ContaPagar$criadorArgs<ExtArgs>
+    centro_custo?: boolean | ContaPagar$centro_custoArgs<ExtArgs>
   }, ExtArgs["result"]["contaPagar"]>
 
   export type ContaPagarSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -52526,12 +53979,14 @@ export namespace Prisma {
     valor_pago?: boolean
     forma_pagamento?: boolean
     observacoes?: boolean
+    centro_custo_id?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     plano_contas?: boolean | ContaPagar$plano_contasArgs<ExtArgs>
     conta_bancaria?: boolean | ContaPagar$conta_bancariaArgs<ExtArgs>
     criador?: boolean | ContaPagar$criadorArgs<ExtArgs>
+    centro_custo?: boolean | ContaPagar$centro_custoArgs<ExtArgs>
   }, ExtArgs["result"]["contaPagar"]>
 
   export type ContaPagarSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -52549,12 +54004,14 @@ export namespace Prisma {
     valor_pago?: boolean
     forma_pagamento?: boolean
     observacoes?: boolean
+    centro_custo_id?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     plano_contas?: boolean | ContaPagar$plano_contasArgs<ExtArgs>
     conta_bancaria?: boolean | ContaPagar$conta_bancariaArgs<ExtArgs>
     criador?: boolean | ContaPagar$criadorArgs<ExtArgs>
+    centro_custo?: boolean | ContaPagar$centro_custoArgs<ExtArgs>
   }, ExtArgs["result"]["contaPagar"]>
 
   export type ContaPagarSelectScalar = {
@@ -52572,28 +54029,32 @@ export namespace Prisma {
     valor_pago?: boolean
     forma_pagamento?: boolean
     observacoes?: boolean
+    centro_custo_id?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
   }
 
-  export type ContaPagarOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "plano_contas_id" | "conta_bancaria_id" | "criado_por" | "descricao" | "fornecedor" | "valor" | "data_vencimento" | "status" | "data_pagamento" | "valor_pago" | "forma_pagamento" | "observacoes" | "criado_em" | "atualizado_em", ExtArgs["result"]["contaPagar"]>
+  export type ContaPagarOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "plano_contas_id" | "conta_bancaria_id" | "criado_por" | "descricao" | "fornecedor" | "valor" | "data_vencimento" | "status" | "data_pagamento" | "valor_pago" | "forma_pagamento" | "observacoes" | "centro_custo_id" | "criado_em" | "atualizado_em", ExtArgs["result"]["contaPagar"]>
   export type ContaPagarInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     plano_contas?: boolean | ContaPagar$plano_contasArgs<ExtArgs>
     conta_bancaria?: boolean | ContaPagar$conta_bancariaArgs<ExtArgs>
     criador?: boolean | ContaPagar$criadorArgs<ExtArgs>
+    centro_custo?: boolean | ContaPagar$centro_custoArgs<ExtArgs>
   }
   export type ContaPagarIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     plano_contas?: boolean | ContaPagar$plano_contasArgs<ExtArgs>
     conta_bancaria?: boolean | ContaPagar$conta_bancariaArgs<ExtArgs>
     criador?: boolean | ContaPagar$criadorArgs<ExtArgs>
+    centro_custo?: boolean | ContaPagar$centro_custoArgs<ExtArgs>
   }
   export type ContaPagarIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     plano_contas?: boolean | ContaPagar$plano_contasArgs<ExtArgs>
     conta_bancaria?: boolean | ContaPagar$conta_bancariaArgs<ExtArgs>
     criador?: boolean | ContaPagar$criadorArgs<ExtArgs>
+    centro_custo?: boolean | ContaPagar$centro_custoArgs<ExtArgs>
   }
 
   export type $ContaPagarPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -52603,6 +54064,7 @@ export namespace Prisma {
       plano_contas: Prisma.$PlanoDeContasPayload<ExtArgs> | null
       conta_bancaria: Prisma.$ContaBancariaPayload<ExtArgs> | null
       criador: Prisma.$UsuarioPayload<ExtArgs> | null
+      centro_custo: Prisma.$CentroCustoPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -52619,6 +54081,7 @@ export namespace Prisma {
       valor_pago: Prisma.Decimal | null
       forma_pagamento: string | null
       observacoes: string | null
+      centro_custo_id: string | null
       criado_em: Date
       atualizado_em: Date
     }, ExtArgs["result"]["contaPagar"]>
@@ -53019,6 +54482,7 @@ export namespace Prisma {
     plano_contas<T extends ContaPagar$plano_contasArgs<ExtArgs> = {}>(args?: Subset<T, ContaPagar$plano_contasArgs<ExtArgs>>): Prisma__PlanoDeContasClient<$Result.GetResult<Prisma.$PlanoDeContasPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     conta_bancaria<T extends ContaPagar$conta_bancariaArgs<ExtArgs> = {}>(args?: Subset<T, ContaPagar$conta_bancariaArgs<ExtArgs>>): Prisma__ContaBancariaClient<$Result.GetResult<Prisma.$ContaBancariaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     criador<T extends ContaPagar$criadorArgs<ExtArgs> = {}>(args?: Subset<T, ContaPagar$criadorArgs<ExtArgs>>): Prisma__UsuarioClient<$Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    centro_custo<T extends ContaPagar$centro_custoArgs<ExtArgs> = {}>(args?: Subset<T, ContaPagar$centro_custoArgs<ExtArgs>>): Prisma__CentroCustoClient<$Result.GetResult<Prisma.$CentroCustoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -53062,6 +54526,7 @@ export namespace Prisma {
     readonly valor_pago: FieldRef<"ContaPagar", 'Decimal'>
     readonly forma_pagamento: FieldRef<"ContaPagar", 'String'>
     readonly observacoes: FieldRef<"ContaPagar", 'String'>
+    readonly centro_custo_id: FieldRef<"ContaPagar", 'String'>
     readonly criado_em: FieldRef<"ContaPagar", 'DateTime'>
     readonly atualizado_em: FieldRef<"ContaPagar", 'DateTime'>
   }
@@ -53519,6 +54984,25 @@ export namespace Prisma {
      */
     include?: UsuarioInclude<ExtArgs> | null
     where?: UsuarioWhereInput
+  }
+
+  /**
+   * ContaPagar.centro_custo
+   */
+  export type ContaPagar$centro_custoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CentroCusto
+     */
+    select?: CentroCustoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CentroCusto
+     */
+    omit?: CentroCustoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CentroCustoInclude<ExtArgs> | null
+    where?: CentroCustoWhereInput
   }
 
   /**
@@ -67147,6 +68631,7 @@ export namespace Prisma {
     status: 'status',
     data_inicio: 'data_inicio',
     data_fim: 'data_fim',
+    e_centro_custo: 'e_centro_custo',
     criado_em: 'criado_em',
     atualizado_em: 'atualizado_em'
   };
@@ -67372,6 +68857,21 @@ export namespace Prisma {
   export type TransferenciaTesourariaScalarFieldEnum = (typeof TransferenciaTesourariaScalarFieldEnum)[keyof typeof TransferenciaTesourariaScalarFieldEnum]
 
 
+  export const CentroCustoScalarFieldEnum: {
+    id: 'id',
+    empresa_id: 'empresa_id',
+    nome: 'nome',
+    codigo: 'codigo',
+    descricao: 'descricao',
+    ativo: 'ativo',
+    projeto_id: 'projeto_id',
+    criado_em: 'criado_em',
+    atualizado_em: 'atualizado_em'
+  };
+
+  export type CentroCustoScalarFieldEnum = (typeof CentroCustoScalarFieldEnum)[keyof typeof CentroCustoScalarFieldEnum]
+
+
   export const RecebivelScalarFieldEnum: {
     id: 'id',
     empresa_id: 'empresa_id',
@@ -67394,6 +68894,7 @@ export namespace Prisma {
     multa_valor: 'multa_valor',
     desconto_valor: 'desconto_valor',
     recebivel_origem_id: 'recebivel_origem_id',
+    centro_custo_id: 'centro_custo_id',
     criado_em: 'criado_em',
     atualizado_em: 'atualizado_em'
   };
@@ -67416,6 +68917,7 @@ export namespace Prisma {
     valor_pago: 'valor_pago',
     forma_pagamento: 'forma_pagamento',
     observacoes: 'observacoes',
+    centro_custo_id: 'centro_custo_id',
     criado_em: 'criado_em',
     atualizado_em: 'atualizado_em'
   };
@@ -68111,6 +69613,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoListRelationFilter
     etapas_crm?: EtapaCrmListRelationFilter
     campanhas_diagnostico?: CampanhaDiagnosticoListRelationFilter
+    centros_custo?: CentroCustoListRelationFilter
   }
 
   export type EmpresaOrderByWithRelationInput = {
@@ -68152,6 +69655,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoOrderByRelationAggregateInput
     etapas_crm?: EtapaCrmOrderByRelationAggregateInput
     campanhas_diagnostico?: CampanhaDiagnosticoOrderByRelationAggregateInput
+    centros_custo?: CentroCustoOrderByRelationAggregateInput
   }
 
   export type EmpresaWhereUniqueInput = Prisma.AtLeast<{
@@ -68196,6 +69700,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoListRelationFilter
     etapas_crm?: EtapaCrmListRelationFilter
     campanhas_diagnostico?: CampanhaDiagnosticoListRelationFilter
+    centros_custo?: CentroCustoListRelationFilter
   }, "id" | "slug" | "cnpj">
 
   export type EmpresaOrderByWithAggregationInput = {
@@ -70004,6 +71509,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoFilter<"Projeto"> | $Enums.StatusProjeto
     data_inicio?: DateTimeNullableFilter<"Projeto"> | Date | string | null
     data_fim?: DateTimeNullableFilter<"Projeto"> | Date | string | null
+    e_centro_custo?: BoolFilter<"Projeto"> | boolean
     criado_em?: DateTimeFilter<"Projeto"> | Date | string
     atualizado_em?: DateTimeFilter<"Projeto"> | Date | string
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
@@ -70016,6 +71522,7 @@ export namespace Prisma {
     eventos?: EventoListRelationFilter
     diagnosticos?: DiagnosticoListRelationFilter
     aplicacoes_diagnostico?: AplicacaoDiagnosticoListRelationFilter
+    centro_custo?: XOR<CentroCustoNullableScalarRelationFilter, CentroCustoWhereInput> | null
   }
 
   export type ProjetoOrderByWithRelationInput = {
@@ -70030,6 +71537,7 @@ export namespace Prisma {
     status?: SortOrder
     data_inicio?: SortOrderInput | SortOrder
     data_fim?: SortOrderInput | SortOrder
+    e_centro_custo?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     empresa?: EmpresaOrderByWithRelationInput
@@ -70042,6 +71550,7 @@ export namespace Prisma {
     eventos?: EventoOrderByRelationAggregateInput
     diagnosticos?: DiagnosticoOrderByRelationAggregateInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoOrderByRelationAggregateInput
+    centro_custo?: CentroCustoOrderByWithRelationInput
   }
 
   export type ProjetoWhereUniqueInput = Prisma.AtLeast<{
@@ -70059,6 +71568,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoFilter<"Projeto"> | $Enums.StatusProjeto
     data_inicio?: DateTimeNullableFilter<"Projeto"> | Date | string | null
     data_fim?: DateTimeNullableFilter<"Projeto"> | Date | string | null
+    e_centro_custo?: BoolFilter<"Projeto"> | boolean
     criado_em?: DateTimeFilter<"Projeto"> | Date | string
     atualizado_em?: DateTimeFilter<"Projeto"> | Date | string
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
@@ -70071,6 +71581,7 @@ export namespace Prisma {
     eventos?: EventoListRelationFilter
     diagnosticos?: DiagnosticoListRelationFilter
     aplicacoes_diagnostico?: AplicacaoDiagnosticoListRelationFilter
+    centro_custo?: XOR<CentroCustoNullableScalarRelationFilter, CentroCustoWhereInput> | null
   }, "id" | "contrato_id">
 
   export type ProjetoOrderByWithAggregationInput = {
@@ -70085,6 +71596,7 @@ export namespace Prisma {
     status?: SortOrder
     data_inicio?: SortOrderInput | SortOrder
     data_fim?: SortOrderInput | SortOrder
+    e_centro_custo?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     _count?: ProjetoCountOrderByAggregateInput
@@ -70107,6 +71619,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoWithAggregatesFilter<"Projeto"> | $Enums.StatusProjeto
     data_inicio?: DateTimeNullableWithAggregatesFilter<"Projeto"> | Date | string | null
     data_fim?: DateTimeNullableWithAggregatesFilter<"Projeto"> | Date | string | null
+    e_centro_custo?: BoolWithAggregatesFilter<"Projeto"> | boolean
     criado_em?: DateTimeWithAggregatesFilter<"Projeto"> | Date | string
     atualizado_em?: DateTimeWithAggregatesFilter<"Projeto"> | Date | string
   }
@@ -71331,6 +72844,90 @@ export namespace Prisma {
     criado_em?: DateTimeWithAggregatesFilter<"TransferenciaTesouraria"> | Date | string
   }
 
+  export type CentroCustoWhereInput = {
+    AND?: CentroCustoWhereInput | CentroCustoWhereInput[]
+    OR?: CentroCustoWhereInput[]
+    NOT?: CentroCustoWhereInput | CentroCustoWhereInput[]
+    id?: StringFilter<"CentroCusto"> | string
+    empresa_id?: StringFilter<"CentroCusto"> | string
+    nome?: StringFilter<"CentroCusto"> | string
+    codigo?: StringNullableFilter<"CentroCusto"> | string | null
+    descricao?: StringNullableFilter<"CentroCusto"> | string | null
+    ativo?: BoolFilter<"CentroCusto"> | boolean
+    projeto_id?: StringNullableFilter<"CentroCusto"> | string | null
+    criado_em?: DateTimeFilter<"CentroCusto"> | Date | string
+    atualizado_em?: DateTimeFilter<"CentroCusto"> | Date | string
+    empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
+    projeto?: XOR<ProjetoNullableScalarRelationFilter, ProjetoWhereInput> | null
+    recebiveis?: RecebivelListRelationFilter
+    contas_pagar?: ContaPagarListRelationFilter
+  }
+
+  export type CentroCustoOrderByWithRelationInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    nome?: SortOrder
+    codigo?: SortOrderInput | SortOrder
+    descricao?: SortOrderInput | SortOrder
+    ativo?: SortOrder
+    projeto_id?: SortOrderInput | SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+    empresa?: EmpresaOrderByWithRelationInput
+    projeto?: ProjetoOrderByWithRelationInput
+    recebiveis?: RecebivelOrderByRelationAggregateInput
+    contas_pagar?: ContaPagarOrderByRelationAggregateInput
+  }
+
+  export type CentroCustoWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    projeto_id?: string
+    AND?: CentroCustoWhereInput | CentroCustoWhereInput[]
+    OR?: CentroCustoWhereInput[]
+    NOT?: CentroCustoWhereInput | CentroCustoWhereInput[]
+    empresa_id?: StringFilter<"CentroCusto"> | string
+    nome?: StringFilter<"CentroCusto"> | string
+    codigo?: StringNullableFilter<"CentroCusto"> | string | null
+    descricao?: StringNullableFilter<"CentroCusto"> | string | null
+    ativo?: BoolFilter<"CentroCusto"> | boolean
+    criado_em?: DateTimeFilter<"CentroCusto"> | Date | string
+    atualizado_em?: DateTimeFilter<"CentroCusto"> | Date | string
+    empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
+    projeto?: XOR<ProjetoNullableScalarRelationFilter, ProjetoWhereInput> | null
+    recebiveis?: RecebivelListRelationFilter
+    contas_pagar?: ContaPagarListRelationFilter
+  }, "id" | "projeto_id">
+
+  export type CentroCustoOrderByWithAggregationInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    nome?: SortOrder
+    codigo?: SortOrderInput | SortOrder
+    descricao?: SortOrderInput | SortOrder
+    ativo?: SortOrder
+    projeto_id?: SortOrderInput | SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+    _count?: CentroCustoCountOrderByAggregateInput
+    _max?: CentroCustoMaxOrderByAggregateInput
+    _min?: CentroCustoMinOrderByAggregateInput
+  }
+
+  export type CentroCustoScalarWhereWithAggregatesInput = {
+    AND?: CentroCustoScalarWhereWithAggregatesInput | CentroCustoScalarWhereWithAggregatesInput[]
+    OR?: CentroCustoScalarWhereWithAggregatesInput[]
+    NOT?: CentroCustoScalarWhereWithAggregatesInput | CentroCustoScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"CentroCusto"> | string
+    empresa_id?: StringWithAggregatesFilter<"CentroCusto"> | string
+    nome?: StringWithAggregatesFilter<"CentroCusto"> | string
+    codigo?: StringNullableWithAggregatesFilter<"CentroCusto"> | string | null
+    descricao?: StringNullableWithAggregatesFilter<"CentroCusto"> | string | null
+    ativo?: BoolWithAggregatesFilter<"CentroCusto"> | boolean
+    projeto_id?: StringNullableWithAggregatesFilter<"CentroCusto"> | string | null
+    criado_em?: DateTimeWithAggregatesFilter<"CentroCusto"> | Date | string
+    atualizado_em?: DateTimeWithAggregatesFilter<"CentroCusto"> | Date | string
+  }
+
   export type RecebivelWhereInput = {
     AND?: RecebivelWhereInput | RecebivelWhereInput[]
     OR?: RecebivelWhereInput[]
@@ -71356,6 +72953,7 @@ export namespace Prisma {
     multa_valor?: DecimalNullableFilter<"Recebivel"> | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: DecimalNullableFilter<"Recebivel"> | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: StringNullableFilter<"Recebivel"> | string | null
+    centro_custo_id?: StringNullableFilter<"Recebivel"> | string | null
     criado_em?: DateTimeFilter<"Recebivel"> | Date | string
     atualizado_em?: DateTimeFilter<"Recebivel"> | Date | string
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
@@ -71364,6 +72962,7 @@ export namespace Prisma {
     plano_contas?: XOR<PlanoDeContasNullableScalarRelationFilter, PlanoDeContasWhereInput> | null
     conta_bancaria?: XOR<ContaBancariaNullableScalarRelationFilter, ContaBancariaWhereInput> | null
     criador?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
+    centro_custo?: XOR<CentroCustoNullableScalarRelationFilter, CentroCustoWhereInput> | null
     boleto?: XOR<BoletoNullableScalarRelationFilter, BoletoWhereInput> | null
     nota_fiscal?: XOR<NotaFiscalNullableScalarRelationFilter, NotaFiscalWhereInput> | null
   }
@@ -71390,6 +72989,7 @@ export namespace Prisma {
     multa_valor?: SortOrderInput | SortOrder
     desconto_valor?: SortOrderInput | SortOrder
     recebivel_origem_id?: SortOrderInput | SortOrder
+    centro_custo_id?: SortOrderInput | SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     empresa?: EmpresaOrderByWithRelationInput
@@ -71398,6 +72998,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasOrderByWithRelationInput
     conta_bancaria?: ContaBancariaOrderByWithRelationInput
     criador?: UsuarioOrderByWithRelationInput
+    centro_custo?: CentroCustoOrderByWithRelationInput
     boleto?: BoletoOrderByWithRelationInput
     nota_fiscal?: NotaFiscalOrderByWithRelationInput
   }
@@ -71427,6 +73028,7 @@ export namespace Prisma {
     multa_valor?: DecimalNullableFilter<"Recebivel"> | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: DecimalNullableFilter<"Recebivel"> | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: StringNullableFilter<"Recebivel"> | string | null
+    centro_custo_id?: StringNullableFilter<"Recebivel"> | string | null
     criado_em?: DateTimeFilter<"Recebivel"> | Date | string
     atualizado_em?: DateTimeFilter<"Recebivel"> | Date | string
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
@@ -71435,6 +73037,7 @@ export namespace Prisma {
     plano_contas?: XOR<PlanoDeContasNullableScalarRelationFilter, PlanoDeContasWhereInput> | null
     conta_bancaria?: XOR<ContaBancariaNullableScalarRelationFilter, ContaBancariaWhereInput> | null
     criador?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
+    centro_custo?: XOR<CentroCustoNullableScalarRelationFilter, CentroCustoWhereInput> | null
     boleto?: XOR<BoletoNullableScalarRelationFilter, BoletoWhereInput> | null
     nota_fiscal?: XOR<NotaFiscalNullableScalarRelationFilter, NotaFiscalWhereInput> | null
   }, "id">
@@ -71461,6 +73064,7 @@ export namespace Prisma {
     multa_valor?: SortOrderInput | SortOrder
     desconto_valor?: SortOrderInput | SortOrder
     recebivel_origem_id?: SortOrderInput | SortOrder
+    centro_custo_id?: SortOrderInput | SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     _count?: RecebivelCountOrderByAggregateInput
@@ -71495,6 +73099,7 @@ export namespace Prisma {
     multa_valor?: DecimalNullableWithAggregatesFilter<"Recebivel"> | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: DecimalNullableWithAggregatesFilter<"Recebivel"> | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: StringNullableWithAggregatesFilter<"Recebivel"> | string | null
+    centro_custo_id?: StringNullableWithAggregatesFilter<"Recebivel"> | string | null
     criado_em?: DateTimeWithAggregatesFilter<"Recebivel"> | Date | string
     atualizado_em?: DateTimeWithAggregatesFilter<"Recebivel"> | Date | string
   }
@@ -71517,12 +73122,14 @@ export namespace Prisma {
     valor_pago?: DecimalNullableFilter<"ContaPagar"> | Decimal | DecimalJsLike | number | string | null
     forma_pagamento?: StringNullableFilter<"ContaPagar"> | string | null
     observacoes?: StringNullableFilter<"ContaPagar"> | string | null
+    centro_custo_id?: StringNullableFilter<"ContaPagar"> | string | null
     criado_em?: DateTimeFilter<"ContaPagar"> | Date | string
     atualizado_em?: DateTimeFilter<"ContaPagar"> | Date | string
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
     plano_contas?: XOR<PlanoDeContasNullableScalarRelationFilter, PlanoDeContasWhereInput> | null
     conta_bancaria?: XOR<ContaBancariaNullableScalarRelationFilter, ContaBancariaWhereInput> | null
     criador?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
+    centro_custo?: XOR<CentroCustoNullableScalarRelationFilter, CentroCustoWhereInput> | null
   }
 
   export type ContaPagarOrderByWithRelationInput = {
@@ -71540,12 +73147,14 @@ export namespace Prisma {
     valor_pago?: SortOrderInput | SortOrder
     forma_pagamento?: SortOrderInput | SortOrder
     observacoes?: SortOrderInput | SortOrder
+    centro_custo_id?: SortOrderInput | SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     empresa?: EmpresaOrderByWithRelationInput
     plano_contas?: PlanoDeContasOrderByWithRelationInput
     conta_bancaria?: ContaBancariaOrderByWithRelationInput
     criador?: UsuarioOrderByWithRelationInput
+    centro_custo?: CentroCustoOrderByWithRelationInput
   }
 
   export type ContaPagarWhereUniqueInput = Prisma.AtLeast<{
@@ -71566,12 +73175,14 @@ export namespace Prisma {
     valor_pago?: DecimalNullableFilter<"ContaPagar"> | Decimal | DecimalJsLike | number | string | null
     forma_pagamento?: StringNullableFilter<"ContaPagar"> | string | null
     observacoes?: StringNullableFilter<"ContaPagar"> | string | null
+    centro_custo_id?: StringNullableFilter<"ContaPagar"> | string | null
     criado_em?: DateTimeFilter<"ContaPagar"> | Date | string
     atualizado_em?: DateTimeFilter<"ContaPagar"> | Date | string
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
     plano_contas?: XOR<PlanoDeContasNullableScalarRelationFilter, PlanoDeContasWhereInput> | null
     conta_bancaria?: XOR<ContaBancariaNullableScalarRelationFilter, ContaBancariaWhereInput> | null
     criador?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
+    centro_custo?: XOR<CentroCustoNullableScalarRelationFilter, CentroCustoWhereInput> | null
   }, "id">
 
   export type ContaPagarOrderByWithAggregationInput = {
@@ -71589,6 +73200,7 @@ export namespace Prisma {
     valor_pago?: SortOrderInput | SortOrder
     forma_pagamento?: SortOrderInput | SortOrder
     observacoes?: SortOrderInput | SortOrder
+    centro_custo_id?: SortOrderInput | SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     _count?: ContaPagarCountOrderByAggregateInput
@@ -71616,6 +73228,7 @@ export namespace Prisma {
     valor_pago?: DecimalNullableWithAggregatesFilter<"ContaPagar"> | Decimal | DecimalJsLike | number | string | null
     forma_pagamento?: StringNullableWithAggregatesFilter<"ContaPagar"> | string | null
     observacoes?: StringNullableWithAggregatesFilter<"ContaPagar"> | string | null
+    centro_custo_id?: StringNullableWithAggregatesFilter<"ContaPagar"> | string | null
     criado_em?: DateTimeWithAggregatesFilter<"ContaPagar"> | Date | string
     atualizado_em?: DateTimeWithAggregatesFilter<"ContaPagar"> | Date | string
   }
@@ -72738,6 +74351,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateInput = {
@@ -72779,6 +74393,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUpdateInput = {
@@ -72820,6 +74435,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateInput = {
@@ -72861,6 +74477,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateManyInput = {
@@ -74861,6 +76478,7 @@ export namespace Prisma {
     status?: $Enums.StatusProjeto
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
+    e_centro_custo?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutProjetosInput
@@ -74873,6 +76491,7 @@ export namespace Prisma {
     eventos?: EventoCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutProjetoInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutProjetoInput
+    centro_custo?: CentroCustoCreateNestedOneWithoutProjetoInput
   }
 
   export type ProjetoUncheckedCreateInput = {
@@ -74887,6 +76506,7 @@ export namespace Prisma {
     status?: $Enums.StatusProjeto
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
+    e_centro_custo?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
     etapas?: EtapaUncheckedCreateNestedManyWithoutProjetoInput
@@ -74895,6 +76515,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
+    centro_custo?: CentroCustoUncheckedCreateNestedOneWithoutProjetoInput
   }
 
   export type ProjetoUpdateInput = {
@@ -74905,6 +76526,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    e_centro_custo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutProjetosNestedInput
@@ -74917,6 +76539,7 @@ export namespace Prisma {
     eventos?: EventoUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutProjetoNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutProjetoNestedInput
+    centro_custo?: CentroCustoUpdateOneWithoutProjetoNestedInput
   }
 
   export type ProjetoUncheckedUpdateInput = {
@@ -74931,6 +76554,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    e_centro_custo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     etapas?: EtapaUncheckedUpdateManyWithoutProjetoNestedInput
@@ -74939,6 +76563,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
+    centro_custo?: CentroCustoUncheckedUpdateOneWithoutProjetoNestedInput
   }
 
   export type ProjetoCreateManyInput = {
@@ -74953,6 +76578,7 @@ export namespace Prisma {
     status?: $Enums.StatusProjeto
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
+    e_centro_custo?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -74965,6 +76591,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    e_centro_custo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -74981,6 +76608,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    e_centro_custo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -76223,6 +77851,96 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type CentroCustoCreateInput = {
+    id?: string
+    nome: string
+    codigo?: string | null
+    descricao?: string | null
+    ativo?: boolean
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutCentros_custoInput
+    projeto?: ProjetoCreateNestedOneWithoutCentro_custoInput
+    recebiveis?: RecebivelCreateNestedManyWithoutCentro_custoInput
+    contas_pagar?: ContaPagarCreateNestedManyWithoutCentro_custoInput
+  }
+
+  export type CentroCustoUncheckedCreateInput = {
+    id?: string
+    empresa_id: string
+    nome: string
+    codigo?: string | null
+    descricao?: string | null
+    ativo?: boolean
+    projeto_id?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    recebiveis?: RecebivelUncheckedCreateNestedManyWithoutCentro_custoInput
+    contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutCentro_custoInput
+  }
+
+  export type CentroCustoUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    codigo?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutCentros_custoNestedInput
+    projeto?: ProjetoUpdateOneWithoutCentro_custoNestedInput
+    recebiveis?: RecebivelUpdateManyWithoutCentro_custoNestedInput
+    contas_pagar?: ContaPagarUpdateManyWithoutCentro_custoNestedInput
+  }
+
+  export type CentroCustoUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    codigo?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    projeto_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    recebiveis?: RecebivelUncheckedUpdateManyWithoutCentro_custoNestedInput
+    contas_pagar?: ContaPagarUncheckedUpdateManyWithoutCentro_custoNestedInput
+  }
+
+  export type CentroCustoCreateManyInput = {
+    id?: string
+    empresa_id: string
+    nome: string
+    codigo?: string | null
+    descricao?: string | null
+    ativo?: boolean
+    projeto_id?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type CentroCustoUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    codigo?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CentroCustoUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    codigo?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    projeto_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type RecebivelCreateInput = {
     id?: string
     descricao: string
@@ -76247,6 +77965,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasCreateNestedOneWithoutRecebiveisInput
     conta_bancaria?: ContaBancariaCreateNestedOneWithoutRecebiveisInput
     criador?: UsuarioCreateNestedOneWithoutRecebiveis_criadosInput
+    centro_custo?: CentroCustoCreateNestedOneWithoutRecebiveisInput
     boleto?: BoletoCreateNestedOneWithoutRecebivelInput
     nota_fiscal?: NotaFiscalCreateNestedOneWithoutRecebivelInput
   }
@@ -76273,6 +77992,7 @@ export namespace Prisma {
     multa_valor?: Decimal | DecimalJsLike | number | string | null
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
+    centro_custo_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
@@ -76303,6 +78023,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasUpdateOneWithoutRecebiveisNestedInput
     conta_bancaria?: ContaBancariaUpdateOneWithoutRecebiveisNestedInput
     criador?: UsuarioUpdateOneWithoutRecebiveis_criadosNestedInput
+    centro_custo?: CentroCustoUpdateOneWithoutRecebiveisNestedInput
     boleto?: BoletoUpdateOneWithoutRecebivelNestedInput
     nota_fiscal?: NotaFiscalUpdateOneWithoutRecebivelNestedInput
   }
@@ -76329,6 +78050,7 @@ export namespace Prisma {
     multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
@@ -76357,6 +78079,7 @@ export namespace Prisma {
     multa_valor?: Decimal | DecimalJsLike | number | string | null
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
+    centro_custo_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -76403,6 +78126,7 @@ export namespace Prisma {
     multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -76424,6 +78148,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasCreateNestedOneWithoutContas_pagarInput
     conta_bancaria?: ContaBancariaCreateNestedOneWithoutContas_pagarInput
     criador?: UsuarioCreateNestedOneWithoutContas_pagar_criadasInput
+    centro_custo?: CentroCustoCreateNestedOneWithoutContas_pagarInput
   }
 
   export type ContaPagarUncheckedCreateInput = {
@@ -76441,6 +78166,7 @@ export namespace Prisma {
     valor_pago?: Decimal | DecimalJsLike | number | string | null
     forma_pagamento?: string | null
     observacoes?: string | null
+    centro_custo_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -76462,6 +78188,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasUpdateOneWithoutContas_pagarNestedInput
     conta_bancaria?: ContaBancariaUpdateOneWithoutContas_pagarNestedInput
     criador?: UsuarioUpdateOneWithoutContas_pagar_criadasNestedInput
+    centro_custo?: CentroCustoUpdateOneWithoutContas_pagarNestedInput
   }
 
   export type ContaPagarUncheckedUpdateInput = {
@@ -76479,6 +78206,7 @@ export namespace Prisma {
     valor_pago?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     forma_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -76498,6 +78226,7 @@ export namespace Prisma {
     valor_pago?: Decimal | DecimalJsLike | number | string | null
     forma_pagamento?: string | null
     observacoes?: string | null
+    centro_custo_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -76532,6 +78261,7 @@ export namespace Prisma {
     valor_pago?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     forma_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -77965,6 +79695,12 @@ export namespace Prisma {
     none?: CampanhaDiagnosticoWhereInput
   }
 
+  export type CentroCustoListRelationFilter = {
+    every?: CentroCustoWhereInput
+    some?: CentroCustoWhereInput
+    none?: CentroCustoWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -78079,6 +79815,10 @@ export namespace Prisma {
   }
 
   export type CampanhaDiagnosticoOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CentroCustoOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -79579,6 +81319,11 @@ export namespace Prisma {
     none?: EtapaWhereInput
   }
 
+  export type CentroCustoNullableScalarRelationFilter = {
+    is?: CentroCustoWhereInput | null
+    isNot?: CentroCustoWhereInput | null
+  }
+
   export type EtapaOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -79595,6 +81340,7 @@ export namespace Prisma {
     status?: SortOrder
     data_inicio?: SortOrder
     data_fim?: SortOrder
+    e_centro_custo?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -79611,6 +81357,7 @@ export namespace Prisma {
     status?: SortOrder
     data_inicio?: SortOrder
     data_fim?: SortOrder
+    e_centro_custo?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -79627,6 +81374,7 @@ export namespace Prisma {
     status?: SortOrder
     data_inicio?: SortOrder
     data_fim?: SortOrder
+    e_centro_custo?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -80391,6 +82139,42 @@ export namespace Prisma {
     valor?: SortOrder
   }
 
+  export type CentroCustoCountOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    nome?: SortOrder
+    codigo?: SortOrder
+    descricao?: SortOrder
+    ativo?: SortOrder
+    projeto_id?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+  }
+
+  export type CentroCustoMaxOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    nome?: SortOrder
+    codigo?: SortOrder
+    descricao?: SortOrder
+    ativo?: SortOrder
+    projeto_id?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+  }
+
+  export type CentroCustoMinOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    nome?: SortOrder
+    codigo?: SortOrder
+    descricao?: SortOrder
+    ativo?: SortOrder
+    projeto_id?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+  }
+
   export type EnumStatusRecebivelFilter<$PrismaModel = never> = {
     equals?: $Enums.StatusRecebivel | EnumStatusRecebivelFieldRefInput<$PrismaModel>
     in?: $Enums.StatusRecebivel[] | ListEnumStatusRecebivelFieldRefInput<$PrismaModel>
@@ -80435,6 +82219,7 @@ export namespace Prisma {
     multa_valor?: SortOrder
     desconto_valor?: SortOrder
     recebivel_origem_id?: SortOrder
+    centro_custo_id?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -80471,6 +82256,7 @@ export namespace Prisma {
     multa_valor?: SortOrder
     desconto_valor?: SortOrder
     recebivel_origem_id?: SortOrder
+    centro_custo_id?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -80497,6 +82283,7 @@ export namespace Prisma {
     multa_valor?: SortOrder
     desconto_valor?: SortOrder
     recebivel_origem_id?: SortOrder
+    centro_custo_id?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -80543,6 +82330,7 @@ export namespace Prisma {
     valor_pago?: SortOrder
     forma_pagamento?: SortOrder
     observacoes?: SortOrder
+    centro_custo_id?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -80567,6 +82355,7 @@ export namespace Prisma {
     valor_pago?: SortOrder
     forma_pagamento?: SortOrder
     observacoes?: SortOrder
+    centro_custo_id?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -80586,6 +82375,7 @@ export namespace Prisma {
     valor_pago?: SortOrder
     forma_pagamento?: SortOrder
     observacoes?: SortOrder
+    centro_custo_id?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -81458,6 +83248,13 @@ export namespace Prisma {
     connect?: CampanhaDiagnosticoWhereUniqueInput | CampanhaDiagnosticoWhereUniqueInput[]
   }
 
+  export type CentroCustoCreateNestedManyWithoutEmpresaInput = {
+    create?: XOR<CentroCustoCreateWithoutEmpresaInput, CentroCustoUncheckedCreateWithoutEmpresaInput> | CentroCustoCreateWithoutEmpresaInput[] | CentroCustoUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: CentroCustoCreateOrConnectWithoutEmpresaInput | CentroCustoCreateOrConnectWithoutEmpresaInput[]
+    createMany?: CentroCustoCreateManyEmpresaInputEnvelope
+    connect?: CentroCustoWhereUniqueInput | CentroCustoWhereUniqueInput[]
+  }
+
   export type MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput = {
     create?: XOR<MembroEmpresaCreateWithoutEmpresaInput, MembroEmpresaUncheckedCreateWithoutEmpresaInput> | MembroEmpresaCreateWithoutEmpresaInput[] | MembroEmpresaUncheckedCreateWithoutEmpresaInput[]
     connectOrCreate?: MembroEmpresaCreateOrConnectWithoutEmpresaInput | MembroEmpresaCreateOrConnectWithoutEmpresaInput[]
@@ -81652,6 +83449,13 @@ export namespace Prisma {
     connectOrCreate?: CampanhaDiagnosticoCreateOrConnectWithoutEmpresaInput | CampanhaDiagnosticoCreateOrConnectWithoutEmpresaInput[]
     createMany?: CampanhaDiagnosticoCreateManyEmpresaInputEnvelope
     connect?: CampanhaDiagnosticoWhereUniqueInput | CampanhaDiagnosticoWhereUniqueInput[]
+  }
+
+  export type CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput = {
+    create?: XOR<CentroCustoCreateWithoutEmpresaInput, CentroCustoUncheckedCreateWithoutEmpresaInput> | CentroCustoCreateWithoutEmpresaInput[] | CentroCustoUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: CentroCustoCreateOrConnectWithoutEmpresaInput | CentroCustoCreateOrConnectWithoutEmpresaInput[]
+    createMany?: CentroCustoCreateManyEmpresaInputEnvelope
+    connect?: CentroCustoWhereUniqueInput | CentroCustoWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -82066,6 +83870,20 @@ export namespace Prisma {
     deleteMany?: CampanhaDiagnosticoScalarWhereInput | CampanhaDiagnosticoScalarWhereInput[]
   }
 
+  export type CentroCustoUpdateManyWithoutEmpresaNestedInput = {
+    create?: XOR<CentroCustoCreateWithoutEmpresaInput, CentroCustoUncheckedCreateWithoutEmpresaInput> | CentroCustoCreateWithoutEmpresaInput[] | CentroCustoUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: CentroCustoCreateOrConnectWithoutEmpresaInput | CentroCustoCreateOrConnectWithoutEmpresaInput[]
+    upsert?: CentroCustoUpsertWithWhereUniqueWithoutEmpresaInput | CentroCustoUpsertWithWhereUniqueWithoutEmpresaInput[]
+    createMany?: CentroCustoCreateManyEmpresaInputEnvelope
+    set?: CentroCustoWhereUniqueInput | CentroCustoWhereUniqueInput[]
+    disconnect?: CentroCustoWhereUniqueInput | CentroCustoWhereUniqueInput[]
+    delete?: CentroCustoWhereUniqueInput | CentroCustoWhereUniqueInput[]
+    connect?: CentroCustoWhereUniqueInput | CentroCustoWhereUniqueInput[]
+    update?: CentroCustoUpdateWithWhereUniqueWithoutEmpresaInput | CentroCustoUpdateWithWhereUniqueWithoutEmpresaInput[]
+    updateMany?: CentroCustoUpdateManyWithWhereWithoutEmpresaInput | CentroCustoUpdateManyWithWhereWithoutEmpresaInput[]
+    deleteMany?: CentroCustoScalarWhereInput | CentroCustoScalarWhereInput[]
+  }
+
   export type MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput = {
     create?: XOR<MembroEmpresaCreateWithoutEmpresaInput, MembroEmpresaUncheckedCreateWithoutEmpresaInput> | MembroEmpresaCreateWithoutEmpresaInput[] | MembroEmpresaUncheckedCreateWithoutEmpresaInput[]
     connectOrCreate?: MembroEmpresaCreateOrConnectWithoutEmpresaInput | MembroEmpresaCreateOrConnectWithoutEmpresaInput[]
@@ -82456,6 +84274,20 @@ export namespace Prisma {
     update?: CampanhaDiagnosticoUpdateWithWhereUniqueWithoutEmpresaInput | CampanhaDiagnosticoUpdateWithWhereUniqueWithoutEmpresaInput[]
     updateMany?: CampanhaDiagnosticoUpdateManyWithWhereWithoutEmpresaInput | CampanhaDiagnosticoUpdateManyWithWhereWithoutEmpresaInput[]
     deleteMany?: CampanhaDiagnosticoScalarWhereInput | CampanhaDiagnosticoScalarWhereInput[]
+  }
+
+  export type CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput = {
+    create?: XOR<CentroCustoCreateWithoutEmpresaInput, CentroCustoUncheckedCreateWithoutEmpresaInput> | CentroCustoCreateWithoutEmpresaInput[] | CentroCustoUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: CentroCustoCreateOrConnectWithoutEmpresaInput | CentroCustoCreateOrConnectWithoutEmpresaInput[]
+    upsert?: CentroCustoUpsertWithWhereUniqueWithoutEmpresaInput | CentroCustoUpsertWithWhereUniqueWithoutEmpresaInput[]
+    createMany?: CentroCustoCreateManyEmpresaInputEnvelope
+    set?: CentroCustoWhereUniqueInput | CentroCustoWhereUniqueInput[]
+    disconnect?: CentroCustoWhereUniqueInput | CentroCustoWhereUniqueInput[]
+    delete?: CentroCustoWhereUniqueInput | CentroCustoWhereUniqueInput[]
+    connect?: CentroCustoWhereUniqueInput | CentroCustoWhereUniqueInput[]
+    update?: CentroCustoUpdateWithWhereUniqueWithoutEmpresaInput | CentroCustoUpdateWithWhereUniqueWithoutEmpresaInput[]
+    updateMany?: CentroCustoUpdateManyWithWhereWithoutEmpresaInput | CentroCustoUpdateManyWithWhereWithoutEmpresaInput[]
+    deleteMany?: CentroCustoScalarWhereInput | CentroCustoScalarWhereInput[]
   }
 
   export type MembroEmpresaCreateNestedManyWithoutUsuarioInput = {
@@ -85271,6 +87103,12 @@ export namespace Prisma {
     connect?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
   }
 
+  export type CentroCustoCreateNestedOneWithoutProjetoInput = {
+    create?: XOR<CentroCustoCreateWithoutProjetoInput, CentroCustoUncheckedCreateWithoutProjetoInput>
+    connectOrCreate?: CentroCustoCreateOrConnectWithoutProjetoInput
+    connect?: CentroCustoWhereUniqueInput
+  }
+
   export type EtapaUncheckedCreateNestedManyWithoutProjetoInput = {
     create?: XOR<EtapaCreateWithoutProjetoInput, EtapaUncheckedCreateWithoutProjetoInput> | EtapaCreateWithoutProjetoInput[] | EtapaUncheckedCreateWithoutProjetoInput[]
     connectOrCreate?: EtapaCreateOrConnectWithoutProjetoInput | EtapaCreateOrConnectWithoutProjetoInput[]
@@ -85311,6 +87149,12 @@ export namespace Prisma {
     connectOrCreate?: AplicacaoDiagnosticoCreateOrConnectWithoutProjetoInput | AplicacaoDiagnosticoCreateOrConnectWithoutProjetoInput[]
     createMany?: AplicacaoDiagnosticoCreateManyProjetoInputEnvelope
     connect?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
+  }
+
+  export type CentroCustoUncheckedCreateNestedOneWithoutProjetoInput = {
+    create?: XOR<CentroCustoCreateWithoutProjetoInput, CentroCustoUncheckedCreateWithoutProjetoInput>
+    connectOrCreate?: CentroCustoCreateOrConnectWithoutProjetoInput
+    connect?: CentroCustoWhereUniqueInput
   }
 
   export type EnumStatusProjetoFieldUpdateOperationsInput = {
@@ -85439,6 +87283,16 @@ export namespace Prisma {
     deleteMany?: AplicacaoDiagnosticoScalarWhereInput | AplicacaoDiagnosticoScalarWhereInput[]
   }
 
+  export type CentroCustoUpdateOneWithoutProjetoNestedInput = {
+    create?: XOR<CentroCustoCreateWithoutProjetoInput, CentroCustoUncheckedCreateWithoutProjetoInput>
+    connectOrCreate?: CentroCustoCreateOrConnectWithoutProjetoInput
+    upsert?: CentroCustoUpsertWithoutProjetoInput
+    disconnect?: CentroCustoWhereInput | boolean
+    delete?: CentroCustoWhereInput | boolean
+    connect?: CentroCustoWhereUniqueInput
+    update?: XOR<XOR<CentroCustoUpdateToOneWithWhereWithoutProjetoInput, CentroCustoUpdateWithoutProjetoInput>, CentroCustoUncheckedUpdateWithoutProjetoInput>
+  }
+
   export type EtapaUncheckedUpdateManyWithoutProjetoNestedInput = {
     create?: XOR<EtapaCreateWithoutProjetoInput, EtapaUncheckedCreateWithoutProjetoInput> | EtapaCreateWithoutProjetoInput[] | EtapaUncheckedCreateWithoutProjetoInput[]
     connectOrCreate?: EtapaCreateOrConnectWithoutProjetoInput | EtapaCreateOrConnectWithoutProjetoInput[]
@@ -85521,6 +87375,16 @@ export namespace Prisma {
     update?: AplicacaoDiagnosticoUpdateWithWhereUniqueWithoutProjetoInput | AplicacaoDiagnosticoUpdateWithWhereUniqueWithoutProjetoInput[]
     updateMany?: AplicacaoDiagnosticoUpdateManyWithWhereWithoutProjetoInput | AplicacaoDiagnosticoUpdateManyWithWhereWithoutProjetoInput[]
     deleteMany?: AplicacaoDiagnosticoScalarWhereInput | AplicacaoDiagnosticoScalarWhereInput[]
+  }
+
+  export type CentroCustoUncheckedUpdateOneWithoutProjetoNestedInput = {
+    create?: XOR<CentroCustoCreateWithoutProjetoInput, CentroCustoUncheckedCreateWithoutProjetoInput>
+    connectOrCreate?: CentroCustoCreateOrConnectWithoutProjetoInput
+    upsert?: CentroCustoUpsertWithoutProjetoInput
+    disconnect?: CentroCustoWhereInput | boolean
+    delete?: CentroCustoWhereInput | boolean
+    connect?: CentroCustoWhereUniqueInput
+    update?: XOR<XOR<CentroCustoUpdateToOneWithWhereWithoutProjetoInput, CentroCustoUpdateWithoutProjetoInput>, CentroCustoUncheckedUpdateWithoutProjetoInput>
   }
 
   export type ProjetoCreateNestedOneWithoutEtapasInput = {
@@ -86895,6 +88759,120 @@ export namespace Prisma {
     update?: XOR<XOR<ContaBancariaUpdateToOneWithWhereWithoutTransferencias_destinoInput, ContaBancariaUpdateWithoutTransferencias_destinoInput>, ContaBancariaUncheckedUpdateWithoutTransferencias_destinoInput>
   }
 
+  export type EmpresaCreateNestedOneWithoutCentros_custoInput = {
+    create?: XOR<EmpresaCreateWithoutCentros_custoInput, EmpresaUncheckedCreateWithoutCentros_custoInput>
+    connectOrCreate?: EmpresaCreateOrConnectWithoutCentros_custoInput
+    connect?: EmpresaWhereUniqueInput
+  }
+
+  export type ProjetoCreateNestedOneWithoutCentro_custoInput = {
+    create?: XOR<ProjetoCreateWithoutCentro_custoInput, ProjetoUncheckedCreateWithoutCentro_custoInput>
+    connectOrCreate?: ProjetoCreateOrConnectWithoutCentro_custoInput
+    connect?: ProjetoWhereUniqueInput
+  }
+
+  export type RecebivelCreateNestedManyWithoutCentro_custoInput = {
+    create?: XOR<RecebivelCreateWithoutCentro_custoInput, RecebivelUncheckedCreateWithoutCentro_custoInput> | RecebivelCreateWithoutCentro_custoInput[] | RecebivelUncheckedCreateWithoutCentro_custoInput[]
+    connectOrCreate?: RecebivelCreateOrConnectWithoutCentro_custoInput | RecebivelCreateOrConnectWithoutCentro_custoInput[]
+    createMany?: RecebivelCreateManyCentro_custoInputEnvelope
+    connect?: RecebivelWhereUniqueInput | RecebivelWhereUniqueInput[]
+  }
+
+  export type ContaPagarCreateNestedManyWithoutCentro_custoInput = {
+    create?: XOR<ContaPagarCreateWithoutCentro_custoInput, ContaPagarUncheckedCreateWithoutCentro_custoInput> | ContaPagarCreateWithoutCentro_custoInput[] | ContaPagarUncheckedCreateWithoutCentro_custoInput[]
+    connectOrCreate?: ContaPagarCreateOrConnectWithoutCentro_custoInput | ContaPagarCreateOrConnectWithoutCentro_custoInput[]
+    createMany?: ContaPagarCreateManyCentro_custoInputEnvelope
+    connect?: ContaPagarWhereUniqueInput | ContaPagarWhereUniqueInput[]
+  }
+
+  export type RecebivelUncheckedCreateNestedManyWithoutCentro_custoInput = {
+    create?: XOR<RecebivelCreateWithoutCentro_custoInput, RecebivelUncheckedCreateWithoutCentro_custoInput> | RecebivelCreateWithoutCentro_custoInput[] | RecebivelUncheckedCreateWithoutCentro_custoInput[]
+    connectOrCreate?: RecebivelCreateOrConnectWithoutCentro_custoInput | RecebivelCreateOrConnectWithoutCentro_custoInput[]
+    createMany?: RecebivelCreateManyCentro_custoInputEnvelope
+    connect?: RecebivelWhereUniqueInput | RecebivelWhereUniqueInput[]
+  }
+
+  export type ContaPagarUncheckedCreateNestedManyWithoutCentro_custoInput = {
+    create?: XOR<ContaPagarCreateWithoutCentro_custoInput, ContaPagarUncheckedCreateWithoutCentro_custoInput> | ContaPagarCreateWithoutCentro_custoInput[] | ContaPagarUncheckedCreateWithoutCentro_custoInput[]
+    connectOrCreate?: ContaPagarCreateOrConnectWithoutCentro_custoInput | ContaPagarCreateOrConnectWithoutCentro_custoInput[]
+    createMany?: ContaPagarCreateManyCentro_custoInputEnvelope
+    connect?: ContaPagarWhereUniqueInput | ContaPagarWhereUniqueInput[]
+  }
+
+  export type EmpresaUpdateOneRequiredWithoutCentros_custoNestedInput = {
+    create?: XOR<EmpresaCreateWithoutCentros_custoInput, EmpresaUncheckedCreateWithoutCentros_custoInput>
+    connectOrCreate?: EmpresaCreateOrConnectWithoutCentros_custoInput
+    upsert?: EmpresaUpsertWithoutCentros_custoInput
+    connect?: EmpresaWhereUniqueInput
+    update?: XOR<XOR<EmpresaUpdateToOneWithWhereWithoutCentros_custoInput, EmpresaUpdateWithoutCentros_custoInput>, EmpresaUncheckedUpdateWithoutCentros_custoInput>
+  }
+
+  export type ProjetoUpdateOneWithoutCentro_custoNestedInput = {
+    create?: XOR<ProjetoCreateWithoutCentro_custoInput, ProjetoUncheckedCreateWithoutCentro_custoInput>
+    connectOrCreate?: ProjetoCreateOrConnectWithoutCentro_custoInput
+    upsert?: ProjetoUpsertWithoutCentro_custoInput
+    disconnect?: ProjetoWhereInput | boolean
+    delete?: ProjetoWhereInput | boolean
+    connect?: ProjetoWhereUniqueInput
+    update?: XOR<XOR<ProjetoUpdateToOneWithWhereWithoutCentro_custoInput, ProjetoUpdateWithoutCentro_custoInput>, ProjetoUncheckedUpdateWithoutCentro_custoInput>
+  }
+
+  export type RecebivelUpdateManyWithoutCentro_custoNestedInput = {
+    create?: XOR<RecebivelCreateWithoutCentro_custoInput, RecebivelUncheckedCreateWithoutCentro_custoInput> | RecebivelCreateWithoutCentro_custoInput[] | RecebivelUncheckedCreateWithoutCentro_custoInput[]
+    connectOrCreate?: RecebivelCreateOrConnectWithoutCentro_custoInput | RecebivelCreateOrConnectWithoutCentro_custoInput[]
+    upsert?: RecebivelUpsertWithWhereUniqueWithoutCentro_custoInput | RecebivelUpsertWithWhereUniqueWithoutCentro_custoInput[]
+    createMany?: RecebivelCreateManyCentro_custoInputEnvelope
+    set?: RecebivelWhereUniqueInput | RecebivelWhereUniqueInput[]
+    disconnect?: RecebivelWhereUniqueInput | RecebivelWhereUniqueInput[]
+    delete?: RecebivelWhereUniqueInput | RecebivelWhereUniqueInput[]
+    connect?: RecebivelWhereUniqueInput | RecebivelWhereUniqueInput[]
+    update?: RecebivelUpdateWithWhereUniqueWithoutCentro_custoInput | RecebivelUpdateWithWhereUniqueWithoutCentro_custoInput[]
+    updateMany?: RecebivelUpdateManyWithWhereWithoutCentro_custoInput | RecebivelUpdateManyWithWhereWithoutCentro_custoInput[]
+    deleteMany?: RecebivelScalarWhereInput | RecebivelScalarWhereInput[]
+  }
+
+  export type ContaPagarUpdateManyWithoutCentro_custoNestedInput = {
+    create?: XOR<ContaPagarCreateWithoutCentro_custoInput, ContaPagarUncheckedCreateWithoutCentro_custoInput> | ContaPagarCreateWithoutCentro_custoInput[] | ContaPagarUncheckedCreateWithoutCentro_custoInput[]
+    connectOrCreate?: ContaPagarCreateOrConnectWithoutCentro_custoInput | ContaPagarCreateOrConnectWithoutCentro_custoInput[]
+    upsert?: ContaPagarUpsertWithWhereUniqueWithoutCentro_custoInput | ContaPagarUpsertWithWhereUniqueWithoutCentro_custoInput[]
+    createMany?: ContaPagarCreateManyCentro_custoInputEnvelope
+    set?: ContaPagarWhereUniqueInput | ContaPagarWhereUniqueInput[]
+    disconnect?: ContaPagarWhereUniqueInput | ContaPagarWhereUniqueInput[]
+    delete?: ContaPagarWhereUniqueInput | ContaPagarWhereUniqueInput[]
+    connect?: ContaPagarWhereUniqueInput | ContaPagarWhereUniqueInput[]
+    update?: ContaPagarUpdateWithWhereUniqueWithoutCentro_custoInput | ContaPagarUpdateWithWhereUniqueWithoutCentro_custoInput[]
+    updateMany?: ContaPagarUpdateManyWithWhereWithoutCentro_custoInput | ContaPagarUpdateManyWithWhereWithoutCentro_custoInput[]
+    deleteMany?: ContaPagarScalarWhereInput | ContaPagarScalarWhereInput[]
+  }
+
+  export type RecebivelUncheckedUpdateManyWithoutCentro_custoNestedInput = {
+    create?: XOR<RecebivelCreateWithoutCentro_custoInput, RecebivelUncheckedCreateWithoutCentro_custoInput> | RecebivelCreateWithoutCentro_custoInput[] | RecebivelUncheckedCreateWithoutCentro_custoInput[]
+    connectOrCreate?: RecebivelCreateOrConnectWithoutCentro_custoInput | RecebivelCreateOrConnectWithoutCentro_custoInput[]
+    upsert?: RecebivelUpsertWithWhereUniqueWithoutCentro_custoInput | RecebivelUpsertWithWhereUniqueWithoutCentro_custoInput[]
+    createMany?: RecebivelCreateManyCentro_custoInputEnvelope
+    set?: RecebivelWhereUniqueInput | RecebivelWhereUniqueInput[]
+    disconnect?: RecebivelWhereUniqueInput | RecebivelWhereUniqueInput[]
+    delete?: RecebivelWhereUniqueInput | RecebivelWhereUniqueInput[]
+    connect?: RecebivelWhereUniqueInput | RecebivelWhereUniqueInput[]
+    update?: RecebivelUpdateWithWhereUniqueWithoutCentro_custoInput | RecebivelUpdateWithWhereUniqueWithoutCentro_custoInput[]
+    updateMany?: RecebivelUpdateManyWithWhereWithoutCentro_custoInput | RecebivelUpdateManyWithWhereWithoutCentro_custoInput[]
+    deleteMany?: RecebivelScalarWhereInput | RecebivelScalarWhereInput[]
+  }
+
+  export type ContaPagarUncheckedUpdateManyWithoutCentro_custoNestedInput = {
+    create?: XOR<ContaPagarCreateWithoutCentro_custoInput, ContaPagarUncheckedCreateWithoutCentro_custoInput> | ContaPagarCreateWithoutCentro_custoInput[] | ContaPagarUncheckedCreateWithoutCentro_custoInput[]
+    connectOrCreate?: ContaPagarCreateOrConnectWithoutCentro_custoInput | ContaPagarCreateOrConnectWithoutCentro_custoInput[]
+    upsert?: ContaPagarUpsertWithWhereUniqueWithoutCentro_custoInput | ContaPagarUpsertWithWhereUniqueWithoutCentro_custoInput[]
+    createMany?: ContaPagarCreateManyCentro_custoInputEnvelope
+    set?: ContaPagarWhereUniqueInput | ContaPagarWhereUniqueInput[]
+    disconnect?: ContaPagarWhereUniqueInput | ContaPagarWhereUniqueInput[]
+    delete?: ContaPagarWhereUniqueInput | ContaPagarWhereUniqueInput[]
+    connect?: ContaPagarWhereUniqueInput | ContaPagarWhereUniqueInput[]
+    update?: ContaPagarUpdateWithWhereUniqueWithoutCentro_custoInput | ContaPagarUpdateWithWhereUniqueWithoutCentro_custoInput[]
+    updateMany?: ContaPagarUpdateManyWithWhereWithoutCentro_custoInput | ContaPagarUpdateManyWithWhereWithoutCentro_custoInput[]
+    deleteMany?: ContaPagarScalarWhereInput | ContaPagarScalarWhereInput[]
+  }
+
   export type EmpresaCreateNestedOneWithoutRecebiveisInput = {
     create?: XOR<EmpresaCreateWithoutRecebiveisInput, EmpresaUncheckedCreateWithoutRecebiveisInput>
     connectOrCreate?: EmpresaCreateOrConnectWithoutRecebiveisInput
@@ -86929,6 +88907,12 @@ export namespace Prisma {
     create?: XOR<UsuarioCreateWithoutRecebiveis_criadosInput, UsuarioUncheckedCreateWithoutRecebiveis_criadosInput>
     connectOrCreate?: UsuarioCreateOrConnectWithoutRecebiveis_criadosInput
     connect?: UsuarioWhereUniqueInput
+  }
+
+  export type CentroCustoCreateNestedOneWithoutRecebiveisInput = {
+    create?: XOR<CentroCustoCreateWithoutRecebiveisInput, CentroCustoUncheckedCreateWithoutRecebiveisInput>
+    connectOrCreate?: CentroCustoCreateOrConnectWithoutRecebiveisInput
+    connect?: CentroCustoWhereUniqueInput
   }
 
   export type BoletoCreateNestedOneWithoutRecebivelInput = {
@@ -87017,6 +89001,16 @@ export namespace Prisma {
     update?: XOR<XOR<UsuarioUpdateToOneWithWhereWithoutRecebiveis_criadosInput, UsuarioUpdateWithoutRecebiveis_criadosInput>, UsuarioUncheckedUpdateWithoutRecebiveis_criadosInput>
   }
 
+  export type CentroCustoUpdateOneWithoutRecebiveisNestedInput = {
+    create?: XOR<CentroCustoCreateWithoutRecebiveisInput, CentroCustoUncheckedCreateWithoutRecebiveisInput>
+    connectOrCreate?: CentroCustoCreateOrConnectWithoutRecebiveisInput
+    upsert?: CentroCustoUpsertWithoutRecebiveisInput
+    disconnect?: CentroCustoWhereInput | boolean
+    delete?: CentroCustoWhereInput | boolean
+    connect?: CentroCustoWhereUniqueInput
+    update?: XOR<XOR<CentroCustoUpdateToOneWithWhereWithoutRecebiveisInput, CentroCustoUpdateWithoutRecebiveisInput>, CentroCustoUncheckedUpdateWithoutRecebiveisInput>
+  }
+
   export type BoletoUpdateOneWithoutRecebivelNestedInput = {
     create?: XOR<BoletoCreateWithoutRecebivelInput, BoletoUncheckedCreateWithoutRecebivelInput>
     connectOrCreate?: BoletoCreateOrConnectWithoutRecebivelInput
@@ -87081,6 +89075,12 @@ export namespace Prisma {
     connect?: UsuarioWhereUniqueInput
   }
 
+  export type CentroCustoCreateNestedOneWithoutContas_pagarInput = {
+    create?: XOR<CentroCustoCreateWithoutContas_pagarInput, CentroCustoUncheckedCreateWithoutContas_pagarInput>
+    connectOrCreate?: CentroCustoCreateOrConnectWithoutContas_pagarInput
+    connect?: CentroCustoWhereUniqueInput
+  }
+
   export type EnumStatusContaPagarFieldUpdateOperationsInput = {
     set?: $Enums.StatusContaPagar
   }
@@ -87121,6 +89121,16 @@ export namespace Prisma {
     delete?: UsuarioWhereInput | boolean
     connect?: UsuarioWhereUniqueInput
     update?: XOR<XOR<UsuarioUpdateToOneWithWhereWithoutContas_pagar_criadasInput, UsuarioUpdateWithoutContas_pagar_criadasInput>, UsuarioUncheckedUpdateWithoutContas_pagar_criadasInput>
+  }
+
+  export type CentroCustoUpdateOneWithoutContas_pagarNestedInput = {
+    create?: XOR<CentroCustoCreateWithoutContas_pagarInput, CentroCustoUncheckedCreateWithoutContas_pagarInput>
+    connectOrCreate?: CentroCustoCreateOrConnectWithoutContas_pagarInput
+    upsert?: CentroCustoUpsertWithoutContas_pagarInput
+    disconnect?: CentroCustoWhereInput | boolean
+    delete?: CentroCustoWhereInput | boolean
+    connect?: CentroCustoWhereUniqueInput
+    update?: XOR<XOR<CentroCustoUpdateToOneWithWhereWithoutContas_pagarInput, CentroCustoUpdateWithoutContas_pagarInput>, CentroCustoUncheckedUpdateWithoutContas_pagarInput>
   }
 
   export type EmpresaCreateNestedOneWithoutModelos_documentoInput = {
@@ -88717,6 +90727,7 @@ export namespace Prisma {
     status?: $Enums.StatusProjeto
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
+    e_centro_custo?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
     contrato?: ContratoCreateNestedOneWithoutProjetoInput
@@ -88728,6 +90739,7 @@ export namespace Prisma {
     eventos?: EventoCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutProjetoInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutProjetoInput
+    centro_custo?: CentroCustoCreateNestedOneWithoutProjetoInput
   }
 
   export type ProjetoUncheckedCreateWithoutEmpresaInput = {
@@ -88741,6 +90753,7 @@ export namespace Prisma {
     status?: $Enums.StatusProjeto
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
+    e_centro_custo?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
     etapas?: EtapaUncheckedCreateNestedManyWithoutProjetoInput
@@ -88749,6 +90762,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
+    centro_custo?: CentroCustoUncheckedCreateNestedOneWithoutProjetoInput
   }
 
   export type ProjetoCreateOrConnectWithoutEmpresaInput = {
@@ -89028,6 +91042,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasCreateNestedOneWithoutRecebiveisInput
     conta_bancaria?: ContaBancariaCreateNestedOneWithoutRecebiveisInput
     criador?: UsuarioCreateNestedOneWithoutRecebiveis_criadosInput
+    centro_custo?: CentroCustoCreateNestedOneWithoutRecebiveisInput
     boleto?: BoletoCreateNestedOneWithoutRecebivelInput
     nota_fiscal?: NotaFiscalCreateNestedOneWithoutRecebivelInput
   }
@@ -89053,6 +91068,7 @@ export namespace Prisma {
     multa_valor?: Decimal | DecimalJsLike | number | string | null
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
+    centro_custo_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
@@ -89085,6 +91101,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasCreateNestedOneWithoutContas_pagarInput
     conta_bancaria?: ContaBancariaCreateNestedOneWithoutContas_pagarInput
     criador?: UsuarioCreateNestedOneWithoutContas_pagar_criadasInput
+    centro_custo?: CentroCustoCreateNestedOneWithoutContas_pagarInput
   }
 
   export type ContaPagarUncheckedCreateWithoutEmpresaInput = {
@@ -89101,6 +91118,7 @@ export namespace Prisma {
     valor_pago?: Decimal | DecimalJsLike | number | string | null
     forma_pagamento?: string | null
     observacoes?: string | null
+    centro_custo_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -89484,6 +91502,42 @@ export namespace Prisma {
 
   export type CampanhaDiagnosticoCreateManyEmpresaInputEnvelope = {
     data: CampanhaDiagnosticoCreateManyEmpresaInput | CampanhaDiagnosticoCreateManyEmpresaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CentroCustoCreateWithoutEmpresaInput = {
+    id?: string
+    nome: string
+    codigo?: string | null
+    descricao?: string | null
+    ativo?: boolean
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    projeto?: ProjetoCreateNestedOneWithoutCentro_custoInput
+    recebiveis?: RecebivelCreateNestedManyWithoutCentro_custoInput
+    contas_pagar?: ContaPagarCreateNestedManyWithoutCentro_custoInput
+  }
+
+  export type CentroCustoUncheckedCreateWithoutEmpresaInput = {
+    id?: string
+    nome: string
+    codigo?: string | null
+    descricao?: string | null
+    ativo?: boolean
+    projeto_id?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    recebiveis?: RecebivelUncheckedCreateNestedManyWithoutCentro_custoInput
+    contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutCentro_custoInput
+  }
+
+  export type CentroCustoCreateOrConnectWithoutEmpresaInput = {
+    where: CentroCustoWhereUniqueInput
+    create: XOR<CentroCustoCreateWithoutEmpresaInput, CentroCustoUncheckedCreateWithoutEmpresaInput>
+  }
+
+  export type CentroCustoCreateManyEmpresaInputEnvelope = {
+    data: CentroCustoCreateManyEmpresaInput | CentroCustoCreateManyEmpresaInput[]
     skipDuplicates?: boolean
   }
 
@@ -89871,6 +91925,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoFilter<"Projeto"> | $Enums.StatusProjeto
     data_inicio?: DateTimeNullableFilter<"Projeto"> | Date | string | null
     data_fim?: DateTimeNullableFilter<"Projeto"> | Date | string | null
+    e_centro_custo?: BoolFilter<"Projeto"> | boolean
     criado_em?: DateTimeFilter<"Projeto"> | Date | string
     atualizado_em?: DateTimeFilter<"Projeto"> | Date | string
   }
@@ -90118,6 +92173,7 @@ export namespace Prisma {
     multa_valor?: DecimalNullableFilter<"Recebivel"> | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: DecimalNullableFilter<"Recebivel"> | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: StringNullableFilter<"Recebivel"> | string | null
+    centro_custo_id?: StringNullableFilter<"Recebivel"> | string | null
     criado_em?: DateTimeFilter<"Recebivel"> | Date | string
     atualizado_em?: DateTimeFilter<"Recebivel"> | Date | string
   }
@@ -90156,6 +92212,7 @@ export namespace Prisma {
     valor_pago?: DecimalNullableFilter<"ContaPagar"> | Decimal | DecimalJsLike | number | string | null
     forma_pagamento?: StringNullableFilter<"ContaPagar"> | string | null
     observacoes?: StringNullableFilter<"ContaPagar"> | string | null
+    centro_custo_id?: StringNullableFilter<"ContaPagar"> | string | null
     criado_em?: DateTimeFilter<"ContaPagar"> | Date | string
     atualizado_em?: DateTimeFilter<"ContaPagar"> | Date | string
   }
@@ -90491,6 +92548,37 @@ export namespace Prisma {
     ativo?: BoolFilter<"CampanhaDiagnostico"> | boolean
     criado_em?: DateTimeFilter<"CampanhaDiagnostico"> | Date | string
     atualizado_em?: DateTimeFilter<"CampanhaDiagnostico"> | Date | string
+  }
+
+  export type CentroCustoUpsertWithWhereUniqueWithoutEmpresaInput = {
+    where: CentroCustoWhereUniqueInput
+    update: XOR<CentroCustoUpdateWithoutEmpresaInput, CentroCustoUncheckedUpdateWithoutEmpresaInput>
+    create: XOR<CentroCustoCreateWithoutEmpresaInput, CentroCustoUncheckedCreateWithoutEmpresaInput>
+  }
+
+  export type CentroCustoUpdateWithWhereUniqueWithoutEmpresaInput = {
+    where: CentroCustoWhereUniqueInput
+    data: XOR<CentroCustoUpdateWithoutEmpresaInput, CentroCustoUncheckedUpdateWithoutEmpresaInput>
+  }
+
+  export type CentroCustoUpdateManyWithWhereWithoutEmpresaInput = {
+    where: CentroCustoScalarWhereInput
+    data: XOR<CentroCustoUpdateManyMutationInput, CentroCustoUncheckedUpdateManyWithoutEmpresaInput>
+  }
+
+  export type CentroCustoScalarWhereInput = {
+    AND?: CentroCustoScalarWhereInput | CentroCustoScalarWhereInput[]
+    OR?: CentroCustoScalarWhereInput[]
+    NOT?: CentroCustoScalarWhereInput | CentroCustoScalarWhereInput[]
+    id?: StringFilter<"CentroCusto"> | string
+    empresa_id?: StringFilter<"CentroCusto"> | string
+    nome?: StringFilter<"CentroCusto"> | string
+    codigo?: StringNullableFilter<"CentroCusto"> | string | null
+    descricao?: StringNullableFilter<"CentroCusto"> | string | null
+    ativo?: BoolFilter<"CentroCusto"> | boolean
+    projeto_id?: StringNullableFilter<"CentroCusto"> | string | null
+    criado_em?: DateTimeFilter<"CentroCusto"> | Date | string
+    atualizado_em?: DateTimeFilter<"CentroCusto"> | Date | string
   }
 
   export type MembroEmpresaCreateWithoutUsuarioInput = {
@@ -90835,6 +92923,7 @@ export namespace Prisma {
     status?: $Enums.StatusProjeto
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
+    e_centro_custo?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutProjetosInput
@@ -90846,6 +92935,7 @@ export namespace Prisma {
     eventos?: EventoCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutProjetoInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutProjetoInput
+    centro_custo?: CentroCustoCreateNestedOneWithoutProjetoInput
   }
 
   export type ProjetoUncheckedCreateWithoutCriadorInput = {
@@ -90859,6 +92949,7 @@ export namespace Prisma {
     status?: $Enums.StatusProjeto
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
+    e_centro_custo?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
     etapas?: EtapaUncheckedCreateNestedManyWithoutProjetoInput
@@ -90867,6 +92958,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
+    centro_custo?: CentroCustoUncheckedCreateNestedOneWithoutProjetoInput
   }
 
   export type ProjetoCreateOrConnectWithoutCriadorInput = {
@@ -91000,6 +93092,7 @@ export namespace Prisma {
     contrato?: ContratoCreateNestedOneWithoutRecebiveisInput
     plano_contas?: PlanoDeContasCreateNestedOneWithoutRecebiveisInput
     conta_bancaria?: ContaBancariaCreateNestedOneWithoutRecebiveisInput
+    centro_custo?: CentroCustoCreateNestedOneWithoutRecebiveisInput
     boleto?: BoletoCreateNestedOneWithoutRecebivelInput
     nota_fiscal?: NotaFiscalCreateNestedOneWithoutRecebivelInput
   }
@@ -91025,6 +93118,7 @@ export namespace Prisma {
     multa_valor?: Decimal | DecimalJsLike | number | string | null
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
+    centro_custo_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
@@ -91057,6 +93151,7 @@ export namespace Prisma {
     empresa: EmpresaCreateNestedOneWithoutContas_pagarInput
     plano_contas?: PlanoDeContasCreateNestedOneWithoutContas_pagarInput
     conta_bancaria?: ContaBancariaCreateNestedOneWithoutContas_pagarInput
+    centro_custo?: CentroCustoCreateNestedOneWithoutContas_pagarInput
   }
 
   export type ContaPagarUncheckedCreateWithoutCriadorInput = {
@@ -91073,6 +93168,7 @@ export namespace Prisma {
     valor_pago?: Decimal | DecimalJsLike | number | string | null
     forma_pagamento?: string | null
     observacoes?: string | null
+    centro_custo_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -92030,6 +94126,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutMembrosInput = {
@@ -92070,6 +94167,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutMembrosInput = {
@@ -92220,6 +94318,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutMembrosInput = {
@@ -92260,6 +94359,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PerfilUpsertWithoutMembrosInput = {
@@ -92331,6 +94431,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutPerfisInput = {
@@ -92371,6 +94472,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutPerfisInput = {
@@ -92471,6 +94573,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutPerfisInput = {
@@ -92511,6 +94614,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type MembroEmpresaUpsertWithWhereUniqueWithoutPerfilInput = {
@@ -92725,6 +94829,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutConvitesInput = {
@@ -92765,6 +94870,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutConvitesInput = {
@@ -92884,6 +94990,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutConvitesInput = {
@@ -92924,6 +95031,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type UsuarioUpsertWithoutConvitesInput = {
@@ -93033,6 +95141,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutConvites_clienteInput = {
@@ -93073,6 +95182,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutConvites_clienteInput = {
@@ -93277,6 +95387,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutConvites_clienteInput = {
@@ -93317,6 +95428,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type UsuarioUpsertWithoutConvites_clienteInput = {
@@ -93517,6 +95629,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutClientesInput = {
@@ -93557,6 +95670,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutClientesInput = {
@@ -93852,6 +95966,7 @@ export namespace Prisma {
     status?: $Enums.StatusProjeto
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
+    e_centro_custo?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutProjetosInput
@@ -93863,6 +95978,7 @@ export namespace Prisma {
     eventos?: EventoCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutProjetoInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutProjetoInput
+    centro_custo?: CentroCustoCreateNestedOneWithoutProjetoInput
   }
 
   export type ProjetoUncheckedCreateWithoutClienteInput = {
@@ -93876,6 +95992,7 @@ export namespace Prisma {
     status?: $Enums.StatusProjeto
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
+    e_centro_custo?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
     etapas?: EtapaUncheckedCreateNestedManyWithoutProjetoInput
@@ -93884,6 +96001,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
+    centro_custo?: CentroCustoUncheckedCreateNestedOneWithoutProjetoInput
   }
 
   export type ProjetoCreateOrConnectWithoutClienteInput = {
@@ -93947,6 +96065,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasCreateNestedOneWithoutRecebiveisInput
     conta_bancaria?: ContaBancariaCreateNestedOneWithoutRecebiveisInput
     criador?: UsuarioCreateNestedOneWithoutRecebiveis_criadosInput
+    centro_custo?: CentroCustoCreateNestedOneWithoutRecebiveisInput
     boleto?: BoletoCreateNestedOneWithoutRecebivelInput
     nota_fiscal?: NotaFiscalCreateNestedOneWithoutRecebivelInput
   }
@@ -93972,6 +96091,7 @@ export namespace Prisma {
     multa_valor?: Decimal | DecimalJsLike | number | string | null
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
+    centro_custo_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
@@ -94338,6 +96458,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutClientesInput = {
@@ -94378,6 +96499,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ContatoUpsertWithWhereUniqueWithoutClienteInput = {
@@ -94860,6 +96982,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutServicosInput = {
@@ -94900,6 +97023,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutServicosInput = {
@@ -95089,6 +97213,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutServicosInput = {
@@ -95129,6 +97254,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PlanoDeContasUpsertWithoutServicosInput = {
@@ -95256,6 +97382,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutEtapas_crmInput = {
@@ -95296,6 +97423,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutEtapas_crmInput = {
@@ -95420,6 +97548,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutEtapas_crmInput = {
@@ -95460,6 +97589,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type LeadUpsertWithWhereUniqueWithoutEtapaInput = {
@@ -95780,6 +97910,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutLeadsInput = {
@@ -95820,6 +97951,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutLeadsInput = {
@@ -96219,6 +98351,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutLeadsInput = {
@@ -96259,6 +98392,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutLeadsInput = {
@@ -96602,6 +98736,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutPropostasInput = {
@@ -96642,6 +98777,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutPropostasInput = {
@@ -97131,6 +99267,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutPropostasInput = {
@@ -97171,6 +99308,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutPropostasInput = {
@@ -98025,6 +100163,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutContratosInput = {
@@ -98065,6 +100204,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutContratosInput = {
@@ -98362,6 +100502,7 @@ export namespace Prisma {
     status?: $Enums.StatusProjeto
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
+    e_centro_custo?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutProjetosInput
@@ -98373,6 +100514,7 @@ export namespace Prisma {
     eventos?: EventoCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutProjetoInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutProjetoInput
+    centro_custo?: CentroCustoCreateNestedOneWithoutProjetoInput
   }
 
   export type ProjetoUncheckedCreateWithoutContratoInput = {
@@ -98386,6 +100528,7 @@ export namespace Prisma {
     status?: $Enums.StatusProjeto
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
+    e_centro_custo?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
     etapas?: EtapaUncheckedCreateNestedManyWithoutProjetoInput
@@ -98394,6 +100537,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
+    centro_custo?: CentroCustoUncheckedCreateNestedOneWithoutProjetoInput
   }
 
   export type ProjetoCreateOrConnectWithoutContratoInput = {
@@ -98424,6 +100568,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasCreateNestedOneWithoutRecebiveisInput
     conta_bancaria?: ContaBancariaCreateNestedOneWithoutRecebiveisInput
     criador?: UsuarioCreateNestedOneWithoutRecebiveis_criadosInput
+    centro_custo?: CentroCustoCreateNestedOneWithoutRecebiveisInput
     boleto?: BoletoCreateNestedOneWithoutRecebivelInput
     nota_fiscal?: NotaFiscalCreateNestedOneWithoutRecebivelInput
   }
@@ -98449,6 +100594,7 @@ export namespace Prisma {
     multa_valor?: Decimal | DecimalJsLike | number | string | null
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
+    centro_custo_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
@@ -98670,6 +100816,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutContratosInput = {
@@ -98710,6 +100857,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PropostaUpsertWithoutContratoInput = {
@@ -99037,6 +101185,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    e_centro_custo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutProjetosNestedInput
@@ -99048,6 +101197,7 @@ export namespace Prisma {
     eventos?: EventoUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutProjetoNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutProjetoNestedInput
+    centro_custo?: CentroCustoUpdateOneWithoutProjetoNestedInput
   }
 
   export type ProjetoUncheckedUpdateWithoutContratoInput = {
@@ -99061,6 +101211,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    e_centro_custo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     etapas?: EtapaUncheckedUpdateManyWithoutProjetoNestedInput
@@ -99069,6 +101220,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
+    centro_custo?: CentroCustoUncheckedUpdateOneWithoutProjetoNestedInput
   }
 
   export type RecebivelUpsertWithWhereUniqueWithoutContratoInput = {
@@ -99173,6 +101325,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutProjetosInput = {
@@ -99213,6 +101366,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutProjetosInput = {
@@ -99723,6 +101877,37 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type CentroCustoCreateWithoutProjetoInput = {
+    id?: string
+    nome: string
+    codigo?: string | null
+    descricao?: string | null
+    ativo?: boolean
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutCentros_custoInput
+    recebiveis?: RecebivelCreateNestedManyWithoutCentro_custoInput
+    contas_pagar?: ContaPagarCreateNestedManyWithoutCentro_custoInput
+  }
+
+  export type CentroCustoUncheckedCreateWithoutProjetoInput = {
+    id?: string
+    empresa_id: string
+    nome: string
+    codigo?: string | null
+    descricao?: string | null
+    ativo?: boolean
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    recebiveis?: RecebivelUncheckedCreateNestedManyWithoutCentro_custoInput
+    contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutCentro_custoInput
+  }
+
+  export type CentroCustoCreateOrConnectWithoutProjetoInput = {
+    where: CentroCustoWhereUniqueInput
+    create: XOR<CentroCustoCreateWithoutProjetoInput, CentroCustoUncheckedCreateWithoutProjetoInput>
+  }
+
   export type EmpresaUpsertWithoutProjetosInput = {
     update: XOR<EmpresaUpdateWithoutProjetosInput, EmpresaUncheckedUpdateWithoutProjetosInput>
     create: XOR<EmpresaCreateWithoutProjetosInput, EmpresaUncheckedCreateWithoutProjetosInput>
@@ -99772,6 +101957,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutProjetosInput = {
@@ -99812,6 +101998,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ContratoUpsertWithoutProjetoInput = {
@@ -100193,6 +102380,43 @@ export namespace Prisma {
     data: XOR<AplicacaoDiagnosticoUpdateManyMutationInput, AplicacaoDiagnosticoUncheckedUpdateManyWithoutProjetoInput>
   }
 
+  export type CentroCustoUpsertWithoutProjetoInput = {
+    update: XOR<CentroCustoUpdateWithoutProjetoInput, CentroCustoUncheckedUpdateWithoutProjetoInput>
+    create: XOR<CentroCustoCreateWithoutProjetoInput, CentroCustoUncheckedCreateWithoutProjetoInput>
+    where?: CentroCustoWhereInput
+  }
+
+  export type CentroCustoUpdateToOneWithWhereWithoutProjetoInput = {
+    where?: CentroCustoWhereInput
+    data: XOR<CentroCustoUpdateWithoutProjetoInput, CentroCustoUncheckedUpdateWithoutProjetoInput>
+  }
+
+  export type CentroCustoUpdateWithoutProjetoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    codigo?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutCentros_custoNestedInput
+    recebiveis?: RecebivelUpdateManyWithoutCentro_custoNestedInput
+    contas_pagar?: ContaPagarUpdateManyWithoutCentro_custoNestedInput
+  }
+
+  export type CentroCustoUncheckedUpdateWithoutProjetoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    codigo?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    recebiveis?: RecebivelUncheckedUpdateManyWithoutCentro_custoNestedInput
+    contas_pagar?: ContaPagarUncheckedUpdateManyWithoutCentro_custoNestedInput
+  }
+
   export type ProjetoCreateWithoutEtapasInput = {
     id?: string
     interno?: boolean
@@ -100201,6 +102425,7 @@ export namespace Prisma {
     status?: $Enums.StatusProjeto
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
+    e_centro_custo?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutProjetosInput
@@ -100212,6 +102437,7 @@ export namespace Prisma {
     eventos?: EventoCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutProjetoInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutProjetoInput
+    centro_custo?: CentroCustoCreateNestedOneWithoutProjetoInput
   }
 
   export type ProjetoUncheckedCreateWithoutEtapasInput = {
@@ -100226,6 +102452,7 @@ export namespace Prisma {
     status?: $Enums.StatusProjeto
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
+    e_centro_custo?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
     tarefas?: TarefaUncheckedCreateNestedManyWithoutProjetoInput
@@ -100233,6 +102460,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
+    centro_custo?: CentroCustoUncheckedCreateNestedOneWithoutProjetoInput
   }
 
   export type ProjetoCreateOrConnectWithoutEtapasInput = {
@@ -100313,6 +102541,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    e_centro_custo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutProjetosNestedInput
@@ -100324,6 +102553,7 @@ export namespace Prisma {
     eventos?: EventoUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutProjetoNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutProjetoNestedInput
+    centro_custo?: CentroCustoUpdateOneWithoutProjetoNestedInput
   }
 
   export type ProjetoUncheckedUpdateWithoutEtapasInput = {
@@ -100338,6 +102568,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    e_centro_custo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     tarefas?: TarefaUncheckedUpdateManyWithoutProjetoNestedInput
@@ -100345,6 +102576,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
+    centro_custo?: CentroCustoUncheckedUpdateOneWithoutProjetoNestedInput
   }
 
   export type TarefaUpsertWithWhereUniqueWithoutEtapaInput = {
@@ -100402,6 +102634,7 @@ export namespace Prisma {
     status?: $Enums.StatusProjeto
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
+    e_centro_custo?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutProjetosInput
@@ -100413,6 +102646,7 @@ export namespace Prisma {
     eventos?: EventoCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutProjetoInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutProjetoInput
+    centro_custo?: CentroCustoCreateNestedOneWithoutProjetoInput
   }
 
   export type ProjetoUncheckedCreateWithoutTarefasInput = {
@@ -100427,6 +102661,7 @@ export namespace Prisma {
     status?: $Enums.StatusProjeto
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
+    e_centro_custo?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
     etapas?: EtapaUncheckedCreateNestedManyWithoutProjetoInput
@@ -100434,6 +102669,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
+    centro_custo?: CentroCustoUncheckedCreateNestedOneWithoutProjetoInput
   }
 
   export type ProjetoCreateOrConnectWithoutTarefasInput = {
@@ -100732,6 +102968,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    e_centro_custo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutProjetosNestedInput
@@ -100743,6 +102980,7 @@ export namespace Prisma {
     eventos?: EventoUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutProjetoNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutProjetoNestedInput
+    centro_custo?: CentroCustoUpdateOneWithoutProjetoNestedInput
   }
 
   export type ProjetoUncheckedUpdateWithoutTarefasInput = {
@@ -100757,6 +102995,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    e_centro_custo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     etapas?: EtapaUncheckedUpdateManyWithoutProjetoNestedInput
@@ -100764,6 +103003,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
+    centro_custo?: CentroCustoUncheckedUpdateOneWithoutProjetoNestedInput
   }
 
   export type UsuarioUpsertWithoutTarefasInput = {
@@ -102421,6 +104661,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutEtiquetas_tarefaInput = {
@@ -102461,6 +104702,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutEtiquetas_tarefaInput = {
@@ -102535,6 +104777,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutEtiquetas_tarefaInput = {
@@ -102575,6 +104818,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type TarefaEtiquetaUpsertWithWhereUniqueWithoutEtiquetaInput = {
@@ -102779,6 +105023,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutPastas_documentoInput = {
@@ -102819,6 +105064,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutPastas_documentoInput = {
@@ -102982,6 +105228,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutPastas_documentoInput = {
@@ -103022,6 +105269,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PastaDocumentoUpsertWithoutFilhosInput = {
@@ -103129,6 +105377,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutDocumentosInput = {
@@ -103169,6 +105418,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutDocumentosInput = {
@@ -103184,6 +105434,7 @@ export namespace Prisma {
     status?: $Enums.StatusProjeto
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
+    e_centro_custo?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutProjetosInput
@@ -103195,6 +105446,7 @@ export namespace Prisma {
     eventos?: EventoCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutProjetoInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutProjetoInput
+    centro_custo?: CentroCustoCreateNestedOneWithoutProjetoInput
   }
 
   export type ProjetoUncheckedCreateWithoutDocumentosInput = {
@@ -103209,6 +105461,7 @@ export namespace Prisma {
     status?: $Enums.StatusProjeto
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
+    e_centro_custo?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
     etapas?: EtapaUncheckedCreateNestedManyWithoutProjetoInput
@@ -103216,6 +105469,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
+    centro_custo?: CentroCustoUncheckedCreateNestedOneWithoutProjetoInput
   }
 
   export type ProjetoCreateOrConnectWithoutDocumentosInput = {
@@ -103550,6 +105804,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutDocumentosInput = {
@@ -103590,6 +105845,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ProjetoUpsertWithoutDocumentosInput = {
@@ -103611,6 +105867,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    e_centro_custo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutProjetosNestedInput
@@ -103622,6 +105879,7 @@ export namespace Prisma {
     eventos?: EventoUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutProjetoNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutProjetoNestedInput
+    centro_custo?: CentroCustoUpdateOneWithoutProjetoNestedInput
   }
 
   export type ProjetoUncheckedUpdateWithoutDocumentosInput = {
@@ -103636,6 +105894,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    e_centro_custo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     etapas?: EtapaUncheckedUpdateManyWithoutProjetoNestedInput
@@ -103643,6 +105902,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
+    centro_custo?: CentroCustoUncheckedUpdateOneWithoutProjetoNestedInput
   }
 
   export type ClienteUpsertWithoutDocumentosInput = {
@@ -103985,6 +106245,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutPlano_contasInput = {
@@ -104025,6 +106286,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutPlano_contasInput = {
@@ -104130,6 +106392,7 @@ export namespace Prisma {
     contrato?: ContratoCreateNestedOneWithoutRecebiveisInput
     conta_bancaria?: ContaBancariaCreateNestedOneWithoutRecebiveisInput
     criador?: UsuarioCreateNestedOneWithoutRecebiveis_criadosInput
+    centro_custo?: CentroCustoCreateNestedOneWithoutRecebiveisInput
     boleto?: BoletoCreateNestedOneWithoutRecebivelInput
     nota_fiscal?: NotaFiscalCreateNestedOneWithoutRecebivelInput
   }
@@ -104155,6 +106418,7 @@ export namespace Prisma {
     multa_valor?: Decimal | DecimalJsLike | number | string | null
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
+    centro_custo_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
@@ -104187,6 +106451,7 @@ export namespace Prisma {
     empresa: EmpresaCreateNestedOneWithoutContas_pagarInput
     conta_bancaria?: ContaBancariaCreateNestedOneWithoutContas_pagarInput
     criador?: UsuarioCreateNestedOneWithoutContas_pagar_criadasInput
+    centro_custo?: CentroCustoCreateNestedOneWithoutContas_pagarInput
   }
 
   export type ContaPagarUncheckedCreateWithoutPlano_contasInput = {
@@ -104203,6 +106468,7 @@ export namespace Prisma {
     valor_pago?: Decimal | DecimalJsLike | number | string | null
     forma_pagamento?: string | null
     observacoes?: string | null
+    centro_custo_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -104302,6 +106568,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutPlano_contasInput = {
@@ -104342,6 +106609,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PlanoDeContasUpsertWithoutFilhosInput = {
@@ -104553,6 +106821,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutContas_bancariasInput = {
@@ -104593,6 +106862,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutContas_bancariasInput = {
@@ -104642,6 +106912,7 @@ export namespace Prisma {
     contrato?: ContratoCreateNestedOneWithoutRecebiveisInput
     plano_contas?: PlanoDeContasCreateNestedOneWithoutRecebiveisInput
     criador?: UsuarioCreateNestedOneWithoutRecebiveis_criadosInput
+    centro_custo?: CentroCustoCreateNestedOneWithoutRecebiveisInput
     boleto?: BoletoCreateNestedOneWithoutRecebivelInput
     nota_fiscal?: NotaFiscalCreateNestedOneWithoutRecebivelInput
   }
@@ -104667,6 +106938,7 @@ export namespace Prisma {
     multa_valor?: Decimal | DecimalJsLike | number | string | null
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
+    centro_custo_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
@@ -104699,6 +106971,7 @@ export namespace Prisma {
     empresa: EmpresaCreateNestedOneWithoutContas_pagarInput
     plano_contas?: PlanoDeContasCreateNestedOneWithoutContas_pagarInput
     criador?: UsuarioCreateNestedOneWithoutContas_pagar_criadasInput
+    centro_custo?: CentroCustoCreateNestedOneWithoutContas_pagarInput
   }
 
   export type ContaPagarUncheckedCreateWithoutConta_bancariaInput = {
@@ -104715,6 +106988,7 @@ export namespace Prisma {
     valor_pago?: Decimal | DecimalJsLike | number | string | null
     forma_pagamento?: string | null
     observacoes?: string | null
+    centro_custo_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -104838,6 +107112,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutContas_bancariasInput = {
@@ -104878,6 +107153,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type BancoUpsertWithoutContas_bancariasInput = {
@@ -105007,6 +107283,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutTransferencias_tesourariaInput = {
@@ -105047,6 +107324,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutTransferencias_tesourariaInput = {
@@ -105193,6 +107471,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutTransferencias_tesourariaInput = {
@@ -105233,6 +107512,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ContaBancariaUpsertWithoutTransferencias_origemInput = {
@@ -105337,6 +107617,440 @@ export namespace Prisma {
     transferencias_origem?: TransferenciaTesourariaUncheckedUpdateManyWithoutConta_origemNestedInput
   }
 
+  export type EmpresaCreateWithoutCentros_custoInput = {
+    id?: string
+    nome: string
+    slug: string
+    cnpj?: string | null
+    logo_url?: string | null
+    plano?: $Enums.PlanoTipo
+    status?: $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
+    perfis?: PerfilCreateNestedManyWithoutEmpresaInput
+    convites?: ConviteEmpresaCreateNestedManyWithoutEmpresaInput
+    convites_cliente?: ConviteClienteCreateNestedManyWithoutEmpresaInput
+    clientes?: ClienteCreateNestedManyWithoutEmpresaInput
+    servicos?: ServicoCreateNestedManyWithoutEmpresaInput
+    leads?: LeadCreateNestedManyWithoutEmpresaInput
+    propostas?: PropostaCreateNestedManyWithoutEmpresaInput
+    contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
+    documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
+    plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
+    contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
+    boletos?: BoletoCreateNestedManyWithoutEmpresaInput
+    recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
+    contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
+    eventos?: EventoCreateNestedManyWithoutEmpresaInput
+    registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
+    notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
+    notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
+    diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+  }
+
+  export type EmpresaUncheckedCreateWithoutCentros_custoInput = {
+    id?: string
+    nome: string
+    slug: string
+    cnpj?: string | null
+    logo_url?: string | null
+    plano?: $Enums.PlanoTipo
+    status?: $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
+    perfis?: PerfilUncheckedCreateNestedManyWithoutEmpresaInput
+    convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
+    convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutEmpresaInput
+    clientes?: ClienteUncheckedCreateNestedManyWithoutEmpresaInput
+    servicos?: ServicoUncheckedCreateNestedManyWithoutEmpresaInput
+    leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
+    propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
+    contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
+    contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
+    boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
+    recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
+    contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
+    registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
+    notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
+    notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+  }
+
+  export type EmpresaCreateOrConnectWithoutCentros_custoInput = {
+    where: EmpresaWhereUniqueInput
+    create: XOR<EmpresaCreateWithoutCentros_custoInput, EmpresaUncheckedCreateWithoutCentros_custoInput>
+  }
+
+  export type ProjetoCreateWithoutCentro_custoInput = {
+    id?: string
+    interno?: boolean
+    titulo: string
+    descricao?: string | null
+    status?: $Enums.StatusProjeto
+    data_inicio?: Date | string | null
+    data_fim?: Date | string | null
+    e_centro_custo?: boolean
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutProjetosInput
+    contrato?: ContratoCreateNestedOneWithoutProjetoInput
+    cliente?: ClienteCreateNestedOneWithoutProjetosInput
+    criador?: UsuarioCreateNestedOneWithoutProjetos_criadosInput
+    etapas?: EtapaCreateNestedManyWithoutProjetoInput
+    tarefas?: TarefaCreateNestedManyWithoutProjetoInput
+    documentos?: DocumentoCreateNestedManyWithoutProjetoInput
+    eventos?: EventoCreateNestedManyWithoutProjetoInput
+    diagnosticos?: DiagnosticoCreateNestedManyWithoutProjetoInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutProjetoInput
+  }
+
+  export type ProjetoUncheckedCreateWithoutCentro_custoInput = {
+    id?: string
+    empresa_id: string
+    contrato_id?: string | null
+    cliente_id?: string | null
+    interno?: boolean
+    criado_por?: string | null
+    titulo: string
+    descricao?: string | null
+    status?: $Enums.StatusProjeto
+    data_inicio?: Date | string | null
+    data_fim?: Date | string | null
+    e_centro_custo?: boolean
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    etapas?: EtapaUncheckedCreateNestedManyWithoutProjetoInput
+    tarefas?: TarefaUncheckedCreateNestedManyWithoutProjetoInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutProjetoInput
+    eventos?: EventoUncheckedCreateNestedManyWithoutProjetoInput
+    diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
+  }
+
+  export type ProjetoCreateOrConnectWithoutCentro_custoInput = {
+    where: ProjetoWhereUniqueInput
+    create: XOR<ProjetoCreateWithoutCentro_custoInput, ProjetoUncheckedCreateWithoutCentro_custoInput>
+  }
+
+  export type RecebivelCreateWithoutCentro_custoInput = {
+    id?: string
+    descricao: string
+    valor: Decimal | DecimalJsLike | number | string
+    data_vencimento: Date | string
+    status?: $Enums.StatusRecebivel
+    data_pagamento?: Date | string | null
+    valor_pago?: Decimal | DecimalJsLike | number | string | null
+    forma_pagamento?: string | null
+    numero_parcela?: number | null
+    total_parcelas?: number | null
+    observacoes?: string | null
+    juros_valor?: Decimal | DecimalJsLike | number | string | null
+    multa_valor?: Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutRecebiveisInput
+    cliente?: ClienteCreateNestedOneWithoutRecebiveisInput
+    contrato?: ContratoCreateNestedOneWithoutRecebiveisInput
+    plano_contas?: PlanoDeContasCreateNestedOneWithoutRecebiveisInput
+    conta_bancaria?: ContaBancariaCreateNestedOneWithoutRecebiveisInput
+    criador?: UsuarioCreateNestedOneWithoutRecebiveis_criadosInput
+    boleto?: BoletoCreateNestedOneWithoutRecebivelInput
+    nota_fiscal?: NotaFiscalCreateNestedOneWithoutRecebivelInput
+  }
+
+  export type RecebivelUncheckedCreateWithoutCentro_custoInput = {
+    id?: string
+    empresa_id: string
+    cliente_id?: string | null
+    contrato_id?: string | null
+    plano_contas_id?: string | null
+    conta_bancaria_id?: string | null
+    criado_por?: string | null
+    descricao: string
+    valor: Decimal | DecimalJsLike | number | string
+    data_vencimento: Date | string
+    status?: $Enums.StatusRecebivel
+    data_pagamento?: Date | string | null
+    valor_pago?: Decimal | DecimalJsLike | number | string | null
+    forma_pagamento?: string | null
+    numero_parcela?: number | null
+    total_parcelas?: number | null
+    observacoes?: string | null
+    juros_valor?: Decimal | DecimalJsLike | number | string | null
+    multa_valor?: Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
+    nota_fiscal?: NotaFiscalUncheckedCreateNestedOneWithoutRecebivelInput
+  }
+
+  export type RecebivelCreateOrConnectWithoutCentro_custoInput = {
+    where: RecebivelWhereUniqueInput
+    create: XOR<RecebivelCreateWithoutCentro_custoInput, RecebivelUncheckedCreateWithoutCentro_custoInput>
+  }
+
+  export type RecebivelCreateManyCentro_custoInputEnvelope = {
+    data: RecebivelCreateManyCentro_custoInput | RecebivelCreateManyCentro_custoInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ContaPagarCreateWithoutCentro_custoInput = {
+    id?: string
+    descricao: string
+    fornecedor?: string | null
+    valor: Decimal | DecimalJsLike | number | string
+    data_vencimento: Date | string
+    status?: $Enums.StatusContaPagar
+    data_pagamento?: Date | string | null
+    valor_pago?: Decimal | DecimalJsLike | number | string | null
+    forma_pagamento?: string | null
+    observacoes?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutContas_pagarInput
+    plano_contas?: PlanoDeContasCreateNestedOneWithoutContas_pagarInput
+    conta_bancaria?: ContaBancariaCreateNestedOneWithoutContas_pagarInput
+    criador?: UsuarioCreateNestedOneWithoutContas_pagar_criadasInput
+  }
+
+  export type ContaPagarUncheckedCreateWithoutCentro_custoInput = {
+    id?: string
+    empresa_id: string
+    plano_contas_id?: string | null
+    conta_bancaria_id?: string | null
+    criado_por?: string | null
+    descricao: string
+    fornecedor?: string | null
+    valor: Decimal | DecimalJsLike | number | string
+    data_vencimento: Date | string
+    status?: $Enums.StatusContaPagar
+    data_pagamento?: Date | string | null
+    valor_pago?: Decimal | DecimalJsLike | number | string | null
+    forma_pagamento?: string | null
+    observacoes?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type ContaPagarCreateOrConnectWithoutCentro_custoInput = {
+    where: ContaPagarWhereUniqueInput
+    create: XOR<ContaPagarCreateWithoutCentro_custoInput, ContaPagarUncheckedCreateWithoutCentro_custoInput>
+  }
+
+  export type ContaPagarCreateManyCentro_custoInputEnvelope = {
+    data: ContaPagarCreateManyCentro_custoInput | ContaPagarCreateManyCentro_custoInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EmpresaUpsertWithoutCentros_custoInput = {
+    update: XOR<EmpresaUpdateWithoutCentros_custoInput, EmpresaUncheckedUpdateWithoutCentros_custoInput>
+    create: XOR<EmpresaCreateWithoutCentros_custoInput, EmpresaUncheckedCreateWithoutCentros_custoInput>
+    where?: EmpresaWhereInput
+  }
+
+  export type EmpresaUpdateToOneWithWhereWithoutCentros_custoInput = {
+    where?: EmpresaWhereInput
+    data: XOR<EmpresaUpdateWithoutCentros_custoInput, EmpresaUncheckedUpdateWithoutCentros_custoInput>
+  }
+
+  export type EmpresaUpdateWithoutCentros_custoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    logo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
+    status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
+    perfis?: PerfilUpdateManyWithoutEmpresaNestedInput
+    convites?: ConviteEmpresaUpdateManyWithoutEmpresaNestedInput
+    convites_cliente?: ConviteClienteUpdateManyWithoutEmpresaNestedInput
+    clientes?: ClienteUpdateManyWithoutEmpresaNestedInput
+    servicos?: ServicoUpdateManyWithoutEmpresaNestedInput
+    leads?: LeadUpdateManyWithoutEmpresaNestedInput
+    propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
+    contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
+    documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
+    plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
+    contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
+    boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
+    recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
+    contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
+    eventos?: EventoUpdateManyWithoutEmpresaNestedInput
+    registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
+    notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
+    notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
+    diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+  }
+
+  export type EmpresaUncheckedUpdateWithoutCentros_custoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    logo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
+    status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
+    perfis?: PerfilUncheckedUpdateManyWithoutEmpresaNestedInput
+    convites?: ConviteEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
+    convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutEmpresaNestedInput
+    clientes?: ClienteUncheckedUpdateManyWithoutEmpresaNestedInput
+    servicos?: ServicoUncheckedUpdateManyWithoutEmpresaNestedInput
+    leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
+    propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
+    contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
+    contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
+    recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
+    contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
+    registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
+    notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
+    notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+  }
+
+  export type ProjetoUpsertWithoutCentro_custoInput = {
+    update: XOR<ProjetoUpdateWithoutCentro_custoInput, ProjetoUncheckedUpdateWithoutCentro_custoInput>
+    create: XOR<ProjetoCreateWithoutCentro_custoInput, ProjetoUncheckedCreateWithoutCentro_custoInput>
+    where?: ProjetoWhereInput
+  }
+
+  export type ProjetoUpdateToOneWithWhereWithoutCentro_custoInput = {
+    where?: ProjetoWhereInput
+    data: XOR<ProjetoUpdateWithoutCentro_custoInput, ProjetoUncheckedUpdateWithoutCentro_custoInput>
+  }
+
+  export type ProjetoUpdateWithoutCentro_custoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    interno?: BoolFieldUpdateOperationsInput | boolean
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
+    data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    e_centro_custo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutProjetosNestedInput
+    contrato?: ContratoUpdateOneWithoutProjetoNestedInput
+    cliente?: ClienteUpdateOneWithoutProjetosNestedInput
+    criador?: UsuarioUpdateOneWithoutProjetos_criadosNestedInput
+    etapas?: EtapaUpdateManyWithoutProjetoNestedInput
+    tarefas?: TarefaUpdateManyWithoutProjetoNestedInput
+    documentos?: DocumentoUpdateManyWithoutProjetoNestedInput
+    eventos?: EventoUpdateManyWithoutProjetoNestedInput
+    diagnosticos?: DiagnosticoUpdateManyWithoutProjetoNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutProjetoNestedInput
+  }
+
+  export type ProjetoUncheckedUpdateWithoutCentro_custoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    interno?: BoolFieldUpdateOperationsInput | boolean
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
+    data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    e_centro_custo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    etapas?: EtapaUncheckedUpdateManyWithoutProjetoNestedInput
+    tarefas?: TarefaUncheckedUpdateManyWithoutProjetoNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutProjetoNestedInput
+    eventos?: EventoUncheckedUpdateManyWithoutProjetoNestedInput
+    diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
+  }
+
+  export type RecebivelUpsertWithWhereUniqueWithoutCentro_custoInput = {
+    where: RecebivelWhereUniqueInput
+    update: XOR<RecebivelUpdateWithoutCentro_custoInput, RecebivelUncheckedUpdateWithoutCentro_custoInput>
+    create: XOR<RecebivelCreateWithoutCentro_custoInput, RecebivelUncheckedCreateWithoutCentro_custoInput>
+  }
+
+  export type RecebivelUpdateWithWhereUniqueWithoutCentro_custoInput = {
+    where: RecebivelWhereUniqueInput
+    data: XOR<RecebivelUpdateWithoutCentro_custoInput, RecebivelUncheckedUpdateWithoutCentro_custoInput>
+  }
+
+  export type RecebivelUpdateManyWithWhereWithoutCentro_custoInput = {
+    where: RecebivelScalarWhereInput
+    data: XOR<RecebivelUpdateManyMutationInput, RecebivelUncheckedUpdateManyWithoutCentro_custoInput>
+  }
+
+  export type ContaPagarUpsertWithWhereUniqueWithoutCentro_custoInput = {
+    where: ContaPagarWhereUniqueInput
+    update: XOR<ContaPagarUpdateWithoutCentro_custoInput, ContaPagarUncheckedUpdateWithoutCentro_custoInput>
+    create: XOR<ContaPagarCreateWithoutCentro_custoInput, ContaPagarUncheckedCreateWithoutCentro_custoInput>
+  }
+
+  export type ContaPagarUpdateWithWhereUniqueWithoutCentro_custoInput = {
+    where: ContaPagarWhereUniqueInput
+    data: XOR<ContaPagarUpdateWithoutCentro_custoInput, ContaPagarUncheckedUpdateWithoutCentro_custoInput>
+  }
+
+  export type ContaPagarUpdateManyWithWhereWithoutCentro_custoInput = {
+    where: ContaPagarScalarWhereInput
+    data: XOR<ContaPagarUpdateManyMutationInput, ContaPagarUncheckedUpdateManyWithoutCentro_custoInput>
+  }
+
   export type EmpresaCreateWithoutRecebiveisInput = {
     id?: string
     nome: string
@@ -105375,6 +108089,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutRecebiveisInput = {
@@ -105415,6 +108130,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutRecebiveisInput = {
@@ -105751,6 +108467,37 @@ export namespace Prisma {
     create: XOR<UsuarioCreateWithoutRecebiveis_criadosInput, UsuarioUncheckedCreateWithoutRecebiveis_criadosInput>
   }
 
+  export type CentroCustoCreateWithoutRecebiveisInput = {
+    id?: string
+    nome: string
+    codigo?: string | null
+    descricao?: string | null
+    ativo?: boolean
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutCentros_custoInput
+    projeto?: ProjetoCreateNestedOneWithoutCentro_custoInput
+    contas_pagar?: ContaPagarCreateNestedManyWithoutCentro_custoInput
+  }
+
+  export type CentroCustoUncheckedCreateWithoutRecebiveisInput = {
+    id?: string
+    empresa_id: string
+    nome: string
+    codigo?: string | null
+    descricao?: string | null
+    ativo?: boolean
+    projeto_id?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutCentro_custoInput
+  }
+
+  export type CentroCustoCreateOrConnectWithoutRecebiveisInput = {
+    where: CentroCustoWhereUniqueInput
+    create: XOR<CentroCustoCreateWithoutRecebiveisInput, CentroCustoUncheckedCreateWithoutRecebiveisInput>
+  }
+
   export type BoletoCreateWithoutRecebivelInput = {
     id?: string
     asaas_id?: string | null
@@ -105902,6 +108649,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutRecebiveisInput = {
@@ -105942,6 +108690,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutRecebiveisInput = {
@@ -106303,6 +109052,43 @@ export namespace Prisma {
     tarefas_responsavel?: TarefaResponsavelUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
+  export type CentroCustoUpsertWithoutRecebiveisInput = {
+    update: XOR<CentroCustoUpdateWithoutRecebiveisInput, CentroCustoUncheckedUpdateWithoutRecebiveisInput>
+    create: XOR<CentroCustoCreateWithoutRecebiveisInput, CentroCustoUncheckedCreateWithoutRecebiveisInput>
+    where?: CentroCustoWhereInput
+  }
+
+  export type CentroCustoUpdateToOneWithWhereWithoutRecebiveisInput = {
+    where?: CentroCustoWhereInput
+    data: XOR<CentroCustoUpdateWithoutRecebiveisInput, CentroCustoUncheckedUpdateWithoutRecebiveisInput>
+  }
+
+  export type CentroCustoUpdateWithoutRecebiveisInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    codigo?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutCentros_custoNestedInput
+    projeto?: ProjetoUpdateOneWithoutCentro_custoNestedInput
+    contas_pagar?: ContaPagarUpdateManyWithoutCentro_custoNestedInput
+  }
+
+  export type CentroCustoUncheckedUpdateWithoutRecebiveisInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    codigo?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    projeto_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    contas_pagar?: ContaPagarUncheckedUpdateManyWithoutCentro_custoNestedInput
+  }
+
   export type BoletoUpsertWithoutRecebivelInput = {
     update: XOR<BoletoUpdateWithoutRecebivelInput, BoletoUncheckedUpdateWithoutRecebivelInput>
     create: XOR<BoletoCreateWithoutRecebivelInput, BoletoUncheckedCreateWithoutRecebivelInput>
@@ -106455,6 +109241,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutContas_pagarInput = {
@@ -106495,6 +109282,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutContas_pagarInput = {
@@ -106645,6 +109433,37 @@ export namespace Prisma {
     create: XOR<UsuarioCreateWithoutContas_pagar_criadasInput, UsuarioUncheckedCreateWithoutContas_pagar_criadasInput>
   }
 
+  export type CentroCustoCreateWithoutContas_pagarInput = {
+    id?: string
+    nome: string
+    codigo?: string | null
+    descricao?: string | null
+    ativo?: boolean
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutCentros_custoInput
+    projeto?: ProjetoCreateNestedOneWithoutCentro_custoInput
+    recebiveis?: RecebivelCreateNestedManyWithoutCentro_custoInput
+  }
+
+  export type CentroCustoUncheckedCreateWithoutContas_pagarInput = {
+    id?: string
+    empresa_id: string
+    nome: string
+    codigo?: string | null
+    descricao?: string | null
+    ativo?: boolean
+    projeto_id?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    recebiveis?: RecebivelUncheckedCreateNestedManyWithoutCentro_custoInput
+  }
+
+  export type CentroCustoCreateOrConnectWithoutContas_pagarInput = {
+    where: CentroCustoWhereUniqueInput
+    create: XOR<CentroCustoCreateWithoutContas_pagarInput, CentroCustoUncheckedCreateWithoutContas_pagarInput>
+  }
+
   export type EmpresaUpsertWithoutContas_pagarInput = {
     update: XOR<EmpresaUpdateWithoutContas_pagarInput, EmpresaUncheckedUpdateWithoutContas_pagarInput>
     create: XOR<EmpresaCreateWithoutContas_pagarInput, EmpresaUncheckedCreateWithoutContas_pagarInput>
@@ -106694,6 +109513,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutContas_pagarInput = {
@@ -106734,6 +109554,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PlanoDeContasUpsertWithoutContas_pagarInput = {
@@ -106897,6 +109718,43 @@ export namespace Prisma {
     tarefas_responsavel?: TarefaResponsavelUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
+  export type CentroCustoUpsertWithoutContas_pagarInput = {
+    update: XOR<CentroCustoUpdateWithoutContas_pagarInput, CentroCustoUncheckedUpdateWithoutContas_pagarInput>
+    create: XOR<CentroCustoCreateWithoutContas_pagarInput, CentroCustoUncheckedCreateWithoutContas_pagarInput>
+    where?: CentroCustoWhereInput
+  }
+
+  export type CentroCustoUpdateToOneWithWhereWithoutContas_pagarInput = {
+    where?: CentroCustoWhereInput
+    data: XOR<CentroCustoUpdateWithoutContas_pagarInput, CentroCustoUncheckedUpdateWithoutContas_pagarInput>
+  }
+
+  export type CentroCustoUpdateWithoutContas_pagarInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    codigo?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutCentros_custoNestedInput
+    projeto?: ProjetoUpdateOneWithoutCentro_custoNestedInput
+    recebiveis?: RecebivelUpdateManyWithoutCentro_custoNestedInput
+  }
+
+  export type CentroCustoUncheckedUpdateWithoutContas_pagarInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    codigo?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    projeto_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    recebiveis?: RecebivelUncheckedUpdateManyWithoutCentro_custoNestedInput
+  }
+
   export type EmpresaCreateWithoutModelos_documentoInput = {
     id?: string
     nome: string
@@ -106935,6 +109793,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutModelos_documentoInput = {
@@ -106975,6 +109834,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutModelos_documentoInput = {
@@ -107031,6 +109891,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutModelos_documentoInput = {
@@ -107071,6 +109932,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateWithoutEventosInput = {
@@ -107111,6 +109973,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutEventosInput = {
@@ -107151,6 +110014,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutEventosInput = {
@@ -107415,6 +110279,7 @@ export namespace Prisma {
     status?: $Enums.StatusProjeto
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
+    e_centro_custo?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutProjetosInput
@@ -107426,6 +110291,7 @@ export namespace Prisma {
     documentos?: DocumentoCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutProjetoInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutProjetoInput
+    centro_custo?: CentroCustoCreateNestedOneWithoutProjetoInput
   }
 
   export type ProjetoUncheckedCreateWithoutEventosInput = {
@@ -107440,6 +110306,7 @@ export namespace Prisma {
     status?: $Enums.StatusProjeto
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
+    e_centro_custo?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
     etapas?: EtapaUncheckedCreateNestedManyWithoutProjetoInput
@@ -107447,6 +110314,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
+    centro_custo?: CentroCustoUncheckedCreateNestedOneWithoutProjetoInput
   }
 
   export type ProjetoCreateOrConnectWithoutEventosInput = {
@@ -107503,6 +110371,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutEventosInput = {
@@ -107543,6 +110412,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type UsuarioUpsertWithoutEventos_responsavelInput = {
@@ -107831,6 +110701,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    e_centro_custo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutProjetosNestedInput
@@ -107842,6 +110713,7 @@ export namespace Prisma {
     documentos?: DocumentoUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutProjetoNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutProjetoNestedInput
+    centro_custo?: CentroCustoUpdateOneWithoutProjetoNestedInput
   }
 
   export type ProjetoUncheckedUpdateWithoutEventosInput = {
@@ -107856,6 +110728,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    e_centro_custo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     etapas?: EtapaUncheckedUpdateManyWithoutProjetoNestedInput
@@ -107863,6 +110736,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
+    centro_custo?: CentroCustoUncheckedUpdateOneWithoutProjetoNestedInput
   }
 
   export type EmpresaCreateWithoutRegistros_auditoriaInput = {
@@ -107903,6 +110777,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutRegistros_auditoriaInput = {
@@ -107943,6 +110818,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutRegistros_auditoriaInput = {
@@ -107999,6 +110875,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutRegistros_auditoriaInput = {
@@ -108039,6 +110916,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateWithoutNotificacoesInput = {
@@ -108079,6 +110957,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutNotificacoesInput = {
@@ -108119,6 +110998,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutNotificacoesInput = {
@@ -108175,6 +111055,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutNotificacoesInput = {
@@ -108215,6 +111096,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateWithoutNotas_fiscaisInput = {
@@ -108255,6 +111137,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutNotas_fiscaisInput = {
@@ -108295,6 +111178,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutNotas_fiscaisInput = {
@@ -108512,6 +111396,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasCreateNestedOneWithoutRecebiveisInput
     conta_bancaria?: ContaBancariaCreateNestedOneWithoutRecebiveisInput
     criador?: UsuarioCreateNestedOneWithoutRecebiveis_criadosInput
+    centro_custo?: CentroCustoCreateNestedOneWithoutRecebiveisInput
     boleto?: BoletoCreateNestedOneWithoutRecebivelInput
   }
 
@@ -108537,6 +111422,7 @@ export namespace Prisma {
     multa_valor?: Decimal | DecimalJsLike | number | string | null
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
+    centro_custo_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
@@ -108596,6 +111482,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutNotas_fiscaisInput = {
@@ -108636,6 +111523,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutNotas_fiscaisInput = {
@@ -108871,6 +111759,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasUpdateOneWithoutRecebiveisNestedInput
     conta_bancaria?: ContaBancariaUpdateOneWithoutRecebiveisNestedInput
     criador?: UsuarioUpdateOneWithoutRecebiveis_criadosNestedInput
+    centro_custo?: CentroCustoUpdateOneWithoutRecebiveisNestedInput
     boleto?: BoletoUpdateOneWithoutRecebivelNestedInput
   }
 
@@ -108896,6 +111785,7 @@ export namespace Prisma {
     multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
@@ -108939,6 +111829,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutBoletosInput = {
@@ -108979,6 +111870,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutBoletosInput = {
@@ -109010,6 +111902,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasCreateNestedOneWithoutRecebiveisInput
     conta_bancaria?: ContaBancariaCreateNestedOneWithoutRecebiveisInput
     criador?: UsuarioCreateNestedOneWithoutRecebiveis_criadosInput
+    centro_custo?: CentroCustoCreateNestedOneWithoutRecebiveisInput
     nota_fiscal?: NotaFiscalCreateNestedOneWithoutRecebivelInput
   }
 
@@ -109035,6 +111928,7 @@ export namespace Prisma {
     multa_valor?: Decimal | DecimalJsLike | number | string | null
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
+    centro_custo_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     nota_fiscal?: NotaFiscalUncheckedCreateNestedOneWithoutRecebivelInput
@@ -109179,6 +112073,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutBoletosInput = {
@@ -109219,6 +112114,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type RecebivelUpsertWithoutBoletoInput = {
@@ -109256,6 +112152,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasUpdateOneWithoutRecebiveisNestedInput
     conta_bancaria?: ContaBancariaUpdateOneWithoutRecebiveisNestedInput
     criador?: UsuarioUpdateOneWithoutRecebiveis_criadosNestedInput
+    centro_custo?: CentroCustoUpdateOneWithoutRecebiveisNestedInput
     nota_fiscal?: NotaFiscalUpdateOneWithoutRecebivelNestedInput
   }
 
@@ -109281,6 +112178,7 @@ export namespace Prisma {
     multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     nota_fiscal?: NotaFiscalUncheckedUpdateOneWithoutRecebivelNestedInput
@@ -109415,6 +112313,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutDiagnosticosInput = {
@@ -109455,6 +112354,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutDiagnosticosInput = {
@@ -109555,6 +112455,7 @@ export namespace Prisma {
     status?: $Enums.StatusProjeto
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
+    e_centro_custo?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutProjetosInput
@@ -109566,6 +112467,7 @@ export namespace Prisma {
     documentos?: DocumentoCreateNestedManyWithoutProjetoInput
     eventos?: EventoCreateNestedManyWithoutProjetoInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutProjetoInput
+    centro_custo?: CentroCustoCreateNestedOneWithoutProjetoInput
   }
 
   export type ProjetoUncheckedCreateWithoutDiagnosticosInput = {
@@ -109580,6 +112482,7 @@ export namespace Prisma {
     status?: $Enums.StatusProjeto
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
+    e_centro_custo?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
     etapas?: EtapaUncheckedCreateNestedManyWithoutProjetoInput
@@ -109587,6 +112490,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedCreateNestedManyWithoutProjetoInput
     eventos?: EventoUncheckedCreateNestedManyWithoutProjetoInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
+    centro_custo?: CentroCustoUncheckedCreateNestedOneWithoutProjetoInput
   }
 
   export type ProjetoCreateOrConnectWithoutDiagnosticosInput = {
@@ -109643,6 +112547,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutDiagnosticosInput = {
@@ -109683,6 +112588,7 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutDiagnosticosInput = {
@@ -109795,6 +112701,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    e_centro_custo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutProjetosNestedInput
@@ -109806,6 +112713,7 @@ export namespace Prisma {
     documentos?: DocumentoUpdateManyWithoutProjetoNestedInput
     eventos?: EventoUpdateManyWithoutProjetoNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutProjetoNestedInput
+    centro_custo?: CentroCustoUpdateOneWithoutProjetoNestedInput
   }
 
   export type ProjetoUncheckedUpdateWithoutDiagnosticosInput = {
@@ -109820,6 +112728,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    e_centro_custo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     etapas?: EtapaUncheckedUpdateManyWithoutProjetoNestedInput
@@ -109827,6 +112736,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedUpdateManyWithoutProjetoNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutProjetoNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
+    centro_custo?: CentroCustoUncheckedUpdateOneWithoutProjetoNestedInput
   }
 
   export type ClienteCreateWithoutTokens_portalInput = {
@@ -110043,6 +112953,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutAplicacoes_diagnosticoInput = {
@@ -110083,6 +112994,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutAplicacoes_diagnosticoInput = {
@@ -110098,6 +113010,7 @@ export namespace Prisma {
     status?: $Enums.StatusProjeto
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
+    e_centro_custo?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutProjetosInput
@@ -110109,6 +113022,7 @@ export namespace Prisma {
     documentos?: DocumentoCreateNestedManyWithoutProjetoInput
     eventos?: EventoCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoCreateNestedManyWithoutProjetoInput
+    centro_custo?: CentroCustoCreateNestedOneWithoutProjetoInput
   }
 
   export type ProjetoUncheckedCreateWithoutAplicacoes_diagnosticoInput = {
@@ -110123,6 +113037,7 @@ export namespace Prisma {
     status?: $Enums.StatusProjeto
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
+    e_centro_custo?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
     etapas?: EtapaUncheckedCreateNestedManyWithoutProjetoInput
@@ -110130,6 +113045,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedCreateNestedManyWithoutProjetoInput
     eventos?: EventoUncheckedCreateNestedManyWithoutProjetoInput
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutProjetoInput
+    centro_custo?: CentroCustoUncheckedCreateNestedOneWithoutProjetoInput
   }
 
   export type ProjetoCreateOrConnectWithoutAplicacoes_diagnosticoInput = {
@@ -110271,6 +113187,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutAplicacoes_diagnosticoInput = {
@@ -110311,6 +113228,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ProjetoUpsertWithoutAplicacoes_diagnosticoInput = {
@@ -110332,6 +113250,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    e_centro_custo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutProjetosNestedInput
@@ -110343,6 +113262,7 @@ export namespace Prisma {
     documentos?: DocumentoUpdateManyWithoutProjetoNestedInput
     eventos?: EventoUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutProjetoNestedInput
+    centro_custo?: CentroCustoUpdateOneWithoutProjetoNestedInput
   }
 
   export type ProjetoUncheckedUpdateWithoutAplicacoes_diagnosticoInput = {
@@ -110357,6 +113277,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    e_centro_custo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     etapas?: EtapaUncheckedUpdateManyWithoutProjetoNestedInput
@@ -110364,6 +113285,7 @@ export namespace Prisma {
     documentos?: DocumentoUncheckedUpdateManyWithoutProjetoNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
+    centro_custo?: CentroCustoUncheckedUpdateOneWithoutProjetoNestedInput
   }
 
   export type ClienteUpsertWithoutAplicacoes_diagnosticoInput = {
@@ -110495,6 +113417,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutCampanhas_diagnosticoInput = {
@@ -110535,6 +113458,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutCampanhas_diagnosticoInput = {
@@ -110633,6 +113557,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutCampanhas_diagnosticoInput = {
@@ -110673,6 +113598,7 @@ export namespace Prisma {
     etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type DiagnosticoParticipanteUpsertWithWhereUniqueWithoutCampanhaInput = {
@@ -111095,6 +114021,7 @@ export namespace Prisma {
     status?: $Enums.StatusProjeto
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
+    e_centro_custo?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -111202,6 +114129,7 @@ export namespace Prisma {
     multa_valor?: Decimal | DecimalJsLike | number | string | null
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
+    centro_custo_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -111220,6 +114148,7 @@ export namespace Prisma {
     valor_pago?: Decimal | DecimalJsLike | number | string | null
     forma_pagamento?: string | null
     observacoes?: string | null
+    centro_custo_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -111353,6 +114282,17 @@ export namespace Prisma {
     video_youtube?: string | null
     url_checkout?: string | null
     ativo?: boolean
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type CentroCustoCreateManyEmpresaInput = {
+    id?: string
+    nome: string
+    codigo?: string | null
+    descricao?: string | null
+    ativo?: boolean
+    projeto_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -111942,6 +114882,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    e_centro_custo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     contrato?: ContratoUpdateOneWithoutProjetoNestedInput
@@ -111953,6 +114894,7 @@ export namespace Prisma {
     eventos?: EventoUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutProjetoNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutProjetoNestedInput
+    centro_custo?: CentroCustoUpdateOneWithoutProjetoNestedInput
   }
 
   export type ProjetoUncheckedUpdateWithoutEmpresaInput = {
@@ -111966,6 +114908,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    e_centro_custo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     etapas?: EtapaUncheckedUpdateManyWithoutProjetoNestedInput
@@ -111974,6 +114917,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
+    centro_custo?: CentroCustoUncheckedUpdateOneWithoutProjetoNestedInput
   }
 
   export type ProjetoUncheckedUpdateManyWithoutEmpresaInput = {
@@ -111987,6 +114931,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    e_centro_custo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -112280,6 +115225,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasUpdateOneWithoutRecebiveisNestedInput
     conta_bancaria?: ContaBancariaUpdateOneWithoutRecebiveisNestedInput
     criador?: UsuarioUpdateOneWithoutRecebiveis_criadosNestedInput
+    centro_custo?: CentroCustoUpdateOneWithoutRecebiveisNestedInput
     boleto?: BoletoUpdateOneWithoutRecebivelNestedInput
     nota_fiscal?: NotaFiscalUpdateOneWithoutRecebivelNestedInput
   }
@@ -112305,6 +115251,7 @@ export namespace Prisma {
     multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
@@ -112332,6 +115279,7 @@ export namespace Prisma {
     multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -112352,6 +115300,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasUpdateOneWithoutContas_pagarNestedInput
     conta_bancaria?: ContaBancariaUpdateOneWithoutContas_pagarNestedInput
     criador?: UsuarioUpdateOneWithoutContas_pagar_criadasNestedInput
+    centro_custo?: CentroCustoUpdateOneWithoutContas_pagarNestedInput
   }
 
   export type ContaPagarUncheckedUpdateWithoutEmpresaInput = {
@@ -112368,6 +115317,7 @@ export namespace Prisma {
     valor_pago?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     forma_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -112386,6 +115336,7 @@ export namespace Prisma {
     valor_pago?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     forma_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -112795,6 +115746,43 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type CentroCustoUpdateWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    codigo?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    projeto?: ProjetoUpdateOneWithoutCentro_custoNestedInput
+    recebiveis?: RecebivelUpdateManyWithoutCentro_custoNestedInput
+    contas_pagar?: ContaPagarUpdateManyWithoutCentro_custoNestedInput
+  }
+
+  export type CentroCustoUncheckedUpdateWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    codigo?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    projeto_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    recebiveis?: RecebivelUncheckedUpdateManyWithoutCentro_custoNestedInput
+    contas_pagar?: ContaPagarUncheckedUpdateManyWithoutCentro_custoNestedInput
+  }
+
+  export type CentroCustoUncheckedUpdateManyWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    codigo?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    projeto_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type MembroEmpresaCreateManyUsuarioInput = {
     id?: string
     empresa_id: string
@@ -112932,6 +115920,7 @@ export namespace Prisma {
     status?: $Enums.StatusProjeto
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
+    e_centro_custo?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -112989,6 +115978,7 @@ export namespace Prisma {
     multa_valor?: Decimal | DecimalJsLike | number | string | null
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
+    centro_custo_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -113007,6 +115997,7 @@ export namespace Prisma {
     valor_pago?: Decimal | DecimalJsLike | number | string | null
     forma_pagamento?: string | null
     observacoes?: string | null
+    centro_custo_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -113569,6 +116560,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    e_centro_custo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutProjetosNestedInput
@@ -113580,6 +116572,7 @@ export namespace Prisma {
     eventos?: EventoUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutProjetoNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutProjetoNestedInput
+    centro_custo?: CentroCustoUpdateOneWithoutProjetoNestedInput
   }
 
   export type ProjetoUncheckedUpdateWithoutCriadorInput = {
@@ -113593,6 +116586,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    e_centro_custo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     etapas?: EtapaUncheckedUpdateManyWithoutProjetoNestedInput
@@ -113601,6 +116595,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
+    centro_custo?: CentroCustoUncheckedUpdateOneWithoutProjetoNestedInput
   }
 
   export type ProjetoUncheckedUpdateManyWithoutCriadorInput = {
@@ -113614,6 +116609,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    e_centro_custo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -113751,6 +116747,7 @@ export namespace Prisma {
     contrato?: ContratoUpdateOneWithoutRecebiveisNestedInput
     plano_contas?: PlanoDeContasUpdateOneWithoutRecebiveisNestedInput
     conta_bancaria?: ContaBancariaUpdateOneWithoutRecebiveisNestedInput
+    centro_custo?: CentroCustoUpdateOneWithoutRecebiveisNestedInput
     boleto?: BoletoUpdateOneWithoutRecebivelNestedInput
     nota_fiscal?: NotaFiscalUpdateOneWithoutRecebivelNestedInput
   }
@@ -113776,6 +116773,7 @@ export namespace Prisma {
     multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
@@ -113803,6 +116801,7 @@ export namespace Prisma {
     multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -113823,6 +116822,7 @@ export namespace Prisma {
     empresa?: EmpresaUpdateOneRequiredWithoutContas_pagarNestedInput
     plano_contas?: PlanoDeContasUpdateOneWithoutContas_pagarNestedInput
     conta_bancaria?: ContaBancariaUpdateOneWithoutContas_pagarNestedInput
+    centro_custo?: CentroCustoUpdateOneWithoutContas_pagarNestedInput
   }
 
   export type ContaPagarUncheckedUpdateWithoutCriadorInput = {
@@ -113839,6 +116839,7 @@ export namespace Prisma {
     valor_pago?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     forma_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -113857,6 +116858,7 @@ export namespace Prisma {
     valor_pago?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     forma_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -114511,6 +117513,7 @@ export namespace Prisma {
     status?: $Enums.StatusProjeto
     data_inicio?: Date | string | null
     data_fim?: Date | string | null
+    e_centro_custo?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -114545,6 +117548,7 @@ export namespace Prisma {
     multa_valor?: Decimal | DecimalJsLike | number | string | null
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
+    centro_custo_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -115014,6 +118018,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    e_centro_custo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutProjetosNestedInput
@@ -115025,6 +118030,7 @@ export namespace Prisma {
     eventos?: EventoUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUpdateManyWithoutProjetoNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutProjetoNestedInput
+    centro_custo?: CentroCustoUpdateOneWithoutProjetoNestedInput
   }
 
   export type ProjetoUncheckedUpdateWithoutClienteInput = {
@@ -115038,6 +118044,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    e_centro_custo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     etapas?: EtapaUncheckedUpdateManyWithoutProjetoNestedInput
@@ -115046,6 +118053,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedUpdateManyWithoutProjetoNestedInput
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutProjetoNestedInput
+    centro_custo?: CentroCustoUncheckedUpdateOneWithoutProjetoNestedInput
   }
 
   export type ProjetoUncheckedUpdateManyWithoutClienteInput = {
@@ -115059,6 +118067,7 @@ export namespace Prisma {
     status?: EnumStatusProjetoFieldUpdateOperationsInput | $Enums.StatusProjeto
     data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    e_centro_custo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -115113,6 +118122,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasUpdateOneWithoutRecebiveisNestedInput
     conta_bancaria?: ContaBancariaUpdateOneWithoutRecebiveisNestedInput
     criador?: UsuarioUpdateOneWithoutRecebiveis_criadosNestedInput
+    centro_custo?: CentroCustoUpdateOneWithoutRecebiveisNestedInput
     boleto?: BoletoUpdateOneWithoutRecebivelNestedInput
     nota_fiscal?: NotaFiscalUpdateOneWithoutRecebivelNestedInput
   }
@@ -115138,6 +118148,7 @@ export namespace Prisma {
     multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
@@ -115165,6 +118176,7 @@ export namespace Prisma {
     multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -116008,6 +119020,7 @@ export namespace Prisma {
     multa_valor?: Decimal | DecimalJsLike | number | string | null
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
+    centro_custo_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -116098,6 +119111,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasUpdateOneWithoutRecebiveisNestedInput
     conta_bancaria?: ContaBancariaUpdateOneWithoutRecebiveisNestedInput
     criador?: UsuarioUpdateOneWithoutRecebiveis_criadosNestedInput
+    centro_custo?: CentroCustoUpdateOneWithoutRecebiveisNestedInput
     boleto?: BoletoUpdateOneWithoutRecebivelNestedInput
     nota_fiscal?: NotaFiscalUpdateOneWithoutRecebivelNestedInput
   }
@@ -116123,6 +119137,7 @@ export namespace Prisma {
     multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
@@ -116150,6 +119165,7 @@ export namespace Prisma {
     multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -117153,6 +120169,7 @@ export namespace Prisma {
     multa_valor?: Decimal | DecimalJsLike | number | string | null
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
+    centro_custo_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -117171,6 +120188,7 @@ export namespace Prisma {
     valor_pago?: Decimal | DecimalJsLike | number | string | null
     forma_pagamento?: string | null
     observacoes?: string | null
+    centro_custo_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -117250,6 +120268,7 @@ export namespace Prisma {
     contrato?: ContratoUpdateOneWithoutRecebiveisNestedInput
     conta_bancaria?: ContaBancariaUpdateOneWithoutRecebiveisNestedInput
     criador?: UsuarioUpdateOneWithoutRecebiveis_criadosNestedInput
+    centro_custo?: CentroCustoUpdateOneWithoutRecebiveisNestedInput
     boleto?: BoletoUpdateOneWithoutRecebivelNestedInput
     nota_fiscal?: NotaFiscalUpdateOneWithoutRecebivelNestedInput
   }
@@ -117275,6 +120294,7 @@ export namespace Prisma {
     multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
@@ -117302,6 +120322,7 @@ export namespace Prisma {
     multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -117322,6 +120343,7 @@ export namespace Prisma {
     empresa?: EmpresaUpdateOneRequiredWithoutContas_pagarNestedInput
     conta_bancaria?: ContaBancariaUpdateOneWithoutContas_pagarNestedInput
     criador?: UsuarioUpdateOneWithoutContas_pagar_criadasNestedInput
+    centro_custo?: CentroCustoUpdateOneWithoutContas_pagarNestedInput
   }
 
   export type ContaPagarUncheckedUpdateWithoutPlano_contasInput = {
@@ -117338,6 +120360,7 @@ export namespace Prisma {
     valor_pago?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     forma_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -117356,6 +120379,7 @@ export namespace Prisma {
     valor_pago?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     forma_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -117490,6 +120514,7 @@ export namespace Prisma {
     multa_valor?: Decimal | DecimalJsLike | number | string | null
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
+    centro_custo_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -117508,6 +120533,7 @@ export namespace Prisma {
     valor_pago?: Decimal | DecimalJsLike | number | string | null
     forma_pagamento?: string | null
     observacoes?: string | null
+    centro_custo_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -117555,6 +120581,7 @@ export namespace Prisma {
     contrato?: ContratoUpdateOneWithoutRecebiveisNestedInput
     plano_contas?: PlanoDeContasUpdateOneWithoutRecebiveisNestedInput
     criador?: UsuarioUpdateOneWithoutRecebiveis_criadosNestedInput
+    centro_custo?: CentroCustoUpdateOneWithoutRecebiveisNestedInput
     boleto?: BoletoUpdateOneWithoutRecebivelNestedInput
     nota_fiscal?: NotaFiscalUpdateOneWithoutRecebivelNestedInput
   }
@@ -117580,6 +120607,7 @@ export namespace Prisma {
     multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
@@ -117607,6 +120635,7 @@ export namespace Prisma {
     multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -117627,6 +120656,7 @@ export namespace Prisma {
     empresa?: EmpresaUpdateOneRequiredWithoutContas_pagarNestedInput
     plano_contas?: PlanoDeContasUpdateOneWithoutContas_pagarNestedInput
     criador?: UsuarioUpdateOneWithoutContas_pagar_criadasNestedInput
+    centro_custo?: CentroCustoUpdateOneWithoutContas_pagarNestedInput
   }
 
   export type ContaPagarUncheckedUpdateWithoutConta_bancariaInput = {
@@ -117643,6 +120673,7 @@ export namespace Prisma {
     valor_pago?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     forma_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -117661,6 +120692,7 @@ export namespace Prisma {
     valor_pago?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     forma_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -117723,6 +120755,190 @@ export namespace Prisma {
     data?: DateTimeFieldUpdateOperationsInput | Date | string
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RecebivelCreateManyCentro_custoInput = {
+    id?: string
+    empresa_id: string
+    cliente_id?: string | null
+    contrato_id?: string | null
+    plano_contas_id?: string | null
+    conta_bancaria_id?: string | null
+    criado_por?: string | null
+    descricao: string
+    valor: Decimal | DecimalJsLike | number | string
+    data_vencimento: Date | string
+    status?: $Enums.StatusRecebivel
+    data_pagamento?: Date | string | null
+    valor_pago?: Decimal | DecimalJsLike | number | string | null
+    forma_pagamento?: string | null
+    numero_parcela?: number | null
+    total_parcelas?: number | null
+    observacoes?: string | null
+    juros_valor?: Decimal | DecimalJsLike | number | string | null
+    multa_valor?: Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type ContaPagarCreateManyCentro_custoInput = {
+    id?: string
+    empresa_id: string
+    plano_contas_id?: string | null
+    conta_bancaria_id?: string | null
+    criado_por?: string | null
+    descricao: string
+    fornecedor?: string | null
+    valor: Decimal | DecimalJsLike | number | string
+    data_vencimento: Date | string
+    status?: $Enums.StatusContaPagar
+    data_pagamento?: Date | string | null
+    valor_pago?: Decimal | DecimalJsLike | number | string | null
+    forma_pagamento?: string | null
+    observacoes?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type RecebivelUpdateWithoutCentro_custoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    descricao?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    data_vencimento?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumStatusRecebivelFieldUpdateOperationsInput | $Enums.StatusRecebivel
+    data_pagamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    valor_pago?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    forma_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
+    numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
+    total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutRecebiveisNestedInput
+    cliente?: ClienteUpdateOneWithoutRecebiveisNestedInput
+    contrato?: ContratoUpdateOneWithoutRecebiveisNestedInput
+    plano_contas?: PlanoDeContasUpdateOneWithoutRecebiveisNestedInput
+    conta_bancaria?: ContaBancariaUpdateOneWithoutRecebiveisNestedInput
+    criador?: UsuarioUpdateOneWithoutRecebiveis_criadosNestedInput
+    boleto?: BoletoUpdateOneWithoutRecebivelNestedInput
+    nota_fiscal?: NotaFiscalUpdateOneWithoutRecebivelNestedInput
+  }
+
+  export type RecebivelUncheckedUpdateWithoutCentro_custoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
+    plano_contas_id?: NullableStringFieldUpdateOperationsInput | string | null
+    conta_bancaria_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    data_vencimento?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumStatusRecebivelFieldUpdateOperationsInput | $Enums.StatusRecebivel
+    data_pagamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    valor_pago?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    forma_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
+    numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
+    total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
+    nota_fiscal?: NotaFiscalUncheckedUpdateOneWithoutRecebivelNestedInput
+  }
+
+  export type RecebivelUncheckedUpdateManyWithoutCentro_custoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    contrato_id?: NullableStringFieldUpdateOperationsInput | string | null
+    plano_contas_id?: NullableStringFieldUpdateOperationsInput | string | null
+    conta_bancaria_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    data_vencimento?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumStatusRecebivelFieldUpdateOperationsInput | $Enums.StatusRecebivel
+    data_pagamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    valor_pago?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    forma_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
+    numero_parcela?: NullableIntFieldUpdateOperationsInput | number | null
+    total_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContaPagarUpdateWithoutCentro_custoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    descricao?: StringFieldUpdateOperationsInput | string
+    fornecedor?: NullableStringFieldUpdateOperationsInput | string | null
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    data_vencimento?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumStatusContaPagarFieldUpdateOperationsInput | $Enums.StatusContaPagar
+    data_pagamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    valor_pago?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    forma_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutContas_pagarNestedInput
+    plano_contas?: PlanoDeContasUpdateOneWithoutContas_pagarNestedInput
+    conta_bancaria?: ContaBancariaUpdateOneWithoutContas_pagarNestedInput
+    criador?: UsuarioUpdateOneWithoutContas_pagar_criadasNestedInput
+  }
+
+  export type ContaPagarUncheckedUpdateWithoutCentro_custoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    plano_contas_id?: NullableStringFieldUpdateOperationsInput | string | null
+    conta_bancaria_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: StringFieldUpdateOperationsInput | string
+    fornecedor?: NullableStringFieldUpdateOperationsInput | string | null
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    data_vencimento?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumStatusContaPagarFieldUpdateOperationsInput | $Enums.StatusContaPagar
+    data_pagamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    valor_pago?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    forma_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContaPagarUncheckedUpdateManyWithoutCentro_custoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    plano_contas_id?: NullableStringFieldUpdateOperationsInput | string | null
+    conta_bancaria_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: StringFieldUpdateOperationsInput | string
+    fornecedor?: NullableStringFieldUpdateOperationsInput | string | null
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    data_vencimento?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumStatusContaPagarFieldUpdateOperationsInput | $Enums.StatusContaPagar
+    data_pagamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    valor_pago?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    forma_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type DiagnosticoParticipanteCreateManyCampanhaInput = {

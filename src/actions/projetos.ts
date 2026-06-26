@@ -6,15 +6,17 @@ import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { verificarPermissao, obterEmpresaAtiva } from "@/lib/permissoes";
 import { createClient } from "@/lib/supabase/server";
+import { sincronizarCcDoProjeto } from "@/actions/centros-custo";
 
 const schema = z.object({
-  cliente_id: z.string().optional(),
-  contrato_id: z.string().optional(),
-  interno: z.boolean().default(false),
-  titulo: z.string().min(2, "Título obrigatório"),
-  descricao: z.string().optional(),
-  data_inicio: z.string().optional(),
-  data_fim: z.string().optional(),
+  cliente_id:     z.string().optional(),
+  contrato_id:    z.string().optional(),
+  interno:        z.boolean().default(false),
+  titulo:         z.string().min(2, "Título obrigatório"),
+  descricao:      z.string().optional(),
+  data_inicio:    z.string().optional(),
+  data_fim:       z.string().optional(),
+  e_centro_custo: z.boolean().default(false),
 }).refine(
   (d) => d.interno || !!d.cliente_id,
   { message: "Selecione um cliente ou marque como projeto interno", path: ["cliente_id"] }
@@ -48,6 +50,7 @@ export async function criarProjeto(input: Input) {
         descricao: data.descricao || null,
         data_inicio: data.data_inicio ? parseLocalDate(data.data_inicio) : null,
         data_fim: data.data_fim ? parseLocalDate(data.data_fim) : null,
+        e_centro_custo: data.e_centro_custo ?? false,
         criado_por: user?.id,
       },
     });
@@ -62,6 +65,10 @@ export async function criarProjeto(input: Input) {
 
     return p;
   });
+
+  if (data.e_centro_custo) {
+    await sincronizarCcDoProjeto(projeto.id, data.titulo, true, empresaId);
+  }
 
   revalidatePath("/projetos");
   return { data: projeto };
@@ -85,12 +92,16 @@ export async function editarProjeto(id: string, input: Input & { status?: string
       descricao: data.descricao || null,
       data_inicio: data.data_inicio ? parseLocalDate(data.data_inicio) : null,
       data_fim: data.data_fim ? parseLocalDate(data.data_fim) : null,
+      e_centro_custo: data.e_centro_custo ?? false,
       ...(input.status && { status: input.status as any }),
     },
   });
 
+  await sincronizarCcDoProjeto(id, data.titulo, data.e_centro_custo ?? false, empresaId);
+
   revalidatePath("/projetos");
   revalidatePath(`/projetos/${id}`);
+  revalidatePath("/financeiro/centros-custo");
   return { data: projeto };
 }
 

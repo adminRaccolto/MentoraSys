@@ -9,13 +9,14 @@ import { createClient } from "@/lib/supabase/server";
 import { registrar } from "@/lib/auditoria";
 
 const schemaCreate = z.object({
-  descricao: z.string().min(1, "Descrição obrigatória"),
-  fornecedor: z.string().optional(),
-  valor: z.coerce.number().positive("Valor deve ser positivo"),
-  data_vencimento: z.string().min(1, "Data obrigatória"),
-  plano_contas_id: z.string().optional(),
+  descricao:        z.string().min(1, "Descrição obrigatória"),
+  fornecedor:       z.string().optional(),
+  valor:            z.coerce.number().positive("Valor deve ser positivo"),
+  data_vencimento:  z.string().min(1, "Data obrigatória"),
+  plano_contas_id:  z.string().optional(),
   conta_bancaria_id: z.string().optional(),
-  observacoes: z.string().optional(),
+  centro_custo_id:  z.string().optional(),
+  observacoes:      z.string().optional(),
 });
 
 const schemaBaixar = z.object({
@@ -45,6 +46,7 @@ export async function criarContaPagar(input: InputCreate) {
       data_vencimento: parseLocalDate(data.data_vencimento),
       plano_contas_id: data.plano_contas_id || null,
       conta_bancaria_id: data.conta_bancaria_id || null,
+      centro_custo_id: data.centro_custo_id || null,
       observacoes: data.observacoes || null,
     },
   });
@@ -157,6 +159,7 @@ export async function editarContaPagar(id: string, input: InputCreate) {
       data_vencimento: parseLocalDate(data.data_vencimento),
       plano_contas_id: data.plano_contas_id || null,
       conta_bancaria_id: data.conta_bancaria_id || null,
+      centro_custo_id: data.centro_custo_id || null,
       observacoes: data.observacoes || null,
     },
   });

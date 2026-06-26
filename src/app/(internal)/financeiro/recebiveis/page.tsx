@@ -16,7 +16,7 @@ export default async function RecebiveisPage({ searchParams }: Props) {
   const inicio = new Date(`${deStr}T00:00:00`);
   const fim = new Date(`${ateStr}T23:59:59`);
 
-  const [recebiveis, clientes, contratos, categorias, contasBancarias, modelosRecibo] = await Promise.all([
+  const [recebiveis, clientes, contratos, categorias, contasBancarias, modelosRecibo, centrosCusto] = await Promise.all([
     prisma.recebivel.findMany({
       where: {
         empresa_id: empresaId,
@@ -63,6 +63,11 @@ export default async function RecebiveisPage({ searchParams }: Props) {
       select: { id: true, nome: true },
       orderBy: { nome: "asc" },
     }),
+    prisma.centroCusto.findMany({
+      where: { empresa_id: empresaId, ativo: true },
+      select: { id: true, nome: true, codigo: true },
+      orderBy: { nome: "asc" },
+    }),
   ]);
 
   return (
@@ -86,6 +91,7 @@ export default async function RecebiveisPage({ searchParams }: Props) {
       ate={ateStr}
       statusFiltro={status ?? "TODOS"}
       modelosRecibo={modelosRecibo}
+      centrosCusto={centrosCusto}
     />
   );
 }

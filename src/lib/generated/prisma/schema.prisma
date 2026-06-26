@@ -63,6 +63,7 @@ model Empresa {
   aplicacoes_diagnostico    AplicacaoDiagnostico[]
   etapas_crm                EtapaCrm[]
   campanhas_diagnostico     CampanhaDiagnostico[]
+  centros_custo             CentroCusto[]
 
   @@map("empresas")
 }
@@ -564,19 +565,20 @@ enum CategoriaDocumento {
 // ─── PROJETOS ─────────────────────────────────────────────────────────────────
 
 model Projeto {
-  id            String        @id @default(cuid())
-  empresa_id    String
-  contrato_id   String?       @unique
-  cliente_id    String?
-  interno       Boolean       @default(false)
-  criado_por    String?
-  titulo        String
-  descricao     String?
-  status        StatusProjeto @default(PLANEJAMENTO)
-  data_inicio   DateTime?
-  data_fim      DateTime?
-  criado_em     DateTime      @default(now())
-  atualizado_em DateTime      @updatedAt
+  id             String        @id @default(cuid())
+  empresa_id     String
+  contrato_id    String?       @unique
+  cliente_id     String?
+  interno        Boolean       @default(false)
+  criado_por     String?
+  titulo         String
+  descricao      String?
+  status         StatusProjeto @default(PLANEJAMENTO)
+  data_inicio    DateTime?
+  data_fim       DateTime?
+  e_centro_custo Boolean       @default(false)
+  criado_em      DateTime      @default(now())
+  atualizado_em  DateTime      @updatedAt
 
   empresa                Empresa                @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
   contrato               Contrato?              @relation(fields: [contrato_id], references: [id])
@@ -588,6 +590,7 @@ model Projeto {
   eventos                Evento[]
   diagnosticos           Diagnostico[]
   aplicacoes_diagnostico AplicacaoDiagnostico[]
+  centro_custo           CentroCusto?
 
   @@map("projetos")
 }
@@ -909,6 +912,27 @@ model TransferenciaTesouraria {
   @@map("transferencias_tesouraria")
 }
 
+// ─── CENTROS DE CUSTO ────────────────────────────────────────────────────────
+
+model CentroCusto {
+  id            String   @id @default(cuid())
+  empresa_id    String
+  nome          String
+  codigo        String?
+  descricao     String?
+  ativo         Boolean  @default(true)
+  projeto_id    String?  @unique
+  criado_em     DateTime @default(now())
+  atualizado_em DateTime @updatedAt
+
+  empresa      Empresa      @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  projeto      Projeto?     @relation(fields: [projeto_id], references: [id], onDelete: Cascade)
+  recebiveis   Recebivel[]
+  contas_pagar ContaPagar[]
+
+  @@map("centros_custo")
+}
+
 // ─── RECEBÍVEIS ───────────────────────────────────────────────────────────────
 
 model Recebivel {
@@ -933,6 +957,7 @@ model Recebivel {
   multa_valor         Decimal?        @db.Decimal(10, 2)
   desconto_valor      Decimal?        @db.Decimal(10, 2)
   recebivel_origem_id String?
+  centro_custo_id     String?
   criado_em           DateTime        @default(now())
   atualizado_em       DateTime        @updatedAt
 
@@ -942,6 +967,7 @@ model Recebivel {
   plano_contas   PlanoDeContas? @relation(fields: [plano_contas_id], references: [id])
   conta_bancaria ContaBancaria? @relation(fields: [conta_bancaria_id], references: [id])
   criador        Usuario?       @relation("RecebiveisCriados", fields: [criado_por], references: [id])
+  centro_custo   CentroCusto?   @relation(fields: [centro_custo_id], references: [id])
   boleto         Boleto?
   nota_fiscal    NotaFiscal?
 
@@ -965,6 +991,7 @@ model ContaPagar {
   valor_pago        Decimal?         @db.Decimal(10, 2)
   forma_pagamento   String?
   observacoes       String?
+  centro_custo_id   String?
   criado_em         DateTime         @default(now())
   atualizado_em     DateTime         @updatedAt
 
@@ -972,6 +999,7 @@ model ContaPagar {
   plano_contas   PlanoDeContas? @relation(fields: [plano_contas_id], references: [id])
   conta_bancaria ContaBancaria? @relation(fields: [conta_bancaria_id], references: [id])
   criador        Usuario?       @relation("ContasPagarCriadas", fields: [criado_por], references: [id])
+  centro_custo   CentroCusto?   @relation(fields: [centro_custo_id], references: [id])
 
   @@map("contas_pagar")
 }

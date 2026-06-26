@@ -50,7 +50,7 @@ interface Documento {
 }
 interface Projeto {
   id: string; titulo: string; descricao: string | null;
-  status: StatusProjeto;
+  status: StatusProjeto; e_centro_custo: boolean;
   data_inicio: Date | null; data_fim: Date | null;
   cliente: { id: string; nome: string; email: string | null } | null;
   contrato: { id: string; titulo: string } | null;
@@ -651,6 +651,12 @@ export default function ProjetoDetalheClient({ projeto: inicial, membros, usuari
                 <p className="text-muted-foreground text-xs uppercase tracking-wide mb-0.5">Término</p>
                 <p>{projeto.data_fim ? new Date(projeto.data_fim).toLocaleDateString("pt-BR") : "—"}</p>
               </div>
+              {projeto.e_centro_custo && (
+                <div className="col-span-2">
+                  <p className="text-muted-foreground text-xs uppercase tracking-wide mb-0.5">Centro de custo</p>
+                  <Badge variant="outline" className="text-xs">Este projeto é um centro de custo</Badge>
+                </div>
+              )}
             </div>
           </div>
 

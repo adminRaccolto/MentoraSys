@@ -10,14 +10,15 @@ import { registrar } from "@/lib/auditoria";
 import { obterOuCriarContaJurosMultas } from "@/lib/plano-contas-financeiras";
 
 const schemaCreate = z.object({
-  descricao: z.string().min(1, "Descrição obrigatória"),
-  valor: z.coerce.number().positive("Valor deve ser positivo"),
+  descricao:       z.string().min(1, "Descrição obrigatória"),
+  valor:           z.coerce.number().positive("Valor deve ser positivo"),
   data_vencimento: z.string().min(1, "Data obrigatória"),
-  cliente_id: z.string().optional(),
-  contrato_id: z.string().optional(),
+  cliente_id:      z.string().optional(),
+  contrato_id:     z.string().optional(),
   plano_contas_id: z.string().optional(),
   conta_bancaria_id: z.string().optional(),
-  observacoes: z.string().optional(),
+  centro_custo_id: z.string().optional(),
+  observacoes:     z.string().optional(),
 });
 
 const schemaBaixar = z.object({
@@ -60,6 +61,7 @@ export async function criarRecebivel(input: InputCreate) {
       contrato_id: data.contrato_id || null,
       plano_contas_id: data.plano_contas_id || null,
       conta_bancaria_id: data.conta_bancaria_id || null,
+      centro_custo_id: data.centro_custo_id || null,
       observacoes: data.observacoes || null,
     },
   });
@@ -257,6 +259,7 @@ export async function editarRecebivel(id: string, input: InputCreate) {
       contrato_id: data.contrato_id || null,
       plano_contas_id: data.plano_contas_id || null,
       conta_bancaria_id: data.conta_bancaria_id || null,
+      centro_custo_id: data.centro_custo_id || null,
       observacoes: data.observacoes || null,
     },
   });

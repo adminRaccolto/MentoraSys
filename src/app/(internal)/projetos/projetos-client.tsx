@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Plus, FolderKanban, Trash2, Building2 } from "lucide-react";
+import { Plus, FolderKanban, Trash2, Building2, Tag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -20,13 +20,14 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { criarProjeto, excluirProjeto } from "@/actions/projetos";
 
 const schema = z.object({
-  cliente_id: z.string().optional(),
-  contrato_id: z.string().optional(),
-  interno: z.boolean().default(false),
-  titulo: z.string().min(2, "Título obrigatório"),
-  descricao: z.string().optional(),
-  data_inicio: z.string().optional(),
-  data_fim: z.string().optional(),
+  cliente_id:     z.string().optional(),
+  contrato_id:    z.string().optional(),
+  interno:        z.boolean().default(false),
+  titulo:         z.string().min(2, "Título obrigatório"),
+  descricao:      z.string().optional(),
+  data_inicio:    z.string().optional(),
+  data_fim:       z.string().optional(),
+  e_centro_custo: z.boolean().default(false),
 }).refine(
   (d) => d.interno || !!d.cliente_id,
   { message: "Selecione um cliente ou marque como projeto interno", path: ["cliente_id"] }
@@ -79,12 +80,13 @@ export default function ProjetosClient({ projetos: inicial, clientes, contratos 
   const { register, handleSubmit, reset, setValue, watch, formState: { errors } } =
     useForm<FormData>({
       resolver: zodResolver(schema),
-      defaultValues: { interno: false },
+      defaultValues: { interno: false, e_centro_custo: false },
     });
 
-  const isInterno = watch("interno") ?? false;
-  const clienteId = watch("cliente_id") ?? "";
-  const contratoId = watch("contrato_id") ?? "nenhum";
+  const isInterno     = watch("interno") ?? false;
+  const eCentroCusto  = watch("e_centro_custo") ?? false;
+  const clienteId     = watch("cliente_id") ?? "";
+  const contratoId    = watch("contrato_id") ?? "nenhum";
 
   const onSubmit = (data: FormData) => {
     startTransition(async () => {
@@ -313,6 +315,23 @@ export default function ProjetosClient({ projetos: inicial, clientes, contratos 
                   <Input {...register("data_fim")} type="date" className="h-11" />
                 </div>
               </div>
+
+              {/* Toggle centro de custo */}
+              <label className="flex items-start gap-3 p-4 rounded-lg border-2 border-dashed cursor-pointer hover:bg-muted/40 transition-colors select-none">
+                <Checkbox
+                  className="mt-0.5 size-5"
+                  checked={eCentroCusto}
+                  onCheckedChange={(v) => setValue("e_centro_custo", !!v)}
+                />
+                <div>
+                  <p className="text-sm font-semibold leading-tight flex items-center gap-1.5">
+                    <Tag className="size-3.5" /> É centro de custo
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-0.5">
+                    Este projeto aparecerá como CC nos lançamentos financeiros
+                  </p>
+                </div>
+              </label>
 
             </div>
 

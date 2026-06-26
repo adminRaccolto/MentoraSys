@@ -33,13 +33,14 @@ const STATUS_CONFIG: Record<Status, { label: string; variant: "default" | "secon
 const FORMAS = ["Dinheiro", "PIX", "TED", "Boleto", "Cartão de Crédito", "Cartão de Débito", "Cheque"];
 
 const schemaCreate = z.object({
-  descricao: z.string().min(1, "Descrição obrigatória"),
-  valor: z.string().min(1, "Valor obrigatório"),
+  descricao:       z.string().min(1, "Descrição obrigatória"),
+  valor:           z.string().min(1, "Valor obrigatório"),
   data_vencimento: z.string().min(1, "Data obrigatória"),
-  cliente_id: z.string().optional(),
-  contrato_id: z.string().optional(),
+  cliente_id:      z.string().optional(),
+  contrato_id:     z.string().optional(),
   plano_contas_id: z.string().optional(),
-  observacoes: z.string().optional(),
+  centro_custo_id: z.string().optional(),
+  observacoes:     z.string().optional(),
 });
 
 const schemaBaixar = z.object({
@@ -104,6 +105,7 @@ interface Props {
   contratos: Contrato[];
   categorias: { id: string; nome: string }[];
   contasBancarias: { id: string; nome: string }[];
+  centrosCusto: { id: string; nome: string; codigo: string | null }[];
   de: string;
   ate: string;
   statusFiltro: string;
@@ -118,7 +120,7 @@ function isVencido(data: Date, status: Status) {
   return status === "PENDENTE" && new Date(data) < new Date();
 }
 
-export default function RecebiveisClient({ recebiveis: inicial, clientes, contratos, categorias, contasBancarias, de, ate, statusFiltro, modelosRecibo }: Props) {
+export default function RecebiveisClient({ recebiveis: inicial, clientes, contratos, categorias, contasBancarias, centrosCusto, de, ate, statusFiltro, modelosRecibo }: Props) {
   const router = useRouter();
   const [recebiveis, setRecebiveis] = useState(inicial);
   const [modalNovo, setModalNovo] = useState(false);
@@ -656,6 +658,24 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
                 </SelectContent>
               </Select>
             </div>
+            {centrosCusto.length > 0 && (
+              <div className="space-y-1">
+                <Label>Centro de custo</Label>
+                <Select value={formNovo.watch("centro_custo_id") ?? ""} onValueChange={(v) => formNovo.setValue("centro_custo_id", v === "nenhum" ? undefined : v ?? undefined)}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Nenhum" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="nenhum">Nenhum</SelectItem>
+                    {centrosCusto.map((c) => (
+                      <SelectItem key={c.id} value={c.id}>
+                        {c.codigo ? `[${c.codigo}] ` : ""}{c.nome}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
             <div className="space-y-1">
               <Label>Observações</Label>
               <Textarea {...formNovo.register("observacoes")} rows={2} />

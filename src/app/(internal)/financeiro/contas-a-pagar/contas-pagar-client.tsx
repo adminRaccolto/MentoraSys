@@ -31,12 +31,13 @@ const STATUS_CONFIG: Record<Status, { label: string; variant: "default" | "secon
 const FORMAS = ["Dinheiro", "PIX", "TED", "Boleto", "Cartão de Crédito", "Cartão de Débito", "Cheque"];
 
 const schemaCreate = z.object({
-  descricao: z.string().min(1, "Descrição obrigatória"),
-  fornecedor: z.string().optional(),
-  valor: z.string().min(1, "Valor obrigatório"),
+  descricao:       z.string().min(1, "Descrição obrigatória"),
+  fornecedor:      z.string().optional(),
+  valor:           z.string().min(1, "Valor obrigatório"),
   data_vencimento: z.string().min(1, "Data obrigatória"),
   plano_contas_id: z.string().optional(),
-  observacoes: z.string().optional(),
+  centro_custo_id: z.string().optional(),
+  observacoes:     z.string().optional(),
 });
 
 const schemaBaixar = z.object({
@@ -60,6 +61,7 @@ interface Props {
   contas: ContaPagar[];
   categorias: { id: string; nome: string }[];
   contasBancarias: { id: string; nome: string }[];
+  centrosCusto: { id: string; nome: string; codigo: string | null }[];
   de: string;
   ate: string;
   statusFiltro: string;
@@ -73,7 +75,7 @@ function isVencido(data: Date, status: Status) {
   return status === "PENDENTE" && new Date(data) < new Date();
 }
 
-export default function ContasPagarClient({ contas: inicial, categorias, contasBancarias, de, ate, statusFiltro }: Props) {
+export default function ContasPagarClient({ contas: inicial, categorias, contasBancarias, centrosCusto, de, ate, statusFiltro }: Props) {
   const router = useRouter();
   const [contas, setContas] = useState(inicial);
   const [modalNovo, setModalNovo] = useState(false);
@@ -379,6 +381,24 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
                 </SelectContent>
               </Select>
             </div>
+            {centrosCusto.length > 0 && (
+              <div className="space-y-1">
+                <Label>Centro de custo</Label>
+                <Select value={formNovo.watch("centro_custo_id") ?? ""} onValueChange={(v) => formNovo.setValue("centro_custo_id", v === "nenhum" ? undefined : v ?? undefined)}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Nenhum" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="nenhum">Nenhum</SelectItem>
+                    {centrosCusto.map((c) => (
+                      <SelectItem key={c.id} value={c.id}>
+                        {c.codigo ? `[${c.codigo}] ` : ""}{c.nome}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
             <div className="space-y-1">
               <Label>Observações</Label>
               <Textarea {...formNovo.register("observacoes")} rows={2} />

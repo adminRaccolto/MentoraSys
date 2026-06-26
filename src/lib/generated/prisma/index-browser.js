@@ -399,6 +399,7 @@ exports.Prisma.ProjetoScalarFieldEnum = {
   status: 'status',
   data_inicio: 'data_inicio',
   data_fim: 'data_fim',
+  e_centro_custo: 'e_centro_custo',
   criado_em: 'criado_em',
   atualizado_em: 'atualizado_em'
 };
@@ -573,6 +574,18 @@ exports.Prisma.TransferenciaTesourariaScalarFieldEnum = {
   criado_em: 'criado_em'
 };
 
+exports.Prisma.CentroCustoScalarFieldEnum = {
+  id: 'id',
+  empresa_id: 'empresa_id',
+  nome: 'nome',
+  codigo: 'codigo',
+  descricao: 'descricao',
+  ativo: 'ativo',
+  projeto_id: 'projeto_id',
+  criado_em: 'criado_em',
+  atualizado_em: 'atualizado_em'
+};
+
 exports.Prisma.RecebivelScalarFieldEnum = {
   id: 'id',
   empresa_id: 'empresa_id',
@@ -595,6 +608,7 @@ exports.Prisma.RecebivelScalarFieldEnum = {
   multa_valor: 'multa_valor',
   desconto_valor: 'desconto_valor',
   recebivel_origem_id: 'recebivel_origem_id',
+  centro_custo_id: 'centro_custo_id',
   criado_em: 'criado_em',
   atualizado_em: 'atualizado_em'
 };
@@ -614,6 +628,7 @@ exports.Prisma.ContaPagarScalarFieldEnum = {
   valor_pago: 'valor_pago',
   forma_pagamento: 'forma_pagamento',
   observacoes: 'observacoes',
+  centro_custo_id: 'centro_custo_id',
   criado_em: 'criado_em',
   atualizado_em: 'atualizado_em'
 };
@@ -1005,6 +1020,7 @@ exports.Prisma.ModelName = {
   Banco: 'Banco',
   ContaBancaria: 'ContaBancaria',
   TransferenciaTesouraria: 'TransferenciaTesouraria',
+  CentroCusto: 'CentroCusto',
   Recebivel: 'Recebivel',
   ContaPagar: 'ContaPagar',
   ModeloDocumento: 'ModeloDocumento',
