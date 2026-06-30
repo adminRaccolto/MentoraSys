@@ -23,6 +23,8 @@ import {
   Eye,
   CheckCircle2,
   Loader2,
+  Code2,
+  Type,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -127,6 +129,16 @@ function variavelPorTipo(tipo: TipoModelo) {
   return categorias;
 }
 
+// Detecta HTML complexo que o editor visual não consegue preservar
+function isHtmlComplexo(html: string): boolean {
+  return (
+    html.includes("<table") ||
+    html.includes("<img") ||
+    html.includes("<div") ||
+    (html.match(/style="/g) ?? []).length > 2
+  );
+}
+
 function CategoriaVariaveis({
   label,
   items,
@@ -175,6 +187,20 @@ export default function EditorClient({ modelo }: Props) {
   const [salvo, setSalvo] = useState(true);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  // Modo HTML para templates complexos (tabelas, estilos inline, imagens)
+  const [modoHtml, setModoHtml] = useState(() => isHtmlComplexo(modelo.conteudo));
+  const [htmlBruto, setHtmlBruto] = useState(modelo.conteudo || "");
+  const modoHtmlRef = useRef(modoHtml);
+  useEffect(() => { modoHtmlRef.current = modoHtml; }, [modoHtml]);
+
+  const salvarDebounce = useCallback((html: string) => {
+    setSalvo(false);
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => {
+      salvarConteudo(modelo.id, html).then(() => setSalvo(true));
+    }, 1500);
+  }, [modelo.id]);
+
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -184,13 +210,12 @@ export default function EditorClient({ modelo }: Props) {
       Color,
       Placeholder.configure({ placeholder: "Comece a escrever o documento..." }),
     ],
-    content: modelo.conteudo || "",
+    // Não carrega HTML complexo no Tiptap (evita corrupção)
+    content: modoHtml ? "" : (modelo.conteudo || ""),
     onUpdate: ({ editor }) => {
-      setSalvo(false);
-      if (debounceRef.current) clearTimeout(debounceRef.current);
-      debounceRef.current = setTimeout(() => {
-        salvarConteudo(modelo.id, editor.getHTML()).then(() => setSalvo(true));
-      }, 1500);
+      if (!modoHtmlRef.current) {
+        salvarDebounce(editor.getHTML());
+      }
     },
   });
 
@@ -208,9 +233,31 @@ export default function EditorClient({ modelo }: Props) {
     }
   }, [nome, modelo.id, modelo.nome]);
 
+  const toggleModo = () => {
+    if (modoHtml) {
+      // HTML → Visual: carrega o HTML bruto no editor
+      editor?.commands.setContent(htmlBruto, { emitUpdate: false });
+    } else {
+      // Visual → HTML: captura HTML atual do editor
+      setHtmlBruto(editor?.getHTML() ?? htmlBruto);
+    }
+    setModoHtml((v) => !v);
+  };
+
   const inserirVariavel = (chave: string) => {
-    editor?.commands.insertContent(chave);
-    editor?.commands.focus();
+    if (modoHtml) {
+      // No modo HTML, inserir no textarea via ref
+      setHtmlBruto((prev) => prev + chave);
+      salvarDebounce(htmlBruto + chave);
+    } else {
+      editor?.commands.insertContent(chave);
+      editor?.commands.focus();
+    }
+  };
+
+  const onHtmlChange = (value: string) => {
+    setHtmlBruto(value);
+    salvarDebounce(value);
   };
 
   const categorias = variavelPorTipo(modelo.tipo);
@@ -219,18 +266,21 @@ export default function EditorClient({ modelo }: Props) {
     onClick,
     active,
     title,
+    disabled,
     children,
   }: {
     onClick: () => void;
     active?: boolean;
     title: string;
+    disabled?: boolean;
     children: React.ReactNode;
   }) => (
     <button
       type="button"
       title={title}
       onClick={onClick}
-      className={`p-1.5 rounded hover:bg-muted transition-colors ${
+      disabled={disabled}
+      className={`p-1.5 rounded hover:bg-muted transition-colors disabled:opacity-30 disabled:cursor-not-allowed ${
         active ? "bg-muted text-primary" : "text-muted-foreground"
       }`}
     >
@@ -293,6 +343,7 @@ export default function EditorClient({ modelo }: Props) {
           <div className="flex items-center gap-0.5 px-4 py-2 border-b border-border bg-muted/30 shrink-0 flex-wrap">
             <ToolbarButton
               title="Negrito"
+              disabled={modoHtml}
               onClick={() => editor?.chain().focus().toggleBold().run()}
               active={editor?.isActive("bold")}
             >
@@ -300,6 +351,7 @@ export default function EditorClient({ modelo }: Props) {
             </ToolbarButton>
             <ToolbarButton
               title="Itálico"
+              disabled={modoHtml}
               onClick={() => editor?.chain().focus().toggleItalic().run()}
               active={editor?.isActive("italic")}
             >
@@ -307,6 +359,7 @@ export default function EditorClient({ modelo }: Props) {
             </ToolbarButton>
             <ToolbarButton
               title="Sublinhado"
+              disabled={modoHtml}
               onClick={() => editor?.chain().focus().toggleUnderline().run()}
               active={editor?.isActive("underline")}
             >
@@ -317,6 +370,7 @@ export default function EditorClient({ modelo }: Props) {
 
             <ToolbarButton
               title="Alinhar à esquerda"
+              disabled={modoHtml}
               onClick={() => editor?.chain().focus().setTextAlign("left").run()}
               active={editor?.isActive({ textAlign: "left" })}
             >
@@ -324,6 +378,7 @@ export default function EditorClient({ modelo }: Props) {
             </ToolbarButton>
             <ToolbarButton
               title="Centralizar"
+              disabled={modoHtml}
               onClick={() => editor?.chain().focus().setTextAlign("center").run()}
               active={editor?.isActive({ textAlign: "center" })}
             >
@@ -331,6 +386,7 @@ export default function EditorClient({ modelo }: Props) {
             </ToolbarButton>
             <ToolbarButton
               title="Alinhar à direita"
+              disabled={modoHtml}
               onClick={() => editor?.chain().focus().setTextAlign("right").run()}
               active={editor?.isActive({ textAlign: "right" })}
             >
@@ -338,6 +394,7 @@ export default function EditorClient({ modelo }: Props) {
             </ToolbarButton>
             <ToolbarButton
               title="Justificar"
+              disabled={modoHtml}
               onClick={() => editor?.chain().focus().setTextAlign("justify").run()}
               active={editor?.isActive({ textAlign: "justify" })}
             >
@@ -348,6 +405,7 @@ export default function EditorClient({ modelo }: Props) {
 
             <ToolbarButton
               title="Lista com marcadores"
+              disabled={modoHtml}
               onClick={() => editor?.chain().focus().toggleBulletList().run()}
               active={editor?.isActive("bulletList")}
             >
@@ -355,21 +413,57 @@ export default function EditorClient({ modelo }: Props) {
             </ToolbarButton>
             <ToolbarButton
               title="Lista numerada"
+              disabled={modoHtml}
               onClick={() => editor?.chain().focus().toggleOrderedList().run()}
               active={editor?.isActive("orderedList")}
             >
               <ListOrdered className="size-4" />
             </ToolbarButton>
+
+            <div className="w-px h-5 bg-border mx-1" />
+
+            {/* Toggle HTML / Visual */}
+            <button
+              type="button"
+              title={modoHtml ? "Alternar para modo visual" : "Alternar para modo HTML"}
+              onClick={toggleModo}
+              className={`flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-medium transition-colors ${
+                modoHtml
+                  ? "bg-amber-100 text-amber-700 hover:bg-amber-200"
+                  : "text-muted-foreground hover:bg-muted"
+              }`}
+            >
+              {modoHtml ? <Type className="size-3.5" /> : <Code2 className="size-3.5" />}
+              {modoHtml ? "Visual" : "HTML"}
+            </button>
+
+            {modoHtml && (
+              <span className="ml-2 text-[10px] text-amber-600 font-medium">
+                Modo HTML — edição direta do código
+              </span>
+            )}
           </div>
 
           {/* Content area */}
-          <div className="flex-1 overflow-y-auto p-8 bg-white">
-            <div className="max-w-3xl mx-auto min-h-full">
-              <EditorContent
-                editor={editor}
-                className="prose prose-slate max-w-none focus:outline-none [&_.ProseMirror]:min-h-[500px] [&_.ProseMirror]:outline-none [&_.ProseMirror_p.is-editor-empty:first-child::before]:text-gray-400 [&_.ProseMirror_p.is-editor-empty:first-child::before]:content-[attr(data-placeholder)] [&_.ProseMirror_p.is-editor-empty:first-child::before]:pointer-events-none [&_.ProseMirror_p.is-editor-empty:first-child::before]:float-left [&_.ProseMirror_p.is-editor-empty:first-child::before]:h-0"
+          <div className="flex-1 overflow-y-auto bg-white">
+            {modoHtml ? (
+              <textarea
+                value={htmlBruto}
+                onChange={(e) => onHtmlChange(e.target.value)}
+                spellCheck={false}
+                className="w-full h-full p-6 font-mono text-xs text-slate-800 bg-slate-50 resize-none focus:outline-none leading-relaxed"
+                placeholder="Cole ou escreva o HTML do documento aqui..."
               />
-            </div>
+            ) : (
+              <div className="p-8">
+                <div className="max-w-3xl mx-auto min-h-full">
+                  <EditorContent
+                    editor={editor}
+                    className="prose prose-slate max-w-none focus:outline-none [&_.ProseMirror]:min-h-125 [&_.ProseMirror]:outline-none [&_.ProseMirror_p.is-editor-empty:first-child::before]:text-gray-400 [&_.ProseMirror_p.is-editor-empty:first-child::before]:content-[attr(data-placeholder)] [&_.ProseMirror_p.is-editor-empty:first-child::before]:pointer-events-none [&_.ProseMirror_p.is-editor-empty:first-child::before]:float-left [&_.ProseMirror_p.is-editor-empty:first-child::before]:h-0"
+                  />
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
