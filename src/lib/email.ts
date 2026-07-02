@@ -121,6 +121,97 @@ export async function enviarConviteEquipe(
   });
 }
 
+// ─── Diagnóstico O Conselho Agro ─────────────────────────────────────────────
+
+interface DiagnosticoAgroScore {
+  bloco1: { percentual: number; nivel: string; diagnostico: string };
+  bloco2: { percentual: number; nivel: string; diagnostico: string };
+  bloco3: { percentual: number; nivel: string; diagnostico: string };
+  bloco4: { percentual: number; nivel: string; diagnostico: string };
+  geral: { percentual: number; nivel: string; diagnostico: string };
+}
+
+const NIVEL_LABELS: Record<string, string> = {
+  CRITICO: "Crítico",
+  ATENCAO: "Atenção",
+  BOM: "Bom",
+  EXCELENTE: "Excelente",
+};
+
+const NIVEL_COLORS: Record<string, string> = {
+  CRITICO: "#dc2626",
+  ATENCAO: "#d97706",
+  BOM: "#16a34a",
+  EXCELENTE: "#0369a1",
+};
+
+function blocoRow(titulo: string, pct: number, nivel: string): string {
+  const cor = NIVEL_COLORS[nivel] ?? "#475569";
+  const label = NIVEL_LABELS[nivel] ?? nivel;
+  return `
+    <tr>
+      <td style="padding:8px 0;border-bottom:1px solid #f1f5f9;">
+        <span style="color:#374151;font-size:14px;font-weight:600;">${titulo}</span>
+      </td>
+      <td style="padding:8px 0;border-bottom:1px solid #f1f5f9;text-align:right;">
+        <span style="color:${cor};font-size:14px;font-weight:700;">${pct}%</span>
+        <span style="color:${cor};font-size:12px;margin-left:6px;background:${cor}22;padding:2px 8px;border-radius:99px;">${label}</span>
+      </td>
+    </tr>`;
+}
+
+export async function enviarDiagnosticoAgro(
+  para: string,
+  primeiroNome: string,
+  score: DiagnosticoAgroScore,
+) {
+  const cor = NIVEL_COLORS[score.geral.nivel] ?? "#475569";
+  const label = NIVEL_LABELS[score.geral.nivel] ?? score.geral.nivel;
+
+  await getResend().emails.send({
+    from: FROM,
+    to: para,
+    subject: `Seu diagnóstico de gestão — O Conselho Agro`,
+    html: emailWrapper(`
+      <h2 style="margin:0 0 4px;color:#1B4F72;font-size:22px;">Olá, ${primeiroNome}!</h2>
+      <p style="color:#475569;font-size:15px;margin:0 0 24px;">
+        Aqui está o resultado do seu diagnóstico de gestão de fazenda.
+      </p>
+
+      <!-- Pontuação geral -->
+      <div style="text-align:center;background:#f8fafc;border-radius:12px;padding:24px;margin:0 0 24px;border:1px solid #e2e8f0;">
+        <p style="margin:0 0 4px;color:#64748b;font-size:13px;text-transform:uppercase;letter-spacing:1px;">Pontuação Geral</p>
+        <p style="margin:0;font-size:56px;font-weight:900;color:${cor};line-height:1;">${score.geral.percentual}%</p>
+        <p style="margin:8px 0 0;font-size:14px;font-weight:700;color:${cor};background:${cor}22;display:inline-block;padding:4px 16px;border-radius:99px;">${label}</p>
+      </div>
+
+      <!-- Blocos -->
+      <table width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 24px;">
+        ${blocoRow("Bloco 1 — Operação", score.bloco1.percentual, score.bloco1.nivel)}
+        ${blocoRow("Bloco 2 — Custos", score.bloco2.percentual, score.bloco2.nivel)}
+        ${blocoRow("Bloco 3 — Financeiro", score.bloco3.percentual, score.bloco3.nivel)}
+        ${blocoRow("Bloco 4 — Gestão", score.bloco4.percentual, score.bloco4.nivel)}
+      </table>
+
+      <!-- Diagnóstico geral -->
+      <div style="background:#f0f9ff;border-left:4px solid #0369a1;padding:16px 20px;border-radius:0 8px 8px 0;margin:0 0 24px;">
+        <p style="margin:0 0 6px;font-size:13px;font-weight:700;color:#0369a1;text-transform:uppercase;letter-spacing:0.5px;">Análise Geral</p>
+        <p style="margin:0;color:#1e293b;font-size:14px;line-height:1.6;">${score.geral.diagnostico}</p>
+      </div>
+
+      <p style="color:#64748b;font-size:13px;margin:0 0 24px;">
+        Nossa equipe entrará em contato em breve para apresentar as recomendações específicas para a sua fazenda.
+      </p>
+
+      <div style="text-align:center;">
+        <a href="https://oconselhoagro.com.br" style="background:#1B4F72;color:#ffffff;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;display:inline-block;">
+          Conhecer O Conselho Agro
+        </a>
+      </div>
+    `),
+  });
+}
+
 // ─── Lembrete de evento ───────────────────────────────────────────────────────
 
 export async function enviarLembrete(para: string, titulo: string, inicio: Date) {

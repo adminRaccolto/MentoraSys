@@ -42,6 +42,8 @@ export async function proxy(request: NextRequest) {
     pathname.startsWith("/membro/") ||
     pathname.startsWith("/diagnostico/") ||
     pathname.startsWith("/api/webhooks/") ||
+    pathname.startsWith("/api/diagnostico-lead/") ||
+    pathname === "/api/diagnostico-lead" ||
     pathname.startsWith("/api/cron/");
 
   if (!user && !isAuthRoute) {
