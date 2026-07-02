@@ -31,6 +31,7 @@ import {
   Landmark,
   Tag,
   BarChart3,
+  Sprout,
 } from "lucide-react";
 import NotificacoesBell from "@/components/notificacoes-bell";
 import { type Notificacao } from "@/hooks/useNotificacoes";
@@ -53,6 +54,7 @@ const NAV_OPERACIONAL = [
   { label: "Modelos", href: "/modelos", icon: FileEdit },
   { label: "Agenda", href: "/agenda", icon: Calendar },
   { label: "Diagnósticos", href: "/diagnosticos", icon: BarChart2 },
+  { label: "O Conselho Agro", href: "/diagnosticos/conselho-agro", icon: Sprout },
 ];
 
 const NAV_SISTEMA = [
