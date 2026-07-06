@@ -54,6 +54,19 @@ const TIPO_CONFIG: Record<TipoPlano, { label: string; color: string }> = {
 
 const nivel = (codigo: string | null) => (codigo?.split(".").length ?? 1) - 1;
 
+function sortNumerico(a: Conta, b: Conta): number {
+  if (!a.codigo && !b.codigo) return a.nome.localeCompare(b.nome, "pt-BR");
+  if (!a.codigo) return 1;
+  if (!b.codigo) return -1;
+  const pa = a.codigo.split(".").map(Number);
+  const pb = b.codigo.split(".").map(Number);
+  for (let i = 0; i < Math.max(pa.length, pb.length); i++) {
+    const diff = (pa[i] ?? -1) - (pb[i] ?? -1);
+    if (diff !== 0) return diff;
+  }
+  return a.nome.localeCompare(b.nome, "pt-BR");
+}
+
 // ─── Component ───────────────────────────────────────────────────────────────
 
 export default function PlanoContasClient({ contas: inicial }: { contas: Conta[] }) {
@@ -75,7 +88,7 @@ export default function PlanoContasClient({ contas: inicial }: { contas: Conta[]
     defaultValues: { tipo: "RECEITA", aceita_lancamento: true },
   });
 
-  const contasFiltradas = filtroTipo ? contas.filter((c) => c.tipo === filtroTipo) : contas;
+  const contasFiltradas = (filtroTipo ? contas.filter((c) => c.tipo === filtroTipo) : contas).sort(sortNumerico);
   const contasLancaveis = contas.filter((c) => c.aceita_lancamento && c.ativo);
 
   const abrirCriar = () => {
