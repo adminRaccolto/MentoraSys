@@ -81,115 +81,150 @@ export function calcularDiagnostico(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   lead: Record<string, any>,
 ): DiagnosticoScore {
-  // ── Bloco 1 — Operação ───────────────────────────────────────────────────
-  let b1r = 0,
-    b1m = 0;
+  // Compat: suporta nomes antigos e novos de campo
+  const temEstrutura   = lead.temEstruturaPropria   ?? lead.temSiloArmazem;
+  const custoInsumos   = lead.custoInsumos           ?? lead.custosInsumosDiretos;
+  const trava          = lead.travaComercializacao   ?? lead.travaAntecipada;
+  const leituraMercado = lead.boaLeituraMercado      ?? lead.boaLeituraComercializacao;
+  const captacoes      = lead.captacoes              ?? lead.captouMaisQuePageu;
+  const sabeCusto      = lead.sabeCustoPorUnidade    ?? lead.sabeCustoPorSaca;
+  const isGado         = lead.atividade === "gado";
 
-  if (lead.temSiloArmazem != null) {
+  // ── Bloco 1 — Operação ───────────────────────────────────────────────────
+  let b1r = 0, b1m = 0;
+
+  if (temEstrutura != null) {
     b1m += 10;
-    b1r += lead.temSiloArmazem ? 10 : 1;
+    b1r += temEstrutura ? 10 : 1;
   }
 
   if (lead.percentualArrendado != null) {
     b1m += 10;
-    const p = lead.percentualArrendado as number;
+    const p = Number(lead.percentualArrendado);
     if (p === 0) b1r += 10;
     else if (p <= 30) b1r += 7;
     else if (p <= 60) b1r += 5;
     else b1r += 2;
   }
 
-  if (
-    Array.isArray(lead.operacoesTerceirizadas) &&
-    lead.operacoesTerceirizadas.length > 0
-  ) {
+  if (Array.isArray(lead.operacoesTerceirizadas) && lead.operacoesTerceirizadas.length > 0) {
     b1m += 10;
     if ((lead.operacoesTerceirizadas as string[]).includes("nenhuma")) {
       b1r += 10;
     } else {
-      b1r += Math.max(
-        0,
-        10 - (lead.operacoesTerceirizadas as string[]).length * 1.5,
-      );
+      b1r += Math.max(0, 10 - (lead.operacoesTerceirizadas as string[]).length * 1.5);
     }
   }
 
-  // ── Bloco 2 — Custos ─────────────────────────────────────────────────────
-  let b2r = 0,
-    b2m = 0;
+  // Gado: taxa de lotação e desfrute
+  if (isGado && lead.taxaLotacao) {
+    b1m += 10;
+    const LOTACAO: Record<string, number> = { lte08: 2, "08_12": 5, "12_20": 8, gte20: 10 };
+    b1r += LOTACAO[lead.taxaLotacao] ?? 5;
+  }
+  if (isGado && lead.taxaDesfrute) {
+    b1m += 10;
+    const DESFRUTE: Record<string, number> = { lte20: 2, "20_40": 5, "40_60": 8, gte60: 10 };
+    b1r += DESFRUTE[lead.taxaDesfrute] ?? 5;
+  }
 
-  if (lead.custosInsumosDiretos) {
+  // ── Bloco 2 — Custos ─────────────────────────────────────────────────────
+  let b2r = 0, b2m = 0;
+
+  if (custoInsumos) {
     b2m += 10;
-    if (lead.custosInsumosDiretos === "abaixo") b2r += 10;
-    else if (lead.custosInsumosDiretos === "esperado") b2r += 7;
-    else if (lead.custosInsumosDiretos === "altos") b2r += 3;
+    // Suporta tanto valores text ("abaixo"/"esperado"/"altos") quanto range keys (ex: "lte40sc")
+    if (custoInsumos === "abaixo") b2r += 10;
+    else if (custoInsumos === "esperado") b2r += 7;
+    else if (custoInsumos === "altos") b2r += 3;
+    else {
+      // range keys numéricos — primeiros intervalos = melhor pontuação
+      const CUSTO_RANGES: Record<string, number> = {
+        lte40: 10, lte70: 10, lte200: 10, lte80: 10,
+        "40_45": 8, "70_80": 8, "200_250": 8,
+        "45_50": 5, "80_90": 5, "250_300": 5, "90_100": 5,
+        gte50: 2, gte90: 2, gte300: 2, gte100: 2,
+      };
+      b2r += CUSTO_RANGES[custoInsumos] ?? 5;
+    }
+  }
+
+  // Gado confinado: conversão alimentar
+  if (isGado && lead.conversaoAlimentar) {
+    b2m += 10;
+    const CONV: Record<string, number> = { lte6: 10, "6_7": 8, "7_8": 5, "8_9": 3, gte9: 1 };
+    b2r += CONV[lead.conversaoAlimentar] ?? 5;
   }
 
   if (lead.hectaresPorTrabalhador != null) {
     b2m += 10;
-    const h = lead.hectaresPorTrabalhador as number;
+    const h = Number(lead.hectaresPorTrabalhador);
     if (h < 150) b2r += 1;
     else if (h <= 300) b2r += 5;
     else if (h <= 500) b2r += 8;
     else b2r += 10;
   }
 
-  if (lead.travaAntecipada != null) {
+  if (trava != null) {
     b2m += 10;
-    b2r += lead.travaAntecipada ? 10 : 3;
+    b2r += trava ? 10 : 3;
   }
 
-  if (lead.boaLeituraComercializacao != null) {
+  if (leituraMercado != null) {
     b2m += 10;
-    b2r += lead.boaLeituraComercializacao ? 10 : 1;
+    b2r += leituraMercado ? 10 : 1;
   }
 
   // ── Bloco 3 — Financeiro ─────────────────────────────────────────────────
-  let b3r = 0,
-    b3m = 0;
+  let b3r = 0, b3m = 0;
 
-  b3m += 10;
-  const frustracao = lead.frustracaoSafra as Record<string, unknown> | null;
-  if (!frustracao || Object.keys(frustracao).length === 0) {
-    b3r += 10;
-  } else {
-    const n = Object.keys(frustracao).length;
-    if (n === 1) b3r += 6;
-    else if (n === 2) b3r += 3;
-    else b3r += 1;
+  const frustrRaw = lead.frustracaoSafra ?? lead.frustracaoSafraIdx;
+  if (frustrRaw !== undefined && frustrRaw !== null) {
+    b3m += 10;
+    // Formato número (índice: 0=nenhuma, 1=1 safra, 2=2, 3=3+)
+    if (typeof frustrRaw === "number") {
+      if (frustrRaw === 0) b3r += 10;
+      else if (frustrRaw === 1) b3r += 6;
+      else if (frustrRaw === 2) b3r += 3;
+      else b3r += 1;
+    } else if (typeof frustrRaw === "object") {
+      const n = Object.keys(frustrRaw as object).length;
+      if (n === 0) b3r += 10;
+      else if (n === 1) b3r += 6;
+      else if (n === 2) b3r += 3;
+      else b3r += 1;
+    }
   }
 
   if (lead.percentualCusteio) {
     b3m += 10;
-    const c = lead.percentualCusteio as string;
-    if (c === "Não utilizo Custeio") b3r += 10;
-    else if (["10%", "20%", "30%"].includes(c)) b3r += 8;
-    else if (["40%", "50%", "60%"].includes(c)) b3r += 5;
+    const c = String(lead.percentualCusteio);
+    if (c === "Não utilizo Custeio" || c === "nao_utilizo") b3r += 10;
+    else if (["10%", "20%", "30%", "25"].includes(c)) b3r += 8;
+    else if (["40%", "50%", "60%", "26_50"].includes(c)) b3r += 5;
     else b3r += 2;
   }
 
-  if (lead.captouMaisQuePageu) {
+  if (captacoes) {
     b3m += 10;
-    if (lead.captouMaisQuePageu === "nao_precisei") b3r += 10;
-    else if (lead.captouMaisQuePageu === "nao") b3r += 7;
+    if (captacoes === "nao_precisei") b3r += 10;
+    else if (captacoes === "nao" || captacoes === "diminuiu") b3r += 7;
     else b3r += 1;
   }
 
   // ── Bloco 4 — Gestão ─────────────────────────────────────────────────────
-  let b4r = 0,
-    b4m = 0;
+  let b4r = 0, b4m = 0;
 
   if (lead.usaSoftwareGestao) {
     b4m += 10;
     if (lead.usaSoftwareGestao === "utilizo_confio") b4r += 10;
     else if (lead.usaSoftwareGestao === "so_escritorio") b4r += 5;
     else if (lead.usaSoftwareGestao === "utilizo_sem_seguranca") b4r += 3;
-    // nao_utilizo → 0
   }
 
-  if (lead.sabeCustoPorSaca != null) {
+  if (sabeCusto != null) {
     b4m += 10;
-    b4r += lead.sabeCustoPorSaca ? 10 : 1;
+    b4r += sabeCusto ? 10 : 1;
   }
 
   if (lead.clarezaCustos != null) {

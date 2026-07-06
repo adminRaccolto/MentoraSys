@@ -290,8 +290,18 @@ export default async function ConselhoAgroDetalhe({ params }: { params: Promise<
 
       <div className="flex flex-col gap-4">
 
+        {/* Diagnóstico recebido — geral */}
+        {score?.geral?.diagnostico && (
+          <div className={`rounded-xl border px-5 py-4 ${(NIVEL_COR[score.geral.nivel] ?? NIVEL_COR.BOM).bg}`}>
+            <p className={`text-xs font-semibold uppercase tracking-wide mb-2 ${(NIVEL_COR[score.geral.nivel] ?? NIVEL_COR.BOM).text}`}>
+              Diagnóstico recebido — {NIVEL_LABEL[score.geral.nivel] ?? score.geral.nivel}
+            </p>
+            <p className="text-sm text-gray-700 leading-relaxed">{score.geral.diagnostico}</p>
+          </div>
+        )}
+
         {/* Bloco 1 — Operação */}
-        <Bloco titulo="Bloco 1 — Operação & Produção" score={isNewFormat ? undefined : score?.bloco1}>
+        <Bloco titulo="Bloco 1 — Operação & Produção" score={score?.bloco1}>
           <Campo label="Estrutura própria" valor={bool(temEstruturaPropria)} />
           <Campo label="Área arrendada" valor={arrendado(r.percentualArrendado)} />
           {r.arrendamentoValor && (
@@ -319,7 +329,7 @@ export default async function ConselhoAgroDetalhe({ params }: { params: Promise<
         </Bloco>
 
         {/* Bloco 2 — Custos */}
-        <Bloco titulo="Bloco 2 — Custos & Comercialização" score={isNewFormat ? undefined : score?.bloco2}>
+        <Bloco titulo="Bloco 2 — Custos & Comercialização" score={score?.bloco2}>
           {isConfinado ? (
             <>
               {r.conversaoAlimentar && <Campo label="Conversão alimentar" valor={readableKey(r.conversaoAlimentar)} />}
@@ -334,7 +344,7 @@ export default async function ConselhoAgroDetalhe({ params }: { params: Promise<
         </Bloco>
 
         {/* Bloco 3 — Financeiro */}
-        <Bloco titulo="Bloco 3 — Financeiro" score={isNewFormat ? undefined : score?.bloco3}>
+        <Bloco titulo="Bloco 3 — Financeiro" score={score?.bloco3}>
           <Campo label="Frustração de safra / evento crítico" valor={frustracao(r.frustracaoSafra ?? r.frustracaoSafraIdx)} />
           {r.sacasPerdidas != null && (
             <Campo
@@ -347,7 +357,7 @@ export default async function ConselhoAgroDetalhe({ params }: { params: Promise<
         </Bloco>
 
         {/* Bloco 4 — Gestão */}
-        <Bloco titulo="Bloco 4 — Gestão" score={isNewFormat ? undefined : score?.bloco4}>
+        <Bloco titulo="Bloco 4 — Gestão" score={score?.bloco4}>
           <Campo label="Uso de software de gestão" valor={software(r.usaSoftwareGestao)} />
           <Campo label="Conhece custo por unidade produzida" valor={bool(sabeCustoVal)} />
           <Campo label="Clareza sobre todas as despesas" valor={bool(r.clarezaCustos)} />
