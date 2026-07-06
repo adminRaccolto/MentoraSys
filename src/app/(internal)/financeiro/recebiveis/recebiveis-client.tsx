@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Plus, ArrowDownCircle, Trash2, CheckCircle, Receipt, Undo2, FileText, RefreshCw, XCircle } from "lucide-react";
+import { Plus, ArrowDownCircle, Trash2, CheckCircle, Receipt, Undo2, FileText, RefreshCw, XCircle, Zap, Copy, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -18,6 +18,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { criarRecebivel, baixarRecebivel, excluirRecebivel, gerarParcelasContrato, estornarRecebivel, baixarLoteRecebiveis, refaturarRecebivel } from "@/actions/recebiveis";
 import { gerarBoleto, consultarBoleto, cancelarBoleto } from "@/actions/boletos";
+import { gerarCobrancaAsaas, cancelarCobrancaAsaas, sincronizarCobrancaAsaas } from "@/actions/asaas";
 
 type Status = "PENDENTE" | "PARCIAL" | "PAGO" | "VENCIDO" | "CANCELADO" | "RENEGOCIADO";
 
@@ -87,6 +88,11 @@ interface Recebivel {
   contrato: { id: string; titulo: string; numero_contrato: string | null; juros_ao_mes_percentual: number | null; multa_percentual: number | null } | null;
   plano_contas: { id: string; nome: string } | null;
   boleto: Boleto | null;
+  asaas_payment_id: string | null;
+  asaas_invoice_url: string | null;
+  asaas_boleto_url: string | null;
+  asaas_pix_copia_cola: string | null;
+  asaas_status: string | null;
 }
 
 interface Contrato {
@@ -334,6 +340,42 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
     });
   };
 
+  const handleGerarCobrancaAsaas = (id: string) => {
+    startTransition(async () => {
+      try {
+        const res = await gerarCobrancaAsaas(id);
+        setRecebiveis(prev => prev.map(r => r.id === id ? { ...r, asaas_payment_id: res.payment_id, asaas_invoice_url: res.invoice_url ?? null, asaas_status: "PENDING" } : r));
+        toast.success("Cobrança Asaas gerada");
+        router.refresh();
+      } catch (e: unknown) { toast.error(e instanceof Error ? e.message : "Erro ao gerar cobrança"); }
+    });
+  };
+
+  const handleCancelarCobrancaAsaas = (id: string) => {
+    startTransition(async () => {
+      try {
+        await cancelarCobrancaAsaas(id);
+        setRecebiveis(prev => prev.map(r => r.id === id ? { ...r, asaas_payment_id: null, asaas_invoice_url: null, asaas_boleto_url: null, asaas_pix_copia_cola: null, asaas_status: null } : r));
+        toast.success("Cobrança Asaas cancelada");
+      } catch (e: unknown) { toast.error(e instanceof Error ? e.message : "Erro ao cancelar cobrança"); }
+    });
+  };
+
+  const handleSincronizarAsaas = (id: string) => {
+    startTransition(async () => {
+      try {
+        const res = await sincronizarCobrancaAsaas(id);
+        toast.success(`Status Asaas: ${res.status}`);
+        router.refresh();
+      } catch (e: unknown) { toast.error(e instanceof Error ? e.message : "Erro ao sincronizar"); }
+    });
+  };
+
+  const copiarPix = (pix: string) => {
+    navigator.clipboard.writeText(pix);
+    toast.success("PIX copiado");
+  };
+
   const toggleSelecionado = (id: string) => setSelecionados(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
   const elegiveisLote = statusFiltrados.filter(r => r.status === "PENDENTE" || r.status === "VENCIDO" || r.status === "PARCIAL");
   const todosElegivelsSelecionados = elegiveisLote.length > 0 && elegiveisLote.every(r => selecionados.has(r.id));
@@ -542,6 +584,53 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
                             size="icon" variant="ghost" className="size-7 text-destructive hover:text-destructive"
                             title="Cancelar boleto"
                             onClick={() => handleCancelarBoleto(r.boleto!.id, r.id)}
+                            disabled={isPending}
+                          >
+                            <XCircle className="size-3.5" />
+                          </Button>
+                        </>
+                      )}
+                      {/* Asaas: gerar cobrança */}
+                      {!r.asaas_payment_id && (r.status === "PENDENTE" || r.status === "VENCIDO" || r.status === "PARCIAL") && !r.boleto && (
+                        <Button
+                          size="icon" variant="ghost" className="size-7 text-emerald-600 hover:text-emerald-600"
+                          title="Gerar cobrança Asaas (PIX + boleto)"
+                          onClick={() => handleGerarCobrancaAsaas(r.id)}
+                          disabled={isPending}
+                        >
+                          <Zap className="size-3.5" />
+                        </Button>
+                      )}
+                      {r.asaas_payment_id && (
+                        <>
+                          {r.asaas_invoice_url && (
+                            <a href={r.asaas_invoice_url} target="_blank" rel="noopener noreferrer">
+                              <Button size="icon" variant="ghost" className="size-7 text-emerald-600 hover:text-emerald-600" title="Ver fatura Asaas">
+                                <ExternalLink className="size-3.5" />
+                              </Button>
+                            </a>
+                          )}
+                          {r.asaas_pix_copia_cola && (
+                            <Button
+                              size="icon" variant="ghost" className="size-7 text-sky-600 hover:text-sky-600"
+                              title="Copiar PIX copia e cola"
+                              onClick={() => copiarPix(r.asaas_pix_copia_cola!)}
+                            >
+                              <Copy className="size-3.5" />
+                            </Button>
+                          )}
+                          <Button
+                            size="icon" variant="ghost" className="size-7 text-muted-foreground hover:text-foreground"
+                            title="Sincronizar status Asaas"
+                            onClick={() => handleSincronizarAsaas(r.id)}
+                            disabled={isPending}
+                          >
+                            <RefreshCw className="size-3.5" />
+                          </Button>
+                          <Button
+                            size="icon" variant="ghost" className="size-7 text-destructive hover:text-destructive"
+                            title="Cancelar cobrança Asaas"
+                            onClick={() => handleCancelarCobrancaAsaas(r.id)}
                             disabled={isPending}
                           >
                             <XCircle className="size-3.5" />

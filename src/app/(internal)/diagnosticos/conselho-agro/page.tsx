@@ -27,6 +27,11 @@ export default async function ConselhoAgroListPage() {
     orderBy: { criado_em: "desc" },
   });
 
+  const ATIVIDADE_LABEL: Record<string, string> = {
+    soja: "Soja", milho: "Milho", algodao: "Algodão",
+    cana: "Cana", gado: "Gado", outro: "Outro",
+  };
+
   type ConteudoAgro = {
     lead_id?: string;
     score?: { geral?: { percentual?: number; nivel?: string } };
@@ -36,9 +41,11 @@ export default async function ConselhoAgroListPage() {
   const rows = diagnosticos.map((d) => {
     const c = (d.conteudo ?? {}) as ConteudoAgro;
     const nome = d.titulo.replace(/^Diagn[oó]stico\s*[—-]\s*/i, "");
+    const atividade = String(c.respostas?.atividade ?? "");
     return {
       id: d.id,
       nome,
+      atividade: ATIVIDADE_LABEL[atividade] ?? null,
       percentual: c.score?.geral?.percentual ?? null,
       nivel: c.score?.geral?.nivel ?? null,
       criado_em: d.criado_em,
@@ -65,6 +72,7 @@ export default async function ConselhoAgroListPage() {
             <thead>
               <tr className="border-b border-gray-100 bg-gray-50">
                 <th className="text-left px-5 py-3 font-semibold text-gray-600">Nome</th>
+                <th className="text-left px-4 py-3 font-semibold text-gray-600">Atividade</th>
                 <th className="text-center px-4 py-3 font-semibold text-gray-600">Score</th>
                 <th className="text-center px-4 py-3 font-semibold text-gray-600">Nível</th>
                 <th className="text-right px-5 py-3 font-semibold text-gray-600">Data</th>
@@ -80,6 +88,15 @@ export default async function ConselhoAgroListPage() {
                     >
                       {r.nome}
                     </Link>
+                  </td>
+                  <td className="px-4 py-4">
+                    {r.atividade ? (
+                      <span className="text-xs font-semibold bg-green-100 text-green-700 px-2.5 py-1 rounded-full">
+                        {r.atividade}
+                      </span>
+                    ) : (
+                      <span className="text-gray-300">—</span>
+                    )}
                   </td>
                   <td className="px-4 py-4 text-center">
                     {r.percentual !== null ? (

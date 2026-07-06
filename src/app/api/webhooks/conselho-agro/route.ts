@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { after } from "next/server";
+import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 
 // Recebe leads do site oconselhoagro.com.br/diagnostico
@@ -136,6 +137,8 @@ export async function POST(req: Request) {
       }
     });
   }
+
+  revalidatePath("/crm");
 
   console.log("[conselho-agro] lead criado:", lead.id, "— nome:", nome);
   return NextResponse.json(

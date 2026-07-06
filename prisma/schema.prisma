@@ -64,6 +64,8 @@ model Empresa {
   etapas_crm           EtapaCrm[]
   campanhas_diagnostico CampanhaDiagnostico[]
   centros_custo        CentroCusto[]
+  diagnostico_templates DiagnosticoTemplate[]
+  assinaturas          Assinatura[]
 
   @@map("empresas")
 }
@@ -256,6 +258,7 @@ model Cliente {
   distancia_km       Decimal?      @db.Decimal(8, 2)
   preco_km           Decimal?      @db.Decimal(8, 2)
   status             StatusCliente @default(ATIVO)
+  asaas_id           String?
   criado_em          DateTime      @default(now())
   atualizado_em      DateTime      @updatedAt
 
@@ -274,6 +277,7 @@ model Cliente {
   convite       ConviteCliente?
   documentos    Documento[]
   aplicacoes_diagnostico AplicacaoDiagnostico[]
+  assinaturas   Assinatura[]
 
   @@map("clientes")
 }
@@ -296,20 +300,25 @@ model Contato {
 // ─── SERVIÇOS ─────────────────────────────────────────────────────────────────
 
 model Servico {
-  id              String   @id @default(cuid())
-  empresa_id      String
-  plano_contas_id String?
-  nome            String
-  descricao       String?
-  valor_base      Decimal? @db.Decimal(10, 2)
-  ativo           Boolean  @default(true)
-  criado_em       DateTime @default(now())
-  atualizado_em   DateTime @updatedAt
+  id                   String   @id @default(cuid())
+  empresa_id           String
+  plano_contas_id      String?
+  nome                 String
+  descricao            String?
+  valor_base           Decimal? @db.Decimal(10, 2)
+  ativo                Boolean  @default(true)
+  canal                String?  // ARATO | CONSELHO_AGRO | CONSULTORIA
+  plano                String?  // ESSENCIAL | GESTAO | PERFORMANCE | NOVO_AGRO | MESA_AGRO | CONSULTORIA_AGRO
+  tipo_cobranca        String?  // ASSINATURA | PROJETO | PONTUAL
+  asaas_link_pagamento String?
+  criado_em            DateTime @default(now())
+  atualizado_em        DateTime @updatedAt
 
   empresa        Empresa        @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
   plano_contas   PlanoDeContas? @relation(fields: [plano_contas_id], references: [id], onDelete: SetNull)
   itens_proposta ItemProposta[]
   leads          Lead[]
+  assinaturas    Assinatura[]
 
   @@map("servicos")
 }
@@ -956,10 +965,15 @@ model Recebivel {
   juros_valor      Decimal?        @db.Decimal(10, 2)
   multa_valor      Decimal?        @db.Decimal(10, 2)
   desconto_valor   Decimal?        @db.Decimal(10, 2)
-  recebivel_origem_id String?
-  centro_custo_id  String?
-  criado_em        DateTime        @default(now())
-  atualizado_em    DateTime        @updatedAt
+  recebivel_origem_id  String?
+  centro_custo_id      String?
+  asaas_payment_id     String?
+  asaas_invoice_url    String?
+  asaas_pix_copia_cola String?
+  asaas_boleto_url     String?
+  asaas_status         String?
+  criado_em            DateTime        @default(now())
+  atualizado_em        DateTime        @updatedAt
 
   empresa        Empresa        @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
   cliente        Cliente?       @relation(fields: [cliente_id], references: [id])
@@ -1291,4 +1305,58 @@ model DiagnosticoParticipante {
   lead     Lead?               @relation(fields: [lead_id], references: [id])
 
   @@map("diagnostico_participantes")
+}
+
+// ─── DIAGNÓSTICO AGRO — TEMPLATES ────────────────────────────────────────────
+
+model DiagnosticoTemplate {
+  id                  String   @id @default(cuid())
+  empresa_id          String
+  cultura             String   // soja | milho | algodao | cana | gado | outro
+  nivel               String   // CRITICO | ATENCAO | BOM | EXCELENTE
+  titulo              String?
+  texto_receita       String?
+  texto_custos        String?
+  texto_caixa         String?
+  texto_recomendacoes String?
+  parametros_dre      Json     @default("{}")
+  criado_em           DateTime @default(now())
+  atualizado_em       DateTime @updatedAt
+
+  empresa Empresa @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+
+  @@unique([empresa_id, cultura, nivel])
+  @@map("diagnostico_templates")
+}
+
+// ─── ASSINATURAS (Arato SaaS, O Conselho Agro, Consultoria recorrente) ────────
+
+model Assinatura {
+  id                    String   @id @default(cuid())
+  empresa_id            String
+  cliente_id            String?
+  servico_id            String?
+  nome_cliente          String
+  email_cliente         String?
+  telefone_cliente      String?
+  canal                 String   // ARATO | CONSELHO_AGRO | CONSULTORIA
+  plano                 String?  // ESSENCIAL | GESTAO | PERFORMANCE | NOVO_AGRO | MESA_AGRO | CONSULTORIA_AGRO
+  valor                 Decimal  @db.Decimal(10, 2)
+  ciclo                 String   @default("MONTHLY") // MONTHLY | YEARLY | WEEKLY
+  status                String   @default("ATIVA")   // ATIVA | PAUSADA | CANCELADA | INADIMPLENTE | TRIAL
+  asaas_subscription_id String?
+  asaas_customer_id     String?
+  proximo_vencimento    DateTime?
+  data_inicio           DateTime @default(now())
+  data_cancelamento     DateTime?
+  motivo_cancelamento   String?
+  observacoes           String?
+  criado_em             DateTime @default(now())
+  atualizado_em         DateTime @updatedAt
+
+  empresa Empresa   @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  cliente Cliente?  @relation(fields: [cliente_id], references: [id])
+  servico Servico?  @relation(fields: [servico_id], references: [id])
+
+  @@map("assinaturas")
 }

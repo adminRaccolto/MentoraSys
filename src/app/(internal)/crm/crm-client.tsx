@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition, useMemo } from "react";
+import { useState, useTransition, useMemo, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -137,6 +137,17 @@ export default function CrmClient({ etapasIniciais, leadsIniciais, clientes, ser
 
   const [leads, setLeads] = useState<Lead[]>(leadsIniciais);
   const [etapas] = useState<EtapaCrm[]>(etapasIniciais);
+
+  // Rastreia IDs excluídos localmente para evitar que dados novos do servidor os restaurem
+  const deletedIdsRef = useRef(new Set<string>());
+  useEffect(() => {
+    setLeads(prev => {
+      const prevIds = new Set(prev.map(l => l.id));
+      const novos = leadsIniciais.filter(l => !prevIds.has(l.id) && !deletedIdsRef.current.has(l.id));
+      if (novos.length === 0) return prev;
+      return [...novos, ...prev];
+    });
+  }, [leadsIniciais]);
   const [viewMode, setViewMode] = useState<ViewMode>("KANBAN");
 
   const [selectedId, setSelectedId] = useState<string | null>(leadsIniciais[0]?.id ?? null);
@@ -280,13 +291,16 @@ export default function CrmClient({ etapasIniciais, leadsIniciais, clientes, ser
 
   function handleExcluir() {
     if (!excluirId) return;
+    const idParaExcluir = excluirId;
     startTransition(async () => {
       try {
-        await excluirLead(excluirId);
-        setLeads((prev) => prev.filter((l) => l.id !== excluirId));
-        if (selectedId === excluirId) setSelectedId(null);
+        await excluirLead(idParaExcluir);
+        deletedIdsRef.current.add(idParaExcluir);
+        setLeads((prev) => prev.filter((l) => l.id !== idParaExcluir));
+        if (selectedId === idParaExcluir) setSelectedId(null);
         setExcluirId(null);
         toast.success("Lead excluído");
+        router.refresh();
       } catch (e) {
         toast.error((e as Error).message);
       }

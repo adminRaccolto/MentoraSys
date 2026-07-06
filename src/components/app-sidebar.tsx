@@ -32,6 +32,7 @@ import {
   Tag,
   BarChart3,
   Sprout,
+  Repeat2,
 } from "lucide-react";
 import NotificacoesBell from "@/components/notificacoes-bell";
 import { type Notificacao } from "@/hooks/useNotificacoes";
@@ -74,6 +75,7 @@ const NAV_FINANCEIRO = [
   { label: "Plano de Contas",   href: "/plano-contas",                icon: ListTree },
   { label: "Centros de Custo",  href: "/financeiro/centros-custo",    icon: Tag },
   { label: "Relatório por CC",  href: "/financeiro/relatorio-cc",     icon: BarChart3 },
+  { label: "Assinaturas",      href: "/financeiro/assinaturas",      icon: Repeat2 },
 ];
 
 interface Props {

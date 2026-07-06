@@ -97,3 +97,141 @@ export async function asaasConsultarNFSe(invoiceId: string): Promise<AsaasInvoic
 export async function asaasCancelarNFSe(invoiceId: string): Promise<void> {
   await req("DELETE", `/invoices/${invoiceId}`);
 }
+
+// ─── PIX ──────────────────────────────────────────────────────────────────────
+
+interface AsaasPixQrCode { encodedImage: string; payload: string; expirationDate?: string; }
+
+export async function asaasCreatePix(params: {
+  customerId: string; valor: number; vencimento: string;
+  descricao: string; externalRef: string;
+}): Promise<AsaasPayment> {
+  return req<AsaasPayment>("POST", "/payments", {
+    customer: params.customerId,
+    billingType: "PIX",
+    value: params.valor,
+    dueDate: params.vencimento,
+    description: params.descricao,
+    externalReference: params.externalRef,
+  });
+}
+
+export async function asaasGetPixQrCode(paymentId: string): Promise<AsaasPixQrCode> {
+  return req<AsaasPixQrCode>("GET", `/payments/${paymentId}/pixQrCode`);
+}
+
+export async function asaasCreateBoletoPix(params: {
+  customerId: string; valor: number; vencimento: string;
+  descricao: string; externalRef: string;
+}): Promise<AsaasPayment & { pixQrCode?: AsaasPixQrCode }> {
+  const payment = await req<AsaasPayment>("POST", "/payments", {
+    customer: params.customerId,
+    billingType: "BOLETO",
+    value: params.valor,
+    dueDate: params.vencimento,
+    description: params.descricao,
+    externalReference: params.externalRef,
+  });
+  try {
+    const pix = await asaasGetPixQrCode(payment.id);
+    return { ...payment, pixQrCode: pix };
+  } catch {
+    return payment;
+  }
+}
+
+// ─── LINKS DE PAGAMENTO (produto fixo) ───────────────────────────────────────
+
+export interface AsaasPaymentLink {
+  id: string;
+  name: string;
+  url: string;
+  value?: number;
+  billingType: string;
+  chargeType: string;
+  status: string;
+}
+
+export async function asaasCreatePaymentLink(params: {
+  name: string;
+  value?: number;
+  billingType: "BOLETO" | "PIX" | "CREDIT_CARD" | "UNDEFINED";
+  chargeType: "RECURRENT" | "DETACHED";
+  subscriptionCycle?: "MONTHLY" | "YEARLY" | "WEEKLY";
+  description?: string;
+  endDate?: string;
+}): Promise<AsaasPaymentLink> {
+  return req<AsaasPaymentLink>("POST", "/paymentLinks", {
+    name: params.name,
+    ...(params.value != null ? { value: params.value } : {}),
+    billingType: params.billingType,
+    chargeType: params.chargeType,
+    ...(params.subscriptionCycle ? { subscriptionCycle: params.subscriptionCycle } : {}),
+    ...(params.description ? { description: params.description } : {}),
+    ...(params.endDate ? { endDate: params.endDate } : {}),
+  });
+}
+
+export async function asaasGetPaymentLink(linkId: string): Promise<AsaasPaymentLink> {
+  return req<AsaasPaymentLink>("GET", `/paymentLinks/${linkId}`);
+}
+
+// ─── ASSINATURAS RECORRENTES ──────────────────────────────────────────────────
+
+export interface AsaasSubscription {
+  id: string;
+  customer: string;
+  billingType: string;
+  cycle: string;
+  value: number;
+  nextDueDate: string;
+  status: string;
+  description?: string;
+  externalReference?: string;
+}
+
+export async function asaasCreateSubscription(params: {
+  customerId: string;
+  billingType: "BOLETO" | "PIX" | "CREDIT_CARD";
+  cycle: "MONTHLY" | "YEARLY" | "WEEKLY";
+  valor: number;
+  proximoVencimento: string;
+  descricao: string;
+  externalRef: string;
+}): Promise<AsaasSubscription> {
+  return req<AsaasSubscription>("POST", "/subscriptions", {
+    customer: params.customerId,
+    billingType: params.billingType,
+    cycle: params.cycle,
+    value: params.valor,
+    nextDueDate: params.proximoVencimento,
+    description: params.descricao,
+    externalReference: params.externalRef,
+  });
+}
+
+export async function asaasGetSubscription(subscriptionId: string): Promise<AsaasSubscription> {
+  return req<AsaasSubscription>("GET", `/subscriptions/${subscriptionId}`);
+}
+
+export async function asaasCancelSubscription(subscriptionId: string): Promise<void> {
+  await req("DELETE", `/subscriptions/${subscriptionId}`);
+}
+
+export async function asaasUpdateSubscription(subscriptionId: string, params: {
+  valor?: number; cycle?: string; nextDueDate?: string; status?: string;
+}): Promise<AsaasSubscription> {
+  return req<AsaasSubscription>("PUT", `/subscriptions/${subscriptionId}`, params);
+}
+
+// ─── CUSTOMER por ID ──────────────────────────────────────────────────────────
+
+export async function asaasGetCustomer(customerId: string): Promise<AsaasCustomer> {
+  return req<AsaasCustomer>("GET", `/customers/${customerId}`);
+}
+
+export async function asaasUpdateCustomer(customerId: string, params: {
+  name?: string; email?: string; phone?: string; cpfCnpj?: string;
+}): Promise<AsaasCustomer> {
+  return req<AsaasCustomer>("PUT", `/customers/${customerId}`, params);
+}

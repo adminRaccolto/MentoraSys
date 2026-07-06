@@ -218,6 +218,7 @@ exports.Prisma.ClienteScalarFieldEnum = {
   distancia_km: 'distancia_km',
   preco_km: 'preco_km',
   status: 'status',
+  asaas_id: 'asaas_id',
   criado_em: 'criado_em',
   atualizado_em: 'atualizado_em'
 };
@@ -241,6 +242,10 @@ exports.Prisma.ServicoScalarFieldEnum = {
   descricao: 'descricao',
   valor_base: 'valor_base',
   ativo: 'ativo',
+  canal: 'canal',
+  plano: 'plano',
+  tipo_cobranca: 'tipo_cobranca',
+  asaas_link_pagamento: 'asaas_link_pagamento',
   criado_em: 'criado_em',
   atualizado_em: 'atualizado_em'
 };
@@ -609,6 +614,11 @@ exports.Prisma.RecebivelScalarFieldEnum = {
   desconto_valor: 'desconto_valor',
   recebivel_origem_id: 'recebivel_origem_id',
   centro_custo_id: 'centro_custo_id',
+  asaas_payment_id: 'asaas_payment_id',
+  asaas_invoice_url: 'asaas_invoice_url',
+  asaas_pix_copia_cola: 'asaas_pix_copia_cola',
+  asaas_boleto_url: 'asaas_boleto_url',
+  asaas_status: 'asaas_status',
   criado_em: 'criado_em',
   atualizado_em: 'atualizado_em'
 };
@@ -803,6 +813,45 @@ exports.Prisma.DiagnosticoParticipanteScalarFieldEnum = {
   pontuacao: 'pontuacao',
   email_enviado: 'email_enviado',
   criado_em: 'criado_em'
+};
+
+exports.Prisma.DiagnosticoTemplateScalarFieldEnum = {
+  id: 'id',
+  empresa_id: 'empresa_id',
+  cultura: 'cultura',
+  nivel: 'nivel',
+  titulo: 'titulo',
+  texto_receita: 'texto_receita',
+  texto_custos: 'texto_custos',
+  texto_caixa: 'texto_caixa',
+  texto_recomendacoes: 'texto_recomendacoes',
+  parametros_dre: 'parametros_dre',
+  criado_em: 'criado_em',
+  atualizado_em: 'atualizado_em'
+};
+
+exports.Prisma.AssinaturaScalarFieldEnum = {
+  id: 'id',
+  empresa_id: 'empresa_id',
+  cliente_id: 'cliente_id',
+  servico_id: 'servico_id',
+  nome_cliente: 'nome_cliente',
+  email_cliente: 'email_cliente',
+  telefone_cliente: 'telefone_cliente',
+  canal: 'canal',
+  plano: 'plano',
+  valor: 'valor',
+  ciclo: 'ciclo',
+  status: 'status',
+  asaas_subscription_id: 'asaas_subscription_id',
+  asaas_customer_id: 'asaas_customer_id',
+  proximo_vencimento: 'proximo_vencimento',
+  data_inicio: 'data_inicio',
+  data_cancelamento: 'data_cancelamento',
+  motivo_cancelamento: 'motivo_cancelamento',
+  observacoes: 'observacoes',
+  criado_em: 'criado_em',
+  atualizado_em: 'atualizado_em'
 };
 
 exports.Prisma.SortOrder = {
@@ -1033,7 +1082,9 @@ exports.Prisma.ModelName = {
   TokenPortal: 'TokenPortal',
   AplicacaoDiagnostico: 'AplicacaoDiagnostico',
   CampanhaDiagnostico: 'CampanhaDiagnostico',
-  DiagnosticoParticipante: 'DiagnosticoParticipante'
+  DiagnosticoParticipante: 'DiagnosticoParticipante',
+  DiagnosticoTemplate: 'DiagnosticoTemplate',
+  Assinatura: 'Assinatura'
 };
 
 /**

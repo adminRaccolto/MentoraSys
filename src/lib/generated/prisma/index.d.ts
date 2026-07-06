@@ -258,6 +258,16 @@ export type CampanhaDiagnostico = $Result.DefaultSelection<Prisma.$CampanhaDiagn
  * 
  */
 export type DiagnosticoParticipante = $Result.DefaultSelection<Prisma.$DiagnosticoParticipantePayload>
+/**
+ * Model DiagnosticoTemplate
+ * 
+ */
+export type DiagnosticoTemplate = $Result.DefaultSelection<Prisma.$DiagnosticoTemplatePayload>
+/**
+ * Model Assinatura
+ * 
+ */
+export type Assinatura = $Result.DefaultSelection<Prisma.$AssinaturaPayload>
 
 /**
  * Enums
@@ -1171,6 +1181,26 @@ export class PrismaClient<
     * ```
     */
   get diagnosticoParticipante(): Prisma.DiagnosticoParticipanteDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.diagnosticoTemplate`: Exposes CRUD operations for the **DiagnosticoTemplate** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DiagnosticoTemplates
+    * const diagnosticoTemplates = await prisma.diagnosticoTemplate.findMany()
+    * ```
+    */
+  get diagnosticoTemplate(): Prisma.DiagnosticoTemplateDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.assinatura`: Exposes CRUD operations for the **Assinatura** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Assinaturas
+    * const assinaturas = await prisma.assinatura.findMany()
+    * ```
+    */
+  get assinatura(): Prisma.AssinaturaDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1653,7 +1683,9 @@ export namespace Prisma {
     TokenPortal: 'TokenPortal',
     AplicacaoDiagnostico: 'AplicacaoDiagnostico',
     CampanhaDiagnostico: 'CampanhaDiagnostico',
-    DiagnosticoParticipante: 'DiagnosticoParticipante'
+    DiagnosticoParticipante: 'DiagnosticoParticipante',
+    DiagnosticoTemplate: 'DiagnosticoTemplate',
+    Assinatura: 'Assinatura'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1669,7 +1701,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "etapaCrm" | "comentarioCrm" | "lead" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "projeto" | "etapa" | "tarefa" | "tarefaResponsavel" | "comentarioTarefa" | "anexoTarefa" | "atividadeTarefa" | "aprovacaoTarefa" | "itemChecklist" | "etiquetaTarefa" | "tarefaEtiqueta" | "pastaDocumento" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "centroCusto" | "recebivel" | "contaPagar" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "boleto" | "diagnostico" | "tokenPortal" | "aplicacaoDiagnostico" | "campanhaDiagnostico" | "diagnosticoParticipante"
+      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "etapaCrm" | "comentarioCrm" | "lead" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "projeto" | "etapa" | "tarefa" | "tarefaResponsavel" | "comentarioTarefa" | "anexoTarefa" | "atividadeTarefa" | "aprovacaoTarefa" | "itemChecklist" | "etiquetaTarefa" | "tarefaEtiqueta" | "pastaDocumento" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "centroCusto" | "recebivel" | "contaPagar" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "boleto" | "diagnostico" | "tokenPortal" | "aplicacaoDiagnostico" | "campanhaDiagnostico" | "diagnosticoParticipante" | "diagnosticoTemplate" | "assinatura"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -5299,6 +5331,154 @@ export namespace Prisma {
           }
         }
       }
+      DiagnosticoTemplate: {
+        payload: Prisma.$DiagnosticoTemplatePayload<ExtArgs>
+        fields: Prisma.DiagnosticoTemplateFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DiagnosticoTemplateFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiagnosticoTemplatePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DiagnosticoTemplateFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiagnosticoTemplatePayload>
+          }
+          findFirst: {
+            args: Prisma.DiagnosticoTemplateFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiagnosticoTemplatePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DiagnosticoTemplateFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiagnosticoTemplatePayload>
+          }
+          findMany: {
+            args: Prisma.DiagnosticoTemplateFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiagnosticoTemplatePayload>[]
+          }
+          create: {
+            args: Prisma.DiagnosticoTemplateCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiagnosticoTemplatePayload>
+          }
+          createMany: {
+            args: Prisma.DiagnosticoTemplateCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.DiagnosticoTemplateCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiagnosticoTemplatePayload>[]
+          }
+          delete: {
+            args: Prisma.DiagnosticoTemplateDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiagnosticoTemplatePayload>
+          }
+          update: {
+            args: Prisma.DiagnosticoTemplateUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiagnosticoTemplatePayload>
+          }
+          deleteMany: {
+            args: Prisma.DiagnosticoTemplateDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DiagnosticoTemplateUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.DiagnosticoTemplateUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiagnosticoTemplatePayload>[]
+          }
+          upsert: {
+            args: Prisma.DiagnosticoTemplateUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DiagnosticoTemplatePayload>
+          }
+          aggregate: {
+            args: Prisma.DiagnosticoTemplateAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDiagnosticoTemplate>
+          }
+          groupBy: {
+            args: Prisma.DiagnosticoTemplateGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DiagnosticoTemplateGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DiagnosticoTemplateCountArgs<ExtArgs>
+            result: $Utils.Optional<DiagnosticoTemplateCountAggregateOutputType> | number
+          }
+        }
+      }
+      Assinatura: {
+        payload: Prisma.$AssinaturaPayload<ExtArgs>
+        fields: Prisma.AssinaturaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AssinaturaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssinaturaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AssinaturaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssinaturaPayload>
+          }
+          findFirst: {
+            args: Prisma.AssinaturaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssinaturaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AssinaturaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssinaturaPayload>
+          }
+          findMany: {
+            args: Prisma.AssinaturaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssinaturaPayload>[]
+          }
+          create: {
+            args: Prisma.AssinaturaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssinaturaPayload>
+          }
+          createMany: {
+            args: Prisma.AssinaturaCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AssinaturaCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssinaturaPayload>[]
+          }
+          delete: {
+            args: Prisma.AssinaturaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssinaturaPayload>
+          }
+          update: {
+            args: Prisma.AssinaturaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssinaturaPayload>
+          }
+          deleteMany: {
+            args: Prisma.AssinaturaDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AssinaturaUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AssinaturaUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssinaturaPayload>[]
+          }
+          upsert: {
+            args: Prisma.AssinaturaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssinaturaPayload>
+          }
+          aggregate: {
+            args: Prisma.AssinaturaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAssinatura>
+          }
+          groupBy: {
+            args: Prisma.AssinaturaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AssinaturaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AssinaturaCountArgs<ExtArgs>
+            result: $Utils.Optional<AssinaturaCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -5456,6 +5636,8 @@ export namespace Prisma {
     aplicacaoDiagnostico?: AplicacaoDiagnosticoOmit
     campanhaDiagnostico?: CampanhaDiagnosticoOmit
     diagnosticoParticipante?: DiagnosticoParticipanteOmit
+    diagnosticoTemplate?: DiagnosticoTemplateOmit
+    assinatura?: AssinaturaOmit
   }
 
   /* Types for Logging */
@@ -5565,6 +5747,8 @@ export namespace Prisma {
     etapas_crm: number
     campanhas_diagnostico: number
     centros_custo: number
+    diagnostico_templates: number
+    assinaturas: number
   }
 
   export type EmpresaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5597,6 +5781,8 @@ export namespace Prisma {
     etapas_crm?: boolean | EmpresaCountOutputTypeCountEtapas_crmArgs
     campanhas_diagnostico?: boolean | EmpresaCountOutputTypeCountCampanhas_diagnosticoArgs
     centros_custo?: boolean | EmpresaCountOutputTypeCountCentros_custoArgs
+    diagnostico_templates?: boolean | EmpresaCountOutputTypeCountDiagnostico_templatesArgs
+    assinaturas?: boolean | EmpresaCountOutputTypeCountAssinaturasArgs
   }
 
   // Custom InputTypes
@@ -5811,6 +5997,20 @@ export namespace Prisma {
    */
   export type EmpresaCountOutputTypeCountCentros_custoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CentroCustoWhereInput
+  }
+
+  /**
+   * EmpresaCountOutputType without action
+   */
+  export type EmpresaCountOutputTypeCountDiagnostico_templatesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DiagnosticoTemplateWhereInput
+  }
+
+  /**
+   * EmpresaCountOutputType without action
+   */
+  export type EmpresaCountOutputTypeCountAssinaturasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AssinaturaWhereInput
   }
 
 
@@ -6114,6 +6314,7 @@ export namespace Prisma {
     diagnosticos: number
     documentos: number
     aplicacoes_diagnostico: number
+    assinaturas: number
   }
 
   export type ClienteCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6130,6 +6331,7 @@ export namespace Prisma {
     diagnosticos?: boolean | ClienteCountOutputTypeCountDiagnosticosArgs
     documentos?: boolean | ClienteCountOutputTypeCountDocumentosArgs
     aplicacoes_diagnostico?: boolean | ClienteCountOutputTypeCountAplicacoes_diagnosticoArgs
+    assinaturas?: boolean | ClienteCountOutputTypeCountAssinaturasArgs
   }
 
   // Custom InputTypes
@@ -6234,6 +6436,13 @@ export namespace Prisma {
     where?: AplicacaoDiagnosticoWhereInput
   }
 
+  /**
+   * ClienteCountOutputType without action
+   */
+  export type ClienteCountOutputTypeCountAssinaturasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AssinaturaWhereInput
+  }
+
 
   /**
    * Count Type ServicoCountOutputType
@@ -6242,11 +6451,13 @@ export namespace Prisma {
   export type ServicoCountOutputType = {
     itens_proposta: number
     leads: number
+    assinaturas: number
   }
 
   export type ServicoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     itens_proposta?: boolean | ServicoCountOutputTypeCountItens_propostaArgs
     leads?: boolean | ServicoCountOutputTypeCountLeadsArgs
+    assinaturas?: boolean | ServicoCountOutputTypeCountAssinaturasArgs
   }
 
   // Custom InputTypes
@@ -6272,6 +6483,13 @@ export namespace Prisma {
    */
   export type ServicoCountOutputTypeCountLeadsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: LeadWhereInput
+  }
+
+  /**
+   * ServicoCountOutputType without action
+   */
+  export type ServicoCountOutputTypeCountAssinaturasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AssinaturaWhereInput
   }
 
 
@@ -7158,6 +7376,8 @@ export namespace Prisma {
     etapas_crm?: boolean | Empresa$etapas_crmArgs<ExtArgs>
     campanhas_diagnostico?: boolean | Empresa$campanhas_diagnosticoArgs<ExtArgs>
     centros_custo?: boolean | Empresa$centros_custoArgs<ExtArgs>
+    diagnostico_templates?: boolean | Empresa$diagnostico_templatesArgs<ExtArgs>
+    assinaturas?: boolean | Empresa$assinaturasArgs<ExtArgs>
     _count?: boolean | EmpresaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["empresa"]>
 
@@ -7231,6 +7451,8 @@ export namespace Prisma {
     etapas_crm?: boolean | Empresa$etapas_crmArgs<ExtArgs>
     campanhas_diagnostico?: boolean | Empresa$campanhas_diagnosticoArgs<ExtArgs>
     centros_custo?: boolean | Empresa$centros_custoArgs<ExtArgs>
+    diagnostico_templates?: boolean | Empresa$diagnostico_templatesArgs<ExtArgs>
+    assinaturas?: boolean | Empresa$assinaturasArgs<ExtArgs>
     _count?: boolean | EmpresaCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EmpresaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -7268,6 +7490,8 @@ export namespace Prisma {
       etapas_crm: Prisma.$EtapaCrmPayload<ExtArgs>[]
       campanhas_diagnostico: Prisma.$CampanhaDiagnosticoPayload<ExtArgs>[]
       centros_custo: Prisma.$CentroCustoPayload<ExtArgs>[]
+      diagnostico_templates: Prisma.$DiagnosticoTemplatePayload<ExtArgs>[]
+      assinaturas: Prisma.$AssinaturaPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7703,6 +7927,8 @@ export namespace Prisma {
     etapas_crm<T extends Empresa$etapas_crmArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$etapas_crmArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EtapaCrmPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     campanhas_diagnostico<T extends Empresa$campanhas_diagnosticoArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$campanhas_diagnosticoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CampanhaDiagnosticoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     centros_custo<T extends Empresa$centros_custoArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$centros_custoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CentroCustoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    diagnostico_templates<T extends Empresa$diagnostico_templatesArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$diagnostico_templatesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiagnosticoTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    assinaturas<T extends Empresa$assinaturasArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$assinaturasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssinaturaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8828,6 +9054,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: CentroCustoScalarFieldEnum | CentroCustoScalarFieldEnum[]
+  }
+
+  /**
+   * Empresa.diagnostico_templates
+   */
+  export type Empresa$diagnostico_templatesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DiagnosticoTemplate
+     */
+    select?: DiagnosticoTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DiagnosticoTemplate
+     */
+    omit?: DiagnosticoTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DiagnosticoTemplateInclude<ExtArgs> | null
+    where?: DiagnosticoTemplateWhereInput
+    orderBy?: DiagnosticoTemplateOrderByWithRelationInput | DiagnosticoTemplateOrderByWithRelationInput[]
+    cursor?: DiagnosticoTemplateWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DiagnosticoTemplateScalarFieldEnum | DiagnosticoTemplateScalarFieldEnum[]
+  }
+
+  /**
+   * Empresa.assinaturas
+   */
+  export type Empresa$assinaturasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Assinatura
+     */
+    select?: AssinaturaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Assinatura
+     */
+    omit?: AssinaturaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssinaturaInclude<ExtArgs> | null
+    where?: AssinaturaWhereInput
+    orderBy?: AssinaturaOrderByWithRelationInput | AssinaturaOrderByWithRelationInput[]
+    cursor?: AssinaturaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AssinaturaScalarFieldEnum | AssinaturaScalarFieldEnum[]
   }
 
   /**
@@ -17179,6 +17453,7 @@ export namespace Prisma {
     distancia_km: Decimal | null
     preco_km: Decimal | null
     status: $Enums.StatusCliente | null
+    asaas_id: string | null
     criado_em: Date | null
     atualizado_em: Date | null
   }
@@ -17206,6 +17481,7 @@ export namespace Prisma {
     distancia_km: Decimal | null
     preco_km: Decimal | null
     status: $Enums.StatusCliente | null
+    asaas_id: string | null
     criado_em: Date | null
     atualizado_em: Date | null
   }
@@ -17233,6 +17509,7 @@ export namespace Prisma {
     distancia_km: number
     preco_km: number
     status: number
+    asaas_id: number
     criado_em: number
     atualizado_em: number
     _all: number
@@ -17272,6 +17549,7 @@ export namespace Prisma {
     distancia_km?: true
     preco_km?: true
     status?: true
+    asaas_id?: true
     criado_em?: true
     atualizado_em?: true
   }
@@ -17299,6 +17577,7 @@ export namespace Prisma {
     distancia_km?: true
     preco_km?: true
     status?: true
+    asaas_id?: true
     criado_em?: true
     atualizado_em?: true
   }
@@ -17326,6 +17605,7 @@ export namespace Prisma {
     distancia_km?: true
     preco_km?: true
     status?: true
+    asaas_id?: true
     criado_em?: true
     atualizado_em?: true
     _all?: true
@@ -17440,6 +17720,7 @@ export namespace Prisma {
     distancia_km: Decimal | null
     preco_km: Decimal | null
     status: $Enums.StatusCliente
+    asaas_id: string | null
     criado_em: Date
     atualizado_em: Date
     _count: ClienteCountAggregateOutputType | null
@@ -17486,6 +17767,7 @@ export namespace Prisma {
     distancia_km?: boolean
     preco_km?: boolean
     status?: boolean
+    asaas_id?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -17503,6 +17785,7 @@ export namespace Prisma {
     convite?: boolean | Cliente$conviteArgs<ExtArgs>
     documentos?: boolean | Cliente$documentosArgs<ExtArgs>
     aplicacoes_diagnostico?: boolean | Cliente$aplicacoes_diagnosticoArgs<ExtArgs>
+    assinaturas?: boolean | Cliente$assinaturasArgs<ExtArgs>
     _count?: boolean | ClienteCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["cliente"]>
 
@@ -17529,6 +17812,7 @@ export namespace Prisma {
     distancia_km?: boolean
     preco_km?: boolean
     status?: boolean
+    asaas_id?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -17557,6 +17841,7 @@ export namespace Prisma {
     distancia_km?: boolean
     preco_km?: boolean
     status?: boolean
+    asaas_id?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -17585,11 +17870,12 @@ export namespace Prisma {
     distancia_km?: boolean
     preco_km?: boolean
     status?: boolean
+    asaas_id?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
   }
 
-  export type ClienteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "nome" | "tipo" | "nome_fantasia" | "cpf_cnpj" | "inscricao_estadual" | "contato_principal" | "email" | "telefone" | "whatsapp" | "cep" | "logradouro" | "numero" | "complemento" | "bairro" | "cidade" | "estado" | "nome_fazenda" | "distancia_km" | "preco_km" | "status" | "criado_em" | "atualizado_em", ExtArgs["result"]["cliente"]>
+  export type ClienteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "nome" | "tipo" | "nome_fantasia" | "cpf_cnpj" | "inscricao_estadual" | "contato_principal" | "email" | "telefone" | "whatsapp" | "cep" | "logradouro" | "numero" | "complemento" | "bairro" | "cidade" | "estado" | "nome_fazenda" | "distancia_km" | "preco_km" | "status" | "asaas_id" | "criado_em" | "atualizado_em", ExtArgs["result"]["cliente"]>
   export type ClienteInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     contatos?: boolean | Cliente$contatosArgs<ExtArgs>
@@ -17606,6 +17892,7 @@ export namespace Prisma {
     convite?: boolean | Cliente$conviteArgs<ExtArgs>
     documentos?: boolean | Cliente$documentosArgs<ExtArgs>
     aplicacoes_diagnostico?: boolean | Cliente$aplicacoes_diagnosticoArgs<ExtArgs>
+    assinaturas?: boolean | Cliente$assinaturasArgs<ExtArgs>
     _count?: boolean | ClienteCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ClienteIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -17633,6 +17920,7 @@ export namespace Prisma {
       convite: Prisma.$ConviteClientePayload<ExtArgs> | null
       documentos: Prisma.$DocumentoPayload<ExtArgs>[]
       aplicacoes_diagnostico: Prisma.$AplicacaoDiagnosticoPayload<ExtArgs>[]
+      assinaturas: Prisma.$AssinaturaPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -17657,6 +17945,7 @@ export namespace Prisma {
       distancia_km: Prisma.Decimal | null
       preco_km: Prisma.Decimal | null
       status: $Enums.StatusCliente
+      asaas_id: string | null
       criado_em: Date
       atualizado_em: Date
     }, ExtArgs["result"]["cliente"]>
@@ -18068,6 +18357,7 @@ export namespace Prisma {
     convite<T extends Cliente$conviteArgs<ExtArgs> = {}>(args?: Subset<T, Cliente$conviteArgs<ExtArgs>>): Prisma__ConviteClienteClient<$Result.GetResult<Prisma.$ConviteClientePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     documentos<T extends Cliente$documentosArgs<ExtArgs> = {}>(args?: Subset<T, Cliente$documentosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DocumentoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     aplicacoes_diagnostico<T extends Cliente$aplicacoes_diagnosticoArgs<ExtArgs> = {}>(args?: Subset<T, Cliente$aplicacoes_diagnosticoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AplicacaoDiagnosticoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    assinaturas<T extends Cliente$assinaturasArgs<ExtArgs> = {}>(args?: Subset<T, Cliente$assinaturasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssinaturaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -18119,6 +18409,7 @@ export namespace Prisma {
     readonly distancia_km: FieldRef<"Cliente", 'Decimal'>
     readonly preco_km: FieldRef<"Cliente", 'Decimal'>
     readonly status: FieldRef<"Cliente", 'StatusCliente'>
+    readonly asaas_id: FieldRef<"Cliente", 'String'>
     readonly criado_em: FieldRef<"Cliente", 'DateTime'>
     readonly atualizado_em: FieldRef<"Cliente", 'DateTime'>
   }
@@ -18850,6 +19141,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AplicacaoDiagnosticoScalarFieldEnum | AplicacaoDiagnosticoScalarFieldEnum[]
+  }
+
+  /**
+   * Cliente.assinaturas
+   */
+  export type Cliente$assinaturasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Assinatura
+     */
+    select?: AssinaturaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Assinatura
+     */
+    omit?: AssinaturaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssinaturaInclude<ExtArgs> | null
+    where?: AssinaturaWhereInput
+    orderBy?: AssinaturaOrderByWithRelationInput | AssinaturaOrderByWithRelationInput[]
+    cursor?: AssinaturaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AssinaturaScalarFieldEnum | AssinaturaScalarFieldEnum[]
   }
 
   /**
@@ -20001,6 +20316,10 @@ export namespace Prisma {
     descricao: string | null
     valor_base: Decimal | null
     ativo: boolean | null
+    canal: string | null
+    plano: string | null
+    tipo_cobranca: string | null
+    asaas_link_pagamento: string | null
     criado_em: Date | null
     atualizado_em: Date | null
   }
@@ -20013,6 +20332,10 @@ export namespace Prisma {
     descricao: string | null
     valor_base: Decimal | null
     ativo: boolean | null
+    canal: string | null
+    plano: string | null
+    tipo_cobranca: string | null
+    asaas_link_pagamento: string | null
     criado_em: Date | null
     atualizado_em: Date | null
   }
@@ -20025,6 +20348,10 @@ export namespace Prisma {
     descricao: number
     valor_base: number
     ativo: number
+    canal: number
+    plano: number
+    tipo_cobranca: number
+    asaas_link_pagamento: number
     criado_em: number
     atualizado_em: number
     _all: number
@@ -20047,6 +20374,10 @@ export namespace Prisma {
     descricao?: true
     valor_base?: true
     ativo?: true
+    canal?: true
+    plano?: true
+    tipo_cobranca?: true
+    asaas_link_pagamento?: true
     criado_em?: true
     atualizado_em?: true
   }
@@ -20059,6 +20390,10 @@ export namespace Prisma {
     descricao?: true
     valor_base?: true
     ativo?: true
+    canal?: true
+    plano?: true
+    tipo_cobranca?: true
+    asaas_link_pagamento?: true
     criado_em?: true
     atualizado_em?: true
   }
@@ -20071,6 +20406,10 @@ export namespace Prisma {
     descricao?: true
     valor_base?: true
     ativo?: true
+    canal?: true
+    plano?: true
+    tipo_cobranca?: true
+    asaas_link_pagamento?: true
     criado_em?: true
     atualizado_em?: true
     _all?: true
@@ -20170,6 +20509,10 @@ export namespace Prisma {
     descricao: string | null
     valor_base: Decimal | null
     ativo: boolean
+    canal: string | null
+    plano: string | null
+    tipo_cobranca: string | null
+    asaas_link_pagamento: string | null
     criado_em: Date
     atualizado_em: Date
     _count: ServicoCountAggregateOutputType | null
@@ -20201,12 +20544,17 @@ export namespace Prisma {
     descricao?: boolean
     valor_base?: boolean
     ativo?: boolean
+    canal?: boolean
+    plano?: boolean
+    tipo_cobranca?: boolean
+    asaas_link_pagamento?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     plano_contas?: boolean | Servico$plano_contasArgs<ExtArgs>
     itens_proposta?: boolean | Servico$itens_propostaArgs<ExtArgs>
     leads?: boolean | Servico$leadsArgs<ExtArgs>
+    assinaturas?: boolean | Servico$assinaturasArgs<ExtArgs>
     _count?: boolean | ServicoCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["servico"]>
 
@@ -20218,6 +20566,10 @@ export namespace Prisma {
     descricao?: boolean
     valor_base?: boolean
     ativo?: boolean
+    canal?: boolean
+    plano?: boolean
+    tipo_cobranca?: boolean
+    asaas_link_pagamento?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -20232,6 +20584,10 @@ export namespace Prisma {
     descricao?: boolean
     valor_base?: boolean
     ativo?: boolean
+    canal?: boolean
+    plano?: boolean
+    tipo_cobranca?: boolean
+    asaas_link_pagamento?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -20246,16 +20602,21 @@ export namespace Prisma {
     descricao?: boolean
     valor_base?: boolean
     ativo?: boolean
+    canal?: boolean
+    plano?: boolean
+    tipo_cobranca?: boolean
+    asaas_link_pagamento?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
   }
 
-  export type ServicoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "plano_contas_id" | "nome" | "descricao" | "valor_base" | "ativo" | "criado_em" | "atualizado_em", ExtArgs["result"]["servico"]>
+  export type ServicoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "plano_contas_id" | "nome" | "descricao" | "valor_base" | "ativo" | "canal" | "plano" | "tipo_cobranca" | "asaas_link_pagamento" | "criado_em" | "atualizado_em", ExtArgs["result"]["servico"]>
   export type ServicoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     plano_contas?: boolean | Servico$plano_contasArgs<ExtArgs>
     itens_proposta?: boolean | Servico$itens_propostaArgs<ExtArgs>
     leads?: boolean | Servico$leadsArgs<ExtArgs>
+    assinaturas?: boolean | Servico$assinaturasArgs<ExtArgs>
     _count?: boolean | ServicoCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ServicoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -20274,6 +20635,7 @@ export namespace Prisma {
       plano_contas: Prisma.$PlanoDeContasPayload<ExtArgs> | null
       itens_proposta: Prisma.$ItemPropostaPayload<ExtArgs>[]
       leads: Prisma.$LeadPayload<ExtArgs>[]
+      assinaturas: Prisma.$AssinaturaPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -20283,6 +20645,10 @@ export namespace Prisma {
       descricao: string | null
       valor_base: Prisma.Decimal | null
       ativo: boolean
+      canal: string | null
+      plano: string | null
+      tipo_cobranca: string | null
+      asaas_link_pagamento: string | null
       criado_em: Date
       atualizado_em: Date
     }, ExtArgs["result"]["servico"]>
@@ -20683,6 +21049,7 @@ export namespace Prisma {
     plano_contas<T extends Servico$plano_contasArgs<ExtArgs> = {}>(args?: Subset<T, Servico$plano_contasArgs<ExtArgs>>): Prisma__PlanoDeContasClient<$Result.GetResult<Prisma.$PlanoDeContasPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     itens_proposta<T extends Servico$itens_propostaArgs<ExtArgs> = {}>(args?: Subset<T, Servico$itens_propostaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItemPropostaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     leads<T extends Servico$leadsArgs<ExtArgs> = {}>(args?: Subset<T, Servico$leadsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LeadPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    assinaturas<T extends Servico$assinaturasArgs<ExtArgs> = {}>(args?: Subset<T, Servico$assinaturasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssinaturaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -20719,6 +21086,10 @@ export namespace Prisma {
     readonly descricao: FieldRef<"Servico", 'String'>
     readonly valor_base: FieldRef<"Servico", 'Decimal'>
     readonly ativo: FieldRef<"Servico", 'Boolean'>
+    readonly canal: FieldRef<"Servico", 'String'>
+    readonly plano: FieldRef<"Servico", 'String'>
+    readonly tipo_cobranca: FieldRef<"Servico", 'String'>
+    readonly asaas_link_pagamento: FieldRef<"Servico", 'String'>
     readonly criado_em: FieldRef<"Servico", 'DateTime'>
     readonly atualizado_em: FieldRef<"Servico", 'DateTime'>
   }
@@ -21186,6 +21557,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: LeadScalarFieldEnum | LeadScalarFieldEnum[]
+  }
+
+  /**
+   * Servico.assinaturas
+   */
+  export type Servico$assinaturasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Assinatura
+     */
+    select?: AssinaturaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Assinatura
+     */
+    omit?: AssinaturaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssinaturaInclude<ExtArgs> | null
+    where?: AssinaturaWhereInput
+    orderBy?: AssinaturaOrderByWithRelationInput | AssinaturaOrderByWithRelationInput[]
+    cursor?: AssinaturaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AssinaturaScalarFieldEnum | AssinaturaScalarFieldEnum[]
   }
 
   /**
@@ -52138,6 +52533,11 @@ export namespace Prisma {
     desconto_valor: Decimal | null
     recebivel_origem_id: string | null
     centro_custo_id: string | null
+    asaas_payment_id: string | null
+    asaas_invoice_url: string | null
+    asaas_pix_copia_cola: string | null
+    asaas_boleto_url: string | null
+    asaas_status: string | null
     criado_em: Date | null
     atualizado_em: Date | null
   }
@@ -52165,6 +52565,11 @@ export namespace Prisma {
     desconto_valor: Decimal | null
     recebivel_origem_id: string | null
     centro_custo_id: string | null
+    asaas_payment_id: string | null
+    asaas_invoice_url: string | null
+    asaas_pix_copia_cola: string | null
+    asaas_boleto_url: string | null
+    asaas_status: string | null
     criado_em: Date | null
     atualizado_em: Date | null
   }
@@ -52192,6 +52597,11 @@ export namespace Prisma {
     desconto_valor: number
     recebivel_origem_id: number
     centro_custo_id: number
+    asaas_payment_id: number
+    asaas_invoice_url: number
+    asaas_pix_copia_cola: number
+    asaas_boleto_url: number
+    asaas_status: number
     criado_em: number
     atualizado_em: number
     _all: number
@@ -52241,6 +52651,11 @@ export namespace Prisma {
     desconto_valor?: true
     recebivel_origem_id?: true
     centro_custo_id?: true
+    asaas_payment_id?: true
+    asaas_invoice_url?: true
+    asaas_pix_copia_cola?: true
+    asaas_boleto_url?: true
+    asaas_status?: true
     criado_em?: true
     atualizado_em?: true
   }
@@ -52268,6 +52683,11 @@ export namespace Prisma {
     desconto_valor?: true
     recebivel_origem_id?: true
     centro_custo_id?: true
+    asaas_payment_id?: true
+    asaas_invoice_url?: true
+    asaas_pix_copia_cola?: true
+    asaas_boleto_url?: true
+    asaas_status?: true
     criado_em?: true
     atualizado_em?: true
   }
@@ -52295,6 +52715,11 @@ export namespace Prisma {
     desconto_valor?: true
     recebivel_origem_id?: true
     centro_custo_id?: true
+    asaas_payment_id?: true
+    asaas_invoice_url?: true
+    asaas_pix_copia_cola?: true
+    asaas_boleto_url?: true
+    asaas_status?: true
     criado_em?: true
     atualizado_em?: true
     _all?: true
@@ -52409,6 +52834,11 @@ export namespace Prisma {
     desconto_valor: Decimal | null
     recebivel_origem_id: string | null
     centro_custo_id: string | null
+    asaas_payment_id: string | null
+    asaas_invoice_url: string | null
+    asaas_pix_copia_cola: string | null
+    asaas_boleto_url: string | null
+    asaas_status: string | null
     criado_em: Date
     atualizado_em: Date
     _count: RecebivelCountAggregateOutputType | null
@@ -52455,6 +52885,11 @@ export namespace Prisma {
     desconto_valor?: boolean
     recebivel_origem_id?: boolean
     centro_custo_id?: boolean
+    asaas_payment_id?: boolean
+    asaas_invoice_url?: boolean
+    asaas_pix_copia_cola?: boolean
+    asaas_boleto_url?: boolean
+    asaas_status?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -52491,6 +52926,11 @@ export namespace Prisma {
     desconto_valor?: boolean
     recebivel_origem_id?: boolean
     centro_custo_id?: boolean
+    asaas_payment_id?: boolean
+    asaas_invoice_url?: boolean
+    asaas_pix_copia_cola?: boolean
+    asaas_boleto_url?: boolean
+    asaas_status?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -52525,6 +52965,11 @@ export namespace Prisma {
     desconto_valor?: boolean
     recebivel_origem_id?: boolean
     centro_custo_id?: boolean
+    asaas_payment_id?: boolean
+    asaas_invoice_url?: boolean
+    asaas_pix_copia_cola?: boolean
+    asaas_boleto_url?: boolean
+    asaas_status?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -52559,11 +53004,16 @@ export namespace Prisma {
     desconto_valor?: boolean
     recebivel_origem_id?: boolean
     centro_custo_id?: boolean
+    asaas_payment_id?: boolean
+    asaas_invoice_url?: boolean
+    asaas_pix_copia_cola?: boolean
+    asaas_boleto_url?: boolean
+    asaas_status?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
   }
 
-  export type RecebivelOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "cliente_id" | "contrato_id" | "plano_contas_id" | "conta_bancaria_id" | "criado_por" | "descricao" | "valor" | "data_vencimento" | "status" | "data_pagamento" | "valor_pago" | "forma_pagamento" | "numero_parcela" | "total_parcelas" | "observacoes" | "juros_valor" | "multa_valor" | "desconto_valor" | "recebivel_origem_id" | "centro_custo_id" | "criado_em" | "atualizado_em", ExtArgs["result"]["recebivel"]>
+  export type RecebivelOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "cliente_id" | "contrato_id" | "plano_contas_id" | "conta_bancaria_id" | "criado_por" | "descricao" | "valor" | "data_vencimento" | "status" | "data_pagamento" | "valor_pago" | "forma_pagamento" | "numero_parcela" | "total_parcelas" | "observacoes" | "juros_valor" | "multa_valor" | "desconto_valor" | "recebivel_origem_id" | "centro_custo_id" | "asaas_payment_id" | "asaas_invoice_url" | "asaas_pix_copia_cola" | "asaas_boleto_url" | "asaas_status" | "criado_em" | "atualizado_em", ExtArgs["result"]["recebivel"]>
   export type RecebivelInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     cliente?: boolean | Recebivel$clienteArgs<ExtArgs>
@@ -52630,6 +53080,11 @@ export namespace Prisma {
       desconto_valor: Prisma.Decimal | null
       recebivel_origem_id: string | null
       centro_custo_id: string | null
+      asaas_payment_id: string | null
+      asaas_invoice_url: string | null
+      asaas_pix_copia_cola: string | null
+      asaas_boleto_url: string | null
+      asaas_status: string | null
       criado_em: Date
       atualizado_em: Date
     }, ExtArgs["result"]["recebivel"]>
@@ -53086,6 +53541,11 @@ export namespace Prisma {
     readonly desconto_valor: FieldRef<"Recebivel", 'Decimal'>
     readonly recebivel_origem_id: FieldRef<"Recebivel", 'String'>
     readonly centro_custo_id: FieldRef<"Recebivel", 'String'>
+    readonly asaas_payment_id: FieldRef<"Recebivel", 'String'>
+    readonly asaas_invoice_url: FieldRef<"Recebivel", 'String'>
+    readonly asaas_pix_copia_cola: FieldRef<"Recebivel", 'String'>
+    readonly asaas_boleto_url: FieldRef<"Recebivel", 'String'>
+    readonly asaas_status: FieldRef<"Recebivel", 'String'>
     readonly criado_em: FieldRef<"Recebivel", 'DateTime'>
     readonly atualizado_em: FieldRef<"Recebivel", 'DateTime'>
   }
@@ -68285,6 +68745,2515 @@ export namespace Prisma {
 
 
   /**
+   * Model DiagnosticoTemplate
+   */
+
+  export type AggregateDiagnosticoTemplate = {
+    _count: DiagnosticoTemplateCountAggregateOutputType | null
+    _min: DiagnosticoTemplateMinAggregateOutputType | null
+    _max: DiagnosticoTemplateMaxAggregateOutputType | null
+  }
+
+  export type DiagnosticoTemplateMinAggregateOutputType = {
+    id: string | null
+    empresa_id: string | null
+    cultura: string | null
+    nivel: string | null
+    titulo: string | null
+    texto_receita: string | null
+    texto_custos: string | null
+    texto_caixa: string | null
+    texto_recomendacoes: string | null
+    criado_em: Date | null
+    atualizado_em: Date | null
+  }
+
+  export type DiagnosticoTemplateMaxAggregateOutputType = {
+    id: string | null
+    empresa_id: string | null
+    cultura: string | null
+    nivel: string | null
+    titulo: string | null
+    texto_receita: string | null
+    texto_custos: string | null
+    texto_caixa: string | null
+    texto_recomendacoes: string | null
+    criado_em: Date | null
+    atualizado_em: Date | null
+  }
+
+  export type DiagnosticoTemplateCountAggregateOutputType = {
+    id: number
+    empresa_id: number
+    cultura: number
+    nivel: number
+    titulo: number
+    texto_receita: number
+    texto_custos: number
+    texto_caixa: number
+    texto_recomendacoes: number
+    parametros_dre: number
+    criado_em: number
+    atualizado_em: number
+    _all: number
+  }
+
+
+  export type DiagnosticoTemplateMinAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    cultura?: true
+    nivel?: true
+    titulo?: true
+    texto_receita?: true
+    texto_custos?: true
+    texto_caixa?: true
+    texto_recomendacoes?: true
+    criado_em?: true
+    atualizado_em?: true
+  }
+
+  export type DiagnosticoTemplateMaxAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    cultura?: true
+    nivel?: true
+    titulo?: true
+    texto_receita?: true
+    texto_custos?: true
+    texto_caixa?: true
+    texto_recomendacoes?: true
+    criado_em?: true
+    atualizado_em?: true
+  }
+
+  export type DiagnosticoTemplateCountAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    cultura?: true
+    nivel?: true
+    titulo?: true
+    texto_receita?: true
+    texto_custos?: true
+    texto_caixa?: true
+    texto_recomendacoes?: true
+    parametros_dre?: true
+    criado_em?: true
+    atualizado_em?: true
+    _all?: true
+  }
+
+  export type DiagnosticoTemplateAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DiagnosticoTemplate to aggregate.
+     */
+    where?: DiagnosticoTemplateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DiagnosticoTemplates to fetch.
+     */
+    orderBy?: DiagnosticoTemplateOrderByWithRelationInput | DiagnosticoTemplateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DiagnosticoTemplateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DiagnosticoTemplates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DiagnosticoTemplates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DiagnosticoTemplates
+    **/
+    _count?: true | DiagnosticoTemplateCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DiagnosticoTemplateMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DiagnosticoTemplateMaxAggregateInputType
+  }
+
+  export type GetDiagnosticoTemplateAggregateType<T extends DiagnosticoTemplateAggregateArgs> = {
+        [P in keyof T & keyof AggregateDiagnosticoTemplate]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDiagnosticoTemplate[P]>
+      : GetScalarType<T[P], AggregateDiagnosticoTemplate[P]>
+  }
+
+
+
+
+  export type DiagnosticoTemplateGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DiagnosticoTemplateWhereInput
+    orderBy?: DiagnosticoTemplateOrderByWithAggregationInput | DiagnosticoTemplateOrderByWithAggregationInput[]
+    by: DiagnosticoTemplateScalarFieldEnum[] | DiagnosticoTemplateScalarFieldEnum
+    having?: DiagnosticoTemplateScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DiagnosticoTemplateCountAggregateInputType | true
+    _min?: DiagnosticoTemplateMinAggregateInputType
+    _max?: DiagnosticoTemplateMaxAggregateInputType
+  }
+
+  export type DiagnosticoTemplateGroupByOutputType = {
+    id: string
+    empresa_id: string
+    cultura: string
+    nivel: string
+    titulo: string | null
+    texto_receita: string | null
+    texto_custos: string | null
+    texto_caixa: string | null
+    texto_recomendacoes: string | null
+    parametros_dre: JsonValue
+    criado_em: Date
+    atualizado_em: Date
+    _count: DiagnosticoTemplateCountAggregateOutputType | null
+    _min: DiagnosticoTemplateMinAggregateOutputType | null
+    _max: DiagnosticoTemplateMaxAggregateOutputType | null
+  }
+
+  type GetDiagnosticoTemplateGroupByPayload<T extends DiagnosticoTemplateGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DiagnosticoTemplateGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DiagnosticoTemplateGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DiagnosticoTemplateGroupByOutputType[P]>
+            : GetScalarType<T[P], DiagnosticoTemplateGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DiagnosticoTemplateSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    cultura?: boolean
+    nivel?: boolean
+    titulo?: boolean
+    texto_receita?: boolean
+    texto_custos?: boolean
+    texto_caixa?: boolean
+    texto_recomendacoes?: boolean
+    parametros_dre?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["diagnosticoTemplate"]>
+
+  export type DiagnosticoTemplateSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    cultura?: boolean
+    nivel?: boolean
+    titulo?: boolean
+    texto_receita?: boolean
+    texto_custos?: boolean
+    texto_caixa?: boolean
+    texto_recomendacoes?: boolean
+    parametros_dre?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["diagnosticoTemplate"]>
+
+  export type DiagnosticoTemplateSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    cultura?: boolean
+    nivel?: boolean
+    titulo?: boolean
+    texto_receita?: boolean
+    texto_custos?: boolean
+    texto_caixa?: boolean
+    texto_recomendacoes?: boolean
+    parametros_dre?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["diagnosticoTemplate"]>
+
+  export type DiagnosticoTemplateSelectScalar = {
+    id?: boolean
+    empresa_id?: boolean
+    cultura?: boolean
+    nivel?: boolean
+    titulo?: boolean
+    texto_receita?: boolean
+    texto_custos?: boolean
+    texto_caixa?: boolean
+    texto_recomendacoes?: boolean
+    parametros_dre?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+  }
+
+  export type DiagnosticoTemplateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "cultura" | "nivel" | "titulo" | "texto_receita" | "texto_custos" | "texto_caixa" | "texto_recomendacoes" | "parametros_dre" | "criado_em" | "atualizado_em", ExtArgs["result"]["diagnosticoTemplate"]>
+  export type DiagnosticoTemplateInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }
+  export type DiagnosticoTemplateIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }
+  export type DiagnosticoTemplateIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }
+
+  export type $DiagnosticoTemplatePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DiagnosticoTemplate"
+    objects: {
+      empresa: Prisma.$EmpresaPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      empresa_id: string
+      cultura: string
+      nivel: string
+      titulo: string | null
+      texto_receita: string | null
+      texto_custos: string | null
+      texto_caixa: string | null
+      texto_recomendacoes: string | null
+      parametros_dre: Prisma.JsonValue
+      criado_em: Date
+      atualizado_em: Date
+    }, ExtArgs["result"]["diagnosticoTemplate"]>
+    composites: {}
+  }
+
+  type DiagnosticoTemplateGetPayload<S extends boolean | null | undefined | DiagnosticoTemplateDefaultArgs> = $Result.GetResult<Prisma.$DiagnosticoTemplatePayload, S>
+
+  type DiagnosticoTemplateCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DiagnosticoTemplateFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DiagnosticoTemplateCountAggregateInputType | true
+    }
+
+  export interface DiagnosticoTemplateDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DiagnosticoTemplate'], meta: { name: 'DiagnosticoTemplate' } }
+    /**
+     * Find zero or one DiagnosticoTemplate that matches the filter.
+     * @param {DiagnosticoTemplateFindUniqueArgs} args - Arguments to find a DiagnosticoTemplate
+     * @example
+     * // Get one DiagnosticoTemplate
+     * const diagnosticoTemplate = await prisma.diagnosticoTemplate.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DiagnosticoTemplateFindUniqueArgs>(args: SelectSubset<T, DiagnosticoTemplateFindUniqueArgs<ExtArgs>>): Prisma__DiagnosticoTemplateClient<$Result.GetResult<Prisma.$DiagnosticoTemplatePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one DiagnosticoTemplate that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DiagnosticoTemplateFindUniqueOrThrowArgs} args - Arguments to find a DiagnosticoTemplate
+     * @example
+     * // Get one DiagnosticoTemplate
+     * const diagnosticoTemplate = await prisma.diagnosticoTemplate.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DiagnosticoTemplateFindUniqueOrThrowArgs>(args: SelectSubset<T, DiagnosticoTemplateFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DiagnosticoTemplateClient<$Result.GetResult<Prisma.$DiagnosticoTemplatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DiagnosticoTemplate that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DiagnosticoTemplateFindFirstArgs} args - Arguments to find a DiagnosticoTemplate
+     * @example
+     * // Get one DiagnosticoTemplate
+     * const diagnosticoTemplate = await prisma.diagnosticoTemplate.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DiagnosticoTemplateFindFirstArgs>(args?: SelectSubset<T, DiagnosticoTemplateFindFirstArgs<ExtArgs>>): Prisma__DiagnosticoTemplateClient<$Result.GetResult<Prisma.$DiagnosticoTemplatePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DiagnosticoTemplate that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DiagnosticoTemplateFindFirstOrThrowArgs} args - Arguments to find a DiagnosticoTemplate
+     * @example
+     * // Get one DiagnosticoTemplate
+     * const diagnosticoTemplate = await prisma.diagnosticoTemplate.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DiagnosticoTemplateFindFirstOrThrowArgs>(args?: SelectSubset<T, DiagnosticoTemplateFindFirstOrThrowArgs<ExtArgs>>): Prisma__DiagnosticoTemplateClient<$Result.GetResult<Prisma.$DiagnosticoTemplatePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more DiagnosticoTemplates that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DiagnosticoTemplateFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DiagnosticoTemplates
+     * const diagnosticoTemplates = await prisma.diagnosticoTemplate.findMany()
+     * 
+     * // Get first 10 DiagnosticoTemplates
+     * const diagnosticoTemplates = await prisma.diagnosticoTemplate.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const diagnosticoTemplateWithIdOnly = await prisma.diagnosticoTemplate.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends DiagnosticoTemplateFindManyArgs>(args?: SelectSubset<T, DiagnosticoTemplateFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiagnosticoTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a DiagnosticoTemplate.
+     * @param {DiagnosticoTemplateCreateArgs} args - Arguments to create a DiagnosticoTemplate.
+     * @example
+     * // Create one DiagnosticoTemplate
+     * const DiagnosticoTemplate = await prisma.diagnosticoTemplate.create({
+     *   data: {
+     *     // ... data to create a DiagnosticoTemplate
+     *   }
+     * })
+     * 
+     */
+    create<T extends DiagnosticoTemplateCreateArgs>(args: SelectSubset<T, DiagnosticoTemplateCreateArgs<ExtArgs>>): Prisma__DiagnosticoTemplateClient<$Result.GetResult<Prisma.$DiagnosticoTemplatePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many DiagnosticoTemplates.
+     * @param {DiagnosticoTemplateCreateManyArgs} args - Arguments to create many DiagnosticoTemplates.
+     * @example
+     * // Create many DiagnosticoTemplates
+     * const diagnosticoTemplate = await prisma.diagnosticoTemplate.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DiagnosticoTemplateCreateManyArgs>(args?: SelectSubset<T, DiagnosticoTemplateCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many DiagnosticoTemplates and returns the data saved in the database.
+     * @param {DiagnosticoTemplateCreateManyAndReturnArgs} args - Arguments to create many DiagnosticoTemplates.
+     * @example
+     * // Create many DiagnosticoTemplates
+     * const diagnosticoTemplate = await prisma.diagnosticoTemplate.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many DiagnosticoTemplates and only return the `id`
+     * const diagnosticoTemplateWithIdOnly = await prisma.diagnosticoTemplate.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends DiagnosticoTemplateCreateManyAndReturnArgs>(args?: SelectSubset<T, DiagnosticoTemplateCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiagnosticoTemplatePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a DiagnosticoTemplate.
+     * @param {DiagnosticoTemplateDeleteArgs} args - Arguments to delete one DiagnosticoTemplate.
+     * @example
+     * // Delete one DiagnosticoTemplate
+     * const DiagnosticoTemplate = await prisma.diagnosticoTemplate.delete({
+     *   where: {
+     *     // ... filter to delete one DiagnosticoTemplate
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DiagnosticoTemplateDeleteArgs>(args: SelectSubset<T, DiagnosticoTemplateDeleteArgs<ExtArgs>>): Prisma__DiagnosticoTemplateClient<$Result.GetResult<Prisma.$DiagnosticoTemplatePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one DiagnosticoTemplate.
+     * @param {DiagnosticoTemplateUpdateArgs} args - Arguments to update one DiagnosticoTemplate.
+     * @example
+     * // Update one DiagnosticoTemplate
+     * const diagnosticoTemplate = await prisma.diagnosticoTemplate.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DiagnosticoTemplateUpdateArgs>(args: SelectSubset<T, DiagnosticoTemplateUpdateArgs<ExtArgs>>): Prisma__DiagnosticoTemplateClient<$Result.GetResult<Prisma.$DiagnosticoTemplatePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more DiagnosticoTemplates.
+     * @param {DiagnosticoTemplateDeleteManyArgs} args - Arguments to filter DiagnosticoTemplates to delete.
+     * @example
+     * // Delete a few DiagnosticoTemplates
+     * const { count } = await prisma.diagnosticoTemplate.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DiagnosticoTemplateDeleteManyArgs>(args?: SelectSubset<T, DiagnosticoTemplateDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DiagnosticoTemplates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DiagnosticoTemplateUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DiagnosticoTemplates
+     * const diagnosticoTemplate = await prisma.diagnosticoTemplate.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DiagnosticoTemplateUpdateManyArgs>(args: SelectSubset<T, DiagnosticoTemplateUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DiagnosticoTemplates and returns the data updated in the database.
+     * @param {DiagnosticoTemplateUpdateManyAndReturnArgs} args - Arguments to update many DiagnosticoTemplates.
+     * @example
+     * // Update many DiagnosticoTemplates
+     * const diagnosticoTemplate = await prisma.diagnosticoTemplate.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more DiagnosticoTemplates and only return the `id`
+     * const diagnosticoTemplateWithIdOnly = await prisma.diagnosticoTemplate.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends DiagnosticoTemplateUpdateManyAndReturnArgs>(args: SelectSubset<T, DiagnosticoTemplateUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiagnosticoTemplatePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one DiagnosticoTemplate.
+     * @param {DiagnosticoTemplateUpsertArgs} args - Arguments to update or create a DiagnosticoTemplate.
+     * @example
+     * // Update or create a DiagnosticoTemplate
+     * const diagnosticoTemplate = await prisma.diagnosticoTemplate.upsert({
+     *   create: {
+     *     // ... data to create a DiagnosticoTemplate
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DiagnosticoTemplate we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DiagnosticoTemplateUpsertArgs>(args: SelectSubset<T, DiagnosticoTemplateUpsertArgs<ExtArgs>>): Prisma__DiagnosticoTemplateClient<$Result.GetResult<Prisma.$DiagnosticoTemplatePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of DiagnosticoTemplates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DiagnosticoTemplateCountArgs} args - Arguments to filter DiagnosticoTemplates to count.
+     * @example
+     * // Count the number of DiagnosticoTemplates
+     * const count = await prisma.diagnosticoTemplate.count({
+     *   where: {
+     *     // ... the filter for the DiagnosticoTemplates we want to count
+     *   }
+     * })
+    **/
+    count<T extends DiagnosticoTemplateCountArgs>(
+      args?: Subset<T, DiagnosticoTemplateCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DiagnosticoTemplateCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DiagnosticoTemplate.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DiagnosticoTemplateAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DiagnosticoTemplateAggregateArgs>(args: Subset<T, DiagnosticoTemplateAggregateArgs>): Prisma.PrismaPromise<GetDiagnosticoTemplateAggregateType<T>>
+
+    /**
+     * Group by DiagnosticoTemplate.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DiagnosticoTemplateGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DiagnosticoTemplateGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DiagnosticoTemplateGroupByArgs['orderBy'] }
+        : { orderBy?: DiagnosticoTemplateGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DiagnosticoTemplateGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDiagnosticoTemplateGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DiagnosticoTemplate model
+   */
+  readonly fields: DiagnosticoTemplateFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DiagnosticoTemplate.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DiagnosticoTemplateClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    empresa<T extends EmpresaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmpresaDefaultArgs<ExtArgs>>): Prisma__EmpresaClient<$Result.GetResult<Prisma.$EmpresaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the DiagnosticoTemplate model
+   */
+  interface DiagnosticoTemplateFieldRefs {
+    readonly id: FieldRef<"DiagnosticoTemplate", 'String'>
+    readonly empresa_id: FieldRef<"DiagnosticoTemplate", 'String'>
+    readonly cultura: FieldRef<"DiagnosticoTemplate", 'String'>
+    readonly nivel: FieldRef<"DiagnosticoTemplate", 'String'>
+    readonly titulo: FieldRef<"DiagnosticoTemplate", 'String'>
+    readonly texto_receita: FieldRef<"DiagnosticoTemplate", 'String'>
+    readonly texto_custos: FieldRef<"DiagnosticoTemplate", 'String'>
+    readonly texto_caixa: FieldRef<"DiagnosticoTemplate", 'String'>
+    readonly texto_recomendacoes: FieldRef<"DiagnosticoTemplate", 'String'>
+    readonly parametros_dre: FieldRef<"DiagnosticoTemplate", 'Json'>
+    readonly criado_em: FieldRef<"DiagnosticoTemplate", 'DateTime'>
+    readonly atualizado_em: FieldRef<"DiagnosticoTemplate", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * DiagnosticoTemplate findUnique
+   */
+  export type DiagnosticoTemplateFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DiagnosticoTemplate
+     */
+    select?: DiagnosticoTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DiagnosticoTemplate
+     */
+    omit?: DiagnosticoTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DiagnosticoTemplateInclude<ExtArgs> | null
+    /**
+     * Filter, which DiagnosticoTemplate to fetch.
+     */
+    where: DiagnosticoTemplateWhereUniqueInput
+  }
+
+  /**
+   * DiagnosticoTemplate findUniqueOrThrow
+   */
+  export type DiagnosticoTemplateFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DiagnosticoTemplate
+     */
+    select?: DiagnosticoTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DiagnosticoTemplate
+     */
+    omit?: DiagnosticoTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DiagnosticoTemplateInclude<ExtArgs> | null
+    /**
+     * Filter, which DiagnosticoTemplate to fetch.
+     */
+    where: DiagnosticoTemplateWhereUniqueInput
+  }
+
+  /**
+   * DiagnosticoTemplate findFirst
+   */
+  export type DiagnosticoTemplateFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DiagnosticoTemplate
+     */
+    select?: DiagnosticoTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DiagnosticoTemplate
+     */
+    omit?: DiagnosticoTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DiagnosticoTemplateInclude<ExtArgs> | null
+    /**
+     * Filter, which DiagnosticoTemplate to fetch.
+     */
+    where?: DiagnosticoTemplateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DiagnosticoTemplates to fetch.
+     */
+    orderBy?: DiagnosticoTemplateOrderByWithRelationInput | DiagnosticoTemplateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DiagnosticoTemplates.
+     */
+    cursor?: DiagnosticoTemplateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DiagnosticoTemplates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DiagnosticoTemplates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DiagnosticoTemplates.
+     */
+    distinct?: DiagnosticoTemplateScalarFieldEnum | DiagnosticoTemplateScalarFieldEnum[]
+  }
+
+  /**
+   * DiagnosticoTemplate findFirstOrThrow
+   */
+  export type DiagnosticoTemplateFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DiagnosticoTemplate
+     */
+    select?: DiagnosticoTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DiagnosticoTemplate
+     */
+    omit?: DiagnosticoTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DiagnosticoTemplateInclude<ExtArgs> | null
+    /**
+     * Filter, which DiagnosticoTemplate to fetch.
+     */
+    where?: DiagnosticoTemplateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DiagnosticoTemplates to fetch.
+     */
+    orderBy?: DiagnosticoTemplateOrderByWithRelationInput | DiagnosticoTemplateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DiagnosticoTemplates.
+     */
+    cursor?: DiagnosticoTemplateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DiagnosticoTemplates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DiagnosticoTemplates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DiagnosticoTemplates.
+     */
+    distinct?: DiagnosticoTemplateScalarFieldEnum | DiagnosticoTemplateScalarFieldEnum[]
+  }
+
+  /**
+   * DiagnosticoTemplate findMany
+   */
+  export type DiagnosticoTemplateFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DiagnosticoTemplate
+     */
+    select?: DiagnosticoTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DiagnosticoTemplate
+     */
+    omit?: DiagnosticoTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DiagnosticoTemplateInclude<ExtArgs> | null
+    /**
+     * Filter, which DiagnosticoTemplates to fetch.
+     */
+    where?: DiagnosticoTemplateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DiagnosticoTemplates to fetch.
+     */
+    orderBy?: DiagnosticoTemplateOrderByWithRelationInput | DiagnosticoTemplateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DiagnosticoTemplates.
+     */
+    cursor?: DiagnosticoTemplateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DiagnosticoTemplates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DiagnosticoTemplates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DiagnosticoTemplates.
+     */
+    distinct?: DiagnosticoTemplateScalarFieldEnum | DiagnosticoTemplateScalarFieldEnum[]
+  }
+
+  /**
+   * DiagnosticoTemplate create
+   */
+  export type DiagnosticoTemplateCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DiagnosticoTemplate
+     */
+    select?: DiagnosticoTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DiagnosticoTemplate
+     */
+    omit?: DiagnosticoTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DiagnosticoTemplateInclude<ExtArgs> | null
+    /**
+     * The data needed to create a DiagnosticoTemplate.
+     */
+    data: XOR<DiagnosticoTemplateCreateInput, DiagnosticoTemplateUncheckedCreateInput>
+  }
+
+  /**
+   * DiagnosticoTemplate createMany
+   */
+  export type DiagnosticoTemplateCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DiagnosticoTemplates.
+     */
+    data: DiagnosticoTemplateCreateManyInput | DiagnosticoTemplateCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DiagnosticoTemplate createManyAndReturn
+   */
+  export type DiagnosticoTemplateCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DiagnosticoTemplate
+     */
+    select?: DiagnosticoTemplateSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DiagnosticoTemplate
+     */
+    omit?: DiagnosticoTemplateOmit<ExtArgs> | null
+    /**
+     * The data used to create many DiagnosticoTemplates.
+     */
+    data: DiagnosticoTemplateCreateManyInput | DiagnosticoTemplateCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DiagnosticoTemplateIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DiagnosticoTemplate update
+   */
+  export type DiagnosticoTemplateUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DiagnosticoTemplate
+     */
+    select?: DiagnosticoTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DiagnosticoTemplate
+     */
+    omit?: DiagnosticoTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DiagnosticoTemplateInclude<ExtArgs> | null
+    /**
+     * The data needed to update a DiagnosticoTemplate.
+     */
+    data: XOR<DiagnosticoTemplateUpdateInput, DiagnosticoTemplateUncheckedUpdateInput>
+    /**
+     * Choose, which DiagnosticoTemplate to update.
+     */
+    where: DiagnosticoTemplateWhereUniqueInput
+  }
+
+  /**
+   * DiagnosticoTemplate updateMany
+   */
+  export type DiagnosticoTemplateUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DiagnosticoTemplates.
+     */
+    data: XOR<DiagnosticoTemplateUpdateManyMutationInput, DiagnosticoTemplateUncheckedUpdateManyInput>
+    /**
+     * Filter which DiagnosticoTemplates to update
+     */
+    where?: DiagnosticoTemplateWhereInput
+    /**
+     * Limit how many DiagnosticoTemplates to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DiagnosticoTemplate updateManyAndReturn
+   */
+  export type DiagnosticoTemplateUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DiagnosticoTemplate
+     */
+    select?: DiagnosticoTemplateSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DiagnosticoTemplate
+     */
+    omit?: DiagnosticoTemplateOmit<ExtArgs> | null
+    /**
+     * The data used to update DiagnosticoTemplates.
+     */
+    data: XOR<DiagnosticoTemplateUpdateManyMutationInput, DiagnosticoTemplateUncheckedUpdateManyInput>
+    /**
+     * Filter which DiagnosticoTemplates to update
+     */
+    where?: DiagnosticoTemplateWhereInput
+    /**
+     * Limit how many DiagnosticoTemplates to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DiagnosticoTemplateIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DiagnosticoTemplate upsert
+   */
+  export type DiagnosticoTemplateUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DiagnosticoTemplate
+     */
+    select?: DiagnosticoTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DiagnosticoTemplate
+     */
+    omit?: DiagnosticoTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DiagnosticoTemplateInclude<ExtArgs> | null
+    /**
+     * The filter to search for the DiagnosticoTemplate to update in case it exists.
+     */
+    where: DiagnosticoTemplateWhereUniqueInput
+    /**
+     * In case the DiagnosticoTemplate found by the `where` argument doesn't exist, create a new DiagnosticoTemplate with this data.
+     */
+    create: XOR<DiagnosticoTemplateCreateInput, DiagnosticoTemplateUncheckedCreateInput>
+    /**
+     * In case the DiagnosticoTemplate was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DiagnosticoTemplateUpdateInput, DiagnosticoTemplateUncheckedUpdateInput>
+  }
+
+  /**
+   * DiagnosticoTemplate delete
+   */
+  export type DiagnosticoTemplateDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DiagnosticoTemplate
+     */
+    select?: DiagnosticoTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DiagnosticoTemplate
+     */
+    omit?: DiagnosticoTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DiagnosticoTemplateInclude<ExtArgs> | null
+    /**
+     * Filter which DiagnosticoTemplate to delete.
+     */
+    where: DiagnosticoTemplateWhereUniqueInput
+  }
+
+  /**
+   * DiagnosticoTemplate deleteMany
+   */
+  export type DiagnosticoTemplateDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DiagnosticoTemplates to delete
+     */
+    where?: DiagnosticoTemplateWhereInput
+    /**
+     * Limit how many DiagnosticoTemplates to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * DiagnosticoTemplate without action
+   */
+  export type DiagnosticoTemplateDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DiagnosticoTemplate
+     */
+    select?: DiagnosticoTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DiagnosticoTemplate
+     */
+    omit?: DiagnosticoTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DiagnosticoTemplateInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Assinatura
+   */
+
+  export type AggregateAssinatura = {
+    _count: AssinaturaCountAggregateOutputType | null
+    _avg: AssinaturaAvgAggregateOutputType | null
+    _sum: AssinaturaSumAggregateOutputType | null
+    _min: AssinaturaMinAggregateOutputType | null
+    _max: AssinaturaMaxAggregateOutputType | null
+  }
+
+  export type AssinaturaAvgAggregateOutputType = {
+    valor: Decimal | null
+  }
+
+  export type AssinaturaSumAggregateOutputType = {
+    valor: Decimal | null
+  }
+
+  export type AssinaturaMinAggregateOutputType = {
+    id: string | null
+    empresa_id: string | null
+    cliente_id: string | null
+    servico_id: string | null
+    nome_cliente: string | null
+    email_cliente: string | null
+    telefone_cliente: string | null
+    canal: string | null
+    plano: string | null
+    valor: Decimal | null
+    ciclo: string | null
+    status: string | null
+    asaas_subscription_id: string | null
+    asaas_customer_id: string | null
+    proximo_vencimento: Date | null
+    data_inicio: Date | null
+    data_cancelamento: Date | null
+    motivo_cancelamento: string | null
+    observacoes: string | null
+    criado_em: Date | null
+    atualizado_em: Date | null
+  }
+
+  export type AssinaturaMaxAggregateOutputType = {
+    id: string | null
+    empresa_id: string | null
+    cliente_id: string | null
+    servico_id: string | null
+    nome_cliente: string | null
+    email_cliente: string | null
+    telefone_cliente: string | null
+    canal: string | null
+    plano: string | null
+    valor: Decimal | null
+    ciclo: string | null
+    status: string | null
+    asaas_subscription_id: string | null
+    asaas_customer_id: string | null
+    proximo_vencimento: Date | null
+    data_inicio: Date | null
+    data_cancelamento: Date | null
+    motivo_cancelamento: string | null
+    observacoes: string | null
+    criado_em: Date | null
+    atualizado_em: Date | null
+  }
+
+  export type AssinaturaCountAggregateOutputType = {
+    id: number
+    empresa_id: number
+    cliente_id: number
+    servico_id: number
+    nome_cliente: number
+    email_cliente: number
+    telefone_cliente: number
+    canal: number
+    plano: number
+    valor: number
+    ciclo: number
+    status: number
+    asaas_subscription_id: number
+    asaas_customer_id: number
+    proximo_vencimento: number
+    data_inicio: number
+    data_cancelamento: number
+    motivo_cancelamento: number
+    observacoes: number
+    criado_em: number
+    atualizado_em: number
+    _all: number
+  }
+
+
+  export type AssinaturaAvgAggregateInputType = {
+    valor?: true
+  }
+
+  export type AssinaturaSumAggregateInputType = {
+    valor?: true
+  }
+
+  export type AssinaturaMinAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    cliente_id?: true
+    servico_id?: true
+    nome_cliente?: true
+    email_cliente?: true
+    telefone_cliente?: true
+    canal?: true
+    plano?: true
+    valor?: true
+    ciclo?: true
+    status?: true
+    asaas_subscription_id?: true
+    asaas_customer_id?: true
+    proximo_vencimento?: true
+    data_inicio?: true
+    data_cancelamento?: true
+    motivo_cancelamento?: true
+    observacoes?: true
+    criado_em?: true
+    atualizado_em?: true
+  }
+
+  export type AssinaturaMaxAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    cliente_id?: true
+    servico_id?: true
+    nome_cliente?: true
+    email_cliente?: true
+    telefone_cliente?: true
+    canal?: true
+    plano?: true
+    valor?: true
+    ciclo?: true
+    status?: true
+    asaas_subscription_id?: true
+    asaas_customer_id?: true
+    proximo_vencimento?: true
+    data_inicio?: true
+    data_cancelamento?: true
+    motivo_cancelamento?: true
+    observacoes?: true
+    criado_em?: true
+    atualizado_em?: true
+  }
+
+  export type AssinaturaCountAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    cliente_id?: true
+    servico_id?: true
+    nome_cliente?: true
+    email_cliente?: true
+    telefone_cliente?: true
+    canal?: true
+    plano?: true
+    valor?: true
+    ciclo?: true
+    status?: true
+    asaas_subscription_id?: true
+    asaas_customer_id?: true
+    proximo_vencimento?: true
+    data_inicio?: true
+    data_cancelamento?: true
+    motivo_cancelamento?: true
+    observacoes?: true
+    criado_em?: true
+    atualizado_em?: true
+    _all?: true
+  }
+
+  export type AssinaturaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Assinatura to aggregate.
+     */
+    where?: AssinaturaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Assinaturas to fetch.
+     */
+    orderBy?: AssinaturaOrderByWithRelationInput | AssinaturaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AssinaturaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Assinaturas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Assinaturas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Assinaturas
+    **/
+    _count?: true | AssinaturaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AssinaturaAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AssinaturaSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AssinaturaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AssinaturaMaxAggregateInputType
+  }
+
+  export type GetAssinaturaAggregateType<T extends AssinaturaAggregateArgs> = {
+        [P in keyof T & keyof AggregateAssinatura]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAssinatura[P]>
+      : GetScalarType<T[P], AggregateAssinatura[P]>
+  }
+
+
+
+
+  export type AssinaturaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AssinaturaWhereInput
+    orderBy?: AssinaturaOrderByWithAggregationInput | AssinaturaOrderByWithAggregationInput[]
+    by: AssinaturaScalarFieldEnum[] | AssinaturaScalarFieldEnum
+    having?: AssinaturaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AssinaturaCountAggregateInputType | true
+    _avg?: AssinaturaAvgAggregateInputType
+    _sum?: AssinaturaSumAggregateInputType
+    _min?: AssinaturaMinAggregateInputType
+    _max?: AssinaturaMaxAggregateInputType
+  }
+
+  export type AssinaturaGroupByOutputType = {
+    id: string
+    empresa_id: string
+    cliente_id: string | null
+    servico_id: string | null
+    nome_cliente: string
+    email_cliente: string | null
+    telefone_cliente: string | null
+    canal: string
+    plano: string | null
+    valor: Decimal
+    ciclo: string
+    status: string
+    asaas_subscription_id: string | null
+    asaas_customer_id: string | null
+    proximo_vencimento: Date | null
+    data_inicio: Date
+    data_cancelamento: Date | null
+    motivo_cancelamento: string | null
+    observacoes: string | null
+    criado_em: Date
+    atualizado_em: Date
+    _count: AssinaturaCountAggregateOutputType | null
+    _avg: AssinaturaAvgAggregateOutputType | null
+    _sum: AssinaturaSumAggregateOutputType | null
+    _min: AssinaturaMinAggregateOutputType | null
+    _max: AssinaturaMaxAggregateOutputType | null
+  }
+
+  type GetAssinaturaGroupByPayload<T extends AssinaturaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AssinaturaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AssinaturaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AssinaturaGroupByOutputType[P]>
+            : GetScalarType<T[P], AssinaturaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AssinaturaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    cliente_id?: boolean
+    servico_id?: boolean
+    nome_cliente?: boolean
+    email_cliente?: boolean
+    telefone_cliente?: boolean
+    canal?: boolean
+    plano?: boolean
+    valor?: boolean
+    ciclo?: boolean
+    status?: boolean
+    asaas_subscription_id?: boolean
+    asaas_customer_id?: boolean
+    proximo_vencimento?: boolean
+    data_inicio?: boolean
+    data_cancelamento?: boolean
+    motivo_cancelamento?: boolean
+    observacoes?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    cliente?: boolean | Assinatura$clienteArgs<ExtArgs>
+    servico?: boolean | Assinatura$servicoArgs<ExtArgs>
+  }, ExtArgs["result"]["assinatura"]>
+
+  export type AssinaturaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    cliente_id?: boolean
+    servico_id?: boolean
+    nome_cliente?: boolean
+    email_cliente?: boolean
+    telefone_cliente?: boolean
+    canal?: boolean
+    plano?: boolean
+    valor?: boolean
+    ciclo?: boolean
+    status?: boolean
+    asaas_subscription_id?: boolean
+    asaas_customer_id?: boolean
+    proximo_vencimento?: boolean
+    data_inicio?: boolean
+    data_cancelamento?: boolean
+    motivo_cancelamento?: boolean
+    observacoes?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    cliente?: boolean | Assinatura$clienteArgs<ExtArgs>
+    servico?: boolean | Assinatura$servicoArgs<ExtArgs>
+  }, ExtArgs["result"]["assinatura"]>
+
+  export type AssinaturaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    cliente_id?: boolean
+    servico_id?: boolean
+    nome_cliente?: boolean
+    email_cliente?: boolean
+    telefone_cliente?: boolean
+    canal?: boolean
+    plano?: boolean
+    valor?: boolean
+    ciclo?: boolean
+    status?: boolean
+    asaas_subscription_id?: boolean
+    asaas_customer_id?: boolean
+    proximo_vencimento?: boolean
+    data_inicio?: boolean
+    data_cancelamento?: boolean
+    motivo_cancelamento?: boolean
+    observacoes?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    cliente?: boolean | Assinatura$clienteArgs<ExtArgs>
+    servico?: boolean | Assinatura$servicoArgs<ExtArgs>
+  }, ExtArgs["result"]["assinatura"]>
+
+  export type AssinaturaSelectScalar = {
+    id?: boolean
+    empresa_id?: boolean
+    cliente_id?: boolean
+    servico_id?: boolean
+    nome_cliente?: boolean
+    email_cliente?: boolean
+    telefone_cliente?: boolean
+    canal?: boolean
+    plano?: boolean
+    valor?: boolean
+    ciclo?: boolean
+    status?: boolean
+    asaas_subscription_id?: boolean
+    asaas_customer_id?: boolean
+    proximo_vencimento?: boolean
+    data_inicio?: boolean
+    data_cancelamento?: boolean
+    motivo_cancelamento?: boolean
+    observacoes?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+  }
+
+  export type AssinaturaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "cliente_id" | "servico_id" | "nome_cliente" | "email_cliente" | "telefone_cliente" | "canal" | "plano" | "valor" | "ciclo" | "status" | "asaas_subscription_id" | "asaas_customer_id" | "proximo_vencimento" | "data_inicio" | "data_cancelamento" | "motivo_cancelamento" | "observacoes" | "criado_em" | "atualizado_em", ExtArgs["result"]["assinatura"]>
+  export type AssinaturaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    cliente?: boolean | Assinatura$clienteArgs<ExtArgs>
+    servico?: boolean | Assinatura$servicoArgs<ExtArgs>
+  }
+  export type AssinaturaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    cliente?: boolean | Assinatura$clienteArgs<ExtArgs>
+    servico?: boolean | Assinatura$servicoArgs<ExtArgs>
+  }
+  export type AssinaturaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    cliente?: boolean | Assinatura$clienteArgs<ExtArgs>
+    servico?: boolean | Assinatura$servicoArgs<ExtArgs>
+  }
+
+  export type $AssinaturaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Assinatura"
+    objects: {
+      empresa: Prisma.$EmpresaPayload<ExtArgs>
+      cliente: Prisma.$ClientePayload<ExtArgs> | null
+      servico: Prisma.$ServicoPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      empresa_id: string
+      cliente_id: string | null
+      servico_id: string | null
+      nome_cliente: string
+      email_cliente: string | null
+      telefone_cliente: string | null
+      canal: string
+      plano: string | null
+      valor: Prisma.Decimal
+      ciclo: string
+      status: string
+      asaas_subscription_id: string | null
+      asaas_customer_id: string | null
+      proximo_vencimento: Date | null
+      data_inicio: Date
+      data_cancelamento: Date | null
+      motivo_cancelamento: string | null
+      observacoes: string | null
+      criado_em: Date
+      atualizado_em: Date
+    }, ExtArgs["result"]["assinatura"]>
+    composites: {}
+  }
+
+  type AssinaturaGetPayload<S extends boolean | null | undefined | AssinaturaDefaultArgs> = $Result.GetResult<Prisma.$AssinaturaPayload, S>
+
+  type AssinaturaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AssinaturaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AssinaturaCountAggregateInputType | true
+    }
+
+  export interface AssinaturaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Assinatura'], meta: { name: 'Assinatura' } }
+    /**
+     * Find zero or one Assinatura that matches the filter.
+     * @param {AssinaturaFindUniqueArgs} args - Arguments to find a Assinatura
+     * @example
+     * // Get one Assinatura
+     * const assinatura = await prisma.assinatura.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AssinaturaFindUniqueArgs>(args: SelectSubset<T, AssinaturaFindUniqueArgs<ExtArgs>>): Prisma__AssinaturaClient<$Result.GetResult<Prisma.$AssinaturaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Assinatura that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AssinaturaFindUniqueOrThrowArgs} args - Arguments to find a Assinatura
+     * @example
+     * // Get one Assinatura
+     * const assinatura = await prisma.assinatura.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AssinaturaFindUniqueOrThrowArgs>(args: SelectSubset<T, AssinaturaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AssinaturaClient<$Result.GetResult<Prisma.$AssinaturaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Assinatura that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AssinaturaFindFirstArgs} args - Arguments to find a Assinatura
+     * @example
+     * // Get one Assinatura
+     * const assinatura = await prisma.assinatura.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AssinaturaFindFirstArgs>(args?: SelectSubset<T, AssinaturaFindFirstArgs<ExtArgs>>): Prisma__AssinaturaClient<$Result.GetResult<Prisma.$AssinaturaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Assinatura that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AssinaturaFindFirstOrThrowArgs} args - Arguments to find a Assinatura
+     * @example
+     * // Get one Assinatura
+     * const assinatura = await prisma.assinatura.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AssinaturaFindFirstOrThrowArgs>(args?: SelectSubset<T, AssinaturaFindFirstOrThrowArgs<ExtArgs>>): Prisma__AssinaturaClient<$Result.GetResult<Prisma.$AssinaturaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Assinaturas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AssinaturaFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Assinaturas
+     * const assinaturas = await prisma.assinatura.findMany()
+     * 
+     * // Get first 10 Assinaturas
+     * const assinaturas = await prisma.assinatura.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const assinaturaWithIdOnly = await prisma.assinatura.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AssinaturaFindManyArgs>(args?: SelectSubset<T, AssinaturaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssinaturaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Assinatura.
+     * @param {AssinaturaCreateArgs} args - Arguments to create a Assinatura.
+     * @example
+     * // Create one Assinatura
+     * const Assinatura = await prisma.assinatura.create({
+     *   data: {
+     *     // ... data to create a Assinatura
+     *   }
+     * })
+     * 
+     */
+    create<T extends AssinaturaCreateArgs>(args: SelectSubset<T, AssinaturaCreateArgs<ExtArgs>>): Prisma__AssinaturaClient<$Result.GetResult<Prisma.$AssinaturaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Assinaturas.
+     * @param {AssinaturaCreateManyArgs} args - Arguments to create many Assinaturas.
+     * @example
+     * // Create many Assinaturas
+     * const assinatura = await prisma.assinatura.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AssinaturaCreateManyArgs>(args?: SelectSubset<T, AssinaturaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Assinaturas and returns the data saved in the database.
+     * @param {AssinaturaCreateManyAndReturnArgs} args - Arguments to create many Assinaturas.
+     * @example
+     * // Create many Assinaturas
+     * const assinatura = await prisma.assinatura.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Assinaturas and only return the `id`
+     * const assinaturaWithIdOnly = await prisma.assinatura.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AssinaturaCreateManyAndReturnArgs>(args?: SelectSubset<T, AssinaturaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssinaturaPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Assinatura.
+     * @param {AssinaturaDeleteArgs} args - Arguments to delete one Assinatura.
+     * @example
+     * // Delete one Assinatura
+     * const Assinatura = await prisma.assinatura.delete({
+     *   where: {
+     *     // ... filter to delete one Assinatura
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AssinaturaDeleteArgs>(args: SelectSubset<T, AssinaturaDeleteArgs<ExtArgs>>): Prisma__AssinaturaClient<$Result.GetResult<Prisma.$AssinaturaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Assinatura.
+     * @param {AssinaturaUpdateArgs} args - Arguments to update one Assinatura.
+     * @example
+     * // Update one Assinatura
+     * const assinatura = await prisma.assinatura.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AssinaturaUpdateArgs>(args: SelectSubset<T, AssinaturaUpdateArgs<ExtArgs>>): Prisma__AssinaturaClient<$Result.GetResult<Prisma.$AssinaturaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Assinaturas.
+     * @param {AssinaturaDeleteManyArgs} args - Arguments to filter Assinaturas to delete.
+     * @example
+     * // Delete a few Assinaturas
+     * const { count } = await prisma.assinatura.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AssinaturaDeleteManyArgs>(args?: SelectSubset<T, AssinaturaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Assinaturas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AssinaturaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Assinaturas
+     * const assinatura = await prisma.assinatura.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AssinaturaUpdateManyArgs>(args: SelectSubset<T, AssinaturaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Assinaturas and returns the data updated in the database.
+     * @param {AssinaturaUpdateManyAndReturnArgs} args - Arguments to update many Assinaturas.
+     * @example
+     * // Update many Assinaturas
+     * const assinatura = await prisma.assinatura.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Assinaturas and only return the `id`
+     * const assinaturaWithIdOnly = await prisma.assinatura.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AssinaturaUpdateManyAndReturnArgs>(args: SelectSubset<T, AssinaturaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssinaturaPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Assinatura.
+     * @param {AssinaturaUpsertArgs} args - Arguments to update or create a Assinatura.
+     * @example
+     * // Update or create a Assinatura
+     * const assinatura = await prisma.assinatura.upsert({
+     *   create: {
+     *     // ... data to create a Assinatura
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Assinatura we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AssinaturaUpsertArgs>(args: SelectSubset<T, AssinaturaUpsertArgs<ExtArgs>>): Prisma__AssinaturaClient<$Result.GetResult<Prisma.$AssinaturaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Assinaturas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AssinaturaCountArgs} args - Arguments to filter Assinaturas to count.
+     * @example
+     * // Count the number of Assinaturas
+     * const count = await prisma.assinatura.count({
+     *   where: {
+     *     // ... the filter for the Assinaturas we want to count
+     *   }
+     * })
+    **/
+    count<T extends AssinaturaCountArgs>(
+      args?: Subset<T, AssinaturaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AssinaturaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Assinatura.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AssinaturaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AssinaturaAggregateArgs>(args: Subset<T, AssinaturaAggregateArgs>): Prisma.PrismaPromise<GetAssinaturaAggregateType<T>>
+
+    /**
+     * Group by Assinatura.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AssinaturaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AssinaturaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AssinaturaGroupByArgs['orderBy'] }
+        : { orderBy?: AssinaturaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AssinaturaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAssinaturaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Assinatura model
+   */
+  readonly fields: AssinaturaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Assinatura.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AssinaturaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    empresa<T extends EmpresaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmpresaDefaultArgs<ExtArgs>>): Prisma__EmpresaClient<$Result.GetResult<Prisma.$EmpresaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    cliente<T extends Assinatura$clienteArgs<ExtArgs> = {}>(args?: Subset<T, Assinatura$clienteArgs<ExtArgs>>): Prisma__ClienteClient<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    servico<T extends Assinatura$servicoArgs<ExtArgs> = {}>(args?: Subset<T, Assinatura$servicoArgs<ExtArgs>>): Prisma__ServicoClient<$Result.GetResult<Prisma.$ServicoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Assinatura model
+   */
+  interface AssinaturaFieldRefs {
+    readonly id: FieldRef<"Assinatura", 'String'>
+    readonly empresa_id: FieldRef<"Assinatura", 'String'>
+    readonly cliente_id: FieldRef<"Assinatura", 'String'>
+    readonly servico_id: FieldRef<"Assinatura", 'String'>
+    readonly nome_cliente: FieldRef<"Assinatura", 'String'>
+    readonly email_cliente: FieldRef<"Assinatura", 'String'>
+    readonly telefone_cliente: FieldRef<"Assinatura", 'String'>
+    readonly canal: FieldRef<"Assinatura", 'String'>
+    readonly plano: FieldRef<"Assinatura", 'String'>
+    readonly valor: FieldRef<"Assinatura", 'Decimal'>
+    readonly ciclo: FieldRef<"Assinatura", 'String'>
+    readonly status: FieldRef<"Assinatura", 'String'>
+    readonly asaas_subscription_id: FieldRef<"Assinatura", 'String'>
+    readonly asaas_customer_id: FieldRef<"Assinatura", 'String'>
+    readonly proximo_vencimento: FieldRef<"Assinatura", 'DateTime'>
+    readonly data_inicio: FieldRef<"Assinatura", 'DateTime'>
+    readonly data_cancelamento: FieldRef<"Assinatura", 'DateTime'>
+    readonly motivo_cancelamento: FieldRef<"Assinatura", 'String'>
+    readonly observacoes: FieldRef<"Assinatura", 'String'>
+    readonly criado_em: FieldRef<"Assinatura", 'DateTime'>
+    readonly atualizado_em: FieldRef<"Assinatura", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Assinatura findUnique
+   */
+  export type AssinaturaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Assinatura
+     */
+    select?: AssinaturaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Assinatura
+     */
+    omit?: AssinaturaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssinaturaInclude<ExtArgs> | null
+    /**
+     * Filter, which Assinatura to fetch.
+     */
+    where: AssinaturaWhereUniqueInput
+  }
+
+  /**
+   * Assinatura findUniqueOrThrow
+   */
+  export type AssinaturaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Assinatura
+     */
+    select?: AssinaturaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Assinatura
+     */
+    omit?: AssinaturaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssinaturaInclude<ExtArgs> | null
+    /**
+     * Filter, which Assinatura to fetch.
+     */
+    where: AssinaturaWhereUniqueInput
+  }
+
+  /**
+   * Assinatura findFirst
+   */
+  export type AssinaturaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Assinatura
+     */
+    select?: AssinaturaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Assinatura
+     */
+    omit?: AssinaturaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssinaturaInclude<ExtArgs> | null
+    /**
+     * Filter, which Assinatura to fetch.
+     */
+    where?: AssinaturaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Assinaturas to fetch.
+     */
+    orderBy?: AssinaturaOrderByWithRelationInput | AssinaturaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Assinaturas.
+     */
+    cursor?: AssinaturaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Assinaturas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Assinaturas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Assinaturas.
+     */
+    distinct?: AssinaturaScalarFieldEnum | AssinaturaScalarFieldEnum[]
+  }
+
+  /**
+   * Assinatura findFirstOrThrow
+   */
+  export type AssinaturaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Assinatura
+     */
+    select?: AssinaturaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Assinatura
+     */
+    omit?: AssinaturaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssinaturaInclude<ExtArgs> | null
+    /**
+     * Filter, which Assinatura to fetch.
+     */
+    where?: AssinaturaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Assinaturas to fetch.
+     */
+    orderBy?: AssinaturaOrderByWithRelationInput | AssinaturaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Assinaturas.
+     */
+    cursor?: AssinaturaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Assinaturas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Assinaturas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Assinaturas.
+     */
+    distinct?: AssinaturaScalarFieldEnum | AssinaturaScalarFieldEnum[]
+  }
+
+  /**
+   * Assinatura findMany
+   */
+  export type AssinaturaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Assinatura
+     */
+    select?: AssinaturaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Assinatura
+     */
+    omit?: AssinaturaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssinaturaInclude<ExtArgs> | null
+    /**
+     * Filter, which Assinaturas to fetch.
+     */
+    where?: AssinaturaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Assinaturas to fetch.
+     */
+    orderBy?: AssinaturaOrderByWithRelationInput | AssinaturaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Assinaturas.
+     */
+    cursor?: AssinaturaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Assinaturas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Assinaturas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Assinaturas.
+     */
+    distinct?: AssinaturaScalarFieldEnum | AssinaturaScalarFieldEnum[]
+  }
+
+  /**
+   * Assinatura create
+   */
+  export type AssinaturaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Assinatura
+     */
+    select?: AssinaturaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Assinatura
+     */
+    omit?: AssinaturaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssinaturaInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Assinatura.
+     */
+    data: XOR<AssinaturaCreateInput, AssinaturaUncheckedCreateInput>
+  }
+
+  /**
+   * Assinatura createMany
+   */
+  export type AssinaturaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Assinaturas.
+     */
+    data: AssinaturaCreateManyInput | AssinaturaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Assinatura createManyAndReturn
+   */
+  export type AssinaturaCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Assinatura
+     */
+    select?: AssinaturaSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Assinatura
+     */
+    omit?: AssinaturaOmit<ExtArgs> | null
+    /**
+     * The data used to create many Assinaturas.
+     */
+    data: AssinaturaCreateManyInput | AssinaturaCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssinaturaIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Assinatura update
+   */
+  export type AssinaturaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Assinatura
+     */
+    select?: AssinaturaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Assinatura
+     */
+    omit?: AssinaturaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssinaturaInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Assinatura.
+     */
+    data: XOR<AssinaturaUpdateInput, AssinaturaUncheckedUpdateInput>
+    /**
+     * Choose, which Assinatura to update.
+     */
+    where: AssinaturaWhereUniqueInput
+  }
+
+  /**
+   * Assinatura updateMany
+   */
+  export type AssinaturaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Assinaturas.
+     */
+    data: XOR<AssinaturaUpdateManyMutationInput, AssinaturaUncheckedUpdateManyInput>
+    /**
+     * Filter which Assinaturas to update
+     */
+    where?: AssinaturaWhereInput
+    /**
+     * Limit how many Assinaturas to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Assinatura updateManyAndReturn
+   */
+  export type AssinaturaUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Assinatura
+     */
+    select?: AssinaturaSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Assinatura
+     */
+    omit?: AssinaturaOmit<ExtArgs> | null
+    /**
+     * The data used to update Assinaturas.
+     */
+    data: XOR<AssinaturaUpdateManyMutationInput, AssinaturaUncheckedUpdateManyInput>
+    /**
+     * Filter which Assinaturas to update
+     */
+    where?: AssinaturaWhereInput
+    /**
+     * Limit how many Assinaturas to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssinaturaIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Assinatura upsert
+   */
+  export type AssinaturaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Assinatura
+     */
+    select?: AssinaturaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Assinatura
+     */
+    omit?: AssinaturaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssinaturaInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Assinatura to update in case it exists.
+     */
+    where: AssinaturaWhereUniqueInput
+    /**
+     * In case the Assinatura found by the `where` argument doesn't exist, create a new Assinatura with this data.
+     */
+    create: XOR<AssinaturaCreateInput, AssinaturaUncheckedCreateInput>
+    /**
+     * In case the Assinatura was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AssinaturaUpdateInput, AssinaturaUncheckedUpdateInput>
+  }
+
+  /**
+   * Assinatura delete
+   */
+  export type AssinaturaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Assinatura
+     */
+    select?: AssinaturaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Assinatura
+     */
+    omit?: AssinaturaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssinaturaInclude<ExtArgs> | null
+    /**
+     * Filter which Assinatura to delete.
+     */
+    where: AssinaturaWhereUniqueInput
+  }
+
+  /**
+   * Assinatura deleteMany
+   */
+  export type AssinaturaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Assinaturas to delete
+     */
+    where?: AssinaturaWhereInput
+    /**
+     * Limit how many Assinaturas to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Assinatura.cliente
+   */
+  export type Assinatura$clienteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cliente
+     */
+    select?: ClienteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Cliente
+     */
+    omit?: ClienteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClienteInclude<ExtArgs> | null
+    where?: ClienteWhereInput
+  }
+
+  /**
+   * Assinatura.servico
+   */
+  export type Assinatura$servicoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Servico
+     */
+    select?: ServicoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Servico
+     */
+    omit?: ServicoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicoInclude<ExtArgs> | null
+    where?: ServicoWhereInput
+  }
+
+  /**
+   * Assinatura without action
+   */
+  export type AssinaturaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Assinatura
+     */
+    select?: AssinaturaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Assinatura
+     */
+    omit?: AssinaturaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssinaturaInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -68420,6 +71389,7 @@ export namespace Prisma {
     distancia_km: 'distancia_km',
     preco_km: 'preco_km',
     status: 'status',
+    asaas_id: 'asaas_id',
     criado_em: 'criado_em',
     atualizado_em: 'atualizado_em'
   };
@@ -68449,6 +71419,10 @@ export namespace Prisma {
     descricao: 'descricao',
     valor_base: 'valor_base',
     ativo: 'ativo',
+    canal: 'canal',
+    plano: 'plano',
+    tipo_cobranca: 'tipo_cobranca',
+    asaas_link_pagamento: 'asaas_link_pagamento',
     criado_em: 'criado_em',
     atualizado_em: 'atualizado_em'
   };
@@ -68895,6 +71869,11 @@ export namespace Prisma {
     desconto_valor: 'desconto_valor',
     recebivel_origem_id: 'recebivel_origem_id',
     centro_custo_id: 'centro_custo_id',
+    asaas_payment_id: 'asaas_payment_id',
+    asaas_invoice_url: 'asaas_invoice_url',
+    asaas_pix_copia_cola: 'asaas_pix_copia_cola',
+    asaas_boleto_url: 'asaas_boleto_url',
+    asaas_status: 'asaas_status',
     criado_em: 'criado_em',
     atualizado_em: 'atualizado_em'
   };
@@ -69128,6 +72107,51 @@ export namespace Prisma {
   };
 
   export type DiagnosticoParticipanteScalarFieldEnum = (typeof DiagnosticoParticipanteScalarFieldEnum)[keyof typeof DiagnosticoParticipanteScalarFieldEnum]
+
+
+  export const DiagnosticoTemplateScalarFieldEnum: {
+    id: 'id',
+    empresa_id: 'empresa_id',
+    cultura: 'cultura',
+    nivel: 'nivel',
+    titulo: 'titulo',
+    texto_receita: 'texto_receita',
+    texto_custos: 'texto_custos',
+    texto_caixa: 'texto_caixa',
+    texto_recomendacoes: 'texto_recomendacoes',
+    parametros_dre: 'parametros_dre',
+    criado_em: 'criado_em',
+    atualizado_em: 'atualizado_em'
+  };
+
+  export type DiagnosticoTemplateScalarFieldEnum = (typeof DiagnosticoTemplateScalarFieldEnum)[keyof typeof DiagnosticoTemplateScalarFieldEnum]
+
+
+  export const AssinaturaScalarFieldEnum: {
+    id: 'id',
+    empresa_id: 'empresa_id',
+    cliente_id: 'cliente_id',
+    servico_id: 'servico_id',
+    nome_cliente: 'nome_cliente',
+    email_cliente: 'email_cliente',
+    telefone_cliente: 'telefone_cliente',
+    canal: 'canal',
+    plano: 'plano',
+    valor: 'valor',
+    ciclo: 'ciclo',
+    status: 'status',
+    asaas_subscription_id: 'asaas_subscription_id',
+    asaas_customer_id: 'asaas_customer_id',
+    proximo_vencimento: 'proximo_vencimento',
+    data_inicio: 'data_inicio',
+    data_cancelamento: 'data_cancelamento',
+    motivo_cancelamento: 'motivo_cancelamento',
+    observacoes: 'observacoes',
+    criado_em: 'criado_em',
+    atualizado_em: 'atualizado_em'
+  };
+
+  export type AssinaturaScalarFieldEnum = (typeof AssinaturaScalarFieldEnum)[keyof typeof AssinaturaScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -69614,6 +72638,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmListRelationFilter
     campanhas_diagnostico?: CampanhaDiagnosticoListRelationFilter
     centros_custo?: CentroCustoListRelationFilter
+    diagnostico_templates?: DiagnosticoTemplateListRelationFilter
+    assinaturas?: AssinaturaListRelationFilter
   }
 
   export type EmpresaOrderByWithRelationInput = {
@@ -69656,6 +72682,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmOrderByRelationAggregateInput
     campanhas_diagnostico?: CampanhaDiagnosticoOrderByRelationAggregateInput
     centros_custo?: CentroCustoOrderByRelationAggregateInput
+    diagnostico_templates?: DiagnosticoTemplateOrderByRelationAggregateInput
+    assinaturas?: AssinaturaOrderByRelationAggregateInput
   }
 
   export type EmpresaWhereUniqueInput = Prisma.AtLeast<{
@@ -69701,6 +72729,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmListRelationFilter
     campanhas_diagnostico?: CampanhaDiagnosticoListRelationFilter
     centros_custo?: CentroCustoListRelationFilter
+    diagnostico_templates?: DiagnosticoTemplateListRelationFilter
+    assinaturas?: AssinaturaListRelationFilter
   }, "id" | "slug" | "cnpj">
 
   export type EmpresaOrderByWithAggregationInput = {
@@ -70264,6 +73294,7 @@ export namespace Prisma {
     distancia_km?: DecimalNullableFilter<"Cliente"> | Decimal | DecimalJsLike | number | string | null
     preco_km?: DecimalNullableFilter<"Cliente"> | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFilter<"Cliente"> | $Enums.StatusCliente
+    asaas_id?: StringNullableFilter<"Cliente"> | string | null
     criado_em?: DateTimeFilter<"Cliente"> | Date | string
     atualizado_em?: DateTimeFilter<"Cliente"> | Date | string
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
@@ -70281,6 +73312,7 @@ export namespace Prisma {
     convite?: XOR<ConviteClienteNullableScalarRelationFilter, ConviteClienteWhereInput> | null
     documentos?: DocumentoListRelationFilter
     aplicacoes_diagnostico?: AplicacaoDiagnosticoListRelationFilter
+    assinaturas?: AssinaturaListRelationFilter
   }
 
   export type ClienteOrderByWithRelationInput = {
@@ -70306,6 +73338,7 @@ export namespace Prisma {
     distancia_km?: SortOrderInput | SortOrder
     preco_km?: SortOrderInput | SortOrder
     status?: SortOrder
+    asaas_id?: SortOrderInput | SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     empresa?: EmpresaOrderByWithRelationInput
@@ -70323,6 +73356,7 @@ export namespace Prisma {
     convite?: ConviteClienteOrderByWithRelationInput
     documentos?: DocumentoOrderByRelationAggregateInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoOrderByRelationAggregateInput
+    assinaturas?: AssinaturaOrderByRelationAggregateInput
   }
 
   export type ClienteWhereUniqueInput = Prisma.AtLeast<{
@@ -70351,6 +73385,7 @@ export namespace Prisma {
     distancia_km?: DecimalNullableFilter<"Cliente"> | Decimal | DecimalJsLike | number | string | null
     preco_km?: DecimalNullableFilter<"Cliente"> | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFilter<"Cliente"> | $Enums.StatusCliente
+    asaas_id?: StringNullableFilter<"Cliente"> | string | null
     criado_em?: DateTimeFilter<"Cliente"> | Date | string
     atualizado_em?: DateTimeFilter<"Cliente"> | Date | string
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
@@ -70368,6 +73403,7 @@ export namespace Prisma {
     convite?: XOR<ConviteClienteNullableScalarRelationFilter, ConviteClienteWhereInput> | null
     documentos?: DocumentoListRelationFilter
     aplicacoes_diagnostico?: AplicacaoDiagnosticoListRelationFilter
+    assinaturas?: AssinaturaListRelationFilter
   }, "id">
 
   export type ClienteOrderByWithAggregationInput = {
@@ -70393,6 +73429,7 @@ export namespace Prisma {
     distancia_km?: SortOrderInput | SortOrder
     preco_km?: SortOrderInput | SortOrder
     status?: SortOrder
+    asaas_id?: SortOrderInput | SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     _count?: ClienteCountOrderByAggregateInput
@@ -70428,6 +73465,7 @@ export namespace Prisma {
     distancia_km?: DecimalNullableWithAggregatesFilter<"Cliente"> | Decimal | DecimalJsLike | number | string | null
     preco_km?: DecimalNullableWithAggregatesFilter<"Cliente"> | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteWithAggregatesFilter<"Cliente"> | $Enums.StatusCliente
+    asaas_id?: StringNullableWithAggregatesFilter<"Cliente"> | string | null
     criado_em?: DateTimeWithAggregatesFilter<"Cliente"> | Date | string
     atualizado_em?: DateTimeWithAggregatesFilter<"Cliente"> | Date | string
   }
@@ -70513,12 +73551,17 @@ export namespace Prisma {
     descricao?: StringNullableFilter<"Servico"> | string | null
     valor_base?: DecimalNullableFilter<"Servico"> | Decimal | DecimalJsLike | number | string | null
     ativo?: BoolFilter<"Servico"> | boolean
+    canal?: StringNullableFilter<"Servico"> | string | null
+    plano?: StringNullableFilter<"Servico"> | string | null
+    tipo_cobranca?: StringNullableFilter<"Servico"> | string | null
+    asaas_link_pagamento?: StringNullableFilter<"Servico"> | string | null
     criado_em?: DateTimeFilter<"Servico"> | Date | string
     atualizado_em?: DateTimeFilter<"Servico"> | Date | string
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
     plano_contas?: XOR<PlanoDeContasNullableScalarRelationFilter, PlanoDeContasWhereInput> | null
     itens_proposta?: ItemPropostaListRelationFilter
     leads?: LeadListRelationFilter
+    assinaturas?: AssinaturaListRelationFilter
   }
 
   export type ServicoOrderByWithRelationInput = {
@@ -70529,12 +73572,17 @@ export namespace Prisma {
     descricao?: SortOrderInput | SortOrder
     valor_base?: SortOrderInput | SortOrder
     ativo?: SortOrder
+    canal?: SortOrderInput | SortOrder
+    plano?: SortOrderInput | SortOrder
+    tipo_cobranca?: SortOrderInput | SortOrder
+    asaas_link_pagamento?: SortOrderInput | SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     empresa?: EmpresaOrderByWithRelationInput
     plano_contas?: PlanoDeContasOrderByWithRelationInput
     itens_proposta?: ItemPropostaOrderByRelationAggregateInput
     leads?: LeadOrderByRelationAggregateInput
+    assinaturas?: AssinaturaOrderByRelationAggregateInput
   }
 
   export type ServicoWhereUniqueInput = Prisma.AtLeast<{
@@ -70548,12 +73596,17 @@ export namespace Prisma {
     descricao?: StringNullableFilter<"Servico"> | string | null
     valor_base?: DecimalNullableFilter<"Servico"> | Decimal | DecimalJsLike | number | string | null
     ativo?: BoolFilter<"Servico"> | boolean
+    canal?: StringNullableFilter<"Servico"> | string | null
+    plano?: StringNullableFilter<"Servico"> | string | null
+    tipo_cobranca?: StringNullableFilter<"Servico"> | string | null
+    asaas_link_pagamento?: StringNullableFilter<"Servico"> | string | null
     criado_em?: DateTimeFilter<"Servico"> | Date | string
     atualizado_em?: DateTimeFilter<"Servico"> | Date | string
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
     plano_contas?: XOR<PlanoDeContasNullableScalarRelationFilter, PlanoDeContasWhereInput> | null
     itens_proposta?: ItemPropostaListRelationFilter
     leads?: LeadListRelationFilter
+    assinaturas?: AssinaturaListRelationFilter
   }, "id">
 
   export type ServicoOrderByWithAggregationInput = {
@@ -70564,6 +73617,10 @@ export namespace Prisma {
     descricao?: SortOrderInput | SortOrder
     valor_base?: SortOrderInput | SortOrder
     ativo?: SortOrder
+    canal?: SortOrderInput | SortOrder
+    plano?: SortOrderInput | SortOrder
+    tipo_cobranca?: SortOrderInput | SortOrder
+    asaas_link_pagamento?: SortOrderInput | SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     _count?: ServicoCountOrderByAggregateInput
@@ -70584,6 +73641,10 @@ export namespace Prisma {
     descricao?: StringNullableWithAggregatesFilter<"Servico"> | string | null
     valor_base?: DecimalNullableWithAggregatesFilter<"Servico"> | Decimal | DecimalJsLike | number | string | null
     ativo?: BoolWithAggregatesFilter<"Servico"> | boolean
+    canal?: StringNullableWithAggregatesFilter<"Servico"> | string | null
+    plano?: StringNullableWithAggregatesFilter<"Servico"> | string | null
+    tipo_cobranca?: StringNullableWithAggregatesFilter<"Servico"> | string | null
+    asaas_link_pagamento?: StringNullableWithAggregatesFilter<"Servico"> | string | null
     criado_em?: DateTimeWithAggregatesFilter<"Servico"> | Date | string
     atualizado_em?: DateTimeWithAggregatesFilter<"Servico"> | Date | string
   }
@@ -72954,6 +76015,11 @@ export namespace Prisma {
     desconto_valor?: DecimalNullableFilter<"Recebivel"> | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: StringNullableFilter<"Recebivel"> | string | null
     centro_custo_id?: StringNullableFilter<"Recebivel"> | string | null
+    asaas_payment_id?: StringNullableFilter<"Recebivel"> | string | null
+    asaas_invoice_url?: StringNullableFilter<"Recebivel"> | string | null
+    asaas_pix_copia_cola?: StringNullableFilter<"Recebivel"> | string | null
+    asaas_boleto_url?: StringNullableFilter<"Recebivel"> | string | null
+    asaas_status?: StringNullableFilter<"Recebivel"> | string | null
     criado_em?: DateTimeFilter<"Recebivel"> | Date | string
     atualizado_em?: DateTimeFilter<"Recebivel"> | Date | string
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
@@ -72990,6 +76056,11 @@ export namespace Prisma {
     desconto_valor?: SortOrderInput | SortOrder
     recebivel_origem_id?: SortOrderInput | SortOrder
     centro_custo_id?: SortOrderInput | SortOrder
+    asaas_payment_id?: SortOrderInput | SortOrder
+    asaas_invoice_url?: SortOrderInput | SortOrder
+    asaas_pix_copia_cola?: SortOrderInput | SortOrder
+    asaas_boleto_url?: SortOrderInput | SortOrder
+    asaas_status?: SortOrderInput | SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     empresa?: EmpresaOrderByWithRelationInput
@@ -73029,6 +76100,11 @@ export namespace Prisma {
     desconto_valor?: DecimalNullableFilter<"Recebivel"> | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: StringNullableFilter<"Recebivel"> | string | null
     centro_custo_id?: StringNullableFilter<"Recebivel"> | string | null
+    asaas_payment_id?: StringNullableFilter<"Recebivel"> | string | null
+    asaas_invoice_url?: StringNullableFilter<"Recebivel"> | string | null
+    asaas_pix_copia_cola?: StringNullableFilter<"Recebivel"> | string | null
+    asaas_boleto_url?: StringNullableFilter<"Recebivel"> | string | null
+    asaas_status?: StringNullableFilter<"Recebivel"> | string | null
     criado_em?: DateTimeFilter<"Recebivel"> | Date | string
     atualizado_em?: DateTimeFilter<"Recebivel"> | Date | string
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
@@ -73065,6 +76141,11 @@ export namespace Prisma {
     desconto_valor?: SortOrderInput | SortOrder
     recebivel_origem_id?: SortOrderInput | SortOrder
     centro_custo_id?: SortOrderInput | SortOrder
+    asaas_payment_id?: SortOrderInput | SortOrder
+    asaas_invoice_url?: SortOrderInput | SortOrder
+    asaas_pix_copia_cola?: SortOrderInput | SortOrder
+    asaas_boleto_url?: SortOrderInput | SortOrder
+    asaas_status?: SortOrderInput | SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     _count?: RecebivelCountOrderByAggregateInput
@@ -73100,6 +76181,11 @@ export namespace Prisma {
     desconto_valor?: DecimalNullableWithAggregatesFilter<"Recebivel"> | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: StringNullableWithAggregatesFilter<"Recebivel"> | string | null
     centro_custo_id?: StringNullableWithAggregatesFilter<"Recebivel"> | string | null
+    asaas_payment_id?: StringNullableWithAggregatesFilter<"Recebivel"> | string | null
+    asaas_invoice_url?: StringNullableWithAggregatesFilter<"Recebivel"> | string | null
+    asaas_pix_copia_cola?: StringNullableWithAggregatesFilter<"Recebivel"> | string | null
+    asaas_boleto_url?: StringNullableWithAggregatesFilter<"Recebivel"> | string | null
+    asaas_status?: StringNullableWithAggregatesFilter<"Recebivel"> | string | null
     criado_em?: DateTimeWithAggregatesFilter<"Recebivel"> | Date | string
     atualizado_em?: DateTimeWithAggregatesFilter<"Recebivel"> | Date | string
   }
@@ -74312,6 +77398,240 @@ export namespace Prisma {
     criado_em?: DateTimeWithAggregatesFilter<"DiagnosticoParticipante"> | Date | string
   }
 
+  export type DiagnosticoTemplateWhereInput = {
+    AND?: DiagnosticoTemplateWhereInput | DiagnosticoTemplateWhereInput[]
+    OR?: DiagnosticoTemplateWhereInput[]
+    NOT?: DiagnosticoTemplateWhereInput | DiagnosticoTemplateWhereInput[]
+    id?: StringFilter<"DiagnosticoTemplate"> | string
+    empresa_id?: StringFilter<"DiagnosticoTemplate"> | string
+    cultura?: StringFilter<"DiagnosticoTemplate"> | string
+    nivel?: StringFilter<"DiagnosticoTemplate"> | string
+    titulo?: StringNullableFilter<"DiagnosticoTemplate"> | string | null
+    texto_receita?: StringNullableFilter<"DiagnosticoTemplate"> | string | null
+    texto_custos?: StringNullableFilter<"DiagnosticoTemplate"> | string | null
+    texto_caixa?: StringNullableFilter<"DiagnosticoTemplate"> | string | null
+    texto_recomendacoes?: StringNullableFilter<"DiagnosticoTemplate"> | string | null
+    parametros_dre?: JsonFilter<"DiagnosticoTemplate">
+    criado_em?: DateTimeFilter<"DiagnosticoTemplate"> | Date | string
+    atualizado_em?: DateTimeFilter<"DiagnosticoTemplate"> | Date | string
+    empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
+  }
+
+  export type DiagnosticoTemplateOrderByWithRelationInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    cultura?: SortOrder
+    nivel?: SortOrder
+    titulo?: SortOrderInput | SortOrder
+    texto_receita?: SortOrderInput | SortOrder
+    texto_custos?: SortOrderInput | SortOrder
+    texto_caixa?: SortOrderInput | SortOrder
+    texto_recomendacoes?: SortOrderInput | SortOrder
+    parametros_dre?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+    empresa?: EmpresaOrderByWithRelationInput
+  }
+
+  export type DiagnosticoTemplateWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    empresa_id_cultura_nivel?: DiagnosticoTemplateEmpresa_idCulturaNivelCompoundUniqueInput
+    AND?: DiagnosticoTemplateWhereInput | DiagnosticoTemplateWhereInput[]
+    OR?: DiagnosticoTemplateWhereInput[]
+    NOT?: DiagnosticoTemplateWhereInput | DiagnosticoTemplateWhereInput[]
+    empresa_id?: StringFilter<"DiagnosticoTemplate"> | string
+    cultura?: StringFilter<"DiagnosticoTemplate"> | string
+    nivel?: StringFilter<"DiagnosticoTemplate"> | string
+    titulo?: StringNullableFilter<"DiagnosticoTemplate"> | string | null
+    texto_receita?: StringNullableFilter<"DiagnosticoTemplate"> | string | null
+    texto_custos?: StringNullableFilter<"DiagnosticoTemplate"> | string | null
+    texto_caixa?: StringNullableFilter<"DiagnosticoTemplate"> | string | null
+    texto_recomendacoes?: StringNullableFilter<"DiagnosticoTemplate"> | string | null
+    parametros_dre?: JsonFilter<"DiagnosticoTemplate">
+    criado_em?: DateTimeFilter<"DiagnosticoTemplate"> | Date | string
+    atualizado_em?: DateTimeFilter<"DiagnosticoTemplate"> | Date | string
+    empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
+  }, "id" | "empresa_id_cultura_nivel">
+
+  export type DiagnosticoTemplateOrderByWithAggregationInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    cultura?: SortOrder
+    nivel?: SortOrder
+    titulo?: SortOrderInput | SortOrder
+    texto_receita?: SortOrderInput | SortOrder
+    texto_custos?: SortOrderInput | SortOrder
+    texto_caixa?: SortOrderInput | SortOrder
+    texto_recomendacoes?: SortOrderInput | SortOrder
+    parametros_dre?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+    _count?: DiagnosticoTemplateCountOrderByAggregateInput
+    _max?: DiagnosticoTemplateMaxOrderByAggregateInput
+    _min?: DiagnosticoTemplateMinOrderByAggregateInput
+  }
+
+  export type DiagnosticoTemplateScalarWhereWithAggregatesInput = {
+    AND?: DiagnosticoTemplateScalarWhereWithAggregatesInput | DiagnosticoTemplateScalarWhereWithAggregatesInput[]
+    OR?: DiagnosticoTemplateScalarWhereWithAggregatesInput[]
+    NOT?: DiagnosticoTemplateScalarWhereWithAggregatesInput | DiagnosticoTemplateScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"DiagnosticoTemplate"> | string
+    empresa_id?: StringWithAggregatesFilter<"DiagnosticoTemplate"> | string
+    cultura?: StringWithAggregatesFilter<"DiagnosticoTemplate"> | string
+    nivel?: StringWithAggregatesFilter<"DiagnosticoTemplate"> | string
+    titulo?: StringNullableWithAggregatesFilter<"DiagnosticoTemplate"> | string | null
+    texto_receita?: StringNullableWithAggregatesFilter<"DiagnosticoTemplate"> | string | null
+    texto_custos?: StringNullableWithAggregatesFilter<"DiagnosticoTemplate"> | string | null
+    texto_caixa?: StringNullableWithAggregatesFilter<"DiagnosticoTemplate"> | string | null
+    texto_recomendacoes?: StringNullableWithAggregatesFilter<"DiagnosticoTemplate"> | string | null
+    parametros_dre?: JsonWithAggregatesFilter<"DiagnosticoTemplate">
+    criado_em?: DateTimeWithAggregatesFilter<"DiagnosticoTemplate"> | Date | string
+    atualizado_em?: DateTimeWithAggregatesFilter<"DiagnosticoTemplate"> | Date | string
+  }
+
+  export type AssinaturaWhereInput = {
+    AND?: AssinaturaWhereInput | AssinaturaWhereInput[]
+    OR?: AssinaturaWhereInput[]
+    NOT?: AssinaturaWhereInput | AssinaturaWhereInput[]
+    id?: StringFilter<"Assinatura"> | string
+    empresa_id?: StringFilter<"Assinatura"> | string
+    cliente_id?: StringNullableFilter<"Assinatura"> | string | null
+    servico_id?: StringNullableFilter<"Assinatura"> | string | null
+    nome_cliente?: StringFilter<"Assinatura"> | string
+    email_cliente?: StringNullableFilter<"Assinatura"> | string | null
+    telefone_cliente?: StringNullableFilter<"Assinatura"> | string | null
+    canal?: StringFilter<"Assinatura"> | string
+    plano?: StringNullableFilter<"Assinatura"> | string | null
+    valor?: DecimalFilter<"Assinatura"> | Decimal | DecimalJsLike | number | string
+    ciclo?: StringFilter<"Assinatura"> | string
+    status?: StringFilter<"Assinatura"> | string
+    asaas_subscription_id?: StringNullableFilter<"Assinatura"> | string | null
+    asaas_customer_id?: StringNullableFilter<"Assinatura"> | string | null
+    proximo_vencimento?: DateTimeNullableFilter<"Assinatura"> | Date | string | null
+    data_inicio?: DateTimeFilter<"Assinatura"> | Date | string
+    data_cancelamento?: DateTimeNullableFilter<"Assinatura"> | Date | string | null
+    motivo_cancelamento?: StringNullableFilter<"Assinatura"> | string | null
+    observacoes?: StringNullableFilter<"Assinatura"> | string | null
+    criado_em?: DateTimeFilter<"Assinatura"> | Date | string
+    atualizado_em?: DateTimeFilter<"Assinatura"> | Date | string
+    empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
+    cliente?: XOR<ClienteNullableScalarRelationFilter, ClienteWhereInput> | null
+    servico?: XOR<ServicoNullableScalarRelationFilter, ServicoWhereInput> | null
+  }
+
+  export type AssinaturaOrderByWithRelationInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    cliente_id?: SortOrderInput | SortOrder
+    servico_id?: SortOrderInput | SortOrder
+    nome_cliente?: SortOrder
+    email_cliente?: SortOrderInput | SortOrder
+    telefone_cliente?: SortOrderInput | SortOrder
+    canal?: SortOrder
+    plano?: SortOrderInput | SortOrder
+    valor?: SortOrder
+    ciclo?: SortOrder
+    status?: SortOrder
+    asaas_subscription_id?: SortOrderInput | SortOrder
+    asaas_customer_id?: SortOrderInput | SortOrder
+    proximo_vencimento?: SortOrderInput | SortOrder
+    data_inicio?: SortOrder
+    data_cancelamento?: SortOrderInput | SortOrder
+    motivo_cancelamento?: SortOrderInput | SortOrder
+    observacoes?: SortOrderInput | SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+    empresa?: EmpresaOrderByWithRelationInput
+    cliente?: ClienteOrderByWithRelationInput
+    servico?: ServicoOrderByWithRelationInput
+  }
+
+  export type AssinaturaWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AssinaturaWhereInput | AssinaturaWhereInput[]
+    OR?: AssinaturaWhereInput[]
+    NOT?: AssinaturaWhereInput | AssinaturaWhereInput[]
+    empresa_id?: StringFilter<"Assinatura"> | string
+    cliente_id?: StringNullableFilter<"Assinatura"> | string | null
+    servico_id?: StringNullableFilter<"Assinatura"> | string | null
+    nome_cliente?: StringFilter<"Assinatura"> | string
+    email_cliente?: StringNullableFilter<"Assinatura"> | string | null
+    telefone_cliente?: StringNullableFilter<"Assinatura"> | string | null
+    canal?: StringFilter<"Assinatura"> | string
+    plano?: StringNullableFilter<"Assinatura"> | string | null
+    valor?: DecimalFilter<"Assinatura"> | Decimal | DecimalJsLike | number | string
+    ciclo?: StringFilter<"Assinatura"> | string
+    status?: StringFilter<"Assinatura"> | string
+    asaas_subscription_id?: StringNullableFilter<"Assinatura"> | string | null
+    asaas_customer_id?: StringNullableFilter<"Assinatura"> | string | null
+    proximo_vencimento?: DateTimeNullableFilter<"Assinatura"> | Date | string | null
+    data_inicio?: DateTimeFilter<"Assinatura"> | Date | string
+    data_cancelamento?: DateTimeNullableFilter<"Assinatura"> | Date | string | null
+    motivo_cancelamento?: StringNullableFilter<"Assinatura"> | string | null
+    observacoes?: StringNullableFilter<"Assinatura"> | string | null
+    criado_em?: DateTimeFilter<"Assinatura"> | Date | string
+    atualizado_em?: DateTimeFilter<"Assinatura"> | Date | string
+    empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
+    cliente?: XOR<ClienteNullableScalarRelationFilter, ClienteWhereInput> | null
+    servico?: XOR<ServicoNullableScalarRelationFilter, ServicoWhereInput> | null
+  }, "id">
+
+  export type AssinaturaOrderByWithAggregationInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    cliente_id?: SortOrderInput | SortOrder
+    servico_id?: SortOrderInput | SortOrder
+    nome_cliente?: SortOrder
+    email_cliente?: SortOrderInput | SortOrder
+    telefone_cliente?: SortOrderInput | SortOrder
+    canal?: SortOrder
+    plano?: SortOrderInput | SortOrder
+    valor?: SortOrder
+    ciclo?: SortOrder
+    status?: SortOrder
+    asaas_subscription_id?: SortOrderInput | SortOrder
+    asaas_customer_id?: SortOrderInput | SortOrder
+    proximo_vencimento?: SortOrderInput | SortOrder
+    data_inicio?: SortOrder
+    data_cancelamento?: SortOrderInput | SortOrder
+    motivo_cancelamento?: SortOrderInput | SortOrder
+    observacoes?: SortOrderInput | SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+    _count?: AssinaturaCountOrderByAggregateInput
+    _avg?: AssinaturaAvgOrderByAggregateInput
+    _max?: AssinaturaMaxOrderByAggregateInput
+    _min?: AssinaturaMinOrderByAggregateInput
+    _sum?: AssinaturaSumOrderByAggregateInput
+  }
+
+  export type AssinaturaScalarWhereWithAggregatesInput = {
+    AND?: AssinaturaScalarWhereWithAggregatesInput | AssinaturaScalarWhereWithAggregatesInput[]
+    OR?: AssinaturaScalarWhereWithAggregatesInput[]
+    NOT?: AssinaturaScalarWhereWithAggregatesInput | AssinaturaScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Assinatura"> | string
+    empresa_id?: StringWithAggregatesFilter<"Assinatura"> | string
+    cliente_id?: StringNullableWithAggregatesFilter<"Assinatura"> | string | null
+    servico_id?: StringNullableWithAggregatesFilter<"Assinatura"> | string | null
+    nome_cliente?: StringWithAggregatesFilter<"Assinatura"> | string
+    email_cliente?: StringNullableWithAggregatesFilter<"Assinatura"> | string | null
+    telefone_cliente?: StringNullableWithAggregatesFilter<"Assinatura"> | string | null
+    canal?: StringWithAggregatesFilter<"Assinatura"> | string
+    plano?: StringNullableWithAggregatesFilter<"Assinatura"> | string | null
+    valor?: DecimalWithAggregatesFilter<"Assinatura"> | Decimal | DecimalJsLike | number | string
+    ciclo?: StringWithAggregatesFilter<"Assinatura"> | string
+    status?: StringWithAggregatesFilter<"Assinatura"> | string
+    asaas_subscription_id?: StringNullableWithAggregatesFilter<"Assinatura"> | string | null
+    asaas_customer_id?: StringNullableWithAggregatesFilter<"Assinatura"> | string | null
+    proximo_vencimento?: DateTimeNullableWithAggregatesFilter<"Assinatura"> | Date | string | null
+    data_inicio?: DateTimeWithAggregatesFilter<"Assinatura"> | Date | string
+    data_cancelamento?: DateTimeNullableWithAggregatesFilter<"Assinatura"> | Date | string | null
+    motivo_cancelamento?: StringNullableWithAggregatesFilter<"Assinatura"> | string | null
+    observacoes?: StringNullableWithAggregatesFilter<"Assinatura"> | string | null
+    criado_em?: DateTimeWithAggregatesFilter<"Assinatura"> | Date | string
+    atualizado_em?: DateTimeWithAggregatesFilter<"Assinatura"> | Date | string
+  }
+
   export type EmpresaCreateInput = {
     id?: string
     nome: string
@@ -74352,6 +77672,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateInput = {
@@ -74394,6 +77716,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUpdateInput = {
@@ -74436,6 +77760,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateInput = {
@@ -74478,6 +77804,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateManyInput = {
@@ -75061,6 +78389,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutClientesInput
@@ -75078,6 +78407,7 @@ export namespace Prisma {
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
     documentos?: DocumentoCreateNestedManyWithoutClienteInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateInput = {
@@ -75103,6 +78433,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     contatos?: ContatoUncheckedCreateNestedManyWithoutClienteInput
@@ -75119,6 +78450,7 @@ export namespace Prisma {
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUpdateInput = {
@@ -75143,6 +78475,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutClientesNestedInput
@@ -75160,6 +78493,7 @@ export namespace Prisma {
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUpdateManyWithoutClienteNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateInput = {
@@ -75185,6 +78519,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     contatos?: ContatoUncheckedUpdateManyWithoutClienteNestedInput
@@ -75201,6 +78536,7 @@ export namespace Prisma {
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteCreateManyInput = {
@@ -75226,6 +78562,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -75252,6 +78589,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -75279,6 +78617,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -75365,12 +78704,17 @@ export namespace Prisma {
     descricao?: string | null
     valor_base?: Decimal | DecimalJsLike | number | string | null
     ativo?: boolean
+    canal?: string | null
+    plano?: string | null
+    tipo_cobranca?: string | null
+    asaas_link_pagamento?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutServicosInput
     plano_contas?: PlanoDeContasCreateNestedOneWithoutServicosInput
     itens_proposta?: ItemPropostaCreateNestedManyWithoutServicoInput
     leads?: LeadCreateNestedManyWithoutServicoInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutServicoInput
   }
 
   export type ServicoUncheckedCreateInput = {
@@ -75381,10 +78725,15 @@ export namespace Prisma {
     descricao?: string | null
     valor_base?: Decimal | DecimalJsLike | number | string | null
     ativo?: boolean
+    canal?: string | null
+    plano?: string | null
+    tipo_cobranca?: string | null
+    asaas_link_pagamento?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     itens_proposta?: ItemPropostaUncheckedCreateNestedManyWithoutServicoInput
     leads?: LeadUncheckedCreateNestedManyWithoutServicoInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutServicoInput
   }
 
   export type ServicoUpdateInput = {
@@ -75393,12 +78742,17 @@ export namespace Prisma {
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     valor_base?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     ativo?: BoolFieldUpdateOperationsInput | boolean
+    canal?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_cobranca?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_link_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutServicosNestedInput
     plano_contas?: PlanoDeContasUpdateOneWithoutServicosNestedInput
     itens_proposta?: ItemPropostaUpdateManyWithoutServicoNestedInput
     leads?: LeadUpdateManyWithoutServicoNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutServicoNestedInput
   }
 
   export type ServicoUncheckedUpdateInput = {
@@ -75409,10 +78763,15 @@ export namespace Prisma {
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     valor_base?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     ativo?: BoolFieldUpdateOperationsInput | boolean
+    canal?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_cobranca?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_link_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     itens_proposta?: ItemPropostaUncheckedUpdateManyWithoutServicoNestedInput
     leads?: LeadUncheckedUpdateManyWithoutServicoNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutServicoNestedInput
   }
 
   export type ServicoCreateManyInput = {
@@ -75423,6 +78782,10 @@ export namespace Prisma {
     descricao?: string | null
     valor_base?: Decimal | DecimalJsLike | number | string | null
     ativo?: boolean
+    canal?: string | null
+    plano?: string | null
+    tipo_cobranca?: string | null
+    asaas_link_pagamento?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -75433,6 +78796,10 @@ export namespace Prisma {
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     valor_base?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     ativo?: BoolFieldUpdateOperationsInput | boolean
+    canal?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_cobranca?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_link_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -75445,6 +78812,10 @@ export namespace Prisma {
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     valor_base?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     ativo?: BoolFieldUpdateOperationsInput | boolean
+    canal?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_cobranca?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_link_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -77957,6 +81328,11 @@ export namespace Prisma {
     multa_valor?: Decimal | DecimalJsLike | number | string | null
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
+    asaas_payment_id?: string | null
+    asaas_invoice_url?: string | null
+    asaas_pix_copia_cola?: string | null
+    asaas_boleto_url?: string | null
+    asaas_status?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutRecebiveisInput
@@ -77993,6 +81369,11 @@ export namespace Prisma {
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
     centro_custo_id?: string | null
+    asaas_payment_id?: string | null
+    asaas_invoice_url?: string | null
+    asaas_pix_copia_cola?: string | null
+    asaas_boleto_url?: string | null
+    asaas_status?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
@@ -78015,6 +81396,11 @@ export namespace Prisma {
     multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_payment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_pix_copia_cola?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_boleto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_status?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutRecebiveisNestedInput
@@ -78051,6 +81437,11 @@ export namespace Prisma {
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_payment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_pix_copia_cola?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_boleto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_status?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
@@ -78080,6 +81471,11 @@ export namespace Prisma {
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
     centro_custo_id?: string | null
+    asaas_payment_id?: string | null
+    asaas_invoice_url?: string | null
+    asaas_pix_copia_cola?: string | null
+    asaas_boleto_url?: string | null
+    asaas_status?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -78100,6 +81496,11 @@ export namespace Prisma {
     multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_payment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_pix_copia_cola?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_boleto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_status?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -78127,6 +81528,11 @@ export namespace Prisma {
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_payment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_pix_copia_cola?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_boleto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_status?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -79449,6 +82855,275 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type DiagnosticoTemplateCreateInput = {
+    id?: string
+    cultura: string
+    nivel: string
+    titulo?: string | null
+    texto_receita?: string | null
+    texto_custos?: string | null
+    texto_caixa?: string | null
+    texto_recomendacoes?: string | null
+    parametros_dre?: JsonNullValueInput | InputJsonValue
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutDiagnostico_templatesInput
+  }
+
+  export type DiagnosticoTemplateUncheckedCreateInput = {
+    id?: string
+    empresa_id: string
+    cultura: string
+    nivel: string
+    titulo?: string | null
+    texto_receita?: string | null
+    texto_custos?: string | null
+    texto_caixa?: string | null
+    texto_recomendacoes?: string | null
+    parametros_dre?: JsonNullValueInput | InputJsonValue
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type DiagnosticoTemplateUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cultura?: StringFieldUpdateOperationsInput | string
+    nivel?: StringFieldUpdateOperationsInput | string
+    titulo?: NullableStringFieldUpdateOperationsInput | string | null
+    texto_receita?: NullableStringFieldUpdateOperationsInput | string | null
+    texto_custos?: NullableStringFieldUpdateOperationsInput | string | null
+    texto_caixa?: NullableStringFieldUpdateOperationsInput | string | null
+    texto_recomendacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    parametros_dre?: JsonNullValueInput | InputJsonValue
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutDiagnostico_templatesNestedInput
+  }
+
+  export type DiagnosticoTemplateUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    cultura?: StringFieldUpdateOperationsInput | string
+    nivel?: StringFieldUpdateOperationsInput | string
+    titulo?: NullableStringFieldUpdateOperationsInput | string | null
+    texto_receita?: NullableStringFieldUpdateOperationsInput | string | null
+    texto_custos?: NullableStringFieldUpdateOperationsInput | string | null
+    texto_caixa?: NullableStringFieldUpdateOperationsInput | string | null
+    texto_recomendacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    parametros_dre?: JsonNullValueInput | InputJsonValue
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DiagnosticoTemplateCreateManyInput = {
+    id?: string
+    empresa_id: string
+    cultura: string
+    nivel: string
+    titulo?: string | null
+    texto_receita?: string | null
+    texto_custos?: string | null
+    texto_caixa?: string | null
+    texto_recomendacoes?: string | null
+    parametros_dre?: JsonNullValueInput | InputJsonValue
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type DiagnosticoTemplateUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cultura?: StringFieldUpdateOperationsInput | string
+    nivel?: StringFieldUpdateOperationsInput | string
+    titulo?: NullableStringFieldUpdateOperationsInput | string | null
+    texto_receita?: NullableStringFieldUpdateOperationsInput | string | null
+    texto_custos?: NullableStringFieldUpdateOperationsInput | string | null
+    texto_caixa?: NullableStringFieldUpdateOperationsInput | string | null
+    texto_recomendacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    parametros_dre?: JsonNullValueInput | InputJsonValue
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DiagnosticoTemplateUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    cultura?: StringFieldUpdateOperationsInput | string
+    nivel?: StringFieldUpdateOperationsInput | string
+    titulo?: NullableStringFieldUpdateOperationsInput | string | null
+    texto_receita?: NullableStringFieldUpdateOperationsInput | string | null
+    texto_custos?: NullableStringFieldUpdateOperationsInput | string | null
+    texto_caixa?: NullableStringFieldUpdateOperationsInput | string | null
+    texto_recomendacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    parametros_dre?: JsonNullValueInput | InputJsonValue
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AssinaturaCreateInput = {
+    id?: string
+    nome_cliente: string
+    email_cliente?: string | null
+    telefone_cliente?: string | null
+    canal: string
+    plano?: string | null
+    valor: Decimal | DecimalJsLike | number | string
+    ciclo?: string
+    status?: string
+    asaas_subscription_id?: string | null
+    asaas_customer_id?: string | null
+    proximo_vencimento?: Date | string | null
+    data_inicio?: Date | string
+    data_cancelamento?: Date | string | null
+    motivo_cancelamento?: string | null
+    observacoes?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutAssinaturasInput
+    cliente?: ClienteCreateNestedOneWithoutAssinaturasInput
+    servico?: ServicoCreateNestedOneWithoutAssinaturasInput
+  }
+
+  export type AssinaturaUncheckedCreateInput = {
+    id?: string
+    empresa_id: string
+    cliente_id?: string | null
+    servico_id?: string | null
+    nome_cliente: string
+    email_cliente?: string | null
+    telefone_cliente?: string | null
+    canal: string
+    plano?: string | null
+    valor: Decimal | DecimalJsLike | number | string
+    ciclo?: string
+    status?: string
+    asaas_subscription_id?: string | null
+    asaas_customer_id?: string | null
+    proximo_vencimento?: Date | string | null
+    data_inicio?: Date | string
+    data_cancelamento?: Date | string | null
+    motivo_cancelamento?: string | null
+    observacoes?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type AssinaturaUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome_cliente?: StringFieldUpdateOperationsInput | string
+    email_cliente?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone_cliente?: NullableStringFieldUpdateOperationsInput | string | null
+    canal?: StringFieldUpdateOperationsInput | string
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ciclo?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    asaas_subscription_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_customer_id?: NullableStringFieldUpdateOperationsInput | string | null
+    proximo_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data_inicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    data_cancelamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    motivo_cancelamento?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutAssinaturasNestedInput
+    cliente?: ClienteUpdateOneWithoutAssinaturasNestedInput
+    servico?: ServicoUpdateOneWithoutAssinaturasNestedInput
+  }
+
+  export type AssinaturaUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    servico_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nome_cliente?: StringFieldUpdateOperationsInput | string
+    email_cliente?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone_cliente?: NullableStringFieldUpdateOperationsInput | string | null
+    canal?: StringFieldUpdateOperationsInput | string
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ciclo?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    asaas_subscription_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_customer_id?: NullableStringFieldUpdateOperationsInput | string | null
+    proximo_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data_inicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    data_cancelamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    motivo_cancelamento?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AssinaturaCreateManyInput = {
+    id?: string
+    empresa_id: string
+    cliente_id?: string | null
+    servico_id?: string | null
+    nome_cliente: string
+    email_cliente?: string | null
+    telefone_cliente?: string | null
+    canal: string
+    plano?: string | null
+    valor: Decimal | DecimalJsLike | number | string
+    ciclo?: string
+    status?: string
+    asaas_subscription_id?: string | null
+    asaas_customer_id?: string | null
+    proximo_vencimento?: Date | string | null
+    data_inicio?: Date | string
+    data_cancelamento?: Date | string | null
+    motivo_cancelamento?: string | null
+    observacoes?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type AssinaturaUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome_cliente?: StringFieldUpdateOperationsInput | string
+    email_cliente?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone_cliente?: NullableStringFieldUpdateOperationsInput | string | null
+    canal?: StringFieldUpdateOperationsInput | string
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ciclo?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    asaas_subscription_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_customer_id?: NullableStringFieldUpdateOperationsInput | string | null
+    proximo_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data_inicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    data_cancelamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    motivo_cancelamento?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AssinaturaUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    servico_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nome_cliente?: StringFieldUpdateOperationsInput | string
+    email_cliente?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone_cliente?: NullableStringFieldUpdateOperationsInput | string | null
+    canal?: StringFieldUpdateOperationsInput | string
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ciclo?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    asaas_subscription_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_customer_id?: NullableStringFieldUpdateOperationsInput | string | null
+    proximo_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data_inicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    data_cancelamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    motivo_cancelamento?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -79701,6 +83376,18 @@ export namespace Prisma {
     none?: CentroCustoWhereInput
   }
 
+  export type DiagnosticoTemplateListRelationFilter = {
+    every?: DiagnosticoTemplateWhereInput
+    some?: DiagnosticoTemplateWhereInput
+    none?: DiagnosticoTemplateWhereInput
+  }
+
+  export type AssinaturaListRelationFilter = {
+    every?: AssinaturaWhereInput
+    some?: AssinaturaWhereInput
+    none?: AssinaturaWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -79819,6 +83506,14 @@ export namespace Prisma {
   }
 
   export type CentroCustoOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type DiagnosticoTemplateOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AssinaturaOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -80387,6 +84082,7 @@ export namespace Prisma {
     distancia_km?: SortOrder
     preco_km?: SortOrder
     status?: SortOrder
+    asaas_id?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -80419,6 +84115,7 @@ export namespace Prisma {
     distancia_km?: SortOrder
     preco_km?: SortOrder
     status?: SortOrder
+    asaas_id?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -80446,6 +84143,7 @@ export namespace Prisma {
     distancia_km?: SortOrder
     preco_km?: SortOrder
     status?: SortOrder
+    asaas_id?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -80552,6 +84250,10 @@ export namespace Prisma {
     descricao?: SortOrder
     valor_base?: SortOrder
     ativo?: SortOrder
+    canal?: SortOrder
+    plano?: SortOrder
+    tipo_cobranca?: SortOrder
+    asaas_link_pagamento?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -80568,6 +84270,10 @@ export namespace Prisma {
     descricao?: SortOrder
     valor_base?: SortOrder
     ativo?: SortOrder
+    canal?: SortOrder
+    plano?: SortOrder
+    tipo_cobranca?: SortOrder
+    asaas_link_pagamento?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -80580,6 +84286,10 @@ export namespace Prisma {
     descricao?: SortOrder
     valor_base?: SortOrder
     ativo?: SortOrder
+    canal?: SortOrder
+    plano?: SortOrder
+    tipo_cobranca?: SortOrder
+    asaas_link_pagamento?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -82220,6 +85930,11 @@ export namespace Prisma {
     desconto_valor?: SortOrder
     recebivel_origem_id?: SortOrder
     centro_custo_id?: SortOrder
+    asaas_payment_id?: SortOrder
+    asaas_invoice_url?: SortOrder
+    asaas_pix_copia_cola?: SortOrder
+    asaas_boleto_url?: SortOrder
+    asaas_status?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -82257,6 +85972,11 @@ export namespace Prisma {
     desconto_valor?: SortOrder
     recebivel_origem_id?: SortOrder
     centro_custo_id?: SortOrder
+    asaas_payment_id?: SortOrder
+    asaas_invoice_url?: SortOrder
+    asaas_pix_copia_cola?: SortOrder
+    asaas_boleto_url?: SortOrder
+    asaas_status?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -82284,6 +86004,11 @@ export namespace Prisma {
     desconto_valor?: SortOrder
     recebivel_origem_id?: SortOrder
     centro_custo_id?: SortOrder
+    asaas_payment_id?: SortOrder
+    asaas_invoice_url?: SortOrder
+    asaas_pix_copia_cola?: SortOrder
+    asaas_boleto_url?: SortOrder
+    asaas_status?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -83052,6 +86777,135 @@ export namespace Prisma {
     pontuacao?: SortOrder
   }
 
+  export type DiagnosticoTemplateEmpresa_idCulturaNivelCompoundUniqueInput = {
+    empresa_id: string
+    cultura: string
+    nivel: string
+  }
+
+  export type DiagnosticoTemplateCountOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    cultura?: SortOrder
+    nivel?: SortOrder
+    titulo?: SortOrder
+    texto_receita?: SortOrder
+    texto_custos?: SortOrder
+    texto_caixa?: SortOrder
+    texto_recomendacoes?: SortOrder
+    parametros_dre?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+  }
+
+  export type DiagnosticoTemplateMaxOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    cultura?: SortOrder
+    nivel?: SortOrder
+    titulo?: SortOrder
+    texto_receita?: SortOrder
+    texto_custos?: SortOrder
+    texto_caixa?: SortOrder
+    texto_recomendacoes?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+  }
+
+  export type DiagnosticoTemplateMinOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    cultura?: SortOrder
+    nivel?: SortOrder
+    titulo?: SortOrder
+    texto_receita?: SortOrder
+    texto_custos?: SortOrder
+    texto_caixa?: SortOrder
+    texto_recomendacoes?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+  }
+
+  export type AssinaturaCountOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    cliente_id?: SortOrder
+    servico_id?: SortOrder
+    nome_cliente?: SortOrder
+    email_cliente?: SortOrder
+    telefone_cliente?: SortOrder
+    canal?: SortOrder
+    plano?: SortOrder
+    valor?: SortOrder
+    ciclo?: SortOrder
+    status?: SortOrder
+    asaas_subscription_id?: SortOrder
+    asaas_customer_id?: SortOrder
+    proximo_vencimento?: SortOrder
+    data_inicio?: SortOrder
+    data_cancelamento?: SortOrder
+    motivo_cancelamento?: SortOrder
+    observacoes?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+  }
+
+  export type AssinaturaAvgOrderByAggregateInput = {
+    valor?: SortOrder
+  }
+
+  export type AssinaturaMaxOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    cliente_id?: SortOrder
+    servico_id?: SortOrder
+    nome_cliente?: SortOrder
+    email_cliente?: SortOrder
+    telefone_cliente?: SortOrder
+    canal?: SortOrder
+    plano?: SortOrder
+    valor?: SortOrder
+    ciclo?: SortOrder
+    status?: SortOrder
+    asaas_subscription_id?: SortOrder
+    asaas_customer_id?: SortOrder
+    proximo_vencimento?: SortOrder
+    data_inicio?: SortOrder
+    data_cancelamento?: SortOrder
+    motivo_cancelamento?: SortOrder
+    observacoes?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+  }
+
+  export type AssinaturaMinOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    cliente_id?: SortOrder
+    servico_id?: SortOrder
+    nome_cliente?: SortOrder
+    email_cliente?: SortOrder
+    telefone_cliente?: SortOrder
+    canal?: SortOrder
+    plano?: SortOrder
+    valor?: SortOrder
+    ciclo?: SortOrder
+    status?: SortOrder
+    asaas_subscription_id?: SortOrder
+    asaas_customer_id?: SortOrder
+    proximo_vencimento?: SortOrder
+    data_inicio?: SortOrder
+    data_cancelamento?: SortOrder
+    motivo_cancelamento?: SortOrder
+    observacoes?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+  }
+
+  export type AssinaturaSumOrderByAggregateInput = {
+    valor?: SortOrder
+  }
+
   export type MembroEmpresaCreateNestedManyWithoutEmpresaInput = {
     create?: XOR<MembroEmpresaCreateWithoutEmpresaInput, MembroEmpresaUncheckedCreateWithoutEmpresaInput> | MembroEmpresaCreateWithoutEmpresaInput[] | MembroEmpresaUncheckedCreateWithoutEmpresaInput[]
     connectOrCreate?: MembroEmpresaCreateOrConnectWithoutEmpresaInput | MembroEmpresaCreateOrConnectWithoutEmpresaInput[]
@@ -83255,6 +87109,20 @@ export namespace Prisma {
     connect?: CentroCustoWhereUniqueInput | CentroCustoWhereUniqueInput[]
   }
 
+  export type DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput = {
+    create?: XOR<DiagnosticoTemplateCreateWithoutEmpresaInput, DiagnosticoTemplateUncheckedCreateWithoutEmpresaInput> | DiagnosticoTemplateCreateWithoutEmpresaInput[] | DiagnosticoTemplateUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: DiagnosticoTemplateCreateOrConnectWithoutEmpresaInput | DiagnosticoTemplateCreateOrConnectWithoutEmpresaInput[]
+    createMany?: DiagnosticoTemplateCreateManyEmpresaInputEnvelope
+    connect?: DiagnosticoTemplateWhereUniqueInput | DiagnosticoTemplateWhereUniqueInput[]
+  }
+
+  export type AssinaturaCreateNestedManyWithoutEmpresaInput = {
+    create?: XOR<AssinaturaCreateWithoutEmpresaInput, AssinaturaUncheckedCreateWithoutEmpresaInput> | AssinaturaCreateWithoutEmpresaInput[] | AssinaturaUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: AssinaturaCreateOrConnectWithoutEmpresaInput | AssinaturaCreateOrConnectWithoutEmpresaInput[]
+    createMany?: AssinaturaCreateManyEmpresaInputEnvelope
+    connect?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
+  }
+
   export type MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput = {
     create?: XOR<MembroEmpresaCreateWithoutEmpresaInput, MembroEmpresaUncheckedCreateWithoutEmpresaInput> | MembroEmpresaCreateWithoutEmpresaInput[] | MembroEmpresaUncheckedCreateWithoutEmpresaInput[]
     connectOrCreate?: MembroEmpresaCreateOrConnectWithoutEmpresaInput | MembroEmpresaCreateOrConnectWithoutEmpresaInput[]
@@ -83456,6 +87324,20 @@ export namespace Prisma {
     connectOrCreate?: CentroCustoCreateOrConnectWithoutEmpresaInput | CentroCustoCreateOrConnectWithoutEmpresaInput[]
     createMany?: CentroCustoCreateManyEmpresaInputEnvelope
     connect?: CentroCustoWhereUniqueInput | CentroCustoWhereUniqueInput[]
+  }
+
+  export type DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput = {
+    create?: XOR<DiagnosticoTemplateCreateWithoutEmpresaInput, DiagnosticoTemplateUncheckedCreateWithoutEmpresaInput> | DiagnosticoTemplateCreateWithoutEmpresaInput[] | DiagnosticoTemplateUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: DiagnosticoTemplateCreateOrConnectWithoutEmpresaInput | DiagnosticoTemplateCreateOrConnectWithoutEmpresaInput[]
+    createMany?: DiagnosticoTemplateCreateManyEmpresaInputEnvelope
+    connect?: DiagnosticoTemplateWhereUniqueInput | DiagnosticoTemplateWhereUniqueInput[]
+  }
+
+  export type AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput = {
+    create?: XOR<AssinaturaCreateWithoutEmpresaInput, AssinaturaUncheckedCreateWithoutEmpresaInput> | AssinaturaCreateWithoutEmpresaInput[] | AssinaturaUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: AssinaturaCreateOrConnectWithoutEmpresaInput | AssinaturaCreateOrConnectWithoutEmpresaInput[]
+    createMany?: AssinaturaCreateManyEmpresaInputEnvelope
+    connect?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -83884,6 +87766,34 @@ export namespace Prisma {
     deleteMany?: CentroCustoScalarWhereInput | CentroCustoScalarWhereInput[]
   }
 
+  export type DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput = {
+    create?: XOR<DiagnosticoTemplateCreateWithoutEmpresaInput, DiagnosticoTemplateUncheckedCreateWithoutEmpresaInput> | DiagnosticoTemplateCreateWithoutEmpresaInput[] | DiagnosticoTemplateUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: DiagnosticoTemplateCreateOrConnectWithoutEmpresaInput | DiagnosticoTemplateCreateOrConnectWithoutEmpresaInput[]
+    upsert?: DiagnosticoTemplateUpsertWithWhereUniqueWithoutEmpresaInput | DiagnosticoTemplateUpsertWithWhereUniqueWithoutEmpresaInput[]
+    createMany?: DiagnosticoTemplateCreateManyEmpresaInputEnvelope
+    set?: DiagnosticoTemplateWhereUniqueInput | DiagnosticoTemplateWhereUniqueInput[]
+    disconnect?: DiagnosticoTemplateWhereUniqueInput | DiagnosticoTemplateWhereUniqueInput[]
+    delete?: DiagnosticoTemplateWhereUniqueInput | DiagnosticoTemplateWhereUniqueInput[]
+    connect?: DiagnosticoTemplateWhereUniqueInput | DiagnosticoTemplateWhereUniqueInput[]
+    update?: DiagnosticoTemplateUpdateWithWhereUniqueWithoutEmpresaInput | DiagnosticoTemplateUpdateWithWhereUniqueWithoutEmpresaInput[]
+    updateMany?: DiagnosticoTemplateUpdateManyWithWhereWithoutEmpresaInput | DiagnosticoTemplateUpdateManyWithWhereWithoutEmpresaInput[]
+    deleteMany?: DiagnosticoTemplateScalarWhereInput | DiagnosticoTemplateScalarWhereInput[]
+  }
+
+  export type AssinaturaUpdateManyWithoutEmpresaNestedInput = {
+    create?: XOR<AssinaturaCreateWithoutEmpresaInput, AssinaturaUncheckedCreateWithoutEmpresaInput> | AssinaturaCreateWithoutEmpresaInput[] | AssinaturaUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: AssinaturaCreateOrConnectWithoutEmpresaInput | AssinaturaCreateOrConnectWithoutEmpresaInput[]
+    upsert?: AssinaturaUpsertWithWhereUniqueWithoutEmpresaInput | AssinaturaUpsertWithWhereUniqueWithoutEmpresaInput[]
+    createMany?: AssinaturaCreateManyEmpresaInputEnvelope
+    set?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
+    disconnect?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
+    delete?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
+    connect?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
+    update?: AssinaturaUpdateWithWhereUniqueWithoutEmpresaInput | AssinaturaUpdateWithWhereUniqueWithoutEmpresaInput[]
+    updateMany?: AssinaturaUpdateManyWithWhereWithoutEmpresaInput | AssinaturaUpdateManyWithWhereWithoutEmpresaInput[]
+    deleteMany?: AssinaturaScalarWhereInput | AssinaturaScalarWhereInput[]
+  }
+
   export type MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput = {
     create?: XOR<MembroEmpresaCreateWithoutEmpresaInput, MembroEmpresaUncheckedCreateWithoutEmpresaInput> | MembroEmpresaCreateWithoutEmpresaInput[] | MembroEmpresaUncheckedCreateWithoutEmpresaInput[]
     connectOrCreate?: MembroEmpresaCreateOrConnectWithoutEmpresaInput | MembroEmpresaCreateOrConnectWithoutEmpresaInput[]
@@ -84288,6 +88198,34 @@ export namespace Prisma {
     update?: CentroCustoUpdateWithWhereUniqueWithoutEmpresaInput | CentroCustoUpdateWithWhereUniqueWithoutEmpresaInput[]
     updateMany?: CentroCustoUpdateManyWithWhereWithoutEmpresaInput | CentroCustoUpdateManyWithWhereWithoutEmpresaInput[]
     deleteMany?: CentroCustoScalarWhereInput | CentroCustoScalarWhereInput[]
+  }
+
+  export type DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput = {
+    create?: XOR<DiagnosticoTemplateCreateWithoutEmpresaInput, DiagnosticoTemplateUncheckedCreateWithoutEmpresaInput> | DiagnosticoTemplateCreateWithoutEmpresaInput[] | DiagnosticoTemplateUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: DiagnosticoTemplateCreateOrConnectWithoutEmpresaInput | DiagnosticoTemplateCreateOrConnectWithoutEmpresaInput[]
+    upsert?: DiagnosticoTemplateUpsertWithWhereUniqueWithoutEmpresaInput | DiagnosticoTemplateUpsertWithWhereUniqueWithoutEmpresaInput[]
+    createMany?: DiagnosticoTemplateCreateManyEmpresaInputEnvelope
+    set?: DiagnosticoTemplateWhereUniqueInput | DiagnosticoTemplateWhereUniqueInput[]
+    disconnect?: DiagnosticoTemplateWhereUniqueInput | DiagnosticoTemplateWhereUniqueInput[]
+    delete?: DiagnosticoTemplateWhereUniqueInput | DiagnosticoTemplateWhereUniqueInput[]
+    connect?: DiagnosticoTemplateWhereUniqueInput | DiagnosticoTemplateWhereUniqueInput[]
+    update?: DiagnosticoTemplateUpdateWithWhereUniqueWithoutEmpresaInput | DiagnosticoTemplateUpdateWithWhereUniqueWithoutEmpresaInput[]
+    updateMany?: DiagnosticoTemplateUpdateManyWithWhereWithoutEmpresaInput | DiagnosticoTemplateUpdateManyWithWhereWithoutEmpresaInput[]
+    deleteMany?: DiagnosticoTemplateScalarWhereInput | DiagnosticoTemplateScalarWhereInput[]
+  }
+
+  export type AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput = {
+    create?: XOR<AssinaturaCreateWithoutEmpresaInput, AssinaturaUncheckedCreateWithoutEmpresaInput> | AssinaturaCreateWithoutEmpresaInput[] | AssinaturaUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: AssinaturaCreateOrConnectWithoutEmpresaInput | AssinaturaCreateOrConnectWithoutEmpresaInput[]
+    upsert?: AssinaturaUpsertWithWhereUniqueWithoutEmpresaInput | AssinaturaUpsertWithWhereUniqueWithoutEmpresaInput[]
+    createMany?: AssinaturaCreateManyEmpresaInputEnvelope
+    set?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
+    disconnect?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
+    delete?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
+    connect?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
+    update?: AssinaturaUpdateWithWhereUniqueWithoutEmpresaInput | AssinaturaUpdateWithWhereUniqueWithoutEmpresaInput[]
+    updateMany?: AssinaturaUpdateManyWithWhereWithoutEmpresaInput | AssinaturaUpdateManyWithWhereWithoutEmpresaInput[]
+    deleteMany?: AssinaturaScalarWhereInput | AssinaturaScalarWhereInput[]
   }
 
   export type MembroEmpresaCreateNestedManyWithoutUsuarioInput = {
@@ -85571,6 +89509,13 @@ export namespace Prisma {
     connect?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
   }
 
+  export type AssinaturaCreateNestedManyWithoutClienteInput = {
+    create?: XOR<AssinaturaCreateWithoutClienteInput, AssinaturaUncheckedCreateWithoutClienteInput> | AssinaturaCreateWithoutClienteInput[] | AssinaturaUncheckedCreateWithoutClienteInput[]
+    connectOrCreate?: AssinaturaCreateOrConnectWithoutClienteInput | AssinaturaCreateOrConnectWithoutClienteInput[]
+    createMany?: AssinaturaCreateManyClienteInputEnvelope
+    connect?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
+  }
+
   export type ContatoUncheckedCreateNestedManyWithoutClienteInput = {
     create?: XOR<ContatoCreateWithoutClienteInput, ContatoUncheckedCreateWithoutClienteInput> | ContatoCreateWithoutClienteInput[] | ContatoUncheckedCreateWithoutClienteInput[]
     connectOrCreate?: ContatoCreateOrConnectWithoutClienteInput | ContatoCreateOrConnectWithoutClienteInput[]
@@ -85666,6 +89611,13 @@ export namespace Prisma {
     connectOrCreate?: AplicacaoDiagnosticoCreateOrConnectWithoutClienteInput | AplicacaoDiagnosticoCreateOrConnectWithoutClienteInput[]
     createMany?: AplicacaoDiagnosticoCreateManyClienteInputEnvelope
     connect?: AplicacaoDiagnosticoWhereUniqueInput | AplicacaoDiagnosticoWhereUniqueInput[]
+  }
+
+  export type AssinaturaUncheckedCreateNestedManyWithoutClienteInput = {
+    create?: XOR<AssinaturaCreateWithoutClienteInput, AssinaturaUncheckedCreateWithoutClienteInput> | AssinaturaCreateWithoutClienteInput[] | AssinaturaUncheckedCreateWithoutClienteInput[]
+    connectOrCreate?: AssinaturaCreateOrConnectWithoutClienteInput | AssinaturaCreateOrConnectWithoutClienteInput[]
+    createMany?: AssinaturaCreateManyClienteInputEnvelope
+    connect?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
   }
 
   export type EnumTipoClienteFieldUpdateOperationsInput = {
@@ -85884,6 +89836,20 @@ export namespace Prisma {
     deleteMany?: AplicacaoDiagnosticoScalarWhereInput | AplicacaoDiagnosticoScalarWhereInput[]
   }
 
+  export type AssinaturaUpdateManyWithoutClienteNestedInput = {
+    create?: XOR<AssinaturaCreateWithoutClienteInput, AssinaturaUncheckedCreateWithoutClienteInput> | AssinaturaCreateWithoutClienteInput[] | AssinaturaUncheckedCreateWithoutClienteInput[]
+    connectOrCreate?: AssinaturaCreateOrConnectWithoutClienteInput | AssinaturaCreateOrConnectWithoutClienteInput[]
+    upsert?: AssinaturaUpsertWithWhereUniqueWithoutClienteInput | AssinaturaUpsertWithWhereUniqueWithoutClienteInput[]
+    createMany?: AssinaturaCreateManyClienteInputEnvelope
+    set?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
+    disconnect?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
+    delete?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
+    connect?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
+    update?: AssinaturaUpdateWithWhereUniqueWithoutClienteInput | AssinaturaUpdateWithWhereUniqueWithoutClienteInput[]
+    updateMany?: AssinaturaUpdateManyWithWhereWithoutClienteInput | AssinaturaUpdateManyWithWhereWithoutClienteInput[]
+    deleteMany?: AssinaturaScalarWhereInput | AssinaturaScalarWhereInput[]
+  }
+
   export type ContatoUncheckedUpdateManyWithoutClienteNestedInput = {
     create?: XOR<ContatoCreateWithoutClienteInput, ContatoUncheckedCreateWithoutClienteInput> | ContatoCreateWithoutClienteInput[] | ContatoUncheckedCreateWithoutClienteInput[]
     connectOrCreate?: ContatoCreateOrConnectWithoutClienteInput | ContatoCreateOrConnectWithoutClienteInput[]
@@ -86076,6 +90042,20 @@ export namespace Prisma {
     deleteMany?: AplicacaoDiagnosticoScalarWhereInput | AplicacaoDiagnosticoScalarWhereInput[]
   }
 
+  export type AssinaturaUncheckedUpdateManyWithoutClienteNestedInput = {
+    create?: XOR<AssinaturaCreateWithoutClienteInput, AssinaturaUncheckedCreateWithoutClienteInput> | AssinaturaCreateWithoutClienteInput[] | AssinaturaUncheckedCreateWithoutClienteInput[]
+    connectOrCreate?: AssinaturaCreateOrConnectWithoutClienteInput | AssinaturaCreateOrConnectWithoutClienteInput[]
+    upsert?: AssinaturaUpsertWithWhereUniqueWithoutClienteInput | AssinaturaUpsertWithWhereUniqueWithoutClienteInput[]
+    createMany?: AssinaturaCreateManyClienteInputEnvelope
+    set?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
+    disconnect?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
+    delete?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
+    connect?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
+    update?: AssinaturaUpdateWithWhereUniqueWithoutClienteInput | AssinaturaUpdateWithWhereUniqueWithoutClienteInput[]
+    updateMany?: AssinaturaUpdateManyWithWhereWithoutClienteInput | AssinaturaUpdateManyWithWhereWithoutClienteInput[]
+    deleteMany?: AssinaturaScalarWhereInput | AssinaturaScalarWhereInput[]
+  }
+
   export type ClienteCreateNestedOneWithoutContatosInput = {
     create?: XOR<ClienteCreateWithoutContatosInput, ClienteUncheckedCreateWithoutContatosInput>
     connectOrCreate?: ClienteCreateOrConnectWithoutContatosInput
@@ -86116,6 +90096,13 @@ export namespace Prisma {
     connect?: LeadWhereUniqueInput | LeadWhereUniqueInput[]
   }
 
+  export type AssinaturaCreateNestedManyWithoutServicoInput = {
+    create?: XOR<AssinaturaCreateWithoutServicoInput, AssinaturaUncheckedCreateWithoutServicoInput> | AssinaturaCreateWithoutServicoInput[] | AssinaturaUncheckedCreateWithoutServicoInput[]
+    connectOrCreate?: AssinaturaCreateOrConnectWithoutServicoInput | AssinaturaCreateOrConnectWithoutServicoInput[]
+    createMany?: AssinaturaCreateManyServicoInputEnvelope
+    connect?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
+  }
+
   export type ItemPropostaUncheckedCreateNestedManyWithoutServicoInput = {
     create?: XOR<ItemPropostaCreateWithoutServicoInput, ItemPropostaUncheckedCreateWithoutServicoInput> | ItemPropostaCreateWithoutServicoInput[] | ItemPropostaUncheckedCreateWithoutServicoInput[]
     connectOrCreate?: ItemPropostaCreateOrConnectWithoutServicoInput | ItemPropostaCreateOrConnectWithoutServicoInput[]
@@ -86128,6 +90115,13 @@ export namespace Prisma {
     connectOrCreate?: LeadCreateOrConnectWithoutServicoInput | LeadCreateOrConnectWithoutServicoInput[]
     createMany?: LeadCreateManyServicoInputEnvelope
     connect?: LeadWhereUniqueInput | LeadWhereUniqueInput[]
+  }
+
+  export type AssinaturaUncheckedCreateNestedManyWithoutServicoInput = {
+    create?: XOR<AssinaturaCreateWithoutServicoInput, AssinaturaUncheckedCreateWithoutServicoInput> | AssinaturaCreateWithoutServicoInput[] | AssinaturaUncheckedCreateWithoutServicoInput[]
+    connectOrCreate?: AssinaturaCreateOrConnectWithoutServicoInput | AssinaturaCreateOrConnectWithoutServicoInput[]
+    createMany?: AssinaturaCreateManyServicoInputEnvelope
+    connect?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
   }
 
   export type EmpresaUpdateOneRequiredWithoutServicosNestedInput = {
@@ -86176,6 +90170,20 @@ export namespace Prisma {
     deleteMany?: LeadScalarWhereInput | LeadScalarWhereInput[]
   }
 
+  export type AssinaturaUpdateManyWithoutServicoNestedInput = {
+    create?: XOR<AssinaturaCreateWithoutServicoInput, AssinaturaUncheckedCreateWithoutServicoInput> | AssinaturaCreateWithoutServicoInput[] | AssinaturaUncheckedCreateWithoutServicoInput[]
+    connectOrCreate?: AssinaturaCreateOrConnectWithoutServicoInput | AssinaturaCreateOrConnectWithoutServicoInput[]
+    upsert?: AssinaturaUpsertWithWhereUniqueWithoutServicoInput | AssinaturaUpsertWithWhereUniqueWithoutServicoInput[]
+    createMany?: AssinaturaCreateManyServicoInputEnvelope
+    set?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
+    disconnect?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
+    delete?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
+    connect?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
+    update?: AssinaturaUpdateWithWhereUniqueWithoutServicoInput | AssinaturaUpdateWithWhereUniqueWithoutServicoInput[]
+    updateMany?: AssinaturaUpdateManyWithWhereWithoutServicoInput | AssinaturaUpdateManyWithWhereWithoutServicoInput[]
+    deleteMany?: AssinaturaScalarWhereInput | AssinaturaScalarWhereInput[]
+  }
+
   export type ItemPropostaUncheckedUpdateManyWithoutServicoNestedInput = {
     create?: XOR<ItemPropostaCreateWithoutServicoInput, ItemPropostaUncheckedCreateWithoutServicoInput> | ItemPropostaCreateWithoutServicoInput[] | ItemPropostaUncheckedCreateWithoutServicoInput[]
     connectOrCreate?: ItemPropostaCreateOrConnectWithoutServicoInput | ItemPropostaCreateOrConnectWithoutServicoInput[]
@@ -86202,6 +90210,20 @@ export namespace Prisma {
     update?: LeadUpdateWithWhereUniqueWithoutServicoInput | LeadUpdateWithWhereUniqueWithoutServicoInput[]
     updateMany?: LeadUpdateManyWithWhereWithoutServicoInput | LeadUpdateManyWithWhereWithoutServicoInput[]
     deleteMany?: LeadScalarWhereInput | LeadScalarWhereInput[]
+  }
+
+  export type AssinaturaUncheckedUpdateManyWithoutServicoNestedInput = {
+    create?: XOR<AssinaturaCreateWithoutServicoInput, AssinaturaUncheckedCreateWithoutServicoInput> | AssinaturaCreateWithoutServicoInput[] | AssinaturaUncheckedCreateWithoutServicoInput[]
+    connectOrCreate?: AssinaturaCreateOrConnectWithoutServicoInput | AssinaturaCreateOrConnectWithoutServicoInput[]
+    upsert?: AssinaturaUpsertWithWhereUniqueWithoutServicoInput | AssinaturaUpsertWithWhereUniqueWithoutServicoInput[]
+    createMany?: AssinaturaCreateManyServicoInputEnvelope
+    set?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
+    disconnect?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
+    delete?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
+    connect?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
+    update?: AssinaturaUpdateWithWhereUniqueWithoutServicoInput | AssinaturaUpdateWithWhereUniqueWithoutServicoInput[]
+    updateMany?: AssinaturaUpdateManyWithWhereWithoutServicoInput | AssinaturaUpdateManyWithWhereWithoutServicoInput[]
+    deleteMany?: AssinaturaScalarWhereInput | AssinaturaScalarWhereInput[]
   }
 
   export type EmpresaCreateNestedOneWithoutEtapas_crmInput = {
@@ -89567,6 +93589,66 @@ export namespace Prisma {
     update?: XOR<XOR<LeadUpdateToOneWithWhereWithoutDiagnostico_participanteInput, LeadUpdateWithoutDiagnostico_participanteInput>, LeadUncheckedUpdateWithoutDiagnostico_participanteInput>
   }
 
+  export type EmpresaCreateNestedOneWithoutDiagnostico_templatesInput = {
+    create?: XOR<EmpresaCreateWithoutDiagnostico_templatesInput, EmpresaUncheckedCreateWithoutDiagnostico_templatesInput>
+    connectOrCreate?: EmpresaCreateOrConnectWithoutDiagnostico_templatesInput
+    connect?: EmpresaWhereUniqueInput
+  }
+
+  export type EmpresaUpdateOneRequiredWithoutDiagnostico_templatesNestedInput = {
+    create?: XOR<EmpresaCreateWithoutDiagnostico_templatesInput, EmpresaUncheckedCreateWithoutDiagnostico_templatesInput>
+    connectOrCreate?: EmpresaCreateOrConnectWithoutDiagnostico_templatesInput
+    upsert?: EmpresaUpsertWithoutDiagnostico_templatesInput
+    connect?: EmpresaWhereUniqueInput
+    update?: XOR<XOR<EmpresaUpdateToOneWithWhereWithoutDiagnostico_templatesInput, EmpresaUpdateWithoutDiagnostico_templatesInput>, EmpresaUncheckedUpdateWithoutDiagnostico_templatesInput>
+  }
+
+  export type EmpresaCreateNestedOneWithoutAssinaturasInput = {
+    create?: XOR<EmpresaCreateWithoutAssinaturasInput, EmpresaUncheckedCreateWithoutAssinaturasInput>
+    connectOrCreate?: EmpresaCreateOrConnectWithoutAssinaturasInput
+    connect?: EmpresaWhereUniqueInput
+  }
+
+  export type ClienteCreateNestedOneWithoutAssinaturasInput = {
+    create?: XOR<ClienteCreateWithoutAssinaturasInput, ClienteUncheckedCreateWithoutAssinaturasInput>
+    connectOrCreate?: ClienteCreateOrConnectWithoutAssinaturasInput
+    connect?: ClienteWhereUniqueInput
+  }
+
+  export type ServicoCreateNestedOneWithoutAssinaturasInput = {
+    create?: XOR<ServicoCreateWithoutAssinaturasInput, ServicoUncheckedCreateWithoutAssinaturasInput>
+    connectOrCreate?: ServicoCreateOrConnectWithoutAssinaturasInput
+    connect?: ServicoWhereUniqueInput
+  }
+
+  export type EmpresaUpdateOneRequiredWithoutAssinaturasNestedInput = {
+    create?: XOR<EmpresaCreateWithoutAssinaturasInput, EmpresaUncheckedCreateWithoutAssinaturasInput>
+    connectOrCreate?: EmpresaCreateOrConnectWithoutAssinaturasInput
+    upsert?: EmpresaUpsertWithoutAssinaturasInput
+    connect?: EmpresaWhereUniqueInput
+    update?: XOR<XOR<EmpresaUpdateToOneWithWhereWithoutAssinaturasInput, EmpresaUpdateWithoutAssinaturasInput>, EmpresaUncheckedUpdateWithoutAssinaturasInput>
+  }
+
+  export type ClienteUpdateOneWithoutAssinaturasNestedInput = {
+    create?: XOR<ClienteCreateWithoutAssinaturasInput, ClienteUncheckedCreateWithoutAssinaturasInput>
+    connectOrCreate?: ClienteCreateOrConnectWithoutAssinaturasInput
+    upsert?: ClienteUpsertWithoutAssinaturasInput
+    disconnect?: ClienteWhereInput | boolean
+    delete?: ClienteWhereInput | boolean
+    connect?: ClienteWhereUniqueInput
+    update?: XOR<XOR<ClienteUpdateToOneWithWhereWithoutAssinaturasInput, ClienteUpdateWithoutAssinaturasInput>, ClienteUncheckedUpdateWithoutAssinaturasInput>
+  }
+
+  export type ServicoUpdateOneWithoutAssinaturasNestedInput = {
+    create?: XOR<ServicoCreateWithoutAssinaturasInput, ServicoUncheckedCreateWithoutAssinaturasInput>
+    connectOrCreate?: ServicoCreateOrConnectWithoutAssinaturasInput
+    upsert?: ServicoUpsertWithoutAssinaturasInput
+    disconnect?: ServicoWhereInput | boolean
+    delete?: ServicoWhereInput | boolean
+    connect?: ServicoWhereUniqueInput
+    update?: XOR<XOR<ServicoUpdateToOneWithWhereWithoutAssinaturasInput, ServicoUpdateWithoutAssinaturasInput>, ServicoUncheckedUpdateWithoutAssinaturasInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -90365,6 +94447,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     contatos?: ContatoCreateNestedManyWithoutClienteInput
@@ -90381,6 +94464,7 @@ export namespace Prisma {
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
     documentos?: DocumentoCreateNestedManyWithoutClienteInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutEmpresaInput = {
@@ -90405,6 +94489,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     contatos?: ContatoUncheckedCreateNestedManyWithoutClienteInput
@@ -90421,6 +94506,7 @@ export namespace Prisma {
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutEmpresaInput = {
@@ -90439,11 +94525,16 @@ export namespace Prisma {
     descricao?: string | null
     valor_base?: Decimal | DecimalJsLike | number | string | null
     ativo?: boolean
+    canal?: string | null
+    plano?: string | null
+    tipo_cobranca?: string | null
+    asaas_link_pagamento?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     plano_contas?: PlanoDeContasCreateNestedOneWithoutServicosInput
     itens_proposta?: ItemPropostaCreateNestedManyWithoutServicoInput
     leads?: LeadCreateNestedManyWithoutServicoInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutServicoInput
   }
 
   export type ServicoUncheckedCreateWithoutEmpresaInput = {
@@ -90453,10 +94544,15 @@ export namespace Prisma {
     descricao?: string | null
     valor_base?: Decimal | DecimalJsLike | number | string | null
     ativo?: boolean
+    canal?: string | null
+    plano?: string | null
+    tipo_cobranca?: string | null
+    asaas_link_pagamento?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     itens_proposta?: ItemPropostaUncheckedCreateNestedManyWithoutServicoInput
     leads?: LeadUncheckedCreateNestedManyWithoutServicoInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutServicoInput
   }
 
   export type ServicoCreateOrConnectWithoutEmpresaInput = {
@@ -91035,6 +95131,11 @@ export namespace Prisma {
     multa_valor?: Decimal | DecimalJsLike | number | string | null
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
+    asaas_payment_id?: string | null
+    asaas_invoice_url?: string | null
+    asaas_pix_copia_cola?: string | null
+    asaas_boleto_url?: string | null
+    asaas_status?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     cliente?: ClienteCreateNestedOneWithoutRecebiveisInput
@@ -91069,6 +95170,11 @@ export namespace Prisma {
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
     centro_custo_id?: string | null
+    asaas_payment_id?: string | null
+    asaas_invoice_url?: string | null
+    asaas_pix_copia_cola?: string | null
+    asaas_boleto_url?: string | null
+    asaas_status?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
@@ -91541,6 +95647,100 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type DiagnosticoTemplateCreateWithoutEmpresaInput = {
+    id?: string
+    cultura: string
+    nivel: string
+    titulo?: string | null
+    texto_receita?: string | null
+    texto_custos?: string | null
+    texto_caixa?: string | null
+    texto_recomendacoes?: string | null
+    parametros_dre?: JsonNullValueInput | InputJsonValue
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type DiagnosticoTemplateUncheckedCreateWithoutEmpresaInput = {
+    id?: string
+    cultura: string
+    nivel: string
+    titulo?: string | null
+    texto_receita?: string | null
+    texto_custos?: string | null
+    texto_caixa?: string | null
+    texto_recomendacoes?: string | null
+    parametros_dre?: JsonNullValueInput | InputJsonValue
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type DiagnosticoTemplateCreateOrConnectWithoutEmpresaInput = {
+    where: DiagnosticoTemplateWhereUniqueInput
+    create: XOR<DiagnosticoTemplateCreateWithoutEmpresaInput, DiagnosticoTemplateUncheckedCreateWithoutEmpresaInput>
+  }
+
+  export type DiagnosticoTemplateCreateManyEmpresaInputEnvelope = {
+    data: DiagnosticoTemplateCreateManyEmpresaInput | DiagnosticoTemplateCreateManyEmpresaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AssinaturaCreateWithoutEmpresaInput = {
+    id?: string
+    nome_cliente: string
+    email_cliente?: string | null
+    telefone_cliente?: string | null
+    canal: string
+    plano?: string | null
+    valor: Decimal | DecimalJsLike | number | string
+    ciclo?: string
+    status?: string
+    asaas_subscription_id?: string | null
+    asaas_customer_id?: string | null
+    proximo_vencimento?: Date | string | null
+    data_inicio?: Date | string
+    data_cancelamento?: Date | string | null
+    motivo_cancelamento?: string | null
+    observacoes?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    cliente?: ClienteCreateNestedOneWithoutAssinaturasInput
+    servico?: ServicoCreateNestedOneWithoutAssinaturasInput
+  }
+
+  export type AssinaturaUncheckedCreateWithoutEmpresaInput = {
+    id?: string
+    cliente_id?: string | null
+    servico_id?: string | null
+    nome_cliente: string
+    email_cliente?: string | null
+    telefone_cliente?: string | null
+    canal: string
+    plano?: string | null
+    valor: Decimal | DecimalJsLike | number | string
+    ciclo?: string
+    status?: string
+    asaas_subscription_id?: string | null
+    asaas_customer_id?: string | null
+    proximo_vencimento?: Date | string | null
+    data_inicio?: Date | string
+    data_cancelamento?: Date | string | null
+    motivo_cancelamento?: string | null
+    observacoes?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type AssinaturaCreateOrConnectWithoutEmpresaInput = {
+    where: AssinaturaWhereUniqueInput
+    create: XOR<AssinaturaCreateWithoutEmpresaInput, AssinaturaUncheckedCreateWithoutEmpresaInput>
+  }
+
+  export type AssinaturaCreateManyEmpresaInputEnvelope = {
+    data: AssinaturaCreateManyEmpresaInput | AssinaturaCreateManyEmpresaInput[]
+    skipDuplicates?: boolean
+  }
+
   export type MembroEmpresaUpsertWithWhereUniqueWithoutEmpresaInput = {
     where: MembroEmpresaWhereUniqueInput
     update: XOR<MembroEmpresaUpdateWithoutEmpresaInput, MembroEmpresaUncheckedUpdateWithoutEmpresaInput>
@@ -91700,6 +95900,7 @@ export namespace Prisma {
     distancia_km?: DecimalNullableFilter<"Cliente"> | Decimal | DecimalJsLike | number | string | null
     preco_km?: DecimalNullableFilter<"Cliente"> | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFilter<"Cliente"> | $Enums.StatusCliente
+    asaas_id?: StringNullableFilter<"Cliente"> | string | null
     criado_em?: DateTimeFilter<"Cliente"> | Date | string
     atualizado_em?: DateTimeFilter<"Cliente"> | Date | string
   }
@@ -91731,6 +95932,10 @@ export namespace Prisma {
     descricao?: StringNullableFilter<"Servico"> | string | null
     valor_base?: DecimalNullableFilter<"Servico"> | Decimal | DecimalJsLike | number | string | null
     ativo?: BoolFilter<"Servico"> | boolean
+    canal?: StringNullableFilter<"Servico"> | string | null
+    plano?: StringNullableFilter<"Servico"> | string | null
+    tipo_cobranca?: StringNullableFilter<"Servico"> | string | null
+    asaas_link_pagamento?: StringNullableFilter<"Servico"> | string | null
     criado_em?: DateTimeFilter<"Servico"> | Date | string
     atualizado_em?: DateTimeFilter<"Servico"> | Date | string
   }
@@ -92174,6 +96379,11 @@ export namespace Prisma {
     desconto_valor?: DecimalNullableFilter<"Recebivel"> | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: StringNullableFilter<"Recebivel"> | string | null
     centro_custo_id?: StringNullableFilter<"Recebivel"> | string | null
+    asaas_payment_id?: StringNullableFilter<"Recebivel"> | string | null
+    asaas_invoice_url?: StringNullableFilter<"Recebivel"> | string | null
+    asaas_pix_copia_cola?: StringNullableFilter<"Recebivel"> | string | null
+    asaas_boleto_url?: StringNullableFilter<"Recebivel"> | string | null
+    asaas_status?: StringNullableFilter<"Recebivel"> | string | null
     criado_em?: DateTimeFilter<"Recebivel"> | Date | string
     atualizado_em?: DateTimeFilter<"Recebivel"> | Date | string
   }
@@ -92579,6 +96789,83 @@ export namespace Prisma {
     projeto_id?: StringNullableFilter<"CentroCusto"> | string | null
     criado_em?: DateTimeFilter<"CentroCusto"> | Date | string
     atualizado_em?: DateTimeFilter<"CentroCusto"> | Date | string
+  }
+
+  export type DiagnosticoTemplateUpsertWithWhereUniqueWithoutEmpresaInput = {
+    where: DiagnosticoTemplateWhereUniqueInput
+    update: XOR<DiagnosticoTemplateUpdateWithoutEmpresaInput, DiagnosticoTemplateUncheckedUpdateWithoutEmpresaInput>
+    create: XOR<DiagnosticoTemplateCreateWithoutEmpresaInput, DiagnosticoTemplateUncheckedCreateWithoutEmpresaInput>
+  }
+
+  export type DiagnosticoTemplateUpdateWithWhereUniqueWithoutEmpresaInput = {
+    where: DiagnosticoTemplateWhereUniqueInput
+    data: XOR<DiagnosticoTemplateUpdateWithoutEmpresaInput, DiagnosticoTemplateUncheckedUpdateWithoutEmpresaInput>
+  }
+
+  export type DiagnosticoTemplateUpdateManyWithWhereWithoutEmpresaInput = {
+    where: DiagnosticoTemplateScalarWhereInput
+    data: XOR<DiagnosticoTemplateUpdateManyMutationInput, DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaInput>
+  }
+
+  export type DiagnosticoTemplateScalarWhereInput = {
+    AND?: DiagnosticoTemplateScalarWhereInput | DiagnosticoTemplateScalarWhereInput[]
+    OR?: DiagnosticoTemplateScalarWhereInput[]
+    NOT?: DiagnosticoTemplateScalarWhereInput | DiagnosticoTemplateScalarWhereInput[]
+    id?: StringFilter<"DiagnosticoTemplate"> | string
+    empresa_id?: StringFilter<"DiagnosticoTemplate"> | string
+    cultura?: StringFilter<"DiagnosticoTemplate"> | string
+    nivel?: StringFilter<"DiagnosticoTemplate"> | string
+    titulo?: StringNullableFilter<"DiagnosticoTemplate"> | string | null
+    texto_receita?: StringNullableFilter<"DiagnosticoTemplate"> | string | null
+    texto_custos?: StringNullableFilter<"DiagnosticoTemplate"> | string | null
+    texto_caixa?: StringNullableFilter<"DiagnosticoTemplate"> | string | null
+    texto_recomendacoes?: StringNullableFilter<"DiagnosticoTemplate"> | string | null
+    parametros_dre?: JsonFilter<"DiagnosticoTemplate">
+    criado_em?: DateTimeFilter<"DiagnosticoTemplate"> | Date | string
+    atualizado_em?: DateTimeFilter<"DiagnosticoTemplate"> | Date | string
+  }
+
+  export type AssinaturaUpsertWithWhereUniqueWithoutEmpresaInput = {
+    where: AssinaturaWhereUniqueInput
+    update: XOR<AssinaturaUpdateWithoutEmpresaInput, AssinaturaUncheckedUpdateWithoutEmpresaInput>
+    create: XOR<AssinaturaCreateWithoutEmpresaInput, AssinaturaUncheckedCreateWithoutEmpresaInput>
+  }
+
+  export type AssinaturaUpdateWithWhereUniqueWithoutEmpresaInput = {
+    where: AssinaturaWhereUniqueInput
+    data: XOR<AssinaturaUpdateWithoutEmpresaInput, AssinaturaUncheckedUpdateWithoutEmpresaInput>
+  }
+
+  export type AssinaturaUpdateManyWithWhereWithoutEmpresaInput = {
+    where: AssinaturaScalarWhereInput
+    data: XOR<AssinaturaUpdateManyMutationInput, AssinaturaUncheckedUpdateManyWithoutEmpresaInput>
+  }
+
+  export type AssinaturaScalarWhereInput = {
+    AND?: AssinaturaScalarWhereInput | AssinaturaScalarWhereInput[]
+    OR?: AssinaturaScalarWhereInput[]
+    NOT?: AssinaturaScalarWhereInput | AssinaturaScalarWhereInput[]
+    id?: StringFilter<"Assinatura"> | string
+    empresa_id?: StringFilter<"Assinatura"> | string
+    cliente_id?: StringNullableFilter<"Assinatura"> | string | null
+    servico_id?: StringNullableFilter<"Assinatura"> | string | null
+    nome_cliente?: StringFilter<"Assinatura"> | string
+    email_cliente?: StringNullableFilter<"Assinatura"> | string | null
+    telefone_cliente?: StringNullableFilter<"Assinatura"> | string | null
+    canal?: StringFilter<"Assinatura"> | string
+    plano?: StringNullableFilter<"Assinatura"> | string | null
+    valor?: DecimalFilter<"Assinatura"> | Decimal | DecimalJsLike | number | string
+    ciclo?: StringFilter<"Assinatura"> | string
+    status?: StringFilter<"Assinatura"> | string
+    asaas_subscription_id?: StringNullableFilter<"Assinatura"> | string | null
+    asaas_customer_id?: StringNullableFilter<"Assinatura"> | string | null
+    proximo_vencimento?: DateTimeNullableFilter<"Assinatura"> | Date | string | null
+    data_inicio?: DateTimeFilter<"Assinatura"> | Date | string
+    data_cancelamento?: DateTimeNullableFilter<"Assinatura"> | Date | string | null
+    motivo_cancelamento?: StringNullableFilter<"Assinatura"> | string | null
+    observacoes?: StringNullableFilter<"Assinatura"> | string | null
+    criado_em?: DateTimeFilter<"Assinatura"> | Date | string
+    atualizado_em?: DateTimeFilter<"Assinatura"> | Date | string
   }
 
   export type MembroEmpresaCreateWithoutUsuarioInput = {
@@ -93085,6 +97372,11 @@ export namespace Prisma {
     multa_valor?: Decimal | DecimalJsLike | number | string | null
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
+    asaas_payment_id?: string | null
+    asaas_invoice_url?: string | null
+    asaas_pix_copia_cola?: string | null
+    asaas_boleto_url?: string | null
+    asaas_status?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutRecebiveisInput
@@ -93119,6 +97411,11 @@ export namespace Prisma {
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
     centro_custo_id?: string | null
+    asaas_payment_id?: string | null
+    asaas_invoice_url?: string | null
+    asaas_pix_copia_cola?: string | null
+    asaas_boleto_url?: string | null
+    asaas_status?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
@@ -94127,6 +98424,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutMembrosInput = {
@@ -94168,6 +98467,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutMembrosInput = {
@@ -94319,6 +98620,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutMembrosInput = {
@@ -94360,6 +98663,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PerfilUpsertWithoutMembrosInput = {
@@ -94432,6 +98737,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutPerfisInput = {
@@ -94473,6 +98780,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutPerfisInput = {
@@ -94574,6 +98883,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutPerfisInput = {
@@ -94615,6 +98926,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type MembroEmpresaUpsertWithWhereUniqueWithoutPerfilInput = {
@@ -94830,6 +99143,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutConvitesInput = {
@@ -94871,6 +99186,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutConvitesInput = {
@@ -94991,6 +99308,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutConvitesInput = {
@@ -95032,6 +99351,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type UsuarioUpsertWithoutConvitesInput = {
@@ -95142,6 +99463,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutConvites_clienteInput = {
@@ -95183,6 +99506,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutConvites_clienteInput = {
@@ -95275,6 +99600,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutClientesInput
@@ -95291,6 +99617,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
     documentos?: DocumentoCreateNestedManyWithoutClienteInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutConviteInput = {
@@ -95316,6 +99643,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     contatos?: ContatoUncheckedCreateNestedManyWithoutClienteInput
@@ -95331,6 +99659,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutConviteInput = {
@@ -95388,6 +99717,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutConvites_clienteInput = {
@@ -95429,6 +99760,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type UsuarioUpsertWithoutConvites_clienteInput = {
@@ -95533,6 +99866,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutClientesNestedInput
@@ -95549,6 +99883,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
     documentos?: DocumentoUpdateManyWithoutClienteNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutConviteInput = {
@@ -95574,6 +99909,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     contatos?: ContatoUncheckedUpdateManyWithoutClienteNestedInput
@@ -95589,6 +99925,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type EmpresaCreateWithoutClientesInput = {
@@ -95630,6 +99967,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutClientesInput = {
@@ -95671,6 +100010,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutClientesInput = {
@@ -96058,6 +100399,11 @@ export namespace Prisma {
     multa_valor?: Decimal | DecimalJsLike | number | string | null
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
+    asaas_payment_id?: string | null
+    asaas_invoice_url?: string | null
+    asaas_pix_copia_cola?: string | null
+    asaas_boleto_url?: string | null
+    asaas_status?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutRecebiveisInput
@@ -96092,6 +100438,11 @@ export namespace Prisma {
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
     centro_custo_id?: string | null
+    asaas_payment_id?: string | null
+    asaas_invoice_url?: string | null
+    asaas_pix_copia_cola?: string | null
+    asaas_boleto_url?: string | null
+    asaas_status?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
@@ -96409,6 +100760,62 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type AssinaturaCreateWithoutClienteInput = {
+    id?: string
+    nome_cliente: string
+    email_cliente?: string | null
+    telefone_cliente?: string | null
+    canal: string
+    plano?: string | null
+    valor: Decimal | DecimalJsLike | number | string
+    ciclo?: string
+    status?: string
+    asaas_subscription_id?: string | null
+    asaas_customer_id?: string | null
+    proximo_vencimento?: Date | string | null
+    data_inicio?: Date | string
+    data_cancelamento?: Date | string | null
+    motivo_cancelamento?: string | null
+    observacoes?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutAssinaturasInput
+    servico?: ServicoCreateNestedOneWithoutAssinaturasInput
+  }
+
+  export type AssinaturaUncheckedCreateWithoutClienteInput = {
+    id?: string
+    empresa_id: string
+    servico_id?: string | null
+    nome_cliente: string
+    email_cliente?: string | null
+    telefone_cliente?: string | null
+    canal: string
+    plano?: string | null
+    valor: Decimal | DecimalJsLike | number | string
+    ciclo?: string
+    status?: string
+    asaas_subscription_id?: string | null
+    asaas_customer_id?: string | null
+    proximo_vencimento?: Date | string | null
+    data_inicio?: Date | string
+    data_cancelamento?: Date | string | null
+    motivo_cancelamento?: string | null
+    observacoes?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type AssinaturaCreateOrConnectWithoutClienteInput = {
+    where: AssinaturaWhereUniqueInput
+    create: XOR<AssinaturaCreateWithoutClienteInput, AssinaturaUncheckedCreateWithoutClienteInput>
+  }
+
+  export type AssinaturaCreateManyClienteInputEnvelope = {
+    data: AssinaturaCreateManyClienteInput | AssinaturaCreateManyClienteInput[]
+    skipDuplicates?: boolean
+  }
+
   export type EmpresaUpsertWithoutClientesInput = {
     update: XOR<EmpresaUpdateWithoutClientesInput, EmpresaUncheckedUpdateWithoutClientesInput>
     create: XOR<EmpresaCreateWithoutClientesInput, EmpresaUncheckedCreateWithoutClientesInput>
@@ -96459,6 +100866,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutClientesInput = {
@@ -96500,6 +100909,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ContatoUpsertWithWhereUniqueWithoutClienteInput = {
@@ -96768,6 +101179,22 @@ export namespace Prisma {
     data: XOR<AplicacaoDiagnosticoUpdateManyMutationInput, AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteInput>
   }
 
+  export type AssinaturaUpsertWithWhereUniqueWithoutClienteInput = {
+    where: AssinaturaWhereUniqueInput
+    update: XOR<AssinaturaUpdateWithoutClienteInput, AssinaturaUncheckedUpdateWithoutClienteInput>
+    create: XOR<AssinaturaCreateWithoutClienteInput, AssinaturaUncheckedCreateWithoutClienteInput>
+  }
+
+  export type AssinaturaUpdateWithWhereUniqueWithoutClienteInput = {
+    where: AssinaturaWhereUniqueInput
+    data: XOR<AssinaturaUpdateWithoutClienteInput, AssinaturaUncheckedUpdateWithoutClienteInput>
+  }
+
+  export type AssinaturaUpdateManyWithWhereWithoutClienteInput = {
+    where: AssinaturaScalarWhereInput
+    data: XOR<AssinaturaUpdateManyMutationInput, AssinaturaUncheckedUpdateManyWithoutClienteInput>
+  }
+
   export type ClienteCreateWithoutContatosInput = {
     id?: string
     nome: string
@@ -96790,6 +101217,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutClientesInput
@@ -96806,6 +101234,7 @@ export namespace Prisma {
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
     documentos?: DocumentoCreateNestedManyWithoutClienteInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutContatosInput = {
@@ -96831,6 +101260,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     leads?: LeadUncheckedCreateNestedManyWithoutClienteInput
@@ -96846,6 +101276,7 @@ export namespace Prisma {
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutContatosInput = {
@@ -96886,6 +101317,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutClientesNestedInput
@@ -96902,6 +101334,7 @@ export namespace Prisma {
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUpdateManyWithoutClienteNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutContatosInput = {
@@ -96927,6 +101360,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     leads?: LeadUncheckedUpdateManyWithoutClienteNestedInput
@@ -96942,6 +101376,7 @@ export namespace Prisma {
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type EmpresaCreateWithoutServicosInput = {
@@ -96983,6 +101418,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutServicosInput = {
@@ -97024,6 +101461,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutServicosInput = {
@@ -97164,6 +101603,62 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type AssinaturaCreateWithoutServicoInput = {
+    id?: string
+    nome_cliente: string
+    email_cliente?: string | null
+    telefone_cliente?: string | null
+    canal: string
+    plano?: string | null
+    valor: Decimal | DecimalJsLike | number | string
+    ciclo?: string
+    status?: string
+    asaas_subscription_id?: string | null
+    asaas_customer_id?: string | null
+    proximo_vencimento?: Date | string | null
+    data_inicio?: Date | string
+    data_cancelamento?: Date | string | null
+    motivo_cancelamento?: string | null
+    observacoes?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutAssinaturasInput
+    cliente?: ClienteCreateNestedOneWithoutAssinaturasInput
+  }
+
+  export type AssinaturaUncheckedCreateWithoutServicoInput = {
+    id?: string
+    empresa_id: string
+    cliente_id?: string | null
+    nome_cliente: string
+    email_cliente?: string | null
+    telefone_cliente?: string | null
+    canal: string
+    plano?: string | null
+    valor: Decimal | DecimalJsLike | number | string
+    ciclo?: string
+    status?: string
+    asaas_subscription_id?: string | null
+    asaas_customer_id?: string | null
+    proximo_vencimento?: Date | string | null
+    data_inicio?: Date | string
+    data_cancelamento?: Date | string | null
+    motivo_cancelamento?: string | null
+    observacoes?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type AssinaturaCreateOrConnectWithoutServicoInput = {
+    where: AssinaturaWhereUniqueInput
+    create: XOR<AssinaturaCreateWithoutServicoInput, AssinaturaUncheckedCreateWithoutServicoInput>
+  }
+
+  export type AssinaturaCreateManyServicoInputEnvelope = {
+    data: AssinaturaCreateManyServicoInput | AssinaturaCreateManyServicoInput[]
+    skipDuplicates?: boolean
+  }
+
   export type EmpresaUpsertWithoutServicosInput = {
     update: XOR<EmpresaUpdateWithoutServicosInput, EmpresaUncheckedUpdateWithoutServicosInput>
     create: XOR<EmpresaCreateWithoutServicosInput, EmpresaUncheckedCreateWithoutServicosInput>
@@ -97214,6 +101709,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutServicosInput = {
@@ -97255,6 +101752,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PlanoDeContasUpsertWithoutServicosInput = {
@@ -97344,6 +101843,22 @@ export namespace Prisma {
     data: XOR<LeadUpdateManyMutationInput, LeadUncheckedUpdateManyWithoutServicoInput>
   }
 
+  export type AssinaturaUpsertWithWhereUniqueWithoutServicoInput = {
+    where: AssinaturaWhereUniqueInput
+    update: XOR<AssinaturaUpdateWithoutServicoInput, AssinaturaUncheckedUpdateWithoutServicoInput>
+    create: XOR<AssinaturaCreateWithoutServicoInput, AssinaturaUncheckedCreateWithoutServicoInput>
+  }
+
+  export type AssinaturaUpdateWithWhereUniqueWithoutServicoInput = {
+    where: AssinaturaWhereUniqueInput
+    data: XOR<AssinaturaUpdateWithoutServicoInput, AssinaturaUncheckedUpdateWithoutServicoInput>
+  }
+
+  export type AssinaturaUpdateManyWithWhereWithoutServicoInput = {
+    where: AssinaturaScalarWhereInput
+    data: XOR<AssinaturaUpdateManyMutationInput, AssinaturaUncheckedUpdateManyWithoutServicoInput>
+  }
+
   export type EmpresaCreateWithoutEtapas_crmInput = {
     id?: string
     nome: string
@@ -97383,6 +101898,8 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutEtapas_crmInput = {
@@ -97424,6 +101941,8 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutEtapas_crmInput = {
@@ -97549,6 +102068,8 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutEtapas_crmInput = {
@@ -97590,6 +102111,8 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type LeadUpsertWithWhereUniqueWithoutEtapaInput = {
@@ -97911,6 +102434,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutLeadsInput = {
@@ -97952,6 +102477,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutLeadsInput = {
@@ -97981,6 +102508,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutClientesInput
@@ -97997,6 +102525,7 @@ export namespace Prisma {
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
     documentos?: DocumentoCreateNestedManyWithoutClienteInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutLeadsInput = {
@@ -98022,6 +102551,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     contatos?: ContatoUncheckedCreateNestedManyWithoutClienteInput
@@ -98037,6 +102567,7 @@ export namespace Prisma {
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutLeadsInput = {
@@ -98113,11 +102644,16 @@ export namespace Prisma {
     descricao?: string | null
     valor_base?: Decimal | DecimalJsLike | number | string | null
     ativo?: boolean
+    canal?: string | null
+    plano?: string | null
+    tipo_cobranca?: string | null
+    asaas_link_pagamento?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutServicosInput
     plano_contas?: PlanoDeContasCreateNestedOneWithoutServicosInput
     itens_proposta?: ItemPropostaCreateNestedManyWithoutServicoInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutServicoInput
   }
 
   export type ServicoUncheckedCreateWithoutLeadsInput = {
@@ -98128,9 +102664,14 @@ export namespace Prisma {
     descricao?: string | null
     valor_base?: Decimal | DecimalJsLike | number | string | null
     ativo?: boolean
+    canal?: string | null
+    plano?: string | null
+    tipo_cobranca?: string | null
+    asaas_link_pagamento?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     itens_proposta?: ItemPropostaUncheckedCreateNestedManyWithoutServicoInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutServicoInput
   }
 
   export type ServicoCreateOrConnectWithoutLeadsInput = {
@@ -98352,6 +102893,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutLeadsInput = {
@@ -98393,6 +102936,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutLeadsInput = {
@@ -98428,6 +102973,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutClientesNestedInput
@@ -98444,6 +102990,7 @@ export namespace Prisma {
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUpdateManyWithoutClienteNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutLeadsInput = {
@@ -98469,6 +103016,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     contatos?: ContatoUncheckedUpdateManyWithoutClienteNestedInput
@@ -98484,6 +103032,7 @@ export namespace Prisma {
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type UsuarioUpsertWithoutLeadsInput = {
@@ -98572,11 +103121,16 @@ export namespace Prisma {
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     valor_base?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     ativo?: BoolFieldUpdateOperationsInput | boolean
+    canal?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_cobranca?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_link_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutServicosNestedInput
     plano_contas?: PlanoDeContasUpdateOneWithoutServicosNestedInput
     itens_proposta?: ItemPropostaUpdateManyWithoutServicoNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutServicoNestedInput
   }
 
   export type ServicoUncheckedUpdateWithoutLeadsInput = {
@@ -98587,9 +103141,14 @@ export namespace Prisma {
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     valor_base?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     ativo?: BoolFieldUpdateOperationsInput | boolean
+    canal?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_cobranca?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_link_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     itens_proposta?: ItemPropostaUncheckedUpdateManyWithoutServicoNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutServicoNestedInput
   }
 
   export type EtapaCrmUpsertWithoutLeadsInput = {
@@ -98737,6 +103296,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutPropostasInput = {
@@ -98778,6 +103339,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutPropostasInput = {
@@ -98807,6 +103370,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutClientesInput
@@ -98823,6 +103387,7 @@ export namespace Prisma {
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
     documentos?: DocumentoCreateNestedManyWithoutClienteInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutPropostasInput = {
@@ -98848,6 +103413,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     contatos?: ContatoUncheckedCreateNestedManyWithoutClienteInput
@@ -98863,6 +103429,7 @@ export namespace Prisma {
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutPropostasInput = {
@@ -99268,6 +103835,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutPropostasInput = {
@@ -99309,6 +103878,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutPropostasInput = {
@@ -99344,6 +103915,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutClientesNestedInput
@@ -99360,6 +103932,7 @@ export namespace Prisma {
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUpdateManyWithoutClienteNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutPropostasInput = {
@@ -99385,6 +103958,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     contatos?: ContatoUncheckedUpdateManyWithoutClienteNestedInput
@@ -99400,6 +103974,7 @@ export namespace Prisma {
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type LeadUpsertWithoutPropostasInput = {
@@ -99986,11 +104561,16 @@ export namespace Prisma {
     descricao?: string | null
     valor_base?: Decimal | DecimalJsLike | number | string | null
     ativo?: boolean
+    canal?: string | null
+    plano?: string | null
+    tipo_cobranca?: string | null
+    asaas_link_pagamento?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutServicosInput
     plano_contas?: PlanoDeContasCreateNestedOneWithoutServicosInput
     leads?: LeadCreateNestedManyWithoutServicoInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutServicoInput
   }
 
   export type ServicoUncheckedCreateWithoutItens_propostaInput = {
@@ -100001,9 +104581,14 @@ export namespace Prisma {
     descricao?: string | null
     valor_base?: Decimal | DecimalJsLike | number | string | null
     ativo?: boolean
+    canal?: string | null
+    plano?: string | null
+    tipo_cobranca?: string | null
+    asaas_link_pagamento?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     leads?: LeadUncheckedCreateNestedManyWithoutServicoInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutServicoInput
   }
 
   export type ServicoCreateOrConnectWithoutItens_propostaInput = {
@@ -100105,11 +104690,16 @@ export namespace Prisma {
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     valor_base?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     ativo?: BoolFieldUpdateOperationsInput | boolean
+    canal?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_cobranca?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_link_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutServicosNestedInput
     plano_contas?: PlanoDeContasUpdateOneWithoutServicosNestedInput
     leads?: LeadUpdateManyWithoutServicoNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutServicoNestedInput
   }
 
   export type ServicoUncheckedUpdateWithoutItens_propostaInput = {
@@ -100120,9 +104710,14 @@ export namespace Prisma {
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     valor_base?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     ativo?: BoolFieldUpdateOperationsInput | boolean
+    canal?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_cobranca?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_link_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     leads?: LeadUncheckedUpdateManyWithoutServicoNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutServicoNestedInput
   }
 
   export type EmpresaCreateWithoutContratosInput = {
@@ -100164,6 +104759,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutContratosInput = {
@@ -100205,6 +104802,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutContratosInput = {
@@ -100305,6 +104904,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutClientesInput
@@ -100321,6 +104921,7 @@ export namespace Prisma {
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
     documentos?: DocumentoCreateNestedManyWithoutClienteInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutContratosInput = {
@@ -100346,6 +104947,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     contatos?: ContatoUncheckedCreateNestedManyWithoutClienteInput
@@ -100361,6 +104963,7 @@ export namespace Prisma {
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutContratosInput = {
@@ -100561,6 +105164,11 @@ export namespace Prisma {
     multa_valor?: Decimal | DecimalJsLike | number | string | null
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
+    asaas_payment_id?: string | null
+    asaas_invoice_url?: string | null
+    asaas_pix_copia_cola?: string | null
+    asaas_boleto_url?: string | null
+    asaas_status?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutRecebiveisInput
@@ -100595,6 +105203,11 @@ export namespace Prisma {
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
     centro_custo_id?: string | null
+    asaas_payment_id?: string | null
+    asaas_invoice_url?: string | null
+    asaas_pix_copia_cola?: string | null
+    asaas_boleto_url?: string | null
+    asaas_status?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
@@ -100817,6 +105430,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutContratosInput = {
@@ -100858,6 +105473,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PropostaUpsertWithoutContratoInput = {
@@ -100970,6 +105587,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutClientesNestedInput
@@ -100986,6 +105604,7 @@ export namespace Prisma {
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUpdateManyWithoutClienteNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutContratosInput = {
@@ -101011,6 +105630,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     contatos?: ContatoUncheckedUpdateManyWithoutClienteNestedInput
@@ -101026,6 +105646,7 @@ export namespace Prisma {
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type UsuarioUpsertWithoutContratos_criadosInput = {
@@ -101326,6 +105947,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutProjetosInput = {
@@ -101367,6 +105990,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutProjetosInput = {
@@ -101497,6 +106122,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutClientesInput
@@ -101513,6 +106139,7 @@ export namespace Prisma {
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
     documentos?: DocumentoCreateNestedManyWithoutClienteInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutProjetosInput = {
@@ -101538,6 +106165,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     contatos?: ContatoUncheckedCreateNestedManyWithoutClienteInput
@@ -101553,6 +106181,7 @@ export namespace Prisma {
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutProjetosInput = {
@@ -101958,6 +106587,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutProjetosInput = {
@@ -101999,6 +106630,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ContratoUpsertWithoutProjetoInput = {
@@ -102141,6 +106774,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutClientesNestedInput
@@ -102157,6 +106791,7 @@ export namespace Prisma {
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUpdateManyWithoutClienteNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutProjetosInput = {
@@ -102182,6 +106817,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     contatos?: ContatoUncheckedUpdateManyWithoutClienteNestedInput
@@ -102197,6 +106833,7 @@ export namespace Prisma {
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type UsuarioUpsertWithoutProjetos_criadosInput = {
@@ -104662,6 +109299,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutEtiquetas_tarefaInput = {
@@ -104703,6 +109342,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutEtiquetas_tarefaInput = {
@@ -104778,6 +109419,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutEtiquetas_tarefaInput = {
@@ -104819,6 +109462,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type TarefaEtiquetaUpsertWithWhereUniqueWithoutEtiquetaInput = {
@@ -105024,6 +109669,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutPastas_documentoInput = {
@@ -105065,6 +109712,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutPastas_documentoInput = {
@@ -105229,6 +109878,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutPastas_documentoInput = {
@@ -105270,6 +109921,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PastaDocumentoUpsertWithoutFilhosInput = {
@@ -105378,6 +110031,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutDocumentosInput = {
@@ -105419,6 +110074,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutDocumentosInput = {
@@ -105499,6 +110156,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutClientesInput
@@ -105515,6 +110173,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutDocumentosInput = {
@@ -105540,6 +110199,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     contatos?: ContatoUncheckedCreateNestedManyWithoutClienteInput
@@ -105555,6 +110215,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutDocumentosInput = {
@@ -105805,6 +110466,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutDocumentosInput = {
@@ -105846,6 +110509,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ProjetoUpsertWithoutDocumentosInput = {
@@ -105938,6 +110603,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutClientesNestedInput
@@ -105954,6 +110620,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutDocumentosInput = {
@@ -105979,6 +110646,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     contatos?: ContatoUncheckedUpdateManyWithoutClienteNestedInput
@@ -105994,6 +110662,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type ContratoUpsertWithoutDocumentosInput = {
@@ -106246,6 +110915,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutPlano_contasInput = {
@@ -106287,6 +110958,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutPlano_contasInput = {
@@ -106385,6 +111058,11 @@ export namespace Prisma {
     multa_valor?: Decimal | DecimalJsLike | number | string | null
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
+    asaas_payment_id?: string | null
+    asaas_invoice_url?: string | null
+    asaas_pix_copia_cola?: string | null
+    asaas_boleto_url?: string | null
+    asaas_status?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutRecebiveisInput
@@ -106419,6 +111097,11 @@ export namespace Prisma {
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
     centro_custo_id?: string | null
+    asaas_payment_id?: string | null
+    asaas_invoice_url?: string | null
+    asaas_pix_copia_cola?: string | null
+    asaas_boleto_url?: string | null
+    asaas_status?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
@@ -106489,11 +111172,16 @@ export namespace Prisma {
     descricao?: string | null
     valor_base?: Decimal | DecimalJsLike | number | string | null
     ativo?: boolean
+    canal?: string | null
+    plano?: string | null
+    tipo_cobranca?: string | null
+    asaas_link_pagamento?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutServicosInput
     itens_proposta?: ItemPropostaCreateNestedManyWithoutServicoInput
     leads?: LeadCreateNestedManyWithoutServicoInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutServicoInput
   }
 
   export type ServicoUncheckedCreateWithoutPlano_contasInput = {
@@ -106503,10 +111191,15 @@ export namespace Prisma {
     descricao?: string | null
     valor_base?: Decimal | DecimalJsLike | number | string | null
     ativo?: boolean
+    canal?: string | null
+    plano?: string | null
+    tipo_cobranca?: string | null
+    asaas_link_pagamento?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     itens_proposta?: ItemPropostaUncheckedCreateNestedManyWithoutServicoInput
     leads?: LeadUncheckedCreateNestedManyWithoutServicoInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutServicoInput
   }
 
   export type ServicoCreateOrConnectWithoutPlano_contasInput = {
@@ -106569,6 +111262,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutPlano_contasInput = {
@@ -106610,6 +111305,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PlanoDeContasUpsertWithoutFilhosInput = {
@@ -106822,6 +111519,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutContas_bancariasInput = {
@@ -106863,6 +111562,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutContas_bancariasInput = {
@@ -106905,6 +111606,11 @@ export namespace Prisma {
     multa_valor?: Decimal | DecimalJsLike | number | string | null
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
+    asaas_payment_id?: string | null
+    asaas_invoice_url?: string | null
+    asaas_pix_copia_cola?: string | null
+    asaas_boleto_url?: string | null
+    asaas_status?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutRecebiveisInput
@@ -106939,6 +111645,11 @@ export namespace Prisma {
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
     centro_custo_id?: string | null
+    asaas_payment_id?: string | null
+    asaas_invoice_url?: string | null
+    asaas_pix_copia_cola?: string | null
+    asaas_boleto_url?: string | null
+    asaas_status?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
@@ -107113,6 +111824,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutContas_bancariasInput = {
@@ -107154,6 +111867,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type BancoUpsertWithoutContas_bancariasInput = {
@@ -107284,6 +111999,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutTransferencias_tesourariaInput = {
@@ -107325,6 +112042,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutTransferencias_tesourariaInput = {
@@ -107472,6 +112191,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutTransferencias_tesourariaInput = {
@@ -107513,6 +112234,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ContaBancariaUpsertWithoutTransferencias_origemInput = {
@@ -107656,6 +112379,8 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutCentros_custoInput = {
@@ -107697,6 +112422,8 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutCentros_custoInput = {
@@ -107771,6 +112498,11 @@ export namespace Prisma {
     multa_valor?: Decimal | DecimalJsLike | number | string | null
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
+    asaas_payment_id?: string | null
+    asaas_invoice_url?: string | null
+    asaas_pix_copia_cola?: string | null
+    asaas_boleto_url?: string | null
+    asaas_status?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutRecebiveisInput
@@ -107805,6 +112537,11 @@ export namespace Prisma {
     multa_valor?: Decimal | DecimalJsLike | number | string | null
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
+    asaas_payment_id?: string | null
+    asaas_invoice_url?: string | null
+    asaas_pix_copia_cola?: string | null
+    asaas_boleto_url?: string | null
+    asaas_status?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
@@ -107919,6 +112656,8 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutCentros_custoInput = {
@@ -107960,6 +112699,8 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ProjetoUpsertWithoutCentro_custoInput = {
@@ -108090,6 +112831,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutRecebiveisInput = {
@@ -108131,6 +112874,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutRecebiveisInput = {
@@ -108160,6 +112905,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutClientesInput
@@ -108176,6 +112922,7 @@ export namespace Prisma {
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
     documentos?: DocumentoCreateNestedManyWithoutClienteInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutRecebiveisInput = {
@@ -108201,6 +112948,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     contatos?: ContatoUncheckedCreateNestedManyWithoutClienteInput
@@ -108216,6 +112964,7 @@ export namespace Prisma {
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutRecebiveisInput = {
@@ -108650,6 +113399,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutRecebiveisInput = {
@@ -108691,6 +113442,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutRecebiveisInput = {
@@ -108726,6 +113479,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutClientesNestedInput
@@ -108742,6 +113496,7 @@ export namespace Prisma {
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUpdateManyWithoutClienteNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutRecebiveisInput = {
@@ -108767,6 +113522,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     contatos?: ContatoUncheckedUpdateManyWithoutClienteNestedInput
@@ -108782,6 +113538,7 @@ export namespace Prisma {
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type ContratoUpsertWithoutRecebiveisInput = {
@@ -109242,6 +113999,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutContas_pagarInput = {
@@ -109283,6 +114042,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutContas_pagarInput = {
@@ -109514,6 +114275,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutContas_pagarInput = {
@@ -109555,6 +114318,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PlanoDeContasUpsertWithoutContas_pagarInput = {
@@ -109794,6 +114559,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutModelos_documentoInput = {
@@ -109835,6 +114602,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutModelos_documentoInput = {
@@ -109892,6 +114661,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutModelos_documentoInput = {
@@ -109933,6 +114704,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateWithoutEventosInput = {
@@ -109974,6 +114747,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutEventosInput = {
@@ -110015,6 +114790,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutEventosInput = {
@@ -110107,6 +114884,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutClientesInput
@@ -110123,6 +114901,7 @@ export namespace Prisma {
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
     documentos?: DocumentoCreateNestedManyWithoutClienteInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutEventosInput = {
@@ -110148,6 +114927,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     contatos?: ContatoUncheckedCreateNestedManyWithoutClienteInput
@@ -110163,6 +114943,7 @@ export namespace Prisma {
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutEventosInput = {
@@ -110372,6 +115153,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutEventosInput = {
@@ -110413,6 +115196,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type UsuarioUpsertWithoutEventos_responsavelInput = {
@@ -110517,6 +115302,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutClientesNestedInput
@@ -110533,6 +115319,7 @@ export namespace Prisma {
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUpdateManyWithoutClienteNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutEventosInput = {
@@ -110558,6 +115345,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     contatos?: ContatoUncheckedUpdateManyWithoutClienteNestedInput
@@ -110573,6 +115361,7 @@ export namespace Prisma {
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type ContratoUpsertWithoutEventosInput = {
@@ -110778,6 +115567,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutRegistros_auditoriaInput = {
@@ -110819,6 +115610,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutRegistros_auditoriaInput = {
@@ -110876,6 +115669,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutRegistros_auditoriaInput = {
@@ -110917,6 +115712,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateWithoutNotificacoesInput = {
@@ -110958,6 +115755,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutNotificacoesInput = {
@@ -110999,6 +115798,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutNotificacoesInput = {
@@ -111056,6 +115857,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutNotificacoesInput = {
@@ -111097,6 +115900,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateWithoutNotas_fiscaisInput = {
@@ -111138,6 +115943,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutNotas_fiscaisInput = {
@@ -111179,6 +115986,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutNotas_fiscaisInput = {
@@ -111208,6 +116017,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutClientesInput
@@ -111224,6 +116034,7 @@ export namespace Prisma {
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
     documentos?: DocumentoCreateNestedManyWithoutClienteInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutNotas_fiscaisInput = {
@@ -111249,6 +116060,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     contatos?: ContatoUncheckedCreateNestedManyWithoutClienteInput
@@ -111264,6 +116076,7 @@ export namespace Prisma {
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutNotas_fiscaisInput = {
@@ -111388,6 +116201,11 @@ export namespace Prisma {
     multa_valor?: Decimal | DecimalJsLike | number | string | null
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
+    asaas_payment_id?: string | null
+    asaas_invoice_url?: string | null
+    asaas_pix_copia_cola?: string | null
+    asaas_boleto_url?: string | null
+    asaas_status?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutRecebiveisInput
@@ -111423,6 +116241,11 @@ export namespace Prisma {
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
     centro_custo_id?: string | null
+    asaas_payment_id?: string | null
+    asaas_invoice_url?: string | null
+    asaas_pix_copia_cola?: string | null
+    asaas_boleto_url?: string | null
+    asaas_status?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     boleto?: BoletoUncheckedCreateNestedOneWithoutRecebivelInput
@@ -111483,6 +116306,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutNotas_fiscaisInput = {
@@ -111524,6 +116349,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutNotas_fiscaisInput = {
@@ -111559,6 +116386,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutClientesNestedInput
@@ -111575,6 +116403,7 @@ export namespace Prisma {
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUpdateManyWithoutClienteNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutNotas_fiscaisInput = {
@@ -111600,6 +116429,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     contatos?: ContatoUncheckedUpdateManyWithoutClienteNestedInput
@@ -111615,6 +116445,7 @@ export namespace Prisma {
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type ContratoUpsertWithoutNotas_fiscaisInput = {
@@ -111751,6 +116582,11 @@ export namespace Prisma {
     multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_payment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_pix_copia_cola?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_boleto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_status?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutRecebiveisNestedInput
@@ -111786,6 +116622,11 @@ export namespace Prisma {
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_payment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_pix_copia_cola?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_boleto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_status?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
@@ -111830,6 +116671,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutBoletosInput = {
@@ -111871,6 +116714,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutBoletosInput = {
@@ -111894,6 +116739,11 @@ export namespace Prisma {
     multa_valor?: Decimal | DecimalJsLike | number | string | null
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
+    asaas_payment_id?: string | null
+    asaas_invoice_url?: string | null
+    asaas_pix_copia_cola?: string | null
+    asaas_boleto_url?: string | null
+    asaas_status?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutRecebiveisInput
@@ -111929,6 +116779,11 @@ export namespace Prisma {
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
     centro_custo_id?: string | null
+    asaas_payment_id?: string | null
+    asaas_invoice_url?: string | null
+    asaas_pix_copia_cola?: string | null
+    asaas_boleto_url?: string | null
+    asaas_status?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     nota_fiscal?: NotaFiscalUncheckedCreateNestedOneWithoutRecebivelInput
@@ -111961,6 +116816,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutClientesInput
@@ -111977,6 +116833,7 @@ export namespace Prisma {
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
     documentos?: DocumentoCreateNestedManyWithoutClienteInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutBoletosInput = {
@@ -112002,6 +116859,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     contatos?: ContatoUncheckedCreateNestedManyWithoutClienteInput
@@ -112017,6 +116875,7 @@ export namespace Prisma {
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutBoletosInput = {
@@ -112074,6 +116933,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutBoletosInput = {
@@ -112115,6 +116976,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type RecebivelUpsertWithoutBoletoInput = {
@@ -112144,6 +117007,11 @@ export namespace Prisma {
     multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_payment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_pix_copia_cola?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_boleto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_status?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutRecebiveisNestedInput
@@ -112179,6 +117047,11 @@ export namespace Prisma {
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_payment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_pix_copia_cola?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_boleto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_status?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     nota_fiscal?: NotaFiscalUncheckedUpdateOneWithoutRecebivelNestedInput
@@ -112217,6 +117090,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutClientesNestedInput
@@ -112233,6 +117107,7 @@ export namespace Prisma {
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUpdateManyWithoutClienteNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutBoletosInput = {
@@ -112258,6 +117133,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     contatos?: ContatoUncheckedUpdateManyWithoutClienteNestedInput
@@ -112273,6 +117149,7 @@ export namespace Prisma {
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type EmpresaCreateWithoutDiagnosticosInput = {
@@ -112314,6 +117191,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutDiagnosticosInput = {
@@ -112355,6 +117234,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutDiagnosticosInput = {
@@ -112384,6 +117265,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutClientesInput
@@ -112400,6 +117282,7 @@ export namespace Prisma {
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
     documentos?: DocumentoCreateNestedManyWithoutClienteInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutDiagnosticosInput = {
@@ -112425,6 +117308,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     contatos?: ContatoUncheckedCreateNestedManyWithoutClienteInput
@@ -112440,6 +117324,7 @@ export namespace Prisma {
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutDiagnosticosInput = {
@@ -112548,6 +117433,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutDiagnosticosInput = {
@@ -112589,6 +117476,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutDiagnosticosInput = {
@@ -112624,6 +117513,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutClientesNestedInput
@@ -112640,6 +117530,7 @@ export namespace Prisma {
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUpdateManyWithoutClienteNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutDiagnosticosInput = {
@@ -112665,6 +117556,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     contatos?: ContatoUncheckedUpdateManyWithoutClienteNestedInput
@@ -112680,6 +117572,7 @@ export namespace Prisma {
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type ProjetoUpsertWithoutDiagnosticosInput = {
@@ -112761,6 +117654,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutClientesInput
@@ -112777,6 +117671,7 @@ export namespace Prisma {
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
     documentos?: DocumentoCreateNestedManyWithoutClienteInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutTokens_portalInput = {
@@ -112802,6 +117697,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     contatos?: ContatoUncheckedCreateNestedManyWithoutClienteInput
@@ -112817,6 +117713,7 @@ export namespace Prisma {
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutTokens_portalInput = {
@@ -112857,6 +117754,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutClientesNestedInput
@@ -112873,6 +117771,7 @@ export namespace Prisma {
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUpdateManyWithoutClienteNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutTokens_portalInput = {
@@ -112898,6 +117797,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     contatos?: ContatoUncheckedUpdateManyWithoutClienteNestedInput
@@ -112913,6 +117813,7 @@ export namespace Prisma {
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type EmpresaCreateWithoutAplicacoes_diagnosticoInput = {
@@ -112954,6 +117855,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutAplicacoes_diagnosticoInput = {
@@ -112995,6 +117898,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutAplicacoes_diagnosticoInput = {
@@ -113075,6 +117980,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutClientesInput
@@ -113091,6 +117997,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteCreateNestedOneWithoutClienteInput
     documentos?: DocumentoCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteUncheckedCreateWithoutAplicacoes_diagnosticoInput = {
@@ -113116,6 +118023,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     contatos?: ContatoUncheckedCreateNestedManyWithoutClienteInput
@@ -113131,6 +118039,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
     convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutClienteInput
   }
 
   export type ClienteCreateOrConnectWithoutAplicacoes_diagnosticoInput = {
@@ -113188,6 +118097,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutAplicacoes_diagnosticoInput = {
@@ -113229,6 +118140,8 @@ export namespace Prisma {
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ProjetoUpsertWithoutAplicacoes_diagnosticoInput = {
@@ -113321,6 +118234,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutClientesNestedInput
@@ -113337,6 +118251,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutAplicacoes_diagnosticoInput = {
@@ -113362,6 +118277,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     contatos?: ContatoUncheckedUpdateManyWithoutClienteNestedInput
@@ -113377,6 +118293,7 @@ export namespace Prisma {
     diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type EmpresaCreateWithoutCampanhas_diagnosticoInput = {
@@ -113418,6 +118335,8 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutCampanhas_diagnosticoInput = {
@@ -113459,6 +118378,8 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutCampanhas_diagnosticoInput = {
@@ -113558,6 +118479,8 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutCampanhas_diagnosticoInput = {
@@ -113599,6 +118522,8 @@ export namespace Prisma {
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type DiagnosticoParticipanteUpsertWithWhereUniqueWithoutCampanhaInput = {
@@ -113837,6 +118762,654 @@ export namespace Prisma {
     propostas?: PropostaUncheckedUpdateManyWithoutLeadNestedInput
   }
 
+  export type EmpresaCreateWithoutDiagnostico_templatesInput = {
+    id?: string
+    nome: string
+    slug: string
+    cnpj?: string | null
+    logo_url?: string | null
+    plano?: $Enums.PlanoTipo
+    status?: $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
+    perfis?: PerfilCreateNestedManyWithoutEmpresaInput
+    convites?: ConviteEmpresaCreateNestedManyWithoutEmpresaInput
+    convites_cliente?: ConviteClienteCreateNestedManyWithoutEmpresaInput
+    clientes?: ClienteCreateNestedManyWithoutEmpresaInput
+    servicos?: ServicoCreateNestedManyWithoutEmpresaInput
+    leads?: LeadCreateNestedManyWithoutEmpresaInput
+    propostas?: PropostaCreateNestedManyWithoutEmpresaInput
+    contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
+    documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
+    plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
+    contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
+    boletos?: BoletoCreateNestedManyWithoutEmpresaInput
+    recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
+    contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
+    eventos?: EventoCreateNestedManyWithoutEmpresaInput
+    registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
+    notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
+    notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
+    diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+  }
+
+  export type EmpresaUncheckedCreateWithoutDiagnostico_templatesInput = {
+    id?: string
+    nome: string
+    slug: string
+    cnpj?: string | null
+    logo_url?: string | null
+    plano?: $Enums.PlanoTipo
+    status?: $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
+    perfis?: PerfilUncheckedCreateNestedManyWithoutEmpresaInput
+    convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
+    convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutEmpresaInput
+    clientes?: ClienteUncheckedCreateNestedManyWithoutEmpresaInput
+    servicos?: ServicoUncheckedCreateNestedManyWithoutEmpresaInput
+    leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
+    propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
+    contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
+    contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
+    boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
+    recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
+    contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
+    registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
+    notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
+    notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+  }
+
+  export type EmpresaCreateOrConnectWithoutDiagnostico_templatesInput = {
+    where: EmpresaWhereUniqueInput
+    create: XOR<EmpresaCreateWithoutDiagnostico_templatesInput, EmpresaUncheckedCreateWithoutDiagnostico_templatesInput>
+  }
+
+  export type EmpresaUpsertWithoutDiagnostico_templatesInput = {
+    update: XOR<EmpresaUpdateWithoutDiagnostico_templatesInput, EmpresaUncheckedUpdateWithoutDiagnostico_templatesInput>
+    create: XOR<EmpresaCreateWithoutDiagnostico_templatesInput, EmpresaUncheckedCreateWithoutDiagnostico_templatesInput>
+    where?: EmpresaWhereInput
+  }
+
+  export type EmpresaUpdateToOneWithWhereWithoutDiagnostico_templatesInput = {
+    where?: EmpresaWhereInput
+    data: XOR<EmpresaUpdateWithoutDiagnostico_templatesInput, EmpresaUncheckedUpdateWithoutDiagnostico_templatesInput>
+  }
+
+  export type EmpresaUpdateWithoutDiagnostico_templatesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    logo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
+    status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
+    perfis?: PerfilUpdateManyWithoutEmpresaNestedInput
+    convites?: ConviteEmpresaUpdateManyWithoutEmpresaNestedInput
+    convites_cliente?: ConviteClienteUpdateManyWithoutEmpresaNestedInput
+    clientes?: ClienteUpdateManyWithoutEmpresaNestedInput
+    servicos?: ServicoUpdateManyWithoutEmpresaNestedInput
+    leads?: LeadUpdateManyWithoutEmpresaNestedInput
+    propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
+    contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
+    documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
+    plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
+    contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
+    boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
+    recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
+    contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
+    eventos?: EventoUpdateManyWithoutEmpresaNestedInput
+    registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
+    notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
+    notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
+    diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+  }
+
+  export type EmpresaUncheckedUpdateWithoutDiagnostico_templatesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    logo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
+    status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
+    perfis?: PerfilUncheckedUpdateManyWithoutEmpresaNestedInput
+    convites?: ConviteEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
+    convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutEmpresaNestedInput
+    clientes?: ClienteUncheckedUpdateManyWithoutEmpresaNestedInput
+    servicos?: ServicoUncheckedUpdateManyWithoutEmpresaNestedInput
+    leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
+    propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
+    contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
+    contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
+    recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
+    contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
+    registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
+    notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
+    notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+  }
+
+  export type EmpresaCreateWithoutAssinaturasInput = {
+    id?: string
+    nome: string
+    slug: string
+    cnpj?: string | null
+    logo_url?: string | null
+    plano?: $Enums.PlanoTipo
+    status?: $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
+    perfis?: PerfilCreateNestedManyWithoutEmpresaInput
+    convites?: ConviteEmpresaCreateNestedManyWithoutEmpresaInput
+    convites_cliente?: ConviteClienteCreateNestedManyWithoutEmpresaInput
+    clientes?: ClienteCreateNestedManyWithoutEmpresaInput
+    servicos?: ServicoCreateNestedManyWithoutEmpresaInput
+    leads?: LeadCreateNestedManyWithoutEmpresaInput
+    propostas?: PropostaCreateNestedManyWithoutEmpresaInput
+    contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
+    documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
+    plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
+    contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
+    boletos?: BoletoCreateNestedManyWithoutEmpresaInput
+    recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
+    contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
+    eventos?: EventoCreateNestedManyWithoutEmpresaInput
+    registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
+    notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
+    notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
+    diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+  }
+
+  export type EmpresaUncheckedCreateWithoutAssinaturasInput = {
+    id?: string
+    nome: string
+    slug: string
+    cnpj?: string | null
+    logo_url?: string | null
+    plano?: $Enums.PlanoTipo
+    status?: $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
+    perfis?: PerfilUncheckedCreateNestedManyWithoutEmpresaInput
+    convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
+    convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutEmpresaInput
+    clientes?: ClienteUncheckedCreateNestedManyWithoutEmpresaInput
+    servicos?: ServicoUncheckedCreateNestedManyWithoutEmpresaInput
+    leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
+    propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
+    contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
+    contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
+    boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
+    recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
+    contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
+    registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
+    notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
+    notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+  }
+
+  export type EmpresaCreateOrConnectWithoutAssinaturasInput = {
+    where: EmpresaWhereUniqueInput
+    create: XOR<EmpresaCreateWithoutAssinaturasInput, EmpresaUncheckedCreateWithoutAssinaturasInput>
+  }
+
+  export type ClienteCreateWithoutAssinaturasInput = {
+    id?: string
+    nome: string
+    tipo?: $Enums.TipoCliente
+    nome_fantasia?: string | null
+    cpf_cnpj?: string | null
+    inscricao_estadual?: string | null
+    contato_principal?: string | null
+    email?: string | null
+    telefone?: string | null
+    whatsapp?: string | null
+    cep?: string | null
+    logradouro?: string | null
+    numero?: string | null
+    complemento?: string | null
+    bairro?: string | null
+    cidade?: string | null
+    estado?: string | null
+    nome_fazenda?: string | null
+    distancia_km?: Decimal | DecimalJsLike | number | string | null
+    preco_km?: Decimal | DecimalJsLike | number | string | null
+    status?: $Enums.StatusCliente
+    asaas_id?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutClientesInput
+    contatos?: ContatoCreateNestedManyWithoutClienteInput
+    leads?: LeadCreateNestedManyWithoutClienteInput
+    propostas?: PropostaCreateNestedManyWithoutClienteInput
+    contratos?: ContratoCreateNestedManyWithoutClienteInput
+    projetos?: ProjetoCreateNestedManyWithoutClienteInput
+    tokens_portal?: TokenPortalCreateNestedManyWithoutClienteInput
+    recebiveis?: RecebivelCreateNestedManyWithoutClienteInput
+    boletos?: BoletoCreateNestedManyWithoutClienteInput
+    eventos?: EventoCreateNestedManyWithoutClienteInput
+    notas_fiscais?: NotaFiscalCreateNestedManyWithoutClienteInput
+    diagnosticos?: DiagnosticoCreateNestedManyWithoutClienteInput
+    convite?: ConviteClienteCreateNestedOneWithoutClienteInput
+    documentos?: DocumentoCreateNestedManyWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutClienteInput
+  }
+
+  export type ClienteUncheckedCreateWithoutAssinaturasInput = {
+    id?: string
+    empresa_id: string
+    nome: string
+    tipo?: $Enums.TipoCliente
+    nome_fantasia?: string | null
+    cpf_cnpj?: string | null
+    inscricao_estadual?: string | null
+    contato_principal?: string | null
+    email?: string | null
+    telefone?: string | null
+    whatsapp?: string | null
+    cep?: string | null
+    logradouro?: string | null
+    numero?: string | null
+    complemento?: string | null
+    bairro?: string | null
+    cidade?: string | null
+    estado?: string | null
+    nome_fazenda?: string | null
+    distancia_km?: Decimal | DecimalJsLike | number | string | null
+    preco_km?: Decimal | DecimalJsLike | number | string | null
+    status?: $Enums.StatusCliente
+    asaas_id?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    contatos?: ContatoUncheckedCreateNestedManyWithoutClienteInput
+    leads?: LeadUncheckedCreateNestedManyWithoutClienteInput
+    propostas?: PropostaUncheckedCreateNestedManyWithoutClienteInput
+    contratos?: ContratoUncheckedCreateNestedManyWithoutClienteInput
+    projetos?: ProjetoUncheckedCreateNestedManyWithoutClienteInput
+    tokens_portal?: TokenPortalUncheckedCreateNestedManyWithoutClienteInput
+    recebiveis?: RecebivelUncheckedCreateNestedManyWithoutClienteInput
+    boletos?: BoletoUncheckedCreateNestedManyWithoutClienteInput
+    eventos?: EventoUncheckedCreateNestedManyWithoutClienteInput
+    notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutClienteInput
+    diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutClienteInput
+    convite?: ConviteClienteUncheckedCreateNestedOneWithoutClienteInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutClienteInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutClienteInput
+  }
+
+  export type ClienteCreateOrConnectWithoutAssinaturasInput = {
+    where: ClienteWhereUniqueInput
+    create: XOR<ClienteCreateWithoutAssinaturasInput, ClienteUncheckedCreateWithoutAssinaturasInput>
+  }
+
+  export type ServicoCreateWithoutAssinaturasInput = {
+    id?: string
+    nome: string
+    descricao?: string | null
+    valor_base?: Decimal | DecimalJsLike | number | string | null
+    ativo?: boolean
+    canal?: string | null
+    plano?: string | null
+    tipo_cobranca?: string | null
+    asaas_link_pagamento?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutServicosInput
+    plano_contas?: PlanoDeContasCreateNestedOneWithoutServicosInput
+    itens_proposta?: ItemPropostaCreateNestedManyWithoutServicoInput
+    leads?: LeadCreateNestedManyWithoutServicoInput
+  }
+
+  export type ServicoUncheckedCreateWithoutAssinaturasInput = {
+    id?: string
+    empresa_id: string
+    plano_contas_id?: string | null
+    nome: string
+    descricao?: string | null
+    valor_base?: Decimal | DecimalJsLike | number | string | null
+    ativo?: boolean
+    canal?: string | null
+    plano?: string | null
+    tipo_cobranca?: string | null
+    asaas_link_pagamento?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    itens_proposta?: ItemPropostaUncheckedCreateNestedManyWithoutServicoInput
+    leads?: LeadUncheckedCreateNestedManyWithoutServicoInput
+  }
+
+  export type ServicoCreateOrConnectWithoutAssinaturasInput = {
+    where: ServicoWhereUniqueInput
+    create: XOR<ServicoCreateWithoutAssinaturasInput, ServicoUncheckedCreateWithoutAssinaturasInput>
+  }
+
+  export type EmpresaUpsertWithoutAssinaturasInput = {
+    update: XOR<EmpresaUpdateWithoutAssinaturasInput, EmpresaUncheckedUpdateWithoutAssinaturasInput>
+    create: XOR<EmpresaCreateWithoutAssinaturasInput, EmpresaUncheckedCreateWithoutAssinaturasInput>
+    where?: EmpresaWhereInput
+  }
+
+  export type EmpresaUpdateToOneWithWhereWithoutAssinaturasInput = {
+    where?: EmpresaWhereInput
+    data: XOR<EmpresaUpdateWithoutAssinaturasInput, EmpresaUncheckedUpdateWithoutAssinaturasInput>
+  }
+
+  export type EmpresaUpdateWithoutAssinaturasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    logo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
+    status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
+    perfis?: PerfilUpdateManyWithoutEmpresaNestedInput
+    convites?: ConviteEmpresaUpdateManyWithoutEmpresaNestedInput
+    convites_cliente?: ConviteClienteUpdateManyWithoutEmpresaNestedInput
+    clientes?: ClienteUpdateManyWithoutEmpresaNestedInput
+    servicos?: ServicoUpdateManyWithoutEmpresaNestedInput
+    leads?: LeadUpdateManyWithoutEmpresaNestedInput
+    propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
+    contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
+    documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
+    plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
+    contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
+    boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
+    recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
+    contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
+    eventos?: EventoUpdateManyWithoutEmpresaNestedInput
+    registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
+    notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
+    notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
+    diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+  }
+
+  export type EmpresaUncheckedUpdateWithoutAssinaturasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    logo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
+    status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
+    perfis?: PerfilUncheckedUpdateManyWithoutEmpresaNestedInput
+    convites?: ConviteEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
+    convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutEmpresaNestedInput
+    clientes?: ClienteUncheckedUpdateManyWithoutEmpresaNestedInput
+    servicos?: ServicoUncheckedUpdateManyWithoutEmpresaNestedInput
+    leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
+    propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
+    contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
+    contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
+    recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
+    contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
+    registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
+    notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
+    notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+  }
+
+  export type ClienteUpsertWithoutAssinaturasInput = {
+    update: XOR<ClienteUpdateWithoutAssinaturasInput, ClienteUncheckedUpdateWithoutAssinaturasInput>
+    create: XOR<ClienteCreateWithoutAssinaturasInput, ClienteUncheckedCreateWithoutAssinaturasInput>
+    where?: ClienteWhereInput
+  }
+
+  export type ClienteUpdateToOneWithWhereWithoutAssinaturasInput = {
+    where?: ClienteWhereInput
+    data: XOR<ClienteUpdateWithoutAssinaturasInput, ClienteUncheckedUpdateWithoutAssinaturasInput>
+  }
+
+  export type ClienteUpdateWithoutAssinaturasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    tipo?: EnumTipoClienteFieldUpdateOperationsInput | $Enums.TipoCliente
+    nome_fantasia?: NullableStringFieldUpdateOperationsInput | string | null
+    cpf_cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    inscricao_estadual?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_principal?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    cep?: NullableStringFieldUpdateOperationsInput | string | null
+    logradouro?: NullableStringFieldUpdateOperationsInput | string | null
+    numero?: NullableStringFieldUpdateOperationsInput | string | null
+    complemento?: NullableStringFieldUpdateOperationsInput | string | null
+    bairro?: NullableStringFieldUpdateOperationsInput | string | null
+    cidade?: NullableStringFieldUpdateOperationsInput | string | null
+    estado?: NullableStringFieldUpdateOperationsInput | string | null
+    nome_fazenda?: NullableStringFieldUpdateOperationsInput | string | null
+    distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutClientesNestedInput
+    contatos?: ContatoUpdateManyWithoutClienteNestedInput
+    leads?: LeadUpdateManyWithoutClienteNestedInput
+    propostas?: PropostaUpdateManyWithoutClienteNestedInput
+    contratos?: ContratoUpdateManyWithoutClienteNestedInput
+    projetos?: ProjetoUpdateManyWithoutClienteNestedInput
+    tokens_portal?: TokenPortalUpdateManyWithoutClienteNestedInput
+    recebiveis?: RecebivelUpdateManyWithoutClienteNestedInput
+    boletos?: BoletoUpdateManyWithoutClienteNestedInput
+    eventos?: EventoUpdateManyWithoutClienteNestedInput
+    notas_fiscais?: NotaFiscalUpdateManyWithoutClienteNestedInput
+    diagnosticos?: DiagnosticoUpdateManyWithoutClienteNestedInput
+    convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
+    documentos?: DocumentoUpdateManyWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
+  }
+
+  export type ClienteUncheckedUpdateWithoutAssinaturasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    tipo?: EnumTipoClienteFieldUpdateOperationsInput | $Enums.TipoCliente
+    nome_fantasia?: NullableStringFieldUpdateOperationsInput | string | null
+    cpf_cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    inscricao_estadual?: NullableStringFieldUpdateOperationsInput | string | null
+    contato_principal?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    cep?: NullableStringFieldUpdateOperationsInput | string | null
+    logradouro?: NullableStringFieldUpdateOperationsInput | string | null
+    numero?: NullableStringFieldUpdateOperationsInput | string | null
+    complemento?: NullableStringFieldUpdateOperationsInput | string | null
+    bairro?: NullableStringFieldUpdateOperationsInput | string | null
+    cidade?: NullableStringFieldUpdateOperationsInput | string | null
+    estado?: NullableStringFieldUpdateOperationsInput | string | null
+    nome_fazenda?: NullableStringFieldUpdateOperationsInput | string | null
+    distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    contatos?: ContatoUncheckedUpdateManyWithoutClienteNestedInput
+    leads?: LeadUncheckedUpdateManyWithoutClienteNestedInput
+    propostas?: PropostaUncheckedUpdateManyWithoutClienteNestedInput
+    contratos?: ContratoUncheckedUpdateManyWithoutClienteNestedInput
+    projetos?: ProjetoUncheckedUpdateManyWithoutClienteNestedInput
+    tokens_portal?: TokenPortalUncheckedUpdateManyWithoutClienteNestedInput
+    recebiveis?: RecebivelUncheckedUpdateManyWithoutClienteNestedInput
+    boletos?: BoletoUncheckedUpdateManyWithoutClienteNestedInput
+    eventos?: EventoUncheckedUpdateManyWithoutClienteNestedInput
+    notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutClienteNestedInput
+    diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
+    convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
+  }
+
+  export type ServicoUpsertWithoutAssinaturasInput = {
+    update: XOR<ServicoUpdateWithoutAssinaturasInput, ServicoUncheckedUpdateWithoutAssinaturasInput>
+    create: XOR<ServicoCreateWithoutAssinaturasInput, ServicoUncheckedCreateWithoutAssinaturasInput>
+    where?: ServicoWhereInput
+  }
+
+  export type ServicoUpdateToOneWithWhereWithoutAssinaturasInput = {
+    where?: ServicoWhereInput
+    data: XOR<ServicoUpdateWithoutAssinaturasInput, ServicoUncheckedUpdateWithoutAssinaturasInput>
+  }
+
+  export type ServicoUpdateWithoutAssinaturasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    valor_base?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    canal?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_cobranca?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_link_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutServicosNestedInput
+    plano_contas?: PlanoDeContasUpdateOneWithoutServicosNestedInput
+    itens_proposta?: ItemPropostaUpdateManyWithoutServicoNestedInput
+    leads?: LeadUpdateManyWithoutServicoNestedInput
+  }
+
+  export type ServicoUncheckedUpdateWithoutAssinaturasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    plano_contas_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nome?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    valor_base?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    canal?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_cobranca?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_link_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    itens_proposta?: ItemPropostaUncheckedUpdateManyWithoutServicoNestedInput
+    leads?: LeadUncheckedUpdateManyWithoutServicoNestedInput
+  }
+
   export type MembroEmpresaCreateManyEmpresaInput = {
     id?: string
     usuario_id: string
@@ -113896,6 +119469,7 @@ export namespace Prisma {
     distancia_km?: Decimal | DecimalJsLike | number | string | null
     preco_km?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.StatusCliente
+    asaas_id?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -113907,6 +119481,10 @@ export namespace Prisma {
     descricao?: string | null
     valor_base?: Decimal | DecimalJsLike | number | string | null
     ativo?: boolean
+    canal?: string | null
+    plano?: string | null
+    tipo_cobranca?: string | null
+    asaas_link_pagamento?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -114130,6 +119708,11 @@ export namespace Prisma {
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
     centro_custo_id?: string | null
+    asaas_payment_id?: string | null
+    asaas_invoice_url?: string | null
+    asaas_pix_copia_cola?: string | null
+    asaas_boleto_url?: string | null
+    asaas_status?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -114297,6 +119880,43 @@ export namespace Prisma {
     atualizado_em?: Date | string
   }
 
+  export type DiagnosticoTemplateCreateManyEmpresaInput = {
+    id?: string
+    cultura: string
+    nivel: string
+    titulo?: string | null
+    texto_receita?: string | null
+    texto_custos?: string | null
+    texto_caixa?: string | null
+    texto_recomendacoes?: string | null
+    parametros_dre?: JsonNullValueInput | InputJsonValue
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type AssinaturaCreateManyEmpresaInput = {
+    id?: string
+    cliente_id?: string | null
+    servico_id?: string | null
+    nome_cliente: string
+    email_cliente?: string | null
+    telefone_cliente?: string | null
+    canal: string
+    plano?: string | null
+    valor: Decimal | DecimalJsLike | number | string
+    ciclo?: string
+    status?: string
+    asaas_subscription_id?: string | null
+    asaas_customer_id?: string | null
+    proximo_vencimento?: Date | string | null
+    data_inicio?: Date | string
+    data_cancelamento?: Date | string | null
+    motivo_cancelamento?: string | null
+    observacoes?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
   export type MembroEmpresaUpdateWithoutEmpresaInput = {
     id?: StringFieldUpdateOperationsInput | string
     ativo?: BoolFieldUpdateOperationsInput | boolean
@@ -114434,6 +120054,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     contatos?: ContatoUpdateManyWithoutClienteNestedInput
@@ -114450,6 +120071,7 @@ export namespace Prisma {
     convite?: ConviteClienteUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUpdateManyWithoutClienteNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateWithoutEmpresaInput = {
@@ -114474,6 +120096,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     contatos?: ContatoUncheckedUpdateManyWithoutClienteNestedInput
@@ -114490,6 +120113,7 @@ export namespace Prisma {
     convite?: ConviteClienteUncheckedUpdateOneWithoutClienteNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutClienteNestedInput
     aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutClienteNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutClienteNestedInput
   }
 
   export type ClienteUncheckedUpdateManyWithoutEmpresaInput = {
@@ -114514,6 +120138,7 @@ export namespace Prisma {
     distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     preco_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusClienteFieldUpdateOperationsInput | $Enums.StatusCliente
+    asaas_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -114524,11 +120149,16 @@ export namespace Prisma {
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     valor_base?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     ativo?: BoolFieldUpdateOperationsInput | boolean
+    canal?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_cobranca?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_link_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     plano_contas?: PlanoDeContasUpdateOneWithoutServicosNestedInput
     itens_proposta?: ItemPropostaUpdateManyWithoutServicoNestedInput
     leads?: LeadUpdateManyWithoutServicoNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutServicoNestedInput
   }
 
   export type ServicoUncheckedUpdateWithoutEmpresaInput = {
@@ -114538,10 +120168,15 @@ export namespace Prisma {
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     valor_base?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     ativo?: BoolFieldUpdateOperationsInput | boolean
+    canal?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_cobranca?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_link_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     itens_proposta?: ItemPropostaUncheckedUpdateManyWithoutServicoNestedInput
     leads?: LeadUncheckedUpdateManyWithoutServicoNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutServicoNestedInput
   }
 
   export type ServicoUncheckedUpdateManyWithoutEmpresaInput = {
@@ -114551,6 +120186,10 @@ export namespace Prisma {
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     valor_base?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     ativo?: BoolFieldUpdateOperationsInput | boolean
+    canal?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_cobranca?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_link_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -115218,6 +120857,11 @@ export namespace Prisma {
     multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_payment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_pix_copia_cola?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_boleto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_status?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     cliente?: ClienteUpdateOneWithoutRecebiveisNestedInput
@@ -115252,6 +120896,11 @@ export namespace Prisma {
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_payment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_pix_copia_cola?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_boleto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_status?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
@@ -115280,6 +120929,11 @@ export namespace Prisma {
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_payment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_pix_copia_cola?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_boleto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_status?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -115783,6 +121437,117 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type DiagnosticoTemplateUpdateWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cultura?: StringFieldUpdateOperationsInput | string
+    nivel?: StringFieldUpdateOperationsInput | string
+    titulo?: NullableStringFieldUpdateOperationsInput | string | null
+    texto_receita?: NullableStringFieldUpdateOperationsInput | string | null
+    texto_custos?: NullableStringFieldUpdateOperationsInput | string | null
+    texto_caixa?: NullableStringFieldUpdateOperationsInput | string | null
+    texto_recomendacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    parametros_dre?: JsonNullValueInput | InputJsonValue
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DiagnosticoTemplateUncheckedUpdateWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cultura?: StringFieldUpdateOperationsInput | string
+    nivel?: StringFieldUpdateOperationsInput | string
+    titulo?: NullableStringFieldUpdateOperationsInput | string | null
+    texto_receita?: NullableStringFieldUpdateOperationsInput | string | null
+    texto_custos?: NullableStringFieldUpdateOperationsInput | string | null
+    texto_caixa?: NullableStringFieldUpdateOperationsInput | string | null
+    texto_recomendacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    parametros_dre?: JsonNullValueInput | InputJsonValue
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cultura?: StringFieldUpdateOperationsInput | string
+    nivel?: StringFieldUpdateOperationsInput | string
+    titulo?: NullableStringFieldUpdateOperationsInput | string | null
+    texto_receita?: NullableStringFieldUpdateOperationsInput | string | null
+    texto_custos?: NullableStringFieldUpdateOperationsInput | string | null
+    texto_caixa?: NullableStringFieldUpdateOperationsInput | string | null
+    texto_recomendacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    parametros_dre?: JsonNullValueInput | InputJsonValue
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AssinaturaUpdateWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome_cliente?: StringFieldUpdateOperationsInput | string
+    email_cliente?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone_cliente?: NullableStringFieldUpdateOperationsInput | string | null
+    canal?: StringFieldUpdateOperationsInput | string
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ciclo?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    asaas_subscription_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_customer_id?: NullableStringFieldUpdateOperationsInput | string | null
+    proximo_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data_inicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    data_cancelamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    motivo_cancelamento?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    cliente?: ClienteUpdateOneWithoutAssinaturasNestedInput
+    servico?: ServicoUpdateOneWithoutAssinaturasNestedInput
+  }
+
+  export type AssinaturaUncheckedUpdateWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    servico_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nome_cliente?: StringFieldUpdateOperationsInput | string
+    email_cliente?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone_cliente?: NullableStringFieldUpdateOperationsInput | string | null
+    canal?: StringFieldUpdateOperationsInput | string
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ciclo?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    asaas_subscription_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_customer_id?: NullableStringFieldUpdateOperationsInput | string | null
+    proximo_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data_inicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    data_cancelamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    motivo_cancelamento?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AssinaturaUncheckedUpdateManyWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    servico_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nome_cliente?: StringFieldUpdateOperationsInput | string
+    email_cliente?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone_cliente?: NullableStringFieldUpdateOperationsInput | string | null
+    canal?: StringFieldUpdateOperationsInput | string
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ciclo?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    asaas_subscription_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_customer_id?: NullableStringFieldUpdateOperationsInput | string | null
+    proximo_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data_inicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    data_cancelamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    motivo_cancelamento?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type MembroEmpresaCreateManyUsuarioInput = {
     id?: string
     empresa_id: string
@@ -115979,6 +121744,11 @@ export namespace Prisma {
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
     centro_custo_id?: string | null
+    asaas_payment_id?: string | null
+    asaas_invoice_url?: string | null
+    asaas_pix_copia_cola?: string | null
+    asaas_boleto_url?: string | null
+    asaas_status?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -116740,6 +122510,11 @@ export namespace Prisma {
     multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_payment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_pix_copia_cola?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_boleto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_status?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutRecebiveisNestedInput
@@ -116774,6 +122549,11 @@ export namespace Prisma {
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_payment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_pix_copia_cola?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_boleto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_status?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
@@ -116802,6 +122582,11 @@ export namespace Prisma {
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_payment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_pix_copia_cola?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_boleto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_status?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -117549,6 +123334,11 @@ export namespace Prisma {
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
     centro_custo_id?: string | null
+    asaas_payment_id?: string | null
+    asaas_invoice_url?: string | null
+    asaas_pix_copia_cola?: string | null
+    asaas_boleto_url?: string | null
+    asaas_status?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -117657,6 +123447,29 @@ export namespace Prisma {
     respostas?: NullableJsonNullValueInput | InputJsonValue
     enviado_em?: Date | string | null
     respondido_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type AssinaturaCreateManyClienteInput = {
+    id?: string
+    empresa_id: string
+    servico_id?: string | null
+    nome_cliente: string
+    email_cliente?: string | null
+    telefone_cliente?: string | null
+    canal: string
+    plano?: string | null
+    valor: Decimal | DecimalJsLike | number | string
+    ciclo?: string
+    status?: string
+    asaas_subscription_id?: string | null
+    asaas_customer_id?: string | null
+    proximo_vencimento?: Date | string | null
+    data_inicio?: Date | string
+    data_cancelamento?: Date | string | null
+    motivo_cancelamento?: string | null
+    observacoes?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -118115,6 +123928,11 @@ export namespace Prisma {
     multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_payment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_pix_copia_cola?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_boleto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_status?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutRecebiveisNestedInput
@@ -118149,6 +123967,11 @@ export namespace Prisma {
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_payment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_pix_copia_cola?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_boleto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_status?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
@@ -118177,6 +124000,11 @@ export namespace Prisma {
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_payment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_pix_copia_cola?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_boleto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_status?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -118505,6 +124333,75 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type AssinaturaUpdateWithoutClienteInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome_cliente?: StringFieldUpdateOperationsInput | string
+    email_cliente?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone_cliente?: NullableStringFieldUpdateOperationsInput | string | null
+    canal?: StringFieldUpdateOperationsInput | string
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ciclo?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    asaas_subscription_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_customer_id?: NullableStringFieldUpdateOperationsInput | string | null
+    proximo_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data_inicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    data_cancelamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    motivo_cancelamento?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutAssinaturasNestedInput
+    servico?: ServicoUpdateOneWithoutAssinaturasNestedInput
+  }
+
+  export type AssinaturaUncheckedUpdateWithoutClienteInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    servico_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nome_cliente?: StringFieldUpdateOperationsInput | string
+    email_cliente?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone_cliente?: NullableStringFieldUpdateOperationsInput | string | null
+    canal?: StringFieldUpdateOperationsInput | string
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ciclo?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    asaas_subscription_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_customer_id?: NullableStringFieldUpdateOperationsInput | string | null
+    proximo_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data_inicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    data_cancelamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    motivo_cancelamento?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AssinaturaUncheckedUpdateManyWithoutClienteInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    servico_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nome_cliente?: StringFieldUpdateOperationsInput | string
+    email_cliente?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone_cliente?: NullableStringFieldUpdateOperationsInput | string | null
+    canal?: StringFieldUpdateOperationsInput | string
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ciclo?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    asaas_subscription_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_customer_id?: NullableStringFieldUpdateOperationsInput | string | null
+    proximo_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data_inicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    data_cancelamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    motivo_cancelamento?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type ItemPropostaCreateManyServicoInput = {
     id?: string
     proposta_id: string
@@ -118537,6 +124434,29 @@ export namespace Prisma {
     observacoes?: string | null
     motivo_perda?: string | null
     tags?: LeadCreatetagsInput | string[]
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type AssinaturaCreateManyServicoInput = {
+    id?: string
+    empresa_id: string
+    cliente_id?: string | null
+    nome_cliente: string
+    email_cliente?: string | null
+    telefone_cliente?: string | null
+    canal: string
+    plano?: string | null
+    valor: Decimal | DecimalJsLike | number | string
+    ciclo?: string
+    status?: string
+    asaas_subscription_id?: string | null
+    asaas_customer_id?: string | null
+    proximo_vencimento?: Date | string | null
+    data_inicio?: Date | string
+    data_cancelamento?: Date | string | null
+    motivo_cancelamento?: string | null
+    observacoes?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -118651,6 +124571,75 @@ export namespace Prisma {
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
     motivo_perda?: NullableStringFieldUpdateOperationsInput | string | null
     tags?: LeadUpdatetagsInput | string[]
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AssinaturaUpdateWithoutServicoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome_cliente?: StringFieldUpdateOperationsInput | string
+    email_cliente?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone_cliente?: NullableStringFieldUpdateOperationsInput | string | null
+    canal?: StringFieldUpdateOperationsInput | string
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ciclo?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    asaas_subscription_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_customer_id?: NullableStringFieldUpdateOperationsInput | string | null
+    proximo_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data_inicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    data_cancelamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    motivo_cancelamento?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutAssinaturasNestedInput
+    cliente?: ClienteUpdateOneWithoutAssinaturasNestedInput
+  }
+
+  export type AssinaturaUncheckedUpdateWithoutServicoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nome_cliente?: StringFieldUpdateOperationsInput | string
+    email_cliente?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone_cliente?: NullableStringFieldUpdateOperationsInput | string | null
+    canal?: StringFieldUpdateOperationsInput | string
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ciclo?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    asaas_subscription_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_customer_id?: NullableStringFieldUpdateOperationsInput | string | null
+    proximo_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data_inicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    data_cancelamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    motivo_cancelamento?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AssinaturaUncheckedUpdateManyWithoutServicoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nome_cliente?: StringFieldUpdateOperationsInput | string
+    email_cliente?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone_cliente?: NullableStringFieldUpdateOperationsInput | string | null
+    canal?: StringFieldUpdateOperationsInput | string
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ciclo?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    asaas_subscription_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_customer_id?: NullableStringFieldUpdateOperationsInput | string | null
+    proximo_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data_inicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    data_cancelamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    motivo_cancelamento?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -119021,6 +125010,11 @@ export namespace Prisma {
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
     centro_custo_id?: string | null
+    asaas_payment_id?: string | null
+    asaas_invoice_url?: string | null
+    asaas_pix_copia_cola?: string | null
+    asaas_boleto_url?: string | null
+    asaas_status?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -119104,6 +125098,11 @@ export namespace Prisma {
     multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_payment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_pix_copia_cola?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_boleto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_status?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutRecebiveisNestedInput
@@ -119138,6 +125137,11 @@ export namespace Prisma {
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_payment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_pix_copia_cola?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_boleto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_status?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
@@ -119166,6 +125170,11 @@ export namespace Prisma {
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_payment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_pix_copia_cola?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_boleto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_status?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -120170,6 +126179,11 @@ export namespace Prisma {
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
     centro_custo_id?: string | null
+    asaas_payment_id?: string | null
+    asaas_invoice_url?: string | null
+    asaas_pix_copia_cola?: string | null
+    asaas_boleto_url?: string | null
+    asaas_status?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -120200,6 +126214,10 @@ export namespace Prisma {
     descricao?: string | null
     valor_base?: Decimal | DecimalJsLike | number | string | null
     ativo?: boolean
+    canal?: string | null
+    plano?: string | null
+    tipo_cobranca?: string | null
+    asaas_link_pagamento?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -120261,6 +126279,11 @@ export namespace Prisma {
     multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_payment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_pix_copia_cola?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_boleto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_status?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutRecebiveisNestedInput
@@ -120295,6 +126318,11 @@ export namespace Prisma {
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_payment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_pix_copia_cola?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_boleto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_status?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
@@ -120323,6 +126351,11 @@ export namespace Prisma {
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_payment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_pix_copia_cola?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_boleto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_status?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -120390,11 +126423,16 @@ export namespace Prisma {
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     valor_base?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     ativo?: BoolFieldUpdateOperationsInput | boolean
+    canal?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_cobranca?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_link_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutServicosNestedInput
     itens_proposta?: ItemPropostaUpdateManyWithoutServicoNestedInput
     leads?: LeadUpdateManyWithoutServicoNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutServicoNestedInput
   }
 
   export type ServicoUncheckedUpdateWithoutPlano_contasInput = {
@@ -120404,10 +126442,15 @@ export namespace Prisma {
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     valor_base?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     ativo?: BoolFieldUpdateOperationsInput | boolean
+    canal?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_cobranca?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_link_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     itens_proposta?: ItemPropostaUncheckedUpdateManyWithoutServicoNestedInput
     leads?: LeadUncheckedUpdateManyWithoutServicoNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutServicoNestedInput
   }
 
   export type ServicoUncheckedUpdateManyWithoutPlano_contasInput = {
@@ -120417,6 +126460,10 @@ export namespace Prisma {
     descricao?: NullableStringFieldUpdateOperationsInput | string | null
     valor_base?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     ativo?: BoolFieldUpdateOperationsInput | boolean
+    canal?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_cobranca?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_link_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -120515,6 +126562,11 @@ export namespace Prisma {
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
     centro_custo_id?: string | null
+    asaas_payment_id?: string | null
+    asaas_invoice_url?: string | null
+    asaas_pix_copia_cola?: string | null
+    asaas_boleto_url?: string | null
+    asaas_status?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -120574,6 +126626,11 @@ export namespace Prisma {
     multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_payment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_pix_copia_cola?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_boleto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_status?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutRecebiveisNestedInput
@@ -120608,6 +126665,11 @@ export namespace Prisma {
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_payment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_pix_copia_cola?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_boleto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_status?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
@@ -120636,6 +126698,11 @@ export namespace Prisma {
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
     centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_payment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_pix_copia_cola?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_boleto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_status?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -120779,6 +126846,11 @@ export namespace Prisma {
     multa_valor?: Decimal | DecimalJsLike | number | string | null
     desconto_valor?: Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: string | null
+    asaas_payment_id?: string | null
+    asaas_invoice_url?: string | null
+    asaas_pix_copia_cola?: string | null
+    asaas_boleto_url?: string | null
+    asaas_status?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -120818,6 +126890,11 @@ export namespace Prisma {
     multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_payment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_pix_copia_cola?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_boleto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_status?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutRecebiveisNestedInput
@@ -120852,6 +126929,11 @@ export namespace Prisma {
     multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_payment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_pix_copia_cola?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_boleto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_status?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     boleto?: BoletoUncheckedUpdateOneWithoutRecebivelNestedInput
@@ -120880,6 +126962,11 @@ export namespace Prisma {
     multa_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     desconto_valor?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     recebivel_origem_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_payment_id?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_invoice_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_pix_copia_cola?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_boleto_url?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_status?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
