@@ -1,5 +1,5 @@
--- CreateTable
-CREATE TABLE "diagnostico_templates" (
+-- CreateTable (idempotent — tabela pode já existir)
+CREATE TABLE IF NOT EXISTS "diagnostico_templates" (
     "id" TEXT NOT NULL,
     "empresa_id" TEXT NOT NULL,
     "cultura" TEXT NOT NULL,
@@ -16,8 +16,15 @@ CREATE TABLE "diagnostico_templates" (
     CONSTRAINT "diagnostico_templates_pkey" PRIMARY KEY ("id")
 );
 
--- CreateIndex
-CREATE UNIQUE INDEX "diagnostico_templates_empresa_id_cultura_nivel_key" ON "diagnostico_templates"("empresa_id", "cultura", "nivel");
+-- CreateIndex (idempotent)
+CREATE UNIQUE INDEX IF NOT EXISTS "diagnostico_templates_empresa_id_cultura_nivel_key" ON "diagnostico_templates"("empresa_id", "cultura", "nivel");
 
--- AddForeignKey
-ALTER TABLE "diagnostico_templates" ADD CONSTRAINT "diagnostico_templates_empresa_id_fkey" FOREIGN KEY ("empresa_id") REFERENCES "empresas"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+-- AddForeignKey (idempotent)
+DO $$ BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_constraint WHERE conname = 'diagnostico_templates_empresa_id_fkey'
+  ) THEN
+    ALTER TABLE "diagnostico_templates" ADD CONSTRAINT "diagnostico_templates_empresa_id_fkey"
+      FOREIGN KEY ("empresa_id") REFERENCES "empresas"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+  END IF;
+END $$;
