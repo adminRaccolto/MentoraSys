@@ -3,6 +3,7 @@ import { after } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { calcularDiagnostico } from "@/lib/diagnostico-agro";
 import { enviarDiagnosticoAgro } from "@/lib/email";
+import { asaasGetOrCreateCustomer } from "@/lib/asaas";
 
 // Recebe o diagnóstico completo do site oconselhoagro.com.br
 // Migrado do módulo diagnostico-lead do raccolto-starter (NestJS)
@@ -51,7 +52,7 @@ export async function POST(req: Request) {
     );
   }
 
-  const { nome, email, telefone, cpfCnpj, ...diagnosticoFields } = body;
+  const { nome, email, telefone, cpfCnpj, canal, produto, ...diagnosticoFields } = body;
 
   if (!nome || typeof nome !== "string" || nome.trim().length < 2) {
     return NextResponse.json(
@@ -118,7 +119,7 @@ export async function POST(req: Request) {
     score.geral.nivel,
   );
 
-  // ── Salva respostas + envia email em background ───────────────────────────
+  // ── Salva respostas + cria cliente + envia email em background ───────────
   after(async () => {
     // Persiste respostas no modelo Diagnostico
     try {
@@ -139,6 +140,71 @@ export async function POST(req: Request) {
       });
     } catch (err) {
       console.error("[diagnostico-lead] erro ao salvar diagnóstico:", err);
+    }
+
+    // Se veio de página de produto (canal definido) → criar Cliente + sincronizar Asaas
+    if (canal && typeof canal === "string") {
+      try {
+        // Verifica se já existe cliente com mesmo email/CPF na empresa
+        const emailStr = email ? String(email) : undefined;
+        const cpfStr = cpfCnpj ? String(cpfCnpj) : undefined;
+
+        let clienteExistente = null;
+        if (emailStr) {
+          clienteExistente = await prisma.cliente.findFirst({
+            where: { empresa_id: empresaId, email: emailStr },
+          });
+        }
+        if (!clienteExistente && cpfStr) {
+          clienteExistente = await prisma.cliente.findFirst({
+            where: { empresa_id: empresaId, cpf_cnpj: cpfStr },
+          });
+        }
+
+        let clienteId: string;
+        if (clienteExistente) {
+          clienteId = clienteExistente.id;
+          console.log("[diagnostico-lead] cliente já existe:", clienteId);
+        } else {
+          const novoCliente = await prisma.cliente.create({
+            data: {
+              empresa_id: empresaId,
+              nome: nome.trim(),
+              tipo: "PESSOA_FISICA",
+              email: emailStr ?? null,
+              telefone: telefone ? String(telefone) : null,
+              whatsapp: telefone ? String(telefone) : null,
+              cpf_cnpj: cpfStr ?? null,
+            },
+          });
+          clienteId = novoCliente.id;
+          console.log("[diagnostico-lead] cliente criado:", clienteId, "canal:", canal);
+        }
+
+        // Vincula o lead ao cliente
+        await prisma.lead.update({
+          where: { id: lead.id },
+          data: { cliente_id: clienteId },
+        });
+
+        // Sync Asaas
+        try {
+          const customer = await asaasGetOrCreateCustomer(
+            nome.trim(),
+            cpfStr,
+            emailStr,
+          );
+          await prisma.cliente.update({
+            where: { id: clienteId },
+            data: { asaas_id: customer.id },
+          });
+          console.log("[diagnostico-lead] Asaas customer:", customer.id);
+        } catch (asaasErr) {
+          console.error("[diagnostico-lead] erro Asaas:", asaasErr);
+        }
+      } catch (err) {
+        console.error("[diagnostico-lead] erro ao criar cliente:", err);
+      }
     }
 
     // Envia email com resultado

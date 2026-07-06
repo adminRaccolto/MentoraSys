@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
+import { asaasGetCustomer } from "@/lib/asaas";
 
 // Eventos Asaas que nos interessam
 // Docs: https://docs.asaas.com/reference/webhooks
@@ -175,6 +176,54 @@ async function handleSubscriptionUpdated(sub: Record<string, unknown>, event: st
       const match = externalRef.match(/empresa:([^:]+):canal:([^:]+):plano:([^:]+)/);
       if (match) {
         const [, empresaId, canal, plano] = match;
+        const asaasCustomerId = String(sub.customer ?? "");
+
+        // Busca dados do cliente no Asaas para criar/vincular no MentoraSys
+        let nomeCliente = asaasCustomerId;
+        let clienteId: string | null = null;
+        try {
+          const customer = await asaasGetCustomer(asaasCustomerId);
+          nomeCliente = customer.name;
+
+          // Verifica se já existe cliente com este asaas_id
+          let cliente = await prisma.cliente.findFirst({
+            where: { empresa_id: empresaId, asaas_id: asaasCustomerId },
+          });
+
+          if (!cliente && customer.email) {
+            cliente = await prisma.cliente.findFirst({
+              where: { empresa_id: empresaId, email: customer.email },
+            });
+          }
+          if (!cliente && customer.cpfCnpj) {
+            cliente = await prisma.cliente.findFirst({
+              where: { empresa_id: empresaId, cpf_cnpj: customer.cpfCnpj },
+            });
+          }
+
+          if (!cliente) {
+            cliente = await prisma.cliente.create({
+              data: {
+                empresa_id: empresaId,
+                nome: customer.name,
+                tipo: "PESSOA_FISICA",
+                email: customer.email ?? null,
+                cpf_cnpj: customer.cpfCnpj ?? null,
+                asaas_id: asaasCustomerId,
+              },
+            });
+            console.log(`[asaas-webhook] cliente criado: ${cliente.id}`);
+          } else if (!cliente.asaas_id) {
+            await prisma.cliente.update({
+              where: { id: cliente.id },
+              data: { asaas_id: asaasCustomerId },
+            });
+          }
+          clienteId = cliente.id;
+        } catch (err) {
+          console.error("[asaas-webhook] erro ao sincronizar cliente:", err);
+        }
+
         const servico = await prisma.servico.findFirst({
           where: { empresa_id: empresaId, canal, plano },
         });
@@ -184,9 +233,10 @@ async function handleSubscriptionUpdated(sub: Record<string, unknown>, event: st
             canal,
             plano,
             servico_id: servico?.id ?? null,
-            nome_cliente: String(sub.customer ?? ""),
+            cliente_id: clienteId,
+            nome_cliente: nomeCliente,
             asaas_subscription_id: asaasSubId,
-            asaas_customer_id: String(sub.customer ?? ""),
+            asaas_customer_id: asaasCustomerId,
             valor: Number(sub.value ?? 0),
             ciclo: String(sub.cycle ?? "MONTHLY"),
             status: "ATIVA",

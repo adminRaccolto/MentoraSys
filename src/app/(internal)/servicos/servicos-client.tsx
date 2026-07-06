@@ -23,7 +23,32 @@ const schema = z.object({
   descricao: z.string().optional(),
   valor_base: z.string().optional(),
   plano_contas_id: z.string().optional().nullable(),
+  canal: z.enum(["ARATO", "CONSELHO_AGRO", "CONSULTORIA"]).optional().nullable(),
+  plano: z.enum(["ESSENCIAL", "GESTAO", "PERFORMANCE", "NOVO_AGRO", "MESA_AGRO", "CONSULTORIA_AGRO"]).optional().nullable(),
+  tipo_cobranca: z.enum(["ASSINATURA", "PROJETO", "PONTUAL"]).optional().nullable(),
+  asaas_link_pagamento: z.string().optional().nullable(),
 });
+
+const CANAL_LABELS: Record<string, string> = {
+  ARATO: "Arato",
+  CONSELHO_AGRO: "O Conselho Agro",
+  CONSULTORIA: "Consultoria",
+};
+
+const PLANO_LABELS: Record<string, string> = {
+  ESSENCIAL: "Essencial",
+  GESTAO: "Gestão",
+  PERFORMANCE: "Performance",
+  NOVO_AGRO: "O Novo Agro",
+  MESA_AGRO: "Mesa de Conselheiros",
+  CONSULTORIA_AGRO: "Conselheiro Executivo",
+};
+
+const TIPO_COB_LABELS: Record<string, string> = {
+  ASSINATURA: "Assinatura",
+  PROJETO: "Projeto",
+  PONTUAL: "Pontual",
+};
 
 type FormData = z.infer<typeof schema>;
 
@@ -40,6 +65,10 @@ interface Servico {
   valor_base: number | null;
   plano_contas_id: string | null;
   plano_contas: { nome: string; codigo: string | null } | null;
+  canal: string | null;
+  plano: string | null;
+  tipo_cobranca: string | null;
+  asaas_link_pagamento: string | null;
   ativo: boolean;
 }
 
@@ -78,6 +107,10 @@ export default function ServicosClient({
       descricao: s.descricao ?? "",
       valor_base: s.valor_base != null ? String(s.valor_base) : "",
       plano_contas_id: s.plano_contas_id ?? null,
+      canal: (s.canal as "ARATO" | "CONSELHO_AGRO" | "CONSULTORIA" | null) ?? null,
+      plano: (s.plano as "ESSENCIAL" | "GESTAO" | "PERFORMANCE" | "NOVO_AGRO" | "MESA_AGRO" | "CONSULTORIA_AGRO" | null) ?? null,
+      tipo_cobranca: (s.tipo_cobranca as "ASSINATURA" | "PROJETO" | "PONTUAL" | null) ?? null,
+      asaas_link_pagamento: s.asaas_link_pagamento ?? null,
     });
     setModalAberto(true);
   };
@@ -91,7 +124,16 @@ export default function ServicosClient({
           setServicos((prev) =>
             prev.map((s) =>
               s.id === servicoEditando.id
-                ? { ...s, ...res.data, valor_base: res.data.valor_base != null ? Number(res.data.valor_base) : null, plano_contas: conta ? { nome: conta.nome, codigo: conta.codigo } : null }
+                ? {
+                    ...s,
+                    ...res.data,
+                    valor_base: res.data.valor_base != null ? Number(res.data.valor_base) : null,
+                    plano_contas: conta ? { nome: conta.nome, codigo: conta.codigo } : null,
+                    canal: res.data.canal ?? null,
+                    plano: res.data.plano ?? null,
+                    tipo_cobranca: res.data.tipo_cobranca ?? null,
+                    asaas_link_pagamento: res.data.asaas_link_pagamento ?? null,
+                  }
                 : s
             )
           );
@@ -101,7 +143,15 @@ export default function ServicosClient({
           const conta = contasReceita.find((c) => c.id === data.plano_contas_id) ?? null;
           setServicos((prev) => [
             ...prev,
-            { ...res.data, valor_base: res.data.valor_base != null ? Number(res.data.valor_base) : null, plano_contas: conta ? { nome: conta.nome, codigo: conta.codigo } : null },
+            {
+              ...res.data,
+              valor_base: res.data.valor_base != null ? Number(res.data.valor_base) : null,
+              plano_contas: conta ? { nome: conta.nome, codigo: conta.codigo } : null,
+              canal: res.data.canal ?? null,
+              plano: res.data.plano ?? null,
+              tipo_cobranca: res.data.tipo_cobranca ?? null,
+              asaas_link_pagamento: res.data.asaas_link_pagamento ?? null,
+            },
           ]);
           toast.success("Serviço criado");
         }
@@ -156,7 +206,8 @@ export default function ServicosClient({
           <TableHeader>
             <TableRow>
               <TableHead>Nome</TableHead>
-              <TableHead>Conta de receita</TableHead>
+              <TableHead>Canal / Plano</TableHead>
+              <TableHead>Tipo</TableHead>
               <TableHead>Valor base</TableHead>
               <TableHead>Status</TableHead>
               <TableHead className="w-20" />
@@ -165,7 +216,7 @@ export default function ServicosClient({
           <TableBody>
             {servicos.length === 0 && (
               <TableRow>
-                <TableCell colSpan={5} className="text-center text-muted-foreground py-10">
+                <TableCell colSpan={6} className="text-center text-muted-foreground py-10">
                   Nenhum serviço cadastrado
                 </TableCell>
               </TableRow>
@@ -176,10 +227,22 @@ export default function ServicosClient({
                   <p className="font-medium">{s.nome}</p>
                   {s.descricao && <p className="text-xs text-muted-foreground truncate max-w-xs">{s.descricao}</p>}
                 </TableCell>
-                <TableCell className="text-sm text-muted-foreground">
-                  {s.plano_contas
-                    ? <span>{s.plano_contas.codigo ? `${s.plano_contas.codigo} · ` : ""}{s.plano_contas.nome}</span>
-                    : <span className="text-destructive/60 text-xs">Não vinculado</span>}
+                <TableCell className="text-sm">
+                  {s.canal ? (
+                    <div className="flex flex-col gap-0.5">
+                      <span className="font-medium text-xs">{CANAL_LABELS[s.canal] ?? s.canal}</span>
+                      {s.plano && <span className="text-muted-foreground text-xs">{PLANO_LABELS[s.plano] ?? s.plano}</span>}
+                    </div>
+                  ) : (
+                    <span className="text-muted-foreground text-xs">—</span>
+                  )}
+                </TableCell>
+                <TableCell className="text-sm">
+                  {s.tipo_cobranca ? (
+                    <Badge variant="outline" className="text-xs">{TIPO_COB_LABELS[s.tipo_cobranca] ?? s.tipo_cobranca}</Badge>
+                  ) : (
+                    <span className="text-muted-foreground text-xs">—</span>
+                  )}
                 </TableCell>
                 <TableCell>{formatarValor(s.valor_base)}</TableCell>
                 <TableCell>
@@ -227,19 +290,79 @@ export default function ServicosClient({
                 <Input {...register("valor_base")} type="number" step="0.01" className="h-9" placeholder="0,00" />
               </div>
               <div className="space-y-1">
+                <Label className="text-xs">Tipo de cobrança</Label>
+                <Select
+                  value={watch("tipo_cobranca") ?? ""}
+                  onValueChange={(v) => setValue("tipo_cobranca", v === "" ? null : v as "ASSINATURA" | "PROJETO" | "PONTUAL")}
+                >
+                  <SelectTrigger className="h-9 w-full">
+                    <SelectValue placeholder="Selecionar" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">Não definido</SelectItem>
+                    <SelectItem value="ASSINATURA">Assinatura</SelectItem>
+                    <SelectItem value="PROJETO">Projeto</SelectItem>
+                    <SelectItem value="PONTUAL">Pontual</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1">
+                <Label className="text-xs">Canal</Label>
+                <Select
+                  value={watch("canal") ?? ""}
+                  onValueChange={(v) => {
+                    setValue("canal", v === "" ? null : v as "ARATO" | "CONSELHO_AGRO" | "CONSULTORIA");
+                    setValue("plano", null);
+                  }}
+                >
+                  <SelectTrigger className="h-9 w-full">
+                    <SelectValue placeholder="Selecionar" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">Nenhum</SelectItem>
+                    <SelectItem value="ARATO">Arato</SelectItem>
+                    <SelectItem value="CONSELHO_AGRO">O Conselho Agro</SelectItem>
+                    <SelectItem value="CONSULTORIA">Consultoria</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-1">
+                <Label className="text-xs">Plano</Label>
+                <Select
+                  value={watch("plano") ?? ""}
+                  onValueChange={(v) => setValue("plano", v === "" ? null : v as "ESSENCIAL" | "GESTAO" | "PERFORMANCE" | "NOVO_AGRO" | "MESA_AGRO" | "CONSULTORIA_AGRO")}
+                  disabled={!watch("canal")}
+                >
+                  <SelectTrigger className="h-9 w-full">
+                    <SelectValue placeholder="Selecionar" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">Nenhum</SelectItem>
+                    {watch("canal") === "ARATO" && <>
+                      <SelectItem value="ESSENCIAL">Essencial</SelectItem>
+                      <SelectItem value="GESTAO">Gestão</SelectItem>
+                      <SelectItem value="PERFORMANCE">Performance</SelectItem>
+                    </>}
+                    {watch("canal") === "CONSELHO_AGRO" && <>
+                      <SelectItem value="NOVO_AGRO">O Novo Agro</SelectItem>
+                      <SelectItem value="MESA_AGRO">Mesa de Conselheiros</SelectItem>
+                      <SelectItem value="CONSULTORIA_AGRO">Conselheiro Executivo</SelectItem>
+                    </>}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1">
                 <Label className="text-xs">Conta de receita</Label>
                 <Select
                   value={watch("plano_contas_id") ?? ""}
                   onValueChange={(v) => setValue("plano_contas_id", v === "" ? null : v)}
                 >
                   <SelectTrigger className="h-9 w-full">
-                    <SelectValue placeholder="Sem vínculo">
-                      {(value: string | null) => {
-                        if (!value) return undefined;
-                        const c = contasReceita.find((x) => x.id === value);
-                        return c ? `${c.codigo ? c.codigo + " · " : ""}${c.nome}` : undefined;
-                      }}
-                    </SelectValue>
+                    <SelectValue placeholder="Sem vínculo" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="">Sem vínculo</SelectItem>
@@ -259,6 +382,15 @@ export default function ServicosClient({
                     primeiro.
                   </p>
                 )}
+              </div>
+              <div className="space-y-1">
+                <Label className="text-xs">Link Asaas (ID)</Label>
+                <Input
+                  {...register("asaas_link_pagamento")}
+                  className="h-9"
+                  placeholder="apl_xxxxxxxxxxxx"
+                />
+                <p className="text-[10px] text-muted-foreground">ID do link de pagamento no Asaas</p>
               </div>
             </div>
             <DialogFooter>

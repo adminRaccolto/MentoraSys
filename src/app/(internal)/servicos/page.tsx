@@ -14,6 +14,10 @@ export default async function ServicosPage() {
         descricao: true,
         valor_base: true,
         plano_contas_id: true,
+        canal: true,
+        plano: true,
+        tipo_cobranca: true,
+        asaas_link_pagamento: true,
         ativo: true,
         plano_contas: { select: { nome: true, codigo: true } },
       },
@@ -31,6 +35,10 @@ export default async function ServicosPage() {
       servicos={servicos.map((s) => ({
         ...s,
         valor_base: s.valor_base != null ? Number(s.valor_base) : null,
+        canal: s.canal ?? null,
+        plano: s.plano ?? null,
+        tipo_cobranca: s.tipo_cobranca ?? null,
+        asaas_link_pagamento: s.asaas_link_pagamento ?? null,
       }))}
       contasReceita={contasReceita}
     />

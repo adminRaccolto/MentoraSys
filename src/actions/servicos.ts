@@ -10,6 +10,10 @@ const schemaServico = z.object({
   descricao: z.string().optional(),
   valor_base: z.string().optional(),
   plano_contas_id: z.string().optional().nullable(),
+  canal: z.enum(["ARATO", "CONSELHO_AGRO", "CONSULTORIA"]).optional().nullable(),
+  plano: z.enum(["ESSENCIAL", "GESTAO", "PERFORMANCE", "NOVO_AGRO", "MESA_AGRO", "CONSULTORIA_AGRO"]).optional().nullable(),
+  tipo_cobranca: z.enum(["ASSINATURA", "PROJETO", "PONTUAL"]).optional().nullable(),
+  asaas_link_pagamento: z.string().optional().nullable(),
 });
 
 type ServicoInput = z.infer<typeof schemaServico>;
@@ -26,6 +30,10 @@ export async function criarServico(input: ServicoInput) {
       descricao: data.descricao || null,
       valor_base: data.valor_base ? parseFloat(data.valor_base) : null,
       plano_contas_id: data.plano_contas_id ?? null,
+      canal: data.canal ?? null,
+      plano: data.plano ?? null,
+      tipo_cobranca: data.tipo_cobranca ?? null,
+      asaas_link_pagamento: data.asaas_link_pagamento ?? null,
       empresa_id: empresaId,
     },
   });
@@ -50,6 +58,10 @@ export async function editarServico(id: string, input: ServicoInput) {
       descricao: data.descricao || null,
       valor_base: data.valor_base ? parseFloat(data.valor_base) : null,
       plano_contas_id: data.plano_contas_id ?? null,
+      canal: data.canal ?? null,
+      plano: data.plano ?? null,
+      tipo_cobranca: data.tipo_cobranca ?? null,
+      asaas_link_pagamento: data.asaas_link_pagamento ?? null,
     },
   });
 

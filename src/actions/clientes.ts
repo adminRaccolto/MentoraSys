@@ -5,6 +5,7 @@ import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { verificarPermissao, obterEmpresaAtiva } from "@/lib/permissoes";
 import { registrar } from "@/lib/auditoria";
+import { asaasGetOrCreateCustomer } from "@/lib/asaas";
 
 const schemaCliente = z.object({
   nome: z.string().min(2, "Nome obrigatório"),
@@ -27,6 +28,8 @@ const schemaCliente = z.object({
   nome_fazenda: z.string().optional(),
   distancia_km: z.coerce.number().nonnegative().optional().nullable(),
   preco_km: z.coerce.number().nonnegative().optional().nullable(),
+  // Canal de origem para sync automático com Asaas
+  canal: z.enum(["ARATO", "CONSELHO_AGRO"]).optional(),
 });
 
 type ClienteInput = z.infer<typeof schemaCliente>;
@@ -36,16 +39,37 @@ export async function criarCliente(input: ClienteInput) {
   const empresaId = await obterEmpresaAtiva();
 
   const data = schemaCliente.parse(input);
+  const { canal, ...dadosCliente } = data;
 
   const cliente = await prisma.cliente.create({
     data: {
-      ...data,
-      email: data.email || null,
+      ...dadosCliente,
+      email: dadosCliente.email || null,
       empresa_id: empresaId,
     },
   });
 
   await registrar({ recurso: "clientes", acao: "criar", registroId: cliente.id, detalhes: { nome: data.nome } });
+
+  // Sync Asaas: apenas quando canal está definido (cliente de produto, não lead genérico)
+  if (canal) {
+    try {
+      const customer = await asaasGetOrCreateCustomer(
+        data.nome,
+        data.cpf_cnpj || undefined,
+        data.email || undefined,
+      );
+      await prisma.cliente.update({
+        where: { id: cliente.id },
+        data: { asaas_id: customer.id },
+      });
+      console.log(`[criarCliente] sincronizado com Asaas: ${customer.id}`);
+    } catch (err) {
+      // Não falha o cadastro se o Asaas estiver indisponível
+      console.error("[criarCliente] erro ao sincronizar Asaas:", err);
+    }
+  }
+
   revalidatePath("/clientes");
   return {
     data: {
