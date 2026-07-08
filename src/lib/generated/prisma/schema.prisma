@@ -66,6 +66,7 @@ model Empresa {
   centros_custo             CentroCusto[]
   diagnostico_templates     DiagnosticoTemplate[]
   assinaturas               Assinatura[]
+  campanhas_cupom           CampanhaCupom[]
 
   @@map("empresas")
 }
@@ -314,11 +315,12 @@ model Servico {
   criado_em            DateTime @default(now())
   atualizado_em        DateTime @updatedAt
 
-  empresa        Empresa        @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
-  plano_contas   PlanoDeContas? @relation(fields: [plano_contas_id], references: [id], onDelete: SetNull)
-  itens_proposta ItemProposta[]
-  leads          Lead[]
-  assinaturas    Assinatura[]
+  empresa         Empresa         @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  plano_contas    PlanoDeContas?  @relation(fields: [plano_contas_id], references: [id], onDelete: SetNull)
+  itens_proposta  ItemProposta[]
+  leads           Lead[]
+  assinaturas     Assinatura[]
+  campanhas_cupom CampanhaCupom[]
 
   @@map("servicos")
 }
@@ -1327,6 +1329,35 @@ model DiagnosticoTemplate {
 
   @@unique([empresa_id, cultura, nivel])
   @@map("diagnostico_templates")
+}
+
+// ─── CAMPANHAS DE CUPOM DE DESCONTO ─────────────────────────────────────────
+
+enum TipoDesconto {
+  PERCENTUAL
+  FIXO
+}
+
+model CampanhaCupom {
+  id             String       @id @default(cuid())
+  empresa_id     String
+  servico_id     String? // serviço ao qual o cupom se aplica (null = qualquer)
+  nome           String
+  codigo         String
+  tipo_desconto  TipoDesconto @default(PERCENTUAL)
+  valor_desconto Decimal      @db.Decimal(10, 2)
+  ativo          Boolean      @default(true)
+  validade_ate   DateTime?
+  usos_maximos   Int?
+  usos_count     Int          @default(0)
+  criado_em      DateTime     @default(now())
+  atualizado_em  DateTime     @updatedAt
+
+  empresa Empresa  @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  servico Servico? @relation(fields: [servico_id], references: [id])
+
+  @@unique([empresa_id, codigo])
+  @@map("campanhas_cupom")
 }
 
 // ─── ASSINATURAS (Arato SaaS, O Conselho Agro, Consultoria recorrente) ────────

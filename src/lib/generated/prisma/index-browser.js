@@ -830,6 +830,22 @@ exports.Prisma.DiagnosticoTemplateScalarFieldEnum = {
   atualizado_em: 'atualizado_em'
 };
 
+exports.Prisma.CampanhaCupomScalarFieldEnum = {
+  id: 'id',
+  empresa_id: 'empresa_id',
+  servico_id: 'servico_id',
+  nome: 'nome',
+  codigo: 'codigo',
+  tipo_desconto: 'tipo_desconto',
+  valor_desconto: 'valor_desconto',
+  ativo: 'ativo',
+  validade_ate: 'validade_ate',
+  usos_maximos: 'usos_maximos',
+  usos_count: 'usos_count',
+  criado_em: 'criado_em',
+  atualizado_em: 'atualizado_em'
+};
+
 exports.Prisma.AssinaturaScalarFieldEnum = {
   id: 'id',
   empresa_id: 'empresa_id',
@@ -1033,6 +1049,11 @@ exports.StatusAplicacaoDiagnostico = exports.$Enums.StatusAplicacaoDiagnostico =
   RESPONDIDO: 'RESPONDIDO'
 };
 
+exports.TipoDesconto = exports.$Enums.TipoDesconto = {
+  PERCENTUAL: 'PERCENTUAL',
+  FIXO: 'FIXO'
+};
+
 exports.Prisma.ModelName = {
   Empresa: 'Empresa',
   Usuario: 'Usuario',
@@ -1084,6 +1105,7 @@ exports.Prisma.ModelName = {
   CampanhaDiagnostico: 'CampanhaDiagnostico',
   DiagnosticoParticipante: 'DiagnosticoParticipante',
   DiagnosticoTemplate: 'DiagnosticoTemplate',
+  CampanhaCupom: 'CampanhaCupom',
   Assinatura: 'Assinatura'
 };
 

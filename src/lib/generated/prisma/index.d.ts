@@ -264,6 +264,11 @@ export type DiagnosticoParticipante = $Result.DefaultSelection<Prisma.$Diagnosti
  */
 export type DiagnosticoTemplate = $Result.DefaultSelection<Prisma.$DiagnosticoTemplatePayload>
 /**
+ * Model CampanhaCupom
+ * 
+ */
+export type CampanhaCupom = $Result.DefaultSelection<Prisma.$CampanhaCupomPayload>
+/**
  * Model Assinatura
  * 
  */
@@ -485,6 +490,14 @@ export const StatusAplicacaoDiagnostico: {
 
 export type StatusAplicacaoDiagnostico = (typeof StatusAplicacaoDiagnostico)[keyof typeof StatusAplicacaoDiagnostico]
 
+
+export const TipoDesconto: {
+  PERCENTUAL: 'PERCENTUAL',
+  FIXO: 'FIXO'
+};
+
+export type TipoDesconto = (typeof TipoDesconto)[keyof typeof TipoDesconto]
+
 }
 
 export type PlanoTipo = $Enums.PlanoTipo
@@ -570,6 +583,10 @@ export const MomentoDiagnostico: typeof $Enums.MomentoDiagnostico
 export type StatusAplicacaoDiagnostico = $Enums.StatusAplicacaoDiagnostico
 
 export const StatusAplicacaoDiagnostico: typeof $Enums.StatusAplicacaoDiagnostico
+
+export type TipoDesconto = $Enums.TipoDesconto
+
+export const TipoDesconto: typeof $Enums.TipoDesconto
 
 /**
  * ##  Prisma Client ʲˢ
@@ -1193,6 +1210,16 @@ export class PrismaClient<
   get diagnosticoTemplate(): Prisma.DiagnosticoTemplateDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.campanhaCupom`: Exposes CRUD operations for the **CampanhaCupom** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CampanhaCupoms
+    * const campanhaCupoms = await prisma.campanhaCupom.findMany()
+    * ```
+    */
+  get campanhaCupom(): Prisma.CampanhaCupomDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.assinatura`: Exposes CRUD operations for the **Assinatura** model.
     * Example usage:
     * ```ts
@@ -1685,6 +1712,7 @@ export namespace Prisma {
     CampanhaDiagnostico: 'CampanhaDiagnostico',
     DiagnosticoParticipante: 'DiagnosticoParticipante',
     DiagnosticoTemplate: 'DiagnosticoTemplate',
+    CampanhaCupom: 'CampanhaCupom',
     Assinatura: 'Assinatura'
   };
 
@@ -1701,7 +1729,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "etapaCrm" | "comentarioCrm" | "lead" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "projeto" | "etapa" | "tarefa" | "tarefaResponsavel" | "comentarioTarefa" | "anexoTarefa" | "atividadeTarefa" | "aprovacaoTarefa" | "itemChecklist" | "etiquetaTarefa" | "tarefaEtiqueta" | "pastaDocumento" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "centroCusto" | "recebivel" | "contaPagar" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "boleto" | "diagnostico" | "tokenPortal" | "aplicacaoDiagnostico" | "campanhaDiagnostico" | "diagnosticoParticipante" | "diagnosticoTemplate" | "assinatura"
+      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "etapaCrm" | "comentarioCrm" | "lead" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "projeto" | "etapa" | "tarefa" | "tarefaResponsavel" | "comentarioTarefa" | "anexoTarefa" | "atividadeTarefa" | "aprovacaoTarefa" | "itemChecklist" | "etiquetaTarefa" | "tarefaEtiqueta" | "pastaDocumento" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "centroCusto" | "recebivel" | "contaPagar" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "boleto" | "diagnostico" | "tokenPortal" | "aplicacaoDiagnostico" | "campanhaDiagnostico" | "diagnosticoParticipante" | "diagnosticoTemplate" | "campanhaCupom" | "assinatura"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -5405,6 +5433,80 @@ export namespace Prisma {
           }
         }
       }
+      CampanhaCupom: {
+        payload: Prisma.$CampanhaCupomPayload<ExtArgs>
+        fields: Prisma.CampanhaCupomFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CampanhaCupomFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampanhaCupomPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CampanhaCupomFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampanhaCupomPayload>
+          }
+          findFirst: {
+            args: Prisma.CampanhaCupomFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampanhaCupomPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CampanhaCupomFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampanhaCupomPayload>
+          }
+          findMany: {
+            args: Prisma.CampanhaCupomFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampanhaCupomPayload>[]
+          }
+          create: {
+            args: Prisma.CampanhaCupomCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampanhaCupomPayload>
+          }
+          createMany: {
+            args: Prisma.CampanhaCupomCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CampanhaCupomCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampanhaCupomPayload>[]
+          }
+          delete: {
+            args: Prisma.CampanhaCupomDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampanhaCupomPayload>
+          }
+          update: {
+            args: Prisma.CampanhaCupomUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampanhaCupomPayload>
+          }
+          deleteMany: {
+            args: Prisma.CampanhaCupomDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CampanhaCupomUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CampanhaCupomUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampanhaCupomPayload>[]
+          }
+          upsert: {
+            args: Prisma.CampanhaCupomUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampanhaCupomPayload>
+          }
+          aggregate: {
+            args: Prisma.CampanhaCupomAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCampanhaCupom>
+          }
+          groupBy: {
+            args: Prisma.CampanhaCupomGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CampanhaCupomGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CampanhaCupomCountArgs<ExtArgs>
+            result: $Utils.Optional<CampanhaCupomCountAggregateOutputType> | number
+          }
+        }
+      }
       Assinatura: {
         payload: Prisma.$AssinaturaPayload<ExtArgs>
         fields: Prisma.AssinaturaFieldRefs
@@ -5637,6 +5739,7 @@ export namespace Prisma {
     campanhaDiagnostico?: CampanhaDiagnosticoOmit
     diagnosticoParticipante?: DiagnosticoParticipanteOmit
     diagnosticoTemplate?: DiagnosticoTemplateOmit
+    campanhaCupom?: CampanhaCupomOmit
     assinatura?: AssinaturaOmit
   }
 
@@ -5749,6 +5852,7 @@ export namespace Prisma {
     centros_custo: number
     diagnostico_templates: number
     assinaturas: number
+    campanhas_cupom: number
   }
 
   export type EmpresaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5783,6 +5887,7 @@ export namespace Prisma {
     centros_custo?: boolean | EmpresaCountOutputTypeCountCentros_custoArgs
     diagnostico_templates?: boolean | EmpresaCountOutputTypeCountDiagnostico_templatesArgs
     assinaturas?: boolean | EmpresaCountOutputTypeCountAssinaturasArgs
+    campanhas_cupom?: boolean | EmpresaCountOutputTypeCountCampanhas_cupomArgs
   }
 
   // Custom InputTypes
@@ -6011,6 +6116,13 @@ export namespace Prisma {
    */
   export type EmpresaCountOutputTypeCountAssinaturasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AssinaturaWhereInput
+  }
+
+  /**
+   * EmpresaCountOutputType without action
+   */
+  export type EmpresaCountOutputTypeCountCampanhas_cupomArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CampanhaCupomWhereInput
   }
 
 
@@ -6452,12 +6564,14 @@ export namespace Prisma {
     itens_proposta: number
     leads: number
     assinaturas: number
+    campanhas_cupom: number
   }
 
   export type ServicoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     itens_proposta?: boolean | ServicoCountOutputTypeCountItens_propostaArgs
     leads?: boolean | ServicoCountOutputTypeCountLeadsArgs
     assinaturas?: boolean | ServicoCountOutputTypeCountAssinaturasArgs
+    campanhas_cupom?: boolean | ServicoCountOutputTypeCountCampanhas_cupomArgs
   }
 
   // Custom InputTypes
@@ -6490,6 +6604,13 @@ export namespace Prisma {
    */
   export type ServicoCountOutputTypeCountAssinaturasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AssinaturaWhereInput
+  }
+
+  /**
+   * ServicoCountOutputType without action
+   */
+  export type ServicoCountOutputTypeCountCampanhas_cupomArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CampanhaCupomWhereInput
   }
 
 
@@ -7378,6 +7499,7 @@ export namespace Prisma {
     centros_custo?: boolean | Empresa$centros_custoArgs<ExtArgs>
     diagnostico_templates?: boolean | Empresa$diagnostico_templatesArgs<ExtArgs>
     assinaturas?: boolean | Empresa$assinaturasArgs<ExtArgs>
+    campanhas_cupom?: boolean | Empresa$campanhas_cupomArgs<ExtArgs>
     _count?: boolean | EmpresaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["empresa"]>
 
@@ -7453,6 +7575,7 @@ export namespace Prisma {
     centros_custo?: boolean | Empresa$centros_custoArgs<ExtArgs>
     diagnostico_templates?: boolean | Empresa$diagnostico_templatesArgs<ExtArgs>
     assinaturas?: boolean | Empresa$assinaturasArgs<ExtArgs>
+    campanhas_cupom?: boolean | Empresa$campanhas_cupomArgs<ExtArgs>
     _count?: boolean | EmpresaCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EmpresaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -7492,6 +7615,7 @@ export namespace Prisma {
       centros_custo: Prisma.$CentroCustoPayload<ExtArgs>[]
       diagnostico_templates: Prisma.$DiagnosticoTemplatePayload<ExtArgs>[]
       assinaturas: Prisma.$AssinaturaPayload<ExtArgs>[]
+      campanhas_cupom: Prisma.$CampanhaCupomPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7929,6 +8053,7 @@ export namespace Prisma {
     centros_custo<T extends Empresa$centros_custoArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$centros_custoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CentroCustoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     diagnostico_templates<T extends Empresa$diagnostico_templatesArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$diagnostico_templatesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiagnosticoTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     assinaturas<T extends Empresa$assinaturasArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$assinaturasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssinaturaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    campanhas_cupom<T extends Empresa$campanhas_cupomArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$campanhas_cupomArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CampanhaCupomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9102,6 +9227,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AssinaturaScalarFieldEnum | AssinaturaScalarFieldEnum[]
+  }
+
+  /**
+   * Empresa.campanhas_cupom
+   */
+  export type Empresa$campanhas_cupomArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampanhaCupom
+     */
+    select?: CampanhaCupomSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampanhaCupom
+     */
+    omit?: CampanhaCupomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampanhaCupomInclude<ExtArgs> | null
+    where?: CampanhaCupomWhereInput
+    orderBy?: CampanhaCupomOrderByWithRelationInput | CampanhaCupomOrderByWithRelationInput[]
+    cursor?: CampanhaCupomWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CampanhaCupomScalarFieldEnum | CampanhaCupomScalarFieldEnum[]
   }
 
   /**
@@ -20555,6 +20704,7 @@ export namespace Prisma {
     itens_proposta?: boolean | Servico$itens_propostaArgs<ExtArgs>
     leads?: boolean | Servico$leadsArgs<ExtArgs>
     assinaturas?: boolean | Servico$assinaturasArgs<ExtArgs>
+    campanhas_cupom?: boolean | Servico$campanhas_cupomArgs<ExtArgs>
     _count?: boolean | ServicoCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["servico"]>
 
@@ -20617,6 +20767,7 @@ export namespace Prisma {
     itens_proposta?: boolean | Servico$itens_propostaArgs<ExtArgs>
     leads?: boolean | Servico$leadsArgs<ExtArgs>
     assinaturas?: boolean | Servico$assinaturasArgs<ExtArgs>
+    campanhas_cupom?: boolean | Servico$campanhas_cupomArgs<ExtArgs>
     _count?: boolean | ServicoCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ServicoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -20636,6 +20787,7 @@ export namespace Prisma {
       itens_proposta: Prisma.$ItemPropostaPayload<ExtArgs>[]
       leads: Prisma.$LeadPayload<ExtArgs>[]
       assinaturas: Prisma.$AssinaturaPayload<ExtArgs>[]
+      campanhas_cupom: Prisma.$CampanhaCupomPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -21050,6 +21202,7 @@ export namespace Prisma {
     itens_proposta<T extends Servico$itens_propostaArgs<ExtArgs> = {}>(args?: Subset<T, Servico$itens_propostaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItemPropostaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     leads<T extends Servico$leadsArgs<ExtArgs> = {}>(args?: Subset<T, Servico$leadsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LeadPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     assinaturas<T extends Servico$assinaturasArgs<ExtArgs> = {}>(args?: Subset<T, Servico$assinaturasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssinaturaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    campanhas_cupom<T extends Servico$campanhas_cupomArgs<ExtArgs> = {}>(args?: Subset<T, Servico$campanhas_cupomArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CampanhaCupomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -21581,6 +21734,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AssinaturaScalarFieldEnum | AssinaturaScalarFieldEnum[]
+  }
+
+  /**
+   * Servico.campanhas_cupom
+   */
+  export type Servico$campanhas_cupomArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampanhaCupom
+     */
+    select?: CampanhaCupomSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampanhaCupom
+     */
+    omit?: CampanhaCupomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampanhaCupomInclude<ExtArgs> | null
+    where?: CampanhaCupomWhereInput
+    orderBy?: CampanhaCupomOrderByWithRelationInput | CampanhaCupomOrderByWithRelationInput[]
+    cursor?: CampanhaCupomWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CampanhaCupomScalarFieldEnum | CampanhaCupomScalarFieldEnum[]
   }
 
   /**
@@ -69895,6 +70072,1242 @@ export namespace Prisma {
 
 
   /**
+   * Model CampanhaCupom
+   */
+
+  export type AggregateCampanhaCupom = {
+    _count: CampanhaCupomCountAggregateOutputType | null
+    _avg: CampanhaCupomAvgAggregateOutputType | null
+    _sum: CampanhaCupomSumAggregateOutputType | null
+    _min: CampanhaCupomMinAggregateOutputType | null
+    _max: CampanhaCupomMaxAggregateOutputType | null
+  }
+
+  export type CampanhaCupomAvgAggregateOutputType = {
+    valor_desconto: Decimal | null
+    usos_maximos: number | null
+    usos_count: number | null
+  }
+
+  export type CampanhaCupomSumAggregateOutputType = {
+    valor_desconto: Decimal | null
+    usos_maximos: number | null
+    usos_count: number | null
+  }
+
+  export type CampanhaCupomMinAggregateOutputType = {
+    id: string | null
+    empresa_id: string | null
+    servico_id: string | null
+    nome: string | null
+    codigo: string | null
+    tipo_desconto: $Enums.TipoDesconto | null
+    valor_desconto: Decimal | null
+    ativo: boolean | null
+    validade_ate: Date | null
+    usos_maximos: number | null
+    usos_count: number | null
+    criado_em: Date | null
+    atualizado_em: Date | null
+  }
+
+  export type CampanhaCupomMaxAggregateOutputType = {
+    id: string | null
+    empresa_id: string | null
+    servico_id: string | null
+    nome: string | null
+    codigo: string | null
+    tipo_desconto: $Enums.TipoDesconto | null
+    valor_desconto: Decimal | null
+    ativo: boolean | null
+    validade_ate: Date | null
+    usos_maximos: number | null
+    usos_count: number | null
+    criado_em: Date | null
+    atualizado_em: Date | null
+  }
+
+  export type CampanhaCupomCountAggregateOutputType = {
+    id: number
+    empresa_id: number
+    servico_id: number
+    nome: number
+    codigo: number
+    tipo_desconto: number
+    valor_desconto: number
+    ativo: number
+    validade_ate: number
+    usos_maximos: number
+    usos_count: number
+    criado_em: number
+    atualizado_em: number
+    _all: number
+  }
+
+
+  export type CampanhaCupomAvgAggregateInputType = {
+    valor_desconto?: true
+    usos_maximos?: true
+    usos_count?: true
+  }
+
+  export type CampanhaCupomSumAggregateInputType = {
+    valor_desconto?: true
+    usos_maximos?: true
+    usos_count?: true
+  }
+
+  export type CampanhaCupomMinAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    servico_id?: true
+    nome?: true
+    codigo?: true
+    tipo_desconto?: true
+    valor_desconto?: true
+    ativo?: true
+    validade_ate?: true
+    usos_maximos?: true
+    usos_count?: true
+    criado_em?: true
+    atualizado_em?: true
+  }
+
+  export type CampanhaCupomMaxAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    servico_id?: true
+    nome?: true
+    codigo?: true
+    tipo_desconto?: true
+    valor_desconto?: true
+    ativo?: true
+    validade_ate?: true
+    usos_maximos?: true
+    usos_count?: true
+    criado_em?: true
+    atualizado_em?: true
+  }
+
+  export type CampanhaCupomCountAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    servico_id?: true
+    nome?: true
+    codigo?: true
+    tipo_desconto?: true
+    valor_desconto?: true
+    ativo?: true
+    validade_ate?: true
+    usos_maximos?: true
+    usos_count?: true
+    criado_em?: true
+    atualizado_em?: true
+    _all?: true
+  }
+
+  export type CampanhaCupomAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CampanhaCupom to aggregate.
+     */
+    where?: CampanhaCupomWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CampanhaCupoms to fetch.
+     */
+    orderBy?: CampanhaCupomOrderByWithRelationInput | CampanhaCupomOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CampanhaCupomWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CampanhaCupoms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CampanhaCupoms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CampanhaCupoms
+    **/
+    _count?: true | CampanhaCupomCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CampanhaCupomAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CampanhaCupomSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CampanhaCupomMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CampanhaCupomMaxAggregateInputType
+  }
+
+  export type GetCampanhaCupomAggregateType<T extends CampanhaCupomAggregateArgs> = {
+        [P in keyof T & keyof AggregateCampanhaCupom]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCampanhaCupom[P]>
+      : GetScalarType<T[P], AggregateCampanhaCupom[P]>
+  }
+
+
+
+
+  export type CampanhaCupomGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CampanhaCupomWhereInput
+    orderBy?: CampanhaCupomOrderByWithAggregationInput | CampanhaCupomOrderByWithAggregationInput[]
+    by: CampanhaCupomScalarFieldEnum[] | CampanhaCupomScalarFieldEnum
+    having?: CampanhaCupomScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CampanhaCupomCountAggregateInputType | true
+    _avg?: CampanhaCupomAvgAggregateInputType
+    _sum?: CampanhaCupomSumAggregateInputType
+    _min?: CampanhaCupomMinAggregateInputType
+    _max?: CampanhaCupomMaxAggregateInputType
+  }
+
+  export type CampanhaCupomGroupByOutputType = {
+    id: string
+    empresa_id: string
+    servico_id: string | null
+    nome: string
+    codigo: string
+    tipo_desconto: $Enums.TipoDesconto
+    valor_desconto: Decimal
+    ativo: boolean
+    validade_ate: Date | null
+    usos_maximos: number | null
+    usos_count: number
+    criado_em: Date
+    atualizado_em: Date
+    _count: CampanhaCupomCountAggregateOutputType | null
+    _avg: CampanhaCupomAvgAggregateOutputType | null
+    _sum: CampanhaCupomSumAggregateOutputType | null
+    _min: CampanhaCupomMinAggregateOutputType | null
+    _max: CampanhaCupomMaxAggregateOutputType | null
+  }
+
+  type GetCampanhaCupomGroupByPayload<T extends CampanhaCupomGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CampanhaCupomGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CampanhaCupomGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CampanhaCupomGroupByOutputType[P]>
+            : GetScalarType<T[P], CampanhaCupomGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CampanhaCupomSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    servico_id?: boolean
+    nome?: boolean
+    codigo?: boolean
+    tipo_desconto?: boolean
+    valor_desconto?: boolean
+    ativo?: boolean
+    validade_ate?: boolean
+    usos_maximos?: boolean
+    usos_count?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    servico?: boolean | CampanhaCupom$servicoArgs<ExtArgs>
+  }, ExtArgs["result"]["campanhaCupom"]>
+
+  export type CampanhaCupomSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    servico_id?: boolean
+    nome?: boolean
+    codigo?: boolean
+    tipo_desconto?: boolean
+    valor_desconto?: boolean
+    ativo?: boolean
+    validade_ate?: boolean
+    usos_maximos?: boolean
+    usos_count?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    servico?: boolean | CampanhaCupom$servicoArgs<ExtArgs>
+  }, ExtArgs["result"]["campanhaCupom"]>
+
+  export type CampanhaCupomSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    servico_id?: boolean
+    nome?: boolean
+    codigo?: boolean
+    tipo_desconto?: boolean
+    valor_desconto?: boolean
+    ativo?: boolean
+    validade_ate?: boolean
+    usos_maximos?: boolean
+    usos_count?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    servico?: boolean | CampanhaCupom$servicoArgs<ExtArgs>
+  }, ExtArgs["result"]["campanhaCupom"]>
+
+  export type CampanhaCupomSelectScalar = {
+    id?: boolean
+    empresa_id?: boolean
+    servico_id?: boolean
+    nome?: boolean
+    codigo?: boolean
+    tipo_desconto?: boolean
+    valor_desconto?: boolean
+    ativo?: boolean
+    validade_ate?: boolean
+    usos_maximos?: boolean
+    usos_count?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+  }
+
+  export type CampanhaCupomOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "servico_id" | "nome" | "codigo" | "tipo_desconto" | "valor_desconto" | "ativo" | "validade_ate" | "usos_maximos" | "usos_count" | "criado_em" | "atualizado_em", ExtArgs["result"]["campanhaCupom"]>
+  export type CampanhaCupomInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    servico?: boolean | CampanhaCupom$servicoArgs<ExtArgs>
+  }
+  export type CampanhaCupomIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    servico?: boolean | CampanhaCupom$servicoArgs<ExtArgs>
+  }
+  export type CampanhaCupomIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    servico?: boolean | CampanhaCupom$servicoArgs<ExtArgs>
+  }
+
+  export type $CampanhaCupomPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CampanhaCupom"
+    objects: {
+      empresa: Prisma.$EmpresaPayload<ExtArgs>
+      servico: Prisma.$ServicoPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      empresa_id: string
+      servico_id: string | null
+      nome: string
+      codigo: string
+      tipo_desconto: $Enums.TipoDesconto
+      valor_desconto: Prisma.Decimal
+      ativo: boolean
+      validade_ate: Date | null
+      usos_maximos: number | null
+      usos_count: number
+      criado_em: Date
+      atualizado_em: Date
+    }, ExtArgs["result"]["campanhaCupom"]>
+    composites: {}
+  }
+
+  type CampanhaCupomGetPayload<S extends boolean | null | undefined | CampanhaCupomDefaultArgs> = $Result.GetResult<Prisma.$CampanhaCupomPayload, S>
+
+  type CampanhaCupomCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CampanhaCupomFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CampanhaCupomCountAggregateInputType | true
+    }
+
+  export interface CampanhaCupomDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CampanhaCupom'], meta: { name: 'CampanhaCupom' } }
+    /**
+     * Find zero or one CampanhaCupom that matches the filter.
+     * @param {CampanhaCupomFindUniqueArgs} args - Arguments to find a CampanhaCupom
+     * @example
+     * // Get one CampanhaCupom
+     * const campanhaCupom = await prisma.campanhaCupom.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CampanhaCupomFindUniqueArgs>(args: SelectSubset<T, CampanhaCupomFindUniqueArgs<ExtArgs>>): Prisma__CampanhaCupomClient<$Result.GetResult<Prisma.$CampanhaCupomPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CampanhaCupom that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CampanhaCupomFindUniqueOrThrowArgs} args - Arguments to find a CampanhaCupom
+     * @example
+     * // Get one CampanhaCupom
+     * const campanhaCupom = await prisma.campanhaCupom.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CampanhaCupomFindUniqueOrThrowArgs>(args: SelectSubset<T, CampanhaCupomFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CampanhaCupomClient<$Result.GetResult<Prisma.$CampanhaCupomPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CampanhaCupom that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CampanhaCupomFindFirstArgs} args - Arguments to find a CampanhaCupom
+     * @example
+     * // Get one CampanhaCupom
+     * const campanhaCupom = await prisma.campanhaCupom.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CampanhaCupomFindFirstArgs>(args?: SelectSubset<T, CampanhaCupomFindFirstArgs<ExtArgs>>): Prisma__CampanhaCupomClient<$Result.GetResult<Prisma.$CampanhaCupomPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CampanhaCupom that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CampanhaCupomFindFirstOrThrowArgs} args - Arguments to find a CampanhaCupom
+     * @example
+     * // Get one CampanhaCupom
+     * const campanhaCupom = await prisma.campanhaCupom.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CampanhaCupomFindFirstOrThrowArgs>(args?: SelectSubset<T, CampanhaCupomFindFirstOrThrowArgs<ExtArgs>>): Prisma__CampanhaCupomClient<$Result.GetResult<Prisma.$CampanhaCupomPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CampanhaCupoms that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CampanhaCupomFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CampanhaCupoms
+     * const campanhaCupoms = await prisma.campanhaCupom.findMany()
+     * 
+     * // Get first 10 CampanhaCupoms
+     * const campanhaCupoms = await prisma.campanhaCupom.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const campanhaCupomWithIdOnly = await prisma.campanhaCupom.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CampanhaCupomFindManyArgs>(args?: SelectSubset<T, CampanhaCupomFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CampanhaCupomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CampanhaCupom.
+     * @param {CampanhaCupomCreateArgs} args - Arguments to create a CampanhaCupom.
+     * @example
+     * // Create one CampanhaCupom
+     * const CampanhaCupom = await prisma.campanhaCupom.create({
+     *   data: {
+     *     // ... data to create a CampanhaCupom
+     *   }
+     * })
+     * 
+     */
+    create<T extends CampanhaCupomCreateArgs>(args: SelectSubset<T, CampanhaCupomCreateArgs<ExtArgs>>): Prisma__CampanhaCupomClient<$Result.GetResult<Prisma.$CampanhaCupomPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CampanhaCupoms.
+     * @param {CampanhaCupomCreateManyArgs} args - Arguments to create many CampanhaCupoms.
+     * @example
+     * // Create many CampanhaCupoms
+     * const campanhaCupom = await prisma.campanhaCupom.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CampanhaCupomCreateManyArgs>(args?: SelectSubset<T, CampanhaCupomCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CampanhaCupoms and returns the data saved in the database.
+     * @param {CampanhaCupomCreateManyAndReturnArgs} args - Arguments to create many CampanhaCupoms.
+     * @example
+     * // Create many CampanhaCupoms
+     * const campanhaCupom = await prisma.campanhaCupom.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CampanhaCupoms and only return the `id`
+     * const campanhaCupomWithIdOnly = await prisma.campanhaCupom.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CampanhaCupomCreateManyAndReturnArgs>(args?: SelectSubset<T, CampanhaCupomCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CampanhaCupomPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CampanhaCupom.
+     * @param {CampanhaCupomDeleteArgs} args - Arguments to delete one CampanhaCupom.
+     * @example
+     * // Delete one CampanhaCupom
+     * const CampanhaCupom = await prisma.campanhaCupom.delete({
+     *   where: {
+     *     // ... filter to delete one CampanhaCupom
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CampanhaCupomDeleteArgs>(args: SelectSubset<T, CampanhaCupomDeleteArgs<ExtArgs>>): Prisma__CampanhaCupomClient<$Result.GetResult<Prisma.$CampanhaCupomPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CampanhaCupom.
+     * @param {CampanhaCupomUpdateArgs} args - Arguments to update one CampanhaCupom.
+     * @example
+     * // Update one CampanhaCupom
+     * const campanhaCupom = await prisma.campanhaCupom.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CampanhaCupomUpdateArgs>(args: SelectSubset<T, CampanhaCupomUpdateArgs<ExtArgs>>): Prisma__CampanhaCupomClient<$Result.GetResult<Prisma.$CampanhaCupomPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CampanhaCupoms.
+     * @param {CampanhaCupomDeleteManyArgs} args - Arguments to filter CampanhaCupoms to delete.
+     * @example
+     * // Delete a few CampanhaCupoms
+     * const { count } = await prisma.campanhaCupom.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CampanhaCupomDeleteManyArgs>(args?: SelectSubset<T, CampanhaCupomDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CampanhaCupoms.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CampanhaCupomUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CampanhaCupoms
+     * const campanhaCupom = await prisma.campanhaCupom.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CampanhaCupomUpdateManyArgs>(args: SelectSubset<T, CampanhaCupomUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CampanhaCupoms and returns the data updated in the database.
+     * @param {CampanhaCupomUpdateManyAndReturnArgs} args - Arguments to update many CampanhaCupoms.
+     * @example
+     * // Update many CampanhaCupoms
+     * const campanhaCupom = await prisma.campanhaCupom.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CampanhaCupoms and only return the `id`
+     * const campanhaCupomWithIdOnly = await prisma.campanhaCupom.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CampanhaCupomUpdateManyAndReturnArgs>(args: SelectSubset<T, CampanhaCupomUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CampanhaCupomPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CampanhaCupom.
+     * @param {CampanhaCupomUpsertArgs} args - Arguments to update or create a CampanhaCupom.
+     * @example
+     * // Update or create a CampanhaCupom
+     * const campanhaCupom = await prisma.campanhaCupom.upsert({
+     *   create: {
+     *     // ... data to create a CampanhaCupom
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CampanhaCupom we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CampanhaCupomUpsertArgs>(args: SelectSubset<T, CampanhaCupomUpsertArgs<ExtArgs>>): Prisma__CampanhaCupomClient<$Result.GetResult<Prisma.$CampanhaCupomPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CampanhaCupoms.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CampanhaCupomCountArgs} args - Arguments to filter CampanhaCupoms to count.
+     * @example
+     * // Count the number of CampanhaCupoms
+     * const count = await prisma.campanhaCupom.count({
+     *   where: {
+     *     // ... the filter for the CampanhaCupoms we want to count
+     *   }
+     * })
+    **/
+    count<T extends CampanhaCupomCountArgs>(
+      args?: Subset<T, CampanhaCupomCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CampanhaCupomCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CampanhaCupom.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CampanhaCupomAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CampanhaCupomAggregateArgs>(args: Subset<T, CampanhaCupomAggregateArgs>): Prisma.PrismaPromise<GetCampanhaCupomAggregateType<T>>
+
+    /**
+     * Group by CampanhaCupom.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CampanhaCupomGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CampanhaCupomGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CampanhaCupomGroupByArgs['orderBy'] }
+        : { orderBy?: CampanhaCupomGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CampanhaCupomGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCampanhaCupomGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CampanhaCupom model
+   */
+  readonly fields: CampanhaCupomFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CampanhaCupom.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CampanhaCupomClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    empresa<T extends EmpresaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmpresaDefaultArgs<ExtArgs>>): Prisma__EmpresaClient<$Result.GetResult<Prisma.$EmpresaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    servico<T extends CampanhaCupom$servicoArgs<ExtArgs> = {}>(args?: Subset<T, CampanhaCupom$servicoArgs<ExtArgs>>): Prisma__ServicoClient<$Result.GetResult<Prisma.$ServicoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CampanhaCupom model
+   */
+  interface CampanhaCupomFieldRefs {
+    readonly id: FieldRef<"CampanhaCupom", 'String'>
+    readonly empresa_id: FieldRef<"CampanhaCupom", 'String'>
+    readonly servico_id: FieldRef<"CampanhaCupom", 'String'>
+    readonly nome: FieldRef<"CampanhaCupom", 'String'>
+    readonly codigo: FieldRef<"CampanhaCupom", 'String'>
+    readonly tipo_desconto: FieldRef<"CampanhaCupom", 'TipoDesconto'>
+    readonly valor_desconto: FieldRef<"CampanhaCupom", 'Decimal'>
+    readonly ativo: FieldRef<"CampanhaCupom", 'Boolean'>
+    readonly validade_ate: FieldRef<"CampanhaCupom", 'DateTime'>
+    readonly usos_maximos: FieldRef<"CampanhaCupom", 'Int'>
+    readonly usos_count: FieldRef<"CampanhaCupom", 'Int'>
+    readonly criado_em: FieldRef<"CampanhaCupom", 'DateTime'>
+    readonly atualizado_em: FieldRef<"CampanhaCupom", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CampanhaCupom findUnique
+   */
+  export type CampanhaCupomFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampanhaCupom
+     */
+    select?: CampanhaCupomSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampanhaCupom
+     */
+    omit?: CampanhaCupomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampanhaCupomInclude<ExtArgs> | null
+    /**
+     * Filter, which CampanhaCupom to fetch.
+     */
+    where: CampanhaCupomWhereUniqueInput
+  }
+
+  /**
+   * CampanhaCupom findUniqueOrThrow
+   */
+  export type CampanhaCupomFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampanhaCupom
+     */
+    select?: CampanhaCupomSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampanhaCupom
+     */
+    omit?: CampanhaCupomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampanhaCupomInclude<ExtArgs> | null
+    /**
+     * Filter, which CampanhaCupom to fetch.
+     */
+    where: CampanhaCupomWhereUniqueInput
+  }
+
+  /**
+   * CampanhaCupom findFirst
+   */
+  export type CampanhaCupomFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampanhaCupom
+     */
+    select?: CampanhaCupomSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampanhaCupom
+     */
+    omit?: CampanhaCupomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampanhaCupomInclude<ExtArgs> | null
+    /**
+     * Filter, which CampanhaCupom to fetch.
+     */
+    where?: CampanhaCupomWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CampanhaCupoms to fetch.
+     */
+    orderBy?: CampanhaCupomOrderByWithRelationInput | CampanhaCupomOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CampanhaCupoms.
+     */
+    cursor?: CampanhaCupomWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CampanhaCupoms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CampanhaCupoms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CampanhaCupoms.
+     */
+    distinct?: CampanhaCupomScalarFieldEnum | CampanhaCupomScalarFieldEnum[]
+  }
+
+  /**
+   * CampanhaCupom findFirstOrThrow
+   */
+  export type CampanhaCupomFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampanhaCupom
+     */
+    select?: CampanhaCupomSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampanhaCupom
+     */
+    omit?: CampanhaCupomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampanhaCupomInclude<ExtArgs> | null
+    /**
+     * Filter, which CampanhaCupom to fetch.
+     */
+    where?: CampanhaCupomWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CampanhaCupoms to fetch.
+     */
+    orderBy?: CampanhaCupomOrderByWithRelationInput | CampanhaCupomOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CampanhaCupoms.
+     */
+    cursor?: CampanhaCupomWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CampanhaCupoms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CampanhaCupoms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CampanhaCupoms.
+     */
+    distinct?: CampanhaCupomScalarFieldEnum | CampanhaCupomScalarFieldEnum[]
+  }
+
+  /**
+   * CampanhaCupom findMany
+   */
+  export type CampanhaCupomFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampanhaCupom
+     */
+    select?: CampanhaCupomSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampanhaCupom
+     */
+    omit?: CampanhaCupomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampanhaCupomInclude<ExtArgs> | null
+    /**
+     * Filter, which CampanhaCupoms to fetch.
+     */
+    where?: CampanhaCupomWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CampanhaCupoms to fetch.
+     */
+    orderBy?: CampanhaCupomOrderByWithRelationInput | CampanhaCupomOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CampanhaCupoms.
+     */
+    cursor?: CampanhaCupomWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CampanhaCupoms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CampanhaCupoms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CampanhaCupoms.
+     */
+    distinct?: CampanhaCupomScalarFieldEnum | CampanhaCupomScalarFieldEnum[]
+  }
+
+  /**
+   * CampanhaCupom create
+   */
+  export type CampanhaCupomCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampanhaCupom
+     */
+    select?: CampanhaCupomSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampanhaCupom
+     */
+    omit?: CampanhaCupomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampanhaCupomInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CampanhaCupom.
+     */
+    data: XOR<CampanhaCupomCreateInput, CampanhaCupomUncheckedCreateInput>
+  }
+
+  /**
+   * CampanhaCupom createMany
+   */
+  export type CampanhaCupomCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CampanhaCupoms.
+     */
+    data: CampanhaCupomCreateManyInput | CampanhaCupomCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CampanhaCupom createManyAndReturn
+   */
+  export type CampanhaCupomCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampanhaCupom
+     */
+    select?: CampanhaCupomSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampanhaCupom
+     */
+    omit?: CampanhaCupomOmit<ExtArgs> | null
+    /**
+     * The data used to create many CampanhaCupoms.
+     */
+    data: CampanhaCupomCreateManyInput | CampanhaCupomCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampanhaCupomIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CampanhaCupom update
+   */
+  export type CampanhaCupomUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampanhaCupom
+     */
+    select?: CampanhaCupomSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampanhaCupom
+     */
+    omit?: CampanhaCupomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampanhaCupomInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CampanhaCupom.
+     */
+    data: XOR<CampanhaCupomUpdateInput, CampanhaCupomUncheckedUpdateInput>
+    /**
+     * Choose, which CampanhaCupom to update.
+     */
+    where: CampanhaCupomWhereUniqueInput
+  }
+
+  /**
+   * CampanhaCupom updateMany
+   */
+  export type CampanhaCupomUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CampanhaCupoms.
+     */
+    data: XOR<CampanhaCupomUpdateManyMutationInput, CampanhaCupomUncheckedUpdateManyInput>
+    /**
+     * Filter which CampanhaCupoms to update
+     */
+    where?: CampanhaCupomWhereInput
+    /**
+     * Limit how many CampanhaCupoms to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CampanhaCupom updateManyAndReturn
+   */
+  export type CampanhaCupomUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampanhaCupom
+     */
+    select?: CampanhaCupomSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampanhaCupom
+     */
+    omit?: CampanhaCupomOmit<ExtArgs> | null
+    /**
+     * The data used to update CampanhaCupoms.
+     */
+    data: XOR<CampanhaCupomUpdateManyMutationInput, CampanhaCupomUncheckedUpdateManyInput>
+    /**
+     * Filter which CampanhaCupoms to update
+     */
+    where?: CampanhaCupomWhereInput
+    /**
+     * Limit how many CampanhaCupoms to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampanhaCupomIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CampanhaCupom upsert
+   */
+  export type CampanhaCupomUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampanhaCupom
+     */
+    select?: CampanhaCupomSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampanhaCupom
+     */
+    omit?: CampanhaCupomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampanhaCupomInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CampanhaCupom to update in case it exists.
+     */
+    where: CampanhaCupomWhereUniqueInput
+    /**
+     * In case the CampanhaCupom found by the `where` argument doesn't exist, create a new CampanhaCupom with this data.
+     */
+    create: XOR<CampanhaCupomCreateInput, CampanhaCupomUncheckedCreateInput>
+    /**
+     * In case the CampanhaCupom was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CampanhaCupomUpdateInput, CampanhaCupomUncheckedUpdateInput>
+  }
+
+  /**
+   * CampanhaCupom delete
+   */
+  export type CampanhaCupomDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampanhaCupom
+     */
+    select?: CampanhaCupomSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampanhaCupom
+     */
+    omit?: CampanhaCupomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampanhaCupomInclude<ExtArgs> | null
+    /**
+     * Filter which CampanhaCupom to delete.
+     */
+    where: CampanhaCupomWhereUniqueInput
+  }
+
+  /**
+   * CampanhaCupom deleteMany
+   */
+  export type CampanhaCupomDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CampanhaCupoms to delete
+     */
+    where?: CampanhaCupomWhereInput
+    /**
+     * Limit how many CampanhaCupoms to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CampanhaCupom.servico
+   */
+  export type CampanhaCupom$servicoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Servico
+     */
+    select?: ServicoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Servico
+     */
+    omit?: ServicoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServicoInclude<ExtArgs> | null
+    where?: ServicoWhereInput
+  }
+
+  /**
+   * CampanhaCupom without action
+   */
+  export type CampanhaCupomDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampanhaCupom
+     */
+    select?: CampanhaCupomSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampanhaCupom
+     */
+    omit?: CampanhaCupomOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampanhaCupomInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model Assinatura
    */
 
@@ -72127,6 +73540,25 @@ export namespace Prisma {
   export type DiagnosticoTemplateScalarFieldEnum = (typeof DiagnosticoTemplateScalarFieldEnum)[keyof typeof DiagnosticoTemplateScalarFieldEnum]
 
 
+  export const CampanhaCupomScalarFieldEnum: {
+    id: 'id',
+    empresa_id: 'empresa_id',
+    servico_id: 'servico_id',
+    nome: 'nome',
+    codigo: 'codigo',
+    tipo_desconto: 'tipo_desconto',
+    valor_desconto: 'valor_desconto',
+    ativo: 'ativo',
+    validade_ate: 'validade_ate',
+    usos_maximos: 'usos_maximos',
+    usos_count: 'usos_count',
+    criado_em: 'criado_em',
+    atualizado_em: 'atualizado_em'
+  };
+
+  export type CampanhaCupomScalarFieldEnum = (typeof CampanhaCupomScalarFieldEnum)[keyof typeof CampanhaCupomScalarFieldEnum]
+
+
   export const AssinaturaScalarFieldEnum: {
     id: 'id',
     empresa_id: 'empresa_id',
@@ -72579,6 +74011,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'TipoDesconto'
+   */
+  export type EnumTipoDescontoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TipoDesconto'>
+    
+
+
+  /**
+   * Reference to a field of type 'TipoDesconto[]'
+   */
+  export type ListEnumTipoDescontoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TipoDesconto[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -72640,6 +74086,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoListRelationFilter
     diagnostico_templates?: DiagnosticoTemplateListRelationFilter
     assinaturas?: AssinaturaListRelationFilter
+    campanhas_cupom?: CampanhaCupomListRelationFilter
   }
 
   export type EmpresaOrderByWithRelationInput = {
@@ -72684,6 +74131,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoOrderByRelationAggregateInput
     diagnostico_templates?: DiagnosticoTemplateOrderByRelationAggregateInput
     assinaturas?: AssinaturaOrderByRelationAggregateInput
+    campanhas_cupom?: CampanhaCupomOrderByRelationAggregateInput
   }
 
   export type EmpresaWhereUniqueInput = Prisma.AtLeast<{
@@ -72731,6 +74179,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoListRelationFilter
     diagnostico_templates?: DiagnosticoTemplateListRelationFilter
     assinaturas?: AssinaturaListRelationFilter
+    campanhas_cupom?: CampanhaCupomListRelationFilter
   }, "id" | "slug" | "cnpj">
 
   export type EmpresaOrderByWithAggregationInput = {
@@ -73562,6 +75011,7 @@ export namespace Prisma {
     itens_proposta?: ItemPropostaListRelationFilter
     leads?: LeadListRelationFilter
     assinaturas?: AssinaturaListRelationFilter
+    campanhas_cupom?: CampanhaCupomListRelationFilter
   }
 
   export type ServicoOrderByWithRelationInput = {
@@ -73583,6 +75033,7 @@ export namespace Prisma {
     itens_proposta?: ItemPropostaOrderByRelationAggregateInput
     leads?: LeadOrderByRelationAggregateInput
     assinaturas?: AssinaturaOrderByRelationAggregateInput
+    campanhas_cupom?: CampanhaCupomOrderByRelationAggregateInput
   }
 
   export type ServicoWhereUniqueInput = Prisma.AtLeast<{
@@ -73607,6 +75058,7 @@ export namespace Prisma {
     itens_proposta?: ItemPropostaListRelationFilter
     leads?: LeadListRelationFilter
     assinaturas?: AssinaturaListRelationFilter
+    campanhas_cupom?: CampanhaCupomListRelationFilter
   }, "id">
 
   export type ServicoOrderByWithAggregationInput = {
@@ -77489,6 +78941,107 @@ export namespace Prisma {
     atualizado_em?: DateTimeWithAggregatesFilter<"DiagnosticoTemplate"> | Date | string
   }
 
+  export type CampanhaCupomWhereInput = {
+    AND?: CampanhaCupomWhereInput | CampanhaCupomWhereInput[]
+    OR?: CampanhaCupomWhereInput[]
+    NOT?: CampanhaCupomWhereInput | CampanhaCupomWhereInput[]
+    id?: StringFilter<"CampanhaCupom"> | string
+    empresa_id?: StringFilter<"CampanhaCupom"> | string
+    servico_id?: StringNullableFilter<"CampanhaCupom"> | string | null
+    nome?: StringFilter<"CampanhaCupom"> | string
+    codigo?: StringFilter<"CampanhaCupom"> | string
+    tipo_desconto?: EnumTipoDescontoFilter<"CampanhaCupom"> | $Enums.TipoDesconto
+    valor_desconto?: DecimalFilter<"CampanhaCupom"> | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFilter<"CampanhaCupom"> | boolean
+    validade_ate?: DateTimeNullableFilter<"CampanhaCupom"> | Date | string | null
+    usos_maximos?: IntNullableFilter<"CampanhaCupom"> | number | null
+    usos_count?: IntFilter<"CampanhaCupom"> | number
+    criado_em?: DateTimeFilter<"CampanhaCupom"> | Date | string
+    atualizado_em?: DateTimeFilter<"CampanhaCupom"> | Date | string
+    empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
+    servico?: XOR<ServicoNullableScalarRelationFilter, ServicoWhereInput> | null
+  }
+
+  export type CampanhaCupomOrderByWithRelationInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    servico_id?: SortOrderInput | SortOrder
+    nome?: SortOrder
+    codigo?: SortOrder
+    tipo_desconto?: SortOrder
+    valor_desconto?: SortOrder
+    ativo?: SortOrder
+    validade_ate?: SortOrderInput | SortOrder
+    usos_maximos?: SortOrderInput | SortOrder
+    usos_count?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+    empresa?: EmpresaOrderByWithRelationInput
+    servico?: ServicoOrderByWithRelationInput
+  }
+
+  export type CampanhaCupomWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    empresa_id_codigo?: CampanhaCupomEmpresa_idCodigoCompoundUniqueInput
+    AND?: CampanhaCupomWhereInput | CampanhaCupomWhereInput[]
+    OR?: CampanhaCupomWhereInput[]
+    NOT?: CampanhaCupomWhereInput | CampanhaCupomWhereInput[]
+    empresa_id?: StringFilter<"CampanhaCupom"> | string
+    servico_id?: StringNullableFilter<"CampanhaCupom"> | string | null
+    nome?: StringFilter<"CampanhaCupom"> | string
+    codigo?: StringFilter<"CampanhaCupom"> | string
+    tipo_desconto?: EnumTipoDescontoFilter<"CampanhaCupom"> | $Enums.TipoDesconto
+    valor_desconto?: DecimalFilter<"CampanhaCupom"> | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFilter<"CampanhaCupom"> | boolean
+    validade_ate?: DateTimeNullableFilter<"CampanhaCupom"> | Date | string | null
+    usos_maximos?: IntNullableFilter<"CampanhaCupom"> | number | null
+    usos_count?: IntFilter<"CampanhaCupom"> | number
+    criado_em?: DateTimeFilter<"CampanhaCupom"> | Date | string
+    atualizado_em?: DateTimeFilter<"CampanhaCupom"> | Date | string
+    empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
+    servico?: XOR<ServicoNullableScalarRelationFilter, ServicoWhereInput> | null
+  }, "id" | "empresa_id_codigo">
+
+  export type CampanhaCupomOrderByWithAggregationInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    servico_id?: SortOrderInput | SortOrder
+    nome?: SortOrder
+    codigo?: SortOrder
+    tipo_desconto?: SortOrder
+    valor_desconto?: SortOrder
+    ativo?: SortOrder
+    validade_ate?: SortOrderInput | SortOrder
+    usos_maximos?: SortOrderInput | SortOrder
+    usos_count?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+    _count?: CampanhaCupomCountOrderByAggregateInput
+    _avg?: CampanhaCupomAvgOrderByAggregateInput
+    _max?: CampanhaCupomMaxOrderByAggregateInput
+    _min?: CampanhaCupomMinOrderByAggregateInput
+    _sum?: CampanhaCupomSumOrderByAggregateInput
+  }
+
+  export type CampanhaCupomScalarWhereWithAggregatesInput = {
+    AND?: CampanhaCupomScalarWhereWithAggregatesInput | CampanhaCupomScalarWhereWithAggregatesInput[]
+    OR?: CampanhaCupomScalarWhereWithAggregatesInput[]
+    NOT?: CampanhaCupomScalarWhereWithAggregatesInput | CampanhaCupomScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"CampanhaCupom"> | string
+    empresa_id?: StringWithAggregatesFilter<"CampanhaCupom"> | string
+    servico_id?: StringNullableWithAggregatesFilter<"CampanhaCupom"> | string | null
+    nome?: StringWithAggregatesFilter<"CampanhaCupom"> | string
+    codigo?: StringWithAggregatesFilter<"CampanhaCupom"> | string
+    tipo_desconto?: EnumTipoDescontoWithAggregatesFilter<"CampanhaCupom"> | $Enums.TipoDesconto
+    valor_desconto?: DecimalWithAggregatesFilter<"CampanhaCupom"> | Decimal | DecimalJsLike | number | string
+    ativo?: BoolWithAggregatesFilter<"CampanhaCupom"> | boolean
+    validade_ate?: DateTimeNullableWithAggregatesFilter<"CampanhaCupom"> | Date | string | null
+    usos_maximos?: IntNullableWithAggregatesFilter<"CampanhaCupom"> | number | null
+    usos_count?: IntWithAggregatesFilter<"CampanhaCupom"> | number
+    criado_em?: DateTimeWithAggregatesFilter<"CampanhaCupom"> | Date | string
+    atualizado_em?: DateTimeWithAggregatesFilter<"CampanhaCupom"> | Date | string
+  }
+
   export type AssinaturaWhereInput = {
     AND?: AssinaturaWhereInput | AssinaturaWhereInput[]
     OR?: AssinaturaWhereInput[]
@@ -77674,6 +79227,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateInput = {
@@ -77718,6 +79272,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUpdateInput = {
@@ -77762,6 +79317,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateInput = {
@@ -77806,6 +79362,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateManyInput = {
@@ -78715,6 +80272,7 @@ export namespace Prisma {
     itens_proposta?: ItemPropostaCreateNestedManyWithoutServicoInput
     leads?: LeadCreateNestedManyWithoutServicoInput
     assinaturas?: AssinaturaCreateNestedManyWithoutServicoInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutServicoInput
   }
 
   export type ServicoUncheckedCreateInput = {
@@ -78734,6 +80292,7 @@ export namespace Prisma {
     itens_proposta?: ItemPropostaUncheckedCreateNestedManyWithoutServicoInput
     leads?: LeadUncheckedCreateNestedManyWithoutServicoInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutServicoInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutServicoInput
   }
 
   export type ServicoUpdateInput = {
@@ -78753,6 +80312,7 @@ export namespace Prisma {
     itens_proposta?: ItemPropostaUpdateManyWithoutServicoNestedInput
     leads?: LeadUpdateManyWithoutServicoNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutServicoNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutServicoNestedInput
   }
 
   export type ServicoUncheckedUpdateInput = {
@@ -78772,6 +80332,7 @@ export namespace Prisma {
     itens_proposta?: ItemPropostaUncheckedUpdateManyWithoutServicoNestedInput
     leads?: LeadUncheckedUpdateManyWithoutServicoNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutServicoNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutServicoNestedInput
   }
 
   export type ServicoCreateManyInput = {
@@ -82959,6 +84520,116 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type CampanhaCupomCreateInput = {
+    id?: string
+    nome: string
+    codigo: string
+    tipo_desconto?: $Enums.TipoDesconto
+    valor_desconto: Decimal | DecimalJsLike | number | string
+    ativo?: boolean
+    validade_ate?: Date | string | null
+    usos_maximos?: number | null
+    usos_count?: number
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutCampanhas_cupomInput
+    servico?: ServicoCreateNestedOneWithoutCampanhas_cupomInput
+  }
+
+  export type CampanhaCupomUncheckedCreateInput = {
+    id?: string
+    empresa_id: string
+    servico_id?: string | null
+    nome: string
+    codigo: string
+    tipo_desconto?: $Enums.TipoDesconto
+    valor_desconto: Decimal | DecimalJsLike | number | string
+    ativo?: boolean
+    validade_ate?: Date | string | null
+    usos_maximos?: number | null
+    usos_count?: number
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type CampanhaCupomUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    codigo?: StringFieldUpdateOperationsInput | string
+    tipo_desconto?: EnumTipoDescontoFieldUpdateOperationsInput | $Enums.TipoDesconto
+    valor_desconto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    validade_ate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    usos_maximos?: NullableIntFieldUpdateOperationsInput | number | null
+    usos_count?: IntFieldUpdateOperationsInput | number
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutCampanhas_cupomNestedInput
+    servico?: ServicoUpdateOneWithoutCampanhas_cupomNestedInput
+  }
+
+  export type CampanhaCupomUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    servico_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nome?: StringFieldUpdateOperationsInput | string
+    codigo?: StringFieldUpdateOperationsInput | string
+    tipo_desconto?: EnumTipoDescontoFieldUpdateOperationsInput | $Enums.TipoDesconto
+    valor_desconto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    validade_ate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    usos_maximos?: NullableIntFieldUpdateOperationsInput | number | null
+    usos_count?: IntFieldUpdateOperationsInput | number
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CampanhaCupomCreateManyInput = {
+    id?: string
+    empresa_id: string
+    servico_id?: string | null
+    nome: string
+    codigo: string
+    tipo_desconto?: $Enums.TipoDesconto
+    valor_desconto: Decimal | DecimalJsLike | number | string
+    ativo?: boolean
+    validade_ate?: Date | string | null
+    usos_maximos?: number | null
+    usos_count?: number
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type CampanhaCupomUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    codigo?: StringFieldUpdateOperationsInput | string
+    tipo_desconto?: EnumTipoDescontoFieldUpdateOperationsInput | $Enums.TipoDesconto
+    valor_desconto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    validade_ate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    usos_maximos?: NullableIntFieldUpdateOperationsInput | number | null
+    usos_count?: IntFieldUpdateOperationsInput | number
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CampanhaCupomUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    servico_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nome?: StringFieldUpdateOperationsInput | string
+    codigo?: StringFieldUpdateOperationsInput | string
+    tipo_desconto?: EnumTipoDescontoFieldUpdateOperationsInput | $Enums.TipoDesconto
+    valor_desconto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    validade_ate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    usos_maximos?: NullableIntFieldUpdateOperationsInput | number | null
+    usos_count?: IntFieldUpdateOperationsInput | number
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type AssinaturaCreateInput = {
     id?: string
     nome_cliente: string
@@ -83388,6 +85059,12 @@ export namespace Prisma {
     none?: AssinaturaWhereInput
   }
 
+  export type CampanhaCupomListRelationFilter = {
+    every?: CampanhaCupomWhereInput
+    some?: CampanhaCupomWhereInput
+    none?: CampanhaCupomWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -83514,6 +85191,10 @@ export namespace Prisma {
   }
 
   export type AssinaturaOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CampanhaCupomOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -86826,6 +88507,88 @@ export namespace Prisma {
     atualizado_em?: SortOrder
   }
 
+  export type EnumTipoDescontoFilter<$PrismaModel = never> = {
+    equals?: $Enums.TipoDesconto | EnumTipoDescontoFieldRefInput<$PrismaModel>
+    in?: $Enums.TipoDesconto[] | ListEnumTipoDescontoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TipoDesconto[] | ListEnumTipoDescontoFieldRefInput<$PrismaModel>
+    not?: NestedEnumTipoDescontoFilter<$PrismaModel> | $Enums.TipoDesconto
+  }
+
+  export type CampanhaCupomEmpresa_idCodigoCompoundUniqueInput = {
+    empresa_id: string
+    codigo: string
+  }
+
+  export type CampanhaCupomCountOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    servico_id?: SortOrder
+    nome?: SortOrder
+    codigo?: SortOrder
+    tipo_desconto?: SortOrder
+    valor_desconto?: SortOrder
+    ativo?: SortOrder
+    validade_ate?: SortOrder
+    usos_maximos?: SortOrder
+    usos_count?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+  }
+
+  export type CampanhaCupomAvgOrderByAggregateInput = {
+    valor_desconto?: SortOrder
+    usos_maximos?: SortOrder
+    usos_count?: SortOrder
+  }
+
+  export type CampanhaCupomMaxOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    servico_id?: SortOrder
+    nome?: SortOrder
+    codigo?: SortOrder
+    tipo_desconto?: SortOrder
+    valor_desconto?: SortOrder
+    ativo?: SortOrder
+    validade_ate?: SortOrder
+    usos_maximos?: SortOrder
+    usos_count?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+  }
+
+  export type CampanhaCupomMinOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    servico_id?: SortOrder
+    nome?: SortOrder
+    codigo?: SortOrder
+    tipo_desconto?: SortOrder
+    valor_desconto?: SortOrder
+    ativo?: SortOrder
+    validade_ate?: SortOrder
+    usos_maximos?: SortOrder
+    usos_count?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+  }
+
+  export type CampanhaCupomSumOrderByAggregateInput = {
+    valor_desconto?: SortOrder
+    usos_maximos?: SortOrder
+    usos_count?: SortOrder
+  }
+
+  export type EnumTipoDescontoWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TipoDesconto | EnumTipoDescontoFieldRefInput<$PrismaModel>
+    in?: $Enums.TipoDesconto[] | ListEnumTipoDescontoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TipoDesconto[] | ListEnumTipoDescontoFieldRefInput<$PrismaModel>
+    not?: NestedEnumTipoDescontoWithAggregatesFilter<$PrismaModel> | $Enums.TipoDesconto
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumTipoDescontoFilter<$PrismaModel>
+    _max?: NestedEnumTipoDescontoFilter<$PrismaModel>
+  }
+
   export type AssinaturaCountOrderByAggregateInput = {
     id?: SortOrder
     empresa_id?: SortOrder
@@ -87123,6 +88886,13 @@ export namespace Prisma {
     connect?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
   }
 
+  export type CampanhaCupomCreateNestedManyWithoutEmpresaInput = {
+    create?: XOR<CampanhaCupomCreateWithoutEmpresaInput, CampanhaCupomUncheckedCreateWithoutEmpresaInput> | CampanhaCupomCreateWithoutEmpresaInput[] | CampanhaCupomUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: CampanhaCupomCreateOrConnectWithoutEmpresaInput | CampanhaCupomCreateOrConnectWithoutEmpresaInput[]
+    createMany?: CampanhaCupomCreateManyEmpresaInputEnvelope
+    connect?: CampanhaCupomWhereUniqueInput | CampanhaCupomWhereUniqueInput[]
+  }
+
   export type MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput = {
     create?: XOR<MembroEmpresaCreateWithoutEmpresaInput, MembroEmpresaUncheckedCreateWithoutEmpresaInput> | MembroEmpresaCreateWithoutEmpresaInput[] | MembroEmpresaUncheckedCreateWithoutEmpresaInput[]
     connectOrCreate?: MembroEmpresaCreateOrConnectWithoutEmpresaInput | MembroEmpresaCreateOrConnectWithoutEmpresaInput[]
@@ -87338,6 +89108,13 @@ export namespace Prisma {
     connectOrCreate?: AssinaturaCreateOrConnectWithoutEmpresaInput | AssinaturaCreateOrConnectWithoutEmpresaInput[]
     createMany?: AssinaturaCreateManyEmpresaInputEnvelope
     connect?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
+  }
+
+  export type CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput = {
+    create?: XOR<CampanhaCupomCreateWithoutEmpresaInput, CampanhaCupomUncheckedCreateWithoutEmpresaInput> | CampanhaCupomCreateWithoutEmpresaInput[] | CampanhaCupomUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: CampanhaCupomCreateOrConnectWithoutEmpresaInput | CampanhaCupomCreateOrConnectWithoutEmpresaInput[]
+    createMany?: CampanhaCupomCreateManyEmpresaInputEnvelope
+    connect?: CampanhaCupomWhereUniqueInput | CampanhaCupomWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -87794,6 +89571,20 @@ export namespace Prisma {
     deleteMany?: AssinaturaScalarWhereInput | AssinaturaScalarWhereInput[]
   }
 
+  export type CampanhaCupomUpdateManyWithoutEmpresaNestedInput = {
+    create?: XOR<CampanhaCupomCreateWithoutEmpresaInput, CampanhaCupomUncheckedCreateWithoutEmpresaInput> | CampanhaCupomCreateWithoutEmpresaInput[] | CampanhaCupomUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: CampanhaCupomCreateOrConnectWithoutEmpresaInput | CampanhaCupomCreateOrConnectWithoutEmpresaInput[]
+    upsert?: CampanhaCupomUpsertWithWhereUniqueWithoutEmpresaInput | CampanhaCupomUpsertWithWhereUniqueWithoutEmpresaInput[]
+    createMany?: CampanhaCupomCreateManyEmpresaInputEnvelope
+    set?: CampanhaCupomWhereUniqueInput | CampanhaCupomWhereUniqueInput[]
+    disconnect?: CampanhaCupomWhereUniqueInput | CampanhaCupomWhereUniqueInput[]
+    delete?: CampanhaCupomWhereUniqueInput | CampanhaCupomWhereUniqueInput[]
+    connect?: CampanhaCupomWhereUniqueInput | CampanhaCupomWhereUniqueInput[]
+    update?: CampanhaCupomUpdateWithWhereUniqueWithoutEmpresaInput | CampanhaCupomUpdateWithWhereUniqueWithoutEmpresaInput[]
+    updateMany?: CampanhaCupomUpdateManyWithWhereWithoutEmpresaInput | CampanhaCupomUpdateManyWithWhereWithoutEmpresaInput[]
+    deleteMany?: CampanhaCupomScalarWhereInput | CampanhaCupomScalarWhereInput[]
+  }
+
   export type MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput = {
     create?: XOR<MembroEmpresaCreateWithoutEmpresaInput, MembroEmpresaUncheckedCreateWithoutEmpresaInput> | MembroEmpresaCreateWithoutEmpresaInput[] | MembroEmpresaUncheckedCreateWithoutEmpresaInput[]
     connectOrCreate?: MembroEmpresaCreateOrConnectWithoutEmpresaInput | MembroEmpresaCreateOrConnectWithoutEmpresaInput[]
@@ -88226,6 +90017,20 @@ export namespace Prisma {
     update?: AssinaturaUpdateWithWhereUniqueWithoutEmpresaInput | AssinaturaUpdateWithWhereUniqueWithoutEmpresaInput[]
     updateMany?: AssinaturaUpdateManyWithWhereWithoutEmpresaInput | AssinaturaUpdateManyWithWhereWithoutEmpresaInput[]
     deleteMany?: AssinaturaScalarWhereInput | AssinaturaScalarWhereInput[]
+  }
+
+  export type CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput = {
+    create?: XOR<CampanhaCupomCreateWithoutEmpresaInput, CampanhaCupomUncheckedCreateWithoutEmpresaInput> | CampanhaCupomCreateWithoutEmpresaInput[] | CampanhaCupomUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: CampanhaCupomCreateOrConnectWithoutEmpresaInput | CampanhaCupomCreateOrConnectWithoutEmpresaInput[]
+    upsert?: CampanhaCupomUpsertWithWhereUniqueWithoutEmpresaInput | CampanhaCupomUpsertWithWhereUniqueWithoutEmpresaInput[]
+    createMany?: CampanhaCupomCreateManyEmpresaInputEnvelope
+    set?: CampanhaCupomWhereUniqueInput | CampanhaCupomWhereUniqueInput[]
+    disconnect?: CampanhaCupomWhereUniqueInput | CampanhaCupomWhereUniqueInput[]
+    delete?: CampanhaCupomWhereUniqueInput | CampanhaCupomWhereUniqueInput[]
+    connect?: CampanhaCupomWhereUniqueInput | CampanhaCupomWhereUniqueInput[]
+    update?: CampanhaCupomUpdateWithWhereUniqueWithoutEmpresaInput | CampanhaCupomUpdateWithWhereUniqueWithoutEmpresaInput[]
+    updateMany?: CampanhaCupomUpdateManyWithWhereWithoutEmpresaInput | CampanhaCupomUpdateManyWithWhereWithoutEmpresaInput[]
+    deleteMany?: CampanhaCupomScalarWhereInput | CampanhaCupomScalarWhereInput[]
   }
 
   export type MembroEmpresaCreateNestedManyWithoutUsuarioInput = {
@@ -90103,6 +91908,13 @@ export namespace Prisma {
     connect?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
   }
 
+  export type CampanhaCupomCreateNestedManyWithoutServicoInput = {
+    create?: XOR<CampanhaCupomCreateWithoutServicoInput, CampanhaCupomUncheckedCreateWithoutServicoInput> | CampanhaCupomCreateWithoutServicoInput[] | CampanhaCupomUncheckedCreateWithoutServicoInput[]
+    connectOrCreate?: CampanhaCupomCreateOrConnectWithoutServicoInput | CampanhaCupomCreateOrConnectWithoutServicoInput[]
+    createMany?: CampanhaCupomCreateManyServicoInputEnvelope
+    connect?: CampanhaCupomWhereUniqueInput | CampanhaCupomWhereUniqueInput[]
+  }
+
   export type ItemPropostaUncheckedCreateNestedManyWithoutServicoInput = {
     create?: XOR<ItemPropostaCreateWithoutServicoInput, ItemPropostaUncheckedCreateWithoutServicoInput> | ItemPropostaCreateWithoutServicoInput[] | ItemPropostaUncheckedCreateWithoutServicoInput[]
     connectOrCreate?: ItemPropostaCreateOrConnectWithoutServicoInput | ItemPropostaCreateOrConnectWithoutServicoInput[]
@@ -90122,6 +91934,13 @@ export namespace Prisma {
     connectOrCreate?: AssinaturaCreateOrConnectWithoutServicoInput | AssinaturaCreateOrConnectWithoutServicoInput[]
     createMany?: AssinaturaCreateManyServicoInputEnvelope
     connect?: AssinaturaWhereUniqueInput | AssinaturaWhereUniqueInput[]
+  }
+
+  export type CampanhaCupomUncheckedCreateNestedManyWithoutServicoInput = {
+    create?: XOR<CampanhaCupomCreateWithoutServicoInput, CampanhaCupomUncheckedCreateWithoutServicoInput> | CampanhaCupomCreateWithoutServicoInput[] | CampanhaCupomUncheckedCreateWithoutServicoInput[]
+    connectOrCreate?: CampanhaCupomCreateOrConnectWithoutServicoInput | CampanhaCupomCreateOrConnectWithoutServicoInput[]
+    createMany?: CampanhaCupomCreateManyServicoInputEnvelope
+    connect?: CampanhaCupomWhereUniqueInput | CampanhaCupomWhereUniqueInput[]
   }
 
   export type EmpresaUpdateOneRequiredWithoutServicosNestedInput = {
@@ -90184,6 +92003,20 @@ export namespace Prisma {
     deleteMany?: AssinaturaScalarWhereInput | AssinaturaScalarWhereInput[]
   }
 
+  export type CampanhaCupomUpdateManyWithoutServicoNestedInput = {
+    create?: XOR<CampanhaCupomCreateWithoutServicoInput, CampanhaCupomUncheckedCreateWithoutServicoInput> | CampanhaCupomCreateWithoutServicoInput[] | CampanhaCupomUncheckedCreateWithoutServicoInput[]
+    connectOrCreate?: CampanhaCupomCreateOrConnectWithoutServicoInput | CampanhaCupomCreateOrConnectWithoutServicoInput[]
+    upsert?: CampanhaCupomUpsertWithWhereUniqueWithoutServicoInput | CampanhaCupomUpsertWithWhereUniqueWithoutServicoInput[]
+    createMany?: CampanhaCupomCreateManyServicoInputEnvelope
+    set?: CampanhaCupomWhereUniqueInput | CampanhaCupomWhereUniqueInput[]
+    disconnect?: CampanhaCupomWhereUniqueInput | CampanhaCupomWhereUniqueInput[]
+    delete?: CampanhaCupomWhereUniqueInput | CampanhaCupomWhereUniqueInput[]
+    connect?: CampanhaCupomWhereUniqueInput | CampanhaCupomWhereUniqueInput[]
+    update?: CampanhaCupomUpdateWithWhereUniqueWithoutServicoInput | CampanhaCupomUpdateWithWhereUniqueWithoutServicoInput[]
+    updateMany?: CampanhaCupomUpdateManyWithWhereWithoutServicoInput | CampanhaCupomUpdateManyWithWhereWithoutServicoInput[]
+    deleteMany?: CampanhaCupomScalarWhereInput | CampanhaCupomScalarWhereInput[]
+  }
+
   export type ItemPropostaUncheckedUpdateManyWithoutServicoNestedInput = {
     create?: XOR<ItemPropostaCreateWithoutServicoInput, ItemPropostaUncheckedCreateWithoutServicoInput> | ItemPropostaCreateWithoutServicoInput[] | ItemPropostaUncheckedCreateWithoutServicoInput[]
     connectOrCreate?: ItemPropostaCreateOrConnectWithoutServicoInput | ItemPropostaCreateOrConnectWithoutServicoInput[]
@@ -90224,6 +92057,20 @@ export namespace Prisma {
     update?: AssinaturaUpdateWithWhereUniqueWithoutServicoInput | AssinaturaUpdateWithWhereUniqueWithoutServicoInput[]
     updateMany?: AssinaturaUpdateManyWithWhereWithoutServicoInput | AssinaturaUpdateManyWithWhereWithoutServicoInput[]
     deleteMany?: AssinaturaScalarWhereInput | AssinaturaScalarWhereInput[]
+  }
+
+  export type CampanhaCupomUncheckedUpdateManyWithoutServicoNestedInput = {
+    create?: XOR<CampanhaCupomCreateWithoutServicoInput, CampanhaCupomUncheckedCreateWithoutServicoInput> | CampanhaCupomCreateWithoutServicoInput[] | CampanhaCupomUncheckedCreateWithoutServicoInput[]
+    connectOrCreate?: CampanhaCupomCreateOrConnectWithoutServicoInput | CampanhaCupomCreateOrConnectWithoutServicoInput[]
+    upsert?: CampanhaCupomUpsertWithWhereUniqueWithoutServicoInput | CampanhaCupomUpsertWithWhereUniqueWithoutServicoInput[]
+    createMany?: CampanhaCupomCreateManyServicoInputEnvelope
+    set?: CampanhaCupomWhereUniqueInput | CampanhaCupomWhereUniqueInput[]
+    disconnect?: CampanhaCupomWhereUniqueInput | CampanhaCupomWhereUniqueInput[]
+    delete?: CampanhaCupomWhereUniqueInput | CampanhaCupomWhereUniqueInput[]
+    connect?: CampanhaCupomWhereUniqueInput | CampanhaCupomWhereUniqueInput[]
+    update?: CampanhaCupomUpdateWithWhereUniqueWithoutServicoInput | CampanhaCupomUpdateWithWhereUniqueWithoutServicoInput[]
+    updateMany?: CampanhaCupomUpdateManyWithWhereWithoutServicoInput | CampanhaCupomUpdateManyWithWhereWithoutServicoInput[]
+    deleteMany?: CampanhaCupomScalarWhereInput | CampanhaCupomScalarWhereInput[]
   }
 
   export type EmpresaCreateNestedOneWithoutEtapas_crmInput = {
@@ -93603,6 +95450,40 @@ export namespace Prisma {
     update?: XOR<XOR<EmpresaUpdateToOneWithWhereWithoutDiagnostico_templatesInput, EmpresaUpdateWithoutDiagnostico_templatesInput>, EmpresaUncheckedUpdateWithoutDiagnostico_templatesInput>
   }
 
+  export type EmpresaCreateNestedOneWithoutCampanhas_cupomInput = {
+    create?: XOR<EmpresaCreateWithoutCampanhas_cupomInput, EmpresaUncheckedCreateWithoutCampanhas_cupomInput>
+    connectOrCreate?: EmpresaCreateOrConnectWithoutCampanhas_cupomInput
+    connect?: EmpresaWhereUniqueInput
+  }
+
+  export type ServicoCreateNestedOneWithoutCampanhas_cupomInput = {
+    create?: XOR<ServicoCreateWithoutCampanhas_cupomInput, ServicoUncheckedCreateWithoutCampanhas_cupomInput>
+    connectOrCreate?: ServicoCreateOrConnectWithoutCampanhas_cupomInput
+    connect?: ServicoWhereUniqueInput
+  }
+
+  export type EnumTipoDescontoFieldUpdateOperationsInput = {
+    set?: $Enums.TipoDesconto
+  }
+
+  export type EmpresaUpdateOneRequiredWithoutCampanhas_cupomNestedInput = {
+    create?: XOR<EmpresaCreateWithoutCampanhas_cupomInput, EmpresaUncheckedCreateWithoutCampanhas_cupomInput>
+    connectOrCreate?: EmpresaCreateOrConnectWithoutCampanhas_cupomInput
+    upsert?: EmpresaUpsertWithoutCampanhas_cupomInput
+    connect?: EmpresaWhereUniqueInput
+    update?: XOR<XOR<EmpresaUpdateToOneWithWhereWithoutCampanhas_cupomInput, EmpresaUpdateWithoutCampanhas_cupomInput>, EmpresaUncheckedUpdateWithoutCampanhas_cupomInput>
+  }
+
+  export type ServicoUpdateOneWithoutCampanhas_cupomNestedInput = {
+    create?: XOR<ServicoCreateWithoutCampanhas_cupomInput, ServicoUncheckedCreateWithoutCampanhas_cupomInput>
+    connectOrCreate?: ServicoCreateOrConnectWithoutCampanhas_cupomInput
+    upsert?: ServicoUpsertWithoutCampanhas_cupomInput
+    disconnect?: ServicoWhereInput | boolean
+    delete?: ServicoWhereInput | boolean
+    connect?: ServicoWhereUniqueInput
+    update?: XOR<XOR<ServicoUpdateToOneWithWhereWithoutCampanhas_cupomInput, ServicoUpdateWithoutCampanhas_cupomInput>, ServicoUncheckedUpdateWithoutCampanhas_cupomInput>
+  }
+
   export type EmpresaCreateNestedOneWithoutAssinaturasInput = {
     create?: XOR<EmpresaCreateWithoutAssinaturasInput, EmpresaUncheckedCreateWithoutAssinaturasInput>
     connectOrCreate?: EmpresaCreateOrConnectWithoutAssinaturasInput
@@ -94307,6 +96188,23 @@ export namespace Prisma {
     _max?: NestedEnumStatusAplicacaoDiagnosticoFilter<$PrismaModel>
   }
 
+  export type NestedEnumTipoDescontoFilter<$PrismaModel = never> = {
+    equals?: $Enums.TipoDesconto | EnumTipoDescontoFieldRefInput<$PrismaModel>
+    in?: $Enums.TipoDesconto[] | ListEnumTipoDescontoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TipoDesconto[] | ListEnumTipoDescontoFieldRefInput<$PrismaModel>
+    not?: NestedEnumTipoDescontoFilter<$PrismaModel> | $Enums.TipoDesconto
+  }
+
+  export type NestedEnumTipoDescontoWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TipoDesconto | EnumTipoDescontoFieldRefInput<$PrismaModel>
+    in?: $Enums.TipoDesconto[] | ListEnumTipoDescontoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TipoDesconto[] | ListEnumTipoDescontoFieldRefInput<$PrismaModel>
+    not?: NestedEnumTipoDescontoWithAggregatesFilter<$PrismaModel> | $Enums.TipoDesconto
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumTipoDescontoFilter<$PrismaModel>
+    _max?: NestedEnumTipoDescontoFilter<$PrismaModel>
+  }
+
   export type MembroEmpresaCreateWithoutEmpresaInput = {
     id?: string
     ativo?: boolean
@@ -94535,6 +96433,7 @@ export namespace Prisma {
     itens_proposta?: ItemPropostaCreateNestedManyWithoutServicoInput
     leads?: LeadCreateNestedManyWithoutServicoInput
     assinaturas?: AssinaturaCreateNestedManyWithoutServicoInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutServicoInput
   }
 
   export type ServicoUncheckedCreateWithoutEmpresaInput = {
@@ -94553,6 +96452,7 @@ export namespace Prisma {
     itens_proposta?: ItemPropostaUncheckedCreateNestedManyWithoutServicoInput
     leads?: LeadUncheckedCreateNestedManyWithoutServicoInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutServicoInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutServicoInput
   }
 
   export type ServicoCreateOrConnectWithoutEmpresaInput = {
@@ -95741,6 +97641,46 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type CampanhaCupomCreateWithoutEmpresaInput = {
+    id?: string
+    nome: string
+    codigo: string
+    tipo_desconto?: $Enums.TipoDesconto
+    valor_desconto: Decimal | DecimalJsLike | number | string
+    ativo?: boolean
+    validade_ate?: Date | string | null
+    usos_maximos?: number | null
+    usos_count?: number
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    servico?: ServicoCreateNestedOneWithoutCampanhas_cupomInput
+  }
+
+  export type CampanhaCupomUncheckedCreateWithoutEmpresaInput = {
+    id?: string
+    servico_id?: string | null
+    nome: string
+    codigo: string
+    tipo_desconto?: $Enums.TipoDesconto
+    valor_desconto: Decimal | DecimalJsLike | number | string
+    ativo?: boolean
+    validade_ate?: Date | string | null
+    usos_maximos?: number | null
+    usos_count?: number
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type CampanhaCupomCreateOrConnectWithoutEmpresaInput = {
+    where: CampanhaCupomWhereUniqueInput
+    create: XOR<CampanhaCupomCreateWithoutEmpresaInput, CampanhaCupomUncheckedCreateWithoutEmpresaInput>
+  }
+
+  export type CampanhaCupomCreateManyEmpresaInputEnvelope = {
+    data: CampanhaCupomCreateManyEmpresaInput | CampanhaCupomCreateManyEmpresaInput[]
+    skipDuplicates?: boolean
+  }
+
   export type MembroEmpresaUpsertWithWhereUniqueWithoutEmpresaInput = {
     where: MembroEmpresaWhereUniqueInput
     update: XOR<MembroEmpresaUpdateWithoutEmpresaInput, MembroEmpresaUncheckedUpdateWithoutEmpresaInput>
@@ -96866,6 +98806,41 @@ export namespace Prisma {
     observacoes?: StringNullableFilter<"Assinatura"> | string | null
     criado_em?: DateTimeFilter<"Assinatura"> | Date | string
     atualizado_em?: DateTimeFilter<"Assinatura"> | Date | string
+  }
+
+  export type CampanhaCupomUpsertWithWhereUniqueWithoutEmpresaInput = {
+    where: CampanhaCupomWhereUniqueInput
+    update: XOR<CampanhaCupomUpdateWithoutEmpresaInput, CampanhaCupomUncheckedUpdateWithoutEmpresaInput>
+    create: XOR<CampanhaCupomCreateWithoutEmpresaInput, CampanhaCupomUncheckedCreateWithoutEmpresaInput>
+  }
+
+  export type CampanhaCupomUpdateWithWhereUniqueWithoutEmpresaInput = {
+    where: CampanhaCupomWhereUniqueInput
+    data: XOR<CampanhaCupomUpdateWithoutEmpresaInput, CampanhaCupomUncheckedUpdateWithoutEmpresaInput>
+  }
+
+  export type CampanhaCupomUpdateManyWithWhereWithoutEmpresaInput = {
+    where: CampanhaCupomScalarWhereInput
+    data: XOR<CampanhaCupomUpdateManyMutationInput, CampanhaCupomUncheckedUpdateManyWithoutEmpresaInput>
+  }
+
+  export type CampanhaCupomScalarWhereInput = {
+    AND?: CampanhaCupomScalarWhereInput | CampanhaCupomScalarWhereInput[]
+    OR?: CampanhaCupomScalarWhereInput[]
+    NOT?: CampanhaCupomScalarWhereInput | CampanhaCupomScalarWhereInput[]
+    id?: StringFilter<"CampanhaCupom"> | string
+    empresa_id?: StringFilter<"CampanhaCupom"> | string
+    servico_id?: StringNullableFilter<"CampanhaCupom"> | string | null
+    nome?: StringFilter<"CampanhaCupom"> | string
+    codigo?: StringFilter<"CampanhaCupom"> | string
+    tipo_desconto?: EnumTipoDescontoFilter<"CampanhaCupom"> | $Enums.TipoDesconto
+    valor_desconto?: DecimalFilter<"CampanhaCupom"> | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFilter<"CampanhaCupom"> | boolean
+    validade_ate?: DateTimeNullableFilter<"CampanhaCupom"> | Date | string | null
+    usos_maximos?: IntNullableFilter<"CampanhaCupom"> | number | null
+    usos_count?: IntFilter<"CampanhaCupom"> | number
+    criado_em?: DateTimeFilter<"CampanhaCupom"> | Date | string
+    atualizado_em?: DateTimeFilter<"CampanhaCupom"> | Date | string
   }
 
   export type MembroEmpresaCreateWithoutUsuarioInput = {
@@ -98426,6 +100401,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutMembrosInput = {
@@ -98469,6 +100445,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutMembrosInput = {
@@ -98622,6 +100599,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutMembrosInput = {
@@ -98665,6 +100643,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PerfilUpsertWithoutMembrosInput = {
@@ -98739,6 +100718,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutPerfisInput = {
@@ -98782,6 +100762,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutPerfisInput = {
@@ -98885,6 +100866,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutPerfisInput = {
@@ -98928,6 +100910,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type MembroEmpresaUpsertWithWhereUniqueWithoutPerfilInput = {
@@ -99145,6 +101128,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutConvitesInput = {
@@ -99188,6 +101172,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutConvitesInput = {
@@ -99310,6 +101295,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutConvitesInput = {
@@ -99353,6 +101339,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type UsuarioUpsertWithoutConvitesInput = {
@@ -99465,6 +101452,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutConvites_clienteInput = {
@@ -99508,6 +101496,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutConvites_clienteInput = {
@@ -99719,6 +101708,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutConvites_clienteInput = {
@@ -99762,6 +101752,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type UsuarioUpsertWithoutConvites_clienteInput = {
@@ -99969,6 +101960,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutClientesInput = {
@@ -100012,6 +102004,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutClientesInput = {
@@ -100868,6 +102861,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutClientesInput = {
@@ -100911,6 +102905,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ContatoUpsertWithWhereUniqueWithoutClienteInput = {
@@ -101420,6 +103415,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutServicosInput = {
@@ -101463,6 +103459,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutServicosInput = {
@@ -101659,6 +103656,46 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type CampanhaCupomCreateWithoutServicoInput = {
+    id?: string
+    nome: string
+    codigo: string
+    tipo_desconto?: $Enums.TipoDesconto
+    valor_desconto: Decimal | DecimalJsLike | number | string
+    ativo?: boolean
+    validade_ate?: Date | string | null
+    usos_maximos?: number | null
+    usos_count?: number
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutCampanhas_cupomInput
+  }
+
+  export type CampanhaCupomUncheckedCreateWithoutServicoInput = {
+    id?: string
+    empresa_id: string
+    nome: string
+    codigo: string
+    tipo_desconto?: $Enums.TipoDesconto
+    valor_desconto: Decimal | DecimalJsLike | number | string
+    ativo?: boolean
+    validade_ate?: Date | string | null
+    usos_maximos?: number | null
+    usos_count?: number
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type CampanhaCupomCreateOrConnectWithoutServicoInput = {
+    where: CampanhaCupomWhereUniqueInput
+    create: XOR<CampanhaCupomCreateWithoutServicoInput, CampanhaCupomUncheckedCreateWithoutServicoInput>
+  }
+
+  export type CampanhaCupomCreateManyServicoInputEnvelope = {
+    data: CampanhaCupomCreateManyServicoInput | CampanhaCupomCreateManyServicoInput[]
+    skipDuplicates?: boolean
+  }
+
   export type EmpresaUpsertWithoutServicosInput = {
     update: XOR<EmpresaUpdateWithoutServicosInput, EmpresaUncheckedUpdateWithoutServicosInput>
     create: XOR<EmpresaCreateWithoutServicosInput, EmpresaUncheckedCreateWithoutServicosInput>
@@ -101711,6 +103748,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutServicosInput = {
@@ -101754,6 +103792,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PlanoDeContasUpsertWithoutServicosInput = {
@@ -101859,6 +103898,22 @@ export namespace Prisma {
     data: XOR<AssinaturaUpdateManyMutationInput, AssinaturaUncheckedUpdateManyWithoutServicoInput>
   }
 
+  export type CampanhaCupomUpsertWithWhereUniqueWithoutServicoInput = {
+    where: CampanhaCupomWhereUniqueInput
+    update: XOR<CampanhaCupomUpdateWithoutServicoInput, CampanhaCupomUncheckedUpdateWithoutServicoInput>
+    create: XOR<CampanhaCupomCreateWithoutServicoInput, CampanhaCupomUncheckedCreateWithoutServicoInput>
+  }
+
+  export type CampanhaCupomUpdateWithWhereUniqueWithoutServicoInput = {
+    where: CampanhaCupomWhereUniqueInput
+    data: XOR<CampanhaCupomUpdateWithoutServicoInput, CampanhaCupomUncheckedUpdateWithoutServicoInput>
+  }
+
+  export type CampanhaCupomUpdateManyWithWhereWithoutServicoInput = {
+    where: CampanhaCupomScalarWhereInput
+    data: XOR<CampanhaCupomUpdateManyMutationInput, CampanhaCupomUncheckedUpdateManyWithoutServicoInput>
+  }
+
   export type EmpresaCreateWithoutEtapas_crmInput = {
     id?: string
     nome: string
@@ -101900,6 +103955,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutEtapas_crmInput = {
@@ -101943,6 +103999,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutEtapas_crmInput = {
@@ -102070,6 +104127,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutEtapas_crmInput = {
@@ -102113,6 +104171,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type LeadUpsertWithWhereUniqueWithoutEtapaInput = {
@@ -102436,6 +104495,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutLeadsInput = {
@@ -102479,6 +104539,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutLeadsInput = {
@@ -102654,6 +104715,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasCreateNestedOneWithoutServicosInput
     itens_proposta?: ItemPropostaCreateNestedManyWithoutServicoInput
     assinaturas?: AssinaturaCreateNestedManyWithoutServicoInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutServicoInput
   }
 
   export type ServicoUncheckedCreateWithoutLeadsInput = {
@@ -102672,6 +104734,7 @@ export namespace Prisma {
     atualizado_em?: Date | string
     itens_proposta?: ItemPropostaUncheckedCreateNestedManyWithoutServicoInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutServicoInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutServicoInput
   }
 
   export type ServicoCreateOrConnectWithoutLeadsInput = {
@@ -102895,6 +104958,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutLeadsInput = {
@@ -102938,6 +105002,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutLeadsInput = {
@@ -103131,6 +105196,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasUpdateOneWithoutServicosNestedInput
     itens_proposta?: ItemPropostaUpdateManyWithoutServicoNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutServicoNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutServicoNestedInput
   }
 
   export type ServicoUncheckedUpdateWithoutLeadsInput = {
@@ -103149,6 +105215,7 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     itens_proposta?: ItemPropostaUncheckedUpdateManyWithoutServicoNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutServicoNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutServicoNestedInput
   }
 
   export type EtapaCrmUpsertWithoutLeadsInput = {
@@ -103298,6 +105365,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutPropostasInput = {
@@ -103341,6 +105409,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutPropostasInput = {
@@ -103837,6 +105906,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutPropostasInput = {
@@ -103880,6 +105950,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutPropostasInput = {
@@ -104571,6 +106642,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasCreateNestedOneWithoutServicosInput
     leads?: LeadCreateNestedManyWithoutServicoInput
     assinaturas?: AssinaturaCreateNestedManyWithoutServicoInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutServicoInput
   }
 
   export type ServicoUncheckedCreateWithoutItens_propostaInput = {
@@ -104589,6 +106661,7 @@ export namespace Prisma {
     atualizado_em?: Date | string
     leads?: LeadUncheckedCreateNestedManyWithoutServicoInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutServicoInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutServicoInput
   }
 
   export type ServicoCreateOrConnectWithoutItens_propostaInput = {
@@ -104700,6 +106773,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasUpdateOneWithoutServicosNestedInput
     leads?: LeadUpdateManyWithoutServicoNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutServicoNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutServicoNestedInput
   }
 
   export type ServicoUncheckedUpdateWithoutItens_propostaInput = {
@@ -104718,6 +106792,7 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     leads?: LeadUncheckedUpdateManyWithoutServicoNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutServicoNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutServicoNestedInput
   }
 
   export type EmpresaCreateWithoutContratosInput = {
@@ -104761,6 +106836,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutContratosInput = {
@@ -104804,6 +106880,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutContratosInput = {
@@ -105432,6 +107509,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutContratosInput = {
@@ -105475,6 +107553,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PropostaUpsertWithoutContratoInput = {
@@ -105949,6 +108028,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutProjetosInput = {
@@ -105992,6 +108072,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutProjetosInput = {
@@ -106589,6 +108670,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutProjetosInput = {
@@ -106632,6 +108714,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ContratoUpsertWithoutProjetoInput = {
@@ -109301,6 +111384,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutEtiquetas_tarefaInput = {
@@ -109344,6 +111428,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutEtiquetas_tarefaInput = {
@@ -109421,6 +111506,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutEtiquetas_tarefaInput = {
@@ -109464,6 +111550,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type TarefaEtiquetaUpsertWithWhereUniqueWithoutEtiquetaInput = {
@@ -109671,6 +111758,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutPastas_documentoInput = {
@@ -109714,6 +111802,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutPastas_documentoInput = {
@@ -109880,6 +111969,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutPastas_documentoInput = {
@@ -109923,6 +112013,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PastaDocumentoUpsertWithoutFilhosInput = {
@@ -110033,6 +112124,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutDocumentosInput = {
@@ -110076,6 +112168,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutDocumentosInput = {
@@ -110468,6 +112561,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutDocumentosInput = {
@@ -110511,6 +112605,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ProjetoUpsertWithoutDocumentosInput = {
@@ -110917,6 +113012,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutPlano_contasInput = {
@@ -110960,6 +113056,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutPlano_contasInput = {
@@ -111182,6 +113279,7 @@ export namespace Prisma {
     itens_proposta?: ItemPropostaCreateNestedManyWithoutServicoInput
     leads?: LeadCreateNestedManyWithoutServicoInput
     assinaturas?: AssinaturaCreateNestedManyWithoutServicoInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutServicoInput
   }
 
   export type ServicoUncheckedCreateWithoutPlano_contasInput = {
@@ -111200,6 +113298,7 @@ export namespace Prisma {
     itens_proposta?: ItemPropostaUncheckedCreateNestedManyWithoutServicoInput
     leads?: LeadUncheckedCreateNestedManyWithoutServicoInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutServicoInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutServicoInput
   }
 
   export type ServicoCreateOrConnectWithoutPlano_contasInput = {
@@ -111264,6 +113363,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutPlano_contasInput = {
@@ -111307,6 +113407,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PlanoDeContasUpsertWithoutFilhosInput = {
@@ -111521,6 +113622,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutContas_bancariasInput = {
@@ -111564,6 +113666,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutContas_bancariasInput = {
@@ -111826,6 +113929,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutContas_bancariasInput = {
@@ -111869,6 +113973,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type BancoUpsertWithoutContas_bancariasInput = {
@@ -112001,6 +114106,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutTransferencias_tesourariaInput = {
@@ -112044,6 +114150,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutTransferencias_tesourariaInput = {
@@ -112193,6 +114300,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutTransferencias_tesourariaInput = {
@@ -112236,6 +114344,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ContaBancariaUpsertWithoutTransferencias_origemInput = {
@@ -112381,6 +114490,7 @@ export namespace Prisma {
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutCentros_custoInput = {
@@ -112424,6 +114534,7 @@ export namespace Prisma {
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutCentros_custoInput = {
@@ -112658,6 +114769,7 @@ export namespace Prisma {
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutCentros_custoInput = {
@@ -112701,6 +114813,7 @@ export namespace Prisma {
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ProjetoUpsertWithoutCentro_custoInput = {
@@ -112833,6 +114946,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutRecebiveisInput = {
@@ -112876,6 +114990,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutRecebiveisInput = {
@@ -113401,6 +115516,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutRecebiveisInput = {
@@ -113444,6 +115560,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutRecebiveisInput = {
@@ -114001,6 +116118,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutContas_pagarInput = {
@@ -114044,6 +116162,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutContas_pagarInput = {
@@ -114277,6 +116396,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutContas_pagarInput = {
@@ -114320,6 +116440,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PlanoDeContasUpsertWithoutContas_pagarInput = {
@@ -114561,6 +116682,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutModelos_documentoInput = {
@@ -114604,6 +116726,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutModelos_documentoInput = {
@@ -114663,6 +116786,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutModelos_documentoInput = {
@@ -114706,6 +116830,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateWithoutEventosInput = {
@@ -114749,6 +116874,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutEventosInput = {
@@ -114792,6 +116918,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutEventosInput = {
@@ -115155,6 +117282,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutEventosInput = {
@@ -115198,6 +117326,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type UsuarioUpsertWithoutEventos_responsavelInput = {
@@ -115569,6 +117698,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutRegistros_auditoriaInput = {
@@ -115612,6 +117742,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutRegistros_auditoriaInput = {
@@ -115671,6 +117802,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutRegistros_auditoriaInput = {
@@ -115714,6 +117846,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateWithoutNotificacoesInput = {
@@ -115757,6 +117890,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutNotificacoesInput = {
@@ -115800,6 +117934,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutNotificacoesInput = {
@@ -115859,6 +117994,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutNotificacoesInput = {
@@ -115902,6 +118038,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateWithoutNotas_fiscaisInput = {
@@ -115945,6 +118082,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutNotas_fiscaisInput = {
@@ -115988,6 +118126,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutNotas_fiscaisInput = {
@@ -116308,6 +118447,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutNotas_fiscaisInput = {
@@ -116351,6 +118491,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutNotas_fiscaisInput = {
@@ -116673,6 +118814,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutBoletosInput = {
@@ -116716,6 +118858,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutBoletosInput = {
@@ -116935,6 +119078,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutBoletosInput = {
@@ -116978,6 +119122,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type RecebivelUpsertWithoutBoletoInput = {
@@ -117193,6 +119338,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutDiagnosticosInput = {
@@ -117236,6 +119382,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutDiagnosticosInput = {
@@ -117435,6 +119582,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutDiagnosticosInput = {
@@ -117478,6 +119626,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutDiagnosticosInput = {
@@ -117857,6 +120006,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutAplicacoes_diagnosticoInput = {
@@ -117900,6 +120050,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutAplicacoes_diagnosticoInput = {
@@ -118099,6 +120250,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutAplicacoes_diagnosticoInput = {
@@ -118142,6 +120294,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ProjetoUpsertWithoutAplicacoes_diagnosticoInput = {
@@ -118337,6 +120490,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutCampanhas_diagnosticoInput = {
@@ -118380,6 +120534,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutCampanhas_diagnosticoInput = {
@@ -118481,6 +120636,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutCampanhas_diagnosticoInput = {
@@ -118524,6 +120680,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type DiagnosticoParticipanteUpsertWithWhereUniqueWithoutCampanhaInput = {
@@ -118803,6 +120960,7 @@ export namespace Prisma {
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutDiagnostico_templatesInput = {
@@ -118846,6 +121004,7 @@ export namespace Prisma {
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutDiagnostico_templatesInput = {
@@ -118905,6 +121064,7 @@ export namespace Prisma {
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutDiagnostico_templatesInput = {
@@ -118948,6 +121108,291 @@ export namespace Prisma {
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+  }
+
+  export type EmpresaCreateWithoutCampanhas_cupomInput = {
+    id?: string
+    nome: string
+    slug: string
+    cnpj?: string | null
+    logo_url?: string | null
+    plano?: $Enums.PlanoTipo
+    status?: $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
+    perfis?: PerfilCreateNestedManyWithoutEmpresaInput
+    convites?: ConviteEmpresaCreateNestedManyWithoutEmpresaInput
+    convites_cliente?: ConviteClienteCreateNestedManyWithoutEmpresaInput
+    clientes?: ClienteCreateNestedManyWithoutEmpresaInput
+    servicos?: ServicoCreateNestedManyWithoutEmpresaInput
+    leads?: LeadCreateNestedManyWithoutEmpresaInput
+    propostas?: PropostaCreateNestedManyWithoutEmpresaInput
+    contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
+    documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
+    plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
+    contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
+    boletos?: BoletoCreateNestedManyWithoutEmpresaInput
+    recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
+    contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
+    eventos?: EventoCreateNestedManyWithoutEmpresaInput
+    registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
+    notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
+    notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
+    diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+  }
+
+  export type EmpresaUncheckedCreateWithoutCampanhas_cupomInput = {
+    id?: string
+    nome: string
+    slug: string
+    cnpj?: string | null
+    logo_url?: string | null
+    plano?: $Enums.PlanoTipo
+    status?: $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
+    perfis?: PerfilUncheckedCreateNestedManyWithoutEmpresaInput
+    convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
+    convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutEmpresaInput
+    clientes?: ClienteUncheckedCreateNestedManyWithoutEmpresaInput
+    servicos?: ServicoUncheckedCreateNestedManyWithoutEmpresaInput
+    leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
+    propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
+    contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
+    contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
+    boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
+    recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
+    contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
+    registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
+    notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
+    notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+  }
+
+  export type EmpresaCreateOrConnectWithoutCampanhas_cupomInput = {
+    where: EmpresaWhereUniqueInput
+    create: XOR<EmpresaCreateWithoutCampanhas_cupomInput, EmpresaUncheckedCreateWithoutCampanhas_cupomInput>
+  }
+
+  export type ServicoCreateWithoutCampanhas_cupomInput = {
+    id?: string
+    nome: string
+    descricao?: string | null
+    valor_base?: Decimal | DecimalJsLike | number | string | null
+    ativo?: boolean
+    canal?: string | null
+    plano?: string | null
+    tipo_cobranca?: string | null
+    asaas_link_pagamento?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutServicosInput
+    plano_contas?: PlanoDeContasCreateNestedOneWithoutServicosInput
+    itens_proposta?: ItemPropostaCreateNestedManyWithoutServicoInput
+    leads?: LeadCreateNestedManyWithoutServicoInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutServicoInput
+  }
+
+  export type ServicoUncheckedCreateWithoutCampanhas_cupomInput = {
+    id?: string
+    empresa_id: string
+    plano_contas_id?: string | null
+    nome: string
+    descricao?: string | null
+    valor_base?: Decimal | DecimalJsLike | number | string | null
+    ativo?: boolean
+    canal?: string | null
+    plano?: string | null
+    tipo_cobranca?: string | null
+    asaas_link_pagamento?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    itens_proposta?: ItemPropostaUncheckedCreateNestedManyWithoutServicoInput
+    leads?: LeadUncheckedCreateNestedManyWithoutServicoInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutServicoInput
+  }
+
+  export type ServicoCreateOrConnectWithoutCampanhas_cupomInput = {
+    where: ServicoWhereUniqueInput
+    create: XOR<ServicoCreateWithoutCampanhas_cupomInput, ServicoUncheckedCreateWithoutCampanhas_cupomInput>
+  }
+
+  export type EmpresaUpsertWithoutCampanhas_cupomInput = {
+    update: XOR<EmpresaUpdateWithoutCampanhas_cupomInput, EmpresaUncheckedUpdateWithoutCampanhas_cupomInput>
+    create: XOR<EmpresaCreateWithoutCampanhas_cupomInput, EmpresaUncheckedCreateWithoutCampanhas_cupomInput>
+    where?: EmpresaWhereInput
+  }
+
+  export type EmpresaUpdateToOneWithWhereWithoutCampanhas_cupomInput = {
+    where?: EmpresaWhereInput
+    data: XOR<EmpresaUpdateWithoutCampanhas_cupomInput, EmpresaUncheckedUpdateWithoutCampanhas_cupomInput>
+  }
+
+  export type EmpresaUpdateWithoutCampanhas_cupomInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    logo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
+    status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
+    perfis?: PerfilUpdateManyWithoutEmpresaNestedInput
+    convites?: ConviteEmpresaUpdateManyWithoutEmpresaNestedInput
+    convites_cliente?: ConviteClienteUpdateManyWithoutEmpresaNestedInput
+    clientes?: ClienteUpdateManyWithoutEmpresaNestedInput
+    servicos?: ServicoUpdateManyWithoutEmpresaNestedInput
+    leads?: LeadUpdateManyWithoutEmpresaNestedInput
+    propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
+    contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
+    documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
+    plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
+    contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
+    boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
+    recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
+    contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
+    eventos?: EventoUpdateManyWithoutEmpresaNestedInput
+    registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
+    notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
+    notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
+    diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+  }
+
+  export type EmpresaUncheckedUpdateWithoutCampanhas_cupomInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    logo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
+    status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
+    perfis?: PerfilUncheckedUpdateManyWithoutEmpresaNestedInput
+    convites?: ConviteEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
+    convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutEmpresaNestedInput
+    clientes?: ClienteUncheckedUpdateManyWithoutEmpresaNestedInput
+    servicos?: ServicoUncheckedUpdateManyWithoutEmpresaNestedInput
+    leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
+    propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
+    contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
+    contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
+    recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
+    contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
+    registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
+    notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
+    notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+  }
+
+  export type ServicoUpsertWithoutCampanhas_cupomInput = {
+    update: XOR<ServicoUpdateWithoutCampanhas_cupomInput, ServicoUncheckedUpdateWithoutCampanhas_cupomInput>
+    create: XOR<ServicoCreateWithoutCampanhas_cupomInput, ServicoUncheckedCreateWithoutCampanhas_cupomInput>
+    where?: ServicoWhereInput
+  }
+
+  export type ServicoUpdateToOneWithWhereWithoutCampanhas_cupomInput = {
+    where?: ServicoWhereInput
+    data: XOR<ServicoUpdateWithoutCampanhas_cupomInput, ServicoUncheckedUpdateWithoutCampanhas_cupomInput>
+  }
+
+  export type ServicoUpdateWithoutCampanhas_cupomInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    valor_base?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    canal?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_cobranca?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_link_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutServicosNestedInput
+    plano_contas?: PlanoDeContasUpdateOneWithoutServicosNestedInput
+    itens_proposta?: ItemPropostaUpdateManyWithoutServicoNestedInput
+    leads?: LeadUpdateManyWithoutServicoNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutServicoNestedInput
+  }
+
+  export type ServicoUncheckedUpdateWithoutCampanhas_cupomInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    plano_contas_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nome?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    valor_base?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    canal?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_cobranca?: NullableStringFieldUpdateOperationsInput | string | null
+    asaas_link_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    itens_proposta?: ItemPropostaUncheckedUpdateManyWithoutServicoNestedInput
+    leads?: LeadUncheckedUpdateManyWithoutServicoNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutServicoNestedInput
   }
 
   export type EmpresaCreateWithoutAssinaturasInput = {
@@ -118991,6 +121436,7 @@ export namespace Prisma {
     campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutAssinaturasInput = {
@@ -119034,6 +121480,7 @@ export namespace Prisma {
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutAssinaturasInput = {
@@ -119146,6 +121593,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasCreateNestedOneWithoutServicosInput
     itens_proposta?: ItemPropostaCreateNestedManyWithoutServicoInput
     leads?: LeadCreateNestedManyWithoutServicoInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutServicoInput
   }
 
   export type ServicoUncheckedCreateWithoutAssinaturasInput = {
@@ -119164,6 +121612,7 @@ export namespace Prisma {
     atualizado_em?: Date | string
     itens_proposta?: ItemPropostaUncheckedCreateNestedManyWithoutServicoInput
     leads?: LeadUncheckedCreateNestedManyWithoutServicoInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutServicoInput
   }
 
   export type ServicoCreateOrConnectWithoutAssinaturasInput = {
@@ -119223,6 +121672,7 @@ export namespace Prisma {
     campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutAssinaturasInput = {
@@ -119266,6 +121716,7 @@ export namespace Prisma {
     campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutAssinaturasInput = {
@@ -119390,6 +121841,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasUpdateOneWithoutServicosNestedInput
     itens_proposta?: ItemPropostaUpdateManyWithoutServicoNestedInput
     leads?: LeadUpdateManyWithoutServicoNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutServicoNestedInput
   }
 
   export type ServicoUncheckedUpdateWithoutAssinaturasInput = {
@@ -119408,6 +121860,7 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     itens_proposta?: ItemPropostaUncheckedUpdateManyWithoutServicoNestedInput
     leads?: LeadUncheckedUpdateManyWithoutServicoNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutServicoNestedInput
   }
 
   export type MembroEmpresaCreateManyEmpresaInput = {
@@ -119917,6 +122370,21 @@ export namespace Prisma {
     atualizado_em?: Date | string
   }
 
+  export type CampanhaCupomCreateManyEmpresaInput = {
+    id?: string
+    servico_id?: string | null
+    nome: string
+    codigo: string
+    tipo_desconto?: $Enums.TipoDesconto
+    valor_desconto: Decimal | DecimalJsLike | number | string
+    ativo?: boolean
+    validade_ate?: Date | string | null
+    usos_maximos?: number | null
+    usos_count?: number
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
   export type MembroEmpresaUpdateWithoutEmpresaInput = {
     id?: StringFieldUpdateOperationsInput | string
     ativo?: BoolFieldUpdateOperationsInput | boolean
@@ -120159,6 +122627,7 @@ export namespace Prisma {
     itens_proposta?: ItemPropostaUpdateManyWithoutServicoNestedInput
     leads?: LeadUpdateManyWithoutServicoNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutServicoNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutServicoNestedInput
   }
 
   export type ServicoUncheckedUpdateWithoutEmpresaInput = {
@@ -120177,6 +122646,7 @@ export namespace Prisma {
     itens_proposta?: ItemPropostaUncheckedUpdateManyWithoutServicoNestedInput
     leads?: LeadUncheckedUpdateManyWithoutServicoNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutServicoNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutServicoNestedInput
   }
 
   export type ServicoUncheckedUpdateManyWithoutEmpresaInput = {
@@ -121544,6 +124014,51 @@ export namespace Prisma {
     data_cancelamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     motivo_cancelamento?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CampanhaCupomUpdateWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    codigo?: StringFieldUpdateOperationsInput | string
+    tipo_desconto?: EnumTipoDescontoFieldUpdateOperationsInput | $Enums.TipoDesconto
+    valor_desconto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    validade_ate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    usos_maximos?: NullableIntFieldUpdateOperationsInput | number | null
+    usos_count?: IntFieldUpdateOperationsInput | number
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    servico?: ServicoUpdateOneWithoutCampanhas_cupomNestedInput
+  }
+
+  export type CampanhaCupomUncheckedUpdateWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    servico_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nome?: StringFieldUpdateOperationsInput | string
+    codigo?: StringFieldUpdateOperationsInput | string
+    tipo_desconto?: EnumTipoDescontoFieldUpdateOperationsInput | $Enums.TipoDesconto
+    valor_desconto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    validade_ate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    usos_maximos?: NullableIntFieldUpdateOperationsInput | number | null
+    usos_count?: IntFieldUpdateOperationsInput | number
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CampanhaCupomUncheckedUpdateManyWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    servico_id?: NullableStringFieldUpdateOperationsInput | string | null
+    nome?: StringFieldUpdateOperationsInput | string
+    codigo?: StringFieldUpdateOperationsInput | string
+    tipo_desconto?: EnumTipoDescontoFieldUpdateOperationsInput | $Enums.TipoDesconto
+    valor_desconto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    validade_ate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    usos_maximos?: NullableIntFieldUpdateOperationsInput | number | null
+    usos_count?: IntFieldUpdateOperationsInput | number
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -124461,6 +126976,21 @@ export namespace Prisma {
     atualizado_em?: Date | string
   }
 
+  export type CampanhaCupomCreateManyServicoInput = {
+    id?: string
+    empresa_id: string
+    nome: string
+    codigo: string
+    tipo_desconto?: $Enums.TipoDesconto
+    valor_desconto: Decimal | DecimalJsLike | number | string
+    ativo?: boolean
+    validade_ate?: Date | string | null
+    usos_maximos?: number | null
+    usos_count?: number
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
   export type ItemPropostaUpdateWithoutServicoInput = {
     id?: StringFieldUpdateOperationsInput | string
     descricao?: StringFieldUpdateOperationsInput | string
@@ -124640,6 +127170,51 @@ export namespace Prisma {
     data_cancelamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     motivo_cancelamento?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CampanhaCupomUpdateWithoutServicoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    codigo?: StringFieldUpdateOperationsInput | string
+    tipo_desconto?: EnumTipoDescontoFieldUpdateOperationsInput | $Enums.TipoDesconto
+    valor_desconto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    validade_ate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    usos_maximos?: NullableIntFieldUpdateOperationsInput | number | null
+    usos_count?: IntFieldUpdateOperationsInput | number
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutCampanhas_cupomNestedInput
+  }
+
+  export type CampanhaCupomUncheckedUpdateWithoutServicoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    codigo?: StringFieldUpdateOperationsInput | string
+    tipo_desconto?: EnumTipoDescontoFieldUpdateOperationsInput | $Enums.TipoDesconto
+    valor_desconto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    validade_ate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    usos_maximos?: NullableIntFieldUpdateOperationsInput | number | null
+    usos_count?: IntFieldUpdateOperationsInput | number
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CampanhaCupomUncheckedUpdateManyWithoutServicoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    codigo?: StringFieldUpdateOperationsInput | string
+    tipo_desconto?: EnumTipoDescontoFieldUpdateOperationsInput | $Enums.TipoDesconto
+    valor_desconto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    validade_ate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    usos_maximos?: NullableIntFieldUpdateOperationsInput | number | null
+    usos_count?: IntFieldUpdateOperationsInput | number
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -126433,6 +129008,7 @@ export namespace Prisma {
     itens_proposta?: ItemPropostaUpdateManyWithoutServicoNestedInput
     leads?: LeadUpdateManyWithoutServicoNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutServicoNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutServicoNestedInput
   }
 
   export type ServicoUncheckedUpdateWithoutPlano_contasInput = {
@@ -126451,6 +129027,7 @@ export namespace Prisma {
     itens_proposta?: ItemPropostaUncheckedUpdateManyWithoutServicoNestedInput
     leads?: LeadUncheckedUpdateManyWithoutServicoNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutServicoNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutServicoNestedInput
   }
 
   export type ServicoUncheckedUpdateManyWithoutPlano_contasInput = {

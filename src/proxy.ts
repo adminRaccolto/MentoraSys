@@ -44,7 +44,12 @@ export async function proxy(request: NextRequest) {
     pathname.startsWith("/api/webhooks/") ||
     pathname.startsWith("/api/diagnostico-lead/") ||
     pathname === "/api/diagnostico-lead" ||
-    pathname.startsWith("/api/cron/");
+    pathname.startsWith("/api/cron/") ||
+    pathname.startsWith("/api/produtos/") ||
+    pathname.startsWith("/api/campanhas/") ||
+    pathname.startsWith("/api/crm/") ||
+    pathname === "/api/contratos" ||
+    pathname.startsWith("/api/contratos/");
 
   if (!user && !isAuthRoute) {
     const url = request.nextUrl.clone();

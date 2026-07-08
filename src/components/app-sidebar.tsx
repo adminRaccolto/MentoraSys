@@ -33,6 +33,7 @@ import {
   BarChart3,
   Sprout,
   Repeat2,
+  Ticket,
 } from "lucide-react";
 import NotificacoesBell from "@/components/notificacoes-bell";
 import { type Notificacao } from "@/hooks/useNotificacoes";
@@ -44,6 +45,7 @@ const NAV_GERAL = [
 const NAV_COMERCIAL = [
   { label: "Clientes", href: "/clientes", icon: Users },
   { label: "Serviços", href: "/servicos", icon: Briefcase },
+  { label: "Cupons", href: "/campanhas-cupom", icon: Ticket },
   { label: "CRM", href: "/crm", icon: TrendingUp },
   { label: "Propostas", href: "/propostas", icon: FileText },
   { label: "Contratos", href: "/contratos", icon: FileSignature },
