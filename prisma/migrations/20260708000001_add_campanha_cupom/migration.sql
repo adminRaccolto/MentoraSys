@@ -1,8 +1,11 @@
--- CreateEnum
-CREATE TYPE "TipoDesconto" AS ENUM ('PERCENTUAL', 'FIXO');
+-- CreateEnum (idempotente)
+DO $$ BEGIN
+  CREATE TYPE "TipoDesconto" AS ENUM ('PERCENTUAL', 'FIXO');
+EXCEPTION WHEN duplicate_object THEN null;
+END $$;
 
--- CreateTable
-CREATE TABLE "campanhas_cupom" (
+-- CreateTable (idempotente)
+CREATE TABLE IF NOT EXISTS "campanhas_cupom" (
     "id" TEXT NOT NULL,
     "empresa_id" TEXT NOT NULL,
     "servico_id" TEXT,
@@ -20,11 +23,18 @@ CREATE TABLE "campanhas_cupom" (
     CONSTRAINT "campanhas_cupom_pkey" PRIMARY KEY ("id")
 );
 
--- CreateIndex
-CREATE UNIQUE INDEX "campanhas_cupom_empresa_id_codigo_key" ON "campanhas_cupom"("empresa_id", "codigo");
+-- CreateIndex (idempotente)
+CREATE UNIQUE INDEX IF NOT EXISTS "campanhas_cupom_empresa_id_codigo_key" ON "campanhas_cupom"("empresa_id", "codigo");
 
--- AddForeignKey
-ALTER TABLE "campanhas_cupom" ADD CONSTRAINT "campanhas_cupom_empresa_id_fkey" FOREIGN KEY ("empresa_id") REFERENCES "empresas"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+-- AddForeignKey (idempotente)
+DO $$ BEGIN
+  ALTER TABLE "campanhas_cupom" ADD CONSTRAINT "campanhas_cupom_empresa_id_fkey"
+    FOREIGN KEY ("empresa_id") REFERENCES "empresas"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+EXCEPTION WHEN duplicate_object THEN null;
+END $$;
 
--- AddForeignKey
-ALTER TABLE "campanhas_cupom" ADD CONSTRAINT "campanhas_cupom_servico_id_fkey" FOREIGN KEY ("servico_id") REFERENCES "servicos"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+DO $$ BEGIN
+  ALTER TABLE "campanhas_cupom" ADD CONSTRAINT "campanhas_cupom_servico_id_fkey"
+    FOREIGN KEY ("servico_id") REFERENCES "servicos"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+EXCEPTION WHEN duplicate_object THEN null;
+END $$;
