@@ -143,7 +143,7 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
   const [filtroAte, setFiltroAte] = useState(ate);
   const [isSyncingAsaas, setIsSyncingAsaas] = useState(false);
 
-  const handleSincronizarAsaas = async () => {
+  const handleSyncBulkAsaas = async () => {
     setIsSyncingAsaas(true);
     try {
       const res = await sincronizarReceiveisConselhoAgro();
@@ -417,7 +417,7 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
           <h1 className="text-xl font-semibold">Contas a Receber</h1>
         </div>
         <div className="flex gap-2">
-          <Button variant="outline" size="sm" onClick={handleSincronizarAsaas} disabled={isSyncingAsaas}>
+          <Button variant="outline" size="sm" onClick={handleSyncBulkAsaas} disabled={isSyncingAsaas}>
             <RefreshCw className={`size-4 mr-1.5 ${isSyncingAsaas ? "animate-spin" : ""}`} />
             {isSyncingAsaas ? "Sincronizando..." : "Sincronizar Asaas"}
           </Button>
