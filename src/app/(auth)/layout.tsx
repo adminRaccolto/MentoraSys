@@ -2,50 +2,52 @@ import Image from "next/image";
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen flex">
-      {/* ── Painel esquerdo — imagem de fundo ── */}
-      <div
-        className="hidden lg:flex lg:w-1/2 relative overflow-hidden"
-        style={{
-          backgroundImage: "url('/login-bg.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundColor: "#1B4F72",
-        }}
-      >
-        {/* overlay */}
-        <div className="absolute inset-0 bg-[#1B4F72]/70" />
+    <div
+      className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden"
+      style={{
+        backgroundImage: "url('/login-bg.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundColor: "#0d2b45",
+      }}
+    >
+      {/* Overlay navy */}
+      <div className="absolute inset-0 bg-[#1B4F72]/70" />
 
-        {/* logo centralizada */}
-        <div className="relative z-10 flex items-center justify-center w-full h-full">
+      {/* Partícula decorativa — brilho superior */}
+      <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-[#D4AC0D]/10 blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-[#1B4F72]/40 blur-3xl pointer-events-none" />
+
+      {/* Conteúdo central */}
+      <div className="relative z-10 w-full max-w-md flex flex-col items-center">
+        {/* Logo */}
+        <div className="mb-8">
           <Image
             src="/logo-raccolto.svg"
             alt="Raccolto"
-            width={260}
-            height={120}
-            className="object-contain drop-shadow-lg"
+            width={200}
+            height={90}
+            className="object-contain drop-shadow-xl"
             priority
           />
         </div>
-      </div>
 
-      {/* ── Painel direito — formulário ── */}
-      <div className="flex-1 flex items-center justify-center bg-white p-6">
-        <div className="w-full max-w-sm">
-          {/* logo mobile */}
-          <div className="flex justify-center mb-8 lg:hidden">
-            <Image
-              src="/logo-raccolto.svg"
-              alt="Raccolto"
-              width={160}
-              height={70}
-              className="object-contain"
-              priority
-            />
+        {/* Glass card */}
+        <div className="w-full rounded-2xl border border-white/20 shadow-2xl overflow-hidden"
+          style={{
+            background: "rgba(255,255,255,0.08)",
+            backdropFilter: "blur(24px)",
+            WebkitBackdropFilter: "blur(24px)",
+          }}
+        >
+          <div className="p-8">
+            {children}
           </div>
-
-          {children}
         </div>
+
+        <p className="mt-6 text-white/40 text-xs text-center">
+          © {new Date().getFullYear()} Raccolto · Todos os direitos reservados
+        </p>
       </div>
     </div>
   );
