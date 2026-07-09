@@ -101,6 +101,29 @@ export async function POST(req: Request) {
 
         console.log("[api/contratos] venda registrada para lead:", lead.id, "email:", email, "cupom:", cupom ?? "—")
       }
+
+      // Cria Recebíveis (Contas a Receber)
+      const totalParcelas = plano === "anual" ? 12 : 1
+      const valorParcela  = Math.round((valorNum / totalParcelas) * 100) / 100
+      const descBase      = plano === "anual" ? "O Conselho Agro — Plano Anual" : "O Conselho Agro — Mensalidade"
+
+      const recebiveis = Array.from({ length: totalParcelas }, (_, i) => {
+        const venc = new Date(dataInicio)
+        venc.setMonth(venc.getMonth() + i)
+        return {
+          empresa_id:      empresaId,
+          cliente_id:      cliente.id,
+          descricao:       totalParcelas > 1 ? `${descBase} — Parcela ${i + 1}/${totalParcelas}` : descBase,
+          valor:           valorParcela,
+          data_vencimento: venc,
+          numero_parcela:  i + 1,
+          total_parcelas:  totalParcelas,
+          observacoes:     cupom ? `Cupom: ${cupom} (${desconto_pct}% de desconto)` : undefined,
+        }
+      })
+
+      await prisma.recebivel.createMany({ data: recebiveis })
+      console.log("[api/contratos] recebíveis criados:", recebiveis.length, "parcelas de R$", valorParcela)
     } catch (err) {
       console.error("[api/contratos] erro ao registrar venda:", err)
     }
