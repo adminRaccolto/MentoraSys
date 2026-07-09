@@ -18,7 +18,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { criarRecebivel, baixarRecebivel, excluirRecebivel, gerarParcelasContrato, estornarRecebivel, baixarLoteRecebiveis, refaturarRecebivel } from "@/actions/recebiveis";
 import { gerarBoleto, consultarBoleto, cancelarBoleto } from "@/actions/boletos";
-import { gerarCobrancaAsaas, cancelarCobrancaAsaas, sincronizarCobrancaAsaas } from "@/actions/asaas";
+import { gerarCobrancaAsaas, cancelarCobrancaAsaas, sincronizarCobrancaAsaas, sincronizarReceiveisConselhoAgro } from "@/actions/asaas";
 
 type Status = "PENDENTE" | "PARCIAL" | "PAGO" | "VENCIDO" | "CANCELADO" | "RENEGOCIADO";
 
@@ -141,6 +141,21 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
   const [formLoteData, setFormLoteData] = useState({ data_pagamento: new Date().toISOString().split("T")[0], forma_pagamento: "", conta_bancaria_id: "" });
   const [filtroDe, setFiltroDe] = useState(de);
   const [filtroAte, setFiltroAte] = useState(ate);
+  const [isSyncingAsaas, setIsSyncingAsaas] = useState(false);
+
+  const handleSincronizarAsaas = async () => {
+    setIsSyncingAsaas(true);
+    try {
+      const res = await sincronizarReceiveisConselhoAgro();
+      toast.success(`Sync concluído: ${res.criados} criados, ${res.atualizados} atualizados, ${res.ignorados} ignorados`);
+      if (res.erros.length > 0) toast.error(`${res.erros.length} erro(s): ${res.erros[0]}`);
+      router.refresh();
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Erro ao sincronizar Asaas");
+    } finally {
+      setIsSyncingAsaas(false);
+    }
+  };
 
   const aplicarFiltro = () => {
     router.push(`/financeiro/recebiveis?de=${filtroDe}&ate=${filtroAte}&status=${statusFiltro}`);
@@ -402,6 +417,10 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
           <h1 className="text-xl font-semibold">Contas a Receber</h1>
         </div>
         <div className="flex gap-2">
+          <Button variant="outline" size="sm" onClick={handleSincronizarAsaas} disabled={isSyncingAsaas}>
+            <RefreshCw className={`size-4 mr-1.5 ${isSyncingAsaas ? "animate-spin" : ""}`} />
+            {isSyncingAsaas ? "Sincronizando..." : "Sincronizar Asaas"}
+          </Button>
           <Button variant="outline" size="sm" onClick={() => { formParcelas.reset(); setModalParcelas(true); }}>
             Gerar parcelas de contrato
           </Button>

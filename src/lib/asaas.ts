@@ -27,7 +27,25 @@ interface AsaasPayment {
   bankSlipUrl?: string; invoiceUrl?: string; nossoNumero?: string;
 }
 interface AsaasBarCode { identificationField?: string; barCode?: string; }
-interface AsaasListResponse<T> { data: T[]; }
+interface AsaasListResponse<T> { data: T[]; totalCount?: number; hasMore?: boolean; }
+
+export interface AsaasPaymentFull {
+  id: string; status: string; value: number; dueDate: string;
+  description?: string; externalReference?: string;
+  customer?: string;
+  installment?: string; installmentNumber?: number; installmentCount?: number;
+  bankSlipUrl?: string; invoiceUrl?: string; nossoNumero?: string;
+}
+
+export async function asaasListPayments(params?: {
+  offset?: number; limit?: number; externalReference?: string;
+}): Promise<{ data: AsaasPaymentFull[]; totalCount: number; hasMore: boolean }> {
+  const qs = new URLSearchParams({ limit: String(params?.limit ?? 100) })
+  if (params?.offset) qs.set("offset", String(params.offset))
+  if (params?.externalReference) qs.set("externalReference", params.externalReference)
+  const res = await req<AsaasListResponse<AsaasPaymentFull>>("GET", `/payments?${qs}`)
+  return { data: res.data, totalCount: res.totalCount ?? res.data.length, hasMore: res.hasMore ?? false }
+}
 
 export async function asaasGetOrCreateCustomer(nome: string, cpfCnpj?: string, email?: string): Promise<AsaasCustomer> {
   const cpf = cpfCnpj?.replace(/\D/g, "");
