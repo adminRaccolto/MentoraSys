@@ -19,14 +19,14 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       <div className="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-[#1B4F72]/40 blur-3xl pointer-events-none" />
 
       {/* Conteúdo central */}
-      <div className="relative z-10 w-full max-w-md flex flex-col items-center">
+      <div className="relative z-10 w-full max-w-lg flex flex-col items-center">
         {/* Logo */}
         <div className="mb-8">
           <Image
             src="/logo-raccolto.svg"
             alt="Raccolto"
-            width={200}
-            height={90}
+            width={260}
+            height={110}
             className="object-contain drop-shadow-xl"
             priority
           />

@@ -5,12 +5,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Building2, Plus, X } from "lucide-react";
+import { Building2, Plus, X, Loader2, ChevronRight } from "lucide-react";
 import { criarEmpresa } from "@/actions/empresas";
 
 const schema = z.object({
@@ -23,11 +18,13 @@ interface Membro {
   perfil: { nome: string };
 }
 
-interface Props {
-  membros: Membro[];
-}
+const PLANO_LABEL: Record<string, string> = {
+  BASICO: "Básico",
+  PROFISSIONAL: "Profissional",
+  ENTERPRISE: "Enterprise",
+};
 
-export default function SelecionarEmpresaClient({ membros }: Props) {
+export default function SelecionarEmpresaClient({ membros }: { membros: Membro[] }) {
   const router = useRouter();
   const [selecionando, setSelecionando] = useState<string | null>(null);
   const [criando, setCriando] = useState(false);
@@ -53,7 +50,6 @@ export default function SelecionarEmpresaClient({ membros }: Props) {
 
   const selecionar = async (empresaId: string) => {
     setSelecionando(empresaId);
-    // Salva empresa ativa em cookie via route handler
     await fetch("/api/auth/empresa", {
       method: "POST",
       body: JSON.stringify({ empresaId }),
@@ -65,74 +61,125 @@ export default function SelecionarEmpresaClient({ membros }: Props) {
 
   if (criando) {
     return (
-      <Card>
-        <CardHeader>
-          <div className="flex items-center justify-between">
-            <CardTitle className="text-xl text-primary">Nova Empresa</CardTitle>
-            <Button variant="ghost" size="icon" onClick={() => { setCriando(false); reset(); setErro(null); }}>
-              <X className="size-4" />
-            </Button>
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-xl font-bold text-white">Nova Empresa</h2>
+            <p className="text-sm text-white/60 mt-0.5">Preencha os dados para criar</p>
           </div>
-          <CardDescription>Preencha os dados da nova empresa</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit(onCriar)} className="space-y-4">
-            <div className="space-y-1.5">
-              <Label>Razão Social / Nome *</Label>
-              <Input {...register("nome")} placeholder="Ex: Raccolto Agronegócios Ltda" />
-              {errors.nome && <p className="text-xs text-destructive">{errors.nome.message}</p>}
-            </div>
-            <div className="space-y-1.5">
-              <Label>CNPJ</Label>
-              <Input {...register("cnpj")} placeholder="00.000.000/0001-00" />
-            </div>
-            {erro && <p className="text-sm text-destructive">{erro}</p>}
-            <Button type="submit" className="w-full" disabled={isSubmitting}>
-              {isSubmitting ? "Criando..." : "Criar empresa"}
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
+          <button
+            onClick={() => { setCriando(false); reset(); setErro(null); }}
+            className="p-2 rounded-lg text-white/60 hover:text-white hover:bg-white/10 transition-colors"
+          >
+            <X className="size-5" />
+          </button>
+        </div>
+
+        <form onSubmit={handleSubmit(onCriar)} className="space-y-4">
+          <div className="space-y-1.5">
+            <label className="text-sm font-medium text-white/80 block">Razão Social / Nome *</label>
+            <input
+              {...register("nome")}
+              placeholder="Ex: Raccolto Agronegócios Ltda"
+              className="w-full h-11 rounded-lg px-3 text-sm text-white placeholder:text-white/35 outline-none transition-all"
+              style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)" }}
+              onFocus={(e) => { e.currentTarget.style.border = "1px solid rgba(212,172,13,0.7)"; e.currentTarget.style.boxShadow = "0 0 0 3px rgba(212,172,13,0.12)"; }}
+              onBlur={(e) => { e.currentTarget.style.border = "1px solid rgba(255,255,255,0.2)"; e.currentTarget.style.boxShadow = "none"; }}
+            />
+            {errors.nome && <p className="text-red-300 text-xs">{errors.nome.message}</p>}
+          </div>
+          <div className="space-y-1.5">
+            <label className="text-sm font-medium text-white/80 block">CNPJ</label>
+            <input
+              {...register("cnpj")}
+              placeholder="00.000.000/0001-00"
+              className="w-full h-11 rounded-lg px-3 text-sm text-white placeholder:text-white/35 outline-none transition-all"
+              style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)" }}
+              onFocus={(e) => { e.currentTarget.style.border = "1px solid rgba(212,172,13,0.7)"; e.currentTarget.style.boxShadow = "0 0 0 3px rgba(212,172,13,0.12)"; }}
+              onBlur={(e) => { e.currentTarget.style.border = "1px solid rgba(255,255,255,0.2)"; e.currentTarget.style.boxShadow = "none"; }}
+            />
+          </div>
+
+          {erro && (
+            <p className="text-red-300 text-sm">{erro}</p>
+          )}
+
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full h-11 rounded-lg font-semibold text-sm flex items-center justify-center gap-2 transition-all disabled:opacity-60"
+            style={{ background: "#D4AC0D", color: "#1B4F72" }}
+          >
+            {isSubmitting ? <><Loader2 className="size-4 animate-spin" /> Criando...</> : "Criar empresa"}
+          </button>
+        </form>
+      </div>
     );
   }
 
   return (
-    <Card>
-      <CardHeader className="text-center">
-        <CardTitle className="text-xl text-primary">Selecione a empresa</CardTitle>
-        <CardDescription>Escolha com qual empresa deseja trabalhar</CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-2">
+    <div className="space-y-6">
+      <div className="text-center">
+        <h2 className="text-2xl font-bold text-white">Selecione a empresa</h2>
+        <p className="text-sm text-white/60 mt-1">Escolha com qual empresa deseja trabalhar</p>
+      </div>
+
+      <div className="space-y-3">
         {membros.length === 0 && (
-          <p className="text-sm text-muted-foreground text-center py-2">
+          <p className="text-sm text-white/50 text-center py-4">
             Nenhuma empresa vinculada ainda.
           </p>
         )}
         {membros.map(({ empresa, perfil }) => (
-          <Button
+          <button
             key={empresa.id}
-            variant="outline"
-            className="w-full justify-start gap-3 h-auto py-3"
-            disabled={selecionando === empresa.id}
+            disabled={!!selecionando}
             onClick={() => selecionar(empresa.id)}
+            className="w-full flex items-center gap-4 px-5 py-4 rounded-xl transition-all group disabled:opacity-50"
+            style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)" }}
+            onMouseEnter={(e) => {
+              if (!selecionando) {
+                e.currentTarget.style.background = "rgba(212,172,13,0.12)";
+                e.currentTarget.style.border = "1px solid rgba(212,172,13,0.4)";
+              }
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "rgba(255,255,255,0.08)";
+              e.currentTarget.style.border = "1px solid rgba(255,255,255,0.15)";
+            }}
           >
-            <Building2 className="size-5 text-primary shrink-0" />
-            <div className="flex-1 text-left">
-              <p className="font-medium">{empresa.nome}</p>
-              <p className="text-xs text-muted-foreground">{perfil.nome}</p>
+            <div className="size-11 rounded-xl flex items-center justify-center shrink-0" style={{ background: "rgba(212,172,13,0.15)" }}>
+              {selecionando === empresa.id
+                ? <Loader2 className="size-5 text-[#D4AC0D] animate-spin" />
+                : <Building2 className="size-5 text-[#D4AC0D]" />
+              }
             </div>
-            <Badge variant="secondary" className="text-xs">
-              {empresa.plano}
-            </Badge>
-          </Button>
+            <div className="flex-1 text-left">
+              <p className="font-semibold text-white text-base leading-tight">{empresa.nome}</p>
+              <p className="text-xs text-white/50 mt-0.5">{perfil.nome}</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-medium px-2.5 py-1 rounded-full" style={{ background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.6)" }}>
+                {PLANO_LABEL[empresa.plano] ?? empresa.plano}
+              </span>
+              <ChevronRight className="size-4 text-white/30 group-hover:text-[#D4AC0D] transition-colors" />
+            </div>
+          </button>
         ))}
-        <div className="pt-2 border-t">
-          <Button variant="ghost" className="w-full gap-2 text-muted-foreground" onClick={() => setCriando(true)}>
-            <Plus className="size-4" />
-            Criar nova empresa
-          </Button>
-        </div>
-      </CardContent>
-    </Card>
+      </div>
+
+      <div className="pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+        <button
+          onClick={() => setCriando(true)}
+          className="w-full flex items-center justify-center gap-2 h-11 rounded-xl text-sm font-medium transition-all"
+          style={{ color: "rgba(255,255,255,0.5)" }}
+          onMouseEnter={(e) => { e.currentTarget.style.color = "#D4AC0D"; e.currentTarget.style.background = "rgba(212,172,13,0.08)"; }}
+          onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(255,255,255,0.5)"; e.currentTarget.style.background = "transparent"; }}
+        >
+          <Plus className="size-4" />
+          Criar nova empresa
+        </button>
+      </div>
+    </div>
   );
 }
