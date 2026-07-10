@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { createClient } from "@/lib/supabase/client";
 import {
@@ -101,6 +102,7 @@ export default function AppSidebar({
 }: Props) {
   const pathname = usePathname();
   const router = useRouter();
+  const [logoError, setLogoError] = useState(false);
 
   const handleLogout = async () => {
     const supabase = createClient();
@@ -131,7 +133,7 @@ export default function AppSidebar({
     <aside className="w-60 shrink-0 bg-sidebar text-sidebar-foreground flex flex-col h-full border-r border-sidebar-border">
       {/* Logo + bell */}
       <div className="px-4 py-4 border-b border-sidebar-border flex items-center justify-between gap-2 bg-white">
-        {logoUrl ? (
+        {logoUrl && !logoError ? (
           <div className="relative h-8 flex-1 min-w-0">
             <Image
               src={logoUrl}
@@ -139,6 +141,7 @@ export default function AppSidebar({
               fill
               className="object-contain object-left"
               unoptimized
+              onError={() => setLogoError(true)}
             />
           </div>
         ) : (

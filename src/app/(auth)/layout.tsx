@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
     <div
@@ -22,13 +20,13 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       <div className="relative z-10 w-full max-w-lg flex flex-col items-center">
         {/* Logo */}
         <div className="mb-8">
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src="/logo-raccolto.svg"
             alt="Raccolto"
             width={260}
             height={110}
             className="object-contain drop-shadow-xl"
-            priority
           />
         </div>
 
