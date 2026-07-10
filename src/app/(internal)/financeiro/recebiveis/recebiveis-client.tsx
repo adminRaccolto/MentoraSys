@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Plus, ArrowDownCircle, Trash2, CheckCircle, Receipt, Undo2, FileText, RefreshCw, XCircle, Zap, Copy, ExternalLink } from "lucide-react";
+import { Plus, ArrowDownCircle, Trash2, CheckCircle, Receipt, Undo2, FileText, RefreshCw, XCircle, Zap, Copy, ExternalLink, Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,7 +16,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { criarRecebivel, baixarRecebivel, excluirRecebivel, gerarParcelasContrato, estornarRecebivel, baixarLoteRecebiveis, refaturarRecebivel } from "@/actions/recebiveis";
+import { criarRecebivel, baixarRecebivel, excluirRecebivel, gerarParcelasContrato, estornarRecebivel, baixarLoteRecebiveis, refaturarRecebivel, editarRecebivel } from "@/actions/recebiveis";
 import { gerarBoleto, consultarBoleto, cancelarBoleto } from "@/actions/boletos";
 import { gerarCobrancaAsaas, cancelarCobrancaAsaas, sincronizarCobrancaAsaas, sincronizarReceiveisConselhoAgro } from "@/actions/asaas";
 
@@ -62,6 +62,12 @@ const schemaRefaturarForm = z.object({
   observacoes: z.string().optional(),
 });
 
+const schemaEditar = z.object({
+  descricao:       z.string().min(1, "Descrição obrigatória"),
+  valor:           z.string().min(1, "Valor obrigatório"),
+  data_vencimento: z.string().min(1, "Data obrigatória"),
+});
+
 const schemaParcelas = z.object({
   contrato_id: z.string().min(1, "Contrato obrigatório"),
   n_parcelas: z.string().min(1),
@@ -72,6 +78,7 @@ const schemaParcelas = z.object({
 
 type FormCreate = z.input<typeof schemaCreate>;
 type FormBaixar = z.input<typeof schemaBaixar>;
+type FormEditar = z.input<typeof schemaEditar>;
 type FormParcelas = z.input<typeof schemaParcelas>;
 type FormRefaturar = z.input<typeof schemaRefaturarForm>;
 
@@ -134,6 +141,7 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
   const [modalParcelas, setModalParcelas] = useState(false);
   const [modalRecibo, setModalRecibo] = useState<Recebivel | null>(null);
   const [modalRefaturar, setModalRefaturar] = useState<Recebivel | null>(null);
+  const [modalEditar, setModalEditar] = useState<Recebivel | null>(null);
   const [excluindo, setExcluindo] = useState<Recebivel | null>(null);
   const [isPending, startTransition] = useTransition();
   const [selecionados, setSelecionados] = useState<Set<string>>(new Set());
@@ -183,6 +191,35 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
         setModalNovo(false);
         formNovo.reset();
       } catch { toast.error("Erro ao criar recebível"); }
+    });
+  };
+
+  // Formulário editar
+  const formEditar = useForm<FormEditar>({ resolver: zodResolver(schemaEditar) });
+  const abrirEditar = (r: Recebivel) => {
+    formEditar.reset({
+      descricao: r.descricao,
+      valor: String(Number(r.valor).toFixed(2)),
+      data_vencimento: new Date(r.data_vencimento).toISOString().split("T")[0],
+    });
+    setModalEditar(r);
+  };
+  const onSubmitEditar = (data: FormEditar) => {
+    if (!modalEditar) return;
+    startTransition(async () => {
+      try {
+        const res = await editarRecebivel(modalEditar.id, {
+          descricao: data.descricao,
+          valor: Number(data.valor),
+          data_vencimento: data.data_vencimento,
+          cliente_id: modalEditar.cliente?.id,
+          contrato_id: modalEditar.contrato?.id,
+          plano_contas_id: modalEditar.plano_contas?.id,
+        });
+        setRecebiveis((prev) => prev.map((r) => r.id === modalEditar.id ? { ...r, descricao: res.data.descricao, valor: res.data.valor, data_vencimento: new Date(res.data.data_vencimento) } : r));
+        toast.success("Lançamento atualizado");
+        setModalEditar(null);
+      } catch (e: unknown) { toast.error(e instanceof Error ? e.message : "Erro ao editar"); }
     });
   };
 
@@ -656,9 +693,19 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
                           </Button>
                         </>
                       )}
+                      {r.status !== "PAGO" && r.status !== "CANCELADO" && (
+                        <Button
+                          size="icon" variant="ghost" className="size-7 text-muted-foreground hover:text-foreground"
+                          title="Editar lançamento"
+                          onClick={() => abrirEditar(r)}
+                        >
+                          <Pencil className="size-3.5" />
+                        </Button>
+                      )}
                       {r.status !== "PAGO" && (
                         <Button
                           size="icon" variant="ghost" className="size-7 text-destructive hover:text-destructive"
+                          title="Excluir lançamento"
                           onClick={() => setExcluindo(r)}
                         >
                           <Trash2 className="size-3.5" />
@@ -1012,6 +1059,36 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
               <Button type="submit" disabled={isPending || novoTotalRefaturar <= 0}>
                 {isPending ? "Refaturando..." : "Refaturar"}
               </Button>
+            </DialogFooter>
+          </form>
+        </DialogContent>
+      </Dialog>
+
+      {/* Modal editar */}
+      <Dialog open={!!modalEditar} onOpenChange={(v) => !v && setModalEditar(null)}>
+        <DialogContent className="max-w-md">
+          <DialogHeader><DialogTitle>Editar lançamento</DialogTitle></DialogHeader>
+          <form onSubmit={formEditar.handleSubmit(onSubmitEditar)} className="space-y-3">
+            <div className="space-y-1">
+              <Label>Descrição *</Label>
+              <Input {...formEditar.register("descricao")} />
+              {formEditar.formState.errors.descricao && <p className="text-xs text-destructive">{formEditar.formState.errors.descricao.message}</p>}
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1">
+                <Label>Valor (R$) *</Label>
+                <Input {...formEditar.register("valor")} type="number" step="0.01" min="0.01" />
+                {formEditar.formState.errors.valor && <p className="text-xs text-destructive">{formEditar.formState.errors.valor.message}</p>}
+              </div>
+              <div className="space-y-1">
+                <Label>Vencimento *</Label>
+                <Input {...formEditar.register("data_vencimento")} type="date" />
+                {formEditar.formState.errors.data_vencimento && <p className="text-xs text-destructive">{formEditar.formState.errors.data_vencimento.message}</p>}
+              </div>
+            </div>
+            <DialogFooter>
+              <Button type="button" variant="outline" onClick={() => setModalEditar(null)}>Cancelar</Button>
+              <Button type="submit" disabled={isPending}>{isPending ? "Salvando..." : "Salvar"}</Button>
             </DialogFooter>
           </form>
         </DialogContent>

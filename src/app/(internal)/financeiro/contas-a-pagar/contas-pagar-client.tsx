@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Plus, ArrowUpCircle, Trash2, CheckCircle, Undo2 } from "lucide-react";
+import { Plus, ArrowUpCircle, Trash2, CheckCircle, Undo2, Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,7 +16,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { criarContaPagar, baixarContaPagar, excluirContaPagar, estornarContaPagar, baixarLoteContasPagar } from "@/actions/contas-pagar";
+import { criarContaPagar, baixarContaPagar, excluirContaPagar, estornarContaPagar, baixarLoteContasPagar, editarContaPagar } from "@/actions/contas-pagar";
 
 type Status = "PENDENTE" | "PARCIAL" | "PAGO" | "VENCIDO" | "CANCELADO";
 
@@ -29,6 +29,12 @@ const STATUS_CONFIG: Record<Status, { label: string; variant: "default" | "secon
 };
 
 const FORMAS = ["Dinheiro", "PIX", "TED", "Boleto", "Cartão de Crédito", "Cartão de Débito", "Cheque"];
+
+const schemaEditar = z.object({
+  descricao:       z.string().min(1, "Descrição obrigatória"),
+  valor:           z.string().min(1, "Valor obrigatório"),
+  data_vencimento: z.string().min(1, "Data obrigatória"),
+});
 
 const schemaCreate = z.object({
   descricao:       z.string().min(1, "Descrição obrigatória"),
@@ -47,6 +53,7 @@ const schemaBaixar = z.object({
   conta_bancaria_id: z.string().optional(),
 });
 
+type FormEditar = z.input<typeof schemaEditar>;
 type FormCreate = z.input<typeof schemaCreate>;
 type FormBaixar = z.input<typeof schemaBaixar>;
 
@@ -81,6 +88,7 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
   const [modalNovo, setModalNovo] = useState(false);
   const [modalBaixar, setModalBaixar] = useState<ContaPagar | null>(null);
   const [excluindo, setExcluindo] = useState<ContaPagar | null>(null);
+  const [modalEditar, setModalEditar] = useState<ContaPagar | null>(null);
   const [isPending, startTransition] = useTransition();
   const [selecionados, setSelecionados] = useState<Set<string>>(new Set());
   const [modalLote, setModalLote] = useState(false);
@@ -133,6 +141,33 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
         toast.success("Conta excluída");
         setExcluindo(null);
       } catch (e: unknown) { toast.error(e instanceof Error ? e.message : "Erro"); }
+    });
+  };
+
+  const formEditar = useForm<FormEditar>({ resolver: zodResolver(schemaEditar) });
+  const abrirEditar = (c: ContaPagar) => {
+    formEditar.reset({
+      descricao: c.descricao,
+      valor: String(Number(c.valor).toFixed(2)),
+      data_vencimento: new Date(c.data_vencimento).toISOString().split("T")[0],
+    });
+    setModalEditar(c);
+  };
+  const onSubmitEditar = (data: FormEditar) => {
+    if (!modalEditar) return;
+    startTransition(async () => {
+      try {
+        const res = await editarContaPagar(modalEditar.id, {
+          descricao: data.descricao,
+          valor: Number(data.valor),
+          data_vencimento: data.data_vencimento,
+          fornecedor: modalEditar.fornecedor ?? undefined,
+          plano_contas_id: modalEditar.plano_contas?.id,
+        });
+        setContas((prev) => prev.map((c) => c.id === modalEditar.id ? { ...c, descricao: res.data.descricao, valor: res.data.valor, data_vencimento: new Date(res.data.data_vencimento) } : c));
+        toast.success("Conta atualizada");
+        setModalEditar(null);
+      } catch (e: unknown) { toast.error(e instanceof Error ? e.message : "Erro ao editar"); }
     });
   };
 
@@ -284,8 +319,13 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
                           <Undo2 className="size-3.5" />
                         </Button>
                       )}
+                      {c.status !== "PAGO" && c.status !== "CANCELADO" && (
+                        <Button size="icon" variant="ghost" className="size-7 text-muted-foreground hover:text-foreground" title="Editar conta" onClick={() => abrirEditar(c)}>
+                          <Pencil className="size-3.5" />
+                        </Button>
+                      )}
                       {c.status !== "PAGO" && (
-                        <Button size="icon" variant="ghost" className="size-7 text-destructive hover:text-destructive" onClick={() => setExcluindo(c)}>
+                        <Button size="icon" variant="ghost" className="size-7 text-destructive hover:text-destructive" title="Excluir conta" onClick={() => setExcluindo(c)}>
                           <Trash2 className="size-3.5" />
                         </Button>
                       )}
@@ -456,6 +496,36 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
             <DialogFooter>
               <Button type="button" variant="outline" onClick={() => setModalBaixar(null)}>Cancelar</Button>
               <Button type="submit" disabled={isPending}>{isPending ? "Salvando..." : "Confirmar"}</Button>
+            </DialogFooter>
+          </form>
+        </DialogContent>
+      </Dialog>
+
+      {/* Modal editar */}
+      <Dialog open={!!modalEditar} onOpenChange={(v) => !v && setModalEditar(null)}>
+        <DialogContent className="max-w-md">
+          <DialogHeader><DialogTitle>Editar conta a pagar</DialogTitle></DialogHeader>
+          <form onSubmit={formEditar.handleSubmit(onSubmitEditar)} className="space-y-3">
+            <div className="space-y-1">
+              <Label>Descrição *</Label>
+              <Input {...formEditar.register("descricao")} />
+              {formEditar.formState.errors.descricao && <p className="text-xs text-destructive">{formEditar.formState.errors.descricao.message}</p>}
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1">
+                <Label>Valor (R$) *</Label>
+                <Input {...formEditar.register("valor")} type="number" step="0.01" min="0.01" />
+                {formEditar.formState.errors.valor && <p className="text-xs text-destructive">{formEditar.formState.errors.valor.message}</p>}
+              </div>
+              <div className="space-y-1">
+                <Label>Vencimento *</Label>
+                <Input {...formEditar.register("data_vencimento")} type="date" />
+                {formEditar.formState.errors.data_vencimento && <p className="text-xs text-destructive">{formEditar.formState.errors.data_vencimento.message}</p>}
+              </div>
+            </div>
+            <DialogFooter>
+              <Button type="button" variant="outline" onClick={() => setModalEditar(null)}>Cancelar</Button>
+              <Button type="submit" disabled={isPending}>{isPending ? "Salvando..." : "Salvar"}</Button>
             </DialogFooter>
           </form>
         </DialogContent>
