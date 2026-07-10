@@ -25,7 +25,7 @@ export default async function CrmPage() {
     }),
     prisma.servico.findMany({
       where: { empresa_id: empresaId, ativo: true },
-      select: { id: true, nome: true },
+      select: { id: true, nome: true, canal: true, plano: true, valor_base: true },
       orderBy: { nome: "asc" },
     }),
     prisma.membroEmpresa.findMany({
@@ -49,7 +49,7 @@ export default async function CrmPage() {
         comentarios: l.comentarios.map((c) => ({ ...c, criado_em: c.criado_em.toISOString() })),
       }))}
       clientes={clientes}
-      servicos={servicos}
+      servicos={servicos.map((s) => ({ ...s, valor_base: s.valor_base ? Number(s.valor_base) : null }))}
       usuarios={usuarios}
     />
   );

@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import {
   Plus, Settings, List, Kanban, Trash2, ArrowRightLeft, X,
-  ChevronRight, MessageSquare, Send, RefreshCw,
+  ChevronRight, MessageSquare, Send, RefreshCw, Zap,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -30,6 +30,7 @@ import {
   criarLead, editarLead, excluirLead, moverLead,
   adicionarComentario, converterLead,
 } from "@/actions/crm";
+import { venderAssinaturaDoLead } from "@/actions/asaas";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -75,11 +76,19 @@ interface Lead {
   comentarios: ComentarioCrm[];
 }
 
+interface ServicoOpcao {
+  id: string;
+  nome: string;
+  canal: string | null;
+  plano: string | null;
+  valor_base: number | null;
+}
+
 interface Props {
   etapasIniciais: EtapaCrm[];
   leadsIniciais: Lead[];
   clientes: { id: string; nome: string }[];
-  servicos: { id: string; nome: string }[];
+  servicos: ServicoOpcao[];
   usuarios: { id: string; nome: string }[];
 }
 
@@ -156,6 +165,16 @@ export default function CrmClient({ etapasIniciais, leadsIniciais, clientes, ser
   const [excluirId, setExcluirId] = useState<string | null>(null);
   const [converterId, setConverterId] = useState<string | null>(null);
   const [convertOpcoes, setConvertOpcoes] = useState({ criarContrato: true, criarProjeto: true });
+
+  const [assinarLeadId, setAssinarLeadId] = useState<string | null>(null);
+  const [vendaForm, setVendaForm] = useState({
+    canal: "CONSELHO_AGRO",
+    plano: "NOVO_AGRO",
+    valor: "",
+    ciclo: "MONTHLY" as "MONTHLY" | "YEARLY" | "WEEKLY",
+    proximo_vencimento: new Date(Date.now() + 30 * 86400000).toISOString().slice(0, 10),
+    servico_id: "",
+  });
 
   const [novoComentario, setNovoComentario] = useState("");
   const [draggingId, setDraggingId] = useState<string | null>(null);
@@ -334,6 +353,27 @@ export default function CrmClient({ etapasIniciais, leadsIniciais, clientes, ser
         toast.success(`Convertido!${res.contratoId ? " Contrato criado." : ""}${res.projetoId ? " Projeto criado." : ""}`);
         setLeads((prev) => prev.map((l) => l.id === converterId ? { ...l, etapa_chave: "GANHO" } : l));
         setConverterId(null);
+      } catch (e) {
+        toast.error((e as Error).message);
+      }
+    });
+  }
+
+  function handleVenderAssinatura() {
+    if (!assinarLeadId || !vendaForm.valor) return;
+    startTransition(async () => {
+      try {
+        await venderAssinaturaDoLead(assinarLeadId, {
+          canal: vendaForm.canal,
+          plano: vendaForm.plano,
+          valor: Number(vendaForm.valor),
+          ciclo: vendaForm.ciclo,
+          proximo_vencimento: vendaForm.proximo_vencimento,
+          servico_id: vendaForm.servico_id || undefined,
+        });
+        setLeads((prev) => prev.map((l) => l.id === assinarLeadId ? { ...l, etapa_chave: "GANHO" } : l));
+        toast.success("Assinatura criada! Lead movido para Ganho.");
+        setAssinarLeadId(null);
       } catch (e) {
         toast.error((e as Error).message);
       }
@@ -554,6 +594,24 @@ export default function CrmClient({ etapasIniciais, leadsIniciais, clientes, ser
               <Button size="sm" variant="outline" className="h-7 text-xs" onClick={() => abrirEditar(selected)}>Editar</Button>
               <Button size="sm" variant="outline" className="h-7 text-xs" onClick={() => setConverterId(selected.id)}>
                 <ArrowRightLeft className="size-3.5 mr-1" /> Converter
+              </Button>
+              <Button
+                size="sm"
+                className="h-7 text-xs bg-emerald-600 hover:bg-emerald-700 text-white"
+                onClick={() => {
+                  const s = servicos.find((sv) => sv.canal === "CONSELHO_AGRO");
+                  setVendaForm({
+                    canal: "CONSELHO_AGRO",
+                    plano: "NOVO_AGRO",
+                    valor: s?.valor_base ? String(s.valor_base) : "",
+                    ciclo: "MONTHLY",
+                    proximo_vencimento: new Date(Date.now() + 30 * 86400000).toISOString().slice(0, 10),
+                    servico_id: s?.id ?? "",
+                  });
+                  setAssinarLeadId(selected.id);
+                }}
+              >
+                <Zap className="size-3.5 mr-1" /> Vender
               </Button>
               <Button size="sm" variant="ghost" className="h-7 text-xs text-destructive hover:text-destructive" onClick={() => setExcluirId(selected.id)}>
                 <Trash2 className="size-3.5" />
@@ -780,6 +838,120 @@ export default function CrmClient({ etapasIniciais, leadsIniciais, clientes, ser
             <Button variant="outline" onClick={() => setConverterId(null)}>Cancelar</Button>
             <Button onClick={handleConverter} disabled={isPending}>
               <RefreshCw className="size-3.5 mr-1.5" /> Converter
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* ── Modal vender assinatura ── */}
+      <Dialog open={!!assinarLeadId} onOpenChange={(o) => { if (!o) setAssinarLeadId(null); }}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Zap className="size-4 text-emerald-600" />
+              Vender assinatura
+            </DialogTitle>
+          </DialogHeader>
+          {assinarLeadId && (() => {
+            const lead = leads.find((l) => l.id === assinarLeadId);
+            const planosAgro = ["NOVO_AGRO", "MESA_AGRO", "CONSULTORIA_AGRO"];
+            const planosArato = ["ESSENCIAL", "GESTAO", "PERFORMANCE"];
+            const planos = vendaForm.canal === "ARATO" ? planosArato : planosAgro;
+            const PLANO_LABELS: Record<string, string> = {
+              NOVO_AGRO: "O Novo Agro", MESA_AGRO: "Mesa de Conselheiros", CONSULTORIA_AGRO: "Conselheiro Executivo",
+              ESSENCIAL: "Essencial", GESTAO: "Gestão", PERFORMANCE: "Performance",
+            };
+            return (
+              <div className="space-y-4 py-1">
+                {lead && (
+                  <div className="rounded-lg bg-muted/50 px-4 py-2.5 text-sm">
+                    <p className="font-medium">{lead.empresa_nome || lead.nome}</p>
+                    {lead.email && <p className="text-xs text-muted-foreground">{lead.email}</p>}
+                  </div>
+                )}
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-medium">Canal</label>
+                    <Select
+                      value={vendaForm.canal}
+                      onValueChange={(v) => {
+                        if (!v) return;
+                        const primPlano = v === "ARATO" ? "ESSENCIAL" : "NOVO_AGRO";
+                        const s = servicos.find((sv) => sv.canal === v && sv.plano === primPlano);
+                        setVendaForm((f) => ({ ...f, canal: v, plano: primPlano, servico_id: s?.id ?? "", valor: s?.valor_base != null ? String(s.valor_base) : f.valor }));
+                      }}
+                    >
+                      <SelectTrigger className="h-9"><SelectValue /></SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="CONSELHO_AGRO">O Conselho Agro</SelectItem>
+                        <SelectItem value="ARATO">Arato</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-medium">Plano</label>
+                    <Select
+                      value={vendaForm.plano}
+                      onValueChange={(v) => {
+                        if (!v) return;
+                        const s = servicos.find((sv) => sv.canal === vendaForm.canal && sv.plano === v);
+                        setVendaForm((f) => ({ ...f, plano: v, servico_id: s?.id ?? "", valor: s?.valor_base != null ? String(s.valor_base) : f.valor }));
+                      }}
+                    >
+                      <SelectTrigger className="h-9"><SelectValue /></SelectTrigger>
+                      <SelectContent>
+                        {planos.map((p) => <SelectItem key={p} value={p}>{PLANO_LABELS[p]}</SelectItem>)}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-medium">Valor mensal (R$)</label>
+                    <Input
+                      type="number"
+                      step="0.01"
+                      className="h-9"
+                      value={vendaForm.valor}
+                      onChange={(e) => setVendaForm((f) => ({ ...f, valor: e.target.value }))}
+                      placeholder="0,00"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-medium">Ciclo</label>
+                    <Select value={vendaForm.ciclo} onValueChange={(v) => setVendaForm((f) => ({ ...f, ciclo: v as "MONTHLY" | "YEARLY" | "WEEKLY" }))}>
+                      <SelectTrigger className="h-9"><SelectValue /></SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="MONTHLY">Mensal</SelectItem>
+                        <SelectItem value="YEARLY">Anual</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                <div className="space-y-1.5">
+                  <label className="text-xs font-medium">Primeiro vencimento</label>
+                  <Input
+                    type="date"
+                    className="h-9"
+                    value={vendaForm.proximo_vencimento}
+                    onChange={(e) => setVendaForm((f) => ({ ...f, proximo_vencimento: e.target.value }))}
+                  />
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  Um cliente será criado automaticamente e a assinatura sincronizada com o Asaas.
+                </p>
+              </div>
+            );
+          })()}
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setAssinarLeadId(null)}>Cancelar</Button>
+            <Button
+              onClick={handleVenderAssinatura}
+              disabled={isPending || !vendaForm.valor}
+              className="bg-emerald-600 hover:bg-emerald-700 text-white"
+            >
+              <Zap className="size-3.5 mr-1.5" />
+              {isPending ? "Criando..." : "Confirmar venda"}
             </Button>
           </DialogFooter>
         </DialogContent>

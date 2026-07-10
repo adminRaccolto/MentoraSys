@@ -417,3 +417,118 @@ export async function pausarAssinatura(id: string) {
   revalidatePath("/financeiro/assinaturas");
   return { ok: true };
 }
+
+// ─── VENDA DIRETA DO CRM ─────────────────────────────────────────────────────
+
+const schemaVendaLead = z.object({
+  canal:               z.string().min(1),
+  plano:               z.string().min(1),
+  valor:               z.coerce.number().positive(),
+  ciclo:               z.enum(["MONTHLY", "YEARLY", "WEEKLY"]).default("MONTHLY"),
+  proximo_vencimento:  z.string().min(1),
+  servico_id:          z.string().optional(),
+});
+
+export async function venderAssinaturaDoLead(
+  leadId: string,
+  input: z.input<typeof schemaVendaLead>,
+) {
+  await verificarPermissao("financeiro", "criar");
+  const empresaId = await obterEmpresaAtiva();
+  const data = schemaVendaLead.parse(input);
+
+  const lead = await prisma.lead.findFirst({
+    where: { id: leadId, empresa_id: empresaId },
+    include: { cliente: true },
+  });
+  if (!lead) throw new Error("Lead não encontrado.");
+
+  // Cria Cliente se não existir
+  let clienteId = lead.cliente_id;
+  if (!clienteId) {
+    const novoCliente = await prisma.cliente.create({
+      data: {
+        empresa_id: empresaId,
+        nome: lead.empresa_nome || lead.nome,
+        tipo: "PESSOA_JURIDICA",
+        email: lead.email ?? null,
+        telefone: lead.telefone ?? null,
+        whatsapp: lead.whatsapp ?? null,
+      },
+    });
+    clienteId = novoCliente.id;
+    await prisma.lead.update({ where: { id: leadId }, data: { cliente_id: clienteId } });
+  }
+
+  // Sync Asaas customer
+  let asaasCustomerId: string | null = lead.cliente?.asaas_id ?? null;
+  if (!asaasCustomerId && (lead.email || lead.cliente?.cpf_cnpj)) {
+    try {
+      const customer = await asaasGetOrCreateCustomer(
+        lead.empresa_nome || lead.nome,
+        lead.cliente?.cpf_cnpj ?? undefined,
+        lead.email ?? undefined,
+      );
+      asaasCustomerId = customer.id;
+      await prisma.cliente.update({ where: { id: clienteId }, data: { asaas_id: customer.id } });
+    } catch (err) {
+      console.error("[venderAssinaturaDoLead] erro Asaas customer:", err);
+    }
+  }
+
+  // Cria assinatura Asaas
+  let asaasSubscriptionId: string | null = null;
+  if (asaasCustomerId) {
+    try {
+      const sub = await asaasCreateSubscription({
+        customerId: asaasCustomerId,
+        billingType: "BOLETO",
+        cycle: data.ciclo,
+        valor: data.valor,
+        proximoVencimento: data.proximo_vencimento,
+        descricao: `${data.canal} — ${data.plano}`,
+        externalRef: `empresa:${empresaId}:canal:${data.canal}:plano:${data.plano}`,
+      });
+      asaasSubscriptionId = sub.id;
+    } catch (err) {
+      console.error("[venderAssinaturaDoLead] erro Asaas subscription:", err);
+    }
+  }
+
+  // Cria Assinatura local
+  const assinatura = await prisma.assinatura.create({
+    data: {
+      empresa_id:            empresaId,
+      cliente_id:            clienteId,
+      servico_id:            data.servico_id || null,
+      nome_cliente:          lead.empresa_nome || lead.nome,
+      email_cliente:         lead.email ?? null,
+      telefone_cliente:      lead.telefone ?? null,
+      canal:                 data.canal,
+      plano:                 data.plano,
+      valor:                 data.valor,
+      ciclo:                 data.ciclo,
+      status:                "ATIVA",
+      asaas_subscription_id: asaasSubscriptionId,
+      asaas_customer_id:     asaasCustomerId,
+      proximo_vencimento:    new Date(`${data.proximo_vencimento}T12:00:00`),
+    },
+  });
+
+  // Move lead para GANHO
+  const etapaGanho = await prisma.etapaCrm.findFirst({
+    where: { empresa_id: empresaId, chave: "GANHO" },
+  });
+  await prisma.lead.update({
+    where: { id: leadId },
+    data: {
+      etapa_chave: "GANHO",
+      etapa_id:    etapaGanho?.id ?? lead.etapa_id,
+    },
+  });
+
+  await registrar({ recurso: "financeiro", acao: "criar_assinatura", registroId: assinatura.id, detalhes: { origem: "crm_lead", leadId } });
+  revalidatePath("/crm");
+  revalidatePath("/financeiro/assinaturas");
+  return { ok: true, assinaturaId: assinatura.id };
+}
