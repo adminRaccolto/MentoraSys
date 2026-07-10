@@ -11,7 +11,7 @@ export default async function ConfiguracoesPage() {
   const [empresa, usuario, membros, perfisComPermissoes, convitesPendentes, minhasEmpresas] = await Promise.all([
     prisma.empresa.findUnique({
       where: { id: empresaId },
-      select: { id: true, nome: true, cnpj: true, logo_url: true, plano: true, configuracoes: true },
+      select: { id: true, nome: true, cnpj: true, logo_url: true, plano: true, configuracoes: true, asaas_api_key: true },
     }),
     user
       ? prisma.usuario.findUnique({
@@ -122,6 +122,7 @@ export default async function ConfiguracoesPage() {
         logo_url: m.empresa.logo_url ?? null,
         plano: m.empresa.plano,
       }))}
+      temChaveAsaas={!!empresa.asaas_api_key}
     />
   );
 }

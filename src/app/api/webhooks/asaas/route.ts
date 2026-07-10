@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
-import { asaasGetCustomer } from "@/lib/asaas";
+import { asaasGetCustomer, obterChaveAsaas } from "@/lib/asaas";
 
 // Eventos Asaas que nos interessam
 // Docs: https://docs.asaas.com/reference/webhooks
@@ -182,7 +182,8 @@ async function handleSubscriptionUpdated(sub: Record<string, unknown>, event: st
         let nomeCliente = asaasCustomerId;
         let clienteId: string | null = null;
         try {
-          const customer = await asaasGetCustomer(asaasCustomerId);
+          const apiKey = await obterChaveAsaas(empresaId);
+          const customer = await asaasGetCustomer(asaasCustomerId, apiKey);
           nomeCliente = customer.name;
 
           // Verifica se já existe cliente com este asaas_id

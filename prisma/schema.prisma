@@ -31,8 +31,9 @@ model Empresa {
   logo_url      String?
   plano         PlanoTipo     @default(BASICO)
   status        StatusEmpresa @default(ATIVA)
-  configuracoes Json          @default("{}")
-  criado_em     DateTime      @default(now())
+  configuracoes  Json          @default("{}")
+  asaas_api_key  String?
+  criado_em      DateTime      @default(now())
   atualizado_em DateTime      @updatedAt
 
   membros    MembroEmpresa[]

@@ -35,6 +35,8 @@ import {
   uploadLogoAction,
   uploadAvatarAction,
   salvarConfigFiscal,
+  salvarChaveAsaas,
+  removerChaveAsaas,
   uploadCertificadoAction,
   removerCertificado,
 } from "@/actions/configuracoes";
@@ -154,6 +156,7 @@ interface Props {
   usuarioAtualId: string | null;
   empresaAtualId: string;
   minhasEmpresas: { id: string; nome: string; logo_url: string | null; plano: string }[];
+  temChaveAsaas: boolean;
 }
 
 const PLANO_LABELS: Record<string, string> = {
@@ -320,10 +323,13 @@ function ImageUploadZone({
   );
 }
 
-export default function ConfiguracoesClient({ empresa, usuario, membros: membrosInicial, perfis: perfisInicial, convitesPendentes: convitesInicial, usuarioAtualId, empresaAtualId, minhasEmpresas: minhasEmpresasInicial }: Props) {
+export default function ConfiguracoesClient({ empresa, usuario, membros: membrosInicial, perfis: perfisInicial, convitesPendentes: convitesInicial, usuarioAtualId, empresaAtualId, minhasEmpresas: minhasEmpresasInicial, temChaveAsaas: temChaveAsaasInicial }: Props) {
   const [isPendingEmpresa, startEmpresa] = useTransition();
   const [isPendingPerfil, startPerfil] = useTransition();
   const [isPendingFiscal, startFiscal] = useTransition();
+  const [isPendingAsaas, startAsaas] = useTransition();
+  const [temChaveAsaas, setTemChaveAsaas] = useState(temChaveAsaasInicial);
+  const [novaChaveAsaas, setNovaChaveAsaas] = useState("");
   const [temCertificado, setTemCertificado] = useState(!!empresa.certificado_path);
   const [uploadandoCert, setUploadandoCert] = useState(false);
   const certInputRef = useRef<HTMLInputElement>(null);
@@ -577,6 +583,34 @@ export default function ConfiguracoesClient({ empresa, usuario, membros: membros
     }
   };
 
+  const handleSalvarChaveAsaas = () => {
+    const chave = novaChaveAsaas.trim();
+    if (!chave) { toast.error("Informe a chave de API"); return; }
+    if (!chave.startsWith("$aact_")) { toast.error("Chave inválida — deve começar com $aact_"); return; }
+    startAsaas(async () => {
+      try {
+        await salvarChaveAsaas({ chave });
+        setTemChaveAsaas(true);
+        setNovaChaveAsaas("");
+        toast.success("Chave Asaas salva com sucesso");
+      } catch (e: unknown) {
+        toast.error(e instanceof Error ? e.message : "Erro ao salvar chave");
+      }
+    });
+  };
+
+  const handleRemoverChaveAsaas = () => {
+    startAsaas(async () => {
+      try {
+        await removerChaveAsaas();
+        setTemChaveAsaas(false);
+        toast.success("Chave Asaas removida");
+      } catch {
+        toast.error("Erro ao remover chave");
+      }
+    });
+  };
+
   return (
     <div className="p-6 space-y-8 max-w-4xl">
       <div className="flex items-center gap-2">
@@ -814,6 +848,54 @@ export default function ConfiguracoesClient({ empresa, usuario, membros: membros
               </Button>
             </div>
           </form>
+        </div>
+      </section>
+
+      {/* ── Asaas — Chave de API ── */}
+      <section className="rounded-xl border bg-card">
+        <div className="px-6 py-4 border-b flex items-center gap-2">
+          <KeyRound className="size-4 text-primary" />
+          <h2 className="font-semibold">Integração Asaas</h2>
+          {temChaveAsaas
+            ? <Badge className="ml-auto bg-emerald-100 text-emerald-700 border-emerald-200">Configurada</Badge>
+            : <Badge variant="outline" className="ml-auto text-muted-foreground">Não configurada</Badge>
+          }
+        </div>
+        <div className="px-6 py-6 space-y-4">
+          <p className="text-sm text-muted-foreground">
+            Chave de API Asaas desta empresa. Cada empresa deve ter sua própria conta Asaas e sua chave de produção (começa com <code className="font-mono text-xs bg-muted px-1 rounded">$aact_</code>).
+          </p>
+          {temChaveAsaas && (
+            <div className="flex items-center gap-3 rounded-lg border bg-emerald-50 dark:bg-emerald-950/20 px-4 py-3">
+              <Check className="size-4 text-emerald-600 shrink-0" />
+              <span className="text-sm text-emerald-700 dark:text-emerald-400 flex-1">Chave configurada e ativa para esta empresa.</span>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-destructive hover:text-destructive"
+                disabled={isPendingAsaas}
+                onClick={handleRemoverChaveAsaas}
+              >
+                {isPendingAsaas ? <Loader2 className="size-4 animate-spin" /> : <Trash2 className="size-4" />}
+              </Button>
+            </div>
+          )}
+          <div className="flex gap-2">
+            <Input
+              className="h-9 text-sm font-mono flex-1"
+              placeholder="$aact_..."
+              value={novaChaveAsaas}
+              onChange={(e) => setNovaChaveAsaas(e.target.value)}
+              type="password"
+            />
+            <Button
+              size="sm"
+              disabled={isPendingAsaas || !novaChaveAsaas.trim()}
+              onClick={handleSalvarChaveAsaas}
+            >
+              {isPendingAsaas ? <Loader2 className="size-4 animate-spin" /> : temChaveAsaas ? "Substituir" : "Salvar"}
+            </Button>
+          </div>
         </div>
       </section>
 

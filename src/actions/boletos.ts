@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { verificarPermissao, obterEmpresaAtiva } from "@/lib/permissoes";
 import { registrar } from "@/lib/auditoria";
-import { asaasGetOrCreateCustomer, asaasCreateBoleto, asaasGetPayment, asaasGetBarCode, asaasCancelPayment } from "@/lib/asaas";
+import { asaasGetOrCreateCustomer, asaasCreateBoleto, asaasGetPayment, asaasGetBarCode, asaasCancelPayment, obterChaveAsaas } from "@/lib/asaas";
 
 export async function gerarBoleto(recebivelId: string) {
   await verificarPermissao("financeiro", "criar");
@@ -18,11 +18,13 @@ export async function gerarBoleto(recebivelId: string) {
   if (recebivel.status === "PAGO") throw new Error("Recebível já foi baixado");
   if (recebivel.boleto) throw new Error("Este recebível já possui um boleto gerado");
 
-  // Garante ou cria o customer no Asaas
+  const apiKey = await obterChaveAsaas(empresaId);
+
   const customer = await asaasGetOrCreateCustomer(
     recebivel.cliente?.nome ?? "Cliente",
     recebivel.cliente?.cpf_cnpj ?? undefined,
     recebivel.cliente?.email ?? undefined,
+    apiKey,
   );
 
   const vencimento = recebivel.data_vencimento.toISOString().split("T")[0];
@@ -33,13 +35,13 @@ export async function gerarBoleto(recebivelId: string) {
     vencimento,
     descricao: recebivel.descricao,
     externalRef: recebivel.id,
-  });
+  }, apiKey);
 
   // Busca linha digitável
   let linhaDigitavel: string | null = null;
   let codigoBarras: string | null = null;
   try {
-    const barCode = await asaasGetBarCode(payment.id);
+    const barCode = await asaasGetBarCode(payment.id, apiKey);
     linhaDigitavel = barCode.identificationField ?? null;
     codigoBarras   = barCode.barCode ?? null;
   } catch { /* não crítico */ }
@@ -75,7 +77,8 @@ export async function consultarBoleto(boletoId: string) {
   if (!boleto) throw new Error("Boleto não encontrado");
   if (!boleto.asaas_id) throw new Error("Boleto sem ID Asaas");
 
-  const payment = await asaasGetPayment(boleto.asaas_id);
+  const apiKey = await obterChaveAsaas(empresaId);
+  const payment = await asaasGetPayment(boleto.asaas_id, apiKey);
 
   const updated = await prisma.boleto.update({
     where: { id: boletoId },
@@ -98,8 +101,9 @@ export async function cancelarBoleto(boletoId: string) {
   const boleto = await prisma.boleto.findFirst({ where: { id: boletoId, empresa_id: empresaId } });
   if (!boleto) throw new Error("Boleto não encontrado");
 
+  const apiKey = await obterChaveAsaas(empresaId);
   if (boleto.asaas_id) {
-    try { await asaasCancelPayment(boleto.asaas_id); } catch { /* ignora se já cancelado */ }
+    try { await asaasCancelPayment(boleto.asaas_id, apiKey); } catch { /* ignora se já cancelado */ }
   }
 
   await prisma.boleto.delete({ where: { id: boletoId } });

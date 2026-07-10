@@ -8,7 +8,7 @@ import { verificarPermissao, obterEmpresaAtiva } from "@/lib/permissoes";
 import { createClient } from "@/lib/supabase/server";
 import { registrar } from "@/lib/auditoria";
 import { nfsioEmitirNota, nfsioConsultarNota, nfsioCancelarNota } from "@/lib/nfsio";
-import { asaasGetOrCreateCustomer, asaasEmitirNFSe, asaasConsultarNFSe, asaasCancelarNFSe } from "@/lib/asaas";
+import { asaasGetOrCreateCustomer, asaasEmitirNFSe, asaasConsultarNFSe, asaasCancelarNFSe, obterChaveAsaas } from "@/lib/asaas";
 import { enviarLembrete } from "@/lib/email";
 
 const schemaCreate = z.object({
@@ -122,18 +122,20 @@ export async function emitirNota(id: string, input: InputEmitir) {
     numeroNfse = nfse.number ?? null;
     pdfUrl     = nfse.pdfUrl ?? null;
     xmlUrl     = nfse.xmlUrl ?? null;
-  } else if (data.usar_asaas && process.env.ASAAS_API_KEY) {
+  } else if (data.usar_asaas) {
+    const apiKey = await obterChaveAsaas(empresaId);
     const customer = await asaasGetOrCreateCustomer(
       nota.cliente.nome,
       nota.cliente.cpf_cnpj ?? undefined,
       nota.cliente.email ?? undefined,
+      apiKey,
     );
     const invoice = await asaasEmitirNFSe({
       customerId:    customer.id,
       valor:         Number(nota.valor),
       descricao:     nota.descricao,
       codigoServico: data.codigo_servico || undefined,
-    });
+    }, apiKey);
     asaasInvoiceId = invoice.id;
     nfseProvider   = "asaas";
     numeroNfse     = invoice.number ?? null;
@@ -172,7 +174,8 @@ export async function consultarStatusNfse(id: string) {
   if (!nota) throw new Error("Nota não encontrada");
 
   if (nota.nfse_provider === "asaas" && nota.asaas_invoice_id) {
-    const invoice = await asaasConsultarNFSe(nota.asaas_invoice_id);
+    const apiKey = await obterChaveAsaas(empresaId);
+    const invoice = await asaasConsultarNFSe(nota.asaas_invoice_id, apiKey);
     await prisma.notaFiscal.update({
       where: { id },
       data: {
@@ -209,7 +212,8 @@ export async function cancelarNotaNfsio(id: string) {
   if (!nota) throw new Error("Nota não encontrada");
 
   if (nota.nfse_provider === "asaas" && nota.asaas_invoice_id) {
-    try { await asaasCancelarNFSe(nota.asaas_invoice_id); } catch { /* ignora */ }
+    const apiKey = await obterChaveAsaas(empresaId);
+    try { await asaasCancelarNFSe(nota.asaas_invoice_id, apiKey); } catch { /* ignora */ }
   } else if (nota.nfsio_id) {
     try { await nfsioCancelarNota(nota.nfsio_id); } catch { /* ignora */ }
   }

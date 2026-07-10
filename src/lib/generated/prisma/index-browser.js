@@ -129,6 +129,7 @@ exports.Prisma.EmpresaScalarFieldEnum = {
   plano: 'plano',
   status: 'status',
   configuracoes: 'configuracoes',
+  asaas_api_key: 'asaas_api_key',
   criado_em: 'criado_em',
   atualizado_em: 'atualizado_em'
 };

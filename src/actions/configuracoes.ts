@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { createClient as createSupabaseAdmin } from "@supabase/supabase-js";
 import { prisma } from "@/lib/prisma";
-import { obterEmpresaAtiva } from "@/lib/permissoes";
+import { obterEmpresaAtiva, verificarPermissao } from "@/lib/permissoes";
 import { createClient } from "@/lib/supabase/server";
 
 function adminClient() {
@@ -269,4 +269,46 @@ export async function removerCertificado() {
 
   revalidatePath("/configuracoes");
   return { ok: true };
+}
+
+// ─── Chave de API Asaas por empresa ──────────────────────────────────────────
+
+const schemaChaveAsaas = z.object({
+  chave: z.string().min(1, "Chave obrigatória").startsWith("$aact_", "Chave inválida — deve começar com $aact_"),
+});
+
+export async function salvarChaveAsaas(input: z.input<typeof schemaChaveAsaas>) {
+  await verificarPermissao("configuracoes", "editar");
+  const empresaId = await obterEmpresaAtiva();
+  const { chave } = schemaChaveAsaas.parse(input);
+
+  await prisma.empresa.update({
+    where: { id: empresaId },
+    data: { asaas_api_key: chave },
+  });
+
+  revalidatePath("/configuracoes");
+  return { ok: true };
+}
+
+export async function removerChaveAsaas() {
+  await verificarPermissao("configuracoes", "editar");
+  const empresaId = await obterEmpresaAtiva();
+
+  await prisma.empresa.update({
+    where: { id: empresaId },
+    data: { asaas_api_key: null },
+  });
+
+  revalidatePath("/configuracoes");
+  return { ok: true };
+}
+
+export async function obterChaveAsaasConfigurada(): Promise<boolean> {
+  const empresaId = await obterEmpresaAtiva();
+  const empresa = await prisma.empresa.findUnique({
+    where: { id: empresaId },
+    select: { asaas_api_key: true },
+  });
+  return !!empresa?.asaas_api_key;
 }

@@ -7286,6 +7286,7 @@ export namespace Prisma {
     logo_url: string | null
     plano: $Enums.PlanoTipo | null
     status: $Enums.StatusEmpresa | null
+    asaas_api_key: string | null
     criado_em: Date | null
     atualizado_em: Date | null
   }
@@ -7298,6 +7299,7 @@ export namespace Prisma {
     logo_url: string | null
     plano: $Enums.PlanoTipo | null
     status: $Enums.StatusEmpresa | null
+    asaas_api_key: string | null
     criado_em: Date | null
     atualizado_em: Date | null
   }
@@ -7311,6 +7313,7 @@ export namespace Prisma {
     plano: number
     status: number
     configuracoes: number
+    asaas_api_key: number
     criado_em: number
     atualizado_em: number
     _all: number
@@ -7325,6 +7328,7 @@ export namespace Prisma {
     logo_url?: true
     plano?: true
     status?: true
+    asaas_api_key?: true
     criado_em?: true
     atualizado_em?: true
   }
@@ -7337,6 +7341,7 @@ export namespace Prisma {
     logo_url?: true
     plano?: true
     status?: true
+    asaas_api_key?: true
     criado_em?: true
     atualizado_em?: true
   }
@@ -7350,6 +7355,7 @@ export namespace Prisma {
     plano?: true
     status?: true
     configuracoes?: true
+    asaas_api_key?: true
     criado_em?: true
     atualizado_em?: true
     _all?: true
@@ -7436,6 +7442,7 @@ export namespace Prisma {
     plano: $Enums.PlanoTipo
     status: $Enums.StatusEmpresa
     configuracoes: JsonValue
+    asaas_api_key: string | null
     criado_em: Date
     atualizado_em: Date
     _count: EmpresaCountAggregateOutputType | null
@@ -7466,6 +7473,7 @@ export namespace Prisma {
     plano?: boolean
     status?: boolean
     configuracoes?: boolean
+    asaas_api_key?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     membros?: boolean | Empresa$membrosArgs<ExtArgs>
@@ -7512,6 +7520,7 @@ export namespace Prisma {
     plano?: boolean
     status?: boolean
     configuracoes?: boolean
+    asaas_api_key?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
   }, ExtArgs["result"]["empresa"]>
@@ -7525,6 +7534,7 @@ export namespace Prisma {
     plano?: boolean
     status?: boolean
     configuracoes?: boolean
+    asaas_api_key?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
   }, ExtArgs["result"]["empresa"]>
@@ -7538,11 +7548,12 @@ export namespace Prisma {
     plano?: boolean
     status?: boolean
     configuracoes?: boolean
+    asaas_api_key?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
   }
 
-  export type EmpresaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nome" | "slug" | "cnpj" | "logo_url" | "plano" | "status" | "configuracoes" | "criado_em" | "atualizado_em", ExtArgs["result"]["empresa"]>
+  export type EmpresaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nome" | "slug" | "cnpj" | "logo_url" | "plano" | "status" | "configuracoes" | "asaas_api_key" | "criado_em" | "atualizado_em", ExtArgs["result"]["empresa"]>
   export type EmpresaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     membros?: boolean | Empresa$membrosArgs<ExtArgs>
     perfis?: boolean | Empresa$perfisArgs<ExtArgs>
@@ -7626,6 +7637,7 @@ export namespace Prisma {
       plano: $Enums.PlanoTipo
       status: $Enums.StatusEmpresa
       configuracoes: Prisma.JsonValue
+      asaas_api_key: string | null
       criado_em: Date
       atualizado_em: Date
     }, ExtArgs["result"]["empresa"]>
@@ -8091,6 +8103,7 @@ export namespace Prisma {
     readonly plano: FieldRef<"Empresa", 'PlanoTipo'>
     readonly status: FieldRef<"Empresa", 'StatusEmpresa'>
     readonly configuracoes: FieldRef<"Empresa", 'Json'>
+    readonly asaas_api_key: FieldRef<"Empresa", 'String'>
     readonly criado_em: FieldRef<"Empresa", 'DateTime'>
     readonly atualizado_em: FieldRef<"Empresa", 'DateTime'>
   }
@@ -72689,6 +72702,7 @@ export namespace Prisma {
     plano: 'plano',
     status: 'status',
     configuracoes: 'configuracoes',
+    asaas_api_key: 'asaas_api_key',
     criado_em: 'criado_em',
     atualizado_em: 'atualizado_em'
   };
@@ -74053,6 +74067,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFilter<"Empresa"> | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFilter<"Empresa"> | $Enums.StatusEmpresa
     configuracoes?: JsonFilter<"Empresa">
+    asaas_api_key?: StringNullableFilter<"Empresa"> | string | null
     criado_em?: DateTimeFilter<"Empresa"> | Date | string
     atualizado_em?: DateTimeFilter<"Empresa"> | Date | string
     membros?: MembroEmpresaListRelationFilter
@@ -74098,6 +74113,7 @@ export namespace Prisma {
     plano?: SortOrder
     status?: SortOrder
     configuracoes?: SortOrder
+    asaas_api_key?: SortOrderInput | SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     membros?: MembroEmpresaOrderByRelationAggregateInput
@@ -74146,6 +74162,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFilter<"Empresa"> | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFilter<"Empresa"> | $Enums.StatusEmpresa
     configuracoes?: JsonFilter<"Empresa">
+    asaas_api_key?: StringNullableFilter<"Empresa"> | string | null
     criado_em?: DateTimeFilter<"Empresa"> | Date | string
     atualizado_em?: DateTimeFilter<"Empresa"> | Date | string
     membros?: MembroEmpresaListRelationFilter
@@ -74191,6 +74208,7 @@ export namespace Prisma {
     plano?: SortOrder
     status?: SortOrder
     configuracoes?: SortOrder
+    asaas_api_key?: SortOrderInput | SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     _count?: EmpresaCountOrderByAggregateInput
@@ -74210,6 +74228,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoWithAggregatesFilter<"Empresa"> | $Enums.PlanoTipo
     status?: EnumStatusEmpresaWithAggregatesFilter<"Empresa"> | $Enums.StatusEmpresa
     configuracoes?: JsonWithAggregatesFilter<"Empresa">
+    asaas_api_key?: StringNullableWithAggregatesFilter<"Empresa"> | string | null
     criado_em?: DateTimeWithAggregatesFilter<"Empresa"> | Date | string
     atualizado_em?: DateTimeWithAggregatesFilter<"Empresa"> | Date | string
   }
@@ -79194,6 +79213,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -79239,6 +79259,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -79284,6 +79305,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -79329,6 +79351,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -79374,6 +79397,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -79387,6 +79411,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -79400,6 +79425,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -85207,6 +85233,7 @@ export namespace Prisma {
     plano?: SortOrder
     status?: SortOrder
     configuracoes?: SortOrder
+    asaas_api_key?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -85219,6 +85246,7 @@ export namespace Prisma {
     logo_url?: SortOrder
     plano?: SortOrder
     status?: SortOrder
+    asaas_api_key?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -85231,6 +85259,7 @@ export namespace Prisma {
     logo_url?: SortOrder
     plano?: SortOrder
     status?: SortOrder
+    asaas_api_key?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -100369,6 +100398,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     perfis?: PerfilCreateNestedManyWithoutEmpresaInput
@@ -100413,6 +100443,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     perfis?: PerfilUncheckedCreateNestedManyWithoutEmpresaInput
@@ -100567,6 +100598,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     perfis?: PerfilUpdateManyWithoutEmpresaNestedInput
@@ -100611,6 +100643,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     perfis?: PerfilUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -100686,6 +100719,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -100730,6 +100764,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -100834,6 +100869,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -100878,6 +100914,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -101096,6 +101133,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -101140,6 +101178,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -101263,6 +101302,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -101307,6 +101347,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -101420,6 +101461,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -101464,6 +101506,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -101676,6 +101719,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -101720,6 +101764,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -101928,6 +101973,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -101972,6 +102018,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -102829,6 +102876,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -102873,6 +102921,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -103383,6 +103432,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -103427,6 +103477,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -103716,6 +103767,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -103760,6 +103812,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -103923,6 +103976,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -103967,6 +104021,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -104095,6 +104150,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -104139,6 +104195,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -104463,6 +104520,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -104507,6 +104565,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -104926,6 +104985,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -104970,6 +105030,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -105333,6 +105394,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -105377,6 +105439,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -105874,6 +105937,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -105918,6 +105982,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -106804,6 +106869,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -106848,6 +106914,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -107477,6 +107544,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -107521,6 +107589,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -107996,6 +108065,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -108040,6 +108110,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -108638,6 +108709,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -108682,6 +108754,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -111352,6 +111425,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -111396,6 +111470,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -111474,6 +111549,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -111518,6 +111594,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -111726,6 +111803,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -111770,6 +111848,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -111937,6 +112016,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -111981,6 +112061,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -112092,6 +112173,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -112136,6 +112218,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -112529,6 +112612,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -112573,6 +112657,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -112980,6 +113065,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -113024,6 +113110,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -113331,6 +113418,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -113375,6 +113463,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -113590,6 +113679,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -113634,6 +113724,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -113897,6 +113988,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -113941,6 +114033,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -114074,6 +114167,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -114118,6 +114212,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -114268,6 +114363,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -114312,6 +114408,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -114458,6 +114555,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -114502,6 +114600,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -114737,6 +114836,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -114781,6 +114881,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -114914,6 +115015,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -114958,6 +115060,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -115484,6 +115587,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -115528,6 +115632,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -116086,6 +116191,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -116130,6 +116236,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -116364,6 +116471,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -116408,6 +116516,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -116650,6 +116759,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -116694,6 +116804,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -116754,6 +116865,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -116798,6 +116910,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -116842,6 +116955,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -116886,6 +117000,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -117250,6 +117365,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -117294,6 +117410,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -117666,6 +117783,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -117710,6 +117828,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -117770,6 +117889,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -117814,6 +117934,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -117858,6 +117979,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -117902,6 +118024,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -117962,6 +118085,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -118006,6 +118130,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -118050,6 +118175,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -118094,6 +118220,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -118415,6 +118542,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -118459,6 +118587,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -118782,6 +118911,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -118826,6 +118956,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -119046,6 +119177,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -119090,6 +119222,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -119306,6 +119439,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -119350,6 +119484,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -119550,6 +119685,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -119594,6 +119730,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -119974,6 +120111,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -120018,6 +120156,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -120218,6 +120357,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -120262,6 +120402,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -120458,6 +120599,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -120502,6 +120644,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -120604,6 +120747,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -120648,6 +120792,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -120928,6 +121073,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -120972,6 +121118,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -121032,6 +121179,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -121076,6 +121224,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -121120,6 +121269,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -121164,6 +121314,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -121267,6 +121418,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -121311,6 +121463,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -121404,6 +121557,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
@@ -121448,6 +121602,7 @@ export namespace Prisma {
     plano?: $Enums.PlanoTipo
     status?: $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -121640,6 +121795,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
@@ -121684,6 +121840,7 @@ export namespace Prisma {
     plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
     status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
     configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput

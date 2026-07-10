@@ -16,6 +16,7 @@ import {
   asaasUpdateSubscription,
   asaasCreatePaymentLink,
   asaasListPayments,
+  obterChaveAsaas,
 } from "@/lib/asaas";
 
 // ─── COBRANÇAS (Recebíveis) ───────────────────────────────────────────────────
@@ -32,13 +33,15 @@ export async function gerarCobrancaAsaas(recebivelId: string) {
   if (recebivel.asaas_payment_id) throw new Error("Cobrança já gerada no Asaas.");
   if (!recebivel.cliente) throw new Error("Recebível sem cliente vinculado.");
 
-  // Obtém ou cria cliente no Asaas
+  const apiKey = await obterChaveAsaas(empresaId);
+
   let asaasCustomerId = recebivel.cliente.asaas_id;
   if (!asaasCustomerId) {
     const customer = await asaasGetOrCreateCustomer(
       recebivel.cliente.nome,
       recebivel.cliente.cpf_cnpj ?? undefined,
       recebivel.cliente.email ?? undefined,
+      apiKey,
     );
     asaasCustomerId = customer.id;
     await prisma.cliente.update({
@@ -54,7 +57,7 @@ export async function gerarCobrancaAsaas(recebivelId: string) {
     vencimento,
     descricao: recebivel.descricao,
     externalRef: recebivel.id,
-  });
+  }, apiKey);
 
   await prisma.recebivel.update({
     where: { id: recebivelId },
@@ -82,7 +85,8 @@ export async function cancelarCobrancaAsaas(recebivelId: string) {
   if (!recebivel) throw new Error("Recebível não encontrado.");
   if (!recebivel.asaas_payment_id) throw new Error("Nenhuma cobrança Asaas para este recebível.");
 
-  await asaasCancelPayment(recebivel.asaas_payment_id);
+  const apiKey = await obterChaveAsaas(empresaId);
+  await asaasCancelPayment(recebivel.asaas_payment_id, apiKey);
 
   await prisma.recebivel.update({
     where: { id: recebivelId },
@@ -102,7 +106,8 @@ export async function sincronizarCobrancaAsaas(recebivelId: string) {
   });
   if (!recebivel?.asaas_payment_id) throw new Error("Sem cobrança Asaas vinculada.");
 
-  const payment = await asaasGetPayment(recebivel.asaas_payment_id);
+  const apiKey = await obterChaveAsaas(empresaId);
+  const payment = await asaasGetPayment(recebivel.asaas_payment_id, apiKey);
 
   const statusMap: Record<string, string> = {
     PENDING:   "PENDENTE",
@@ -149,18 +154,38 @@ export async function sincronizarReceiveisConselhoAgro(): Promise<{
     PARTIALLY_REFUNDED:   "PAGO",
   };
 
+  const apiKey = await obterChaveAsaas(empresaId);
   let criados = 0, atualizados = 0, ignorados = 0;
   const erros: string[] = [];
   let offset = 0;
   const limit = 100;
+  // Cache: subscriptionId → externalReference para não repetir chamadas API
+  const subEmailCache = new Map<string, string>();
 
   while (true) {
-    const { data: pagamentos, hasMore } = await asaasListPayments({ offset, limit });
+    const { data: pagamentos, hasMore } = await asaasListPayments({ offset, limit }, apiKey);
     if (pagamentos.length === 0) break;
 
     for (const pag of pagamentos) {
       try {
-        const email = pag.externalReference;
+        let email = pag.externalReference;
+
+        // Pagamentos mensais de assinatura CC não herdam externalReference da sub —
+        // busca no objeto pai com cache para não explodir a quota da API Asaas
+        if ((!email || !email.includes("@")) && pag.subscription) {
+          let cached = subEmailCache.get(pag.subscription);
+          if (cached === undefined) {
+            try {
+              const sub = await asaasGetSubscription(pag.subscription, apiKey);
+              cached = sub.externalReference ?? "";
+            } catch {
+              cached = "";
+            }
+            subEmailCache.set(pag.subscription, cached);
+          }
+          if (cached) email = cached;
+        }
+
         if (!email || !email.includes("@")) { ignorados++; continue; }
 
         // Idempotência: já existe recebível com esse payment_id?
@@ -256,6 +281,7 @@ export async function gerarLinkPagamentoProduto(servicoId: string) {
   });
   if (!servico) throw new Error("Serviço não encontrado.");
 
+  const apiKey = await obterChaveAsaas(empresaId);
   const link = await asaasCreatePaymentLink({
     name: servico.nome,
     value: servico.valor_base ? Number(servico.valor_base) : undefined,
@@ -263,7 +289,7 @@ export async function gerarLinkPagamentoProduto(servicoId: string) {
     chargeType: servico.tipo_cobranca === "ASSINATURA" ? "RECURRENT" : "DETACHED",
     subscriptionCycle: servico.tipo_cobranca === "ASSINATURA" ? "MONTHLY" : undefined,
     description: servico.descricao ?? undefined,
-  });
+  }, apiKey);
 
   await prisma.servico.update({
     where: { id: servicoId },
@@ -297,7 +323,8 @@ export async function criarAssinatura(input: InputAssinatura) {
   const empresaId = await obterEmpresaAtiva();
   const data = schemaAssinatura.parse(input);
 
-  // Obtém ou cria cliente no Asaas se tiver e-mail
+  const apiKey = await obterChaveAsaas(empresaId);
+
   let asaasCustomerId: string | null = null;
   if (data.cliente_id) {
     const cliente = await prisma.cliente.findFirst({ where: { id: data.cliente_id, empresa_id: empresaId } });
@@ -308,6 +335,7 @@ export async function criarAssinatura(input: InputAssinatura) {
           cliente.nome,
           cliente.cpf_cnpj ?? undefined,
           cliente.email ?? undefined,
+          apiKey,
         );
         asaasCustomerId = customer.id;
         await prisma.cliente.update({ where: { id: cliente.id }, data: { asaas_id: customer.id } });
@@ -325,7 +353,7 @@ export async function criarAssinatura(input: InputAssinatura) {
       proximoVencimento: data.proximo_vencimento,
       descricao: `${data.canal} — ${data.plano ?? "Assinatura"}`,
       externalRef: `empresa:${empresaId}:canal:${data.canal}:plano:${data.plano ?? ""}`,
-    });
+    }, apiKey);
     asaasSubscriptionId = sub.id;
   }
 
@@ -361,8 +389,9 @@ export async function cancelarAssinatura(id: string, motivo?: string) {
   const assinatura = await prisma.assinatura.findFirst({ where: { id, empresa_id: empresaId } });
   if (!assinatura) throw new Error("Assinatura não encontrada.");
 
+  const apiKey = await obterChaveAsaas(empresaId);
   if (assinatura.asaas_subscription_id) {
-    await asaasCancelSubscription(assinatura.asaas_subscription_id);
+    await asaasCancelSubscription(assinatura.asaas_subscription_id, apiKey);
   }
 
   await prisma.assinatura.update({
@@ -381,7 +410,8 @@ export async function sincronizarAssinatura(id: string) {
   const assinatura = await prisma.assinatura.findFirst({ where: { id, empresa_id: empresaId } });
   if (!assinatura?.asaas_subscription_id) throw new Error("Sem assinatura Asaas vinculada.");
 
-  const sub = await asaasGetSubscription(assinatura.asaas_subscription_id);
+  const apiKey = await obterChaveAsaas(empresaId);
+  const sub = await asaasGetSubscription(assinatura.asaas_subscription_id, apiKey);
 
   const statusMap: Record<string, string> = {
     ACTIVE:    "ATIVA",
@@ -409,8 +439,9 @@ export async function pausarAssinatura(id: string) {
   const assinatura = await prisma.assinatura.findFirst({ where: { id, empresa_id: empresaId } });
   if (!assinatura) throw new Error("Assinatura não encontrada.");
 
+  const apiKey = await obterChaveAsaas(empresaId);
   if (assinatura.asaas_subscription_id) {
-    await asaasUpdateSubscription(assinatura.asaas_subscription_id, { status: "INACTIVE" });
+    await asaasUpdateSubscription(assinatura.asaas_subscription_id, { status: "INACTIVE" }, apiKey);
   }
 
   await prisma.assinatura.update({ where: { id }, data: { status: "PAUSADA" } });
@@ -460,7 +491,8 @@ export async function venderAssinaturaDoLead(
     await prisma.lead.update({ where: { id: leadId }, data: { cliente_id: clienteId } });
   }
 
-  // Sync Asaas customer
+  const apiKey = await obterChaveAsaas(empresaId);
+
   let asaasCustomerId: string | null = lead.cliente?.asaas_id ?? null;
   if (!asaasCustomerId && (lead.email || lead.cliente?.cpf_cnpj)) {
     try {
@@ -468,6 +500,7 @@ export async function venderAssinaturaDoLead(
         lead.empresa_nome || lead.nome,
         lead.cliente?.cpf_cnpj ?? undefined,
         lead.email ?? undefined,
+        apiKey,
       );
       asaasCustomerId = customer.id;
       await prisma.cliente.update({ where: { id: clienteId }, data: { asaas_id: customer.id } });
@@ -488,7 +521,7 @@ export async function venderAssinaturaDoLead(
         proximoVencimento: data.proximo_vencimento,
         descricao: `${data.canal} — ${data.plano}`,
         externalRef: `empresa:${empresaId}:canal:${data.canal}:plano:${data.plano}`,
-      });
+      }, apiKey);
       asaasSubscriptionId = sub.id;
     } catch (err) {
       console.error("[venderAssinaturaDoLead] erro Asaas subscription:", err);

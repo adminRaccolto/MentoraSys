@@ -5,7 +5,7 @@ import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { verificarPermissao, obterEmpresaAtiva } from "@/lib/permissoes";
 import { registrar } from "@/lib/auditoria";
-import { asaasGetOrCreateCustomer } from "@/lib/asaas";
+import { asaasGetOrCreateCustomer, obterChaveAsaas } from "@/lib/asaas";
 
 const schemaCliente = z.object({
   nome: z.string().min(2, "Nome obrigatório"),
@@ -54,10 +54,12 @@ export async function criarCliente(input: ClienteInput) {
   // Sync Asaas: apenas quando canal está definido (cliente de produto, não lead genérico)
   if (canal) {
     try {
+      const apiKey = await obterChaveAsaas(empresaId);
       const customer = await asaasGetOrCreateCustomer(
         data.nome,
         data.cpf_cnpj || undefined,
         data.email || undefined,
+        apiKey,
       );
       await prisma.cliente.update({
         where: { id: cliente.id },

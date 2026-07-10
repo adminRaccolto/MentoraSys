@@ -3,7 +3,7 @@ import { after } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { calcularDiagnostico } from "@/lib/diagnostico-agro";
 import { enviarDiagnosticoAgro } from "@/lib/email";
-import { asaasGetOrCreateCustomer } from "@/lib/asaas";
+import { asaasGetOrCreateCustomer, obterChaveAsaas } from "@/lib/asaas";
 
 // Recebe o diagnóstico completo do site oconselhoagro.com.br
 // Migrado do módulo diagnostico-lead do raccolto-starter (NestJS)
@@ -189,10 +189,12 @@ export async function POST(req: Request) {
 
         // Sync Asaas
         try {
+          const apiKey = await obterChaveAsaas(empresaId);
           const customer = await asaasGetOrCreateCustomer(
             nome.trim(),
             cpfStr,
             emailStr,
+            apiKey,
           );
           await prisma.cliente.update({
             where: { id: clienteId },
