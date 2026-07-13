@@ -157,6 +157,7 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
       const res = await sincronizarReceiveisConselhoAgro();
       toast.success(`Sync concluído: ${res.criados} criados, ${res.atualizados} atualizados, ${res.ignorados} ignorados`);
       if (res.erros.length > 0) toast.error(`${res.erros.length} erro(s): ${res.erros[0]}`);
+      if (res.debug.length > 0) console.info("[sync debug]", res.debug);
       router.refresh();
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Erro ao sincronizar Asaas");

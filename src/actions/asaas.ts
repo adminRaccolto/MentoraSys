@@ -16,6 +16,7 @@ import {
   asaasUpdateSubscription,
   asaasCreatePaymentLink,
   asaasListPayments,
+  asaasGetCustomer,
   obterChaveAsaas,
 } from "@/lib/asaas";
 
@@ -137,7 +138,7 @@ export async function sincronizarCobrancaAsaas(recebivelId: string) {
 // ─── SYNC RETROATIVO: Asaas → CR (O Conselho Agro) ──────────────────────────
 
 export async function sincronizarReceiveisConselhoAgro(): Promise<{
-  criados: number; atualizados: number; ignorados: number; erros: string[];
+  criados: number; atualizados: number; ignorados: number; erros: string[]; debug: string[];
 }> {
   await verificarPermissao("financeiro", "editar");
   const empresaId = await obterEmpresaAtiva();
@@ -157,10 +158,17 @@ export async function sincronizarReceiveisConselhoAgro(): Promise<{
   const apiKey = await obterChaveAsaas(empresaId);
   let criados = 0, atualizados = 0, ignorados = 0;
   const erros: string[] = [];
+  const debug: string[] = [];
   let offset = 0;
   const limit = 100;
   // Cache: subscriptionId → externalReference para não repetir chamadas API
   const subEmailCache = new Map<string, string>();
+
+  // Plano de contas "Novo Agro" para classificação das receitas
+  const planoContasNovoAgro = await prisma.planoDeContas.findFirst({
+    where: { empresa_id: empresaId, nome: "Novo Agro", ativo: true },
+    select: { id: true },
+  });
 
   while (true) {
     const { data: pagamentos, hasMore } = await asaasListPayments({ offset, limit }, apiKey);
@@ -178,15 +186,20 @@ export async function sincronizarReceiveisConselhoAgro(): Promise<{
             try {
               const sub = await asaasGetSubscription(pag.subscription, apiKey);
               cached = sub.externalReference ?? "";
-            } catch {
+              if (debug.length < 20) debug.push(`sub:${pag.subscription} extRef="${sub.externalReference ?? "(vazio)"}"`)
+            } catch (e) {
               cached = "";
+              if (debug.length < 20) debug.push(`sub:${pag.subscription} erro=${String(e)}`)
             }
             subEmailCache.set(pag.subscription, cached);
           }
           if (cached) email = cached;
         }
 
-        if (!email || !email.includes("@")) { ignorados++; continue; }
+        if (!email || !email.includes("@")) {
+          if (debug.length < 20) debug.push(`ignorado sem email: id=${pag.id} extRef="${pag.externalReference ?? ""}" sub="${pag.subscription ?? ""}"`)
+          ignorados++; continue;
+        }
 
         // Idempotência: já existe recebível com esse payment_id?
         const existing = await prisma.recebivel.findFirst({
@@ -215,12 +228,35 @@ export async function sincronizarReceiveisConselhoAgro(): Promise<{
           continue;
         }
 
-        // Localiza cliente pelo e-mail (externalReference = email do comprador)
-        const cliente = await prisma.cliente.findFirst({
+        // Localiza cliente pelo e-mail; cria automaticamente se não existir
+        let cliente = await prisma.cliente.findFirst({
           where: { empresa_id: empresaId, email },
           select: { id: true },
         });
-        if (!cliente) { ignorados++; continue; }
+        if (!cliente) {
+          // Busca dados do cliente no Asaas para preencher o registro local
+          let nomeCliente = email.split("@")[0];
+          let asaasClienteId: string | null = pag.customer ?? null;
+          if (pag.customer) {
+            try {
+              const asaasCustomer = await asaasGetCustomer(pag.customer, apiKey);
+              nomeCliente = asaasCustomer.name ?? nomeCliente;
+              asaasClienteId = asaasCustomer.id;
+            } catch { /* usa fallback */ }
+          }
+          const novo = await prisma.cliente.create({
+            data: {
+              empresa_id: empresaId,
+              nome: nomeCliente,
+              tipo: "PESSOA_FISICA",
+              email,
+              asaas_id: asaasClienteId,
+            },
+            select: { id: true },
+          });
+          cliente = novo;
+          if (debug.length < 20) debug.push(`criado cliente: email="${email}" nome="${nomeCliente}"`)
+        }
 
         const isAnual = (pag.installmentCount ?? 1) > 1;
         const totalParcelas = pag.installmentCount ?? 1;
@@ -240,6 +276,7 @@ export async function sincronizarReceiveisConselhoAgro(): Promise<{
           data: {
             empresa_id:       empresaId,
             cliente_id:       cliente.id,
+            plano_contas_id:  planoContasNovoAgro?.id ?? null,
             descricao,
             valor:            pag.value,
             data_vencimento:  venc,
@@ -267,7 +304,7 @@ export async function sincronizarReceiveisConselhoAgro(): Promise<{
   }
 
   revalidatePath("/financeiro/recebiveis");
-  return { criados, atualizados, ignorados, erros };
+  return { criados, atualizados, ignorados, erros, debug };
 }
 
 // ─── LINKS DE PAGAMENTO (produto fixo) ───────────────────────────────────────
