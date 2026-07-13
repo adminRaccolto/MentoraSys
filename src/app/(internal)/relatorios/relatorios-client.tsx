@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { ChevronLeft, ChevronRight, Download, Printer } from "lucide-react";
+import { ChevronLeft, ChevronRight, Download, Printer, ChevronDown, ChevronUp, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -69,6 +70,15 @@ type Projeto = {
   tarefas: { status: string }[];
 };
 
+type TarefaEquipe = {
+  id: string;
+  titulo: string;
+  status: string;
+  data_prazo: string | null;
+  projeto: { id: string; titulo: string };
+  responsaveis: { id: string; nome: string }[];
+};
+
 interface Props {
   ano: number;
   recebiveis: Recebivel[];
@@ -76,6 +86,7 @@ interface Props {
   leads: Lead[];
   propostas: Proposta[];
   projetos: Projeto[];
+  tarefasEquipe: TarefaEquipe[];
 }
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
@@ -502,6 +513,225 @@ function TabProjetos({ projetos }: { projetos: Projeto[] }) {
   );
 }
 
+// ─── Tab Equipe ──────────────────────────────────────────────────────────────
+
+type KpiUsuario = {
+  id: string;
+  nome: string;
+  total: number;
+  concluidas: number;
+  atrasadas: number;
+  naoIniciadas: number;
+  emAndamento: number;
+  porProjeto: {
+    projetoId: string;
+    titulo: string;
+    total: number;
+    concluidas: number;
+    atrasadas: number;
+    naoIniciadas: number;
+    emAndamento: number;
+  }[];
+};
+
+function calcularKpisEquipe(tarefas: TarefaEquipe[]): KpiUsuario[] {
+  const hoje = new Date();
+  hoje.setHours(0, 0, 0, 0);
+  const mapa = new Map<string, KpiUsuario>();
+
+  for (const t of tarefas) {
+    const atrasada =
+      !!t.data_prazo &&
+      new Date(t.data_prazo) < hoje &&
+      t.status !== "CONCLUIDA";
+
+    const responsaveis = t.responsaveis.length > 0
+      ? t.responsaveis
+      : [{ id: "sem-responsavel", nome: "Sem responsável" }];
+
+    for (const r of responsaveis) {
+      if (!mapa.has(r.id)) {
+        mapa.set(r.id, {
+          id: r.id,
+          nome: r.nome,
+          total: 0,
+          concluidas: 0,
+          atrasadas: 0,
+          naoIniciadas: 0,
+          emAndamento: 0,
+          porProjeto: [],
+        });
+      }
+      const u = mapa.get(r.id)!;
+      u.total++;
+      if (t.status === "CONCLUIDA") u.concluidas++;
+      if (atrasada) u.atrasadas++;
+      if (t.status === "PENDENTE") u.naoIniciadas++;
+      if (t.status === "EM_ANDAMENTO") u.emAndamento++;
+
+      let proj = u.porProjeto.find((p) => p.projetoId === t.projeto.id);
+      if (!proj) {
+        proj = { projetoId: t.projeto.id, titulo: t.projeto.titulo, total: 0, concluidas: 0, atrasadas: 0, naoIniciadas: 0, emAndamento: 0 };
+        u.porProjeto.push(proj);
+      }
+      proj.total++;
+      if (t.status === "CONCLUIDA") proj.concluidas++;
+      if (atrasada) proj.atrasadas++;
+      if (t.status === "PENDENTE") proj.naoIniciadas++;
+      if (t.status === "EM_ANDAMENTO") proj.emAndamento++;
+    }
+  }
+
+  return Array.from(mapa.values()).sort((a, b) => b.total - a.total);
+}
+
+function PctBar({ value, total, cor }: { value: number; total: number; cor: string }) {
+  const pct = total > 0 ? Math.round((value / total) * 100) : 0;
+  return (
+    <div className="flex items-center gap-2">
+      <div className="flex-1 bg-muted rounded-full h-1.5">
+        <div className={`h-1.5 rounded-full ${cor}`} style={{ width: `${pct}%` }} />
+      </div>
+      <span className="text-xs tabular-nums w-7 text-right">{pct}%</span>
+    </div>
+  );
+}
+
+function LinhaUsuario({ u }: { u: KpiUsuario }) {
+  const [aberto, setAberto] = useState(false);
+  return (
+    <>
+      <TableRow
+        className="cursor-pointer hover:bg-muted/40"
+        onClick={() => setAberto((v) => !v)}
+      >
+        <TableCell className="font-medium">
+          <div className="flex items-center gap-2">
+            {aberto ? <ChevronUp className="size-3.5 text-muted-foreground" /> : <ChevronDown className="size-3.5 text-muted-foreground" />}
+            {u.nome}
+          </div>
+        </TableCell>
+        <TableCell className="text-center tabular-nums">{u.total}</TableCell>
+        <TableCell className="text-center tabular-nums text-emerald-600 font-medium">{u.concluidas}</TableCell>
+        <TableCell className="text-center tabular-nums text-rose-600 font-medium">{u.atrasadas}</TableCell>
+        <TableCell className="text-center tabular-nums text-amber-600 font-medium">{u.naoIniciadas}</TableCell>
+        <TableCell className="text-center tabular-nums text-blue-600 font-medium">{u.emAndamento}</TableCell>
+        <TableCell className="w-32">
+          <PctBar value={u.concluidas} total={u.total} cor="bg-emerald-500" />
+        </TableCell>
+      </TableRow>
+      {aberto && u.porProjeto.map((p) => (
+        <TableRow key={p.projetoId} className="bg-muted/20 text-sm">
+          <TableCell className="pl-10 text-muted-foreground">{p.titulo}</TableCell>
+          <TableCell className="text-center tabular-nums text-muted-foreground">{p.total}</TableCell>
+          <TableCell className="text-center tabular-nums text-emerald-600">{p.concluidas}</TableCell>
+          <TableCell className="text-center tabular-nums text-rose-600">{p.atrasadas}</TableCell>
+          <TableCell className="text-center tabular-nums text-amber-600">{p.naoIniciadas}</TableCell>
+          <TableCell className="text-center tabular-nums text-blue-600">{p.emAndamento}</TableCell>
+          <TableCell className="w-32">
+            <PctBar value={p.concluidas} total={p.total} cor="bg-emerald-500" />
+          </TableCell>
+        </TableRow>
+      ))}
+    </>
+  );
+}
+
+function TabEquipe({ tarefas }: { tarefas: TarefaEquipe[] }) {
+  const hoje = new Date();
+  hoje.setHours(0, 0, 0, 0);
+
+  const total = tarefas.length;
+  const concluidas = tarefas.filter((t) => t.status === "CONCLUIDA").length;
+  const atrasadas = tarefas.filter(
+    (t) => !!t.data_prazo && new Date(t.data_prazo) < hoje && t.status !== "CONCLUIDA"
+  ).length;
+  const naoIniciadas = tarefas.filter((t) => t.status === "PENDENTE").length;
+  const emAndamento = tarefas.filter((t) => t.status === "EM_ANDAMENTO").length;
+
+  const usuarios = calcularKpisEquipe(tarefas);
+
+  function exportar() {
+    const linhas = usuarios.flatMap((u) =>
+      u.porProjeto.map((p) => ({
+        Usuário: u.nome,
+        Projeto: p.titulo,
+        Total: p.total,
+        Concluídas: p.concluidas,
+        Atrasadas: p.atrasadas,
+        "Não iniciadas": p.naoIniciadas,
+        "Em andamento": p.emAndamento,
+        "% Conclusão": p.total > 0 ? Math.round((p.concluidas / p.total) * 100) + "%" : "0%",
+      }))
+    );
+    exportarCSV(linhas, "tarefas-por-usuario.csv");
+  }
+
+  return (
+    <div className="space-y-6">
+      {/* KPIs gerais */}
+      <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+        <div className="rounded-lg border p-4 bg-slate-50/50">
+          <p className="text-xs text-muted-foreground">Total</p>
+          <p className="text-2xl font-bold mt-1">{total}</p>
+        </div>
+        <div className="rounded-lg border p-4 bg-emerald-50/50">
+          <p className="text-xs text-muted-foreground">Concluídas</p>
+          <p className="text-2xl font-bold mt-1 text-emerald-600">{concluidas}</p>
+        </div>
+        <div className="rounded-lg border p-4 bg-rose-50/50">
+          <p className="text-xs text-muted-foreground">Atrasadas</p>
+          <p className="text-2xl font-bold mt-1 text-rose-600">{atrasadas}</p>
+        </div>
+        <div className="rounded-lg border p-4 bg-amber-50/50">
+          <p className="text-xs text-muted-foreground">Não iniciadas</p>
+          <p className="text-2xl font-bold mt-1 text-amber-600">{naoIniciadas}</p>
+        </div>
+        <div className="rounded-lg border p-4 bg-blue-50/50">
+          <p className="text-xs text-muted-foreground">Em andamento</p>
+          <p className="text-2xl font-bold mt-1 text-blue-600">{emAndamento}</p>
+        </div>
+      </div>
+
+      {/* Tabela por usuário */}
+      <div>
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="text-sm font-semibold flex items-center gap-2">
+            <Users className="size-4 text-primary" />
+            Por colaborador
+          </h3>
+          <Button variant="outline" size="sm" onClick={exportar}>
+            <Download className="size-3.5 mr-1.5" />
+            Exportar CSV
+          </Button>
+        </div>
+        {usuarios.length === 0 ? (
+          <p className="text-sm text-muted-foreground py-4 text-center">Nenhuma tarefa com responsável encontrada.</p>
+        ) : (
+          <div className="rounded-lg border overflow-hidden">
+            <Table>
+              <TableHeader>
+                <TableRow className="bg-muted/50">
+                  <TableHead>Colaborador / Projeto</TableHead>
+                  <TableHead className="text-center">Total</TableHead>
+                  <TableHead className="text-center text-emerald-700">Concluídas</TableHead>
+                  <TableHead className="text-center text-rose-700">Atrasadas</TableHead>
+                  <TableHead className="text-center text-amber-700">Não iniciadas</TableHead>
+                  <TableHead className="text-center text-blue-700">Em andamento</TableHead>
+                  <TableHead className="w-32">% Conclusão</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {usuarios.map((u) => <LinhaUsuario key={u.id} u={u} />)}
+              </TableBody>
+            </Table>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 // ─── Root Component ──────────────────────────────────────────────────────────
 
 export default function RelatoriosClient({
@@ -511,6 +741,7 @@ export default function RelatoriosClient({
   leads,
   propostas,
   projetos,
+  tarefasEquipe,
 }: Props) {
   const router = useRouter();
   const pathname = usePathname();
@@ -547,6 +778,7 @@ export default function RelatoriosClient({
           <TabsTrigger value="financeiro">Financeiro</TabsTrigger>
           <TabsTrigger value="crm">CRM</TabsTrigger>
           <TabsTrigger value="projetos">Projetos</TabsTrigger>
+          <TabsTrigger value="equipe">Equipe</TabsTrigger>
         </TabsList>
 
         <TabsContent value="financeiro" className="mt-4">
@@ -559,6 +791,10 @@ export default function RelatoriosClient({
 
         <TabsContent value="projetos" className="mt-4">
           <TabProjetos projetos={projetos} />
+        </TabsContent>
+
+        <TabsContent value="equipe" className="mt-4">
+          <TabEquipe tarefas={tarefasEquipe} />
         </TabsContent>
       </Tabs>
 

@@ -14,7 +14,7 @@ export default async function RelatoriosPage({
   const inicio = new Date(ano, 0, 1);
   const fim = new Date(ano, 11, 31, 23, 59, 59);
 
-  const [recebiveis, contasPagar, leads, propostas, projetos] = await Promise.all([
+  const [recebiveis, contasPagar, leads, propostas, projetos, tarefasEquipe] = await Promise.all([
     prisma.recebivel.findMany({
       where: { empresa_id: empresaId, data_vencimento: { gte: inicio, lte: fim } },
       select: {
@@ -76,6 +76,18 @@ export default async function RelatoriosPage({
       },
       orderBy: { criado_em: "desc" },
     }),
+    prisma.tarefa.findMany({
+      where: { projeto: { empresa_id: empresaId }, status: { not: "CANCELADA" } },
+      select: {
+        id: true,
+        titulo: true,
+        status: true,
+        data_prazo: true,
+        projeto: { select: { id: true, titulo: true } },
+        responsaveis: { select: { usuario: { select: { id: true, nome: true } } } },
+        responsavel: { select: { id: true, nome: true } },
+      },
+    }),
   ]);
 
   return (
@@ -109,6 +121,16 @@ export default async function RelatoriosPage({
         ...p,
         data_inicio: p.data_inicio?.toISOString() ?? null,
         data_fim: p.data_fim?.toISOString() ?? null,
+      }))}
+      tarefasEquipe={tarefasEquipe.map((t) => ({
+        id: t.id,
+        titulo: t.titulo,
+        status: t.status,
+        data_prazo: t.data_prazo?.toISOString() ?? null,
+        projeto: t.projeto,
+        responsaveis: t.responsaveis.length > 0
+          ? t.responsaveis.map((r) => r.usuario)
+          : t.responsavel ? [t.responsavel] : [],
       }))}
     />
   );
