@@ -182,3 +182,65 @@ export async function excluirContaPagar(id: string) {
   revalidatePath("/financeiro/contas-a-pagar");
   return { data: null };
 }
+
+// ─── Parcelamento / Recorrência manual ───────────────────────────────────────
+
+const schemaParceladoManual = z.object({
+  descricao:         z.string().min(1, "Descrição obrigatória"),
+  valor_total:       z.coerce.number().positive("Valor deve ser positivo"),
+  n_parcelas:        z.coerce.number().int().min(2).max(120),
+  periodicidade:     z.enum(["SEMANAL", "QUINZENAL", "MENSAL", "BIMESTRAL", "TRIMESTRAL", "SEMESTRAL", "ANUAL"]),
+  data_primeira:     z.string().min(1, "Data obrigatória"),
+  tipo:              z.enum(["PARCELADO", "RECORRENTE"]),
+  fornecedor:        z.string().optional(),
+  plano_contas_id:   z.string().optional(),
+  conta_bancaria_id: z.string().optional(),
+  centro_custo_id:   z.string().optional(),
+  observacoes:       z.string().optional(),
+});
+
+function addPeriodo(base: Date, periodicidade: string, i: number): Date {
+  const d = new Date(base);
+  switch (periodicidade) {
+    case "SEMANAL":    d.setDate(d.getDate() + 7 * i); break;
+    case "QUINZENAL":  d.setDate(d.getDate() + 15 * i); break;
+    case "MENSAL":     d.setMonth(d.getMonth() + i); break;
+    case "BIMESTRAL":  d.setMonth(d.getMonth() + 2 * i); break;
+    case "TRIMESTRAL": d.setMonth(d.getMonth() + 3 * i); break;
+    case "SEMESTRAL":  d.setMonth(d.getMonth() + 6 * i); break;
+    case "ANUAL":      d.setFullYear(d.getFullYear() + i); break;
+  }
+  return d;
+}
+
+export async function criarContaPagarParcelado(input: z.input<typeof schemaParceladoManual>) {
+  await verificarPermissao("financeiro", "criar");
+  const empresaId = await obterEmpresaAtiva();
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  const d = schemaParceladoManual.parse(input);
+
+  const base = new Date(`${d.data_primeira}T12:00:00`);
+  const valorBase = Math.floor((d.valor_total / d.n_parcelas) * 100) / 100;
+  const valorUltima = Math.round((d.valor_total - valorBase * (d.n_parcelas - 1)) * 100) / 100;
+
+  const registros = Array.from({ length: d.n_parcelas }, (_, i) => ({
+    empresa_id:        empresaId,
+    criado_por:        user?.id ?? null,
+    descricao:         d.tipo === "PARCELADO"
+                         ? `${d.descricao} — Parcela ${i + 1}/${d.n_parcelas}`
+                         : d.descricao,
+    fornecedor:        d.fornecedor || null,
+    valor:             i === d.n_parcelas - 1 ? valorUltima : valorBase,
+    data_vencimento:   addPeriodo(base, d.periodicidade, i),
+    plano_contas_id:   d.plano_contas_id || null,
+    conta_bancaria_id: d.conta_bancaria_id || null,
+    centro_custo_id:   d.centro_custo_id || null,
+    observacoes:       d.observacoes || null,
+  }));
+
+  await prisma.contaPagar.createMany({ data: registros });
+  await registrar({ recurso: "contas-pagar", acao: "criar", registroId: empresaId, detalhes: { parcelado: true, n: d.n_parcelas } });
+  revalidatePath("/financeiro/contas-a-pagar");
+  return { count: d.n_parcelas };
+}

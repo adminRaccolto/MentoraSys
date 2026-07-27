@@ -209,15 +209,7 @@ export async function POST(req: Request) {
       }
     }
 
-    // Envia email com resultado
-    if (email && typeof email === "string") {
-      try {
-        const primeiroNome = nome.trim().split(" ")[0];
-        await enviarDiagnosticoAgro(email, primeiroNome, score);
-      } catch (err) {
-        console.error("[diagnostico-lead] erro ao enviar email:", err);
-      }
-    }
+    // Email desabilitado — o oconselhoagro.com.br já envia o link do diagnóstico via Resend
   });
 
   return NextResponse.json(

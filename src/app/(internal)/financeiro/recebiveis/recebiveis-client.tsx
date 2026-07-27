@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Plus, ArrowDownCircle, Trash2, CheckCircle, Receipt, Undo2, FileText, RefreshCw, XCircle, Zap, Copy, ExternalLink, Pencil } from "lucide-react";
+import { Plus, ArrowDownCircle, Trash2, CheckCircle, Receipt, Undo2, FileText, RefreshCw, XCircle, Zap, Copy, ExternalLink, Pencil, CalendarDays, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,7 +16,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { criarRecebivel, baixarRecebivel, excluirRecebivel, gerarParcelasContrato, estornarRecebivel, baixarLoteRecebiveis, refaturarRecebivel, editarRecebivel } from "@/actions/recebiveis";
+import { criarRecebivel, criarRecebivelParcelado, baixarRecebivel, excluirRecebivel, gerarParcelasContrato, estornarRecebivel, baixarLoteRecebiveis, refaturarRecebivel, editarRecebivel } from "@/actions/recebiveis";
 import { gerarBoleto, consultarBoleto, cancelarBoleto } from "@/actions/boletos";
 import { gerarCobrancaAsaas, cancelarCobrancaAsaas, sincronizarCobrancaAsaas, sincronizarReceiveisConselhoAgro } from "@/actions/asaas";
 
@@ -33,15 +33,39 @@ const STATUS_CONFIG: Record<Status, { label: string; variant: "default" | "secon
 
 const FORMAS = ["Dinheiro", "PIX", "TED", "Boleto", "Cartão de Crédito", "Cartão de Débito", "Cheque"];
 
+const PERIODICIDADE_LABELS: Record<string, string> = {
+  SEMANAL: "Semanal (7 dias)", QUINZENAL: "Quinzenal (15 dias)",
+  MENSAL: "Mensal", BIMESTRAL: "Bimestral", TRIMESTRAL: "Trimestral",
+  SEMESTRAL: "Semestral", ANUAL: "Anual",
+};
+
+function addPeriodoPreview(base: Date, per: string, i: number): Date {
+  const d = new Date(base);
+  switch (per) {
+    case "SEMANAL":    d.setDate(d.getDate() + 7 * i); break;
+    case "QUINZENAL":  d.setDate(d.getDate() + 15 * i); break;
+    case "MENSAL":     d.setMonth(d.getMonth() + i); break;
+    case "BIMESTRAL":  d.setMonth(d.getMonth() + 2 * i); break;
+    case "TRIMESTRAL": d.setMonth(d.getMonth() + 3 * i); break;
+    case "SEMESTRAL":  d.setMonth(d.getMonth() + 6 * i); break;
+    case "ANUAL":      d.setFullYear(d.getFullYear() + i); break;
+  }
+  return d;
+}
+
 const schemaCreate = z.object({
-  descricao:       z.string().min(1, "Descrição obrigatória"),
-  valor:           z.string().min(1, "Valor obrigatório"),
-  data_vencimento: z.string().min(1, "Data obrigatória"),
-  cliente_id:      z.string().optional(),
-  contrato_id:     z.string().optional(),
-  plano_contas_id: z.string().optional(),
-  centro_custo_id: z.string().optional(),
-  observacoes:     z.string().optional(),
+  descricao:         z.string().min(1, "Descrição obrigatória"),
+  valor:             z.string().min(1, "Valor obrigatório"),
+  data_vencimento:   z.string().optional(),
+  n_parcelas:        z.string().optional(),
+  periodicidade:     z.string().optional(),
+  data_primeira:     z.string().optional(),
+  cliente_id:        z.string().optional(),
+  contrato_id:       z.string().optional(),
+  plano_contas_id:   z.string().optional(),
+  conta_bancaria_id: z.string().optional(),
+  centro_custo_id:   z.string().optional(),
+  observacoes:       z.string().optional(),
 });
 
 const schemaBaixar = z.object({
@@ -182,16 +206,49 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
   const totalPago = recebiveis.filter((r) => r.status === "PAGO").reduce((s, r) => s + Number(r.valor_pago ?? r.valor), 0);
 
   // Formulário criar
+  const [tipoLancamentoRC, setTipoLancamentoRC] = useState<"unico" | "parcelado" | "recorrente">("unico");
   const formNovo = useForm<FormCreate>({ resolver: zodResolver(schemaCreate) });
+
+  const valorWatch     = formNovo.watch("valor");
+  const nParcelasWatch = formNovo.watch("n_parcelas");
+  const perWatch       = formNovo.watch("periodicidade");
+  const dataPrimWatch  = formNovo.watch("data_primeira");
+
+  const valorTotalRC  = Number(valorWatch) || 0;
+  const nParcelasRC   = Math.max(2, Number(nParcelasWatch) || 2);
+  const valorParcelaRC = nParcelasRC > 0 ? Math.floor((valorTotalRC / nParcelasRC) * 100) / 100 : 0;
+  const ultimaDataRC = (perWatch && dataPrimWatch)
+    ? addPeriodoPreview(new Date(`${dataPrimWatch}T12:00:00`), perWatch, nParcelasRC - 1)
+    : null;
+
   const onSubmitNovo = (data: FormCreate) => {
     startTransition(async () => {
       try {
-        const res = await criarRecebivel({ ...data, valor: Number(data.valor) });
-        setRecebiveis((prev) => [...prev, res.data as unknown as Recebivel]);
-        toast.success("Lançamento criado");
+        if (tipoLancamentoRC === "unico") {
+          if (!data.data_vencimento) { toast.error("Informe a data de vencimento"); return; }
+          const res = await criarRecebivel({ ...data, valor: Number(data.valor), data_vencimento: data.data_vencimento });
+          setRecebiveis((prev) => [...prev, res.data as unknown as Recebivel]);
+          toast.success("Lançamento criado");
+        } else {
+          if (!data.n_parcelas || Number(data.n_parcelas) < 2) { toast.error("Mínimo 2 parcelas"); return; }
+          if (!data.periodicidade) { toast.error("Informe a periodicidade"); return; }
+          if (!data.data_primeira) { toast.error("Informe a data da primeira parcela"); return; }
+          const res = await criarRecebivelParcelado({
+            descricao: data.descricao, valor_total: Number(data.valor),
+            n_parcelas: Number(data.n_parcelas), periodicidade: data.periodicidade as "MENSAL",
+            data_primeira: data.data_primeira,
+            tipo: tipoLancamentoRC === "parcelado" ? "PARCELADO" : "RECORRENTE",
+            cliente_id: data.cliente_id, plano_contas_id: data.plano_contas_id,
+            conta_bancaria_id: data.conta_bancaria_id, centro_custo_id: data.centro_custo_id,
+            observacoes: data.observacoes,
+          });
+          toast.success(`${res.count} lançamentos criados com sucesso`);
+          router.refresh();
+        }
         setModalNovo(false);
         formNovo.reset();
-      } catch { toast.error("Erro ao criar recebível"); }
+        setTipoLancamentoRC("unico");
+      } catch (e) { toast.error(e instanceof Error ? e.message : "Erro ao criar lançamento"); }
     });
   };
 
@@ -767,78 +824,143 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
       </Dialog>
 
       {/* Modal novo recebível */}
-      <Dialog open={modalNovo} onOpenChange={setModalNovo}>
-        <DialogContent className="max-w-lg">
-          <DialogHeader><DialogTitle>Novo recebível</DialogTitle></DialogHeader>
-          <form onSubmit={formNovo.handleSubmit(onSubmitNovo)} className="space-y-3">
-            <div className="space-y-1">
+      <Dialog open={modalNovo} onOpenChange={(v) => { setModalNovo(v); if (!v) { formNovo.reset(); setTipoLancamentoRC("unico"); } }}>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-lg">Novo lançamento em Contas a Receber</DialogTitle>
+          </DialogHeader>
+          <form onSubmit={formNovo.handleSubmit(onSubmitNovo)} className="space-y-5 pt-1">
+
+            {/* Tipo de lançamento */}
+            <div className="space-y-1.5">
+              <Label className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Tipo de lançamento</Label>
+              <div className="flex rounded-lg border overflow-hidden divide-x">
+                {([["unico", "Único", <CalendarDays key="c" className="size-3.5" />], ["parcelado", "Parcelado", <FileText key="f" className="size-3.5" />], ["recorrente", "Recorrente", <RotateCcw key="r" className="size-3.5" />]] as const).map(([tipo, label, icon]) => (
+                  <button key={tipo} type="button" onClick={() => setTipoLancamentoRC(tipo)}
+                    className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 text-sm font-medium transition-colors ${tipoLancamentoRC === tipo ? "bg-primary text-primary-foreground" : "hover:bg-muted text-muted-foreground"}`}>
+                    {icon}{label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Descrição */}
+            <div className="space-y-1.5">
               <Label>Descrição *</Label>
-              <Input {...formNovo.register("descricao")} placeholder="Ex.: Honorários Consultoria Abril" />
+              <Input className="h-10" {...formNovo.register("descricao")} placeholder={tipoLancamentoRC === "recorrente" ? "Ex.: Mensalidade — Plano Consultoria" : "Ex.: Honorários Consultoria Abril"} />
               {formNovo.formState.errors.descricao && <p className="text-xs text-destructive">{formNovo.formState.errors.descricao.message}</p>}
             </div>
-            <div className="grid grid-cols-2 gap-3">
-              <div className="space-y-1">
-                <Label>Valor *</Label>
-                <Input {...formNovo.register("valor")} type="number" step="0.01" min="0.01" placeholder="0,00" />
+
+            {/* Valor + Conta bancária */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-1.5">
+                <Label>{tipoLancamentoRC === "unico" ? "Valor *" : "Valor total *"}</Label>
+                <Input className="h-10" {...formNovo.register("valor")} type="number" step="0.01" min="0.01" placeholder="0,00" />
               </div>
-              <div className="space-y-1">
-                <Label>Vencimento *</Label>
-                <Input {...formNovo.register("data_vencimento")} type="date" />
-              </div>
-            </div>
-            <div className="space-y-1">
-              <Label>Cliente</Label>
-              <Select value={formNovo.watch("cliente_id") ?? ""} onValueChange={(v) => formNovo.setValue("cliente_id", v === "nenhum" ? undefined : v ?? undefined)}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Nenhum">
-                    {(value: string | null) => value && value !== "nenhum" ? (clientes.find((c) => c.id === value)?.nome ?? value) : undefined}
-                  </SelectValue>
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="nenhum">Nenhum</SelectItem>
-                  {clientes.map((c) => <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>)}
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="space-y-1">
-              <Label>Categoria</Label>
-              <Select value={formNovo.watch("plano_contas_id") ?? ""} onValueChange={(v) => formNovo.setValue("plano_contas_id", v === "nenhuma" ? undefined : v ?? undefined)}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Nenhuma">
-                    {(value: string | null) => value && value !== "nenhuma" ? (categorias.find((c) => c.id === value)?.nome ?? value) : undefined}
-                  </SelectValue>
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="nenhuma">Nenhuma</SelectItem>
-                  {categorias.map((c) => <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>)}
-                </SelectContent>
-              </Select>
-            </div>
-            {centrosCusto.length > 0 && (
-              <div className="space-y-1">
-                <Label>Centro de custo</Label>
-                <Select value={formNovo.watch("centro_custo_id") ?? ""} onValueChange={(v) => formNovo.setValue("centro_custo_id", v === "nenhum" ? undefined : v ?? undefined)}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Nenhum" />
-                  </SelectTrigger>
+              <div className="space-y-1.5">
+                <Label>Conta bancária</Label>
+                <Select value={formNovo.watch("conta_bancaria_id") ?? "_none"} onValueChange={(v) => formNovo.setValue("conta_bancaria_id", v === "_none" ? undefined : v ?? undefined)}>
+                  <SelectTrigger className="h-10"><SelectValue placeholder="Nenhuma" /></SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="nenhum">Nenhum</SelectItem>
-                    {centrosCusto.map((c) => (
-                      <SelectItem key={c.id} value={c.id}>
-                        {c.codigo ? `[${c.codigo}] ` : ""}{c.nome}
-                      </SelectItem>
-                    ))}
+                    <SelectItem value="_none">Nenhuma</SelectItem>
+                    {contasBancarias.map((c) => <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>)}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
+            {/* Campos de vencimento: único vs parcelado */}
+            {tipoLancamentoRC === "unico" ? (
+              <div className="space-y-1.5">
+                <Label>Data de vencimento *</Label>
+                <Input className="h-10" {...formNovo.register("data_vencimento")} type="date" />
+              </div>
+            ) : (
+              <div className="space-y-4 rounded-xl border bg-muted/30 p-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <Label>Nº de {tipoLancamentoRC === "parcelado" ? "parcelas" : "lançamentos"} *</Label>
+                    <Input className="h-10" {...formNovo.register("n_parcelas")} type="number" min="2" max="120" placeholder="Ex.: 12" />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label>Periodicidade *</Label>
+                    <Select value={formNovo.watch("periodicidade") ?? ""} onValueChange={(v) => formNovo.setValue("periodicidade", v ?? undefined)}>
+                      <SelectTrigger className="h-10"><SelectValue placeholder="Selecionar" /></SelectTrigger>
+                      <SelectContent>
+                        {Object.entries(PERIODICIDADE_LABELS).map(([k, v]) => <SelectItem key={k} value={k}>{v}</SelectItem>)}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                <div className="space-y-1.5">
+                  <Label>Data do {tipoLancamentoRC === "parcelado" ? "1º vencimento" : "1º lançamento"} *</Label>
+                  <Input className="h-10" {...formNovo.register("data_primeira")} type="date" />
+                </div>
+                {/* Preview */}
+                {valorTotalRC > 0 && nParcelasRC >= 2 && perWatch && dataPrimWatch && (
+                  <div className="rounded-lg bg-primary/5 border border-primary/20 p-3 space-y-0.5">
+                    <p className="text-sm font-medium text-primary">
+                      {nParcelasRC}× de {formatBRL(valorParcelaRC)}
+                      <span className="text-muted-foreground font-normal"> — total {formatBRL(valorTotalRC)}</span>
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      Primeiro: {new Date(`${dataPrimWatch}T12:00:00`).toLocaleDateString("pt-BR")}
+                      {ultimaDataRC && ` · Último: ${ultimaDataRC.toLocaleDateString("pt-BR")}`}
+                    </p>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Cliente + Categoria */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-1.5">
+                <Label>Cliente</Label>
+                <Select value={formNovo.watch("cliente_id") ?? "_none"} onValueChange={(v) => formNovo.setValue("cliente_id", v === "_none" ? undefined : v ?? undefined)}>
+                  <SelectTrigger className="h-10"><SelectValue placeholder="Nenhum" /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="_none">Nenhum</SelectItem>
+                    {clientes.map((c) => <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>)}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-1.5">
+                <Label>Categoria</Label>
+                <Select value={formNovo.watch("plano_contas_id") ?? "_none"} onValueChange={(v) => formNovo.setValue("plano_contas_id", v === "_none" ? undefined : v ?? undefined)}>
+                  <SelectTrigger className="h-10"><SelectValue placeholder="Nenhuma" /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="_none">Nenhuma</SelectItem>
+                    {categorias.map((c) => <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>)}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
+            {/* Centro de custo */}
+            {centrosCusto.length > 0 && (
+              <div className="space-y-1.5">
+                <Label>Centro de custo</Label>
+                <Select value={formNovo.watch("centro_custo_id") ?? "_none"} onValueChange={(v) => formNovo.setValue("centro_custo_id", v === "_none" ? undefined : v ?? undefined)}>
+                  <SelectTrigger className="h-10"><SelectValue placeholder="Nenhum" /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="_none">Nenhum</SelectItem>
+                    {centrosCusto.map((c) => <SelectItem key={c.id} value={c.id}>{c.codigo ? `[${c.codigo}] ` : ""}{c.nome}</SelectItem>)}
                   </SelectContent>
                 </Select>
               </div>
             )}
-            <div className="space-y-1">
+
+            {/* Observações */}
+            <div className="space-y-1.5">
               <Label>Observações</Label>
-              <Textarea {...formNovo.register("observacoes")} rows={2} />
+              <Textarea className="resize-none" {...formNovo.register("observacoes")} rows={3} placeholder="Informações adicionais..." />
             </div>
+
             <DialogFooter>
-              <Button type="button" variant="outline" onClick={() => setModalNovo(false)}>Cancelar</Button>
-              <Button type="submit" disabled={isPending}>{isPending ? "Salvando..." : "Criar"}</Button>
+              <Button type="button" variant="outline" onClick={() => { setModalNovo(false); formNovo.reset(); setTipoLancamentoRC("unico"); }}>Cancelar</Button>
+              <Button type="submit" disabled={isPending}>
+                {isPending ? "Salvando..." : tipoLancamentoRC === "unico" ? "Criar lançamento" : `Criar ${nParcelasRC} lançamentos`}
+              </Button>
             </DialogFooter>
           </form>
         </DialogContent>

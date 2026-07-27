@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Plus, ArrowUpCircle, Trash2, CheckCircle, Undo2, Pencil } from "lucide-react";
+import { Plus, ArrowUpCircle, Trash2, CheckCircle, Undo2, Pencil, CalendarDays, RotateCcw, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,7 +16,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { criarContaPagar, baixarContaPagar, excluirContaPagar, estornarContaPagar, baixarLoteContasPagar, editarContaPagar } from "@/actions/contas-pagar";
+import { criarContaPagar, criarContaPagarParcelado, baixarContaPagar, excluirContaPagar, estornarContaPagar, baixarLoteContasPagar, editarContaPagar } from "@/actions/contas-pagar";
 
 type Status = "PENDENTE" | "PARCIAL" | "PAGO" | "VENCIDO" | "CANCELADO";
 
@@ -30,6 +30,26 @@ const STATUS_CONFIG: Record<Status, { label: string; variant: "default" | "secon
 
 const FORMAS = ["Dinheiro", "PIX", "TED", "Boleto", "Cartão de Crédito", "Cartão de Débito", "Cheque"];
 
+const PERIODICIDADE_LABELS: Record<string, string> = {
+  SEMANAL: "Semanal (7 dias)", QUINZENAL: "Quinzenal (15 dias)",
+  MENSAL: "Mensal", BIMESTRAL: "Bimestral", TRIMESTRAL: "Trimestral",
+  SEMESTRAL: "Semestral", ANUAL: "Anual",
+};
+
+function addPeriodoPreviewCP(base: Date, per: string, i: number): Date {
+  const d = new Date(base);
+  switch (per) {
+    case "SEMANAL":    d.setDate(d.getDate() + 7 * i); break;
+    case "QUINZENAL":  d.setDate(d.getDate() + 15 * i); break;
+    case "MENSAL":     d.setMonth(d.getMonth() + i); break;
+    case "BIMESTRAL":  d.setMonth(d.getMonth() + 2 * i); break;
+    case "TRIMESTRAL": d.setMonth(d.getMonth() + 3 * i); break;
+    case "SEMESTRAL":  d.setMonth(d.getMonth() + 6 * i); break;
+    case "ANUAL":      d.setFullYear(d.getFullYear() + i); break;
+  }
+  return d;
+}
+
 const schemaEditar = z.object({
   descricao:       z.string().min(1, "Descrição obrigatória"),
   valor:           z.string().min(1, "Valor obrigatório"),
@@ -37,13 +57,17 @@ const schemaEditar = z.object({
 });
 
 const schemaCreate = z.object({
-  descricao:       z.string().min(1, "Descrição obrigatória"),
-  fornecedor:      z.string().optional(),
-  valor:           z.string().min(1, "Valor obrigatório"),
-  data_vencimento: z.string().min(1, "Data obrigatória"),
-  plano_contas_id: z.string().optional(),
-  centro_custo_id: z.string().optional(),
-  observacoes:     z.string().optional(),
+  descricao:         z.string().min(1, "Descrição obrigatória"),
+  fornecedor:        z.string().optional(),
+  valor:             z.string().min(1, "Valor obrigatório"),
+  data_vencimento:   z.string().optional(),
+  n_parcelas:        z.string().optional(),
+  periodicidade:     z.string().optional(),
+  data_primeira:     z.string().optional(),
+  plano_contas_id:   z.string().optional(),
+  conta_bancaria_id: z.string().optional(),
+  centro_custo_id:   z.string().optional(),
+  observacoes:       z.string().optional(),
 });
 
 const schemaBaixar = z.object({
@@ -104,16 +128,49 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
   const totalPendente = contas.filter((c) => c.status === "PENDENTE").reduce((s, c) => s + Number(c.valor), 0);
   const totalPago = contas.filter((c) => c.status === "PAGO").reduce((s, c) => s + Number(c.valor_pago ?? c.valor), 0);
 
+  const [tipoLancamentoCp, setTipoLancamentoCp] = useState<"unico" | "parcelado" | "recorrente">("unico");
   const formNovo = useForm<FormCreate>({ resolver: zodResolver(schemaCreate) });
+
+  const valorWatchCp     = formNovo.watch("valor");
+  const nParcelasWatchCp = formNovo.watch("n_parcelas");
+  const perWatchCp       = formNovo.watch("periodicidade");
+  const dataPrimWatchCp  = formNovo.watch("data_primeira");
+
+  const valorTotalCp   = Number(valorWatchCp) || 0;
+  const nParcelasCp    = Math.max(2, Number(nParcelasWatchCp) || 2);
+  const valorParcelaCp = nParcelasCp > 0 ? Math.floor((valorTotalCp / nParcelasCp) * 100) / 100 : 0;
+  const ultimaDataCp   = (perWatchCp && dataPrimWatchCp)
+    ? addPeriodoPreviewCP(new Date(`${dataPrimWatchCp}T12:00:00`), perWatchCp, nParcelasCp - 1)
+    : null;
+
   const onSubmitNovo = (data: FormCreate) => {
     startTransition(async () => {
       try {
-        const res = await criarContaPagar({ ...data, valor: Number(data.valor) });
-        setContas((prev) => [...prev, res.data as unknown as ContaPagar]);
-        toast.success("Conta a pagar criada");
+        if (tipoLancamentoCp === "unico") {
+          if (!data.data_vencimento) { toast.error("Informe a data de vencimento"); return; }
+          const res = await criarContaPagar({ ...data, valor: Number(data.valor), data_vencimento: data.data_vencimento });
+          setContas((prev) => [...prev, res.data as unknown as ContaPagar]);
+          toast.success("Conta a pagar criada");
+        } else {
+          if (!data.n_parcelas || Number(data.n_parcelas) < 2) { toast.error("Mínimo 2 parcelas"); return; }
+          if (!data.periodicidade) { toast.error("Informe a periodicidade"); return; }
+          if (!data.data_primeira) { toast.error("Informe a data do primeiro vencimento"); return; }
+          const res = await criarContaPagarParcelado({
+            descricao: data.descricao, valor_total: Number(data.valor),
+            n_parcelas: Number(data.n_parcelas), periodicidade: data.periodicidade as "MENSAL",
+            data_primeira: data.data_primeira,
+            tipo: tipoLancamentoCp === "parcelado" ? "PARCELADO" : "RECORRENTE",
+            fornecedor: data.fornecedor, plano_contas_id: data.plano_contas_id,
+            conta_bancaria_id: data.conta_bancaria_id, centro_custo_id: data.centro_custo_id,
+            observacoes: data.observacoes,
+          });
+          toast.success(`${res.count} contas criadas com sucesso`);
+          router.refresh();
+        }
         setModalNovo(false);
         formNovo.reset();
-      } catch { toast.error("Erro ao criar conta"); }
+        setTipoLancamentoCp("unico");
+      } catch (e) { toast.error(e instanceof Error ? e.message : "Erro ao criar conta"); }
     });
   };
 
@@ -383,69 +440,137 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
         </DialogContent>
       </Dialog>
 
-      {/* Modal nova conta */}
-      <Dialog open={modalNovo} onOpenChange={setModalNovo}>
-        <DialogContent className="max-w-lg">
-          <DialogHeader><DialogTitle>Nova conta a pagar</DialogTitle></DialogHeader>
-          <form onSubmit={formNovo.handleSubmit(onSubmitNovo)} className="space-y-3">
-            <div className="space-y-1">
+      {/* Modal nova conta a pagar */}
+      <Dialog open={modalNovo} onOpenChange={(v) => { setModalNovo(v); if (!v) { formNovo.reset(); setTipoLancamentoCp("unico"); } }}>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-lg">Novo lançamento em Contas a Pagar</DialogTitle>
+          </DialogHeader>
+          <form onSubmit={formNovo.handleSubmit(onSubmitNovo)} className="space-y-5 pt-1">
+
+            {/* Tipo de lançamento */}
+            <div className="space-y-1.5">
+              <Label className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Tipo de lançamento</Label>
+              <div className="flex rounded-lg border overflow-hidden divide-x">
+                {([["unico", "Único", <CalendarDays key="c" className="size-3.5" />], ["parcelado", "Parcelado", <FileText key="f" className="size-3.5" />], ["recorrente", "Recorrente", <RotateCcw key="r" className="size-3.5" />]] as const).map(([tipo, label, icon]) => (
+                  <button key={tipo} type="button" onClick={() => setTipoLancamentoCp(tipo)}
+                    className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 text-sm font-medium transition-colors ${tipoLancamentoCp === tipo ? "bg-primary text-primary-foreground" : "hover:bg-muted text-muted-foreground"}`}>
+                    {icon}{label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Descrição */}
+            <div className="space-y-1.5">
               <Label>Descrição *</Label>
-              <Input {...formNovo.register("descricao")} placeholder="Ex.: Aluguel do escritório" />
+              <Input className="h-10" {...formNovo.register("descricao")} placeholder="Ex.: Aluguel do escritório" />
               {formNovo.formState.errors.descricao && <p className="text-xs text-destructive">{formNovo.formState.errors.descricao.message}</p>}
             </div>
-            <div className="space-y-1">
-              <Label>Fornecedor</Label>
-              <Input {...formNovo.register("fornecedor")} placeholder="Nome do fornecedor ou credor" />
+
+            {/* Fornecedor */}
+            <div className="space-y-1.5">
+              <Label>Fornecedor / Credor</Label>
+              <Input className="h-10" {...formNovo.register("fornecedor")} placeholder="Nome do fornecedor ou credor" />
             </div>
-            <div className="grid grid-cols-2 gap-3">
-              <div className="space-y-1">
-                <Label>Valor *</Label>
-                <Input {...formNovo.register("valor")} type="number" step="0.01" min="0.01" placeholder="0,00" />
+
+            {/* Valor + Conta bancária */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-1.5">
+                <Label>{tipoLancamentoCp === "unico" ? "Valor *" : "Valor total *"}</Label>
+                <Input className="h-10" {...formNovo.register("valor")} type="number" step="0.01" min="0.01" placeholder="0,00" />
               </div>
-              <div className="space-y-1">
-                <Label>Vencimento *</Label>
-                <Input {...formNovo.register("data_vencimento")} type="date" />
+              <div className="space-y-1.5">
+                <Label>Conta bancária</Label>
+                <Select value={formNovo.watch("conta_bancaria_id") ?? "_none"} onValueChange={(v) => formNovo.setValue("conta_bancaria_id", v === "_none" ? undefined : v ?? undefined)}>
+                  <SelectTrigger className="h-10"><SelectValue placeholder="Nenhuma" /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="_none">Nenhuma</SelectItem>
+                    {contasBancarias.map((c) => <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>)}
+                  </SelectContent>
+                </Select>
               </div>
             </div>
-            <div className="space-y-1">
+
+            {/* Vencimento único vs parcelado */}
+            {tipoLancamentoCp === "unico" ? (
+              <div className="space-y-1.5">
+                <Label>Data de vencimento *</Label>
+                <Input className="h-10" {...formNovo.register("data_vencimento")} type="date" />
+              </div>
+            ) : (
+              <div className="space-y-4 rounded-xl border bg-muted/30 p-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <Label>Nº de {tipoLancamentoCp === "parcelado" ? "parcelas" : "lançamentos"} *</Label>
+                    <Input className="h-10" {...formNovo.register("n_parcelas")} type="number" min="2" max="120" placeholder="Ex.: 12" />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label>Periodicidade *</Label>
+                    <Select value={formNovo.watch("periodicidade") ?? ""} onValueChange={(v) => formNovo.setValue("periodicidade", v ?? undefined)}>
+                      <SelectTrigger className="h-10"><SelectValue placeholder="Selecionar" /></SelectTrigger>
+                      <SelectContent>
+                        {Object.entries(PERIODICIDADE_LABELS).map(([k, lv]) => <SelectItem key={k} value={k}>{lv}</SelectItem>)}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                <div className="space-y-1.5">
+                  <Label>Data do {tipoLancamentoCp === "parcelado" ? "1º vencimento" : "1º lançamento"} *</Label>
+                  <Input className="h-10" {...formNovo.register("data_primeira")} type="date" />
+                </div>
+                {valorTotalCp > 0 && nParcelasCp >= 2 && perWatchCp && dataPrimWatchCp && (
+                  <div className="rounded-lg bg-primary/5 border border-primary/20 p-3 space-y-0.5">
+                    <p className="text-sm font-medium text-primary">
+                      {nParcelasCp}× de {formatBRL(valorParcelaCp)}
+                      <span className="text-muted-foreground font-normal"> — total {formatBRL(valorTotalCp)}</span>
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      Primeiro: {new Date(`${dataPrimWatchCp}T12:00:00`).toLocaleDateString("pt-BR")}
+                      {ultimaDataCp && ` · Último: ${ultimaDataCp.toLocaleDateString("pt-BR")}`}
+                    </p>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Categoria */}
+            <div className="space-y-1.5">
               <Label>Categoria (despesa)</Label>
-              <Select value={formNovo.watch("plano_contas_id") ?? ""} onValueChange={(v) => formNovo.setValue("plano_contas_id", v === "nenhuma" ? undefined : v ?? undefined)}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Nenhuma">
-                    {(value: string | null) => value && value !== "nenhuma" ? (categorias.find((c) => c.id === value)?.nome ?? value) : undefined}
-                  </SelectValue>
-                </SelectTrigger>
+              <Select value={formNovo.watch("plano_contas_id") ?? "_none"} onValueChange={(v) => formNovo.setValue("plano_contas_id", v === "_none" ? undefined : v ?? undefined)}>
+                <SelectTrigger className="h-10"><SelectValue placeholder="Nenhuma" /></SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="nenhuma">Nenhuma</SelectItem>
+                  <SelectItem value="_none">Nenhuma</SelectItem>
                   {categorias.map((c) => <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>)}
                 </SelectContent>
               </Select>
             </div>
+
+            {/* Centro de custo */}
             {centrosCusto.length > 0 && (
-              <div className="space-y-1">
+              <div className="space-y-1.5">
                 <Label>Centro de custo</Label>
-                <Select value={formNovo.watch("centro_custo_id") ?? ""} onValueChange={(v) => formNovo.setValue("centro_custo_id", v === "nenhum" ? undefined : v ?? undefined)}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Nenhum" />
-                  </SelectTrigger>
+                <Select value={formNovo.watch("centro_custo_id") ?? "_none"} onValueChange={(v) => formNovo.setValue("centro_custo_id", v === "_none" ? undefined : v ?? undefined)}>
+                  <SelectTrigger className="h-10"><SelectValue placeholder="Nenhum" /></SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="nenhum">Nenhum</SelectItem>
-                    {centrosCusto.map((c) => (
-                      <SelectItem key={c.id} value={c.id}>
-                        {c.codigo ? `[${c.codigo}] ` : ""}{c.nome}
-                      </SelectItem>
-                    ))}
+                    <SelectItem value="_none">Nenhum</SelectItem>
+                    {centrosCusto.map((c) => <SelectItem key={c.id} value={c.id}>{c.codigo ? `[${c.codigo}] ` : ""}{c.nome}</SelectItem>)}
                   </SelectContent>
                 </Select>
               </div>
             )}
-            <div className="space-y-1">
+
+            {/* Observações */}
+            <div className="space-y-1.5">
               <Label>Observações</Label>
-              <Textarea {...formNovo.register("observacoes")} rows={2} />
+              <Textarea className="resize-none" {...formNovo.register("observacoes")} rows={3} placeholder="Informações adicionais..." />
             </div>
+
             <DialogFooter>
-              <Button type="button" variant="outline" onClick={() => setModalNovo(false)}>Cancelar</Button>
-              <Button type="submit" disabled={isPending}>{isPending ? "Salvando..." : "Criar"}</Button>
+              <Button type="button" variant="outline" onClick={() => { setModalNovo(false); formNovo.reset(); setTipoLancamentoCp("unico"); }}>Cancelar</Button>
+              <Button type="submit" disabled={isPending}>
+                {isPending ? "Salvando..." : tipoLancamentoCp === "unico" ? "Criar lançamento" : `Criar ${nParcelasCp} lançamentos`}
+              </Button>
             </DialogFooter>
           </form>
         </DialogContent>
