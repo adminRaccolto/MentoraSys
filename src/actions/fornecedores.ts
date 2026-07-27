@@ -7,15 +7,59 @@ import { verificarPermissao, obterEmpresaAtiva } from "@/lib/permissoes";
 import { registrar } from "@/lib/auditoria";
 
 const schemaFornecedor = z.object({
-  nome:       z.string().min(1, "Nome obrigatório"),
-  cnpj_cpf:   z.string().optional(),
-  email:      z.string().email("E-mail inválido").optional().or(z.literal("")),
-  telefone:   z.string().optional(),
-  contato:    z.string().optional(),
-  observacoes: z.string().optional(),
+  nome:          z.string().min(1, "Nome obrigatório"),
+  cnpj_cpf:      z.string().optional(),
+  email:         z.string().email("E-mail inválido").optional().or(z.literal("")),
+  telefone:      z.string().optional(),
+  whatsapp:      z.string().optional(),
+  nome_contato:  z.string().optional(),
+  cargo_contato: z.string().optional(),
+  // endereço
+  cep:           z.string().optional(),
+  logradouro:    z.string().optional(),
+  numero:        z.string().optional(),
+  complemento:   z.string().optional(),
+  bairro:        z.string().optional(),
+  cidade:        z.string().optional(),
+  estado:        z.string().optional(),
+  // dados bancários
+  banco:         z.string().optional(),
+  agencia:       z.string().optional(),
+  conta:         z.string().optional(),
+  tipo_conta:    z.string().optional(),
+  // pix
+  chave_pix:     z.string().optional(),
+  tipo_chave_pix: z.string().optional(),
+  observacoes:   z.string().optional(),
 });
 
 type InputFornecedor = z.input<typeof schemaFornecedor>;
+
+function mapData(d: z.output<typeof schemaFornecedor>) {
+  return {
+    nome:          d.nome,
+    cnpj_cpf:      d.cnpj_cpf      || null,
+    email:         d.email         || null,
+    telefone:      d.telefone      || null,
+    whatsapp:      d.whatsapp      || null,
+    nome_contato:  d.nome_contato  || null,
+    cargo_contato: d.cargo_contato || null,
+    cep:           d.cep           || null,
+    logradouro:    d.logradouro    || null,
+    numero:        d.numero        || null,
+    complemento:   d.complemento   || null,
+    bairro:        d.bairro        || null,
+    cidade:        d.cidade        || null,
+    estado:        d.estado        || null,
+    banco:         d.banco         || null,
+    agencia:       d.agencia       || null,
+    conta:         d.conta         || null,
+    tipo_conta:    d.tipo_conta    || null,
+    chave_pix:     d.chave_pix     || null,
+    tipo_chave_pix: d.tipo_chave_pix || null,
+    observacoes:   d.observacoes   || null,
+  };
+}
 
 export async function listarFornecedores() {
   const empresaId = await obterEmpresaAtiva();
@@ -31,15 +75,7 @@ export async function criarFornecedor(input: InputFornecedor) {
   const data = schemaFornecedor.parse(input);
 
   const f = await prisma.fornecedor.create({
-    data: {
-      empresa_id:  empresaId,
-      nome:        data.nome,
-      cnpj_cpf:    data.cnpj_cpf || null,
-      email:       data.email || null,
-      telefone:    data.telefone || null,
-      contato:     data.contato || null,
-      observacoes: data.observacoes || null,
-    },
+    data: { empresa_id: empresaId, ...mapData(data) },
   });
 
   await registrar({ recurso: "fornecedores", acao: "criar", registroId: f.id });
@@ -57,14 +93,7 @@ export async function editarFornecedor(id: string, input: InputFornecedor) {
 
   const f = await prisma.fornecedor.update({
     where: { id },
-    data: {
-      nome:        data.nome,
-      cnpj_cpf:    data.cnpj_cpf || null,
-      email:       data.email || null,
-      telefone:    data.telefone || null,
-      contato:     data.contato || null,
-      observacoes: data.observacoes || null,
-    },
+    data: mapData(data),
   });
 
   await registrar({ recurso: "fornecedores", acao: "editar", registroId: id });

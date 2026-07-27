@@ -139,8 +139,13 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
   const dataPrimWatchCp  = formNovo.watch("data_primeira");
 
   const valorTotalCp   = Number(valorWatchCp) || 0;
-  const nParcelasCp    = Math.max(2, Number(nParcelasWatchCp) || 2);
-  const valorParcelaCp = nParcelasCp > 0 ? Math.floor((valorTotalCp / nParcelasCp) * 100) / 100 : 0;
+  // Parcelado: mínimo 2 parcelas. Recorrente: mínimo 1 (valor por período, sem divisão)
+  const nParcelasCp    = tipoLancamentoCp === "parcelado"
+    ? Math.max(2, Number(nParcelasWatchCp) || 2)
+    : Math.max(1, Number(nParcelasWatchCp) || 1);
+  const valorParcelaCp = tipoLancamentoCp === "recorrente"
+    ? valorTotalCp
+    : (nParcelasCp > 0 ? Math.floor((valorTotalCp / nParcelasCp) * 100) / 100 : 0);
   const ultimaDataCp   = (perWatchCp && dataPrimWatchCp)
     ? addPeriodoPreviewCP(new Date(`${dataPrimWatchCp}T12:00:00`), perWatchCp, nParcelasCp - 1)
     : null;
@@ -516,7 +521,7 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
             {/* Valor + Conta bancária */}
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <Label>{tipoLancamentoCp === "unico" ? "Valor *" : "Valor total *"}</Label>
+                <Label>{tipoLancamentoCp === "unico" ? "Valor *" : tipoLancamentoCp === "recorrente" ? "Valor por lançamento *" : "Valor total *"}</Label>
                 <Input className="h-10" {...formNovo.register("valor")} type="number" step="0.01" min="0.01" placeholder="0,00" />
               </div>
               <div className="space-y-1.5">
@@ -573,11 +578,14 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
                   <Label>Data do {tipoLancamentoCp === "parcelado" ? "1º vencimento" : "1º lançamento"} *</Label>
                   <Input className="h-10" {...formNovo.register("data_primeira")} type="date" />
                 </div>
-                {valorTotalCp > 0 && nParcelasCp >= 2 && perWatchCp && dataPrimWatchCp && (
+                {valorTotalCp > 0 && nParcelasCp >= 1 && perWatchCp && dataPrimWatchCp && (
                   <div className="rounded-lg bg-primary/5 border border-primary/20 p-3 space-y-0.5">
                     <p className="text-sm font-medium text-primary">
                       {nParcelasCp}× de {formatBRL(valorParcelaCp)}
-                      <span className="text-muted-foreground font-normal"> — total {formatBRL(valorTotalCp)}</span>
+                      {tipoLancamentoCp === "recorrente"
+                        ? <span className="text-muted-foreground font-normal"> por lançamento</span>
+                        : <span className="text-muted-foreground font-normal"> — total {formatBRL(valorTotalCp)}</span>
+                      }
                     </p>
                     <p className="text-xs text-muted-foreground">
                       Primeiro: {new Date(`${dataPrimWatchCp}T12:00:00`).toLocaleDateString("pt-BR")}

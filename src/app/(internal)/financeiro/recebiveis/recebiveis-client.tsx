@@ -215,8 +215,12 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
   const dataPrimWatch  = formNovo.watch("data_primeira");
 
   const valorTotalRC  = Number(valorWatch) || 0;
-  const nParcelasRC   = Math.max(2, Number(nParcelasWatch) || 2);
-  const valorParcelaRC = nParcelasRC > 0 ? Math.floor((valorTotalRC / nParcelasRC) * 100) / 100 : 0;
+  const nParcelasRC   = tipoLancamentoRC === "parcelado"
+    ? Math.max(2, Number(nParcelasWatch) || 2)
+    : Math.max(1, Number(nParcelasWatch) || 1);
+  const valorParcelaRC = tipoLancamentoRC === "recorrente"
+    ? valorTotalRC
+    : (nParcelasRC > 0 ? Math.floor((valorTotalRC / nParcelasRC) * 100) / 100 : 0);
   const ultimaDataRC = (perWatch && dataPrimWatch)
     ? addPeriodoPreview(new Date(`${dataPrimWatch}T12:00:00`), perWatch, nParcelasRC - 1)
     : null;
@@ -854,7 +858,7 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
             {/* Valor + Conta bancária */}
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <Label>{tipoLancamentoRC === "unico" ? "Valor *" : "Valor total *"}</Label>
+                <Label>{tipoLancamentoRC === "unico" ? "Valor *" : tipoLancamentoRC === "recorrente" ? "Valor por lançamento *" : "Valor total *"}</Label>
                 <Input className="h-10" {...formNovo.register("valor")} type="number" step="0.01" min="0.01" placeholder="0,00" />
               </div>
               <div className="space-y-1.5">
@@ -912,11 +916,14 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
                   <Input className="h-10" {...formNovo.register("data_primeira")} type="date" />
                 </div>
                 {/* Preview */}
-                {valorTotalRC > 0 && nParcelasRC >= 2 && perWatch && dataPrimWatch && (
+                {valorTotalRC > 0 && nParcelasRC >= 1 && perWatch && dataPrimWatch && (
                   <div className="rounded-lg bg-primary/5 border border-primary/20 p-3 space-y-0.5">
                     <p className="text-sm font-medium text-primary">
                       {nParcelasRC}× de {formatBRL(valorParcelaRC)}
-                      <span className="text-muted-foreground font-normal"> — total {formatBRL(valorTotalRC)}</span>
+                      {tipoLancamentoRC === "recorrente"
+                        ? <span className="text-muted-foreground font-normal"> por lançamento</span>
+                        : <span className="text-muted-foreground font-normal"> — total {formatBRL(valorTotalRC)}</span>
+                      }
                     </p>
                     <p className="text-xs text-muted-foreground">
                       Primeiro: {new Date(`${dataPrimWatch}T12:00:00`).toLocaleDateString("pt-BR")}

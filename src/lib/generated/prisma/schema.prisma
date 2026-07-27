@@ -1027,17 +1027,37 @@ model ContaPagar {
 // ─── FORNECEDORES ─────────────────────────────────────────────────────────────
 
 model Fornecedor {
-  id            String   @id @default(cuid())
-  empresa_id    String
-  nome          String
-  cnpj_cpf      String?
-  email         String?
-  telefone      String?
-  contato       String?
-  observacoes   String?
-  ativo         Boolean  @default(true)
-  criado_em     DateTime @default(now())
-  atualizado_em DateTime @updatedAt
+  id             String   @id @default(cuid())
+  empresa_id     String
+  nome           String
+  cnpj_cpf       String?
+  email          String?
+  telefone       String?
+  whatsapp       String?
+  // Contato
+  nome_contato   String?
+  cargo_contato  String?
+  // Endereço
+  cep            String?
+  logradouro     String?
+  numero         String?
+  complemento    String?
+  bairro         String?
+  cidade         String?
+  estado         String?
+  // Dados bancários
+  banco          String?
+  agencia        String?
+  conta          String?
+  tipo_conta     String?
+  // Pix
+  chave_pix      String?
+  tipo_chave_pix String?
+  // Geral
+  observacoes    String?
+  ativo          Boolean  @default(true)
+  criado_em      DateTime @default(now())
+  atualizado_em  DateTime @updatedAt
 
   empresa      Empresa      @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
   contas_pagar ContaPagar[]

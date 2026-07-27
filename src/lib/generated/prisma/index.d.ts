@@ -55890,7 +55890,22 @@ export namespace Prisma {
     cnpj_cpf: string | null
     email: string | null
     telefone: string | null
-    contato: string | null
+    whatsapp: string | null
+    nome_contato: string | null
+    cargo_contato: string | null
+    cep: string | null
+    logradouro: string | null
+    numero: string | null
+    complemento: string | null
+    bairro: string | null
+    cidade: string | null
+    estado: string | null
+    banco: string | null
+    agencia: string | null
+    conta: string | null
+    tipo_conta: string | null
+    chave_pix: string | null
+    tipo_chave_pix: string | null
     observacoes: string | null
     ativo: boolean | null
     criado_em: Date | null
@@ -55904,7 +55919,22 @@ export namespace Prisma {
     cnpj_cpf: string | null
     email: string | null
     telefone: string | null
-    contato: string | null
+    whatsapp: string | null
+    nome_contato: string | null
+    cargo_contato: string | null
+    cep: string | null
+    logradouro: string | null
+    numero: string | null
+    complemento: string | null
+    bairro: string | null
+    cidade: string | null
+    estado: string | null
+    banco: string | null
+    agencia: string | null
+    conta: string | null
+    tipo_conta: string | null
+    chave_pix: string | null
+    tipo_chave_pix: string | null
     observacoes: string | null
     ativo: boolean | null
     criado_em: Date | null
@@ -55918,7 +55948,22 @@ export namespace Prisma {
     cnpj_cpf: number
     email: number
     telefone: number
-    contato: number
+    whatsapp: number
+    nome_contato: number
+    cargo_contato: number
+    cep: number
+    logradouro: number
+    numero: number
+    complemento: number
+    bairro: number
+    cidade: number
+    estado: number
+    banco: number
+    agencia: number
+    conta: number
+    tipo_conta: number
+    chave_pix: number
+    tipo_chave_pix: number
     observacoes: number
     ativo: number
     criado_em: number
@@ -55934,7 +55979,22 @@ export namespace Prisma {
     cnpj_cpf?: true
     email?: true
     telefone?: true
-    contato?: true
+    whatsapp?: true
+    nome_contato?: true
+    cargo_contato?: true
+    cep?: true
+    logradouro?: true
+    numero?: true
+    complemento?: true
+    bairro?: true
+    cidade?: true
+    estado?: true
+    banco?: true
+    agencia?: true
+    conta?: true
+    tipo_conta?: true
+    chave_pix?: true
+    tipo_chave_pix?: true
     observacoes?: true
     ativo?: true
     criado_em?: true
@@ -55948,7 +56008,22 @@ export namespace Prisma {
     cnpj_cpf?: true
     email?: true
     telefone?: true
-    contato?: true
+    whatsapp?: true
+    nome_contato?: true
+    cargo_contato?: true
+    cep?: true
+    logradouro?: true
+    numero?: true
+    complemento?: true
+    bairro?: true
+    cidade?: true
+    estado?: true
+    banco?: true
+    agencia?: true
+    conta?: true
+    tipo_conta?: true
+    chave_pix?: true
+    tipo_chave_pix?: true
     observacoes?: true
     ativo?: true
     criado_em?: true
@@ -55962,7 +56037,22 @@ export namespace Prisma {
     cnpj_cpf?: true
     email?: true
     telefone?: true
-    contato?: true
+    whatsapp?: true
+    nome_contato?: true
+    cargo_contato?: true
+    cep?: true
+    logradouro?: true
+    numero?: true
+    complemento?: true
+    bairro?: true
+    cidade?: true
+    estado?: true
+    banco?: true
+    agencia?: true
+    conta?: true
+    tipo_conta?: true
+    chave_pix?: true
+    tipo_chave_pix?: true
     observacoes?: true
     ativo?: true
     criado_em?: true
@@ -56049,7 +56139,22 @@ export namespace Prisma {
     cnpj_cpf: string | null
     email: string | null
     telefone: string | null
-    contato: string | null
+    whatsapp: string | null
+    nome_contato: string | null
+    cargo_contato: string | null
+    cep: string | null
+    logradouro: string | null
+    numero: string | null
+    complemento: string | null
+    bairro: string | null
+    cidade: string | null
+    estado: string | null
+    banco: string | null
+    agencia: string | null
+    conta: string | null
+    tipo_conta: string | null
+    chave_pix: string | null
+    tipo_chave_pix: string | null
     observacoes: string | null
     ativo: boolean
     criado_em: Date
@@ -56080,7 +56185,22 @@ export namespace Prisma {
     cnpj_cpf?: boolean
     email?: boolean
     telefone?: boolean
-    contato?: boolean
+    whatsapp?: boolean
+    nome_contato?: boolean
+    cargo_contato?: boolean
+    cep?: boolean
+    logradouro?: boolean
+    numero?: boolean
+    complemento?: boolean
+    bairro?: boolean
+    cidade?: boolean
+    estado?: boolean
+    banco?: boolean
+    agencia?: boolean
+    conta?: boolean
+    tipo_conta?: boolean
+    chave_pix?: boolean
+    tipo_chave_pix?: boolean
     observacoes?: boolean
     ativo?: boolean
     criado_em?: boolean
@@ -56097,7 +56217,22 @@ export namespace Prisma {
     cnpj_cpf?: boolean
     email?: boolean
     telefone?: boolean
-    contato?: boolean
+    whatsapp?: boolean
+    nome_contato?: boolean
+    cargo_contato?: boolean
+    cep?: boolean
+    logradouro?: boolean
+    numero?: boolean
+    complemento?: boolean
+    bairro?: boolean
+    cidade?: boolean
+    estado?: boolean
+    banco?: boolean
+    agencia?: boolean
+    conta?: boolean
+    tipo_conta?: boolean
+    chave_pix?: boolean
+    tipo_chave_pix?: boolean
     observacoes?: boolean
     ativo?: boolean
     criado_em?: boolean
@@ -56112,7 +56247,22 @@ export namespace Prisma {
     cnpj_cpf?: boolean
     email?: boolean
     telefone?: boolean
-    contato?: boolean
+    whatsapp?: boolean
+    nome_contato?: boolean
+    cargo_contato?: boolean
+    cep?: boolean
+    logradouro?: boolean
+    numero?: boolean
+    complemento?: boolean
+    bairro?: boolean
+    cidade?: boolean
+    estado?: boolean
+    banco?: boolean
+    agencia?: boolean
+    conta?: boolean
+    tipo_conta?: boolean
+    chave_pix?: boolean
+    tipo_chave_pix?: boolean
     observacoes?: boolean
     ativo?: boolean
     criado_em?: boolean
@@ -56127,14 +56277,29 @@ export namespace Prisma {
     cnpj_cpf?: boolean
     email?: boolean
     telefone?: boolean
-    contato?: boolean
+    whatsapp?: boolean
+    nome_contato?: boolean
+    cargo_contato?: boolean
+    cep?: boolean
+    logradouro?: boolean
+    numero?: boolean
+    complemento?: boolean
+    bairro?: boolean
+    cidade?: boolean
+    estado?: boolean
+    banco?: boolean
+    agencia?: boolean
+    conta?: boolean
+    tipo_conta?: boolean
+    chave_pix?: boolean
+    tipo_chave_pix?: boolean
     observacoes?: boolean
     ativo?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
   }
 
-  export type FornecedorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "nome" | "cnpj_cpf" | "email" | "telefone" | "contato" | "observacoes" | "ativo" | "criado_em" | "atualizado_em", ExtArgs["result"]["fornecedor"]>
+  export type FornecedorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "nome" | "cnpj_cpf" | "email" | "telefone" | "whatsapp" | "nome_contato" | "cargo_contato" | "cep" | "logradouro" | "numero" | "complemento" | "bairro" | "cidade" | "estado" | "banco" | "agencia" | "conta" | "tipo_conta" | "chave_pix" | "tipo_chave_pix" | "observacoes" | "ativo" | "criado_em" | "atualizado_em", ExtArgs["result"]["fornecedor"]>
   export type FornecedorInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     contas_pagar?: boolean | Fornecedor$contas_pagarArgs<ExtArgs>
@@ -56160,7 +56325,22 @@ export namespace Prisma {
       cnpj_cpf: string | null
       email: string | null
       telefone: string | null
-      contato: string | null
+      whatsapp: string | null
+      nome_contato: string | null
+      cargo_contato: string | null
+      cep: string | null
+      logradouro: string | null
+      numero: string | null
+      complemento: string | null
+      bairro: string | null
+      cidade: string | null
+      estado: string | null
+      banco: string | null
+      agencia: string | null
+      conta: string | null
+      tipo_conta: string | null
+      chave_pix: string | null
+      tipo_chave_pix: string | null
       observacoes: string | null
       ativo: boolean
       criado_em: Date
@@ -56596,7 +56776,22 @@ export namespace Prisma {
     readonly cnpj_cpf: FieldRef<"Fornecedor", 'String'>
     readonly email: FieldRef<"Fornecedor", 'String'>
     readonly telefone: FieldRef<"Fornecedor", 'String'>
-    readonly contato: FieldRef<"Fornecedor", 'String'>
+    readonly whatsapp: FieldRef<"Fornecedor", 'String'>
+    readonly nome_contato: FieldRef<"Fornecedor", 'String'>
+    readonly cargo_contato: FieldRef<"Fornecedor", 'String'>
+    readonly cep: FieldRef<"Fornecedor", 'String'>
+    readonly logradouro: FieldRef<"Fornecedor", 'String'>
+    readonly numero: FieldRef<"Fornecedor", 'String'>
+    readonly complemento: FieldRef<"Fornecedor", 'String'>
+    readonly bairro: FieldRef<"Fornecedor", 'String'>
+    readonly cidade: FieldRef<"Fornecedor", 'String'>
+    readonly estado: FieldRef<"Fornecedor", 'String'>
+    readonly banco: FieldRef<"Fornecedor", 'String'>
+    readonly agencia: FieldRef<"Fornecedor", 'String'>
+    readonly conta: FieldRef<"Fornecedor", 'String'>
+    readonly tipo_conta: FieldRef<"Fornecedor", 'String'>
+    readonly chave_pix: FieldRef<"Fornecedor", 'String'>
+    readonly tipo_chave_pix: FieldRef<"Fornecedor", 'String'>
     readonly observacoes: FieldRef<"Fornecedor", 'String'>
     readonly ativo: FieldRef<"Fornecedor", 'Boolean'>
     readonly criado_em: FieldRef<"Fornecedor", 'DateTime'>
@@ -74709,7 +74904,22 @@ export namespace Prisma {
     cnpj_cpf: 'cnpj_cpf',
     email: 'email',
     telefone: 'telefone',
-    contato: 'contato',
+    whatsapp: 'whatsapp',
+    nome_contato: 'nome_contato',
+    cargo_contato: 'cargo_contato',
+    cep: 'cep',
+    logradouro: 'logradouro',
+    numero: 'numero',
+    complemento: 'complemento',
+    bairro: 'bairro',
+    cidade: 'cidade',
+    estado: 'estado',
+    banco: 'banco',
+    agencia: 'agencia',
+    conta: 'conta',
+    tipo_conta: 'tipo_conta',
+    chave_pix: 'chave_pix',
+    tipo_chave_pix: 'tipo_chave_pix',
     observacoes: 'observacoes',
     ativo: 'ativo',
     criado_em: 'criado_em',
@@ -79199,7 +79409,22 @@ export namespace Prisma {
     cnpj_cpf?: StringNullableFilter<"Fornecedor"> | string | null
     email?: StringNullableFilter<"Fornecedor"> | string | null
     telefone?: StringNullableFilter<"Fornecedor"> | string | null
-    contato?: StringNullableFilter<"Fornecedor"> | string | null
+    whatsapp?: StringNullableFilter<"Fornecedor"> | string | null
+    nome_contato?: StringNullableFilter<"Fornecedor"> | string | null
+    cargo_contato?: StringNullableFilter<"Fornecedor"> | string | null
+    cep?: StringNullableFilter<"Fornecedor"> | string | null
+    logradouro?: StringNullableFilter<"Fornecedor"> | string | null
+    numero?: StringNullableFilter<"Fornecedor"> | string | null
+    complemento?: StringNullableFilter<"Fornecedor"> | string | null
+    bairro?: StringNullableFilter<"Fornecedor"> | string | null
+    cidade?: StringNullableFilter<"Fornecedor"> | string | null
+    estado?: StringNullableFilter<"Fornecedor"> | string | null
+    banco?: StringNullableFilter<"Fornecedor"> | string | null
+    agencia?: StringNullableFilter<"Fornecedor"> | string | null
+    conta?: StringNullableFilter<"Fornecedor"> | string | null
+    tipo_conta?: StringNullableFilter<"Fornecedor"> | string | null
+    chave_pix?: StringNullableFilter<"Fornecedor"> | string | null
+    tipo_chave_pix?: StringNullableFilter<"Fornecedor"> | string | null
     observacoes?: StringNullableFilter<"Fornecedor"> | string | null
     ativo?: BoolFilter<"Fornecedor"> | boolean
     criado_em?: DateTimeFilter<"Fornecedor"> | Date | string
@@ -79215,7 +79440,22 @@ export namespace Prisma {
     cnpj_cpf?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
     telefone?: SortOrderInput | SortOrder
-    contato?: SortOrderInput | SortOrder
+    whatsapp?: SortOrderInput | SortOrder
+    nome_contato?: SortOrderInput | SortOrder
+    cargo_contato?: SortOrderInput | SortOrder
+    cep?: SortOrderInput | SortOrder
+    logradouro?: SortOrderInput | SortOrder
+    numero?: SortOrderInput | SortOrder
+    complemento?: SortOrderInput | SortOrder
+    bairro?: SortOrderInput | SortOrder
+    cidade?: SortOrderInput | SortOrder
+    estado?: SortOrderInput | SortOrder
+    banco?: SortOrderInput | SortOrder
+    agencia?: SortOrderInput | SortOrder
+    conta?: SortOrderInput | SortOrder
+    tipo_conta?: SortOrderInput | SortOrder
+    chave_pix?: SortOrderInput | SortOrder
+    tipo_chave_pix?: SortOrderInput | SortOrder
     observacoes?: SortOrderInput | SortOrder
     ativo?: SortOrder
     criado_em?: SortOrder
@@ -79234,7 +79474,22 @@ export namespace Prisma {
     cnpj_cpf?: StringNullableFilter<"Fornecedor"> | string | null
     email?: StringNullableFilter<"Fornecedor"> | string | null
     telefone?: StringNullableFilter<"Fornecedor"> | string | null
-    contato?: StringNullableFilter<"Fornecedor"> | string | null
+    whatsapp?: StringNullableFilter<"Fornecedor"> | string | null
+    nome_contato?: StringNullableFilter<"Fornecedor"> | string | null
+    cargo_contato?: StringNullableFilter<"Fornecedor"> | string | null
+    cep?: StringNullableFilter<"Fornecedor"> | string | null
+    logradouro?: StringNullableFilter<"Fornecedor"> | string | null
+    numero?: StringNullableFilter<"Fornecedor"> | string | null
+    complemento?: StringNullableFilter<"Fornecedor"> | string | null
+    bairro?: StringNullableFilter<"Fornecedor"> | string | null
+    cidade?: StringNullableFilter<"Fornecedor"> | string | null
+    estado?: StringNullableFilter<"Fornecedor"> | string | null
+    banco?: StringNullableFilter<"Fornecedor"> | string | null
+    agencia?: StringNullableFilter<"Fornecedor"> | string | null
+    conta?: StringNullableFilter<"Fornecedor"> | string | null
+    tipo_conta?: StringNullableFilter<"Fornecedor"> | string | null
+    chave_pix?: StringNullableFilter<"Fornecedor"> | string | null
+    tipo_chave_pix?: StringNullableFilter<"Fornecedor"> | string | null
     observacoes?: StringNullableFilter<"Fornecedor"> | string | null
     ativo?: BoolFilter<"Fornecedor"> | boolean
     criado_em?: DateTimeFilter<"Fornecedor"> | Date | string
@@ -79250,7 +79505,22 @@ export namespace Prisma {
     cnpj_cpf?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
     telefone?: SortOrderInput | SortOrder
-    contato?: SortOrderInput | SortOrder
+    whatsapp?: SortOrderInput | SortOrder
+    nome_contato?: SortOrderInput | SortOrder
+    cargo_contato?: SortOrderInput | SortOrder
+    cep?: SortOrderInput | SortOrder
+    logradouro?: SortOrderInput | SortOrder
+    numero?: SortOrderInput | SortOrder
+    complemento?: SortOrderInput | SortOrder
+    bairro?: SortOrderInput | SortOrder
+    cidade?: SortOrderInput | SortOrder
+    estado?: SortOrderInput | SortOrder
+    banco?: SortOrderInput | SortOrder
+    agencia?: SortOrderInput | SortOrder
+    conta?: SortOrderInput | SortOrder
+    tipo_conta?: SortOrderInput | SortOrder
+    chave_pix?: SortOrderInput | SortOrder
+    tipo_chave_pix?: SortOrderInput | SortOrder
     observacoes?: SortOrderInput | SortOrder
     ativo?: SortOrder
     criado_em?: SortOrder
@@ -79270,7 +79540,22 @@ export namespace Prisma {
     cnpj_cpf?: StringNullableWithAggregatesFilter<"Fornecedor"> | string | null
     email?: StringNullableWithAggregatesFilter<"Fornecedor"> | string | null
     telefone?: StringNullableWithAggregatesFilter<"Fornecedor"> | string | null
-    contato?: StringNullableWithAggregatesFilter<"Fornecedor"> | string | null
+    whatsapp?: StringNullableWithAggregatesFilter<"Fornecedor"> | string | null
+    nome_contato?: StringNullableWithAggregatesFilter<"Fornecedor"> | string | null
+    cargo_contato?: StringNullableWithAggregatesFilter<"Fornecedor"> | string | null
+    cep?: StringNullableWithAggregatesFilter<"Fornecedor"> | string | null
+    logradouro?: StringNullableWithAggregatesFilter<"Fornecedor"> | string | null
+    numero?: StringNullableWithAggregatesFilter<"Fornecedor"> | string | null
+    complemento?: StringNullableWithAggregatesFilter<"Fornecedor"> | string | null
+    bairro?: StringNullableWithAggregatesFilter<"Fornecedor"> | string | null
+    cidade?: StringNullableWithAggregatesFilter<"Fornecedor"> | string | null
+    estado?: StringNullableWithAggregatesFilter<"Fornecedor"> | string | null
+    banco?: StringNullableWithAggregatesFilter<"Fornecedor"> | string | null
+    agencia?: StringNullableWithAggregatesFilter<"Fornecedor"> | string | null
+    conta?: StringNullableWithAggregatesFilter<"Fornecedor"> | string | null
+    tipo_conta?: StringNullableWithAggregatesFilter<"Fornecedor"> | string | null
+    chave_pix?: StringNullableWithAggregatesFilter<"Fornecedor"> | string | null
+    tipo_chave_pix?: StringNullableWithAggregatesFilter<"Fornecedor"> | string | null
     observacoes?: StringNullableWithAggregatesFilter<"Fornecedor"> | string | null
     ativo?: BoolWithAggregatesFilter<"Fornecedor"> | boolean
     criado_em?: DateTimeWithAggregatesFilter<"Fornecedor"> | Date | string
@@ -84762,7 +85047,22 @@ export namespace Prisma {
     cnpj_cpf?: string | null
     email?: string | null
     telefone?: string | null
-    contato?: string | null
+    whatsapp?: string | null
+    nome_contato?: string | null
+    cargo_contato?: string | null
+    cep?: string | null
+    logradouro?: string | null
+    numero?: string | null
+    complemento?: string | null
+    bairro?: string | null
+    cidade?: string | null
+    estado?: string | null
+    banco?: string | null
+    agencia?: string | null
+    conta?: string | null
+    tipo_conta?: string | null
+    chave_pix?: string | null
+    tipo_chave_pix?: string | null
     observacoes?: string | null
     ativo?: boolean
     criado_em?: Date | string
@@ -84778,7 +85078,22 @@ export namespace Prisma {
     cnpj_cpf?: string | null
     email?: string | null
     telefone?: string | null
-    contato?: string | null
+    whatsapp?: string | null
+    nome_contato?: string | null
+    cargo_contato?: string | null
+    cep?: string | null
+    logradouro?: string | null
+    numero?: string | null
+    complemento?: string | null
+    bairro?: string | null
+    cidade?: string | null
+    estado?: string | null
+    banco?: string | null
+    agencia?: string | null
+    conta?: string | null
+    tipo_conta?: string | null
+    chave_pix?: string | null
+    tipo_chave_pix?: string | null
     observacoes?: string | null
     ativo?: boolean
     criado_em?: Date | string
@@ -84792,7 +85107,22 @@ export namespace Prisma {
     cnpj_cpf?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    contato?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    nome_contato?: NullableStringFieldUpdateOperationsInput | string | null
+    cargo_contato?: NullableStringFieldUpdateOperationsInput | string | null
+    cep?: NullableStringFieldUpdateOperationsInput | string | null
+    logradouro?: NullableStringFieldUpdateOperationsInput | string | null
+    numero?: NullableStringFieldUpdateOperationsInput | string | null
+    complemento?: NullableStringFieldUpdateOperationsInput | string | null
+    bairro?: NullableStringFieldUpdateOperationsInput | string | null
+    cidade?: NullableStringFieldUpdateOperationsInput | string | null
+    estado?: NullableStringFieldUpdateOperationsInput | string | null
+    banco?: NullableStringFieldUpdateOperationsInput | string | null
+    agencia?: NullableStringFieldUpdateOperationsInput | string | null
+    conta?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_conta?: NullableStringFieldUpdateOperationsInput | string | null
+    chave_pix?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_chave_pix?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
     ativo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -84808,7 +85138,22 @@ export namespace Prisma {
     cnpj_cpf?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    contato?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    nome_contato?: NullableStringFieldUpdateOperationsInput | string | null
+    cargo_contato?: NullableStringFieldUpdateOperationsInput | string | null
+    cep?: NullableStringFieldUpdateOperationsInput | string | null
+    logradouro?: NullableStringFieldUpdateOperationsInput | string | null
+    numero?: NullableStringFieldUpdateOperationsInput | string | null
+    complemento?: NullableStringFieldUpdateOperationsInput | string | null
+    bairro?: NullableStringFieldUpdateOperationsInput | string | null
+    cidade?: NullableStringFieldUpdateOperationsInput | string | null
+    estado?: NullableStringFieldUpdateOperationsInput | string | null
+    banco?: NullableStringFieldUpdateOperationsInput | string | null
+    agencia?: NullableStringFieldUpdateOperationsInput | string | null
+    conta?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_conta?: NullableStringFieldUpdateOperationsInput | string | null
+    chave_pix?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_chave_pix?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
     ativo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -84823,7 +85168,22 @@ export namespace Prisma {
     cnpj_cpf?: string | null
     email?: string | null
     telefone?: string | null
-    contato?: string | null
+    whatsapp?: string | null
+    nome_contato?: string | null
+    cargo_contato?: string | null
+    cep?: string | null
+    logradouro?: string | null
+    numero?: string | null
+    complemento?: string | null
+    bairro?: string | null
+    cidade?: string | null
+    estado?: string | null
+    banco?: string | null
+    agencia?: string | null
+    conta?: string | null
+    tipo_conta?: string | null
+    chave_pix?: string | null
+    tipo_chave_pix?: string | null
     observacoes?: string | null
     ativo?: boolean
     criado_em?: Date | string
@@ -84836,7 +85196,22 @@ export namespace Prisma {
     cnpj_cpf?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    contato?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    nome_contato?: NullableStringFieldUpdateOperationsInput | string | null
+    cargo_contato?: NullableStringFieldUpdateOperationsInput | string | null
+    cep?: NullableStringFieldUpdateOperationsInput | string | null
+    logradouro?: NullableStringFieldUpdateOperationsInput | string | null
+    numero?: NullableStringFieldUpdateOperationsInput | string | null
+    complemento?: NullableStringFieldUpdateOperationsInput | string | null
+    bairro?: NullableStringFieldUpdateOperationsInput | string | null
+    cidade?: NullableStringFieldUpdateOperationsInput | string | null
+    estado?: NullableStringFieldUpdateOperationsInput | string | null
+    banco?: NullableStringFieldUpdateOperationsInput | string | null
+    agencia?: NullableStringFieldUpdateOperationsInput | string | null
+    conta?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_conta?: NullableStringFieldUpdateOperationsInput | string | null
+    chave_pix?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_chave_pix?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
     ativo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -84850,7 +85225,22 @@ export namespace Prisma {
     cnpj_cpf?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    contato?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    nome_contato?: NullableStringFieldUpdateOperationsInput | string | null
+    cargo_contato?: NullableStringFieldUpdateOperationsInput | string | null
+    cep?: NullableStringFieldUpdateOperationsInput | string | null
+    logradouro?: NullableStringFieldUpdateOperationsInput | string | null
+    numero?: NullableStringFieldUpdateOperationsInput | string | null
+    complemento?: NullableStringFieldUpdateOperationsInput | string | null
+    bairro?: NullableStringFieldUpdateOperationsInput | string | null
+    cidade?: NullableStringFieldUpdateOperationsInput | string | null
+    estado?: NullableStringFieldUpdateOperationsInput | string | null
+    banco?: NullableStringFieldUpdateOperationsInput | string | null
+    agencia?: NullableStringFieldUpdateOperationsInput | string | null
+    conta?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_conta?: NullableStringFieldUpdateOperationsInput | string | null
+    chave_pix?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_chave_pix?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
     ativo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -89453,7 +89843,22 @@ export namespace Prisma {
     cnpj_cpf?: SortOrder
     email?: SortOrder
     telefone?: SortOrder
-    contato?: SortOrder
+    whatsapp?: SortOrder
+    nome_contato?: SortOrder
+    cargo_contato?: SortOrder
+    cep?: SortOrder
+    logradouro?: SortOrder
+    numero?: SortOrder
+    complemento?: SortOrder
+    bairro?: SortOrder
+    cidade?: SortOrder
+    estado?: SortOrder
+    banco?: SortOrder
+    agencia?: SortOrder
+    conta?: SortOrder
+    tipo_conta?: SortOrder
+    chave_pix?: SortOrder
+    tipo_chave_pix?: SortOrder
     observacoes?: SortOrder
     ativo?: SortOrder
     criado_em?: SortOrder
@@ -89467,7 +89872,22 @@ export namespace Prisma {
     cnpj_cpf?: SortOrder
     email?: SortOrder
     telefone?: SortOrder
-    contato?: SortOrder
+    whatsapp?: SortOrder
+    nome_contato?: SortOrder
+    cargo_contato?: SortOrder
+    cep?: SortOrder
+    logradouro?: SortOrder
+    numero?: SortOrder
+    complemento?: SortOrder
+    bairro?: SortOrder
+    cidade?: SortOrder
+    estado?: SortOrder
+    banco?: SortOrder
+    agencia?: SortOrder
+    conta?: SortOrder
+    tipo_conta?: SortOrder
+    chave_pix?: SortOrder
+    tipo_chave_pix?: SortOrder
     observacoes?: SortOrder
     ativo?: SortOrder
     criado_em?: SortOrder
@@ -89481,7 +89901,22 @@ export namespace Prisma {
     cnpj_cpf?: SortOrder
     email?: SortOrder
     telefone?: SortOrder
-    contato?: SortOrder
+    whatsapp?: SortOrder
+    nome_contato?: SortOrder
+    cargo_contato?: SortOrder
+    cep?: SortOrder
+    logradouro?: SortOrder
+    numero?: SortOrder
+    complemento?: SortOrder
+    bairro?: SortOrder
+    cidade?: SortOrder
+    estado?: SortOrder
+    banco?: SortOrder
+    agencia?: SortOrder
+    conta?: SortOrder
+    tipo_conta?: SortOrder
+    chave_pix?: SortOrder
+    tipo_chave_pix?: SortOrder
     observacoes?: SortOrder
     ativo?: SortOrder
     criado_em?: SortOrder
@@ -98948,7 +99383,22 @@ export namespace Prisma {
     cnpj_cpf?: string | null
     email?: string | null
     telefone?: string | null
-    contato?: string | null
+    whatsapp?: string | null
+    nome_contato?: string | null
+    cargo_contato?: string | null
+    cep?: string | null
+    logradouro?: string | null
+    numero?: string | null
+    complemento?: string | null
+    bairro?: string | null
+    cidade?: string | null
+    estado?: string | null
+    banco?: string | null
+    agencia?: string | null
+    conta?: string | null
+    tipo_conta?: string | null
+    chave_pix?: string | null
+    tipo_chave_pix?: string | null
     observacoes?: string | null
     ativo?: boolean
     criado_em?: Date | string
@@ -98962,7 +99412,22 @@ export namespace Prisma {
     cnpj_cpf?: string | null
     email?: string | null
     telefone?: string | null
-    contato?: string | null
+    whatsapp?: string | null
+    nome_contato?: string | null
+    cargo_contato?: string | null
+    cep?: string | null
+    logradouro?: string | null
+    numero?: string | null
+    complemento?: string | null
+    bairro?: string | null
+    cidade?: string | null
+    estado?: string | null
+    banco?: string | null
+    agencia?: string | null
+    conta?: string | null
+    tipo_conta?: string | null
+    chave_pix?: string | null
+    tipo_chave_pix?: string | null
     observacoes?: string | null
     ativo?: boolean
     criado_em?: Date | string
@@ -100235,7 +100700,22 @@ export namespace Prisma {
     cnpj_cpf?: StringNullableFilter<"Fornecedor"> | string | null
     email?: StringNullableFilter<"Fornecedor"> | string | null
     telefone?: StringNullableFilter<"Fornecedor"> | string | null
-    contato?: StringNullableFilter<"Fornecedor"> | string | null
+    whatsapp?: StringNullableFilter<"Fornecedor"> | string | null
+    nome_contato?: StringNullableFilter<"Fornecedor"> | string | null
+    cargo_contato?: StringNullableFilter<"Fornecedor"> | string | null
+    cep?: StringNullableFilter<"Fornecedor"> | string | null
+    logradouro?: StringNullableFilter<"Fornecedor"> | string | null
+    numero?: StringNullableFilter<"Fornecedor"> | string | null
+    complemento?: StringNullableFilter<"Fornecedor"> | string | null
+    bairro?: StringNullableFilter<"Fornecedor"> | string | null
+    cidade?: StringNullableFilter<"Fornecedor"> | string | null
+    estado?: StringNullableFilter<"Fornecedor"> | string | null
+    banco?: StringNullableFilter<"Fornecedor"> | string | null
+    agencia?: StringNullableFilter<"Fornecedor"> | string | null
+    conta?: StringNullableFilter<"Fornecedor"> | string | null
+    tipo_conta?: StringNullableFilter<"Fornecedor"> | string | null
+    chave_pix?: StringNullableFilter<"Fornecedor"> | string | null
+    tipo_chave_pix?: StringNullableFilter<"Fornecedor"> | string | null
     observacoes?: StringNullableFilter<"Fornecedor"> | string | null
     ativo?: BoolFilter<"Fornecedor"> | boolean
     criado_em?: DateTimeFilter<"Fornecedor"> | Date | string
@@ -118389,7 +118869,22 @@ export namespace Prisma {
     cnpj_cpf?: string | null
     email?: string | null
     telefone?: string | null
-    contato?: string | null
+    whatsapp?: string | null
+    nome_contato?: string | null
+    cargo_contato?: string | null
+    cep?: string | null
+    logradouro?: string | null
+    numero?: string | null
+    complemento?: string | null
+    bairro?: string | null
+    cidade?: string | null
+    estado?: string | null
+    banco?: string | null
+    agencia?: string | null
+    conta?: string | null
+    tipo_conta?: string | null
+    chave_pix?: string | null
+    tipo_chave_pix?: string | null
     observacoes?: string | null
     ativo?: boolean
     criado_em?: Date | string
@@ -118404,7 +118899,22 @@ export namespace Prisma {
     cnpj_cpf?: string | null
     email?: string | null
     telefone?: string | null
-    contato?: string | null
+    whatsapp?: string | null
+    nome_contato?: string | null
+    cargo_contato?: string | null
+    cep?: string | null
+    logradouro?: string | null
+    numero?: string | null
+    complemento?: string | null
+    bairro?: string | null
+    cidade?: string | null
+    estado?: string | null
+    banco?: string | null
+    agencia?: string | null
+    conta?: string | null
+    tipo_conta?: string | null
+    chave_pix?: string | null
+    tipo_chave_pix?: string | null
     observacoes?: string | null
     ativo?: boolean
     criado_em?: Date | string
@@ -118734,7 +119244,22 @@ export namespace Prisma {
     cnpj_cpf?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    contato?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    nome_contato?: NullableStringFieldUpdateOperationsInput | string | null
+    cargo_contato?: NullableStringFieldUpdateOperationsInput | string | null
+    cep?: NullableStringFieldUpdateOperationsInput | string | null
+    logradouro?: NullableStringFieldUpdateOperationsInput | string | null
+    numero?: NullableStringFieldUpdateOperationsInput | string | null
+    complemento?: NullableStringFieldUpdateOperationsInput | string | null
+    bairro?: NullableStringFieldUpdateOperationsInput | string | null
+    cidade?: NullableStringFieldUpdateOperationsInput | string | null
+    estado?: NullableStringFieldUpdateOperationsInput | string | null
+    banco?: NullableStringFieldUpdateOperationsInput | string | null
+    agencia?: NullableStringFieldUpdateOperationsInput | string | null
+    conta?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_conta?: NullableStringFieldUpdateOperationsInput | string | null
+    chave_pix?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_chave_pix?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
     ativo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -118749,7 +119274,22 @@ export namespace Prisma {
     cnpj_cpf?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    contato?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    nome_contato?: NullableStringFieldUpdateOperationsInput | string | null
+    cargo_contato?: NullableStringFieldUpdateOperationsInput | string | null
+    cep?: NullableStringFieldUpdateOperationsInput | string | null
+    logradouro?: NullableStringFieldUpdateOperationsInput | string | null
+    numero?: NullableStringFieldUpdateOperationsInput | string | null
+    complemento?: NullableStringFieldUpdateOperationsInput | string | null
+    bairro?: NullableStringFieldUpdateOperationsInput | string | null
+    cidade?: NullableStringFieldUpdateOperationsInput | string | null
+    estado?: NullableStringFieldUpdateOperationsInput | string | null
+    banco?: NullableStringFieldUpdateOperationsInput | string | null
+    agencia?: NullableStringFieldUpdateOperationsInput | string | null
+    conta?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_conta?: NullableStringFieldUpdateOperationsInput | string | null
+    chave_pix?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_chave_pix?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
     ativo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -124673,7 +125213,22 @@ export namespace Prisma {
     cnpj_cpf?: string | null
     email?: string | null
     telefone?: string | null
-    contato?: string | null
+    whatsapp?: string | null
+    nome_contato?: string | null
+    cargo_contato?: string | null
+    cep?: string | null
+    logradouro?: string | null
+    numero?: string | null
+    complemento?: string | null
+    bairro?: string | null
+    cidade?: string | null
+    estado?: string | null
+    banco?: string | null
+    agencia?: string | null
+    conta?: string | null
+    tipo_conta?: string | null
+    chave_pix?: string | null
+    tipo_chave_pix?: string | null
     observacoes?: string | null
     ativo?: boolean
     criado_em?: Date | string
@@ -125965,7 +126520,22 @@ export namespace Prisma {
     cnpj_cpf?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    contato?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    nome_contato?: NullableStringFieldUpdateOperationsInput | string | null
+    cargo_contato?: NullableStringFieldUpdateOperationsInput | string | null
+    cep?: NullableStringFieldUpdateOperationsInput | string | null
+    logradouro?: NullableStringFieldUpdateOperationsInput | string | null
+    numero?: NullableStringFieldUpdateOperationsInput | string | null
+    complemento?: NullableStringFieldUpdateOperationsInput | string | null
+    bairro?: NullableStringFieldUpdateOperationsInput | string | null
+    cidade?: NullableStringFieldUpdateOperationsInput | string | null
+    estado?: NullableStringFieldUpdateOperationsInput | string | null
+    banco?: NullableStringFieldUpdateOperationsInput | string | null
+    agencia?: NullableStringFieldUpdateOperationsInput | string | null
+    conta?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_conta?: NullableStringFieldUpdateOperationsInput | string | null
+    chave_pix?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_chave_pix?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
     ativo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -125979,7 +126549,22 @@ export namespace Prisma {
     cnpj_cpf?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    contato?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    nome_contato?: NullableStringFieldUpdateOperationsInput | string | null
+    cargo_contato?: NullableStringFieldUpdateOperationsInput | string | null
+    cep?: NullableStringFieldUpdateOperationsInput | string | null
+    logradouro?: NullableStringFieldUpdateOperationsInput | string | null
+    numero?: NullableStringFieldUpdateOperationsInput | string | null
+    complemento?: NullableStringFieldUpdateOperationsInput | string | null
+    bairro?: NullableStringFieldUpdateOperationsInput | string | null
+    cidade?: NullableStringFieldUpdateOperationsInput | string | null
+    estado?: NullableStringFieldUpdateOperationsInput | string | null
+    banco?: NullableStringFieldUpdateOperationsInput | string | null
+    agencia?: NullableStringFieldUpdateOperationsInput | string | null
+    conta?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_conta?: NullableStringFieldUpdateOperationsInput | string | null
+    chave_pix?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_chave_pix?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
     ativo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -125993,7 +126578,22 @@ export namespace Prisma {
     cnpj_cpf?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     telefone?: NullableStringFieldUpdateOperationsInput | string | null
-    contato?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+    nome_contato?: NullableStringFieldUpdateOperationsInput | string | null
+    cargo_contato?: NullableStringFieldUpdateOperationsInput | string | null
+    cep?: NullableStringFieldUpdateOperationsInput | string | null
+    logradouro?: NullableStringFieldUpdateOperationsInput | string | null
+    numero?: NullableStringFieldUpdateOperationsInput | string | null
+    complemento?: NullableStringFieldUpdateOperationsInput | string | null
+    bairro?: NullableStringFieldUpdateOperationsInput | string | null
+    cidade?: NullableStringFieldUpdateOperationsInput | string | null
+    estado?: NullableStringFieldUpdateOperationsInput | string | null
+    banco?: NullableStringFieldUpdateOperationsInput | string | null
+    agencia?: NullableStringFieldUpdateOperationsInput | string | null
+    conta?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_conta?: NullableStringFieldUpdateOperationsInput | string | null
+    chave_pix?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_chave_pix?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
     ativo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string

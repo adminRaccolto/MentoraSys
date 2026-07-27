@@ -372,7 +372,7 @@ const PERIODICIDADES = ["SEMANAL", "QUINZENAL", "MENSAL", "BIMESTRAL", "TRIMESTR
 const schemaParceladoManual = z.object({
   descricao:         z.string().min(1, "Descrição obrigatória"),
   valor_total:       z.coerce.number().positive("Valor deve ser positivo"),
-  n_parcelas:        z.coerce.number().int().min(2).max(120),
+  n_parcelas:        z.coerce.number().int().min(1).max(120),
   periodicidade:     z.enum(PERIODICIDADES),
   data_primeira:     z.string().min(1, "Data obrigatória"),
   tipo:              z.enum(["PARCELADO", "RECORRENTE"]),
@@ -405,8 +405,14 @@ export async function criarRecebivelParcelado(input: z.input<typeof schemaParcel
   const d = schemaParceladoManual.parse(input);
 
   const base = new Date(`${d.data_primeira}T12:00:00`);
-  const valorBase = Math.floor((d.valor_total / d.n_parcelas) * 100) / 100;
-  const valorUltima = Math.round((d.valor_total - valorBase * (d.n_parcelas - 1)) * 100) / 100;
+  // RECORRENTE: cada lançamento tem o mesmo valor (valor_total = valor por período)
+  // PARCELADO: divide o total, último lançamento absorve o centavo de arredondamento
+  const valorBase = d.tipo === "RECORRENTE"
+    ? d.valor_total
+    : Math.floor((d.valor_total / d.n_parcelas) * 100) / 100;
+  const valorUltima = d.tipo === "RECORRENTE"
+    ? d.valor_total
+    : Math.round((d.valor_total - valorBase * (d.n_parcelas - 1)) * 100) / 100;
 
   const registros = Array.from({ length: d.n_parcelas }, (_, i) => ({
     empresa_id:        empresaId,
