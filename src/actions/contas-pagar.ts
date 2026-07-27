@@ -9,14 +9,16 @@ import { createClient } from "@/lib/supabase/server";
 import { registrar } from "@/lib/auditoria";
 
 const schemaCreate = z.object({
-  descricao:        z.string().min(1, "Descrição obrigatória"),
-  fornecedor:       z.string().optional(),
-  valor:            z.coerce.number().positive("Valor deve ser positivo"),
-  data_vencimento:  z.string().min(1, "Data obrigatória"),
-  plano_contas_id:  z.string().optional(),
+  descricao:         z.string().min(1, "Descrição obrigatória"),
+  fornecedor_id:     z.string().optional(),
+  fornecedor:        z.string().optional(),
+  valor:             z.coerce.number().positive("Valor deve ser positivo"),
+  data_vencimento:   z.string().min(1, "Data obrigatória"),
+  forma_pagamento:   z.string().optional(),
+  plano_contas_id:   z.string().optional(),
   conta_bancaria_id: z.string().optional(),
-  centro_custo_id:  z.string().optional(),
-  observacoes:      z.string().optional(),
+  centro_custo_id:   z.string().optional(),
+  observacoes:       z.string().optional(),
 });
 
 const schemaBaixar = z.object({
@@ -38,16 +40,18 @@ export async function criarContaPagar(input: InputCreate) {
 
   const conta = await prisma.contaPagar.create({
     data: {
-      empresa_id: empresaId,
-      criado_por: user?.id,
-      descricao: data.descricao,
-      fornecedor: data.fornecedor || null,
-      valor: data.valor,
-      data_vencimento: parseLocalDate(data.data_vencimento),
-      plano_contas_id: data.plano_contas_id || null,
+      empresa_id:        empresaId,
+      criado_por:        user?.id,
+      descricao:         data.descricao,
+      fornecedor_id:     data.fornecedor_id || null,
+      fornecedor:        data.fornecedor || null,
+      valor:             data.valor,
+      data_vencimento:   parseLocalDate(data.data_vencimento),
+      forma_pagamento:   data.forma_pagamento || null,
+      plano_contas_id:   data.plano_contas_id || null,
       conta_bancaria_id: data.conta_bancaria_id || null,
-      centro_custo_id: data.centro_custo_id || null,
-      observacoes: data.observacoes || null,
+      centro_custo_id:   data.centro_custo_id || null,
+      observacoes:       data.observacoes || null,
     },
   });
 
@@ -192,7 +196,9 @@ const schemaParceladoManual = z.object({
   periodicidade:     z.enum(["SEMANAL", "QUINZENAL", "MENSAL", "BIMESTRAL", "TRIMESTRAL", "SEMESTRAL", "ANUAL"]),
   data_primeira:     z.string().min(1, "Data obrigatória"),
   tipo:              z.enum(["PARCELADO", "RECORRENTE"]),
+  fornecedor_id:     z.string().optional(),
   fornecedor:        z.string().optional(),
+  forma_pagamento:   z.string().optional(),
   plano_contas_id:   z.string().optional(),
   conta_bancaria_id: z.string().optional(),
   centro_custo_id:   z.string().optional(),
@@ -230,9 +236,11 @@ export async function criarContaPagarParcelado(input: z.input<typeof schemaParce
     descricao:         d.tipo === "PARCELADO"
                          ? `${d.descricao} — Parcela ${i + 1}/${d.n_parcelas}`
                          : d.descricao,
+    fornecedor_id:     d.fornecedor_id || null,
     fornecedor:        d.fornecedor || null,
     valor:             i === d.n_parcelas - 1 ? valorUltima : valorBase,
     data_vencimento:   addPeriodo(base, d.periodicidade, i),
+    forma_pagamento:   d.forma_pagamento || null,
     plano_contas_id:   d.plano_contas_id || null,
     conta_bancaria_id: d.conta_bancaria_id || null,
     centro_custo_id:   d.centro_custo_id || null,

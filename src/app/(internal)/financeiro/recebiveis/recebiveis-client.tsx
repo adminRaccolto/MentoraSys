@@ -859,13 +859,21 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
               </div>
               <div className="space-y-1.5">
                 <Label>Conta bancária</Label>
-                <Select value={formNovo.watch("conta_bancaria_id") ?? "_none"} onValueChange={(v) => formNovo.setValue("conta_bancaria_id", v === "_none" ? undefined : v ?? undefined)}>
-                  <SelectTrigger className="h-10"><SelectValue placeholder="Nenhuma" /></SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="_none">Nenhuma</SelectItem>
-                    {contasBancarias.map((c) => <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>)}
-                  </SelectContent>
-                </Select>
+                {(() => {
+                  const contaId = formNovo.watch("conta_bancaria_id");
+                  const contaAtual = contasBancarias.find((c) => c.id === contaId);
+                  return (
+                    <Select value={contaId || ""} onValueChange={(v) => formNovo.setValue("conta_bancaria_id", v || undefined)}>
+                      <SelectTrigger className="h-10">
+                        <SelectValue placeholder="Nenhuma">{contaAtual?.nome}</SelectValue>
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="">Nenhuma</SelectItem>
+                        {contasBancarias.map((c) => <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>)}
+                      </SelectContent>
+                    </Select>
+                  );
+                })()}
               </div>
             </div>
 
@@ -884,12 +892,19 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
                   </div>
                   <div className="space-y-1.5">
                     <Label>Periodicidade *</Label>
-                    <Select value={formNovo.watch("periodicidade") ?? ""} onValueChange={(v) => formNovo.setValue("periodicidade", v ?? undefined)}>
-                      <SelectTrigger className="h-10"><SelectValue placeholder="Selecionar" /></SelectTrigger>
-                      <SelectContent>
-                        {Object.entries(PERIODICIDADE_LABELS).map(([k, v]) => <SelectItem key={k} value={k}>{v}</SelectItem>)}
-                      </SelectContent>
-                    </Select>
+                    {(() => {
+                      const perAtual = formNovo.watch("periodicidade");
+                      return (
+                        <Select value={perAtual || ""} onValueChange={(v) => formNovo.setValue("periodicidade", v || undefined)}>
+                          <SelectTrigger className="h-10">
+                            <SelectValue placeholder="Selecionar">{perAtual ? PERIODICIDADE_LABELS[perAtual] : undefined}</SelectValue>
+                          </SelectTrigger>
+                          <SelectContent>
+                            {Object.entries(PERIODICIDADE_LABELS).map(([k, v]) => <SelectItem key={k} value={k}>{v}</SelectItem>)}
+                          </SelectContent>
+                        </Select>
+                      );
+                    })()}
                   </div>
                 </div>
                 <div className="space-y-1.5">
@@ -916,39 +931,63 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1.5">
                 <Label>Cliente</Label>
-                <Select value={formNovo.watch("cliente_id") ?? "_none"} onValueChange={(v) => formNovo.setValue("cliente_id", v === "_none" ? undefined : v ?? undefined)}>
-                  <SelectTrigger className="h-10"><SelectValue placeholder="Nenhum" /></SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="_none">Nenhum</SelectItem>
-                    {clientes.map((c) => <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>)}
-                  </SelectContent>
-                </Select>
+                {(() => {
+                  const cliId = formNovo.watch("cliente_id");
+                  const cliAtual = clientes.find((c) => c.id === cliId);
+                  return (
+                    <Select value={cliId || ""} onValueChange={(v) => formNovo.setValue("cliente_id", v || undefined)}>
+                      <SelectTrigger className="h-10">
+                        <SelectValue placeholder="Nenhum">{cliAtual?.nome}</SelectValue>
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="">Nenhum</SelectItem>
+                        {clientes.map((c) => <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>)}
+                      </SelectContent>
+                    </Select>
+                  );
+                })()}
               </div>
               <div className="space-y-1.5">
                 <Label>Categoria</Label>
-                <Select value={formNovo.watch("plano_contas_id") ?? "_none"} onValueChange={(v) => formNovo.setValue("plano_contas_id", v === "_none" ? undefined : v ?? undefined)}>
-                  <SelectTrigger className="h-10"><SelectValue placeholder="Nenhuma" /></SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="_none">Nenhuma</SelectItem>
-                    {categorias.map((c) => <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>)}
-                  </SelectContent>
-                </Select>
+                {(() => {
+                  const catId = formNovo.watch("plano_contas_id");
+                  const catAtual = categorias.find((c) => c.id === catId);
+                  return (
+                    <Select value={catId || ""} onValueChange={(v) => formNovo.setValue("plano_contas_id", v || undefined)}>
+                      <SelectTrigger className="h-10">
+                        <SelectValue placeholder="Nenhuma">{catAtual?.nome}</SelectValue>
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="">Nenhuma</SelectItem>
+                        {categorias.map((c) => <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>)}
+                      </SelectContent>
+                    </Select>
+                  );
+                })()}
               </div>
             </div>
 
             {/* Centro de custo */}
-            {centrosCusto.length > 0 && (
-              <div className="space-y-1.5">
-                <Label>Centro de custo</Label>
-                <Select value={formNovo.watch("centro_custo_id") ?? "_none"} onValueChange={(v) => formNovo.setValue("centro_custo_id", v === "_none" ? undefined : v ?? undefined)}>
-                  <SelectTrigger className="h-10"><SelectValue placeholder="Nenhum" /></SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="_none">Nenhum</SelectItem>
-                    {centrosCusto.map((c) => <SelectItem key={c.id} value={c.id}>{c.codigo ? `[${c.codigo}] ` : ""}{c.nome}</SelectItem>)}
-                  </SelectContent>
-                </Select>
-              </div>
-            )}
+            {centrosCusto.length > 0 && (() => {
+              const ccId = formNovo.watch("centro_custo_id");
+              const ccAtual = centrosCusto.find((c) => c.id === ccId);
+              return (
+                <div className="space-y-1.5">
+                  <Label>Centro de custo</Label>
+                  <Select value={ccId || ""} onValueChange={(v) => formNovo.setValue("centro_custo_id", v || undefined)}>
+                    <SelectTrigger className="h-10">
+                      <SelectValue placeholder="Nenhum">
+                        {ccAtual ? `${ccAtual.codigo ? `[${ccAtual.codigo}] ` : ""}${ccAtual.nome}` : undefined}
+                      </SelectValue>
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="">Nenhum</SelectItem>
+                      {centrosCusto.map((c) => <SelectItem key={c.id} value={c.id}>{c.codigo ? `[${c.codigo}] ` : ""}{c.nome}</SelectItem>)}
+                    </SelectContent>
+                  </Select>
+                </div>
+              );
+            })()}
 
             {/* Observações */}
             <div className="space-y-1.5">

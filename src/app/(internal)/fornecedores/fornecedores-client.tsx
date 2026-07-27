@@ -1,0 +1,233 @@
+"use client";
+
+import { useState, useTransition } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { toast } from "sonner";
+import { Plus, Pencil, Trash2, Building2, Search } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { criarFornecedor, editarFornecedor, excluirFornecedor } from "@/actions/fornecedores";
+
+const schemaForm = z.object({
+  nome:        z.string().min(1, "Nome obrigatório"),
+  cnpj_cpf:    z.string().optional(),
+  email:       z.string().email("E-mail inválido").optional().or(z.literal("")),
+  telefone:    z.string().optional(),
+  contato:     z.string().optional(),
+  observacoes: z.string().optional(),
+});
+
+type FormData = z.input<typeof schemaForm>;
+
+interface Fornecedor {
+  id: string; nome: string; cnpj_cpf: string | null;
+  email: string | null; telefone: string | null;
+  contato: string | null; observacoes: string | null;
+  ativo: boolean; criado_em: Date;
+}
+
+interface Props {
+  fornecedores: Fornecedor[];
+}
+
+export default function FornecedoresClient({ fornecedores: inicial }: Props) {
+  const [fornecedores, setFornecedores] = useState(inicial);
+  const [busca, setBusca] = useState("");
+  const [modalNovo, setModalNovo] = useState(false);
+  const [editando, setEditando] = useState<Fornecedor | null>(null);
+  const [excluindo, setExcluindo] = useState<Fornecedor | null>(null);
+  const [isPending, startTransition] = useTransition();
+
+  const form = useForm<FormData>({ resolver: zodResolver(schemaForm) });
+
+  const abrirNovo = () => {
+    form.reset({ nome: "", cnpj_cpf: "", email: "", telefone: "", contato: "", observacoes: "" });
+    setEditando(null);
+    setModalNovo(true);
+  };
+
+  const abrirEditar = (f: Fornecedor) => {
+    form.reset({
+      nome: f.nome, cnpj_cpf: f.cnpj_cpf ?? "", email: f.email ?? "",
+      telefone: f.telefone ?? "", contato: f.contato ?? "", observacoes: f.observacoes ?? "",
+    });
+    setEditando(f);
+    setModalNovo(true);
+  };
+
+  const onSubmit = (data: FormData) => {
+    startTransition(async () => {
+      try {
+        if (editando) {
+          const updated = await editarFornecedor(editando.id, data);
+          setFornecedores((prev) => prev.map((f) => f.id === editando.id ? { ...f, ...updated } : f));
+          toast.success("Fornecedor atualizado");
+        } else {
+          const novo = await criarFornecedor(data);
+          setFornecedores((prev) => [...prev, novo]);
+          toast.success("Fornecedor cadastrado");
+        }
+        setModalNovo(false);
+      } catch (e) {
+        toast.error(e instanceof Error ? e.message : "Erro ao salvar");
+      }
+    });
+  };
+
+  const handleExcluir = () => {
+    if (!excluindo) return;
+    startTransition(async () => {
+      try {
+        await excluirFornecedor(excluindo.id);
+        setFornecedores((prev) => prev.filter((f) => f.id !== excluindo.id));
+        toast.success("Fornecedor removido");
+        setExcluindo(null);
+      } catch (e) {
+        toast.error(e instanceof Error ? e.message : "Erro ao remover");
+      }
+    });
+  };
+
+  const filtrados = fornecedores.filter((f) =>
+    f.nome.toLowerCase().includes(busca.toLowerCase()) ||
+    (f.cnpj_cpf ?? "").includes(busca) ||
+    (f.email ?? "").toLowerCase().includes(busca.toLowerCase())
+  );
+
+  return (
+    <div className="p-6 space-y-6">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold">Fornecedores</h1>
+          <p className="text-sm text-muted-foreground">{fornecedores.length} fornecedor{fornecedores.length !== 1 ? "es" : ""} cadastrado{fornecedores.length !== 1 ? "s" : ""}</p>
+        </div>
+        <Button onClick={abrirNovo} className="gap-2">
+          <Plus className="size-4" /> Novo fornecedor
+        </Button>
+      </div>
+
+      {/* Busca */}
+      <div className="relative max-w-sm">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+        <Input className="pl-9" placeholder="Buscar por nome, CNPJ/CPF, e-mail..." value={busca} onChange={(e) => setBusca(e.target.value)} />
+      </div>
+
+      {/* Tabela */}
+      {filtrados.length === 0 ? (
+        <div className="border rounded-lg p-12 text-center">
+          <Building2 className="size-10 text-muted-foreground mx-auto mb-3" />
+          <p className="text-muted-foreground">{busca ? "Nenhum fornecedor encontrado." : "Nenhum fornecedor cadastrado ainda."}</p>
+          {!busca && <Button variant="outline" className="mt-4" onClick={abrirNovo}>Cadastrar primeiro fornecedor</Button>}
+        </div>
+      ) : (
+        <div className="border rounded-lg overflow-hidden">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Nome</TableHead>
+                <TableHead>CNPJ / CPF</TableHead>
+                <TableHead>Contato</TableHead>
+                <TableHead>E-mail</TableHead>
+                <TableHead>Telefone</TableHead>
+                <TableHead className="w-24" />
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {filtrados.map((f) => (
+                <TableRow key={f.id} className="cursor-pointer hover:bg-muted/50" onClick={() => abrirEditar(f)}>
+                  <TableCell className="font-medium">{f.nome}</TableCell>
+                  <TableCell className="text-muted-foreground tabular-nums">{f.cnpj_cpf ?? "—"}</TableCell>
+                  <TableCell className="text-muted-foreground">{f.contato ?? "—"}</TableCell>
+                  <TableCell className="text-muted-foreground">{f.email ?? "—"}</TableCell>
+                  <TableCell className="text-muted-foreground">{f.telefone ?? "—"}</TableCell>
+                  <TableCell>
+                    <div className="flex gap-1 justify-end" onClick={(e) => e.stopPropagation()}>
+                      <Button size="icon" variant="ghost" className="size-8" onClick={() => abrirEditar(f)}>
+                        <Pencil className="size-3.5" />
+                      </Button>
+                      <Button size="icon" variant="ghost" className="size-8 text-destructive hover:text-destructive" onClick={() => setExcluindo(f)}>
+                        <Trash2 className="size-3.5" />
+                      </Button>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      )}
+
+      {/* Modal criar / editar */}
+      <Dialog open={modalNovo} onOpenChange={(v) => { setModalNovo(v); if (!v) { setEditando(null); form.reset(); } }}>
+        <DialogContent className="max-w-lg">
+          <DialogHeader>
+            <DialogTitle>{editando ? "Editar fornecedor" : "Novo fornecedor"}</DialogTitle>
+          </DialogHeader>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <div className="space-y-1.5">
+              <Label>Nome / Razão Social *</Label>
+              <Input className="h-10" {...form.register("nome")} placeholder="Ex.: Papelaria Central Ltda" />
+              {form.formState.errors.nome && <p className="text-xs text-destructive">{form.formState.errors.nome.message}</p>}
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-1.5">
+                <Label>CNPJ / CPF</Label>
+                <Input className="h-10" {...form.register("cnpj_cpf")} placeholder="00.000.000/0000-00" />
+              </div>
+              <div className="space-y-1.5">
+                <Label>Telefone</Label>
+                <Input className="h-10" {...form.register("telefone")} placeholder="(00) 00000-0000" />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-1.5">
+                <Label>E-mail</Label>
+                <Input className="h-10" {...form.register("email")} type="email" placeholder="contato@empresa.com" />
+                {form.formState.errors.email && <p className="text-xs text-destructive">{form.formState.errors.email.message}</p>}
+              </div>
+              <div className="space-y-1.5">
+                <Label>Nome do contato</Label>
+                <Input className="h-10" {...form.register("contato")} placeholder="Pessoa responsável" />
+              </div>
+            </div>
+            <div className="space-y-1.5">
+              <Label>Observações</Label>
+              <Textarea className="resize-none" {...form.register("observacoes")} rows={2} placeholder="Informações adicionais..." />
+            </div>
+            <DialogFooter>
+              <Button type="button" variant="outline" onClick={() => setModalNovo(false)}>Cancelar</Button>
+              <Button type="submit" disabled={isPending}>{isPending ? "Salvando..." : editando ? "Salvar alterações" : "Cadastrar"}</Button>
+            </DialogFooter>
+          </form>
+        </DialogContent>
+      </Dialog>
+
+      {/* Confirmar exclusão */}
+      <AlertDialog open={!!excluindo} onOpenChange={(v) => !v && setExcluindo(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Remover fornecedor?</AlertDialogTitle>
+            <AlertDialogDescription>
+              O fornecedor <strong>{excluindo?.nome}</strong> será desativado. Esta ação pode ser revertida pelo suporte.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction onClick={handleExcluir} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+              Remover
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </div>
+  );
+}

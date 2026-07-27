@@ -204,6 +204,11 @@ export type Recebivel = $Result.DefaultSelection<Prisma.$RecebivelPayload>
  */
 export type ContaPagar = $Result.DefaultSelection<Prisma.$ContaPagarPayload>
 /**
+ * Model Fornecedor
+ * 
+ */
+export type Fornecedor = $Result.DefaultSelection<Prisma.$FornecedorPayload>
+/**
  * Model ModeloDocumento
  * 
  */
@@ -1090,6 +1095,16 @@ export class PrismaClient<
   get contaPagar(): Prisma.ContaPagarDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.fornecedor`: Exposes CRUD operations for the **Fornecedor** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Fornecedors
+    * const fornecedors = await prisma.fornecedor.findMany()
+    * ```
+    */
+  get fornecedor(): Prisma.FornecedorDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.modeloDocumento`: Exposes CRUD operations for the **ModeloDocumento** model.
     * Example usage:
     * ```ts
@@ -1700,6 +1715,7 @@ export namespace Prisma {
     CentroCusto: 'CentroCusto',
     Recebivel: 'Recebivel',
     ContaPagar: 'ContaPagar',
+    Fornecedor: 'Fornecedor',
     ModeloDocumento: 'ModeloDocumento',
     Evento: 'Evento',
     RegistroAuditoria: 'RegistroAuditoria',
@@ -1729,7 +1745,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "etapaCrm" | "comentarioCrm" | "lead" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "projeto" | "etapa" | "tarefa" | "tarefaResponsavel" | "comentarioTarefa" | "anexoTarefa" | "atividadeTarefa" | "aprovacaoTarefa" | "itemChecklist" | "etiquetaTarefa" | "tarefaEtiqueta" | "pastaDocumento" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "centroCusto" | "recebivel" | "contaPagar" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "boleto" | "diagnostico" | "tokenPortal" | "aplicacaoDiagnostico" | "campanhaDiagnostico" | "diagnosticoParticipante" | "diagnosticoTemplate" | "campanhaCupom" | "assinatura"
+      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "etapaCrm" | "comentarioCrm" | "lead" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "projeto" | "etapa" | "tarefa" | "tarefaResponsavel" | "comentarioTarefa" | "anexoTarefa" | "atividadeTarefa" | "aprovacaoTarefa" | "itemChecklist" | "etiquetaTarefa" | "tarefaEtiqueta" | "pastaDocumento" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "centroCusto" | "recebivel" | "contaPagar" | "fornecedor" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "boleto" | "diagnostico" | "tokenPortal" | "aplicacaoDiagnostico" | "campanhaDiagnostico" | "diagnosticoParticipante" | "diagnosticoTemplate" | "campanhaCupom" | "assinatura"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -4545,6 +4561,80 @@ export namespace Prisma {
           }
         }
       }
+      Fornecedor: {
+        payload: Prisma.$FornecedorPayload<ExtArgs>
+        fields: Prisma.FornecedorFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FornecedorFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FornecedorFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorPayload>
+          }
+          findFirst: {
+            args: Prisma.FornecedorFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FornecedorFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorPayload>
+          }
+          findMany: {
+            args: Prisma.FornecedorFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorPayload>[]
+          }
+          create: {
+            args: Prisma.FornecedorCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorPayload>
+          }
+          createMany: {
+            args: Prisma.FornecedorCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FornecedorCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorPayload>[]
+          }
+          delete: {
+            args: Prisma.FornecedorDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorPayload>
+          }
+          update: {
+            args: Prisma.FornecedorUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorPayload>
+          }
+          deleteMany: {
+            args: Prisma.FornecedorDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FornecedorUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FornecedorUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorPayload>[]
+          }
+          upsert: {
+            args: Prisma.FornecedorUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FornecedorPayload>
+          }
+          aggregate: {
+            args: Prisma.FornecedorAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFornecedor>
+          }
+          groupBy: {
+            args: Prisma.FornecedorGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FornecedorGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FornecedorCountArgs<ExtArgs>
+            result: $Utils.Optional<FornecedorCountAggregateOutputType> | number
+          }
+        }
+      }
       ModeloDocumento: {
         payload: Prisma.$ModeloDocumentoPayload<ExtArgs>
         fields: Prisma.ModeloDocumentoFieldRefs
@@ -5727,6 +5817,7 @@ export namespace Prisma {
     centroCusto?: CentroCustoOmit
     recebivel?: RecebivelOmit
     contaPagar?: ContaPagarOmit
+    fornecedor?: FornecedorOmit
     modeloDocumento?: ModeloDocumentoOmit
     evento?: EventoOmit
     registroAuditoria?: RegistroAuditoriaOmit
@@ -5839,6 +5930,7 @@ export namespace Prisma {
     boletos: number
     recebiveis: number
     contas_pagar: number
+    fornecedores: number
     modelos_documento: number
     eventos: number
     registros_auditoria: number
@@ -5874,6 +5966,7 @@ export namespace Prisma {
     boletos?: boolean | EmpresaCountOutputTypeCountBoletosArgs
     recebiveis?: boolean | EmpresaCountOutputTypeCountRecebiveisArgs
     contas_pagar?: boolean | EmpresaCountOutputTypeCountContas_pagarArgs
+    fornecedores?: boolean | EmpresaCountOutputTypeCountFornecedoresArgs
     modelos_documento?: boolean | EmpresaCountOutputTypeCountModelos_documentoArgs
     eventos?: boolean | EmpresaCountOutputTypeCountEventosArgs
     registros_auditoria?: boolean | EmpresaCountOutputTypeCountRegistros_auditoriaArgs
@@ -6025,6 +6118,13 @@ export namespace Prisma {
    */
   export type EmpresaCountOutputTypeCountContas_pagarArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ContaPagarWhereInput
+  }
+
+  /**
+   * EmpresaCountOutputType without action
+   */
+  export type EmpresaCountOutputTypeCountFornecedoresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FornecedorWhereInput
   }
 
   /**
@@ -7234,6 +7334,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type FornecedorCountOutputType
+   */
+
+  export type FornecedorCountOutputType = {
+    contas_pagar: number
+  }
+
+  export type FornecedorCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    contas_pagar?: boolean | FornecedorCountOutputTypeCountContas_pagarArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FornecedorCountOutputType without action
+   */
+  export type FornecedorCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FornecedorCountOutputType
+     */
+    select?: FornecedorCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FornecedorCountOutputType without action
+   */
+  export type FornecedorCountOutputTypeCountContas_pagarArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContaPagarWhereInput
+  }
+
+
+  /**
    * Count Type CampanhaDiagnosticoCountOutputType
    */
 
@@ -7494,6 +7625,7 @@ export namespace Prisma {
     boletos?: boolean | Empresa$boletosArgs<ExtArgs>
     recebiveis?: boolean | Empresa$recebiveisArgs<ExtArgs>
     contas_pagar?: boolean | Empresa$contas_pagarArgs<ExtArgs>
+    fornecedores?: boolean | Empresa$fornecedoresArgs<ExtArgs>
     modelos_documento?: boolean | Empresa$modelos_documentoArgs<ExtArgs>
     eventos?: boolean | Empresa$eventosArgs<ExtArgs>
     registros_auditoria?: boolean | Empresa$registros_auditoriaArgs<ExtArgs>
@@ -7573,6 +7705,7 @@ export namespace Prisma {
     boletos?: boolean | Empresa$boletosArgs<ExtArgs>
     recebiveis?: boolean | Empresa$recebiveisArgs<ExtArgs>
     contas_pagar?: boolean | Empresa$contas_pagarArgs<ExtArgs>
+    fornecedores?: boolean | Empresa$fornecedoresArgs<ExtArgs>
     modelos_documento?: boolean | Empresa$modelos_documentoArgs<ExtArgs>
     eventos?: boolean | Empresa$eventosArgs<ExtArgs>
     registros_auditoria?: boolean | Empresa$registros_auditoriaArgs<ExtArgs>
@@ -7613,6 +7746,7 @@ export namespace Prisma {
       boletos: Prisma.$BoletoPayload<ExtArgs>[]
       recebiveis: Prisma.$RecebivelPayload<ExtArgs>[]
       contas_pagar: Prisma.$ContaPagarPayload<ExtArgs>[]
+      fornecedores: Prisma.$FornecedorPayload<ExtArgs>[]
       modelos_documento: Prisma.$ModeloDocumentoPayload<ExtArgs>[]
       eventos: Prisma.$EventoPayload<ExtArgs>[]
       registros_auditoria: Prisma.$RegistroAuditoriaPayload<ExtArgs>[]
@@ -8052,6 +8186,7 @@ export namespace Prisma {
     boletos<T extends Empresa$boletosArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$boletosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BoletoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     recebiveis<T extends Empresa$recebiveisArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$recebiveisArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RecebivelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     contas_pagar<T extends Empresa$contas_pagarArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$contas_pagarArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContaPagarPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    fornecedores<T extends Empresa$fornecedoresArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$fornecedoresArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FornecedorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     modelos_documento<T extends Empresa$modelos_documentoArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$modelos_documentoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ModeloDocumentoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     eventos<T extends Empresa$eventosArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$eventosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     registros_auditoria<T extends Empresa$registros_auditoriaArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$registros_auditoriaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RegistroAuditoriaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -8928,6 +9063,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ContaPagarScalarFieldEnum | ContaPagarScalarFieldEnum[]
+  }
+
+  /**
+   * Empresa.fornecedores
+   */
+  export type Empresa$fornecedoresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Fornecedor
+     */
+    select?: FornecedorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Fornecedor
+     */
+    omit?: FornecedorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorInclude<ExtArgs> | null
+    where?: FornecedorWhereInput
+    orderBy?: FornecedorOrderByWithRelationInput | FornecedorOrderByWithRelationInput[]
+    cursor?: FornecedorWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FornecedorScalarFieldEnum | FornecedorScalarFieldEnum[]
   }
 
   /**
@@ -54336,6 +54495,7 @@ export namespace Prisma {
     empresa_id: string | null
     plano_contas_id: string | null
     conta_bancaria_id: string | null
+    fornecedor_id: string | null
     criado_por: string | null
     descricao: string | null
     fornecedor: string | null
@@ -54356,6 +54516,7 @@ export namespace Prisma {
     empresa_id: string | null
     plano_contas_id: string | null
     conta_bancaria_id: string | null
+    fornecedor_id: string | null
     criado_por: string | null
     descricao: string | null
     fornecedor: string | null
@@ -54376,6 +54537,7 @@ export namespace Prisma {
     empresa_id: number
     plano_contas_id: number
     conta_bancaria_id: number
+    fornecedor_id: number
     criado_por: number
     descricao: number
     fornecedor: number
@@ -54408,6 +54570,7 @@ export namespace Prisma {
     empresa_id?: true
     plano_contas_id?: true
     conta_bancaria_id?: true
+    fornecedor_id?: true
     criado_por?: true
     descricao?: true
     fornecedor?: true
@@ -54428,6 +54591,7 @@ export namespace Prisma {
     empresa_id?: true
     plano_contas_id?: true
     conta_bancaria_id?: true
+    fornecedor_id?: true
     criado_por?: true
     descricao?: true
     fornecedor?: true
@@ -54448,6 +54612,7 @@ export namespace Prisma {
     empresa_id?: true
     plano_contas_id?: true
     conta_bancaria_id?: true
+    fornecedor_id?: true
     criado_por?: true
     descricao?: true
     fornecedor?: true
@@ -54555,6 +54720,7 @@ export namespace Prisma {
     empresa_id: string
     plano_contas_id: string | null
     conta_bancaria_id: string | null
+    fornecedor_id: string | null
     criado_por: string | null
     descricao: string
     fornecedor: string | null
@@ -54594,6 +54760,7 @@ export namespace Prisma {
     empresa_id?: boolean
     plano_contas_id?: boolean
     conta_bancaria_id?: boolean
+    fornecedor_id?: boolean
     criado_por?: boolean
     descricao?: boolean
     fornecedor?: boolean
@@ -54612,6 +54779,7 @@ export namespace Prisma {
     conta_bancaria?: boolean | ContaPagar$conta_bancariaArgs<ExtArgs>
     criador?: boolean | ContaPagar$criadorArgs<ExtArgs>
     centro_custo?: boolean | ContaPagar$centro_custoArgs<ExtArgs>
+    fornecedor_rel?: boolean | ContaPagar$fornecedor_relArgs<ExtArgs>
   }, ExtArgs["result"]["contaPagar"]>
 
   export type ContaPagarSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -54619,6 +54787,7 @@ export namespace Prisma {
     empresa_id?: boolean
     plano_contas_id?: boolean
     conta_bancaria_id?: boolean
+    fornecedor_id?: boolean
     criado_por?: boolean
     descricao?: boolean
     fornecedor?: boolean
@@ -54637,6 +54806,7 @@ export namespace Prisma {
     conta_bancaria?: boolean | ContaPagar$conta_bancariaArgs<ExtArgs>
     criador?: boolean | ContaPagar$criadorArgs<ExtArgs>
     centro_custo?: boolean | ContaPagar$centro_custoArgs<ExtArgs>
+    fornecedor_rel?: boolean | ContaPagar$fornecedor_relArgs<ExtArgs>
   }, ExtArgs["result"]["contaPagar"]>
 
   export type ContaPagarSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -54644,6 +54814,7 @@ export namespace Prisma {
     empresa_id?: boolean
     plano_contas_id?: boolean
     conta_bancaria_id?: boolean
+    fornecedor_id?: boolean
     criado_por?: boolean
     descricao?: boolean
     fornecedor?: boolean
@@ -54662,6 +54833,7 @@ export namespace Prisma {
     conta_bancaria?: boolean | ContaPagar$conta_bancariaArgs<ExtArgs>
     criador?: boolean | ContaPagar$criadorArgs<ExtArgs>
     centro_custo?: boolean | ContaPagar$centro_custoArgs<ExtArgs>
+    fornecedor_rel?: boolean | ContaPagar$fornecedor_relArgs<ExtArgs>
   }, ExtArgs["result"]["contaPagar"]>
 
   export type ContaPagarSelectScalar = {
@@ -54669,6 +54841,7 @@ export namespace Prisma {
     empresa_id?: boolean
     plano_contas_id?: boolean
     conta_bancaria_id?: boolean
+    fornecedor_id?: boolean
     criado_por?: boolean
     descricao?: boolean
     fornecedor?: boolean
@@ -54684,13 +54857,14 @@ export namespace Prisma {
     atualizado_em?: boolean
   }
 
-  export type ContaPagarOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "plano_contas_id" | "conta_bancaria_id" | "criado_por" | "descricao" | "fornecedor" | "valor" | "data_vencimento" | "status" | "data_pagamento" | "valor_pago" | "forma_pagamento" | "observacoes" | "centro_custo_id" | "criado_em" | "atualizado_em", ExtArgs["result"]["contaPagar"]>
+  export type ContaPagarOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "plano_contas_id" | "conta_bancaria_id" | "fornecedor_id" | "criado_por" | "descricao" | "fornecedor" | "valor" | "data_vencimento" | "status" | "data_pagamento" | "valor_pago" | "forma_pagamento" | "observacoes" | "centro_custo_id" | "criado_em" | "atualizado_em", ExtArgs["result"]["contaPagar"]>
   export type ContaPagarInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     plano_contas?: boolean | ContaPagar$plano_contasArgs<ExtArgs>
     conta_bancaria?: boolean | ContaPagar$conta_bancariaArgs<ExtArgs>
     criador?: boolean | ContaPagar$criadorArgs<ExtArgs>
     centro_custo?: boolean | ContaPagar$centro_custoArgs<ExtArgs>
+    fornecedor_rel?: boolean | ContaPagar$fornecedor_relArgs<ExtArgs>
   }
   export type ContaPagarIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -54698,6 +54872,7 @@ export namespace Prisma {
     conta_bancaria?: boolean | ContaPagar$conta_bancariaArgs<ExtArgs>
     criador?: boolean | ContaPagar$criadorArgs<ExtArgs>
     centro_custo?: boolean | ContaPagar$centro_custoArgs<ExtArgs>
+    fornecedor_rel?: boolean | ContaPagar$fornecedor_relArgs<ExtArgs>
   }
   export type ContaPagarIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -54705,6 +54880,7 @@ export namespace Prisma {
     conta_bancaria?: boolean | ContaPagar$conta_bancariaArgs<ExtArgs>
     criador?: boolean | ContaPagar$criadorArgs<ExtArgs>
     centro_custo?: boolean | ContaPagar$centro_custoArgs<ExtArgs>
+    fornecedor_rel?: boolean | ContaPagar$fornecedor_relArgs<ExtArgs>
   }
 
   export type $ContaPagarPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -54715,12 +54891,14 @@ export namespace Prisma {
       conta_bancaria: Prisma.$ContaBancariaPayload<ExtArgs> | null
       criador: Prisma.$UsuarioPayload<ExtArgs> | null
       centro_custo: Prisma.$CentroCustoPayload<ExtArgs> | null
+      fornecedor_rel: Prisma.$FornecedorPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       empresa_id: string
       plano_contas_id: string | null
       conta_bancaria_id: string | null
+      fornecedor_id: string | null
       criado_por: string | null
       descricao: string
       fornecedor: string | null
@@ -55133,6 +55311,7 @@ export namespace Prisma {
     conta_bancaria<T extends ContaPagar$conta_bancariaArgs<ExtArgs> = {}>(args?: Subset<T, ContaPagar$conta_bancariaArgs<ExtArgs>>): Prisma__ContaBancariaClient<$Result.GetResult<Prisma.$ContaBancariaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     criador<T extends ContaPagar$criadorArgs<ExtArgs> = {}>(args?: Subset<T, ContaPagar$criadorArgs<ExtArgs>>): Prisma__UsuarioClient<$Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     centro_custo<T extends ContaPagar$centro_custoArgs<ExtArgs> = {}>(args?: Subset<T, ContaPagar$centro_custoArgs<ExtArgs>>): Prisma__CentroCustoClient<$Result.GetResult<Prisma.$CentroCustoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    fornecedor_rel<T extends ContaPagar$fornecedor_relArgs<ExtArgs> = {}>(args?: Subset<T, ContaPagar$fornecedor_relArgs<ExtArgs>>): Prisma__FornecedorClient<$Result.GetResult<Prisma.$FornecedorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -55166,6 +55345,7 @@ export namespace Prisma {
     readonly empresa_id: FieldRef<"ContaPagar", 'String'>
     readonly plano_contas_id: FieldRef<"ContaPagar", 'String'>
     readonly conta_bancaria_id: FieldRef<"ContaPagar", 'String'>
+    readonly fornecedor_id: FieldRef<"ContaPagar", 'String'>
     readonly criado_por: FieldRef<"ContaPagar", 'String'>
     readonly descricao: FieldRef<"ContaPagar", 'String'>
     readonly fornecedor: FieldRef<"ContaPagar", 'String'>
@@ -55656,6 +55836,25 @@ export namespace Prisma {
   }
 
   /**
+   * ContaPagar.fornecedor_rel
+   */
+  export type ContaPagar$fornecedor_relArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Fornecedor
+     */
+    select?: FornecedorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Fornecedor
+     */
+    omit?: FornecedorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorInclude<ExtArgs> | null
+    where?: FornecedorWhereInput
+  }
+
+  /**
    * ContaPagar without action
    */
   export type ContaPagarDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -55671,6 +55870,1177 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ContaPagarInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Fornecedor
+   */
+
+  export type AggregateFornecedor = {
+    _count: FornecedorCountAggregateOutputType | null
+    _min: FornecedorMinAggregateOutputType | null
+    _max: FornecedorMaxAggregateOutputType | null
+  }
+
+  export type FornecedorMinAggregateOutputType = {
+    id: string | null
+    empresa_id: string | null
+    nome: string | null
+    cnpj_cpf: string | null
+    email: string | null
+    telefone: string | null
+    contato: string | null
+    observacoes: string | null
+    ativo: boolean | null
+    criado_em: Date | null
+    atualizado_em: Date | null
+  }
+
+  export type FornecedorMaxAggregateOutputType = {
+    id: string | null
+    empresa_id: string | null
+    nome: string | null
+    cnpj_cpf: string | null
+    email: string | null
+    telefone: string | null
+    contato: string | null
+    observacoes: string | null
+    ativo: boolean | null
+    criado_em: Date | null
+    atualizado_em: Date | null
+  }
+
+  export type FornecedorCountAggregateOutputType = {
+    id: number
+    empresa_id: number
+    nome: number
+    cnpj_cpf: number
+    email: number
+    telefone: number
+    contato: number
+    observacoes: number
+    ativo: number
+    criado_em: number
+    atualizado_em: number
+    _all: number
+  }
+
+
+  export type FornecedorMinAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    nome?: true
+    cnpj_cpf?: true
+    email?: true
+    telefone?: true
+    contato?: true
+    observacoes?: true
+    ativo?: true
+    criado_em?: true
+    atualizado_em?: true
+  }
+
+  export type FornecedorMaxAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    nome?: true
+    cnpj_cpf?: true
+    email?: true
+    telefone?: true
+    contato?: true
+    observacoes?: true
+    ativo?: true
+    criado_em?: true
+    atualizado_em?: true
+  }
+
+  export type FornecedorCountAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    nome?: true
+    cnpj_cpf?: true
+    email?: true
+    telefone?: true
+    contato?: true
+    observacoes?: true
+    ativo?: true
+    criado_em?: true
+    atualizado_em?: true
+    _all?: true
+  }
+
+  export type FornecedorAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Fornecedor to aggregate.
+     */
+    where?: FornecedorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Fornecedors to fetch.
+     */
+    orderBy?: FornecedorOrderByWithRelationInput | FornecedorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FornecedorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Fornecedors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Fornecedors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Fornecedors
+    **/
+    _count?: true | FornecedorCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FornecedorMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FornecedorMaxAggregateInputType
+  }
+
+  export type GetFornecedorAggregateType<T extends FornecedorAggregateArgs> = {
+        [P in keyof T & keyof AggregateFornecedor]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFornecedor[P]>
+      : GetScalarType<T[P], AggregateFornecedor[P]>
+  }
+
+
+
+
+  export type FornecedorGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FornecedorWhereInput
+    orderBy?: FornecedorOrderByWithAggregationInput | FornecedorOrderByWithAggregationInput[]
+    by: FornecedorScalarFieldEnum[] | FornecedorScalarFieldEnum
+    having?: FornecedorScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FornecedorCountAggregateInputType | true
+    _min?: FornecedorMinAggregateInputType
+    _max?: FornecedorMaxAggregateInputType
+  }
+
+  export type FornecedorGroupByOutputType = {
+    id: string
+    empresa_id: string
+    nome: string
+    cnpj_cpf: string | null
+    email: string | null
+    telefone: string | null
+    contato: string | null
+    observacoes: string | null
+    ativo: boolean
+    criado_em: Date
+    atualizado_em: Date
+    _count: FornecedorCountAggregateOutputType | null
+    _min: FornecedorMinAggregateOutputType | null
+    _max: FornecedorMaxAggregateOutputType | null
+  }
+
+  type GetFornecedorGroupByPayload<T extends FornecedorGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FornecedorGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FornecedorGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FornecedorGroupByOutputType[P]>
+            : GetScalarType<T[P], FornecedorGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FornecedorSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    nome?: boolean
+    cnpj_cpf?: boolean
+    email?: boolean
+    telefone?: boolean
+    contato?: boolean
+    observacoes?: boolean
+    ativo?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    contas_pagar?: boolean | Fornecedor$contas_pagarArgs<ExtArgs>
+    _count?: boolean | FornecedorCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fornecedor"]>
+
+  export type FornecedorSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    nome?: boolean
+    cnpj_cpf?: boolean
+    email?: boolean
+    telefone?: boolean
+    contato?: boolean
+    observacoes?: boolean
+    ativo?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fornecedor"]>
+
+  export type FornecedorSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    nome?: boolean
+    cnpj_cpf?: boolean
+    email?: boolean
+    telefone?: boolean
+    contato?: boolean
+    observacoes?: boolean
+    ativo?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fornecedor"]>
+
+  export type FornecedorSelectScalar = {
+    id?: boolean
+    empresa_id?: boolean
+    nome?: boolean
+    cnpj_cpf?: boolean
+    email?: boolean
+    telefone?: boolean
+    contato?: boolean
+    observacoes?: boolean
+    ativo?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+  }
+
+  export type FornecedorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "nome" | "cnpj_cpf" | "email" | "telefone" | "contato" | "observacoes" | "ativo" | "criado_em" | "atualizado_em", ExtArgs["result"]["fornecedor"]>
+  export type FornecedorInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    contas_pagar?: boolean | Fornecedor$contas_pagarArgs<ExtArgs>
+    _count?: boolean | FornecedorCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type FornecedorIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }
+  export type FornecedorIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }
+
+  export type $FornecedorPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Fornecedor"
+    objects: {
+      empresa: Prisma.$EmpresaPayload<ExtArgs>
+      contas_pagar: Prisma.$ContaPagarPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      empresa_id: string
+      nome: string
+      cnpj_cpf: string | null
+      email: string | null
+      telefone: string | null
+      contato: string | null
+      observacoes: string | null
+      ativo: boolean
+      criado_em: Date
+      atualizado_em: Date
+    }, ExtArgs["result"]["fornecedor"]>
+    composites: {}
+  }
+
+  type FornecedorGetPayload<S extends boolean | null | undefined | FornecedorDefaultArgs> = $Result.GetResult<Prisma.$FornecedorPayload, S>
+
+  type FornecedorCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FornecedorFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FornecedorCountAggregateInputType | true
+    }
+
+  export interface FornecedorDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Fornecedor'], meta: { name: 'Fornecedor' } }
+    /**
+     * Find zero or one Fornecedor that matches the filter.
+     * @param {FornecedorFindUniqueArgs} args - Arguments to find a Fornecedor
+     * @example
+     * // Get one Fornecedor
+     * const fornecedor = await prisma.fornecedor.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FornecedorFindUniqueArgs>(args: SelectSubset<T, FornecedorFindUniqueArgs<ExtArgs>>): Prisma__FornecedorClient<$Result.GetResult<Prisma.$FornecedorPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Fornecedor that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FornecedorFindUniqueOrThrowArgs} args - Arguments to find a Fornecedor
+     * @example
+     * // Get one Fornecedor
+     * const fornecedor = await prisma.fornecedor.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FornecedorFindUniqueOrThrowArgs>(args: SelectSubset<T, FornecedorFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FornecedorClient<$Result.GetResult<Prisma.$FornecedorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Fornecedor that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FornecedorFindFirstArgs} args - Arguments to find a Fornecedor
+     * @example
+     * // Get one Fornecedor
+     * const fornecedor = await prisma.fornecedor.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FornecedorFindFirstArgs>(args?: SelectSubset<T, FornecedorFindFirstArgs<ExtArgs>>): Prisma__FornecedorClient<$Result.GetResult<Prisma.$FornecedorPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Fornecedor that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FornecedorFindFirstOrThrowArgs} args - Arguments to find a Fornecedor
+     * @example
+     * // Get one Fornecedor
+     * const fornecedor = await prisma.fornecedor.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FornecedorFindFirstOrThrowArgs>(args?: SelectSubset<T, FornecedorFindFirstOrThrowArgs<ExtArgs>>): Prisma__FornecedorClient<$Result.GetResult<Prisma.$FornecedorPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Fornecedors that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FornecedorFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Fornecedors
+     * const fornecedors = await prisma.fornecedor.findMany()
+     * 
+     * // Get first 10 Fornecedors
+     * const fornecedors = await prisma.fornecedor.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const fornecedorWithIdOnly = await prisma.fornecedor.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FornecedorFindManyArgs>(args?: SelectSubset<T, FornecedorFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FornecedorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Fornecedor.
+     * @param {FornecedorCreateArgs} args - Arguments to create a Fornecedor.
+     * @example
+     * // Create one Fornecedor
+     * const Fornecedor = await prisma.fornecedor.create({
+     *   data: {
+     *     // ... data to create a Fornecedor
+     *   }
+     * })
+     * 
+     */
+    create<T extends FornecedorCreateArgs>(args: SelectSubset<T, FornecedorCreateArgs<ExtArgs>>): Prisma__FornecedorClient<$Result.GetResult<Prisma.$FornecedorPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Fornecedors.
+     * @param {FornecedorCreateManyArgs} args - Arguments to create many Fornecedors.
+     * @example
+     * // Create many Fornecedors
+     * const fornecedor = await prisma.fornecedor.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FornecedorCreateManyArgs>(args?: SelectSubset<T, FornecedorCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Fornecedors and returns the data saved in the database.
+     * @param {FornecedorCreateManyAndReturnArgs} args - Arguments to create many Fornecedors.
+     * @example
+     * // Create many Fornecedors
+     * const fornecedor = await prisma.fornecedor.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Fornecedors and only return the `id`
+     * const fornecedorWithIdOnly = await prisma.fornecedor.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FornecedorCreateManyAndReturnArgs>(args?: SelectSubset<T, FornecedorCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FornecedorPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Fornecedor.
+     * @param {FornecedorDeleteArgs} args - Arguments to delete one Fornecedor.
+     * @example
+     * // Delete one Fornecedor
+     * const Fornecedor = await prisma.fornecedor.delete({
+     *   where: {
+     *     // ... filter to delete one Fornecedor
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FornecedorDeleteArgs>(args: SelectSubset<T, FornecedorDeleteArgs<ExtArgs>>): Prisma__FornecedorClient<$Result.GetResult<Prisma.$FornecedorPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Fornecedor.
+     * @param {FornecedorUpdateArgs} args - Arguments to update one Fornecedor.
+     * @example
+     * // Update one Fornecedor
+     * const fornecedor = await prisma.fornecedor.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FornecedorUpdateArgs>(args: SelectSubset<T, FornecedorUpdateArgs<ExtArgs>>): Prisma__FornecedorClient<$Result.GetResult<Prisma.$FornecedorPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Fornecedors.
+     * @param {FornecedorDeleteManyArgs} args - Arguments to filter Fornecedors to delete.
+     * @example
+     * // Delete a few Fornecedors
+     * const { count } = await prisma.fornecedor.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FornecedorDeleteManyArgs>(args?: SelectSubset<T, FornecedorDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Fornecedors.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FornecedorUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Fornecedors
+     * const fornecedor = await prisma.fornecedor.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FornecedorUpdateManyArgs>(args: SelectSubset<T, FornecedorUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Fornecedors and returns the data updated in the database.
+     * @param {FornecedorUpdateManyAndReturnArgs} args - Arguments to update many Fornecedors.
+     * @example
+     * // Update many Fornecedors
+     * const fornecedor = await prisma.fornecedor.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Fornecedors and only return the `id`
+     * const fornecedorWithIdOnly = await prisma.fornecedor.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FornecedorUpdateManyAndReturnArgs>(args: SelectSubset<T, FornecedorUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FornecedorPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Fornecedor.
+     * @param {FornecedorUpsertArgs} args - Arguments to update or create a Fornecedor.
+     * @example
+     * // Update or create a Fornecedor
+     * const fornecedor = await prisma.fornecedor.upsert({
+     *   create: {
+     *     // ... data to create a Fornecedor
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Fornecedor we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FornecedorUpsertArgs>(args: SelectSubset<T, FornecedorUpsertArgs<ExtArgs>>): Prisma__FornecedorClient<$Result.GetResult<Prisma.$FornecedorPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Fornecedors.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FornecedorCountArgs} args - Arguments to filter Fornecedors to count.
+     * @example
+     * // Count the number of Fornecedors
+     * const count = await prisma.fornecedor.count({
+     *   where: {
+     *     // ... the filter for the Fornecedors we want to count
+     *   }
+     * })
+    **/
+    count<T extends FornecedorCountArgs>(
+      args?: Subset<T, FornecedorCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FornecedorCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Fornecedor.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FornecedorAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FornecedorAggregateArgs>(args: Subset<T, FornecedorAggregateArgs>): Prisma.PrismaPromise<GetFornecedorAggregateType<T>>
+
+    /**
+     * Group by Fornecedor.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FornecedorGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FornecedorGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FornecedorGroupByArgs['orderBy'] }
+        : { orderBy?: FornecedorGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FornecedorGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFornecedorGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Fornecedor model
+   */
+  readonly fields: FornecedorFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Fornecedor.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FornecedorClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    empresa<T extends EmpresaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmpresaDefaultArgs<ExtArgs>>): Prisma__EmpresaClient<$Result.GetResult<Prisma.$EmpresaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    contas_pagar<T extends Fornecedor$contas_pagarArgs<ExtArgs> = {}>(args?: Subset<T, Fornecedor$contas_pagarArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContaPagarPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Fornecedor model
+   */
+  interface FornecedorFieldRefs {
+    readonly id: FieldRef<"Fornecedor", 'String'>
+    readonly empresa_id: FieldRef<"Fornecedor", 'String'>
+    readonly nome: FieldRef<"Fornecedor", 'String'>
+    readonly cnpj_cpf: FieldRef<"Fornecedor", 'String'>
+    readonly email: FieldRef<"Fornecedor", 'String'>
+    readonly telefone: FieldRef<"Fornecedor", 'String'>
+    readonly contato: FieldRef<"Fornecedor", 'String'>
+    readonly observacoes: FieldRef<"Fornecedor", 'String'>
+    readonly ativo: FieldRef<"Fornecedor", 'Boolean'>
+    readonly criado_em: FieldRef<"Fornecedor", 'DateTime'>
+    readonly atualizado_em: FieldRef<"Fornecedor", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Fornecedor findUnique
+   */
+  export type FornecedorFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Fornecedor
+     */
+    select?: FornecedorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Fornecedor
+     */
+    omit?: FornecedorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorInclude<ExtArgs> | null
+    /**
+     * Filter, which Fornecedor to fetch.
+     */
+    where: FornecedorWhereUniqueInput
+  }
+
+  /**
+   * Fornecedor findUniqueOrThrow
+   */
+  export type FornecedorFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Fornecedor
+     */
+    select?: FornecedorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Fornecedor
+     */
+    omit?: FornecedorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorInclude<ExtArgs> | null
+    /**
+     * Filter, which Fornecedor to fetch.
+     */
+    where: FornecedorWhereUniqueInput
+  }
+
+  /**
+   * Fornecedor findFirst
+   */
+  export type FornecedorFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Fornecedor
+     */
+    select?: FornecedorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Fornecedor
+     */
+    omit?: FornecedorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorInclude<ExtArgs> | null
+    /**
+     * Filter, which Fornecedor to fetch.
+     */
+    where?: FornecedorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Fornecedors to fetch.
+     */
+    orderBy?: FornecedorOrderByWithRelationInput | FornecedorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Fornecedors.
+     */
+    cursor?: FornecedorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Fornecedors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Fornecedors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Fornecedors.
+     */
+    distinct?: FornecedorScalarFieldEnum | FornecedorScalarFieldEnum[]
+  }
+
+  /**
+   * Fornecedor findFirstOrThrow
+   */
+  export type FornecedorFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Fornecedor
+     */
+    select?: FornecedorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Fornecedor
+     */
+    omit?: FornecedorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorInclude<ExtArgs> | null
+    /**
+     * Filter, which Fornecedor to fetch.
+     */
+    where?: FornecedorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Fornecedors to fetch.
+     */
+    orderBy?: FornecedorOrderByWithRelationInput | FornecedorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Fornecedors.
+     */
+    cursor?: FornecedorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Fornecedors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Fornecedors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Fornecedors.
+     */
+    distinct?: FornecedorScalarFieldEnum | FornecedorScalarFieldEnum[]
+  }
+
+  /**
+   * Fornecedor findMany
+   */
+  export type FornecedorFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Fornecedor
+     */
+    select?: FornecedorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Fornecedor
+     */
+    omit?: FornecedorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorInclude<ExtArgs> | null
+    /**
+     * Filter, which Fornecedors to fetch.
+     */
+    where?: FornecedorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Fornecedors to fetch.
+     */
+    orderBy?: FornecedorOrderByWithRelationInput | FornecedorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Fornecedors.
+     */
+    cursor?: FornecedorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Fornecedors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Fornecedors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Fornecedors.
+     */
+    distinct?: FornecedorScalarFieldEnum | FornecedorScalarFieldEnum[]
+  }
+
+  /**
+   * Fornecedor create
+   */
+  export type FornecedorCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Fornecedor
+     */
+    select?: FornecedorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Fornecedor
+     */
+    omit?: FornecedorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Fornecedor.
+     */
+    data: XOR<FornecedorCreateInput, FornecedorUncheckedCreateInput>
+  }
+
+  /**
+   * Fornecedor createMany
+   */
+  export type FornecedorCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Fornecedors.
+     */
+    data: FornecedorCreateManyInput | FornecedorCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Fornecedor createManyAndReturn
+   */
+  export type FornecedorCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Fornecedor
+     */
+    select?: FornecedorSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Fornecedor
+     */
+    omit?: FornecedorOmit<ExtArgs> | null
+    /**
+     * The data used to create many Fornecedors.
+     */
+    data: FornecedorCreateManyInput | FornecedorCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Fornecedor update
+   */
+  export type FornecedorUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Fornecedor
+     */
+    select?: FornecedorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Fornecedor
+     */
+    omit?: FornecedorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Fornecedor.
+     */
+    data: XOR<FornecedorUpdateInput, FornecedorUncheckedUpdateInput>
+    /**
+     * Choose, which Fornecedor to update.
+     */
+    where: FornecedorWhereUniqueInput
+  }
+
+  /**
+   * Fornecedor updateMany
+   */
+  export type FornecedorUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Fornecedors.
+     */
+    data: XOR<FornecedorUpdateManyMutationInput, FornecedorUncheckedUpdateManyInput>
+    /**
+     * Filter which Fornecedors to update
+     */
+    where?: FornecedorWhereInput
+    /**
+     * Limit how many Fornecedors to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Fornecedor updateManyAndReturn
+   */
+  export type FornecedorUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Fornecedor
+     */
+    select?: FornecedorSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Fornecedor
+     */
+    omit?: FornecedorOmit<ExtArgs> | null
+    /**
+     * The data used to update Fornecedors.
+     */
+    data: XOR<FornecedorUpdateManyMutationInput, FornecedorUncheckedUpdateManyInput>
+    /**
+     * Filter which Fornecedors to update
+     */
+    where?: FornecedorWhereInput
+    /**
+     * Limit how many Fornecedors to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Fornecedor upsert
+   */
+  export type FornecedorUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Fornecedor
+     */
+    select?: FornecedorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Fornecedor
+     */
+    omit?: FornecedorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Fornecedor to update in case it exists.
+     */
+    where: FornecedorWhereUniqueInput
+    /**
+     * In case the Fornecedor found by the `where` argument doesn't exist, create a new Fornecedor with this data.
+     */
+    create: XOR<FornecedorCreateInput, FornecedorUncheckedCreateInput>
+    /**
+     * In case the Fornecedor was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FornecedorUpdateInput, FornecedorUncheckedUpdateInput>
+  }
+
+  /**
+   * Fornecedor delete
+   */
+  export type FornecedorDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Fornecedor
+     */
+    select?: FornecedorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Fornecedor
+     */
+    omit?: FornecedorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorInclude<ExtArgs> | null
+    /**
+     * Filter which Fornecedor to delete.
+     */
+    where: FornecedorWhereUniqueInput
+  }
+
+  /**
+   * Fornecedor deleteMany
+   */
+  export type FornecedorDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Fornecedors to delete
+     */
+    where?: FornecedorWhereInput
+    /**
+     * Limit how many Fornecedors to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Fornecedor.contas_pagar
+   */
+  export type Fornecedor$contas_pagarArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContaPagar
+     */
+    select?: ContaPagarSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContaPagar
+     */
+    omit?: ContaPagarOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContaPagarInclude<ExtArgs> | null
+    where?: ContaPagarWhereInput
+    orderBy?: ContaPagarOrderByWithRelationInput | ContaPagarOrderByWithRelationInput[]
+    cursor?: ContaPagarWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ContaPagarScalarFieldEnum | ContaPagarScalarFieldEnum[]
+  }
+
+  /**
+   * Fornecedor without action
+   */
+  export type FornecedorDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Fornecedor
+     */
+    select?: FornecedorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Fornecedor
+     */
+    omit?: FornecedorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FornecedorInclude<ExtArgs> | null
   }
 
 
@@ -73313,6 +74683,7 @@ export namespace Prisma {
     empresa_id: 'empresa_id',
     plano_contas_id: 'plano_contas_id',
     conta_bancaria_id: 'conta_bancaria_id',
+    fornecedor_id: 'fornecedor_id',
     criado_por: 'criado_por',
     descricao: 'descricao',
     fornecedor: 'fornecedor',
@@ -73329,6 +74700,23 @@ export namespace Prisma {
   };
 
   export type ContaPagarScalarFieldEnum = (typeof ContaPagarScalarFieldEnum)[keyof typeof ContaPagarScalarFieldEnum]
+
+
+  export const FornecedorScalarFieldEnum: {
+    id: 'id',
+    empresa_id: 'empresa_id',
+    nome: 'nome',
+    cnpj_cpf: 'cnpj_cpf',
+    email: 'email',
+    telefone: 'telefone',
+    contato: 'contato',
+    observacoes: 'observacoes',
+    ativo: 'ativo',
+    criado_em: 'criado_em',
+    atualizado_em: 'atualizado_em'
+  };
+
+  export type FornecedorScalarFieldEnum = (typeof FornecedorScalarFieldEnum)[keyof typeof FornecedorScalarFieldEnum]
 
 
   export const ModeloDocumentoScalarFieldEnum: {
@@ -74088,6 +75476,7 @@ export namespace Prisma {
     boletos?: BoletoListRelationFilter
     recebiveis?: RecebivelListRelationFilter
     contas_pagar?: ContaPagarListRelationFilter
+    fornecedores?: FornecedorListRelationFilter
     modelos_documento?: ModeloDocumentoListRelationFilter
     eventos?: EventoListRelationFilter
     registros_auditoria?: RegistroAuditoriaListRelationFilter
@@ -74134,6 +75523,7 @@ export namespace Prisma {
     boletos?: BoletoOrderByRelationAggregateInput
     recebiveis?: RecebivelOrderByRelationAggregateInput
     contas_pagar?: ContaPagarOrderByRelationAggregateInput
+    fornecedores?: FornecedorOrderByRelationAggregateInput
     modelos_documento?: ModeloDocumentoOrderByRelationAggregateInput
     eventos?: EventoOrderByRelationAggregateInput
     registros_auditoria?: RegistroAuditoriaOrderByRelationAggregateInput
@@ -74183,6 +75573,7 @@ export namespace Prisma {
     boletos?: BoletoListRelationFilter
     recebiveis?: RecebivelListRelationFilter
     contas_pagar?: ContaPagarListRelationFilter
+    fornecedores?: FornecedorListRelationFilter
     modelos_documento?: ModeloDocumentoListRelationFilter
     eventos?: EventoListRelationFilter
     registros_auditoria?: RegistroAuditoriaListRelationFilter
@@ -77669,6 +79060,7 @@ export namespace Prisma {
     empresa_id?: StringFilter<"ContaPagar"> | string
     plano_contas_id?: StringNullableFilter<"ContaPagar"> | string | null
     conta_bancaria_id?: StringNullableFilter<"ContaPagar"> | string | null
+    fornecedor_id?: StringNullableFilter<"ContaPagar"> | string | null
     criado_por?: StringNullableFilter<"ContaPagar"> | string | null
     descricao?: StringFilter<"ContaPagar"> | string
     fornecedor?: StringNullableFilter<"ContaPagar"> | string | null
@@ -77687,6 +79079,7 @@ export namespace Prisma {
     conta_bancaria?: XOR<ContaBancariaNullableScalarRelationFilter, ContaBancariaWhereInput> | null
     criador?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
     centro_custo?: XOR<CentroCustoNullableScalarRelationFilter, CentroCustoWhereInput> | null
+    fornecedor_rel?: XOR<FornecedorNullableScalarRelationFilter, FornecedorWhereInput> | null
   }
 
   export type ContaPagarOrderByWithRelationInput = {
@@ -77694,6 +79087,7 @@ export namespace Prisma {
     empresa_id?: SortOrder
     plano_contas_id?: SortOrderInput | SortOrder
     conta_bancaria_id?: SortOrderInput | SortOrder
+    fornecedor_id?: SortOrderInput | SortOrder
     criado_por?: SortOrderInput | SortOrder
     descricao?: SortOrder
     fornecedor?: SortOrderInput | SortOrder
@@ -77712,6 +79106,7 @@ export namespace Prisma {
     conta_bancaria?: ContaBancariaOrderByWithRelationInput
     criador?: UsuarioOrderByWithRelationInput
     centro_custo?: CentroCustoOrderByWithRelationInput
+    fornecedor_rel?: FornecedorOrderByWithRelationInput
   }
 
   export type ContaPagarWhereUniqueInput = Prisma.AtLeast<{
@@ -77722,6 +79117,7 @@ export namespace Prisma {
     empresa_id?: StringFilter<"ContaPagar"> | string
     plano_contas_id?: StringNullableFilter<"ContaPagar"> | string | null
     conta_bancaria_id?: StringNullableFilter<"ContaPagar"> | string | null
+    fornecedor_id?: StringNullableFilter<"ContaPagar"> | string | null
     criado_por?: StringNullableFilter<"ContaPagar"> | string | null
     descricao?: StringFilter<"ContaPagar"> | string
     fornecedor?: StringNullableFilter<"ContaPagar"> | string | null
@@ -77740,6 +79136,7 @@ export namespace Prisma {
     conta_bancaria?: XOR<ContaBancariaNullableScalarRelationFilter, ContaBancariaWhereInput> | null
     criador?: XOR<UsuarioNullableScalarRelationFilter, UsuarioWhereInput> | null
     centro_custo?: XOR<CentroCustoNullableScalarRelationFilter, CentroCustoWhereInput> | null
+    fornecedor_rel?: XOR<FornecedorNullableScalarRelationFilter, FornecedorWhereInput> | null
   }, "id">
 
   export type ContaPagarOrderByWithAggregationInput = {
@@ -77747,6 +79144,7 @@ export namespace Prisma {
     empresa_id?: SortOrder
     plano_contas_id?: SortOrderInput | SortOrder
     conta_bancaria_id?: SortOrderInput | SortOrder
+    fornecedor_id?: SortOrderInput | SortOrder
     criado_por?: SortOrderInput | SortOrder
     descricao?: SortOrder
     fornecedor?: SortOrderInput | SortOrder
@@ -77775,6 +79173,7 @@ export namespace Prisma {
     empresa_id?: StringWithAggregatesFilter<"ContaPagar"> | string
     plano_contas_id?: StringNullableWithAggregatesFilter<"ContaPagar"> | string | null
     conta_bancaria_id?: StringNullableWithAggregatesFilter<"ContaPagar"> | string | null
+    fornecedor_id?: StringNullableWithAggregatesFilter<"ContaPagar"> | string | null
     criado_por?: StringNullableWithAggregatesFilter<"ContaPagar"> | string | null
     descricao?: StringWithAggregatesFilter<"ContaPagar"> | string
     fornecedor?: StringNullableWithAggregatesFilter<"ContaPagar"> | string | null
@@ -77788,6 +79187,94 @@ export namespace Prisma {
     centro_custo_id?: StringNullableWithAggregatesFilter<"ContaPagar"> | string | null
     criado_em?: DateTimeWithAggregatesFilter<"ContaPagar"> | Date | string
     atualizado_em?: DateTimeWithAggregatesFilter<"ContaPagar"> | Date | string
+  }
+
+  export type FornecedorWhereInput = {
+    AND?: FornecedorWhereInput | FornecedorWhereInput[]
+    OR?: FornecedorWhereInput[]
+    NOT?: FornecedorWhereInput | FornecedorWhereInput[]
+    id?: StringFilter<"Fornecedor"> | string
+    empresa_id?: StringFilter<"Fornecedor"> | string
+    nome?: StringFilter<"Fornecedor"> | string
+    cnpj_cpf?: StringNullableFilter<"Fornecedor"> | string | null
+    email?: StringNullableFilter<"Fornecedor"> | string | null
+    telefone?: StringNullableFilter<"Fornecedor"> | string | null
+    contato?: StringNullableFilter<"Fornecedor"> | string | null
+    observacoes?: StringNullableFilter<"Fornecedor"> | string | null
+    ativo?: BoolFilter<"Fornecedor"> | boolean
+    criado_em?: DateTimeFilter<"Fornecedor"> | Date | string
+    atualizado_em?: DateTimeFilter<"Fornecedor"> | Date | string
+    empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
+    contas_pagar?: ContaPagarListRelationFilter
+  }
+
+  export type FornecedorOrderByWithRelationInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    nome?: SortOrder
+    cnpj_cpf?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
+    telefone?: SortOrderInput | SortOrder
+    contato?: SortOrderInput | SortOrder
+    observacoes?: SortOrderInput | SortOrder
+    ativo?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+    empresa?: EmpresaOrderByWithRelationInput
+    contas_pagar?: ContaPagarOrderByRelationAggregateInput
+  }
+
+  export type FornecedorWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: FornecedorWhereInput | FornecedorWhereInput[]
+    OR?: FornecedorWhereInput[]
+    NOT?: FornecedorWhereInput | FornecedorWhereInput[]
+    empresa_id?: StringFilter<"Fornecedor"> | string
+    nome?: StringFilter<"Fornecedor"> | string
+    cnpj_cpf?: StringNullableFilter<"Fornecedor"> | string | null
+    email?: StringNullableFilter<"Fornecedor"> | string | null
+    telefone?: StringNullableFilter<"Fornecedor"> | string | null
+    contato?: StringNullableFilter<"Fornecedor"> | string | null
+    observacoes?: StringNullableFilter<"Fornecedor"> | string | null
+    ativo?: BoolFilter<"Fornecedor"> | boolean
+    criado_em?: DateTimeFilter<"Fornecedor"> | Date | string
+    atualizado_em?: DateTimeFilter<"Fornecedor"> | Date | string
+    empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
+    contas_pagar?: ContaPagarListRelationFilter
+  }, "id">
+
+  export type FornecedorOrderByWithAggregationInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    nome?: SortOrder
+    cnpj_cpf?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
+    telefone?: SortOrderInput | SortOrder
+    contato?: SortOrderInput | SortOrder
+    observacoes?: SortOrderInput | SortOrder
+    ativo?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+    _count?: FornecedorCountOrderByAggregateInput
+    _max?: FornecedorMaxOrderByAggregateInput
+    _min?: FornecedorMinOrderByAggregateInput
+  }
+
+  export type FornecedorScalarWhereWithAggregatesInput = {
+    AND?: FornecedorScalarWhereWithAggregatesInput | FornecedorScalarWhereWithAggregatesInput[]
+    OR?: FornecedorScalarWhereWithAggregatesInput[]
+    NOT?: FornecedorScalarWhereWithAggregatesInput | FornecedorScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Fornecedor"> | string
+    empresa_id?: StringWithAggregatesFilter<"Fornecedor"> | string
+    nome?: StringWithAggregatesFilter<"Fornecedor"> | string
+    cnpj_cpf?: StringNullableWithAggregatesFilter<"Fornecedor"> | string | null
+    email?: StringNullableWithAggregatesFilter<"Fornecedor"> | string | null
+    telefone?: StringNullableWithAggregatesFilter<"Fornecedor"> | string | null
+    contato?: StringNullableWithAggregatesFilter<"Fornecedor"> | string | null
+    observacoes?: StringNullableWithAggregatesFilter<"Fornecedor"> | string | null
+    ativo?: BoolWithAggregatesFilter<"Fornecedor"> | boolean
+    criado_em?: DateTimeWithAggregatesFilter<"Fornecedor"> | Date | string
+    atualizado_em?: DateTimeWithAggregatesFilter<"Fornecedor"> | Date | string
   }
 
   export type ModeloDocumentoWhereInput = {
@@ -79234,6 +80721,7 @@ export namespace Prisma {
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
@@ -79280,6 +80768,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -79326,6 +80815,7 @@ export namespace Prisma {
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
@@ -79372,6 +80862,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -83142,6 +84633,7 @@ export namespace Prisma {
     conta_bancaria?: ContaBancariaCreateNestedOneWithoutContas_pagarInput
     criador?: UsuarioCreateNestedOneWithoutContas_pagar_criadasInput
     centro_custo?: CentroCustoCreateNestedOneWithoutContas_pagarInput
+    fornecedor_rel?: FornecedorCreateNestedOneWithoutContas_pagarInput
   }
 
   export type ContaPagarUncheckedCreateInput = {
@@ -83149,6 +84641,7 @@ export namespace Prisma {
     empresa_id: string
     plano_contas_id?: string | null
     conta_bancaria_id?: string | null
+    fornecedor_id?: string | null
     criado_por?: string | null
     descricao: string
     fornecedor?: string | null
@@ -83182,6 +84675,7 @@ export namespace Prisma {
     conta_bancaria?: ContaBancariaUpdateOneWithoutContas_pagarNestedInput
     criador?: UsuarioUpdateOneWithoutContas_pagar_criadasNestedInput
     centro_custo?: CentroCustoUpdateOneWithoutContas_pagarNestedInput
+    fornecedor_rel?: FornecedorUpdateOneWithoutContas_pagarNestedInput
   }
 
   export type ContaPagarUncheckedUpdateInput = {
@@ -83189,6 +84683,7 @@ export namespace Prisma {
     empresa_id?: StringFieldUpdateOperationsInput | string
     plano_contas_id?: NullableStringFieldUpdateOperationsInput | string | null
     conta_bancaria_id?: NullableStringFieldUpdateOperationsInput | string | null
+    fornecedor_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     descricao?: StringFieldUpdateOperationsInput | string
     fornecedor?: NullableStringFieldUpdateOperationsInput | string | null
@@ -83209,6 +84704,7 @@ export namespace Prisma {
     empresa_id: string
     plano_contas_id?: string | null
     conta_bancaria_id?: string | null
+    fornecedor_id?: string | null
     criado_por?: string | null
     descricao: string
     fornecedor?: string | null
@@ -83244,6 +84740,7 @@ export namespace Prisma {
     empresa_id?: StringFieldUpdateOperationsInput | string
     plano_contas_id?: NullableStringFieldUpdateOperationsInput | string | null
     conta_bancaria_id?: NullableStringFieldUpdateOperationsInput | string | null
+    fornecedor_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     descricao?: StringFieldUpdateOperationsInput | string
     fornecedor?: NullableStringFieldUpdateOperationsInput | string | null
@@ -83255,6 +84752,107 @@ export namespace Prisma {
     forma_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
     centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FornecedorCreateInput = {
+    id?: string
+    nome: string
+    cnpj_cpf?: string | null
+    email?: string | null
+    telefone?: string | null
+    contato?: string | null
+    observacoes?: string | null
+    ativo?: boolean
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutFornecedoresInput
+    contas_pagar?: ContaPagarCreateNestedManyWithoutFornecedor_relInput
+  }
+
+  export type FornecedorUncheckedCreateInput = {
+    id?: string
+    empresa_id: string
+    nome: string
+    cnpj_cpf?: string | null
+    email?: string | null
+    telefone?: string | null
+    contato?: string | null
+    observacoes?: string | null
+    ativo?: boolean
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutFornecedor_relInput
+  }
+
+  export type FornecedorUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cnpj_cpf?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone?: NullableStringFieldUpdateOperationsInput | string | null
+    contato?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutFornecedoresNestedInput
+    contas_pagar?: ContaPagarUpdateManyWithoutFornecedor_relNestedInput
+  }
+
+  export type FornecedorUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cnpj_cpf?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone?: NullableStringFieldUpdateOperationsInput | string | null
+    contato?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    contas_pagar?: ContaPagarUncheckedUpdateManyWithoutFornecedor_relNestedInput
+  }
+
+  export type FornecedorCreateManyInput = {
+    id?: string
+    empresa_id: string
+    nome: string
+    cnpj_cpf?: string | null
+    email?: string | null
+    telefone?: string | null
+    contato?: string | null
+    observacoes?: string | null
+    ativo?: boolean
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type FornecedorUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cnpj_cpf?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone?: NullableStringFieldUpdateOperationsInput | string | null
+    contato?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FornecedorUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cnpj_cpf?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone?: NullableStringFieldUpdateOperationsInput | string | null
+    contato?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -85007,6 +86605,12 @@ export namespace Prisma {
     none?: ContaPagarWhereInput
   }
 
+  export type FornecedorListRelationFilter = {
+    every?: FornecedorWhereInput
+    some?: FornecedorWhereInput
+    none?: FornecedorWhereInput
+  }
+
   export type ModeloDocumentoListRelationFilter = {
     every?: ModeloDocumentoWhereInput
     some?: ModeloDocumentoWhereInput
@@ -85165,6 +86769,10 @@ export namespace Prisma {
   }
 
   export type ContaPagarOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FornecedorOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -87750,11 +89358,17 @@ export namespace Prisma {
     not?: NestedEnumStatusContaPagarFilter<$PrismaModel> | $Enums.StatusContaPagar
   }
 
+  export type FornecedorNullableScalarRelationFilter = {
+    is?: FornecedorWhereInput | null
+    isNot?: FornecedorWhereInput | null
+  }
+
   export type ContaPagarCountOrderByAggregateInput = {
     id?: SortOrder
     empresa_id?: SortOrder
     plano_contas_id?: SortOrder
     conta_bancaria_id?: SortOrder
+    fornecedor_id?: SortOrder
     criado_por?: SortOrder
     descricao?: SortOrder
     fornecedor?: SortOrder
@@ -87780,6 +89394,7 @@ export namespace Prisma {
     empresa_id?: SortOrder
     plano_contas_id?: SortOrder
     conta_bancaria_id?: SortOrder
+    fornecedor_id?: SortOrder
     criado_por?: SortOrder
     descricao?: SortOrder
     fornecedor?: SortOrder
@@ -87800,6 +89415,7 @@ export namespace Prisma {
     empresa_id?: SortOrder
     plano_contas_id?: SortOrder
     conta_bancaria_id?: SortOrder
+    fornecedor_id?: SortOrder
     criado_por?: SortOrder
     descricao?: SortOrder
     fornecedor?: SortOrder
@@ -87828,6 +89444,48 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumStatusContaPagarFilter<$PrismaModel>
     _max?: NestedEnumStatusContaPagarFilter<$PrismaModel>
+  }
+
+  export type FornecedorCountOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    nome?: SortOrder
+    cnpj_cpf?: SortOrder
+    email?: SortOrder
+    telefone?: SortOrder
+    contato?: SortOrder
+    observacoes?: SortOrder
+    ativo?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+  }
+
+  export type FornecedorMaxOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    nome?: SortOrder
+    cnpj_cpf?: SortOrder
+    email?: SortOrder
+    telefone?: SortOrder
+    contato?: SortOrder
+    observacoes?: SortOrder
+    ativo?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+  }
+
+  export type FornecedorMinOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    nome?: SortOrder
+    cnpj_cpf?: SortOrder
+    email?: SortOrder
+    telefone?: SortOrder
+    contato?: SortOrder
+    observacoes?: SortOrder
+    ativo?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
   }
 
   export type EnumTipoModeloFilter<$PrismaModel = never> = {
@@ -88824,6 +90482,13 @@ export namespace Prisma {
     connect?: ContaPagarWhereUniqueInput | ContaPagarWhereUniqueInput[]
   }
 
+  export type FornecedorCreateNestedManyWithoutEmpresaInput = {
+    create?: XOR<FornecedorCreateWithoutEmpresaInput, FornecedorUncheckedCreateWithoutEmpresaInput> | FornecedorCreateWithoutEmpresaInput[] | FornecedorUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: FornecedorCreateOrConnectWithoutEmpresaInput | FornecedorCreateOrConnectWithoutEmpresaInput[]
+    createMany?: FornecedorCreateManyEmpresaInputEnvelope
+    connect?: FornecedorWhereUniqueInput | FornecedorWhereUniqueInput[]
+  }
+
   export type ModeloDocumentoCreateNestedManyWithoutEmpresaInput = {
     create?: XOR<ModeloDocumentoCreateWithoutEmpresaInput, ModeloDocumentoUncheckedCreateWithoutEmpresaInput> | ModeloDocumentoCreateWithoutEmpresaInput[] | ModeloDocumentoUncheckedCreateWithoutEmpresaInput[]
     connectOrCreate?: ModeloDocumentoCreateOrConnectWithoutEmpresaInput | ModeloDocumentoCreateOrConnectWithoutEmpresaInput[]
@@ -89046,6 +90711,13 @@ export namespace Prisma {
     connectOrCreate?: ContaPagarCreateOrConnectWithoutEmpresaInput | ContaPagarCreateOrConnectWithoutEmpresaInput[]
     createMany?: ContaPagarCreateManyEmpresaInputEnvelope
     connect?: ContaPagarWhereUniqueInput | ContaPagarWhereUniqueInput[]
+  }
+
+  export type FornecedorUncheckedCreateNestedManyWithoutEmpresaInput = {
+    create?: XOR<FornecedorCreateWithoutEmpresaInput, FornecedorUncheckedCreateWithoutEmpresaInput> | FornecedorCreateWithoutEmpresaInput[] | FornecedorUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: FornecedorCreateOrConnectWithoutEmpresaInput | FornecedorCreateOrConnectWithoutEmpresaInput[]
+    createMany?: FornecedorCreateManyEmpresaInputEnvelope
+    connect?: FornecedorWhereUniqueInput | FornecedorWhereUniqueInput[]
   }
 
   export type ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput = {
@@ -89416,6 +91088,20 @@ export namespace Prisma {
     update?: ContaPagarUpdateWithWhereUniqueWithoutEmpresaInput | ContaPagarUpdateWithWhereUniqueWithoutEmpresaInput[]
     updateMany?: ContaPagarUpdateManyWithWhereWithoutEmpresaInput | ContaPagarUpdateManyWithWhereWithoutEmpresaInput[]
     deleteMany?: ContaPagarScalarWhereInput | ContaPagarScalarWhereInput[]
+  }
+
+  export type FornecedorUpdateManyWithoutEmpresaNestedInput = {
+    create?: XOR<FornecedorCreateWithoutEmpresaInput, FornecedorUncheckedCreateWithoutEmpresaInput> | FornecedorCreateWithoutEmpresaInput[] | FornecedorUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: FornecedorCreateOrConnectWithoutEmpresaInput | FornecedorCreateOrConnectWithoutEmpresaInput[]
+    upsert?: FornecedorUpsertWithWhereUniqueWithoutEmpresaInput | FornecedorUpsertWithWhereUniqueWithoutEmpresaInput[]
+    createMany?: FornecedorCreateManyEmpresaInputEnvelope
+    set?: FornecedorWhereUniqueInput | FornecedorWhereUniqueInput[]
+    disconnect?: FornecedorWhereUniqueInput | FornecedorWhereUniqueInput[]
+    delete?: FornecedorWhereUniqueInput | FornecedorWhereUniqueInput[]
+    connect?: FornecedorWhereUniqueInput | FornecedorWhereUniqueInput[]
+    update?: FornecedorUpdateWithWhereUniqueWithoutEmpresaInput | FornecedorUpdateWithWhereUniqueWithoutEmpresaInput[]
+    updateMany?: FornecedorUpdateManyWithWhereWithoutEmpresaInput | FornecedorUpdateManyWithWhereWithoutEmpresaInput[]
+    deleteMany?: FornecedorScalarWhereInput | FornecedorScalarWhereInput[]
   }
 
   export type ModeloDocumentoUpdateManyWithoutEmpresaNestedInput = {
@@ -89864,6 +91550,20 @@ export namespace Prisma {
     update?: ContaPagarUpdateWithWhereUniqueWithoutEmpresaInput | ContaPagarUpdateWithWhereUniqueWithoutEmpresaInput[]
     updateMany?: ContaPagarUpdateManyWithWhereWithoutEmpresaInput | ContaPagarUpdateManyWithWhereWithoutEmpresaInput[]
     deleteMany?: ContaPagarScalarWhereInput | ContaPagarScalarWhereInput[]
+  }
+
+  export type FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput = {
+    create?: XOR<FornecedorCreateWithoutEmpresaInput, FornecedorUncheckedCreateWithoutEmpresaInput> | FornecedorCreateWithoutEmpresaInput[] | FornecedorUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: FornecedorCreateOrConnectWithoutEmpresaInput | FornecedorCreateOrConnectWithoutEmpresaInput[]
+    upsert?: FornecedorUpsertWithWhereUniqueWithoutEmpresaInput | FornecedorUpsertWithWhereUniqueWithoutEmpresaInput[]
+    createMany?: FornecedorCreateManyEmpresaInputEnvelope
+    set?: FornecedorWhereUniqueInput | FornecedorWhereUniqueInput[]
+    disconnect?: FornecedorWhereUniqueInput | FornecedorWhereUniqueInput[]
+    delete?: FornecedorWhereUniqueInput | FornecedorWhereUniqueInput[]
+    connect?: FornecedorWhereUniqueInput | FornecedorWhereUniqueInput[]
+    update?: FornecedorUpdateWithWhereUniqueWithoutEmpresaInput | FornecedorUpdateWithWhereUniqueWithoutEmpresaInput[]
+    updateMany?: FornecedorUpdateManyWithWhereWithoutEmpresaInput | FornecedorUpdateManyWithWhereWithoutEmpresaInput[]
+    deleteMany?: FornecedorScalarWhereInput | FornecedorScalarWhereInput[]
   }
 
   export type ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput = {
@@ -94979,6 +96679,12 @@ export namespace Prisma {
     connect?: CentroCustoWhereUniqueInput
   }
 
+  export type FornecedorCreateNestedOneWithoutContas_pagarInput = {
+    create?: XOR<FornecedorCreateWithoutContas_pagarInput, FornecedorUncheckedCreateWithoutContas_pagarInput>
+    connectOrCreate?: FornecedorCreateOrConnectWithoutContas_pagarInput
+    connect?: FornecedorWhereUniqueInput
+  }
+
   export type EnumStatusContaPagarFieldUpdateOperationsInput = {
     set?: $Enums.StatusContaPagar
   }
@@ -95029,6 +96735,72 @@ export namespace Prisma {
     delete?: CentroCustoWhereInput | boolean
     connect?: CentroCustoWhereUniqueInput
     update?: XOR<XOR<CentroCustoUpdateToOneWithWhereWithoutContas_pagarInput, CentroCustoUpdateWithoutContas_pagarInput>, CentroCustoUncheckedUpdateWithoutContas_pagarInput>
+  }
+
+  export type FornecedorUpdateOneWithoutContas_pagarNestedInput = {
+    create?: XOR<FornecedorCreateWithoutContas_pagarInput, FornecedorUncheckedCreateWithoutContas_pagarInput>
+    connectOrCreate?: FornecedorCreateOrConnectWithoutContas_pagarInput
+    upsert?: FornecedorUpsertWithoutContas_pagarInput
+    disconnect?: FornecedorWhereInput | boolean
+    delete?: FornecedorWhereInput | boolean
+    connect?: FornecedorWhereUniqueInput
+    update?: XOR<XOR<FornecedorUpdateToOneWithWhereWithoutContas_pagarInput, FornecedorUpdateWithoutContas_pagarInput>, FornecedorUncheckedUpdateWithoutContas_pagarInput>
+  }
+
+  export type EmpresaCreateNestedOneWithoutFornecedoresInput = {
+    create?: XOR<EmpresaCreateWithoutFornecedoresInput, EmpresaUncheckedCreateWithoutFornecedoresInput>
+    connectOrCreate?: EmpresaCreateOrConnectWithoutFornecedoresInput
+    connect?: EmpresaWhereUniqueInput
+  }
+
+  export type ContaPagarCreateNestedManyWithoutFornecedor_relInput = {
+    create?: XOR<ContaPagarCreateWithoutFornecedor_relInput, ContaPagarUncheckedCreateWithoutFornecedor_relInput> | ContaPagarCreateWithoutFornecedor_relInput[] | ContaPagarUncheckedCreateWithoutFornecedor_relInput[]
+    connectOrCreate?: ContaPagarCreateOrConnectWithoutFornecedor_relInput | ContaPagarCreateOrConnectWithoutFornecedor_relInput[]
+    createMany?: ContaPagarCreateManyFornecedor_relInputEnvelope
+    connect?: ContaPagarWhereUniqueInput | ContaPagarWhereUniqueInput[]
+  }
+
+  export type ContaPagarUncheckedCreateNestedManyWithoutFornecedor_relInput = {
+    create?: XOR<ContaPagarCreateWithoutFornecedor_relInput, ContaPagarUncheckedCreateWithoutFornecedor_relInput> | ContaPagarCreateWithoutFornecedor_relInput[] | ContaPagarUncheckedCreateWithoutFornecedor_relInput[]
+    connectOrCreate?: ContaPagarCreateOrConnectWithoutFornecedor_relInput | ContaPagarCreateOrConnectWithoutFornecedor_relInput[]
+    createMany?: ContaPagarCreateManyFornecedor_relInputEnvelope
+    connect?: ContaPagarWhereUniqueInput | ContaPagarWhereUniqueInput[]
+  }
+
+  export type EmpresaUpdateOneRequiredWithoutFornecedoresNestedInput = {
+    create?: XOR<EmpresaCreateWithoutFornecedoresInput, EmpresaUncheckedCreateWithoutFornecedoresInput>
+    connectOrCreate?: EmpresaCreateOrConnectWithoutFornecedoresInput
+    upsert?: EmpresaUpsertWithoutFornecedoresInput
+    connect?: EmpresaWhereUniqueInput
+    update?: XOR<XOR<EmpresaUpdateToOneWithWhereWithoutFornecedoresInput, EmpresaUpdateWithoutFornecedoresInput>, EmpresaUncheckedUpdateWithoutFornecedoresInput>
+  }
+
+  export type ContaPagarUpdateManyWithoutFornecedor_relNestedInput = {
+    create?: XOR<ContaPagarCreateWithoutFornecedor_relInput, ContaPagarUncheckedCreateWithoutFornecedor_relInput> | ContaPagarCreateWithoutFornecedor_relInput[] | ContaPagarUncheckedCreateWithoutFornecedor_relInput[]
+    connectOrCreate?: ContaPagarCreateOrConnectWithoutFornecedor_relInput | ContaPagarCreateOrConnectWithoutFornecedor_relInput[]
+    upsert?: ContaPagarUpsertWithWhereUniqueWithoutFornecedor_relInput | ContaPagarUpsertWithWhereUniqueWithoutFornecedor_relInput[]
+    createMany?: ContaPagarCreateManyFornecedor_relInputEnvelope
+    set?: ContaPagarWhereUniqueInput | ContaPagarWhereUniqueInput[]
+    disconnect?: ContaPagarWhereUniqueInput | ContaPagarWhereUniqueInput[]
+    delete?: ContaPagarWhereUniqueInput | ContaPagarWhereUniqueInput[]
+    connect?: ContaPagarWhereUniqueInput | ContaPagarWhereUniqueInput[]
+    update?: ContaPagarUpdateWithWhereUniqueWithoutFornecedor_relInput | ContaPagarUpdateWithWhereUniqueWithoutFornecedor_relInput[]
+    updateMany?: ContaPagarUpdateManyWithWhereWithoutFornecedor_relInput | ContaPagarUpdateManyWithWhereWithoutFornecedor_relInput[]
+    deleteMany?: ContaPagarScalarWhereInput | ContaPagarScalarWhereInput[]
+  }
+
+  export type ContaPagarUncheckedUpdateManyWithoutFornecedor_relNestedInput = {
+    create?: XOR<ContaPagarCreateWithoutFornecedor_relInput, ContaPagarUncheckedCreateWithoutFornecedor_relInput> | ContaPagarCreateWithoutFornecedor_relInput[] | ContaPagarUncheckedCreateWithoutFornecedor_relInput[]
+    connectOrCreate?: ContaPagarCreateOrConnectWithoutFornecedor_relInput | ContaPagarCreateOrConnectWithoutFornecedor_relInput[]
+    upsert?: ContaPagarUpsertWithWhereUniqueWithoutFornecedor_relInput | ContaPagarUpsertWithWhereUniqueWithoutFornecedor_relInput[]
+    createMany?: ContaPagarCreateManyFornecedor_relInputEnvelope
+    set?: ContaPagarWhereUniqueInput | ContaPagarWhereUniqueInput[]
+    disconnect?: ContaPagarWhereUniqueInput | ContaPagarWhereUniqueInput[]
+    delete?: ContaPagarWhereUniqueInput | ContaPagarWhereUniqueInput[]
+    connect?: ContaPagarWhereUniqueInput | ContaPagarWhereUniqueInput[]
+    update?: ContaPagarUpdateWithWhereUniqueWithoutFornecedor_relInput | ContaPagarUpdateWithWhereUniqueWithoutFornecedor_relInput[]
+    updateMany?: ContaPagarUpdateManyWithWhereWithoutFornecedor_relInput | ContaPagarUpdateManyWithWhereWithoutFornecedor_relInput[]
+    deleteMany?: ContaPagarScalarWhereInput | ContaPagarScalarWhereInput[]
   }
 
   export type EmpresaCreateNestedOneWithoutModelos_documentoInput = {
@@ -97137,12 +98909,14 @@ export namespace Prisma {
     conta_bancaria?: ContaBancariaCreateNestedOneWithoutContas_pagarInput
     criador?: UsuarioCreateNestedOneWithoutContas_pagar_criadasInput
     centro_custo?: CentroCustoCreateNestedOneWithoutContas_pagarInput
+    fornecedor_rel?: FornecedorCreateNestedOneWithoutContas_pagarInput
   }
 
   export type ContaPagarUncheckedCreateWithoutEmpresaInput = {
     id?: string
     plano_contas_id?: string | null
     conta_bancaria_id?: string | null
+    fornecedor_id?: string | null
     criado_por?: string | null
     descricao: string
     fornecedor?: string | null
@@ -97165,6 +98939,44 @@ export namespace Prisma {
 
   export type ContaPagarCreateManyEmpresaInputEnvelope = {
     data: ContaPagarCreateManyEmpresaInput | ContaPagarCreateManyEmpresaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FornecedorCreateWithoutEmpresaInput = {
+    id?: string
+    nome: string
+    cnpj_cpf?: string | null
+    email?: string | null
+    telefone?: string | null
+    contato?: string | null
+    observacoes?: string | null
+    ativo?: boolean
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    contas_pagar?: ContaPagarCreateNestedManyWithoutFornecedor_relInput
+  }
+
+  export type FornecedorUncheckedCreateWithoutEmpresaInput = {
+    id?: string
+    nome: string
+    cnpj_cpf?: string | null
+    email?: string | null
+    telefone?: string | null
+    contato?: string | null
+    observacoes?: string | null
+    ativo?: boolean
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutFornecedor_relInput
+  }
+
+  export type FornecedorCreateOrConnectWithoutEmpresaInput = {
+    where: FornecedorWhereUniqueInput
+    create: XOR<FornecedorCreateWithoutEmpresaInput, FornecedorUncheckedCreateWithoutEmpresaInput>
+  }
+
+  export type FornecedorCreateManyEmpresaInputEnvelope = {
+    data: FornecedorCreateManyEmpresaInput | FornecedorCreateManyEmpresaInput[]
     skipDuplicates?: boolean
   }
 
@@ -98381,6 +100193,7 @@ export namespace Prisma {
     empresa_id?: StringFilter<"ContaPagar"> | string
     plano_contas_id?: StringNullableFilter<"ContaPagar"> | string | null
     conta_bancaria_id?: StringNullableFilter<"ContaPagar"> | string | null
+    fornecedor_id?: StringNullableFilter<"ContaPagar"> | string | null
     criado_por?: StringNullableFilter<"ContaPagar"> | string | null
     descricao?: StringFilter<"ContaPagar"> | string
     fornecedor?: StringNullableFilter<"ContaPagar"> | string | null
@@ -98394,6 +100207,39 @@ export namespace Prisma {
     centro_custo_id?: StringNullableFilter<"ContaPagar"> | string | null
     criado_em?: DateTimeFilter<"ContaPagar"> | Date | string
     atualizado_em?: DateTimeFilter<"ContaPagar"> | Date | string
+  }
+
+  export type FornecedorUpsertWithWhereUniqueWithoutEmpresaInput = {
+    where: FornecedorWhereUniqueInput
+    update: XOR<FornecedorUpdateWithoutEmpresaInput, FornecedorUncheckedUpdateWithoutEmpresaInput>
+    create: XOR<FornecedorCreateWithoutEmpresaInput, FornecedorUncheckedCreateWithoutEmpresaInput>
+  }
+
+  export type FornecedorUpdateWithWhereUniqueWithoutEmpresaInput = {
+    where: FornecedorWhereUniqueInput
+    data: XOR<FornecedorUpdateWithoutEmpresaInput, FornecedorUncheckedUpdateWithoutEmpresaInput>
+  }
+
+  export type FornecedorUpdateManyWithWhereWithoutEmpresaInput = {
+    where: FornecedorScalarWhereInput
+    data: XOR<FornecedorUpdateManyMutationInput, FornecedorUncheckedUpdateManyWithoutEmpresaInput>
+  }
+
+  export type FornecedorScalarWhereInput = {
+    AND?: FornecedorScalarWhereInput | FornecedorScalarWhereInput[]
+    OR?: FornecedorScalarWhereInput[]
+    NOT?: FornecedorScalarWhereInput | FornecedorScalarWhereInput[]
+    id?: StringFilter<"Fornecedor"> | string
+    empresa_id?: StringFilter<"Fornecedor"> | string
+    nome?: StringFilter<"Fornecedor"> | string
+    cnpj_cpf?: StringNullableFilter<"Fornecedor"> | string | null
+    email?: StringNullableFilter<"Fornecedor"> | string | null
+    telefone?: StringNullableFilter<"Fornecedor"> | string | null
+    contato?: StringNullableFilter<"Fornecedor"> | string | null
+    observacoes?: StringNullableFilter<"Fornecedor"> | string | null
+    ativo?: BoolFilter<"Fornecedor"> | boolean
+    criado_em?: DateTimeFilter<"Fornecedor"> | Date | string
+    atualizado_em?: DateTimeFilter<"Fornecedor"> | Date | string
   }
 
   export type ModeloDocumentoUpsertWithWhereUniqueWithoutEmpresaInput = {
@@ -99453,6 +101299,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasCreateNestedOneWithoutContas_pagarInput
     conta_bancaria?: ContaBancariaCreateNestedOneWithoutContas_pagarInput
     centro_custo?: CentroCustoCreateNestedOneWithoutContas_pagarInput
+    fornecedor_rel?: FornecedorCreateNestedOneWithoutContas_pagarInput
   }
 
   export type ContaPagarUncheckedCreateWithoutCriadorInput = {
@@ -99460,6 +101307,7 @@ export namespace Prisma {
     empresa_id: string
     plano_contas_id?: string | null
     conta_bancaria_id?: string | null
+    fornecedor_id?: string | null
     descricao: string
     fornecedor?: string | null
     valor: Decimal | DecimalJsLike | number | string
@@ -100418,6 +102266,7 @@ export namespace Prisma {
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
@@ -100463,6 +102312,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -100618,6 +102468,7 @@ export namespace Prisma {
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
@@ -100663,6 +102514,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -100739,6 +102591,7 @@ export namespace Prisma {
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
@@ -100784,6 +102637,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -100889,6 +102743,7 @@ export namespace Prisma {
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
@@ -100934,6 +102789,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -101153,6 +103009,7 @@ export namespace Prisma {
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
@@ -101198,6 +103055,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -101322,6 +103180,7 @@ export namespace Prisma {
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
@@ -101367,6 +103226,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -101481,6 +103341,7 @@ export namespace Prisma {
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
@@ -101526,6 +103387,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -101739,6 +103601,7 @@ export namespace Prisma {
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
@@ -101784,6 +103647,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -101993,6 +103857,7 @@ export namespace Prisma {
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
@@ -102038,6 +103903,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -102896,6 +104762,7 @@ export namespace Prisma {
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
@@ -102941,6 +104808,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -103452,6 +105320,7 @@ export namespace Prisma {
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
@@ -103497,6 +105366,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -103787,6 +105657,7 @@ export namespace Prisma {
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
@@ -103832,6 +105703,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -103997,6 +105869,7 @@ export namespace Prisma {
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
@@ -104042,6 +105915,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -104171,6 +106045,7 @@ export namespace Prisma {
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
@@ -104216,6 +106091,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -104540,6 +106416,7 @@ export namespace Prisma {
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
@@ -104585,6 +106462,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -105005,6 +106883,7 @@ export namespace Prisma {
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
@@ -105050,6 +106929,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -105414,6 +107294,7 @@ export namespace Prisma {
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
@@ -105459,6 +107340,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -105957,6 +107839,7 @@ export namespace Prisma {
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
@@ -106002,6 +107885,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -106889,6 +108773,7 @@ export namespace Prisma {
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
@@ -106934,6 +108819,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -107564,6 +109450,7 @@ export namespace Prisma {
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
@@ -107609,6 +109496,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -108085,6 +109973,7 @@ export namespace Prisma {
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
@@ -108130,6 +110019,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -108729,6 +110619,7 @@ export namespace Prisma {
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
@@ -108774,6 +110665,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -111446,6 +113338,7 @@ export namespace Prisma {
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
@@ -111491,6 +113384,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -111570,6 +113464,7 @@ export namespace Prisma {
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
@@ -111615,6 +113510,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -111823,6 +113719,7 @@ export namespace Prisma {
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
@@ -111868,6 +113765,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -112036,6 +113934,7 @@ export namespace Prisma {
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
@@ -112081,6 +113980,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -112193,6 +114093,7 @@ export namespace Prisma {
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
@@ -112238,6 +114139,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -112632,6 +114534,7 @@ export namespace Prisma {
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
@@ -112677,6 +114580,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -113085,6 +114989,7 @@ export namespace Prisma {
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
@@ -113130,6 +115035,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -113319,12 +115225,14 @@ export namespace Prisma {
     conta_bancaria?: ContaBancariaCreateNestedOneWithoutContas_pagarInput
     criador?: UsuarioCreateNestedOneWithoutContas_pagar_criadasInput
     centro_custo?: CentroCustoCreateNestedOneWithoutContas_pagarInput
+    fornecedor_rel?: FornecedorCreateNestedOneWithoutContas_pagarInput
   }
 
   export type ContaPagarUncheckedCreateWithoutPlano_contasInput = {
     id?: string
     empresa_id: string
     conta_bancaria_id?: string | null
+    fornecedor_id?: string | null
     criado_por?: string | null
     descricao: string
     fornecedor?: string | null
@@ -113438,6 +115346,7 @@ export namespace Prisma {
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
@@ -113483,6 +115392,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -113699,6 +115609,7 @@ export namespace Prisma {
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
@@ -113744,6 +115655,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -113877,12 +115789,14 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasCreateNestedOneWithoutContas_pagarInput
     criador?: UsuarioCreateNestedOneWithoutContas_pagar_criadasInput
     centro_custo?: CentroCustoCreateNestedOneWithoutContas_pagarInput
+    fornecedor_rel?: FornecedorCreateNestedOneWithoutContas_pagarInput
   }
 
   export type ContaPagarUncheckedCreateWithoutConta_bancariaInput = {
     id?: string
     empresa_id: string
     plano_contas_id?: string | null
+    fornecedor_id?: string | null
     criado_por?: string | null
     descricao: string
     fornecedor?: string | null
@@ -114008,6 +115922,7 @@ export namespace Prisma {
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
@@ -114053,6 +115968,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -114187,6 +116103,7 @@ export namespace Prisma {
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
@@ -114232,6 +116149,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -114383,6 +116301,7 @@ export namespace Prisma {
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
@@ -114428,6 +116347,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -114576,6 +116496,7 @@ export namespace Prisma {
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
@@ -114621,6 +116542,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -114785,6 +116707,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasCreateNestedOneWithoutContas_pagarInput
     conta_bancaria?: ContaBancariaCreateNestedOneWithoutContas_pagarInput
     criador?: UsuarioCreateNestedOneWithoutContas_pagar_criadasInput
+    fornecedor_rel?: FornecedorCreateNestedOneWithoutContas_pagarInput
   }
 
   export type ContaPagarUncheckedCreateWithoutCentro_custoInput = {
@@ -114792,6 +116715,7 @@ export namespace Prisma {
     empresa_id: string
     plano_contas_id?: string | null
     conta_bancaria_id?: string | null
+    fornecedor_id?: string | null
     criado_por?: string | null
     descricao: string
     fornecedor?: string | null
@@ -114857,6 +116781,7 @@ export namespace Prisma {
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
@@ -114902,6 +116827,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -115035,6 +116961,7 @@ export namespace Prisma {
     transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
@@ -115080,6 +117007,7 @@ export namespace Prisma {
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -115607,6 +117535,7 @@ export namespace Prisma {
     transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
@@ -115652,6 +117581,7 @@ export namespace Prisma {
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -116211,6 +118141,7 @@ export namespace Prisma {
     transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
@@ -116256,6 +118187,7 @@ export namespace Prisma {
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -116451,6 +118383,39 @@ export namespace Prisma {
     create: XOR<CentroCustoCreateWithoutContas_pagarInput, CentroCustoUncheckedCreateWithoutContas_pagarInput>
   }
 
+  export type FornecedorCreateWithoutContas_pagarInput = {
+    id?: string
+    nome: string
+    cnpj_cpf?: string | null
+    email?: string | null
+    telefone?: string | null
+    contato?: string | null
+    observacoes?: string | null
+    ativo?: boolean
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutFornecedoresInput
+  }
+
+  export type FornecedorUncheckedCreateWithoutContas_pagarInput = {
+    id?: string
+    empresa_id: string
+    nome: string
+    cnpj_cpf?: string | null
+    email?: string | null
+    telefone?: string | null
+    contato?: string | null
+    observacoes?: string | null
+    ativo?: boolean
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type FornecedorCreateOrConnectWithoutContas_pagarInput = {
+    where: FornecedorWhereUniqueInput
+    create: XOR<FornecedorCreateWithoutContas_pagarInput, FornecedorUncheckedCreateWithoutContas_pagarInput>
+  }
+
   export type EmpresaUpsertWithoutContas_pagarInput = {
     update: XOR<EmpresaUpdateWithoutContas_pagarInput, EmpresaUncheckedUpdateWithoutContas_pagarInput>
     create: XOR<EmpresaCreateWithoutContas_pagarInput, EmpresaUncheckedCreateWithoutContas_pagarInput>
@@ -116491,6 +118456,7 @@ export namespace Prisma {
     transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
@@ -116536,6 +118502,7 @@ export namespace Prisma {
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -116750,6 +118717,311 @@ export namespace Prisma {
     recebiveis?: RecebivelUncheckedUpdateManyWithoutCentro_custoNestedInput
   }
 
+  export type FornecedorUpsertWithoutContas_pagarInput = {
+    update: XOR<FornecedorUpdateWithoutContas_pagarInput, FornecedorUncheckedUpdateWithoutContas_pagarInput>
+    create: XOR<FornecedorCreateWithoutContas_pagarInput, FornecedorUncheckedCreateWithoutContas_pagarInput>
+    where?: FornecedorWhereInput
+  }
+
+  export type FornecedorUpdateToOneWithWhereWithoutContas_pagarInput = {
+    where?: FornecedorWhereInput
+    data: XOR<FornecedorUpdateWithoutContas_pagarInput, FornecedorUncheckedUpdateWithoutContas_pagarInput>
+  }
+
+  export type FornecedorUpdateWithoutContas_pagarInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cnpj_cpf?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone?: NullableStringFieldUpdateOperationsInput | string | null
+    contato?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutFornecedoresNestedInput
+  }
+
+  export type FornecedorUncheckedUpdateWithoutContas_pagarInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cnpj_cpf?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone?: NullableStringFieldUpdateOperationsInput | string | null
+    contato?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmpresaCreateWithoutFornecedoresInput = {
+    id?: string
+    nome: string
+    slug: string
+    cnpj?: string | null
+    logo_url?: string | null
+    plano?: $Enums.PlanoTipo
+    status?: $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
+    perfis?: PerfilCreateNestedManyWithoutEmpresaInput
+    convites?: ConviteEmpresaCreateNestedManyWithoutEmpresaInput
+    convites_cliente?: ConviteClienteCreateNestedManyWithoutEmpresaInput
+    clientes?: ClienteCreateNestedManyWithoutEmpresaInput
+    servicos?: ServicoCreateNestedManyWithoutEmpresaInput
+    leads?: LeadCreateNestedManyWithoutEmpresaInput
+    propostas?: PropostaCreateNestedManyWithoutEmpresaInput
+    contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
+    documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
+    plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
+    contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
+    boletos?: BoletoCreateNestedManyWithoutEmpresaInput
+    recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
+    contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
+    eventos?: EventoCreateNestedManyWithoutEmpresaInput
+    registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
+    notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
+    notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
+    diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+  }
+
+  export type EmpresaUncheckedCreateWithoutFornecedoresInput = {
+    id?: string
+    nome: string
+    slug: string
+    cnpj?: string | null
+    logo_url?: string | null
+    plano?: $Enums.PlanoTipo
+    status?: $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
+    perfis?: PerfilUncheckedCreateNestedManyWithoutEmpresaInput
+    convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
+    convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutEmpresaInput
+    clientes?: ClienteUncheckedCreateNestedManyWithoutEmpresaInput
+    servicos?: ServicoUncheckedCreateNestedManyWithoutEmpresaInput
+    leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
+    propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
+    contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
+    contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
+    boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
+    recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
+    contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
+    registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
+    notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
+    notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+  }
+
+  export type EmpresaCreateOrConnectWithoutFornecedoresInput = {
+    where: EmpresaWhereUniqueInput
+    create: XOR<EmpresaCreateWithoutFornecedoresInput, EmpresaUncheckedCreateWithoutFornecedoresInput>
+  }
+
+  export type ContaPagarCreateWithoutFornecedor_relInput = {
+    id?: string
+    descricao: string
+    fornecedor?: string | null
+    valor: Decimal | DecimalJsLike | number | string
+    data_vencimento: Date | string
+    status?: $Enums.StatusContaPagar
+    data_pagamento?: Date | string | null
+    valor_pago?: Decimal | DecimalJsLike | number | string | null
+    forma_pagamento?: string | null
+    observacoes?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutContas_pagarInput
+    plano_contas?: PlanoDeContasCreateNestedOneWithoutContas_pagarInput
+    conta_bancaria?: ContaBancariaCreateNestedOneWithoutContas_pagarInput
+    criador?: UsuarioCreateNestedOneWithoutContas_pagar_criadasInput
+    centro_custo?: CentroCustoCreateNestedOneWithoutContas_pagarInput
+  }
+
+  export type ContaPagarUncheckedCreateWithoutFornecedor_relInput = {
+    id?: string
+    empresa_id: string
+    plano_contas_id?: string | null
+    conta_bancaria_id?: string | null
+    criado_por?: string | null
+    descricao: string
+    fornecedor?: string | null
+    valor: Decimal | DecimalJsLike | number | string
+    data_vencimento: Date | string
+    status?: $Enums.StatusContaPagar
+    data_pagamento?: Date | string | null
+    valor_pago?: Decimal | DecimalJsLike | number | string | null
+    forma_pagamento?: string | null
+    observacoes?: string | null
+    centro_custo_id?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type ContaPagarCreateOrConnectWithoutFornecedor_relInput = {
+    where: ContaPagarWhereUniqueInput
+    create: XOR<ContaPagarCreateWithoutFornecedor_relInput, ContaPagarUncheckedCreateWithoutFornecedor_relInput>
+  }
+
+  export type ContaPagarCreateManyFornecedor_relInputEnvelope = {
+    data: ContaPagarCreateManyFornecedor_relInput | ContaPagarCreateManyFornecedor_relInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EmpresaUpsertWithoutFornecedoresInput = {
+    update: XOR<EmpresaUpdateWithoutFornecedoresInput, EmpresaUncheckedUpdateWithoutFornecedoresInput>
+    create: XOR<EmpresaCreateWithoutFornecedoresInput, EmpresaUncheckedCreateWithoutFornecedoresInput>
+    where?: EmpresaWhereInput
+  }
+
+  export type EmpresaUpdateToOneWithWhereWithoutFornecedoresInput = {
+    where?: EmpresaWhereInput
+    data: XOR<EmpresaUpdateWithoutFornecedoresInput, EmpresaUncheckedUpdateWithoutFornecedoresInput>
+  }
+
+  export type EmpresaUpdateWithoutFornecedoresInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    logo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
+    status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
+    perfis?: PerfilUpdateManyWithoutEmpresaNestedInput
+    convites?: ConviteEmpresaUpdateManyWithoutEmpresaNestedInput
+    convites_cliente?: ConviteClienteUpdateManyWithoutEmpresaNestedInput
+    clientes?: ClienteUpdateManyWithoutEmpresaNestedInput
+    servicos?: ServicoUpdateManyWithoutEmpresaNestedInput
+    leads?: LeadUpdateManyWithoutEmpresaNestedInput
+    propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
+    contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
+    documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
+    plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
+    contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
+    boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
+    recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
+    contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
+    eventos?: EventoUpdateManyWithoutEmpresaNestedInput
+    registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
+    notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
+    notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
+    diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+  }
+
+  export type EmpresaUncheckedUpdateWithoutFornecedoresInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    logo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
+    status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
+    perfis?: PerfilUncheckedUpdateManyWithoutEmpresaNestedInput
+    convites?: ConviteEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
+    convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutEmpresaNestedInput
+    clientes?: ClienteUncheckedUpdateManyWithoutEmpresaNestedInput
+    servicos?: ServicoUncheckedUpdateManyWithoutEmpresaNestedInput
+    leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
+    propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
+    contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
+    contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
+    recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
+    contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
+    registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
+    notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
+    notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+  }
+
+  export type ContaPagarUpsertWithWhereUniqueWithoutFornecedor_relInput = {
+    where: ContaPagarWhereUniqueInput
+    update: XOR<ContaPagarUpdateWithoutFornecedor_relInput, ContaPagarUncheckedUpdateWithoutFornecedor_relInput>
+    create: XOR<ContaPagarCreateWithoutFornecedor_relInput, ContaPagarUncheckedCreateWithoutFornecedor_relInput>
+  }
+
+  export type ContaPagarUpdateWithWhereUniqueWithoutFornecedor_relInput = {
+    where: ContaPagarWhereUniqueInput
+    data: XOR<ContaPagarUpdateWithoutFornecedor_relInput, ContaPagarUncheckedUpdateWithoutFornecedor_relInput>
+  }
+
+  export type ContaPagarUpdateManyWithWhereWithoutFornecedor_relInput = {
+    where: ContaPagarScalarWhereInput
+    data: XOR<ContaPagarUpdateManyMutationInput, ContaPagarUncheckedUpdateManyWithoutFornecedor_relInput>
+  }
+
   export type EmpresaCreateWithoutModelos_documentoInput = {
     id?: string
     nome: string
@@ -116780,6 +119052,7 @@ export namespace Prisma {
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
     notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
@@ -116825,6 +119098,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
     notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -116886,6 +119160,7 @@ export namespace Prisma {
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
     notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
@@ -116931,6 +119206,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
     notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -116976,6 +119252,7 @@ export namespace Prisma {
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
     notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
@@ -117021,6 +119298,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
     notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -117386,6 +119664,7 @@ export namespace Prisma {
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
     notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
@@ -117431,6 +119710,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
     notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -117804,6 +120084,7 @@ export namespace Prisma {
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
@@ -117849,6 +120130,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -117910,6 +120192,7 @@ export namespace Prisma {
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
@@ -117955,6 +120238,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -118000,6 +120284,7 @@ export namespace Prisma {
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
@@ -118045,6 +120330,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -118106,6 +120392,7 @@ export namespace Prisma {
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
@@ -118151,6 +120438,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -118196,6 +120484,7 @@ export namespace Prisma {
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
@@ -118241,6 +120530,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -118563,6 +120853,7 @@ export namespace Prisma {
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
@@ -118608,6 +120899,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -118931,6 +121223,7 @@ export namespace Prisma {
     transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
@@ -118976,6 +121269,7 @@ export namespace Prisma {
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -119197,6 +121491,7 @@ export namespace Prisma {
     transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
@@ -119242,6 +121537,7 @@ export namespace Prisma {
     transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -119460,6 +121756,7 @@ export namespace Prisma {
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
@@ -119505,6 +121802,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -119706,6 +122004,7 @@ export namespace Prisma {
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
@@ -119751,6 +122050,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -120132,6 +122432,7 @@ export namespace Prisma {
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
@@ -120177,6 +122478,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -120378,6 +122680,7 @@ export namespace Prisma {
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
@@ -120423,6 +122726,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -120620,6 +122924,7 @@ export namespace Prisma {
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
@@ -120665,6 +122970,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -120768,6 +123074,7 @@ export namespace Prisma {
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
@@ -120813,6 +123120,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -121094,6 +123402,7 @@ export namespace Prisma {
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
@@ -121139,6 +123448,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -121200,6 +123510,7 @@ export namespace Prisma {
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
@@ -121245,6 +123556,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -121290,6 +123602,7 @@ export namespace Prisma {
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
@@ -121335,6 +123648,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -121439,6 +123753,7 @@ export namespace Prisma {
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
@@ -121484,6 +123799,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -121578,6 +123894,7 @@ export namespace Prisma {
     boletos?: BoletoCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
     eventos?: EventoCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
@@ -121623,6 +123940,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
     contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
     modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
     registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
@@ -121816,6 +124134,7 @@ export namespace Prisma {
     boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
@@ -121861,6 +124180,7 @@ export namespace Prisma {
     boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
     recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
     contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
     modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
     registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -122331,6 +124651,7 @@ export namespace Prisma {
     id?: string
     plano_contas_id?: string | null
     conta_bancaria_id?: string | null
+    fornecedor_id?: string | null
     criado_por?: string | null
     descricao: string
     fornecedor?: string | null
@@ -122342,6 +124663,19 @@ export namespace Prisma {
     forma_pagamento?: string | null
     observacoes?: string | null
     centro_custo_id?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type FornecedorCreateManyEmpresaInput = {
+    id?: string
+    nome: string
+    cnpj_cpf?: string | null
+    email?: string | null
+    telefone?: string | null
+    contato?: string | null
+    observacoes?: string | null
+    ativo?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -123582,12 +125916,14 @@ export namespace Prisma {
     conta_bancaria?: ContaBancariaUpdateOneWithoutContas_pagarNestedInput
     criador?: UsuarioUpdateOneWithoutContas_pagar_criadasNestedInput
     centro_custo?: CentroCustoUpdateOneWithoutContas_pagarNestedInput
+    fornecedor_rel?: FornecedorUpdateOneWithoutContas_pagarNestedInput
   }
 
   export type ContaPagarUncheckedUpdateWithoutEmpresaInput = {
     id?: StringFieldUpdateOperationsInput | string
     plano_contas_id?: NullableStringFieldUpdateOperationsInput | string | null
     conta_bancaria_id?: NullableStringFieldUpdateOperationsInput | string | null
+    fornecedor_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     descricao?: StringFieldUpdateOperationsInput | string
     fornecedor?: NullableStringFieldUpdateOperationsInput | string | null
@@ -123607,6 +125943,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     plano_contas_id?: NullableStringFieldUpdateOperationsInput | string | null
     conta_bancaria_id?: NullableStringFieldUpdateOperationsInput | string | null
+    fornecedor_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     descricao?: StringFieldUpdateOperationsInput | string
     fornecedor?: NullableStringFieldUpdateOperationsInput | string | null
@@ -123618,6 +125955,47 @@ export namespace Prisma {
     forma_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
     centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FornecedorUpdateWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cnpj_cpf?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone?: NullableStringFieldUpdateOperationsInput | string | null
+    contato?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    contas_pagar?: ContaPagarUpdateManyWithoutFornecedor_relNestedInput
+  }
+
+  export type FornecedorUncheckedUpdateWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cnpj_cpf?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone?: NullableStringFieldUpdateOperationsInput | string | null
+    contato?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    contas_pagar?: ContaPagarUncheckedUpdateManyWithoutFornecedor_relNestedInput
+  }
+
+  export type FornecedorUncheckedUpdateManyWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    cnpj_cpf?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    telefone?: NullableStringFieldUpdateOperationsInput | string | null
+    contato?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -124430,6 +126808,7 @@ export namespace Prisma {
     empresa_id: string
     plano_contas_id?: string | null
     conta_bancaria_id?: string | null
+    fornecedor_id?: string | null
     descricao: string
     fornecedor?: string | null
     valor: Decimal | DecimalJsLike | number | string
@@ -125280,6 +127659,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasUpdateOneWithoutContas_pagarNestedInput
     conta_bancaria?: ContaBancariaUpdateOneWithoutContas_pagarNestedInput
     centro_custo?: CentroCustoUpdateOneWithoutContas_pagarNestedInput
+    fornecedor_rel?: FornecedorUpdateOneWithoutContas_pagarNestedInput
   }
 
   export type ContaPagarUncheckedUpdateWithoutCriadorInput = {
@@ -125287,6 +127667,7 @@ export namespace Prisma {
     empresa_id?: StringFieldUpdateOperationsInput | string
     plano_contas_id?: NullableStringFieldUpdateOperationsInput | string | null
     conta_bancaria_id?: NullableStringFieldUpdateOperationsInput | string | null
+    fornecedor_id?: NullableStringFieldUpdateOperationsInput | string | null
     descricao?: StringFieldUpdateOperationsInput | string
     fornecedor?: NullableStringFieldUpdateOperationsInput | string | null
     valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -125306,6 +127687,7 @@ export namespace Prisma {
     empresa_id?: StringFieldUpdateOperationsInput | string
     plano_contas_id?: NullableStringFieldUpdateOperationsInput | string | null
     conta_bancaria_id?: NullableStringFieldUpdateOperationsInput | string | null
+    fornecedor_id?: NullableStringFieldUpdateOperationsInput | string | null
     descricao?: StringFieldUpdateOperationsInput | string
     fornecedor?: NullableStringFieldUpdateOperationsInput | string | null
     valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -128924,6 +131306,7 @@ export namespace Prisma {
     id?: string
     empresa_id: string
     conta_bancaria_id?: string | null
+    fornecedor_id?: string | null
     criado_por?: string | null
     descricao: string
     fornecedor?: string | null
@@ -129109,12 +131492,14 @@ export namespace Prisma {
     conta_bancaria?: ContaBancariaUpdateOneWithoutContas_pagarNestedInput
     criador?: UsuarioUpdateOneWithoutContas_pagar_criadasNestedInput
     centro_custo?: CentroCustoUpdateOneWithoutContas_pagarNestedInput
+    fornecedor_rel?: FornecedorUpdateOneWithoutContas_pagarNestedInput
   }
 
   export type ContaPagarUncheckedUpdateWithoutPlano_contasInput = {
     id?: StringFieldUpdateOperationsInput | string
     empresa_id?: StringFieldUpdateOperationsInput | string
     conta_bancaria_id?: NullableStringFieldUpdateOperationsInput | string | null
+    fornecedor_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     descricao?: StringFieldUpdateOperationsInput | string
     fornecedor?: NullableStringFieldUpdateOperationsInput | string | null
@@ -129134,6 +131519,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     empresa_id?: StringFieldUpdateOperationsInput | string
     conta_bancaria_id?: NullableStringFieldUpdateOperationsInput | string | null
+    fornecedor_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     descricao?: StringFieldUpdateOperationsInput | string
     fornecedor?: NullableStringFieldUpdateOperationsInput | string | null
@@ -129309,6 +131695,7 @@ export namespace Prisma {
     id?: string
     empresa_id: string
     plano_contas_id?: string | null
+    fornecedor_id?: string | null
     criado_por?: string | null
     descricao: string
     fornecedor?: string | null
@@ -129458,12 +131845,14 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasUpdateOneWithoutContas_pagarNestedInput
     criador?: UsuarioUpdateOneWithoutContas_pagar_criadasNestedInput
     centro_custo?: CentroCustoUpdateOneWithoutContas_pagarNestedInput
+    fornecedor_rel?: FornecedorUpdateOneWithoutContas_pagarNestedInput
   }
 
   export type ContaPagarUncheckedUpdateWithoutConta_bancariaInput = {
     id?: StringFieldUpdateOperationsInput | string
     empresa_id?: StringFieldUpdateOperationsInput | string
     plano_contas_id?: NullableStringFieldUpdateOperationsInput | string | null
+    fornecedor_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     descricao?: StringFieldUpdateOperationsInput | string
     fornecedor?: NullableStringFieldUpdateOperationsInput | string | null
@@ -129483,6 +131872,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     empresa_id?: StringFieldUpdateOperationsInput | string
     plano_contas_id?: NullableStringFieldUpdateOperationsInput | string | null
+    fornecedor_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     descricao?: StringFieldUpdateOperationsInput | string
     fornecedor?: NullableStringFieldUpdateOperationsInput | string | null
@@ -129594,6 +131984,7 @@ export namespace Prisma {
     empresa_id: string
     plano_contas_id?: string | null
     conta_bancaria_id?: string | null
+    fornecedor_id?: string | null
     criado_por?: string | null
     descricao: string
     fornecedor?: string | null
@@ -129722,6 +132113,7 @@ export namespace Prisma {
     plano_contas?: PlanoDeContasUpdateOneWithoutContas_pagarNestedInput
     conta_bancaria?: ContaBancariaUpdateOneWithoutContas_pagarNestedInput
     criador?: UsuarioUpdateOneWithoutContas_pagar_criadasNestedInput
+    fornecedor_rel?: FornecedorUpdateOneWithoutContas_pagarNestedInput
   }
 
   export type ContaPagarUncheckedUpdateWithoutCentro_custoInput = {
@@ -129729,6 +132121,7 @@ export namespace Prisma {
     empresa_id?: StringFieldUpdateOperationsInput | string
     plano_contas_id?: NullableStringFieldUpdateOperationsInput | string | null
     conta_bancaria_id?: NullableStringFieldUpdateOperationsInput | string | null
+    fornecedor_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     descricao?: StringFieldUpdateOperationsInput | string
     fornecedor?: NullableStringFieldUpdateOperationsInput | string | null
@@ -129748,6 +132141,7 @@ export namespace Prisma {
     empresa_id?: StringFieldUpdateOperationsInput | string
     plano_contas_id?: NullableStringFieldUpdateOperationsInput | string | null
     conta_bancaria_id?: NullableStringFieldUpdateOperationsInput | string | null
+    fornecedor_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_por?: NullableStringFieldUpdateOperationsInput | string | null
     descricao?: StringFieldUpdateOperationsInput | string
     fornecedor?: NullableStringFieldUpdateOperationsInput | string | null
@@ -129758,6 +132152,86 @@ export namespace Prisma {
     valor_pago?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     forma_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
     observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContaPagarCreateManyFornecedor_relInput = {
+    id?: string
+    empresa_id: string
+    plano_contas_id?: string | null
+    conta_bancaria_id?: string | null
+    criado_por?: string | null
+    descricao: string
+    fornecedor?: string | null
+    valor: Decimal | DecimalJsLike | number | string
+    data_vencimento: Date | string
+    status?: $Enums.StatusContaPagar
+    data_pagamento?: Date | string | null
+    valor_pago?: Decimal | DecimalJsLike | number | string | null
+    forma_pagamento?: string | null
+    observacoes?: string | null
+    centro_custo_id?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type ContaPagarUpdateWithoutFornecedor_relInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    descricao?: StringFieldUpdateOperationsInput | string
+    fornecedor?: NullableStringFieldUpdateOperationsInput | string | null
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    data_vencimento?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumStatusContaPagarFieldUpdateOperationsInput | $Enums.StatusContaPagar
+    data_pagamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    valor_pago?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    forma_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutContas_pagarNestedInput
+    plano_contas?: PlanoDeContasUpdateOneWithoutContas_pagarNestedInput
+    conta_bancaria?: ContaBancariaUpdateOneWithoutContas_pagarNestedInput
+    criador?: UsuarioUpdateOneWithoutContas_pagar_criadasNestedInput
+    centro_custo?: CentroCustoUpdateOneWithoutContas_pagarNestedInput
+  }
+
+  export type ContaPagarUncheckedUpdateWithoutFornecedor_relInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    plano_contas_id?: NullableStringFieldUpdateOperationsInput | string | null
+    conta_bancaria_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: StringFieldUpdateOperationsInput | string
+    fornecedor?: NullableStringFieldUpdateOperationsInput | string | null
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    data_vencimento?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumStatusContaPagarFieldUpdateOperationsInput | $Enums.StatusContaPagar
+    data_pagamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    valor_pago?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    forma_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContaPagarUncheckedUpdateManyWithoutFornecedor_relInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    plano_contas_id?: NullableStringFieldUpdateOperationsInput | string | null
+    conta_bancaria_id?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: StringFieldUpdateOperationsInput | string
+    fornecedor?: NullableStringFieldUpdateOperationsInput | string | null
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    data_vencimento?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumStatusContaPagarFieldUpdateOperationsInput | $Enums.StatusContaPagar
+    data_pagamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    valor_pago?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    forma_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
+    observacoes?: NullableStringFieldUpdateOperationsInput | string | null
+    centro_custo_id?: NullableStringFieldUpdateOperationsInput | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }

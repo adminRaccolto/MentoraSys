@@ -45,6 +45,7 @@ const NAV_GERAL = [
 
 const NAV_COMERCIAL = [
   { label: "Clientes", href: "/clientes", icon: Users },
+  { label: "Fornecedores", href: "/fornecedores", icon: Building2 },
   { label: "Serviços", href: "/servicos", icon: Briefcase },
   { label: "Cupons", href: "/campanhas-cupom", icon: Ticket },
   { label: "CRM", href: "/crm", icon: TrendingUp },

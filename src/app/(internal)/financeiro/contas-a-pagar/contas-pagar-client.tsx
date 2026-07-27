@@ -58,12 +58,13 @@ const schemaEditar = z.object({
 
 const schemaCreate = z.object({
   descricao:         z.string().min(1, "Descrição obrigatória"),
-  fornecedor:        z.string().optional(),
+  fornecedor_id:     z.string().optional(),
   valor:             z.string().min(1, "Valor obrigatório"),
   data_vencimento:   z.string().optional(),
   n_parcelas:        z.string().optional(),
   periodicidade:     z.string().optional(),
   data_primeira:     z.string().optional(),
+  forma_pagamento:   z.string().optional(),
   plano_contas_id:   z.string().optional(),
   conta_bancaria_id: z.string().optional(),
   centro_custo_id:   z.string().optional(),
@@ -93,6 +94,7 @@ interface Props {
   categorias: { id: string; nome: string }[];
   contasBancarias: { id: string; nome: string }[];
   centrosCusto: { id: string; nome: string; codigo: string | null }[];
+  fornecedores: { id: string; nome: string; cnpj_cpf: string | null }[];
   de: string;
   ate: string;
   statusFiltro: string;
@@ -106,7 +108,7 @@ function isVencido(data: Date, status: Status) {
   return status === "PENDENTE" && new Date(data) < new Date();
 }
 
-export default function ContasPagarClient({ contas: inicial, categorias, contasBancarias, centrosCusto, de, ate, statusFiltro }: Props) {
+export default function ContasPagarClient({ contas: inicial, categorias, contasBancarias, centrosCusto, fornecedores, de, ate, statusFiltro }: Props) {
   const router = useRouter();
   const [contas, setContas] = useState(inicial);
   const [modalNovo, setModalNovo] = useState(false);
@@ -146,9 +148,16 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
   const onSubmitNovo = (data: FormCreate) => {
     startTransition(async () => {
       try {
+        // Resolve nome do fornecedor pelo id selecionado
+        const nomeFornecedor = data.fornecedor_id
+          ? (fornecedores.find((f) => f.id === data.fornecedor_id)?.nome ?? undefined)
+          : undefined;
         if (tipoLancamentoCp === "unico") {
           if (!data.data_vencimento) { toast.error("Informe a data de vencimento"); return; }
-          const res = await criarContaPagar({ ...data, valor: Number(data.valor), data_vencimento: data.data_vencimento });
+          const res = await criarContaPagar({
+            ...data, valor: Number(data.valor), data_vencimento: data.data_vencimento,
+            fornecedor_id: data.fornecedor_id, fornecedor: nomeFornecedor,
+          });
           setContas((prev) => [...prev, res.data as unknown as ContaPagar]);
           toast.success("Conta a pagar criada");
         } else {
@@ -160,7 +169,9 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
             n_parcelas: Number(data.n_parcelas), periodicidade: data.periodicidade as "MENSAL",
             data_primeira: data.data_primeira,
             tipo: tipoLancamentoCp === "parcelado" ? "PARCELADO" : "RECORRENTE",
-            fornecedor: data.fornecedor, plano_contas_id: data.plano_contas_id,
+            fornecedor_id: data.fornecedor_id, fornecedor: nomeFornecedor,
+            forma_pagamento: data.forma_pagamento,
+            plano_contas_id: data.plano_contas_id,
             conta_bancaria_id: data.conta_bancaria_id, centro_custo_id: data.centro_custo_id,
             observacoes: data.observacoes,
           });
@@ -469,10 +480,38 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
             </div>
 
             {/* Fornecedor */}
-            <div className="space-y-1.5">
-              <Label>Fornecedor / Credor</Label>
-              <Input className="h-10" {...formNovo.register("fornecedor")} placeholder="Nome do fornecedor ou credor" />
-            </div>
+            {(() => {
+              const fornecedorId = formNovo.watch("fornecedor_id");
+              const fornecedorAtual = fornecedores.find((f) => f.id === fornecedorId);
+              return (
+                <div className="space-y-1.5">
+                  <div className="flex items-center justify-between">
+                    <Label>Fornecedor / Credor</Label>
+                    <a href="/fornecedores" target="_blank" className="text-xs text-primary hover:underline">+ Cadastrar novo</a>
+                  </div>
+                  <Select
+                    value={fornecedorId || ""}
+                    onValueChange={(v) => formNovo.setValue("fornecedor_id", v || undefined)}
+                  >
+                    <SelectTrigger className="h-10">
+                      <SelectValue placeholder={fornecedores.length === 0 ? "Nenhum fornecedor cadastrado" : "Selecionar fornecedor..."}>
+                        {fornecedorAtual
+                          ? <span>{fornecedorAtual.nome}{fornecedorAtual.cnpj_cpf && <span className="text-muted-foreground ml-2 text-xs">{fornecedorAtual.cnpj_cpf}</span>}</span>
+                          : undefined}
+                      </SelectValue>
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="">— Nenhum —</SelectItem>
+                      {fornecedores.map((f) => (
+                        <SelectItem key={f.id} value={f.id}>
+                          {f.nome}{f.cnpj_cpf && <span className="text-muted-foreground ml-2 text-xs">{f.cnpj_cpf}</span>}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              );
+            })()}
 
             {/* Valor + Conta bancária */}
             <div className="grid grid-cols-2 gap-4">
@@ -482,13 +521,21 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
               </div>
               <div className="space-y-1.5">
                 <Label>Conta bancária</Label>
-                <Select value={formNovo.watch("conta_bancaria_id") ?? "_none"} onValueChange={(v) => formNovo.setValue("conta_bancaria_id", v === "_none" ? undefined : v ?? undefined)}>
-                  <SelectTrigger className="h-10"><SelectValue placeholder="Nenhuma" /></SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="_none">Nenhuma</SelectItem>
-                    {contasBancarias.map((c) => <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>)}
-                  </SelectContent>
-                </Select>
+                {(() => {
+                  const contaId = formNovo.watch("conta_bancaria_id");
+                  const contaAtual = contasBancarias.find((c) => c.id === contaId);
+                  return (
+                    <Select value={contaId || ""} onValueChange={(v) => formNovo.setValue("conta_bancaria_id", v || undefined)}>
+                      <SelectTrigger className="h-10">
+                        <SelectValue placeholder="Nenhuma">{contaAtual?.nome}</SelectValue>
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="">Nenhuma</SelectItem>
+                        {contasBancarias.map((c) => <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>)}
+                      </SelectContent>
+                    </Select>
+                  );
+                })()}
               </div>
             </div>
 
@@ -507,12 +554,19 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
                   </div>
                   <div className="space-y-1.5">
                     <Label>Periodicidade *</Label>
-                    <Select value={formNovo.watch("periodicidade") ?? ""} onValueChange={(v) => formNovo.setValue("periodicidade", v ?? undefined)}>
-                      <SelectTrigger className="h-10"><SelectValue placeholder="Selecionar" /></SelectTrigger>
-                      <SelectContent>
-                        {Object.entries(PERIODICIDADE_LABELS).map(([k, lv]) => <SelectItem key={k} value={k}>{lv}</SelectItem>)}
-                      </SelectContent>
-                    </Select>
+                    {(() => {
+                      const perAtual = formNovo.watch("periodicidade");
+                      return (
+                        <Select value={perAtual || ""} onValueChange={(v) => formNovo.setValue("periodicidade", v || undefined)}>
+                          <SelectTrigger className="h-10">
+                            <SelectValue placeholder="Selecionar">{perAtual ? PERIODICIDADE_LABELS[perAtual] : undefined}</SelectValue>
+                          </SelectTrigger>
+                          <SelectContent>
+                            {Object.entries(PERIODICIDADE_LABELS).map(([k, lv]) => <SelectItem key={k} value={k}>{lv}</SelectItem>)}
+                          </SelectContent>
+                        </Select>
+                      );
+                    })()}
                   </div>
                 </div>
                 <div className="space-y-1.5">
@@ -534,31 +588,66 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
               </div>
             )}
 
-            {/* Categoria */}
-            <div className="space-y-1.5">
-              <Label>Categoria (despesa)</Label>
-              <Select value={formNovo.watch("plano_contas_id") ?? "_none"} onValueChange={(v) => formNovo.setValue("plano_contas_id", v === "_none" ? undefined : v ?? undefined)}>
-                <SelectTrigger className="h-10"><SelectValue placeholder="Nenhuma" /></SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="_none">Nenhuma</SelectItem>
-                  {categorias.map((c) => <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>)}
-                </SelectContent>
-              </Select>
+            {/* Categoria + Forma de pagamento */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-1.5">
+                <Label>Categoria (despesa)</Label>
+                {(() => {
+                  const catId = formNovo.watch("plano_contas_id");
+                  const catAtual = categorias.find((c) => c.id === catId);
+                  return (
+                    <Select value={catId || ""} onValueChange={(v) => formNovo.setValue("plano_contas_id", v || undefined)}>
+                      <SelectTrigger className="h-10">
+                        <SelectValue placeholder="Nenhuma">{catAtual?.nome}</SelectValue>
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="">Nenhuma</SelectItem>
+                        {categorias.map((c) => <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>)}
+                      </SelectContent>
+                    </Select>
+                  );
+                })()}
+              </div>
+              <div className="space-y-1.5">
+                <Label>Forma de pagamento</Label>
+                {(() => {
+                  const forma = formNovo.watch("forma_pagamento");
+                  return (
+                    <Select value={forma || ""} onValueChange={(v) => formNovo.setValue("forma_pagamento", v || undefined)}>
+                      <SelectTrigger className="h-10">
+                        <SelectValue placeholder="Selecionar">{forma || undefined}</SelectValue>
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="">Não informada</SelectItem>
+                        {FORMAS.map((f) => <SelectItem key={f} value={f}>{f}</SelectItem>)}
+                      </SelectContent>
+                    </Select>
+                  );
+                })()}
+              </div>
             </div>
 
             {/* Centro de custo */}
-            {centrosCusto.length > 0 && (
-              <div className="space-y-1.5">
-                <Label>Centro de custo</Label>
-                <Select value={formNovo.watch("centro_custo_id") ?? "_none"} onValueChange={(v) => formNovo.setValue("centro_custo_id", v === "_none" ? undefined : v ?? undefined)}>
-                  <SelectTrigger className="h-10"><SelectValue placeholder="Nenhum" /></SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="_none">Nenhum</SelectItem>
-                    {centrosCusto.map((c) => <SelectItem key={c.id} value={c.id}>{c.codigo ? `[${c.codigo}] ` : ""}{c.nome}</SelectItem>)}
-                  </SelectContent>
-                </Select>
-              </div>
-            )}
+            {centrosCusto.length > 0 && (() => {
+              const ccId = formNovo.watch("centro_custo_id");
+              const ccAtual = centrosCusto.find((c) => c.id === ccId);
+              return (
+                <div className="space-y-1.5">
+                  <Label>Centro de custo</Label>
+                  <Select value={ccId || ""} onValueChange={(v) => formNovo.setValue("centro_custo_id", v || undefined)}>
+                    <SelectTrigger className="h-10">
+                      <SelectValue placeholder="Nenhum">
+                        {ccAtual ? `${ccAtual.codigo ? `[${ccAtual.codigo}] ` : ""}${ccAtual.nome}` : undefined}
+                      </SelectValue>
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="">Nenhum</SelectItem>
+                      {centrosCusto.map((c) => <SelectItem key={c.id} value={c.id}>{c.codigo ? `[${c.codigo}] ` : ""}{c.nome}</SelectItem>)}
+                    </SelectContent>
+                  </Select>
+                </div>
+              );
+            })()}
 
             {/* Observações */}
             <div className="space-y-1.5">

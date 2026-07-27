@@ -629,6 +629,7 @@ exports.Prisma.ContaPagarScalarFieldEnum = {
   empresa_id: 'empresa_id',
   plano_contas_id: 'plano_contas_id',
   conta_bancaria_id: 'conta_bancaria_id',
+  fornecedor_id: 'fornecedor_id',
   criado_por: 'criado_por',
   descricao: 'descricao',
   fornecedor: 'fornecedor',
@@ -640,6 +641,20 @@ exports.Prisma.ContaPagarScalarFieldEnum = {
   forma_pagamento: 'forma_pagamento',
   observacoes: 'observacoes',
   centro_custo_id: 'centro_custo_id',
+  criado_em: 'criado_em',
+  atualizado_em: 'atualizado_em'
+};
+
+exports.Prisma.FornecedorScalarFieldEnum = {
+  id: 'id',
+  empresa_id: 'empresa_id',
+  nome: 'nome',
+  cnpj_cpf: 'cnpj_cpf',
+  email: 'email',
+  telefone: 'telefone',
+  contato: 'contato',
+  observacoes: 'observacoes',
+  ativo: 'ativo',
   criado_em: 'criado_em',
   atualizado_em: 'atualizado_em'
 };
@@ -1094,6 +1109,7 @@ exports.Prisma.ModelName = {
   CentroCusto: 'CentroCusto',
   Recebivel: 'Recebivel',
   ContaPagar: 'ContaPagar',
+  Fornecedor: 'Fornecedor',
   ModeloDocumento: 'ModeloDocumento',
   Evento: 'Evento',
   RegistroAuditoria: 'RegistroAuditoria',

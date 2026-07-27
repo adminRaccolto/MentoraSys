@@ -54,6 +54,7 @@ model Empresa {
   boletos              Boleto[]
   recebiveis           Recebivel[]
   contas_pagar         ContaPagar[]
+  fornecedores         Fornecedor[]
   modelos_documento    ModeloDocumento[]
   eventos              Evento[]
   registros_auditoria  RegistroAuditoria[]
@@ -998,6 +999,7 @@ model ContaPagar {
   empresa_id        String
   plano_contas_id   String?
   conta_bancaria_id String?
+  fornecedor_id     String?
   criado_por        String?
   descricao         String
   fornecedor        String?
@@ -1012,13 +1014,35 @@ model ContaPagar {
   criado_em         DateTime         @default(now())
   atualizado_em     DateTime         @updatedAt
 
-  empresa        Empresa        @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
-  plano_contas   PlanoDeContas? @relation(fields: [plano_contas_id], references: [id])
-  conta_bancaria ContaBancaria? @relation(fields: [conta_bancaria_id], references: [id])
-  criador        Usuario?       @relation("ContasPagarCriadas", fields: [criado_por], references: [id])
-  centro_custo   CentroCusto?   @relation(fields: [centro_custo_id], references: [id])
+  empresa           Empresa        @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  plano_contas      PlanoDeContas? @relation(fields: [plano_contas_id], references: [id])
+  conta_bancaria    ContaBancaria? @relation(fields: [conta_bancaria_id], references: [id])
+  criador           Usuario?       @relation("ContasPagarCriadas", fields: [criado_por], references: [id])
+  centro_custo      CentroCusto?   @relation(fields: [centro_custo_id], references: [id])
+  fornecedor_rel    Fornecedor?    @relation(fields: [fornecedor_id], references: [id])
 
   @@map("contas_pagar")
+}
+
+// ─── FORNECEDORES ─────────────────────────────────────────────────────────────
+
+model Fornecedor {
+  id            String   @id @default(cuid())
+  empresa_id    String
+  nome          String
+  cnpj_cpf      String?
+  email         String?
+  telefone      String?
+  contato       String?
+  observacoes   String?
+  ativo         Boolean  @default(true)
+  criado_em     DateTime @default(now())
+  atualizado_em DateTime @updatedAt
+
+  empresa      Empresa      @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  contas_pagar ContaPagar[]
+
+  @@map("fornecedores")
 }
 
 // ─── FASE 4: ENUMS ────────────────────────────────────────────────────────────
