@@ -8,7 +8,7 @@ const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL! });
 const prisma = new PrismaClient({ adapter });
 
 const RECURSOS_TODOS = [
-  "clientes", "servicos", "crm", "propostas", "contratos",
+  "clientes", "fornecedores", "servicos", "crm", "propostas", "contratos",
   "projetos", "modelos", "agenda", "financeiro", "faturamento",
   "diagnosticos", "configuracoes",
 ];

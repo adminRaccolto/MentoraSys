@@ -70,7 +70,7 @@ export async function listarFornecedores() {
 }
 
 export async function criarFornecedor(input: InputFornecedor) {
-  await verificarPermissao("cadastros", "criar");
+  await verificarPermissao("fornecedores", "criar");
   const empresaId = await obterEmpresaAtiva();
   const data = schemaFornecedor.parse(input);
 
@@ -84,7 +84,7 @@ export async function criarFornecedor(input: InputFornecedor) {
 }
 
 export async function editarFornecedor(id: string, input: InputFornecedor) {
-  await verificarPermissao("cadastros", "editar");
+  await verificarPermissao("fornecedores", "editar");
   const empresaId = await obterEmpresaAtiva();
   const data = schemaFornecedor.parse(input);
 
@@ -102,7 +102,7 @@ export async function editarFornecedor(id: string, input: InputFornecedor) {
 }
 
 export async function excluirFornecedor(id: string) {
-  await verificarPermissao("cadastros", "excluir");
+  await verificarPermissao("fornecedores", "excluir");
   const empresaId = await obterEmpresaAtiva();
 
   const exists = await prisma.fornecedor.findFirst({ where: { id, empresa_id: empresaId } });
