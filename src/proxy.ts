@@ -49,7 +49,8 @@ export async function proxy(request: NextRequest) {
     pathname.startsWith("/api/campanhas/") ||
     pathname.startsWith("/api/crm/") ||
     pathname === "/api/contratos" ||
-    pathname.startsWith("/api/contratos/");
+    pathname.startsWith("/api/contratos/") ||
+    pathname.startsWith("/fatura/p/");
 
   if (!user && !isAuthRoute) {
     const url = request.nextUrl.clone();

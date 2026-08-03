@@ -1,6 +1,6 @@
 import { Resend } from "resend";
 
-const FROM = process.env.RESEND_EMAIL_FROM ?? "Raccolto <noreply@raccolto.com.br>";
+const FROM = process.env.RESEND_EMAIL_FROM ?? "Raccolto Financeiro <financeiro@raccolto.com.br>";
 
 function getResend() {
   return new Resend(process.env.RESEND_EMAIL_API_KEY);
@@ -208,6 +208,102 @@ export async function enviarDiagnosticoAgro(
           Conhecer O Conselho Agro
         </a>
       </div>
+    `),
+  });
+}
+
+// ─── Fatura não-fiscal ───────────────────────────────────────────────────────
+
+interface EnviarFaturaOpts {
+  para: string;
+  clienteNome: string;
+  empresaNome: string;
+  descricao: string;
+  valor: number;
+  dataVencimento: Date;
+  numeroParcela: number | null;
+  totalParcelas: number | null;
+  formaPagamento: string | null;
+  pixChave: string | null;
+  link: string;
+}
+
+export async function enviarFatura(opts: EnviarFaturaOpts) {
+  const {
+    para, clienteNome, empresaNome, descricao, valor,
+    dataVencimento, numeroParcela, totalParcelas,
+    formaPagamento, pixChave, link,
+  } = opts;
+
+  const valorFmt = valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+  const vencFmt  = new Date(dataVencimento).toLocaleDateString("pt-BR");
+  const parcelaInfo = numeroParcela && totalParcelas
+    ? `<span style="color:#64748b;font-size:13px;">Parcela ${numeroParcela}/${totalParcelas}</span>`
+    : "";
+
+  const pixRow = pixChave
+    ? `<tr>
+        <td style="padding:8px 16px;color:#64748b;font-size:13px;border-bottom:1px solid #f1f5f9;">Chave PIX</td>
+        <td style="padding:8px 16px;font-size:13px;font-weight:600;color:#1B4F72;font-family:monospace;border-bottom:1px solid #f1f5f9;">${pixChave}</td>
+      </tr>`
+    : "";
+
+  const pagamentoRow = formaPagamento
+    ? `<tr>
+        <td style="padding:8px 16px;color:#64748b;font-size:13px;border-bottom:1px solid #f1f5f9;">Pagamento</td>
+        <td style="padding:8px 16px;font-size:13px;color:#374151;border-bottom:1px solid #f1f5f9;">${formaPagamento}</td>
+      </tr>`
+    : "";
+
+  await getResend().emails.send({
+    from: FROM,
+    to: para,
+    subject: `Fatura — ${empresaNome} · ${valorFmt} vence em ${vencFmt}`,
+    html: emailWrapper(`
+      <h2 style="margin:0 0 4px;color:#1B4F72;font-size:20px;">Olá, ${clienteNome}!</h2>
+      <p style="color:#475569;font-size:15px;margin:0 0 24px;">
+        Segue a fatura emitida por <strong>${empresaNome}</strong>.
+      </p>
+
+      <!-- Resumo da fatura -->
+      <table width="100%" cellpadding="0" cellspacing="0"
+        style="border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;margin:0 0 24px;">
+        <thead>
+          <tr style="background:#1B4F72;">
+            <th colspan="2" style="padding:12px 16px;text-align:left;color:#ffffff;font-size:13px;font-weight:600;letter-spacing:0.5px;">
+              Detalhes da cobrança
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:8px 16px;color:#64748b;font-size:13px;border-bottom:1px solid #f1f5f9;">Descrição</td>
+            <td style="padding:8px 16px;font-size:13px;color:#374151;border-bottom:1px solid #f1f5f9;">${descricao} ${parcelaInfo}</td>
+          </tr>
+          <tr>
+            <td style="padding:8px 16px;color:#64748b;font-size:13px;border-bottom:1px solid #f1f5f9;">Vencimento</td>
+            <td style="padding:8px 16px;font-size:13px;font-weight:600;color:#374151;border-bottom:1px solid #f1f5f9;">${vencFmt}</td>
+          </tr>
+          ${pagamentoRow}
+          ${pixRow}
+          <tr style="background:#f8fafc;">
+            <td style="padding:12px 16px;color:#374151;font-size:14px;font-weight:700;">Total</td>
+            <td style="padding:12px 16px;font-size:20px;font-weight:900;color:#1B4F72;">${valorFmt}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- CTA -->
+      <div style="text-align:center;margin:28px 0 8px;">
+        <a href="${link}"
+          style="background:#1B4F72;color:#ffffff;padding:14px 36px;border-radius:8px;
+          text-decoration:none;font-weight:700;font-size:15px;display:inline-block;">
+          Ver fatura completa
+        </a>
+      </div>
+      <p style="color:#94a3b8;font-size:12px;text-align:center;margin:12px 0 0;">
+        Você também pode salvar a fatura como PDF diretamente na página acima.
+      </p>
     `),
   });
 }
