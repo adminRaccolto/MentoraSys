@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Plus, ArrowDownCircle, Trash2, CheckCircle, Receipt, Undo2, FileText, RefreshCw, XCircle, Zap, Copy, ExternalLink, Pencil, CalendarDays, RotateCcw } from "lucide-react";
+import { Plus, ArrowDownCircle, Trash2, CheckCircle, Receipt, Undo2, FileText, RefreshCw, XCircle, Zap, Copy, ExternalLink, Pencil, CalendarDays, RotateCcw, ScrollText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -754,6 +754,16 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
                             <XCircle className="size-3.5" />
                           </Button>
                         </>
+                      )}
+                      {r.cliente && (
+                        <a href={`/fatura/${r.id}`} target="_blank" rel="noopener noreferrer">
+                          <Button
+                            size="icon" variant="ghost" className="size-7 text-[#1B4F72] hover:text-[#1B4F72]"
+                            title="Visualizar fatura"
+                          >
+                            <ScrollText className="size-3.5" />
+                          </Button>
+                        </a>
                       )}
                       {r.status !== "PAGO" && r.status !== "CANCELADO" && (
                         <Button
