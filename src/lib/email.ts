@@ -299,6 +299,7 @@ export async function enviarFatura(opts: EnviarFaturaOpts) {
   await getResend().emails.send({
     from: FROM,
     to: para,
+    cc: ["financeiro@agbconsultoria.com"],
     subject: `Fatura Raccolto Gestão`,
     html: emailWrapper(`
       <p style="color:#1e293b;font-size:15px;margin:0 0 20px;">Prezado(a) <strong>${clienteNome}</strong>,</p>
