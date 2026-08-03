@@ -3,7 +3,9 @@ import { Resend } from "resend";
 const FROM = process.env.RESEND_EMAIL_FROM ?? "Raccolto Financeiro <financeiro@raccolto.com.br>";
 
 function getResend() {
-  return new Resend(process.env.RESEND_EMAIL_API_KEY);
+  const key = process.env.RESEND_EMAIL_API_KEY;
+  if (!key) throw new Error("RESEND_EMAIL_API_KEY não configurada no Vercel");
+  return new Resend(key);
 }
 
 const LOGO_URL = "https://app.raccolto.com.br/favicon.png";
