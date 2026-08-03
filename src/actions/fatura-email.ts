@@ -38,6 +38,20 @@ export async function enviarFaturaPorEmail(
       empresa.contas_bancarias[0] ??
       null;
 
+    // Busca outras faturas em aberto do mesmo cliente (exceto a atual)
+    const faturasEmAberto = recebivel.cliente_id
+      ? await prisma.recebivel.findMany({
+          where: {
+            empresa_id: empresaId,
+            cliente_id: recebivel.cliente_id,
+            id: { not: recebivelId },
+            status: { in: ["PENDENTE", "VENCIDO"] },
+          },
+          orderBy: { data_vencimento: "asc" },
+          select: { descricao: true, valor: true, data_vencimento: true, numero_parcela: true, total_parcelas: true },
+        })
+      : [];
+
     const token = gerarTokenFatura(recebivelId, empresaId);
     const baseUrl =
       process.env.NEXT_PUBLIC_APP_URL ??
@@ -57,6 +71,13 @@ export async function enviarFaturaPorEmail(
       formaPagamento: recebivel.forma_pagamento,
       pixChave: contaRecebimento?.pix_chave ?? null,
       link,
+      faturasEmAberto: faturasEmAberto.map((f) => ({
+        descricao: f.descricao,
+        valor: Number(f.valor),
+        dataVencimento: f.data_vencimento,
+        numeroParcela: f.numero_parcela,
+        totalParcelas: f.total_parcelas,
+      })),
     });
 
     return { ok: true };

@@ -214,6 +214,14 @@ export async function enviarDiagnosticoAgro(
 
 // ─── Fatura não-fiscal ───────────────────────────────────────────────────────
 
+interface FaturaEmAberto {
+  descricao: string;
+  valor: number;
+  dataVencimento: Date;
+  numeroParcela: number | null;
+  totalParcelas: number | null;
+}
+
 interface EnviarFaturaOpts {
   para: string;
   clienteNome: string;
@@ -226,19 +234,22 @@ interface EnviarFaturaOpts {
   formaPagamento: string | null;
   pixChave: string | null;
   link: string;
+  faturasEmAberto?: FaturaEmAberto[];
 }
 
 export async function enviarFatura(opts: EnviarFaturaOpts) {
   const {
-    para, clienteNome, empresaNome, descricao, valor,
+    para, clienteNome, descricao, valor,
     dataVencimento, numeroParcela, totalParcelas,
     formaPagamento, pixChave, link,
+    faturasEmAberto = [],
   } = opts;
 
-  const valorFmt = valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
-  const vencFmt  = new Date(dataVencimento).toLocaleDateString("pt-BR");
+  const fmtBRL = (v: number) => v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+  const fmtDate = (d: Date) => new Date(d).toLocaleDateString("pt-BR");
+
   const parcelaInfo = numeroParcela && totalParcelas
-    ? `<span style="color:#64748b;font-size:13px;">Parcela ${numeroParcela}/${totalParcelas}</span>`
+    ? ` — Parcela ${numeroParcela}/${totalParcelas}`
     : "";
 
   const pixRow = pixChave
@@ -250,19 +261,51 @@ export async function enviarFatura(opts: EnviarFaturaOpts) {
 
   const pagamentoRow = formaPagamento
     ? `<tr>
-        <td style="padding:8px 16px;color:#64748b;font-size:13px;border-bottom:1px solid #f1f5f9;">Pagamento</td>
+        <td style="padding:8px 16px;color:#64748b;font-size:13px;border-bottom:1px solid #f1f5f9;">Forma de pagamento</td>
         <td style="padding:8px 16px;font-size:13px;color:#374151;border-bottom:1px solid #f1f5f9;">${formaPagamento}</td>
       </tr>`
+    : "";
+
+  const secaoEmAberto = faturasEmAberto.length > 0
+    ? `
+      <p style="color:#b45309;font-size:14px;margin:28px 0 8px;font-weight:600;">
+        ⚠️ Consta em nosso sistema as seguintes faturas em aberto:
+      </p>
+      <table width="100%" cellpadding="0" cellspacing="0"
+        style="border:1px solid #fde68a;border-radius:8px;overflow:hidden;margin:0 0 16px;">
+        <thead>
+          <tr style="background:#92400e;">
+            <th style="padding:10px 14px;text-align:left;color:#fff;font-size:12px;font-weight:600;">Descrição</th>
+            <th style="padding:10px 14px;text-align:center;color:#fff;font-size:12px;font-weight:600;">Vencimento</th>
+            <th style="padding:10px 14px;text-align:right;color:#fff;font-size:12px;font-weight:600;">Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${faturasEmAberto.map((f) => {
+            const parc = f.numeroParcela && f.totalParcelas ? ` (${f.numeroParcela}/${f.totalParcelas})` : "";
+            return `<tr>
+              <td style="padding:8px 14px;font-size:13px;color:#374151;border-bottom:1px solid #fef3c7;">${f.descricao}${parc}</td>
+              <td style="padding:8px 14px;font-size:13px;color:#b45309;font-weight:600;text-align:center;border-bottom:1px solid #fef3c7;">${fmtDate(f.dataVencimento)}</td>
+              <td style="padding:8px 14px;font-size:13px;color:#374151;font-weight:700;text-align:right;border-bottom:1px solid #fef3c7;">${fmtBRL(f.valor)}</td>
+            </tr>`;
+          }).join("")}
+        </tbody>
+      </table>
+      <p style="color:#64748b;font-size:13px;margin:0 0 20px;">
+        Caso já tenha efetuado o pagamento, pedimos que entre em contato com a Raccolto Gestão.
+      </p>`
     : "";
 
   await getResend().emails.send({
     from: FROM,
     to: para,
-    subject: `Fatura — ${empresaNome} · ${valorFmt} vence em ${vencFmt}`,
+    subject: `Fatura Raccolto Gestão`,
     html: emailWrapper(`
-      <h2 style="margin:0 0 4px;color:#1B4F72;font-size:20px;">Olá, ${clienteNome}!</h2>
-      <p style="color:#475569;font-size:15px;margin:0 0 24px;">
-        Segue a fatura emitida por <strong>${empresaNome}</strong>.
+      <p style="color:#1e293b;font-size:15px;margin:0 0 20px;">Prezado(a) <strong>${clienteNome}</strong>,</p>
+
+      <p style="color:#475569;font-size:14px;line-height:1.7;margin:0 0 24px;">
+        Segue o link com a sua fatura referente a esse mês.<br>
+        Após o pagamento, efetuaremos a baixa e enviaremos a Nota Fiscal pertencente a essa fatura.
       </p>
 
       <!-- Resumo da fatura -->
@@ -271,38 +314,46 @@ export async function enviarFatura(opts: EnviarFaturaOpts) {
         <thead>
           <tr style="background:#1B4F72;">
             <th colspan="2" style="padding:12px 16px;text-align:left;color:#ffffff;font-size:13px;font-weight:600;letter-spacing:0.5px;">
-              Detalhes da cobrança
+              Fatura do mês
             </th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td style="padding:8px 16px;color:#64748b;font-size:13px;border-bottom:1px solid #f1f5f9;">Descrição</td>
-            <td style="padding:8px 16px;font-size:13px;color:#374151;border-bottom:1px solid #f1f5f9;">${descricao} ${parcelaInfo}</td>
+            <td style="padding:8px 16px;font-size:13px;color:#374151;border-bottom:1px solid #f1f5f9;">${descricao}${parcelaInfo}</td>
           </tr>
           <tr>
             <td style="padding:8px 16px;color:#64748b;font-size:13px;border-bottom:1px solid #f1f5f9;">Vencimento</td>
-            <td style="padding:8px 16px;font-size:13px;font-weight:600;color:#374151;border-bottom:1px solid #f1f5f9;">${vencFmt}</td>
+            <td style="padding:8px 16px;font-size:13px;font-weight:600;color:#374151;border-bottom:1px solid #f1f5f9;">${fmtDate(dataVencimento)}</td>
           </tr>
           ${pagamentoRow}
           ${pixRow}
           <tr style="background:#f8fafc;">
             <td style="padding:12px 16px;color:#374151;font-size:14px;font-weight:700;">Total</td>
-            <td style="padding:12px 16px;font-size:20px;font-weight:900;color:#1B4F72;">${valorFmt}</td>
+            <td style="padding:12px 16px;font-size:20px;font-weight:900;color:#1B4F72;">${fmtBRL(valor)}</td>
           </tr>
         </tbody>
       </table>
 
       <!-- CTA -->
-      <div style="text-align:center;margin:28px 0 8px;">
+      <div style="text-align:center;margin:0 0 28px;">
         <a href="${link}"
           style="background:#1B4F72;color:#ffffff;padding:14px 36px;border-radius:8px;
           text-decoration:none;font-weight:700;font-size:15px;display:inline-block;">
           Ver fatura completa
         </a>
       </div>
-      <p style="color:#94a3b8;font-size:12px;text-align:center;margin:12px 0 0;">
-        Você também pode salvar a fatura como PDF diretamente na página acima.
+
+      ${secaoEmAberto}
+
+      <p style="color:#475569;font-size:14px;line-height:1.7;margin:24px 0 4px;">
+        Agradecemos sua atenção.<br>
+        Estamos à disposição para ajudar no que for preciso.
+      </p>
+      <p style="color:#1e293b;font-size:14px;font-weight:600;margin:0;">
+        Att.;<br>
+        Raccolto Gestão / AGB Consultoria
       </p>
     `),
   });
