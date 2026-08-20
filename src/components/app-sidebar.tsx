@@ -35,6 +35,7 @@ import {
   Sprout,
   Repeat2,
   Ticket,
+  Car,
 } from "lucide-react";
 import NotificacoesBell from "@/components/notificacoes-bell";
 import { type Notificacao } from "@/hooks/useNotificacoes";
@@ -64,6 +65,7 @@ const NAV_OPERACIONAL = [
 
 const NAV_SISTEMA = [
   { label: "Relatórios", href: "/relatorios", icon: FileBarChart2 },
+  { label: "Reembolso", href: "/relatorios/reembolso", icon: Car },
   { label: "Auditoria", href: "/auditoria", icon: Activity },
   { label: "Configurações", href: "/configuracoes", icon: Settings },
 ];

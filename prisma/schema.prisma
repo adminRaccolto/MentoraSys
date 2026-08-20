@@ -69,6 +69,7 @@ model Empresa {
   diagnostico_templates DiagnosticoTemplate[]
   assinaturas          Assinatura[]
   campanhas_cupom      CampanhaCupom[]
+  reembolsos           Reembolso[]
 
   @@map("empresas")
 }
@@ -1435,4 +1436,38 @@ model Assinatura {
   servico Servico?  @relation(fields: [servico_id], references: [id])
 
   @@map("assinaturas")
+}
+
+model Reembolso {
+  id          String          @id @default(cuid())
+  empresa_id  String
+  periodo     String          // "2026-08"
+  descricao   String?
+  status      String          @default("ABERTO") // ABERTO | PAGO
+  total       Decimal         @default(0) @db.Decimal(10, 2)
+  criado_em   DateTime        @default(now())
+
+  empresa Empresa         @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  itens   ReembolsoItem[]
+
+  @@index([empresa_id])
+  @@map("reembolsos")
+}
+
+model ReembolsoItem {
+  id           String    @id @default(cuid())
+  reembolso_id String
+  tipo         String    // DESLOCAMENTO | REFEICAO | HOTEL | PEDAGIO
+  data         DateTime
+  descricao    String
+  valor        Decimal   @db.Decimal(10, 2)
+  km           Decimal?  @db.Decimal(8, 2)
+  valor_km     Decimal?  @db.Decimal(8, 2)
+  clientes_ids String[]  @default([])
+  criado_em    DateTime  @default(now())
+
+  reembolso Reembolso @relation(fields: [reembolso_id], references: [id], onDelete: Cascade)
+
+  @@index([reembolso_id])
+  @@map("reembolso_itens")
 }
