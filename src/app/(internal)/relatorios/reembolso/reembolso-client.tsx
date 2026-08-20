@@ -2,7 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { useForm, useFieldArray } from "react-hook-form";
+import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
@@ -16,6 +16,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { criarReembolso, editarReembolso, excluirReembolso, marcarPago } from "@/actions/reembolsos";
+import { cn } from "@/lib/utils";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -77,6 +78,42 @@ function periodoLabel(p: string) {
 
 const hoje = new Date().toISOString().split("T")[0];
 const periodoAtual = hoje.slice(0, 7);
+
+// ─── Currency Input ───────────────────────────────────────────────────────────
+
+function CurrencyInput({
+  value,
+  onChange,
+  onBlur,
+  className,
+}: {
+  value: number;
+  onChange: (v: number) => void;
+  onBlur?: () => void;
+  className?: string;
+}) {
+  const fmt = (n: number) =>
+    (n || 0).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+  return (
+    <div className="relative">
+      <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs text-slate-400 pointer-events-none select-none">
+        R$
+      </span>
+      <Input
+        className={cn("pl-8 text-right tabular-nums", className)}
+        type="text"
+        inputMode="numeric"
+        value={fmt(value)}
+        onChange={(e) => {
+          const digits = e.target.value.replace(/\D/g, "");
+          onChange(parseInt(digits || "0") / 100);
+        }}
+        onBlur={onBlur}
+      />
+    </div>
+  );
+}
 
 // ─── Componente principal ─────────────────────────────────────────────────────
 
@@ -383,24 +420,35 @@ export default function ReembolsoClient({
                         <div className="grid grid-cols-3 gap-3">
                           <div className="space-y-1">
                             <Label className="text-xs">Distância (km)</Label>
-                            <Input type="number" step="0.1" className="h-8 text-sm"
+                            <Input type="number" step="0.1" min="0" className="h-8 text-sm"
                               {...form.register(`itens.${index}.km`, {
+                                valueAsNumber: true,
                                 onChange: (e) => onKmChange(index, Number(e.target.value)),
                               })}
                             />
                           </div>
                           <div className="space-y-1">
                             <Label className="text-xs">Valor por km (R$)</Label>
-                            <Input type="number" step="0.01" className="h-8 text-sm"
+                            <Input type="number" step="0.01" min="0" className="h-8 text-sm"
                               {...form.register(`itens.${index}.valor_km`, {
+                                valueAsNumber: true,
                                 onChange: (e) => onValorKmChange(index, Number(e.target.value)),
                               })}
                             />
                           </div>
                           <div className="space-y-1">
                             <Label className="text-xs">Total (R$)</Label>
-                            <Input type="number" step="0.01" className="h-8 text-sm font-semibold"
-                              {...form.register(`itens.${index}.valor`)}
+                            <Controller
+                              control={form.control}
+                              name={`itens.${index}.valor`}
+                              render={({ field }) => (
+                                <CurrencyInput
+                                  value={field.value}
+                                  onChange={field.onChange}
+                                  onBlur={field.onBlur}
+                                  className="h-8 text-sm font-semibold"
+                                />
+                              )}
                             />
                           </div>
                         </div>
@@ -417,8 +465,17 @@ export default function ReembolsoClient({
                     {tipo !== "DESLOCAMENTO" && (
                       <div className="space-y-1">
                         <Label className="text-xs">Valor (R$) *</Label>
-                        <Input type="number" step="0.01" className="h-8 text-sm"
-                          {...form.register(`itens.${index}.valor`)}
+                        <Controller
+                          control={form.control}
+                          name={`itens.${index}.valor`}
+                          render={({ field }) => (
+                            <CurrencyInput
+                              value={field.value}
+                              onChange={field.onChange}
+                              onBlur={field.onBlur}
+                              className="h-8 text-sm"
+                            />
+                          )}
                         />
                       </div>
                     )}
