@@ -13,7 +13,6 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { criarReembolso, editarReembolso, excluirReembolso, marcarPago } from "@/actions/reembolsos";
 import { cn } from "@/lib/utils";
@@ -57,14 +56,16 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-// ─── Helpers ─────────────────────────────────────────────────────────────────
+// ─── Sections config ──────────────────────────────────────────────────────────
 
-const TIPOS = {
-  DESLOCAMENTO: { label: "Deslocamento", icon: Car, color: "text-blue-600" },
-  REFEICAO:     { label: "Refeição",     icon: UtensilsCrossed, color: "text-orange-600" },
-  HOTEL:        { label: "Hotel",        icon: Hotel, color: "text-purple-600" },
-  PEDAGIO:      { label: "Pedágio",      icon: ReceiptText, color: "text-slate-600" },
-} as const;
+const SECTIONS = [
+  { tipo: "DESLOCAMENTO" as const, label: "Deslocamento", icon: Car,            color: "text-blue-600" },
+  { tipo: "REFEICAO"     as const, label: "Refeição",     icon: UtensilsCrossed, color: "text-orange-600" },
+  { tipo: "HOTEL"        as const, label: "Hotel",         icon: Hotel,           color: "text-purple-600" },
+  { tipo: "PEDAGIO"      as const, label: "Pedágio",       icon: ReceiptText,     color: "text-slate-600" },
+];
+
+// ─── Helpers ─────────────────────────────────────────────────────────────────
 
 function fmtBRL(v: number | string) {
   return Number(v).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
@@ -82,26 +83,20 @@ const periodoAtual = hoje.slice(0, 7);
 // ─── Currency Input ───────────────────────────────────────────────────────────
 
 function CurrencyInput({
-  value,
-  onChange,
-  onBlur,
-  className,
+  value, onChange, onBlur, className,
 }: {
-  value: number;
-  onChange: (v: number) => void;
-  onBlur?: () => void;
-  className?: string;
+  value: number; onChange: (v: number) => void; onBlur?: () => void; className?: string;
 }) {
   const fmt = (n: number) =>
     (n || 0).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
   return (
     <div className="relative">
-      <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs text-slate-400 pointer-events-none select-none">
+      <span className="absolute left-2 top-1/2 -translate-y-1/2 text-[10px] text-slate-400 pointer-events-none select-none">
         R$
       </span>
       <Input
-        className={cn("pl-8 text-right tabular-nums", className)}
+        className={cn("pl-7 text-right tabular-nums", className)}
         type="text"
         inputMode="numeric"
         value={fmt(value)}
@@ -111,6 +106,60 @@ function CurrencyInput({
         }}
         onBlur={onBlur}
       />
+    </div>
+  );
+}
+
+// ─── Client Picker ────────────────────────────────────────────────────────────
+
+function ClientePicker({
+  selecionados, clientes, onChange,
+}: {
+  selecionados: string[]; clientes: ClienteSimples[]; onChange: (ids: string[]) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const nomes = selecionados.map((id) => clientes.find((c) => c.id === id)?.nome ?? id);
+
+  return (
+    <div className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        className="text-xs border rounded px-2 h-7 w-full text-left truncate hover:bg-slate-50 flex items-center"
+      >
+        {nomes.length > 0
+          ? <span className="truncate">{nomes.join(", ")}</span>
+          : <span className="text-muted-foreground">Selecionar…</span>}
+      </button>
+      {open && (
+        <>
+          <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
+          <div className="absolute z-50 top-full left-0 mt-1 bg-white border rounded-lg shadow-lg p-2 min-w-52 max-h-48 overflow-y-auto space-y-0.5">
+            {clientes.map((c) => (
+              <label key={c.id} className="flex items-center gap-2 text-xs cursor-pointer hover:bg-slate-50 px-1.5 py-1 rounded">
+                <input
+                  type="checkbox"
+                  checked={selecionados.includes(c.id)}
+                  onChange={(e) => {
+                    const novo = e.target.checked
+                      ? [...selecionados, c.id]
+                      : selecionados.filter((id) => id !== c.id);
+                    onChange(novo);
+                  }}
+                  className="rounded"
+                />
+                <span className="flex-1 truncate">{c.nome}</span>
+                {c.distancia_km && (
+                  <span className="text-muted-foreground shrink-0">{c.distancia_km}km</span>
+                )}
+              </label>
+            ))}
+            {clientes.length === 0 && (
+              <p className="text-xs text-muted-foreground px-2 py-1">Nenhum cliente cadastrado</p>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 }
@@ -161,34 +210,15 @@ export default function ReembolsoClient({
   }
 
   function adicionarItem(tipo: FormData["itens"][0]["tipo"]) {
-    append({ tipo, data: hoje, descricao: "", valor: 0, km: null, valor_km: null, clientes_ids: [] });
-  }
-
-  function onClienteSelecionado(index: number, clienteId: string, checked: boolean) {
-    const atual = form.getValues(`itens.${index}.clientes_ids`) ?? [];
-    const novos = checked ? [...atual, clienteId] : atual.filter((id) => id !== clienteId);
-    form.setValue(`itens.${index}.clientes_ids`, novos);
-
-    // Auto-preenche km e valor_km do primeiro cliente selecionado
-    if (checked && novos.length === 1) {
-      const c = clientes.find((cl) => cl.id === clienteId);
-      if (c?.distancia_km) form.setValue(`itens.${index}.km`, Number(c.distancia_km));
-      if (c?.preco_km) form.setValue(`itens.${index}.valor_km`, Number(c.preco_km));
-    }
-    // Recalcula valor
-    const km = form.getValues(`itens.${index}.km`) ?? 0;
-    const vkm = form.getValues(`itens.${index}.valor_km`) ?? 0;
-    if (km && vkm) form.setValue(`itens.${index}.valor`, Number((km * vkm).toFixed(2)));
-  }
-
-  function onKmChange(index: number, km: number) {
-    const vkm = form.getValues(`itens.${index}.valor_km`) ?? 0;
-    if (vkm) form.setValue(`itens.${index}.valor`, Number((km * vkm).toFixed(2)));
-  }
-
-  function onValorKmChange(index: number, vkm: number) {
-    const km = form.getValues(`itens.${index}.km`) ?? 0;
-    if (km) form.setValue(`itens.${index}.valor`, Number((km * vkm).toFixed(2)));
+    append({
+      tipo,
+      data: hoje,
+      descricao: tipo === "DESLOCAMENTO" ? "Deslocamento" : "",
+      valor: 0,
+      km: null,
+      valor_km: null,
+      clientes_ids: [],
+    });
   }
 
   function onSubmit(data: FormData) {
@@ -250,7 +280,7 @@ export default function ReembolsoClient({
         </Button>
       </div>
 
-      {/* Tabela */}
+      {/* Lista de reembolsos */}
       {reembolsos.length === 0 ? (
         <div className="text-center py-20 text-muted-foreground">
           Nenhum reembolso registrado ainda.
@@ -311,13 +341,13 @@ export default function ReembolsoClient({
 
       {/* Modal criar/editar */}
       <Dialog open={modalAberto} onOpenChange={setModalAberto}>
-        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>{editando ? "Editar Reembolso" : "Novo Reembolso"}</DialogTitle>
           </DialogHeader>
 
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            {/* Cabeçalho do relatório */}
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+            {/* Período + Descrição */}
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1">
                 <Label>Período *</Label>
@@ -332,169 +362,186 @@ export default function ReembolsoClient({
               </div>
             </div>
 
-            {/* Itens */}
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <Label className="text-sm font-semibold">Itens de despesa</Label>
-                <div className="flex gap-1">
-                  {(["DESLOCAMENTO", "REFEICAO", "HOTEL", "PEDAGIO"] as const).map((tipo) => {
-                    const cfg = TIPOS[tipo];
-                    return (
-                      <Button key={tipo} type="button" size="sm" variant="outline"
-                        className="gap-1.5 text-xs h-7" onClick={() => adicionarItem(tipo)}>
-                        <cfg.icon className={`size-3 ${cfg.color}`} />
-                        {cfg.label}
-                      </Button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {fields.length === 0 && (
-                <p className="text-sm text-muted-foreground text-center py-4 border border-dashed rounded-lg">
-                  Clique em um tipo de despesa acima para adicionar
-                </p>
-              )}
-
-              {fields.map((field, index) => {
-                const tipo = form.watch(`itens.${index}.tipo`);
-                const cfg = TIPOS[tipo];
-                const clientesSelecionados = form.watch(`itens.${index}.clientes_ids`) ?? [];
-                const valorItem = Number(form.watch(`itens.${index}.valor`) || 0);
-                const rateio = clientesSelecionados.length > 1
-                  ? valorItem / clientesSelecionados.length
-                  : null;
+            {/* Seções por tipo de despesa */}
+            <div className="space-y-4">
+              {SECTIONS.map(({ tipo, label, icon: Icon, color }) => {
+                const secItens = fields
+                  .map((f, idx) => ({ ...f, idx }))
+                  .filter((f) => f.tipo === tipo);
+                const subtotal = secItens.reduce((s, { idx }) => s + (Number(watchItens[idx]?.valor) || 0), 0);
 
                 return (
-                  <div key={field.id} className="border rounded-lg p-4 space-y-3 bg-slate-50">
-                    <div className="flex items-center justify-between">
+                  <div key={tipo} className="border rounded-lg overflow-hidden">
+                    {/* Header da seção */}
+                    <div className="flex items-center justify-between px-4 py-2 bg-slate-50 border-b">
                       <div className="flex items-center gap-2">
-                        <cfg.icon className={`size-4 ${cfg.color}`} />
-                        <span className="font-medium text-sm">{cfg.label}</span>
+                        <Icon className={cn("size-4", color)} />
+                        <span className="text-sm font-semibold">{label}</span>
+                        {subtotal > 0 && (
+                          <span className="text-xs text-muted-foreground">
+                            — {fmtBRL(subtotal)}
+                          </span>
+                        )}
                       </div>
-                      <Button type="button" size="icon" variant="ghost"
-                        className="size-6 text-destructive hover:text-destructive"
-                        onClick={() => remove(index)}>
-                        <Trash2 className="size-3" />
+                      <Button type="button" size="sm" variant="outline" className="h-7 text-xs gap-1"
+                        onClick={() => adicionarItem(tipo)}>
+                        <Plus className="size-3" /> Adicionar
                       </Button>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-3">
-                      <div className="space-y-1">
-                        <Label className="text-xs">Data *</Label>
-                        <Input type="date" className="h-8 text-sm" {...form.register(`itens.${index}.data`)} />
-                      </div>
-                      <div className="space-y-1">
-                        <Label className="text-xs">Descrição *</Label>
-                        <Input className="h-8 text-sm" placeholder="Descreva a despesa"
-                          {...form.register(`itens.${index}.descricao`)} />
-                      </div>
-                    </div>
-
-                    {tipo === "DESLOCAMENTO" && (
-                      <>
-                        {/* Seleção de clientes */}
-                        <div className="space-y-1">
-                          <Label className="text-xs">Clientes atendidos</Label>
-                          <div className="border rounded-md p-2 max-h-32 overflow-y-auto space-y-1 bg-white">
-                            {clientes.map((c) => {
-                              const selecionado = clientesSelecionados.includes(c.id);
-                              return (
-                                <label key={c.id} className="flex items-center gap-2 cursor-pointer hover:bg-slate-50 px-1 rounded">
-                                  <input type="checkbox" checked={selecionado}
-                                    onChange={(e) => onClienteSelecionado(index, c.id, e.target.checked)}
-                                    className="rounded"
-                                  />
-                                  <span className="text-sm">{c.nome}</span>
-                                  {c.distancia_km && (
-                                    <span className="text-xs text-muted-foreground ml-auto">
-                                      {Number(c.distancia_km)}km · R${Number(c.preco_km ?? 0).toFixed(2)}/km
-                                    </span>
-                                  )}
-                                </label>
-                              );
-                            })}
-                          </div>
-                        </div>
-
-                        <div className="grid grid-cols-3 gap-3">
-                          <div className="space-y-1">
-                            <Label className="text-xs">Distância (km)</Label>
-                            <Input type="number" step="0.1" min="0" className="h-8 text-sm"
-                              {...form.register(`itens.${index}.km`, {
-                                valueAsNumber: true,
-                                onChange: (e) => onKmChange(index, Number(e.target.value)),
-                              })}
-                            />
-                          </div>
-                          <div className="space-y-1">
-                            <Label className="text-xs">Valor por km (R$)</Label>
-                            <Input type="number" step="0.01" min="0" className="h-8 text-sm"
-                              {...form.register(`itens.${index}.valor_km`, {
-                                valueAsNumber: true,
-                                onChange: (e) => onValorKmChange(index, Number(e.target.value)),
-                              })}
-                            />
-                          </div>
-                          <div className="space-y-1">
-                            <Label className="text-xs">Total (R$)</Label>
-                            <Controller
-                              control={form.control}
-                              name={`itens.${index}.valor`}
-                              render={({ field }) => (
-                                <CurrencyInput
-                                  value={field.value}
-                                  onChange={field.onChange}
-                                  onBlur={field.onBlur}
-                                  className="h-8 text-sm font-semibold"
-                                />
+                    {secItens.length === 0 ? (
+                      <p className="text-xs text-muted-foreground text-center py-3 px-4">
+                        Nenhum item — clique em Adicionar
+                      </p>
+                    ) : (
+                      <div className="overflow-x-auto">
+                        <table className="w-full text-xs">
+                          <thead>
+                            <tr className="border-b text-slate-500">
+                              <th className="text-left px-3 py-2 font-medium w-32">Data</th>
+                              {tipo === "DESLOCAMENTO" ? (
+                                <>
+                                  <th className="text-left px-3 py-2 font-medium">Clientes</th>
+                                  <th className="text-left px-3 py-2 font-medium w-20">km</th>
+                                  <th className="text-left px-3 py-2 font-medium w-24">R$/km</th>
+                                  <th className="text-left px-3 py-2 font-medium w-32">Total</th>
+                                </>
+                              ) : (
+                                <>
+                                  <th className="text-left px-3 py-2 font-medium">Descrição</th>
+                                  <th className="text-left px-3 py-2 font-medium w-36">Valor</th>
+                                </>
                               )}
-                            />
-                          </div>
-                        </div>
+                              <th className="w-8" />
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {secItens.map(({ idx }) => (
+                              <tr key={idx} className="border-b last:border-0 hover:bg-slate-50/50">
+                                {/* Data */}
+                                <td className="px-2 py-1.5">
+                                  <Input type="date" className="h-7 text-xs w-full"
+                                    {...form.register(`itens.${idx}.data`)} />
+                                </td>
 
-                        {rateio && (
-                          <p className="text-xs text-muted-foreground bg-blue-50 px-3 py-1.5 rounded">
-                            Rateio entre {clientesSelecionados.length} clientes:{" "}
-                            <strong>{fmtBRL(rateio)}</strong> por cliente
-                          </p>
-                        )}
-                      </>
-                    )}
+                                {tipo === "DESLOCAMENTO" ? (
+                                  <>
+                                    {/* Clientes */}
+                                    <td className="px-2 py-1.5 min-w-40">
+                                      <Controller
+                                        control={form.control}
+                                        name={`itens.${idx}.clientes_ids`}
+                                        render={({ field }) => (
+                                          <ClientePicker
+                                            selecionados={field.value}
+                                            clientes={clientes}
+                                            onChange={(ids) => {
+                                              field.onChange(ids);
+                                              if (ids.length === 1) {
+                                                const c = clientes.find((cl) => cl.id === ids[0]);
+                                                const km = c?.distancia_km ? Number(c.distancia_km) : (form.getValues(`itens.${idx}.km`) ?? 0);
+                                                const vkm = c?.preco_km ? Number(c.preco_km) : (form.getValues(`itens.${idx}.valor_km`) ?? 0);
+                                                if (c?.distancia_km) form.setValue(`itens.${idx}.km`, km);
+                                                if (c?.preco_km) form.setValue(`itens.${idx}.valor_km`, vkm);
+                                                if (km && vkm) form.setValue(`itens.${idx}.valor`, Number((km * vkm).toFixed(2)));
+                                              }
+                                            }}
+                                          />
+                                        )}
+                                      />
+                                    </td>
+                                    {/* km */}
+                                    <td className="px-2 py-1.5">
+                                      <Input type="number" step="0.1" min="0" className="h-7 text-xs"
+                                        {...form.register(`itens.${idx}.km`, {
+                                          valueAsNumber: true,
+                                          onChange: (e) => {
+                                            const km = Number(e.target.value);
+                                            const vkm = Number(form.getValues(`itens.${idx}.valor_km`) ?? 0);
+                                            if (km >= 0 && vkm > 0) form.setValue(`itens.${idx}.valor`, Number((km * vkm).toFixed(2)));
+                                          },
+                                        })}
+                                      />
+                                    </td>
+                                    {/* R$/km */}
+                                    <td className="px-2 py-1.5">
+                                      <Input type="number" step="0.01" min="0" className="h-7 text-xs"
+                                        {...form.register(`itens.${idx}.valor_km`, {
+                                          valueAsNumber: true,
+                                          onChange: (e) => {
+                                            const vkm = Number(e.target.value);
+                                            const km = Number(form.getValues(`itens.${idx}.km`) ?? 0);
+                                            if (km > 0 && vkm >= 0) form.setValue(`itens.${idx}.valor`, Number((km * vkm).toFixed(2)));
+                                          },
+                                        })}
+                                      />
+                                    </td>
+                                    {/* Total */}
+                                    <td className="px-2 py-1.5">
+                                      <Controller
+                                        control={form.control}
+                                        name={`itens.${idx}.valor`}
+                                        render={({ field }) => (
+                                          <CurrencyInput value={field.value} onChange={field.onChange}
+                                            onBlur={field.onBlur} className="h-7 text-xs font-semibold" />
+                                        )}
+                                      />
+                                    </td>
+                                  </>
+                                ) : (
+                                  <>
+                                    {/* Descrição */}
+                                    <td className="px-2 py-1.5">
+                                      <Input className="h-7 text-xs" placeholder="Descrição da despesa"
+                                        {...form.register(`itens.${idx}.descricao`)} />
+                                    </td>
+                                    {/* Valor */}
+                                    <td className="px-2 py-1.5">
+                                      <Controller
+                                        control={form.control}
+                                        name={`itens.${idx}.valor`}
+                                        render={({ field }) => (
+                                          <CurrencyInput value={field.value} onChange={field.onChange}
+                                            onBlur={field.onBlur} className="h-7 text-xs" />
+                                        )}
+                                      />
+                                    </td>
+                                  </>
+                                )}
 
-                    {tipo !== "DESLOCAMENTO" && (
-                      <div className="space-y-1">
-                        <Label className="text-xs">Valor (R$) *</Label>
-                        <Controller
-                          control={form.control}
-                          name={`itens.${index}.valor`}
-                          render={({ field }) => (
-                            <CurrencyInput
-                              value={field.value}
-                              onChange={field.onChange}
-                              onBlur={field.onBlur}
-                              className="h-8 text-sm"
-                            />
-                          )}
-                        />
+                                {/* Excluir */}
+                                <td className="px-1 py-1.5">
+                                  <Button type="button" size="icon" variant="ghost"
+                                    className="size-6 text-destructive hover:text-destructive"
+                                    onClick={() => remove(idx)}>
+                                    <Trash2 className="size-3" />
+                                  </Button>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
                       </div>
-                    )}
-
-                    {form.formState.errors.itens?.[index]?.descricao && (
-                      <p className="text-xs text-destructive">{form.formState.errors.itens[index]?.descricao?.message}</p>
                     )}
                   </div>
                 );
               })}
-
-              {fields.length > 0 && (
-                <div className="flex justify-end">
-                  <div className="bg-primary text-primary-foreground rounded-lg px-4 py-2 text-sm">
-                    Total: <strong className="text-base ml-1">{fmtBRL(totalForm)}</strong>
-                  </div>
-                </div>
-              )}
             </div>
+
+            {/* Total geral */}
+            {watchItens.length > 0 && (
+              <div className="flex justify-end pt-1">
+                <div className="bg-primary text-primary-foreground rounded-lg px-5 py-3">
+                  Total geral: <strong className="text-base ml-2">{fmtBRL(totalForm)}</strong>
+                </div>
+              </div>
+            )}
+
+            {form.formState.errors.itens?.root && (
+              <p className="text-xs text-destructive text-center">
+                {form.formState.errors.itens.root.message}
+              </p>
+            )}
 
             <DialogFooter>
               <Button type="button" variant="outline" onClick={() => setModalAberto(false)}>
