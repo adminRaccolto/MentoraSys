@@ -42,10 +42,10 @@ const schemaItem = z.object({
   tipo: z.enum(["DESLOCAMENTO", "REFEICAO", "HOTEL", "PEDAGIO"]),
   data: z.string().min(1, "Informe a data"),
   descricao: z.string().min(1, "Informe a descrição"),
-  valor: z.coerce.number().positive("Valor deve ser positivo"),
-  km: z.coerce.number().nonnegative().optional().nullable(),
-  valor_km: z.coerce.number().nonnegative().optional().nullable(),
-  clientes_ids: z.array(z.string()).default([]),
+  valor: z.number({ error: "Valor deve ser positivo" }).positive(),
+  km: z.number().nonnegative().nullish(),
+  valor_km: z.number().nonnegative().nullish(),
+  clientes_ids: z.array(z.string()),
 });
 
 const schema = z.object({

@@ -124,7 +124,7 @@ export async function excluirReembolso(id: string) {
 export async function listarClientesParaDeslocamento() {
   const empresaId = await obterEmpresaAtiva();
   return prisma.cliente.findMany({
-    where: { empresa_id: empresaId, ativo: true },
+    where: { empresa_id: empresaId },
     select: { id: true, nome: true, distancia_km: true, preco_km: true, cidade: true, estado: true },
     orderBy: { nome: "asc" },
   });

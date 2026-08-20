@@ -51,13 +51,20 @@ export default async function ReembolsoImprimivel({ params }: Props) {
 
   // Agrupa itens por tipo
   const tipos = ["DESLOCAMENTO", "REFEICAO", "HOTEL", "PEDAGIO"] as const;
+  const itensNorm = reembolso.itens.map((i) => ({
+    ...i,
+    valor: Number(i.valor),
+    km: i.km != null ? Number(i.km) : null,
+    valor_km: i.valor_km != null ? Number(i.valor_km) : null,
+  }));
+
   const porTipo = tipos.map((tipo) => ({
     tipo,
     label: TIPO_LABELS[tipo],
-    itens: reembolso.itens.filter((i) => i.tipo === tipo),
-    subtotal: reembolso.itens
+    itens: itensNorm.filter((i) => i.tipo === tipo),
+    subtotal: itensNorm
       .filter((i) => i.tipo === tipo)
-      .reduce((s, i) => s + Number(i.valor), 0),
+      .reduce((s, i) => s + i.valor, 0),
   })).filter((g) => g.itens.length > 0);
 
   const cfg = (empresa.configuracoes as Record<string, unknown>) ?? {};
@@ -167,7 +174,7 @@ export default async function ReembolsoImprimivel({ params }: Props) {
             <div className="w-64 bg-[#1B4F72] text-white rounded-lg p-4">
               <div className="flex justify-between items-center">
                 <span className="text-sm opacity-80">Total a reembolsar</span>
-                <span className="text-2xl font-black">{fmtBRL(reembolso.total)}</span>
+                <span className="text-2xl font-black">{fmtBRL(Number(reembolso.total))}</span>
               </div>
             </div>
           </div>

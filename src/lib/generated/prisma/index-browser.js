@@ -901,6 +901,29 @@ exports.Prisma.AssinaturaScalarFieldEnum = {
   atualizado_em: 'atualizado_em'
 };
 
+exports.Prisma.ReembolsoScalarFieldEnum = {
+  id: 'id',
+  empresa_id: 'empresa_id',
+  periodo: 'periodo',
+  descricao: 'descricao',
+  status: 'status',
+  total: 'total',
+  criado_em: 'criado_em'
+};
+
+exports.Prisma.ReembolsoItemScalarFieldEnum = {
+  id: 'id',
+  reembolso_id: 'reembolso_id',
+  tipo: 'tipo',
+  data: 'data',
+  descricao: 'descricao',
+  valor: 'valor',
+  km: 'km',
+  valor_km: 'valor_km',
+  clientes_ids: 'clientes_ids',
+  criado_em: 'criado_em'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1138,7 +1161,9 @@ exports.Prisma.ModelName = {
   DiagnosticoParticipante: 'DiagnosticoParticipante',
   DiagnosticoTemplate: 'DiagnosticoTemplate',
   CampanhaCupom: 'CampanhaCupom',
-  Assinatura: 'Assinatura'
+  Assinatura: 'Assinatura',
+  Reembolso: 'Reembolso',
+  ReembolsoItem: 'ReembolsoItem'
 };
 
 /**

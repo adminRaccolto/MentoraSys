@@ -278,6 +278,16 @@ export type CampanhaCupom = $Result.DefaultSelection<Prisma.$CampanhaCupomPayloa
  * 
  */
 export type Assinatura = $Result.DefaultSelection<Prisma.$AssinaturaPayload>
+/**
+ * Model Reembolso
+ * 
+ */
+export type Reembolso = $Result.DefaultSelection<Prisma.$ReembolsoPayload>
+/**
+ * Model ReembolsoItem
+ * 
+ */
+export type ReembolsoItem = $Result.DefaultSelection<Prisma.$ReembolsoItemPayload>
 
 /**
  * Enums
@@ -1243,6 +1253,26 @@ export class PrismaClient<
     * ```
     */
   get assinatura(): Prisma.AssinaturaDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.reembolso`: Exposes CRUD operations for the **Reembolso** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Reembolsos
+    * const reembolsos = await prisma.reembolso.findMany()
+    * ```
+    */
+  get reembolso(): Prisma.ReembolsoDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.reembolsoItem`: Exposes CRUD operations for the **ReembolsoItem** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ReembolsoItems
+    * const reembolsoItems = await prisma.reembolsoItem.findMany()
+    * ```
+    */
+  get reembolsoItem(): Prisma.ReembolsoItemDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1729,7 +1759,9 @@ export namespace Prisma {
     DiagnosticoParticipante: 'DiagnosticoParticipante',
     DiagnosticoTemplate: 'DiagnosticoTemplate',
     CampanhaCupom: 'CampanhaCupom',
-    Assinatura: 'Assinatura'
+    Assinatura: 'Assinatura',
+    Reembolso: 'Reembolso',
+    ReembolsoItem: 'ReembolsoItem'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1745,7 +1777,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "etapaCrm" | "comentarioCrm" | "lead" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "projeto" | "etapa" | "tarefa" | "tarefaResponsavel" | "comentarioTarefa" | "anexoTarefa" | "atividadeTarefa" | "aprovacaoTarefa" | "itemChecklist" | "etiquetaTarefa" | "tarefaEtiqueta" | "pastaDocumento" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "centroCusto" | "recebivel" | "contaPagar" | "fornecedor" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "boleto" | "diagnostico" | "tokenPortal" | "aplicacaoDiagnostico" | "campanhaDiagnostico" | "diagnosticoParticipante" | "diagnosticoTemplate" | "campanhaCupom" | "assinatura"
+      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "etapaCrm" | "comentarioCrm" | "lead" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "projeto" | "etapa" | "tarefa" | "tarefaResponsavel" | "comentarioTarefa" | "anexoTarefa" | "atividadeTarefa" | "aprovacaoTarefa" | "itemChecklist" | "etiquetaTarefa" | "tarefaEtiqueta" | "pastaDocumento" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "centroCusto" | "recebivel" | "contaPagar" | "fornecedor" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "boleto" | "diagnostico" | "tokenPortal" | "aplicacaoDiagnostico" | "campanhaDiagnostico" | "diagnosticoParticipante" | "diagnosticoTemplate" | "campanhaCupom" | "assinatura" | "reembolso" | "reembolsoItem"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -5671,6 +5703,154 @@ export namespace Prisma {
           }
         }
       }
+      Reembolso: {
+        payload: Prisma.$ReembolsoPayload<ExtArgs>
+        fields: Prisma.ReembolsoFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ReembolsoFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReembolsoPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ReembolsoFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReembolsoPayload>
+          }
+          findFirst: {
+            args: Prisma.ReembolsoFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReembolsoPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ReembolsoFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReembolsoPayload>
+          }
+          findMany: {
+            args: Prisma.ReembolsoFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReembolsoPayload>[]
+          }
+          create: {
+            args: Prisma.ReembolsoCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReembolsoPayload>
+          }
+          createMany: {
+            args: Prisma.ReembolsoCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ReembolsoCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReembolsoPayload>[]
+          }
+          delete: {
+            args: Prisma.ReembolsoDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReembolsoPayload>
+          }
+          update: {
+            args: Prisma.ReembolsoUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReembolsoPayload>
+          }
+          deleteMany: {
+            args: Prisma.ReembolsoDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ReembolsoUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ReembolsoUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReembolsoPayload>[]
+          }
+          upsert: {
+            args: Prisma.ReembolsoUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReembolsoPayload>
+          }
+          aggregate: {
+            args: Prisma.ReembolsoAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateReembolso>
+          }
+          groupBy: {
+            args: Prisma.ReembolsoGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ReembolsoGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ReembolsoCountArgs<ExtArgs>
+            result: $Utils.Optional<ReembolsoCountAggregateOutputType> | number
+          }
+        }
+      }
+      ReembolsoItem: {
+        payload: Prisma.$ReembolsoItemPayload<ExtArgs>
+        fields: Prisma.ReembolsoItemFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ReembolsoItemFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReembolsoItemPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ReembolsoItemFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReembolsoItemPayload>
+          }
+          findFirst: {
+            args: Prisma.ReembolsoItemFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReembolsoItemPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ReembolsoItemFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReembolsoItemPayload>
+          }
+          findMany: {
+            args: Prisma.ReembolsoItemFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReembolsoItemPayload>[]
+          }
+          create: {
+            args: Prisma.ReembolsoItemCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReembolsoItemPayload>
+          }
+          createMany: {
+            args: Prisma.ReembolsoItemCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ReembolsoItemCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReembolsoItemPayload>[]
+          }
+          delete: {
+            args: Prisma.ReembolsoItemDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReembolsoItemPayload>
+          }
+          update: {
+            args: Prisma.ReembolsoItemUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReembolsoItemPayload>
+          }
+          deleteMany: {
+            args: Prisma.ReembolsoItemDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ReembolsoItemUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ReembolsoItemUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReembolsoItemPayload>[]
+          }
+          upsert: {
+            args: Prisma.ReembolsoItemUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReembolsoItemPayload>
+          }
+          aggregate: {
+            args: Prisma.ReembolsoItemAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateReembolsoItem>
+          }
+          groupBy: {
+            args: Prisma.ReembolsoItemGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ReembolsoItemGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ReembolsoItemCountArgs<ExtArgs>
+            result: $Utils.Optional<ReembolsoItemCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -5832,6 +6012,8 @@ export namespace Prisma {
     diagnosticoTemplate?: DiagnosticoTemplateOmit
     campanhaCupom?: CampanhaCupomOmit
     assinatura?: AssinaturaOmit
+    reembolso?: ReembolsoOmit
+    reembolsoItem?: ReembolsoItemOmit
   }
 
   /* Types for Logging */
@@ -5945,6 +6127,7 @@ export namespace Prisma {
     diagnostico_templates: number
     assinaturas: number
     campanhas_cupom: number
+    reembolsos: number
   }
 
   export type EmpresaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5981,6 +6164,7 @@ export namespace Prisma {
     diagnostico_templates?: boolean | EmpresaCountOutputTypeCountDiagnostico_templatesArgs
     assinaturas?: boolean | EmpresaCountOutputTypeCountAssinaturasArgs
     campanhas_cupom?: boolean | EmpresaCountOutputTypeCountCampanhas_cupomArgs
+    reembolsos?: boolean | EmpresaCountOutputTypeCountReembolsosArgs
   }
 
   // Custom InputTypes
@@ -6223,6 +6407,13 @@ export namespace Prisma {
    */
   export type EmpresaCountOutputTypeCountCampanhas_cupomArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CampanhaCupomWhereInput
+  }
+
+  /**
+   * EmpresaCountOutputType without action
+   */
+  export type EmpresaCountOutputTypeCountReembolsosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReembolsoWhereInput
   }
 
 
@@ -7396,6 +7587,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type ReembolsoCountOutputType
+   */
+
+  export type ReembolsoCountOutputType = {
+    itens: number
+  }
+
+  export type ReembolsoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    itens?: boolean | ReembolsoCountOutputTypeCountItensArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ReembolsoCountOutputType without action
+   */
+  export type ReembolsoCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReembolsoCountOutputType
+     */
+    select?: ReembolsoCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ReembolsoCountOutputType without action
+   */
+  export type ReembolsoCountOutputTypeCountItensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReembolsoItemWhereInput
+  }
+
+
+  /**
    * Models
    */
 
@@ -7640,6 +7862,7 @@ export namespace Prisma {
     diagnostico_templates?: boolean | Empresa$diagnostico_templatesArgs<ExtArgs>
     assinaturas?: boolean | Empresa$assinaturasArgs<ExtArgs>
     campanhas_cupom?: boolean | Empresa$campanhas_cupomArgs<ExtArgs>
+    reembolsos?: boolean | Empresa$reembolsosArgs<ExtArgs>
     _count?: boolean | EmpresaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["empresa"]>
 
@@ -7720,6 +7943,7 @@ export namespace Prisma {
     diagnostico_templates?: boolean | Empresa$diagnostico_templatesArgs<ExtArgs>
     assinaturas?: boolean | Empresa$assinaturasArgs<ExtArgs>
     campanhas_cupom?: boolean | Empresa$campanhas_cupomArgs<ExtArgs>
+    reembolsos?: boolean | Empresa$reembolsosArgs<ExtArgs>
     _count?: boolean | EmpresaCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EmpresaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -7761,6 +7985,7 @@ export namespace Prisma {
       diagnostico_templates: Prisma.$DiagnosticoTemplatePayload<ExtArgs>[]
       assinaturas: Prisma.$AssinaturaPayload<ExtArgs>[]
       campanhas_cupom: Prisma.$CampanhaCupomPayload<ExtArgs>[]
+      reembolsos: Prisma.$ReembolsoPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8201,6 +8426,7 @@ export namespace Prisma {
     diagnostico_templates<T extends Empresa$diagnostico_templatesArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$diagnostico_templatesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiagnosticoTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     assinaturas<T extends Empresa$assinaturasArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$assinaturasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssinaturaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     campanhas_cupom<T extends Empresa$campanhas_cupomArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$campanhas_cupomArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CampanhaCupomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    reembolsos<T extends Empresa$reembolsosArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$reembolsosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReembolsoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9423,6 +9649,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: CampanhaCupomScalarFieldEnum | CampanhaCupomScalarFieldEnum[]
+  }
+
+  /**
+   * Empresa.reembolsos
+   */
+  export type Empresa$reembolsosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Reembolso
+     */
+    select?: ReembolsoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Reembolso
+     */
+    omit?: ReembolsoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReembolsoInclude<ExtArgs> | null
+    where?: ReembolsoWhereInput
+    orderBy?: ReembolsoOrderByWithRelationInput | ReembolsoOrderByWithRelationInput[]
+    cursor?: ReembolsoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReembolsoScalarFieldEnum | ReembolsoScalarFieldEnum[]
   }
 
   /**
@@ -74245,6 +74495,2325 @@ export namespace Prisma {
 
 
   /**
+   * Model Reembolso
+   */
+
+  export type AggregateReembolso = {
+    _count: ReembolsoCountAggregateOutputType | null
+    _avg: ReembolsoAvgAggregateOutputType | null
+    _sum: ReembolsoSumAggregateOutputType | null
+    _min: ReembolsoMinAggregateOutputType | null
+    _max: ReembolsoMaxAggregateOutputType | null
+  }
+
+  export type ReembolsoAvgAggregateOutputType = {
+    total: Decimal | null
+  }
+
+  export type ReembolsoSumAggregateOutputType = {
+    total: Decimal | null
+  }
+
+  export type ReembolsoMinAggregateOutputType = {
+    id: string | null
+    empresa_id: string | null
+    periodo: string | null
+    descricao: string | null
+    status: string | null
+    total: Decimal | null
+    criado_em: Date | null
+  }
+
+  export type ReembolsoMaxAggregateOutputType = {
+    id: string | null
+    empresa_id: string | null
+    periodo: string | null
+    descricao: string | null
+    status: string | null
+    total: Decimal | null
+    criado_em: Date | null
+  }
+
+  export type ReembolsoCountAggregateOutputType = {
+    id: number
+    empresa_id: number
+    periodo: number
+    descricao: number
+    status: number
+    total: number
+    criado_em: number
+    _all: number
+  }
+
+
+  export type ReembolsoAvgAggregateInputType = {
+    total?: true
+  }
+
+  export type ReembolsoSumAggregateInputType = {
+    total?: true
+  }
+
+  export type ReembolsoMinAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    periodo?: true
+    descricao?: true
+    status?: true
+    total?: true
+    criado_em?: true
+  }
+
+  export type ReembolsoMaxAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    periodo?: true
+    descricao?: true
+    status?: true
+    total?: true
+    criado_em?: true
+  }
+
+  export type ReembolsoCountAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    periodo?: true
+    descricao?: true
+    status?: true
+    total?: true
+    criado_em?: true
+    _all?: true
+  }
+
+  export type ReembolsoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Reembolso to aggregate.
+     */
+    where?: ReembolsoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Reembolsos to fetch.
+     */
+    orderBy?: ReembolsoOrderByWithRelationInput | ReembolsoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ReembolsoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Reembolsos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Reembolsos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Reembolsos
+    **/
+    _count?: true | ReembolsoCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ReembolsoAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ReembolsoSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ReembolsoMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ReembolsoMaxAggregateInputType
+  }
+
+  export type GetReembolsoAggregateType<T extends ReembolsoAggregateArgs> = {
+        [P in keyof T & keyof AggregateReembolso]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateReembolso[P]>
+      : GetScalarType<T[P], AggregateReembolso[P]>
+  }
+
+
+
+
+  export type ReembolsoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReembolsoWhereInput
+    orderBy?: ReembolsoOrderByWithAggregationInput | ReembolsoOrderByWithAggregationInput[]
+    by: ReembolsoScalarFieldEnum[] | ReembolsoScalarFieldEnum
+    having?: ReembolsoScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ReembolsoCountAggregateInputType | true
+    _avg?: ReembolsoAvgAggregateInputType
+    _sum?: ReembolsoSumAggregateInputType
+    _min?: ReembolsoMinAggregateInputType
+    _max?: ReembolsoMaxAggregateInputType
+  }
+
+  export type ReembolsoGroupByOutputType = {
+    id: string
+    empresa_id: string
+    periodo: string
+    descricao: string | null
+    status: string
+    total: Decimal
+    criado_em: Date
+    _count: ReembolsoCountAggregateOutputType | null
+    _avg: ReembolsoAvgAggregateOutputType | null
+    _sum: ReembolsoSumAggregateOutputType | null
+    _min: ReembolsoMinAggregateOutputType | null
+    _max: ReembolsoMaxAggregateOutputType | null
+  }
+
+  type GetReembolsoGroupByPayload<T extends ReembolsoGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ReembolsoGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ReembolsoGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ReembolsoGroupByOutputType[P]>
+            : GetScalarType<T[P], ReembolsoGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ReembolsoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    periodo?: boolean
+    descricao?: boolean
+    status?: boolean
+    total?: boolean
+    criado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    itens?: boolean | Reembolso$itensArgs<ExtArgs>
+    _count?: boolean | ReembolsoCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["reembolso"]>
+
+  export type ReembolsoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    periodo?: boolean
+    descricao?: boolean
+    status?: boolean
+    total?: boolean
+    criado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["reembolso"]>
+
+  export type ReembolsoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    periodo?: boolean
+    descricao?: boolean
+    status?: boolean
+    total?: boolean
+    criado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["reembolso"]>
+
+  export type ReembolsoSelectScalar = {
+    id?: boolean
+    empresa_id?: boolean
+    periodo?: boolean
+    descricao?: boolean
+    status?: boolean
+    total?: boolean
+    criado_em?: boolean
+  }
+
+  export type ReembolsoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "periodo" | "descricao" | "status" | "total" | "criado_em", ExtArgs["result"]["reembolso"]>
+  export type ReembolsoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    itens?: boolean | Reembolso$itensArgs<ExtArgs>
+    _count?: boolean | ReembolsoCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ReembolsoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }
+  export type ReembolsoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }
+
+  export type $ReembolsoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Reembolso"
+    objects: {
+      empresa: Prisma.$EmpresaPayload<ExtArgs>
+      itens: Prisma.$ReembolsoItemPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      empresa_id: string
+      periodo: string
+      descricao: string | null
+      status: string
+      total: Prisma.Decimal
+      criado_em: Date
+    }, ExtArgs["result"]["reembolso"]>
+    composites: {}
+  }
+
+  type ReembolsoGetPayload<S extends boolean | null | undefined | ReembolsoDefaultArgs> = $Result.GetResult<Prisma.$ReembolsoPayload, S>
+
+  type ReembolsoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ReembolsoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ReembolsoCountAggregateInputType | true
+    }
+
+  export interface ReembolsoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Reembolso'], meta: { name: 'Reembolso' } }
+    /**
+     * Find zero or one Reembolso that matches the filter.
+     * @param {ReembolsoFindUniqueArgs} args - Arguments to find a Reembolso
+     * @example
+     * // Get one Reembolso
+     * const reembolso = await prisma.reembolso.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ReembolsoFindUniqueArgs>(args: SelectSubset<T, ReembolsoFindUniqueArgs<ExtArgs>>): Prisma__ReembolsoClient<$Result.GetResult<Prisma.$ReembolsoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Reembolso that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ReembolsoFindUniqueOrThrowArgs} args - Arguments to find a Reembolso
+     * @example
+     * // Get one Reembolso
+     * const reembolso = await prisma.reembolso.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ReembolsoFindUniqueOrThrowArgs>(args: SelectSubset<T, ReembolsoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ReembolsoClient<$Result.GetResult<Prisma.$ReembolsoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Reembolso that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReembolsoFindFirstArgs} args - Arguments to find a Reembolso
+     * @example
+     * // Get one Reembolso
+     * const reembolso = await prisma.reembolso.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ReembolsoFindFirstArgs>(args?: SelectSubset<T, ReembolsoFindFirstArgs<ExtArgs>>): Prisma__ReembolsoClient<$Result.GetResult<Prisma.$ReembolsoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Reembolso that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReembolsoFindFirstOrThrowArgs} args - Arguments to find a Reembolso
+     * @example
+     * // Get one Reembolso
+     * const reembolso = await prisma.reembolso.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ReembolsoFindFirstOrThrowArgs>(args?: SelectSubset<T, ReembolsoFindFirstOrThrowArgs<ExtArgs>>): Prisma__ReembolsoClient<$Result.GetResult<Prisma.$ReembolsoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Reembolsos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReembolsoFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Reembolsos
+     * const reembolsos = await prisma.reembolso.findMany()
+     * 
+     * // Get first 10 Reembolsos
+     * const reembolsos = await prisma.reembolso.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const reembolsoWithIdOnly = await prisma.reembolso.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ReembolsoFindManyArgs>(args?: SelectSubset<T, ReembolsoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReembolsoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Reembolso.
+     * @param {ReembolsoCreateArgs} args - Arguments to create a Reembolso.
+     * @example
+     * // Create one Reembolso
+     * const Reembolso = await prisma.reembolso.create({
+     *   data: {
+     *     // ... data to create a Reembolso
+     *   }
+     * })
+     * 
+     */
+    create<T extends ReembolsoCreateArgs>(args: SelectSubset<T, ReembolsoCreateArgs<ExtArgs>>): Prisma__ReembolsoClient<$Result.GetResult<Prisma.$ReembolsoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Reembolsos.
+     * @param {ReembolsoCreateManyArgs} args - Arguments to create many Reembolsos.
+     * @example
+     * // Create many Reembolsos
+     * const reembolso = await prisma.reembolso.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ReembolsoCreateManyArgs>(args?: SelectSubset<T, ReembolsoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Reembolsos and returns the data saved in the database.
+     * @param {ReembolsoCreateManyAndReturnArgs} args - Arguments to create many Reembolsos.
+     * @example
+     * // Create many Reembolsos
+     * const reembolso = await prisma.reembolso.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Reembolsos and only return the `id`
+     * const reembolsoWithIdOnly = await prisma.reembolso.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ReembolsoCreateManyAndReturnArgs>(args?: SelectSubset<T, ReembolsoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReembolsoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Reembolso.
+     * @param {ReembolsoDeleteArgs} args - Arguments to delete one Reembolso.
+     * @example
+     * // Delete one Reembolso
+     * const Reembolso = await prisma.reembolso.delete({
+     *   where: {
+     *     // ... filter to delete one Reembolso
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ReembolsoDeleteArgs>(args: SelectSubset<T, ReembolsoDeleteArgs<ExtArgs>>): Prisma__ReembolsoClient<$Result.GetResult<Prisma.$ReembolsoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Reembolso.
+     * @param {ReembolsoUpdateArgs} args - Arguments to update one Reembolso.
+     * @example
+     * // Update one Reembolso
+     * const reembolso = await prisma.reembolso.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ReembolsoUpdateArgs>(args: SelectSubset<T, ReembolsoUpdateArgs<ExtArgs>>): Prisma__ReembolsoClient<$Result.GetResult<Prisma.$ReembolsoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Reembolsos.
+     * @param {ReembolsoDeleteManyArgs} args - Arguments to filter Reembolsos to delete.
+     * @example
+     * // Delete a few Reembolsos
+     * const { count } = await prisma.reembolso.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ReembolsoDeleteManyArgs>(args?: SelectSubset<T, ReembolsoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Reembolsos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReembolsoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Reembolsos
+     * const reembolso = await prisma.reembolso.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ReembolsoUpdateManyArgs>(args: SelectSubset<T, ReembolsoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Reembolsos and returns the data updated in the database.
+     * @param {ReembolsoUpdateManyAndReturnArgs} args - Arguments to update many Reembolsos.
+     * @example
+     * // Update many Reembolsos
+     * const reembolso = await prisma.reembolso.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Reembolsos and only return the `id`
+     * const reembolsoWithIdOnly = await prisma.reembolso.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ReembolsoUpdateManyAndReturnArgs>(args: SelectSubset<T, ReembolsoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReembolsoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Reembolso.
+     * @param {ReembolsoUpsertArgs} args - Arguments to update or create a Reembolso.
+     * @example
+     * // Update or create a Reembolso
+     * const reembolso = await prisma.reembolso.upsert({
+     *   create: {
+     *     // ... data to create a Reembolso
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Reembolso we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ReembolsoUpsertArgs>(args: SelectSubset<T, ReembolsoUpsertArgs<ExtArgs>>): Prisma__ReembolsoClient<$Result.GetResult<Prisma.$ReembolsoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Reembolsos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReembolsoCountArgs} args - Arguments to filter Reembolsos to count.
+     * @example
+     * // Count the number of Reembolsos
+     * const count = await prisma.reembolso.count({
+     *   where: {
+     *     // ... the filter for the Reembolsos we want to count
+     *   }
+     * })
+    **/
+    count<T extends ReembolsoCountArgs>(
+      args?: Subset<T, ReembolsoCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ReembolsoCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Reembolso.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReembolsoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ReembolsoAggregateArgs>(args: Subset<T, ReembolsoAggregateArgs>): Prisma.PrismaPromise<GetReembolsoAggregateType<T>>
+
+    /**
+     * Group by Reembolso.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReembolsoGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ReembolsoGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ReembolsoGroupByArgs['orderBy'] }
+        : { orderBy?: ReembolsoGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ReembolsoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetReembolsoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Reembolso model
+   */
+  readonly fields: ReembolsoFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Reembolso.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ReembolsoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    empresa<T extends EmpresaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmpresaDefaultArgs<ExtArgs>>): Prisma__EmpresaClient<$Result.GetResult<Prisma.$EmpresaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    itens<T extends Reembolso$itensArgs<ExtArgs> = {}>(args?: Subset<T, Reembolso$itensArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReembolsoItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Reembolso model
+   */
+  interface ReembolsoFieldRefs {
+    readonly id: FieldRef<"Reembolso", 'String'>
+    readonly empresa_id: FieldRef<"Reembolso", 'String'>
+    readonly periodo: FieldRef<"Reembolso", 'String'>
+    readonly descricao: FieldRef<"Reembolso", 'String'>
+    readonly status: FieldRef<"Reembolso", 'String'>
+    readonly total: FieldRef<"Reembolso", 'Decimal'>
+    readonly criado_em: FieldRef<"Reembolso", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Reembolso findUnique
+   */
+  export type ReembolsoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Reembolso
+     */
+    select?: ReembolsoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Reembolso
+     */
+    omit?: ReembolsoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReembolsoInclude<ExtArgs> | null
+    /**
+     * Filter, which Reembolso to fetch.
+     */
+    where: ReembolsoWhereUniqueInput
+  }
+
+  /**
+   * Reembolso findUniqueOrThrow
+   */
+  export type ReembolsoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Reembolso
+     */
+    select?: ReembolsoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Reembolso
+     */
+    omit?: ReembolsoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReembolsoInclude<ExtArgs> | null
+    /**
+     * Filter, which Reembolso to fetch.
+     */
+    where: ReembolsoWhereUniqueInput
+  }
+
+  /**
+   * Reembolso findFirst
+   */
+  export type ReembolsoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Reembolso
+     */
+    select?: ReembolsoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Reembolso
+     */
+    omit?: ReembolsoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReembolsoInclude<ExtArgs> | null
+    /**
+     * Filter, which Reembolso to fetch.
+     */
+    where?: ReembolsoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Reembolsos to fetch.
+     */
+    orderBy?: ReembolsoOrderByWithRelationInput | ReembolsoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Reembolsos.
+     */
+    cursor?: ReembolsoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Reembolsos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Reembolsos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Reembolsos.
+     */
+    distinct?: ReembolsoScalarFieldEnum | ReembolsoScalarFieldEnum[]
+  }
+
+  /**
+   * Reembolso findFirstOrThrow
+   */
+  export type ReembolsoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Reembolso
+     */
+    select?: ReembolsoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Reembolso
+     */
+    omit?: ReembolsoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReembolsoInclude<ExtArgs> | null
+    /**
+     * Filter, which Reembolso to fetch.
+     */
+    where?: ReembolsoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Reembolsos to fetch.
+     */
+    orderBy?: ReembolsoOrderByWithRelationInput | ReembolsoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Reembolsos.
+     */
+    cursor?: ReembolsoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Reembolsos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Reembolsos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Reembolsos.
+     */
+    distinct?: ReembolsoScalarFieldEnum | ReembolsoScalarFieldEnum[]
+  }
+
+  /**
+   * Reembolso findMany
+   */
+  export type ReembolsoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Reembolso
+     */
+    select?: ReembolsoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Reembolso
+     */
+    omit?: ReembolsoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReembolsoInclude<ExtArgs> | null
+    /**
+     * Filter, which Reembolsos to fetch.
+     */
+    where?: ReembolsoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Reembolsos to fetch.
+     */
+    orderBy?: ReembolsoOrderByWithRelationInput | ReembolsoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Reembolsos.
+     */
+    cursor?: ReembolsoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Reembolsos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Reembolsos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Reembolsos.
+     */
+    distinct?: ReembolsoScalarFieldEnum | ReembolsoScalarFieldEnum[]
+  }
+
+  /**
+   * Reembolso create
+   */
+  export type ReembolsoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Reembolso
+     */
+    select?: ReembolsoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Reembolso
+     */
+    omit?: ReembolsoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReembolsoInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Reembolso.
+     */
+    data: XOR<ReembolsoCreateInput, ReembolsoUncheckedCreateInput>
+  }
+
+  /**
+   * Reembolso createMany
+   */
+  export type ReembolsoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Reembolsos.
+     */
+    data: ReembolsoCreateManyInput | ReembolsoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Reembolso createManyAndReturn
+   */
+  export type ReembolsoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Reembolso
+     */
+    select?: ReembolsoSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Reembolso
+     */
+    omit?: ReembolsoOmit<ExtArgs> | null
+    /**
+     * The data used to create many Reembolsos.
+     */
+    data: ReembolsoCreateManyInput | ReembolsoCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReembolsoIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Reembolso update
+   */
+  export type ReembolsoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Reembolso
+     */
+    select?: ReembolsoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Reembolso
+     */
+    omit?: ReembolsoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReembolsoInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Reembolso.
+     */
+    data: XOR<ReembolsoUpdateInput, ReembolsoUncheckedUpdateInput>
+    /**
+     * Choose, which Reembolso to update.
+     */
+    where: ReembolsoWhereUniqueInput
+  }
+
+  /**
+   * Reembolso updateMany
+   */
+  export type ReembolsoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Reembolsos.
+     */
+    data: XOR<ReembolsoUpdateManyMutationInput, ReembolsoUncheckedUpdateManyInput>
+    /**
+     * Filter which Reembolsos to update
+     */
+    where?: ReembolsoWhereInput
+    /**
+     * Limit how many Reembolsos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Reembolso updateManyAndReturn
+   */
+  export type ReembolsoUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Reembolso
+     */
+    select?: ReembolsoSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Reembolso
+     */
+    omit?: ReembolsoOmit<ExtArgs> | null
+    /**
+     * The data used to update Reembolsos.
+     */
+    data: XOR<ReembolsoUpdateManyMutationInput, ReembolsoUncheckedUpdateManyInput>
+    /**
+     * Filter which Reembolsos to update
+     */
+    where?: ReembolsoWhereInput
+    /**
+     * Limit how many Reembolsos to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReembolsoIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Reembolso upsert
+   */
+  export type ReembolsoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Reembolso
+     */
+    select?: ReembolsoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Reembolso
+     */
+    omit?: ReembolsoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReembolsoInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Reembolso to update in case it exists.
+     */
+    where: ReembolsoWhereUniqueInput
+    /**
+     * In case the Reembolso found by the `where` argument doesn't exist, create a new Reembolso with this data.
+     */
+    create: XOR<ReembolsoCreateInput, ReembolsoUncheckedCreateInput>
+    /**
+     * In case the Reembolso was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ReembolsoUpdateInput, ReembolsoUncheckedUpdateInput>
+  }
+
+  /**
+   * Reembolso delete
+   */
+  export type ReembolsoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Reembolso
+     */
+    select?: ReembolsoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Reembolso
+     */
+    omit?: ReembolsoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReembolsoInclude<ExtArgs> | null
+    /**
+     * Filter which Reembolso to delete.
+     */
+    where: ReembolsoWhereUniqueInput
+  }
+
+  /**
+   * Reembolso deleteMany
+   */
+  export type ReembolsoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Reembolsos to delete
+     */
+    where?: ReembolsoWhereInput
+    /**
+     * Limit how many Reembolsos to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Reembolso.itens
+   */
+  export type Reembolso$itensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReembolsoItem
+     */
+    select?: ReembolsoItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReembolsoItem
+     */
+    omit?: ReembolsoItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReembolsoItemInclude<ExtArgs> | null
+    where?: ReembolsoItemWhereInput
+    orderBy?: ReembolsoItemOrderByWithRelationInput | ReembolsoItemOrderByWithRelationInput[]
+    cursor?: ReembolsoItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReembolsoItemScalarFieldEnum | ReembolsoItemScalarFieldEnum[]
+  }
+
+  /**
+   * Reembolso without action
+   */
+  export type ReembolsoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Reembolso
+     */
+    select?: ReembolsoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Reembolso
+     */
+    omit?: ReembolsoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReembolsoInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ReembolsoItem
+   */
+
+  export type AggregateReembolsoItem = {
+    _count: ReembolsoItemCountAggregateOutputType | null
+    _avg: ReembolsoItemAvgAggregateOutputType | null
+    _sum: ReembolsoItemSumAggregateOutputType | null
+    _min: ReembolsoItemMinAggregateOutputType | null
+    _max: ReembolsoItemMaxAggregateOutputType | null
+  }
+
+  export type ReembolsoItemAvgAggregateOutputType = {
+    valor: Decimal | null
+    km: Decimal | null
+    valor_km: Decimal | null
+  }
+
+  export type ReembolsoItemSumAggregateOutputType = {
+    valor: Decimal | null
+    km: Decimal | null
+    valor_km: Decimal | null
+  }
+
+  export type ReembolsoItemMinAggregateOutputType = {
+    id: string | null
+    reembolso_id: string | null
+    tipo: string | null
+    data: Date | null
+    descricao: string | null
+    valor: Decimal | null
+    km: Decimal | null
+    valor_km: Decimal | null
+    criado_em: Date | null
+  }
+
+  export type ReembolsoItemMaxAggregateOutputType = {
+    id: string | null
+    reembolso_id: string | null
+    tipo: string | null
+    data: Date | null
+    descricao: string | null
+    valor: Decimal | null
+    km: Decimal | null
+    valor_km: Decimal | null
+    criado_em: Date | null
+  }
+
+  export type ReembolsoItemCountAggregateOutputType = {
+    id: number
+    reembolso_id: number
+    tipo: number
+    data: number
+    descricao: number
+    valor: number
+    km: number
+    valor_km: number
+    clientes_ids: number
+    criado_em: number
+    _all: number
+  }
+
+
+  export type ReembolsoItemAvgAggregateInputType = {
+    valor?: true
+    km?: true
+    valor_km?: true
+  }
+
+  export type ReembolsoItemSumAggregateInputType = {
+    valor?: true
+    km?: true
+    valor_km?: true
+  }
+
+  export type ReembolsoItemMinAggregateInputType = {
+    id?: true
+    reembolso_id?: true
+    tipo?: true
+    data?: true
+    descricao?: true
+    valor?: true
+    km?: true
+    valor_km?: true
+    criado_em?: true
+  }
+
+  export type ReembolsoItemMaxAggregateInputType = {
+    id?: true
+    reembolso_id?: true
+    tipo?: true
+    data?: true
+    descricao?: true
+    valor?: true
+    km?: true
+    valor_km?: true
+    criado_em?: true
+  }
+
+  export type ReembolsoItemCountAggregateInputType = {
+    id?: true
+    reembolso_id?: true
+    tipo?: true
+    data?: true
+    descricao?: true
+    valor?: true
+    km?: true
+    valor_km?: true
+    clientes_ids?: true
+    criado_em?: true
+    _all?: true
+  }
+
+  export type ReembolsoItemAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ReembolsoItem to aggregate.
+     */
+    where?: ReembolsoItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ReembolsoItems to fetch.
+     */
+    orderBy?: ReembolsoItemOrderByWithRelationInput | ReembolsoItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ReembolsoItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ReembolsoItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ReembolsoItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ReembolsoItems
+    **/
+    _count?: true | ReembolsoItemCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ReembolsoItemAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ReembolsoItemSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ReembolsoItemMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ReembolsoItemMaxAggregateInputType
+  }
+
+  export type GetReembolsoItemAggregateType<T extends ReembolsoItemAggregateArgs> = {
+        [P in keyof T & keyof AggregateReembolsoItem]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateReembolsoItem[P]>
+      : GetScalarType<T[P], AggregateReembolsoItem[P]>
+  }
+
+
+
+
+  export type ReembolsoItemGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReembolsoItemWhereInput
+    orderBy?: ReembolsoItemOrderByWithAggregationInput | ReembolsoItemOrderByWithAggregationInput[]
+    by: ReembolsoItemScalarFieldEnum[] | ReembolsoItemScalarFieldEnum
+    having?: ReembolsoItemScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ReembolsoItemCountAggregateInputType | true
+    _avg?: ReembolsoItemAvgAggregateInputType
+    _sum?: ReembolsoItemSumAggregateInputType
+    _min?: ReembolsoItemMinAggregateInputType
+    _max?: ReembolsoItemMaxAggregateInputType
+  }
+
+  export type ReembolsoItemGroupByOutputType = {
+    id: string
+    reembolso_id: string
+    tipo: string
+    data: Date
+    descricao: string
+    valor: Decimal
+    km: Decimal | null
+    valor_km: Decimal | null
+    clientes_ids: string[]
+    criado_em: Date
+    _count: ReembolsoItemCountAggregateOutputType | null
+    _avg: ReembolsoItemAvgAggregateOutputType | null
+    _sum: ReembolsoItemSumAggregateOutputType | null
+    _min: ReembolsoItemMinAggregateOutputType | null
+    _max: ReembolsoItemMaxAggregateOutputType | null
+  }
+
+  type GetReembolsoItemGroupByPayload<T extends ReembolsoItemGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ReembolsoItemGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ReembolsoItemGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ReembolsoItemGroupByOutputType[P]>
+            : GetScalarType<T[P], ReembolsoItemGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ReembolsoItemSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    reembolso_id?: boolean
+    tipo?: boolean
+    data?: boolean
+    descricao?: boolean
+    valor?: boolean
+    km?: boolean
+    valor_km?: boolean
+    clientes_ids?: boolean
+    criado_em?: boolean
+    reembolso?: boolean | ReembolsoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["reembolsoItem"]>
+
+  export type ReembolsoItemSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    reembolso_id?: boolean
+    tipo?: boolean
+    data?: boolean
+    descricao?: boolean
+    valor?: boolean
+    km?: boolean
+    valor_km?: boolean
+    clientes_ids?: boolean
+    criado_em?: boolean
+    reembolso?: boolean | ReembolsoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["reembolsoItem"]>
+
+  export type ReembolsoItemSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    reembolso_id?: boolean
+    tipo?: boolean
+    data?: boolean
+    descricao?: boolean
+    valor?: boolean
+    km?: boolean
+    valor_km?: boolean
+    clientes_ids?: boolean
+    criado_em?: boolean
+    reembolso?: boolean | ReembolsoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["reembolsoItem"]>
+
+  export type ReembolsoItemSelectScalar = {
+    id?: boolean
+    reembolso_id?: boolean
+    tipo?: boolean
+    data?: boolean
+    descricao?: boolean
+    valor?: boolean
+    km?: boolean
+    valor_km?: boolean
+    clientes_ids?: boolean
+    criado_em?: boolean
+  }
+
+  export type ReembolsoItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "reembolso_id" | "tipo" | "data" | "descricao" | "valor" | "km" | "valor_km" | "clientes_ids" | "criado_em", ExtArgs["result"]["reembolsoItem"]>
+  export type ReembolsoItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    reembolso?: boolean | ReembolsoDefaultArgs<ExtArgs>
+  }
+  export type ReembolsoItemIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    reembolso?: boolean | ReembolsoDefaultArgs<ExtArgs>
+  }
+  export type ReembolsoItemIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    reembolso?: boolean | ReembolsoDefaultArgs<ExtArgs>
+  }
+
+  export type $ReembolsoItemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ReembolsoItem"
+    objects: {
+      reembolso: Prisma.$ReembolsoPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      reembolso_id: string
+      tipo: string
+      data: Date
+      descricao: string
+      valor: Prisma.Decimal
+      km: Prisma.Decimal | null
+      valor_km: Prisma.Decimal | null
+      clientes_ids: string[]
+      criado_em: Date
+    }, ExtArgs["result"]["reembolsoItem"]>
+    composites: {}
+  }
+
+  type ReembolsoItemGetPayload<S extends boolean | null | undefined | ReembolsoItemDefaultArgs> = $Result.GetResult<Prisma.$ReembolsoItemPayload, S>
+
+  type ReembolsoItemCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ReembolsoItemFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ReembolsoItemCountAggregateInputType | true
+    }
+
+  export interface ReembolsoItemDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ReembolsoItem'], meta: { name: 'ReembolsoItem' } }
+    /**
+     * Find zero or one ReembolsoItem that matches the filter.
+     * @param {ReembolsoItemFindUniqueArgs} args - Arguments to find a ReembolsoItem
+     * @example
+     * // Get one ReembolsoItem
+     * const reembolsoItem = await prisma.reembolsoItem.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ReembolsoItemFindUniqueArgs>(args: SelectSubset<T, ReembolsoItemFindUniqueArgs<ExtArgs>>): Prisma__ReembolsoItemClient<$Result.GetResult<Prisma.$ReembolsoItemPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ReembolsoItem that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ReembolsoItemFindUniqueOrThrowArgs} args - Arguments to find a ReembolsoItem
+     * @example
+     * // Get one ReembolsoItem
+     * const reembolsoItem = await prisma.reembolsoItem.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ReembolsoItemFindUniqueOrThrowArgs>(args: SelectSubset<T, ReembolsoItemFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ReembolsoItemClient<$Result.GetResult<Prisma.$ReembolsoItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ReembolsoItem that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReembolsoItemFindFirstArgs} args - Arguments to find a ReembolsoItem
+     * @example
+     * // Get one ReembolsoItem
+     * const reembolsoItem = await prisma.reembolsoItem.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ReembolsoItemFindFirstArgs>(args?: SelectSubset<T, ReembolsoItemFindFirstArgs<ExtArgs>>): Prisma__ReembolsoItemClient<$Result.GetResult<Prisma.$ReembolsoItemPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ReembolsoItem that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReembolsoItemFindFirstOrThrowArgs} args - Arguments to find a ReembolsoItem
+     * @example
+     * // Get one ReembolsoItem
+     * const reembolsoItem = await prisma.reembolsoItem.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ReembolsoItemFindFirstOrThrowArgs>(args?: SelectSubset<T, ReembolsoItemFindFirstOrThrowArgs<ExtArgs>>): Prisma__ReembolsoItemClient<$Result.GetResult<Prisma.$ReembolsoItemPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ReembolsoItems that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReembolsoItemFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ReembolsoItems
+     * const reembolsoItems = await prisma.reembolsoItem.findMany()
+     * 
+     * // Get first 10 ReembolsoItems
+     * const reembolsoItems = await prisma.reembolsoItem.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const reembolsoItemWithIdOnly = await prisma.reembolsoItem.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ReembolsoItemFindManyArgs>(args?: SelectSubset<T, ReembolsoItemFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReembolsoItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ReembolsoItem.
+     * @param {ReembolsoItemCreateArgs} args - Arguments to create a ReembolsoItem.
+     * @example
+     * // Create one ReembolsoItem
+     * const ReembolsoItem = await prisma.reembolsoItem.create({
+     *   data: {
+     *     // ... data to create a ReembolsoItem
+     *   }
+     * })
+     * 
+     */
+    create<T extends ReembolsoItemCreateArgs>(args: SelectSubset<T, ReembolsoItemCreateArgs<ExtArgs>>): Prisma__ReembolsoItemClient<$Result.GetResult<Prisma.$ReembolsoItemPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ReembolsoItems.
+     * @param {ReembolsoItemCreateManyArgs} args - Arguments to create many ReembolsoItems.
+     * @example
+     * // Create many ReembolsoItems
+     * const reembolsoItem = await prisma.reembolsoItem.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ReembolsoItemCreateManyArgs>(args?: SelectSubset<T, ReembolsoItemCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ReembolsoItems and returns the data saved in the database.
+     * @param {ReembolsoItemCreateManyAndReturnArgs} args - Arguments to create many ReembolsoItems.
+     * @example
+     * // Create many ReembolsoItems
+     * const reembolsoItem = await prisma.reembolsoItem.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ReembolsoItems and only return the `id`
+     * const reembolsoItemWithIdOnly = await prisma.reembolsoItem.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ReembolsoItemCreateManyAndReturnArgs>(args?: SelectSubset<T, ReembolsoItemCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReembolsoItemPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ReembolsoItem.
+     * @param {ReembolsoItemDeleteArgs} args - Arguments to delete one ReembolsoItem.
+     * @example
+     * // Delete one ReembolsoItem
+     * const ReembolsoItem = await prisma.reembolsoItem.delete({
+     *   where: {
+     *     // ... filter to delete one ReembolsoItem
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ReembolsoItemDeleteArgs>(args: SelectSubset<T, ReembolsoItemDeleteArgs<ExtArgs>>): Prisma__ReembolsoItemClient<$Result.GetResult<Prisma.$ReembolsoItemPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ReembolsoItem.
+     * @param {ReembolsoItemUpdateArgs} args - Arguments to update one ReembolsoItem.
+     * @example
+     * // Update one ReembolsoItem
+     * const reembolsoItem = await prisma.reembolsoItem.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ReembolsoItemUpdateArgs>(args: SelectSubset<T, ReembolsoItemUpdateArgs<ExtArgs>>): Prisma__ReembolsoItemClient<$Result.GetResult<Prisma.$ReembolsoItemPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ReembolsoItems.
+     * @param {ReembolsoItemDeleteManyArgs} args - Arguments to filter ReembolsoItems to delete.
+     * @example
+     * // Delete a few ReembolsoItems
+     * const { count } = await prisma.reembolsoItem.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ReembolsoItemDeleteManyArgs>(args?: SelectSubset<T, ReembolsoItemDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ReembolsoItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReembolsoItemUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ReembolsoItems
+     * const reembolsoItem = await prisma.reembolsoItem.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ReembolsoItemUpdateManyArgs>(args: SelectSubset<T, ReembolsoItemUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ReembolsoItems and returns the data updated in the database.
+     * @param {ReembolsoItemUpdateManyAndReturnArgs} args - Arguments to update many ReembolsoItems.
+     * @example
+     * // Update many ReembolsoItems
+     * const reembolsoItem = await prisma.reembolsoItem.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ReembolsoItems and only return the `id`
+     * const reembolsoItemWithIdOnly = await prisma.reembolsoItem.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ReembolsoItemUpdateManyAndReturnArgs>(args: SelectSubset<T, ReembolsoItemUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReembolsoItemPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ReembolsoItem.
+     * @param {ReembolsoItemUpsertArgs} args - Arguments to update or create a ReembolsoItem.
+     * @example
+     * // Update or create a ReembolsoItem
+     * const reembolsoItem = await prisma.reembolsoItem.upsert({
+     *   create: {
+     *     // ... data to create a ReembolsoItem
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ReembolsoItem we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ReembolsoItemUpsertArgs>(args: SelectSubset<T, ReembolsoItemUpsertArgs<ExtArgs>>): Prisma__ReembolsoItemClient<$Result.GetResult<Prisma.$ReembolsoItemPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ReembolsoItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReembolsoItemCountArgs} args - Arguments to filter ReembolsoItems to count.
+     * @example
+     * // Count the number of ReembolsoItems
+     * const count = await prisma.reembolsoItem.count({
+     *   where: {
+     *     // ... the filter for the ReembolsoItems we want to count
+     *   }
+     * })
+    **/
+    count<T extends ReembolsoItemCountArgs>(
+      args?: Subset<T, ReembolsoItemCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ReembolsoItemCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ReembolsoItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReembolsoItemAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ReembolsoItemAggregateArgs>(args: Subset<T, ReembolsoItemAggregateArgs>): Prisma.PrismaPromise<GetReembolsoItemAggregateType<T>>
+
+    /**
+     * Group by ReembolsoItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReembolsoItemGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ReembolsoItemGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ReembolsoItemGroupByArgs['orderBy'] }
+        : { orderBy?: ReembolsoItemGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ReembolsoItemGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetReembolsoItemGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ReembolsoItem model
+   */
+  readonly fields: ReembolsoItemFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ReembolsoItem.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ReembolsoItemClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    reembolso<T extends ReembolsoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ReembolsoDefaultArgs<ExtArgs>>): Prisma__ReembolsoClient<$Result.GetResult<Prisma.$ReembolsoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ReembolsoItem model
+   */
+  interface ReembolsoItemFieldRefs {
+    readonly id: FieldRef<"ReembolsoItem", 'String'>
+    readonly reembolso_id: FieldRef<"ReembolsoItem", 'String'>
+    readonly tipo: FieldRef<"ReembolsoItem", 'String'>
+    readonly data: FieldRef<"ReembolsoItem", 'DateTime'>
+    readonly descricao: FieldRef<"ReembolsoItem", 'String'>
+    readonly valor: FieldRef<"ReembolsoItem", 'Decimal'>
+    readonly km: FieldRef<"ReembolsoItem", 'Decimal'>
+    readonly valor_km: FieldRef<"ReembolsoItem", 'Decimal'>
+    readonly clientes_ids: FieldRef<"ReembolsoItem", 'String[]'>
+    readonly criado_em: FieldRef<"ReembolsoItem", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ReembolsoItem findUnique
+   */
+  export type ReembolsoItemFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReembolsoItem
+     */
+    select?: ReembolsoItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReembolsoItem
+     */
+    omit?: ReembolsoItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReembolsoItemInclude<ExtArgs> | null
+    /**
+     * Filter, which ReembolsoItem to fetch.
+     */
+    where: ReembolsoItemWhereUniqueInput
+  }
+
+  /**
+   * ReembolsoItem findUniqueOrThrow
+   */
+  export type ReembolsoItemFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReembolsoItem
+     */
+    select?: ReembolsoItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReembolsoItem
+     */
+    omit?: ReembolsoItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReembolsoItemInclude<ExtArgs> | null
+    /**
+     * Filter, which ReembolsoItem to fetch.
+     */
+    where: ReembolsoItemWhereUniqueInput
+  }
+
+  /**
+   * ReembolsoItem findFirst
+   */
+  export type ReembolsoItemFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReembolsoItem
+     */
+    select?: ReembolsoItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReembolsoItem
+     */
+    omit?: ReembolsoItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReembolsoItemInclude<ExtArgs> | null
+    /**
+     * Filter, which ReembolsoItem to fetch.
+     */
+    where?: ReembolsoItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ReembolsoItems to fetch.
+     */
+    orderBy?: ReembolsoItemOrderByWithRelationInput | ReembolsoItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ReembolsoItems.
+     */
+    cursor?: ReembolsoItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ReembolsoItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ReembolsoItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ReembolsoItems.
+     */
+    distinct?: ReembolsoItemScalarFieldEnum | ReembolsoItemScalarFieldEnum[]
+  }
+
+  /**
+   * ReembolsoItem findFirstOrThrow
+   */
+  export type ReembolsoItemFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReembolsoItem
+     */
+    select?: ReembolsoItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReembolsoItem
+     */
+    omit?: ReembolsoItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReembolsoItemInclude<ExtArgs> | null
+    /**
+     * Filter, which ReembolsoItem to fetch.
+     */
+    where?: ReembolsoItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ReembolsoItems to fetch.
+     */
+    orderBy?: ReembolsoItemOrderByWithRelationInput | ReembolsoItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ReembolsoItems.
+     */
+    cursor?: ReembolsoItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ReembolsoItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ReembolsoItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ReembolsoItems.
+     */
+    distinct?: ReembolsoItemScalarFieldEnum | ReembolsoItemScalarFieldEnum[]
+  }
+
+  /**
+   * ReembolsoItem findMany
+   */
+  export type ReembolsoItemFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReembolsoItem
+     */
+    select?: ReembolsoItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReembolsoItem
+     */
+    omit?: ReembolsoItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReembolsoItemInclude<ExtArgs> | null
+    /**
+     * Filter, which ReembolsoItems to fetch.
+     */
+    where?: ReembolsoItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ReembolsoItems to fetch.
+     */
+    orderBy?: ReembolsoItemOrderByWithRelationInput | ReembolsoItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ReembolsoItems.
+     */
+    cursor?: ReembolsoItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ReembolsoItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ReembolsoItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ReembolsoItems.
+     */
+    distinct?: ReembolsoItemScalarFieldEnum | ReembolsoItemScalarFieldEnum[]
+  }
+
+  /**
+   * ReembolsoItem create
+   */
+  export type ReembolsoItemCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReembolsoItem
+     */
+    select?: ReembolsoItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReembolsoItem
+     */
+    omit?: ReembolsoItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReembolsoItemInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ReembolsoItem.
+     */
+    data: XOR<ReembolsoItemCreateInput, ReembolsoItemUncheckedCreateInput>
+  }
+
+  /**
+   * ReembolsoItem createMany
+   */
+  export type ReembolsoItemCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ReembolsoItems.
+     */
+    data: ReembolsoItemCreateManyInput | ReembolsoItemCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ReembolsoItem createManyAndReturn
+   */
+  export type ReembolsoItemCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReembolsoItem
+     */
+    select?: ReembolsoItemSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReembolsoItem
+     */
+    omit?: ReembolsoItemOmit<ExtArgs> | null
+    /**
+     * The data used to create many ReembolsoItems.
+     */
+    data: ReembolsoItemCreateManyInput | ReembolsoItemCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReembolsoItemIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ReembolsoItem update
+   */
+  export type ReembolsoItemUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReembolsoItem
+     */
+    select?: ReembolsoItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReembolsoItem
+     */
+    omit?: ReembolsoItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReembolsoItemInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ReembolsoItem.
+     */
+    data: XOR<ReembolsoItemUpdateInput, ReembolsoItemUncheckedUpdateInput>
+    /**
+     * Choose, which ReembolsoItem to update.
+     */
+    where: ReembolsoItemWhereUniqueInput
+  }
+
+  /**
+   * ReembolsoItem updateMany
+   */
+  export type ReembolsoItemUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ReembolsoItems.
+     */
+    data: XOR<ReembolsoItemUpdateManyMutationInput, ReembolsoItemUncheckedUpdateManyInput>
+    /**
+     * Filter which ReembolsoItems to update
+     */
+    where?: ReembolsoItemWhereInput
+    /**
+     * Limit how many ReembolsoItems to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ReembolsoItem updateManyAndReturn
+   */
+  export type ReembolsoItemUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReembolsoItem
+     */
+    select?: ReembolsoItemSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReembolsoItem
+     */
+    omit?: ReembolsoItemOmit<ExtArgs> | null
+    /**
+     * The data used to update ReembolsoItems.
+     */
+    data: XOR<ReembolsoItemUpdateManyMutationInput, ReembolsoItemUncheckedUpdateManyInput>
+    /**
+     * Filter which ReembolsoItems to update
+     */
+    where?: ReembolsoItemWhereInput
+    /**
+     * Limit how many ReembolsoItems to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReembolsoItemIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ReembolsoItem upsert
+   */
+  export type ReembolsoItemUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReembolsoItem
+     */
+    select?: ReembolsoItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReembolsoItem
+     */
+    omit?: ReembolsoItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReembolsoItemInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ReembolsoItem to update in case it exists.
+     */
+    where: ReembolsoItemWhereUniqueInput
+    /**
+     * In case the ReembolsoItem found by the `where` argument doesn't exist, create a new ReembolsoItem with this data.
+     */
+    create: XOR<ReembolsoItemCreateInput, ReembolsoItemUncheckedCreateInput>
+    /**
+     * In case the ReembolsoItem was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ReembolsoItemUpdateInput, ReembolsoItemUncheckedUpdateInput>
+  }
+
+  /**
+   * ReembolsoItem delete
+   */
+  export type ReembolsoItemDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReembolsoItem
+     */
+    select?: ReembolsoItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReembolsoItem
+     */
+    omit?: ReembolsoItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReembolsoItemInclude<ExtArgs> | null
+    /**
+     * Filter which ReembolsoItem to delete.
+     */
+    where: ReembolsoItemWhereUniqueInput
+  }
+
+  /**
+   * ReembolsoItem deleteMany
+   */
+  export type ReembolsoItemDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ReembolsoItems to delete
+     */
+    where?: ReembolsoItemWhereInput
+    /**
+     * Limit how many ReembolsoItems to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ReembolsoItem without action
+   */
+  export type ReembolsoItemDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReembolsoItem
+     */
+    select?: ReembolsoItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReembolsoItem
+     */
+    omit?: ReembolsoItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReembolsoItemInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -75198,6 +77767,35 @@ export namespace Prisma {
   export type AssinaturaScalarFieldEnum = (typeof AssinaturaScalarFieldEnum)[keyof typeof AssinaturaScalarFieldEnum]
 
 
+  export const ReembolsoScalarFieldEnum: {
+    id: 'id',
+    empresa_id: 'empresa_id',
+    periodo: 'periodo',
+    descricao: 'descricao',
+    status: 'status',
+    total: 'total',
+    criado_em: 'criado_em'
+  };
+
+  export type ReembolsoScalarFieldEnum = (typeof ReembolsoScalarFieldEnum)[keyof typeof ReembolsoScalarFieldEnum]
+
+
+  export const ReembolsoItemScalarFieldEnum: {
+    id: 'id',
+    reembolso_id: 'reembolso_id',
+    tipo: 'tipo',
+    data: 'data',
+    descricao: 'descricao',
+    valor: 'valor',
+    km: 'km',
+    valor_km: 'valor_km',
+    clientes_ids: 'clientes_ids',
+    criado_em: 'criado_em'
+  };
+
+  export type ReembolsoItemScalarFieldEnum = (typeof ReembolsoItemScalarFieldEnum)[keyof typeof ReembolsoItemScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -75701,6 +78299,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateListRelationFilter
     assinaturas?: AssinaturaListRelationFilter
     campanhas_cupom?: CampanhaCupomListRelationFilter
+    reembolsos?: ReembolsoListRelationFilter
   }
 
   export type EmpresaOrderByWithRelationInput = {
@@ -75748,6 +78347,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateOrderByRelationAggregateInput
     assinaturas?: AssinaturaOrderByRelationAggregateInput
     campanhas_cupom?: CampanhaCupomOrderByRelationAggregateInput
+    reembolsos?: ReembolsoOrderByRelationAggregateInput
   }
 
   export type EmpresaWhereUniqueInput = Prisma.AtLeast<{
@@ -75798,6 +78398,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateListRelationFilter
     assinaturas?: AssinaturaListRelationFilter
     campanhas_cupom?: CampanhaCupomListRelationFilter
+    reembolsos?: ReembolsoListRelationFilter
   }, "id" | "slug" | "cnpj">
 
   export type EmpresaOrderByWithAggregationInput = {
@@ -80976,6 +83577,158 @@ export namespace Prisma {
     atualizado_em?: DateTimeWithAggregatesFilter<"Assinatura"> | Date | string
   }
 
+  export type ReembolsoWhereInput = {
+    AND?: ReembolsoWhereInput | ReembolsoWhereInput[]
+    OR?: ReembolsoWhereInput[]
+    NOT?: ReembolsoWhereInput | ReembolsoWhereInput[]
+    id?: StringFilter<"Reembolso"> | string
+    empresa_id?: StringFilter<"Reembolso"> | string
+    periodo?: StringFilter<"Reembolso"> | string
+    descricao?: StringNullableFilter<"Reembolso"> | string | null
+    status?: StringFilter<"Reembolso"> | string
+    total?: DecimalFilter<"Reembolso"> | Decimal | DecimalJsLike | number | string
+    criado_em?: DateTimeFilter<"Reembolso"> | Date | string
+    empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
+    itens?: ReembolsoItemListRelationFilter
+  }
+
+  export type ReembolsoOrderByWithRelationInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    periodo?: SortOrder
+    descricao?: SortOrderInput | SortOrder
+    status?: SortOrder
+    total?: SortOrder
+    criado_em?: SortOrder
+    empresa?: EmpresaOrderByWithRelationInput
+    itens?: ReembolsoItemOrderByRelationAggregateInput
+  }
+
+  export type ReembolsoWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ReembolsoWhereInput | ReembolsoWhereInput[]
+    OR?: ReembolsoWhereInput[]
+    NOT?: ReembolsoWhereInput | ReembolsoWhereInput[]
+    empresa_id?: StringFilter<"Reembolso"> | string
+    periodo?: StringFilter<"Reembolso"> | string
+    descricao?: StringNullableFilter<"Reembolso"> | string | null
+    status?: StringFilter<"Reembolso"> | string
+    total?: DecimalFilter<"Reembolso"> | Decimal | DecimalJsLike | number | string
+    criado_em?: DateTimeFilter<"Reembolso"> | Date | string
+    empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
+    itens?: ReembolsoItemListRelationFilter
+  }, "id">
+
+  export type ReembolsoOrderByWithAggregationInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    periodo?: SortOrder
+    descricao?: SortOrderInput | SortOrder
+    status?: SortOrder
+    total?: SortOrder
+    criado_em?: SortOrder
+    _count?: ReembolsoCountOrderByAggregateInput
+    _avg?: ReembolsoAvgOrderByAggregateInput
+    _max?: ReembolsoMaxOrderByAggregateInput
+    _min?: ReembolsoMinOrderByAggregateInput
+    _sum?: ReembolsoSumOrderByAggregateInput
+  }
+
+  export type ReembolsoScalarWhereWithAggregatesInput = {
+    AND?: ReembolsoScalarWhereWithAggregatesInput | ReembolsoScalarWhereWithAggregatesInput[]
+    OR?: ReembolsoScalarWhereWithAggregatesInput[]
+    NOT?: ReembolsoScalarWhereWithAggregatesInput | ReembolsoScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Reembolso"> | string
+    empresa_id?: StringWithAggregatesFilter<"Reembolso"> | string
+    periodo?: StringWithAggregatesFilter<"Reembolso"> | string
+    descricao?: StringNullableWithAggregatesFilter<"Reembolso"> | string | null
+    status?: StringWithAggregatesFilter<"Reembolso"> | string
+    total?: DecimalWithAggregatesFilter<"Reembolso"> | Decimal | DecimalJsLike | number | string
+    criado_em?: DateTimeWithAggregatesFilter<"Reembolso"> | Date | string
+  }
+
+  export type ReembolsoItemWhereInput = {
+    AND?: ReembolsoItemWhereInput | ReembolsoItemWhereInput[]
+    OR?: ReembolsoItemWhereInput[]
+    NOT?: ReembolsoItemWhereInput | ReembolsoItemWhereInput[]
+    id?: StringFilter<"ReembolsoItem"> | string
+    reembolso_id?: StringFilter<"ReembolsoItem"> | string
+    tipo?: StringFilter<"ReembolsoItem"> | string
+    data?: DateTimeFilter<"ReembolsoItem"> | Date | string
+    descricao?: StringFilter<"ReembolsoItem"> | string
+    valor?: DecimalFilter<"ReembolsoItem"> | Decimal | DecimalJsLike | number | string
+    km?: DecimalNullableFilter<"ReembolsoItem"> | Decimal | DecimalJsLike | number | string | null
+    valor_km?: DecimalNullableFilter<"ReembolsoItem"> | Decimal | DecimalJsLike | number | string | null
+    clientes_ids?: StringNullableListFilter<"ReembolsoItem">
+    criado_em?: DateTimeFilter<"ReembolsoItem"> | Date | string
+    reembolso?: XOR<ReembolsoScalarRelationFilter, ReembolsoWhereInput>
+  }
+
+  export type ReembolsoItemOrderByWithRelationInput = {
+    id?: SortOrder
+    reembolso_id?: SortOrder
+    tipo?: SortOrder
+    data?: SortOrder
+    descricao?: SortOrder
+    valor?: SortOrder
+    km?: SortOrderInput | SortOrder
+    valor_km?: SortOrderInput | SortOrder
+    clientes_ids?: SortOrder
+    criado_em?: SortOrder
+    reembolso?: ReembolsoOrderByWithRelationInput
+  }
+
+  export type ReembolsoItemWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ReembolsoItemWhereInput | ReembolsoItemWhereInput[]
+    OR?: ReembolsoItemWhereInput[]
+    NOT?: ReembolsoItemWhereInput | ReembolsoItemWhereInput[]
+    reembolso_id?: StringFilter<"ReembolsoItem"> | string
+    tipo?: StringFilter<"ReembolsoItem"> | string
+    data?: DateTimeFilter<"ReembolsoItem"> | Date | string
+    descricao?: StringFilter<"ReembolsoItem"> | string
+    valor?: DecimalFilter<"ReembolsoItem"> | Decimal | DecimalJsLike | number | string
+    km?: DecimalNullableFilter<"ReembolsoItem"> | Decimal | DecimalJsLike | number | string | null
+    valor_km?: DecimalNullableFilter<"ReembolsoItem"> | Decimal | DecimalJsLike | number | string | null
+    clientes_ids?: StringNullableListFilter<"ReembolsoItem">
+    criado_em?: DateTimeFilter<"ReembolsoItem"> | Date | string
+    reembolso?: XOR<ReembolsoScalarRelationFilter, ReembolsoWhereInput>
+  }, "id">
+
+  export type ReembolsoItemOrderByWithAggregationInput = {
+    id?: SortOrder
+    reembolso_id?: SortOrder
+    tipo?: SortOrder
+    data?: SortOrder
+    descricao?: SortOrder
+    valor?: SortOrder
+    km?: SortOrderInput | SortOrder
+    valor_km?: SortOrderInput | SortOrder
+    clientes_ids?: SortOrder
+    criado_em?: SortOrder
+    _count?: ReembolsoItemCountOrderByAggregateInput
+    _avg?: ReembolsoItemAvgOrderByAggregateInput
+    _max?: ReembolsoItemMaxOrderByAggregateInput
+    _min?: ReembolsoItemMinOrderByAggregateInput
+    _sum?: ReembolsoItemSumOrderByAggregateInput
+  }
+
+  export type ReembolsoItemScalarWhereWithAggregatesInput = {
+    AND?: ReembolsoItemScalarWhereWithAggregatesInput | ReembolsoItemScalarWhereWithAggregatesInput[]
+    OR?: ReembolsoItemScalarWhereWithAggregatesInput[]
+    NOT?: ReembolsoItemScalarWhereWithAggregatesInput | ReembolsoItemScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ReembolsoItem"> | string
+    reembolso_id?: StringWithAggregatesFilter<"ReembolsoItem"> | string
+    tipo?: StringWithAggregatesFilter<"ReembolsoItem"> | string
+    data?: DateTimeWithAggregatesFilter<"ReembolsoItem"> | Date | string
+    descricao?: StringWithAggregatesFilter<"ReembolsoItem"> | string
+    valor?: DecimalWithAggregatesFilter<"ReembolsoItem"> | Decimal | DecimalJsLike | number | string
+    km?: DecimalNullableWithAggregatesFilter<"ReembolsoItem"> | Decimal | DecimalJsLike | number | string | null
+    valor_km?: DecimalNullableWithAggregatesFilter<"ReembolsoItem"> | Decimal | DecimalJsLike | number | string | null
+    clientes_ids?: StringNullableListFilter<"ReembolsoItem">
+    criado_em?: DateTimeWithAggregatesFilter<"ReembolsoItem"> | Date | string
+  }
+
   export type EmpresaCreateInput = {
     id?: string
     nome: string
@@ -81021,6 +83774,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateInput = {
@@ -81068,6 +83822,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUpdateInput = {
@@ -81115,6 +83870,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateInput = {
@@ -81162,6 +83918,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateManyInput = {
@@ -86809,6 +89566,169 @@ export namespace Prisma {
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ReembolsoCreateInput = {
+    id?: string
+    periodo: string
+    descricao?: string | null
+    status?: string
+    total?: Decimal | DecimalJsLike | number | string
+    criado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutReembolsosInput
+    itens?: ReembolsoItemCreateNestedManyWithoutReembolsoInput
+  }
+
+  export type ReembolsoUncheckedCreateInput = {
+    id?: string
+    empresa_id: string
+    periodo: string
+    descricao?: string | null
+    status?: string
+    total?: Decimal | DecimalJsLike | number | string
+    criado_em?: Date | string
+    itens?: ReembolsoItemUncheckedCreateNestedManyWithoutReembolsoInput
+  }
+
+  export type ReembolsoUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    periodo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    total?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutReembolsosNestedInput
+    itens?: ReembolsoItemUpdateManyWithoutReembolsoNestedInput
+  }
+
+  export type ReembolsoUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    periodo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    total?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    itens?: ReembolsoItemUncheckedUpdateManyWithoutReembolsoNestedInput
+  }
+
+  export type ReembolsoCreateManyInput = {
+    id?: string
+    empresa_id: string
+    periodo: string
+    descricao?: string | null
+    status?: string
+    total?: Decimal | DecimalJsLike | number | string
+    criado_em?: Date | string
+  }
+
+  export type ReembolsoUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    periodo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    total?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReembolsoUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    periodo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    total?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReembolsoItemCreateInput = {
+    id?: string
+    tipo: string
+    data: Date | string
+    descricao: string
+    valor: Decimal | DecimalJsLike | number | string
+    km?: Decimal | DecimalJsLike | number | string | null
+    valor_km?: Decimal | DecimalJsLike | number | string | null
+    clientes_ids?: ReembolsoItemCreateclientes_idsInput | string[]
+    criado_em?: Date | string
+    reembolso: ReembolsoCreateNestedOneWithoutItensInput
+  }
+
+  export type ReembolsoItemUncheckedCreateInput = {
+    id?: string
+    reembolso_id: string
+    tipo: string
+    data: Date | string
+    descricao: string
+    valor: Decimal | DecimalJsLike | number | string
+    km?: Decimal | DecimalJsLike | number | string | null
+    valor_km?: Decimal | DecimalJsLike | number | string | null
+    clientes_ids?: ReembolsoItemCreateclientes_idsInput | string[]
+    criado_em?: Date | string
+  }
+
+  export type ReembolsoItemUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    data?: DateTimeFieldUpdateOperationsInput | Date | string
+    descricao?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    clientes_ids?: ReembolsoItemUpdateclientes_idsInput | string[]
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    reembolso?: ReembolsoUpdateOneRequiredWithoutItensNestedInput
+  }
+
+  export type ReembolsoItemUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    reembolso_id?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    data?: DateTimeFieldUpdateOperationsInput | Date | string
+    descricao?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    clientes_ids?: ReembolsoItemUpdateclientes_idsInput | string[]
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReembolsoItemCreateManyInput = {
+    id?: string
+    reembolso_id: string
+    tipo: string
+    data: Date | string
+    descricao: string
+    valor: Decimal | DecimalJsLike | number | string
+    km?: Decimal | DecimalJsLike | number | string | null
+    valor_km?: Decimal | DecimalJsLike | number | string | null
+    clientes_ids?: ReembolsoItemCreateclientes_idsInput | string[]
+    criado_em?: Date | string
+  }
+
+  export type ReembolsoItemUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    data?: DateTimeFieldUpdateOperationsInput | Date | string
+    descricao?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    clientes_ids?: ReembolsoItemUpdateclientes_idsInput | string[]
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReembolsoItemUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    reembolso_id?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    data?: DateTimeFieldUpdateOperationsInput | Date | string
+    descricao?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    clientes_ids?: ReembolsoItemUpdateclientes_idsInput | string[]
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -87085,6 +90005,12 @@ export namespace Prisma {
     none?: CampanhaCupomWhereInput
   }
 
+  export type ReembolsoListRelationFilter = {
+    every?: ReembolsoWhereInput
+    some?: ReembolsoWhereInput
+    none?: ReembolsoWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -87219,6 +90145,10 @@ export namespace Prisma {
   }
 
   export type CampanhaCupomOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ReembolsoOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -90791,6 +93721,108 @@ export namespace Prisma {
     valor?: SortOrder
   }
 
+  export type ReembolsoItemListRelationFilter = {
+    every?: ReembolsoItemWhereInput
+    some?: ReembolsoItemWhereInput
+    none?: ReembolsoItemWhereInput
+  }
+
+  export type ReembolsoItemOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ReembolsoCountOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    periodo?: SortOrder
+    descricao?: SortOrder
+    status?: SortOrder
+    total?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type ReembolsoAvgOrderByAggregateInput = {
+    total?: SortOrder
+  }
+
+  export type ReembolsoMaxOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    periodo?: SortOrder
+    descricao?: SortOrder
+    status?: SortOrder
+    total?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type ReembolsoMinOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    periodo?: SortOrder
+    descricao?: SortOrder
+    status?: SortOrder
+    total?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type ReembolsoSumOrderByAggregateInput = {
+    total?: SortOrder
+  }
+
+  export type ReembolsoScalarRelationFilter = {
+    is?: ReembolsoWhereInput
+    isNot?: ReembolsoWhereInput
+  }
+
+  export type ReembolsoItemCountOrderByAggregateInput = {
+    id?: SortOrder
+    reembolso_id?: SortOrder
+    tipo?: SortOrder
+    data?: SortOrder
+    descricao?: SortOrder
+    valor?: SortOrder
+    km?: SortOrder
+    valor_km?: SortOrder
+    clientes_ids?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type ReembolsoItemAvgOrderByAggregateInput = {
+    valor?: SortOrder
+    km?: SortOrder
+    valor_km?: SortOrder
+  }
+
+  export type ReembolsoItemMaxOrderByAggregateInput = {
+    id?: SortOrder
+    reembolso_id?: SortOrder
+    tipo?: SortOrder
+    data?: SortOrder
+    descricao?: SortOrder
+    valor?: SortOrder
+    km?: SortOrder
+    valor_km?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type ReembolsoItemMinOrderByAggregateInput = {
+    id?: SortOrder
+    reembolso_id?: SortOrder
+    tipo?: SortOrder
+    data?: SortOrder
+    descricao?: SortOrder
+    valor?: SortOrder
+    km?: SortOrder
+    valor_km?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type ReembolsoItemSumOrderByAggregateInput = {
+    valor?: SortOrder
+    km?: SortOrder
+    valor_km?: SortOrder
+  }
+
   export type MembroEmpresaCreateNestedManyWithoutEmpresaInput = {
     create?: XOR<MembroEmpresaCreateWithoutEmpresaInput, MembroEmpresaUncheckedCreateWithoutEmpresaInput> | MembroEmpresaCreateWithoutEmpresaInput[] | MembroEmpresaUncheckedCreateWithoutEmpresaInput[]
     connectOrCreate?: MembroEmpresaCreateOrConnectWithoutEmpresaInput | MembroEmpresaCreateOrConnectWithoutEmpresaInput[]
@@ -91022,6 +94054,13 @@ export namespace Prisma {
     connect?: CampanhaCupomWhereUniqueInput | CampanhaCupomWhereUniqueInput[]
   }
 
+  export type ReembolsoCreateNestedManyWithoutEmpresaInput = {
+    create?: XOR<ReembolsoCreateWithoutEmpresaInput, ReembolsoUncheckedCreateWithoutEmpresaInput> | ReembolsoCreateWithoutEmpresaInput[] | ReembolsoUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: ReembolsoCreateOrConnectWithoutEmpresaInput | ReembolsoCreateOrConnectWithoutEmpresaInput[]
+    createMany?: ReembolsoCreateManyEmpresaInputEnvelope
+    connect?: ReembolsoWhereUniqueInput | ReembolsoWhereUniqueInput[]
+  }
+
   export type MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput = {
     create?: XOR<MembroEmpresaCreateWithoutEmpresaInput, MembroEmpresaUncheckedCreateWithoutEmpresaInput> | MembroEmpresaCreateWithoutEmpresaInput[] | MembroEmpresaUncheckedCreateWithoutEmpresaInput[]
     connectOrCreate?: MembroEmpresaCreateOrConnectWithoutEmpresaInput | MembroEmpresaCreateOrConnectWithoutEmpresaInput[]
@@ -91251,6 +94290,13 @@ export namespace Prisma {
     connectOrCreate?: CampanhaCupomCreateOrConnectWithoutEmpresaInput | CampanhaCupomCreateOrConnectWithoutEmpresaInput[]
     createMany?: CampanhaCupomCreateManyEmpresaInputEnvelope
     connect?: CampanhaCupomWhereUniqueInput | CampanhaCupomWhereUniqueInput[]
+  }
+
+  export type ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput = {
+    create?: XOR<ReembolsoCreateWithoutEmpresaInput, ReembolsoUncheckedCreateWithoutEmpresaInput> | ReembolsoCreateWithoutEmpresaInput[] | ReembolsoUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: ReembolsoCreateOrConnectWithoutEmpresaInput | ReembolsoCreateOrConnectWithoutEmpresaInput[]
+    createMany?: ReembolsoCreateManyEmpresaInputEnvelope
+    connect?: ReembolsoWhereUniqueInput | ReembolsoWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -91735,6 +94781,20 @@ export namespace Prisma {
     deleteMany?: CampanhaCupomScalarWhereInput | CampanhaCupomScalarWhereInput[]
   }
 
+  export type ReembolsoUpdateManyWithoutEmpresaNestedInput = {
+    create?: XOR<ReembolsoCreateWithoutEmpresaInput, ReembolsoUncheckedCreateWithoutEmpresaInput> | ReembolsoCreateWithoutEmpresaInput[] | ReembolsoUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: ReembolsoCreateOrConnectWithoutEmpresaInput | ReembolsoCreateOrConnectWithoutEmpresaInput[]
+    upsert?: ReembolsoUpsertWithWhereUniqueWithoutEmpresaInput | ReembolsoUpsertWithWhereUniqueWithoutEmpresaInput[]
+    createMany?: ReembolsoCreateManyEmpresaInputEnvelope
+    set?: ReembolsoWhereUniqueInput | ReembolsoWhereUniqueInput[]
+    disconnect?: ReembolsoWhereUniqueInput | ReembolsoWhereUniqueInput[]
+    delete?: ReembolsoWhereUniqueInput | ReembolsoWhereUniqueInput[]
+    connect?: ReembolsoWhereUniqueInput | ReembolsoWhereUniqueInput[]
+    update?: ReembolsoUpdateWithWhereUniqueWithoutEmpresaInput | ReembolsoUpdateWithWhereUniqueWithoutEmpresaInput[]
+    updateMany?: ReembolsoUpdateManyWithWhereWithoutEmpresaInput | ReembolsoUpdateManyWithWhereWithoutEmpresaInput[]
+    deleteMany?: ReembolsoScalarWhereInput | ReembolsoScalarWhereInput[]
+  }
+
   export type MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput = {
     create?: XOR<MembroEmpresaCreateWithoutEmpresaInput, MembroEmpresaUncheckedCreateWithoutEmpresaInput> | MembroEmpresaCreateWithoutEmpresaInput[] | MembroEmpresaUncheckedCreateWithoutEmpresaInput[]
     connectOrCreate?: MembroEmpresaCreateOrConnectWithoutEmpresaInput | MembroEmpresaCreateOrConnectWithoutEmpresaInput[]
@@ -92195,6 +95255,20 @@ export namespace Prisma {
     update?: CampanhaCupomUpdateWithWhereUniqueWithoutEmpresaInput | CampanhaCupomUpdateWithWhereUniqueWithoutEmpresaInput[]
     updateMany?: CampanhaCupomUpdateManyWithWhereWithoutEmpresaInput | CampanhaCupomUpdateManyWithWhereWithoutEmpresaInput[]
     deleteMany?: CampanhaCupomScalarWhereInput | CampanhaCupomScalarWhereInput[]
+  }
+
+  export type ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput = {
+    create?: XOR<ReembolsoCreateWithoutEmpresaInput, ReembolsoUncheckedCreateWithoutEmpresaInput> | ReembolsoCreateWithoutEmpresaInput[] | ReembolsoUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: ReembolsoCreateOrConnectWithoutEmpresaInput | ReembolsoCreateOrConnectWithoutEmpresaInput[]
+    upsert?: ReembolsoUpsertWithWhereUniqueWithoutEmpresaInput | ReembolsoUpsertWithWhereUniqueWithoutEmpresaInput[]
+    createMany?: ReembolsoCreateManyEmpresaInputEnvelope
+    set?: ReembolsoWhereUniqueInput | ReembolsoWhereUniqueInput[]
+    disconnect?: ReembolsoWhereUniqueInput | ReembolsoWhereUniqueInput[]
+    delete?: ReembolsoWhereUniqueInput | ReembolsoWhereUniqueInput[]
+    connect?: ReembolsoWhereUniqueInput | ReembolsoWhereUniqueInput[]
+    update?: ReembolsoUpdateWithWhereUniqueWithoutEmpresaInput | ReembolsoUpdateWithWhereUniqueWithoutEmpresaInput[]
+    updateMany?: ReembolsoUpdateManyWithWhereWithoutEmpresaInput | ReembolsoUpdateManyWithWhereWithoutEmpresaInput[]
+    deleteMany?: ReembolsoScalarWhereInput | ReembolsoScalarWhereInput[]
   }
 
   export type MembroEmpresaCreateNestedManyWithoutUsuarioInput = {
@@ -97766,6 +100840,85 @@ export namespace Prisma {
     update?: XOR<XOR<ServicoUpdateToOneWithWhereWithoutAssinaturasInput, ServicoUpdateWithoutAssinaturasInput>, ServicoUncheckedUpdateWithoutAssinaturasInput>
   }
 
+  export type EmpresaCreateNestedOneWithoutReembolsosInput = {
+    create?: XOR<EmpresaCreateWithoutReembolsosInput, EmpresaUncheckedCreateWithoutReembolsosInput>
+    connectOrCreate?: EmpresaCreateOrConnectWithoutReembolsosInput
+    connect?: EmpresaWhereUniqueInput
+  }
+
+  export type ReembolsoItemCreateNestedManyWithoutReembolsoInput = {
+    create?: XOR<ReembolsoItemCreateWithoutReembolsoInput, ReembolsoItemUncheckedCreateWithoutReembolsoInput> | ReembolsoItemCreateWithoutReembolsoInput[] | ReembolsoItemUncheckedCreateWithoutReembolsoInput[]
+    connectOrCreate?: ReembolsoItemCreateOrConnectWithoutReembolsoInput | ReembolsoItemCreateOrConnectWithoutReembolsoInput[]
+    createMany?: ReembolsoItemCreateManyReembolsoInputEnvelope
+    connect?: ReembolsoItemWhereUniqueInput | ReembolsoItemWhereUniqueInput[]
+  }
+
+  export type ReembolsoItemUncheckedCreateNestedManyWithoutReembolsoInput = {
+    create?: XOR<ReembolsoItemCreateWithoutReembolsoInput, ReembolsoItemUncheckedCreateWithoutReembolsoInput> | ReembolsoItemCreateWithoutReembolsoInput[] | ReembolsoItemUncheckedCreateWithoutReembolsoInput[]
+    connectOrCreate?: ReembolsoItemCreateOrConnectWithoutReembolsoInput | ReembolsoItemCreateOrConnectWithoutReembolsoInput[]
+    createMany?: ReembolsoItemCreateManyReembolsoInputEnvelope
+    connect?: ReembolsoItemWhereUniqueInput | ReembolsoItemWhereUniqueInput[]
+  }
+
+  export type EmpresaUpdateOneRequiredWithoutReembolsosNestedInput = {
+    create?: XOR<EmpresaCreateWithoutReembolsosInput, EmpresaUncheckedCreateWithoutReembolsosInput>
+    connectOrCreate?: EmpresaCreateOrConnectWithoutReembolsosInput
+    upsert?: EmpresaUpsertWithoutReembolsosInput
+    connect?: EmpresaWhereUniqueInput
+    update?: XOR<XOR<EmpresaUpdateToOneWithWhereWithoutReembolsosInput, EmpresaUpdateWithoutReembolsosInput>, EmpresaUncheckedUpdateWithoutReembolsosInput>
+  }
+
+  export type ReembolsoItemUpdateManyWithoutReembolsoNestedInput = {
+    create?: XOR<ReembolsoItemCreateWithoutReembolsoInput, ReembolsoItemUncheckedCreateWithoutReembolsoInput> | ReembolsoItemCreateWithoutReembolsoInput[] | ReembolsoItemUncheckedCreateWithoutReembolsoInput[]
+    connectOrCreate?: ReembolsoItemCreateOrConnectWithoutReembolsoInput | ReembolsoItemCreateOrConnectWithoutReembolsoInput[]
+    upsert?: ReembolsoItemUpsertWithWhereUniqueWithoutReembolsoInput | ReembolsoItemUpsertWithWhereUniqueWithoutReembolsoInput[]
+    createMany?: ReembolsoItemCreateManyReembolsoInputEnvelope
+    set?: ReembolsoItemWhereUniqueInput | ReembolsoItemWhereUniqueInput[]
+    disconnect?: ReembolsoItemWhereUniqueInput | ReembolsoItemWhereUniqueInput[]
+    delete?: ReembolsoItemWhereUniqueInput | ReembolsoItemWhereUniqueInput[]
+    connect?: ReembolsoItemWhereUniqueInput | ReembolsoItemWhereUniqueInput[]
+    update?: ReembolsoItemUpdateWithWhereUniqueWithoutReembolsoInput | ReembolsoItemUpdateWithWhereUniqueWithoutReembolsoInput[]
+    updateMany?: ReembolsoItemUpdateManyWithWhereWithoutReembolsoInput | ReembolsoItemUpdateManyWithWhereWithoutReembolsoInput[]
+    deleteMany?: ReembolsoItemScalarWhereInput | ReembolsoItemScalarWhereInput[]
+  }
+
+  export type ReembolsoItemUncheckedUpdateManyWithoutReembolsoNestedInput = {
+    create?: XOR<ReembolsoItemCreateWithoutReembolsoInput, ReembolsoItemUncheckedCreateWithoutReembolsoInput> | ReembolsoItemCreateWithoutReembolsoInput[] | ReembolsoItemUncheckedCreateWithoutReembolsoInput[]
+    connectOrCreate?: ReembolsoItemCreateOrConnectWithoutReembolsoInput | ReembolsoItemCreateOrConnectWithoutReembolsoInput[]
+    upsert?: ReembolsoItemUpsertWithWhereUniqueWithoutReembolsoInput | ReembolsoItemUpsertWithWhereUniqueWithoutReembolsoInput[]
+    createMany?: ReembolsoItemCreateManyReembolsoInputEnvelope
+    set?: ReembolsoItemWhereUniqueInput | ReembolsoItemWhereUniqueInput[]
+    disconnect?: ReembolsoItemWhereUniqueInput | ReembolsoItemWhereUniqueInput[]
+    delete?: ReembolsoItemWhereUniqueInput | ReembolsoItemWhereUniqueInput[]
+    connect?: ReembolsoItemWhereUniqueInput | ReembolsoItemWhereUniqueInput[]
+    update?: ReembolsoItemUpdateWithWhereUniqueWithoutReembolsoInput | ReembolsoItemUpdateWithWhereUniqueWithoutReembolsoInput[]
+    updateMany?: ReembolsoItemUpdateManyWithWhereWithoutReembolsoInput | ReembolsoItemUpdateManyWithWhereWithoutReembolsoInput[]
+    deleteMany?: ReembolsoItemScalarWhereInput | ReembolsoItemScalarWhereInput[]
+  }
+
+  export type ReembolsoItemCreateclientes_idsInput = {
+    set: string[]
+  }
+
+  export type ReembolsoCreateNestedOneWithoutItensInput = {
+    create?: XOR<ReembolsoCreateWithoutItensInput, ReembolsoUncheckedCreateWithoutItensInput>
+    connectOrCreate?: ReembolsoCreateOrConnectWithoutItensInput
+    connect?: ReembolsoWhereUniqueInput
+  }
+
+  export type ReembolsoItemUpdateclientes_idsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type ReembolsoUpdateOneRequiredWithoutItensNestedInput = {
+    create?: XOR<ReembolsoCreateWithoutItensInput, ReembolsoUncheckedCreateWithoutItensInput>
+    connectOrCreate?: ReembolsoCreateOrConnectWithoutItensInput
+    upsert?: ReembolsoUpsertWithoutItensInput
+    connect?: ReembolsoWhereUniqueInput
+    update?: XOR<XOR<ReembolsoUpdateToOneWithWhereWithoutItensInput, ReembolsoUpdateWithoutItensInput>, ReembolsoUncheckedUpdateWithoutItensInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -99987,6 +103140,36 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ReembolsoCreateWithoutEmpresaInput = {
+    id?: string
+    periodo: string
+    descricao?: string | null
+    status?: string
+    total?: Decimal | DecimalJsLike | number | string
+    criado_em?: Date | string
+    itens?: ReembolsoItemCreateNestedManyWithoutReembolsoInput
+  }
+
+  export type ReembolsoUncheckedCreateWithoutEmpresaInput = {
+    id?: string
+    periodo: string
+    descricao?: string | null
+    status?: string
+    total?: Decimal | DecimalJsLike | number | string
+    criado_em?: Date | string
+    itens?: ReembolsoItemUncheckedCreateNestedManyWithoutReembolsoInput
+  }
+
+  export type ReembolsoCreateOrConnectWithoutEmpresaInput = {
+    where: ReembolsoWhereUniqueInput
+    create: XOR<ReembolsoCreateWithoutEmpresaInput, ReembolsoUncheckedCreateWithoutEmpresaInput>
+  }
+
+  export type ReembolsoCreateManyEmpresaInputEnvelope = {
+    data: ReembolsoCreateManyEmpresaInput | ReembolsoCreateManyEmpresaInput[]
+    skipDuplicates?: boolean
+  }
+
   export type MembroEmpresaUpsertWithWhereUniqueWithoutEmpresaInput = {
     where: MembroEmpresaWhereUniqueInput
     update: XOR<MembroEmpresaUpdateWithoutEmpresaInput, MembroEmpresaUncheckedUpdateWithoutEmpresaInput>
@@ -101196,6 +104379,35 @@ export namespace Prisma {
     usos_count?: IntFilter<"CampanhaCupom"> | number
     criado_em?: DateTimeFilter<"CampanhaCupom"> | Date | string
     atualizado_em?: DateTimeFilter<"CampanhaCupom"> | Date | string
+  }
+
+  export type ReembolsoUpsertWithWhereUniqueWithoutEmpresaInput = {
+    where: ReembolsoWhereUniqueInput
+    update: XOR<ReembolsoUpdateWithoutEmpresaInput, ReembolsoUncheckedUpdateWithoutEmpresaInput>
+    create: XOR<ReembolsoCreateWithoutEmpresaInput, ReembolsoUncheckedCreateWithoutEmpresaInput>
+  }
+
+  export type ReembolsoUpdateWithWhereUniqueWithoutEmpresaInput = {
+    where: ReembolsoWhereUniqueInput
+    data: XOR<ReembolsoUpdateWithoutEmpresaInput, ReembolsoUncheckedUpdateWithoutEmpresaInput>
+  }
+
+  export type ReembolsoUpdateManyWithWhereWithoutEmpresaInput = {
+    where: ReembolsoScalarWhereInput
+    data: XOR<ReembolsoUpdateManyMutationInput, ReembolsoUncheckedUpdateManyWithoutEmpresaInput>
+  }
+
+  export type ReembolsoScalarWhereInput = {
+    AND?: ReembolsoScalarWhereInput | ReembolsoScalarWhereInput[]
+    OR?: ReembolsoScalarWhereInput[]
+    NOT?: ReembolsoScalarWhereInput | ReembolsoScalarWhereInput[]
+    id?: StringFilter<"Reembolso"> | string
+    empresa_id?: StringFilter<"Reembolso"> | string
+    periodo?: StringFilter<"Reembolso"> | string
+    descricao?: StringNullableFilter<"Reembolso"> | string | null
+    status?: StringFilter<"Reembolso"> | string
+    total?: DecimalFilter<"Reembolso"> | Decimal | DecimalJsLike | number | string
+    criado_em?: DateTimeFilter<"Reembolso"> | Date | string
   }
 
   export type MembroEmpresaCreateWithoutUsuarioInput = {
@@ -102761,6 +105973,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutMembrosInput = {
@@ -102807,6 +106020,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutMembrosInput = {
@@ -102963,6 +106177,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutMembrosInput = {
@@ -103009,6 +106224,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PerfilUpsertWithoutMembrosInput = {
@@ -103086,6 +106302,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutPerfisInput = {
@@ -103132,6 +106349,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutPerfisInput = {
@@ -103238,6 +106456,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutPerfisInput = {
@@ -103284,6 +106503,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type MembroEmpresaUpsertWithWhereUniqueWithoutPerfilInput = {
@@ -103504,6 +106724,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutConvitesInput = {
@@ -103550,6 +106771,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutConvitesInput = {
@@ -103675,6 +106897,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutConvitesInput = {
@@ -103721,6 +106944,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type UsuarioUpsertWithoutConvitesInput = {
@@ -103836,6 +107060,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutConvites_clienteInput = {
@@ -103882,6 +107107,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutConvites_clienteInput = {
@@ -104096,6 +107322,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutConvites_clienteInput = {
@@ -104142,6 +107369,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type UsuarioUpsertWithoutConvites_clienteInput = {
@@ -104352,6 +107580,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutClientesInput = {
@@ -104398,6 +107627,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutClientesInput = {
@@ -105257,6 +108487,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutClientesInput = {
@@ -105303,6 +108534,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ContatoUpsertWithWhereUniqueWithoutClienteInput = {
@@ -105815,6 +109047,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutServicosInput = {
@@ -105861,6 +109094,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutServicosInput = {
@@ -106152,6 +109386,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutServicosInput = {
@@ -106198,6 +109433,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PlanoDeContasUpsertWithoutServicosInput = {
@@ -106363,6 +109599,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutEtapas_crmInput = {
@@ -106409,6 +109646,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutEtapas_crmInput = {
@@ -106539,6 +109777,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutEtapas_crmInput = {
@@ -106585,6 +109824,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type LeadUpsertWithWhereUniqueWithoutEtapaInput = {
@@ -106911,6 +110151,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutLeadsInput = {
@@ -106957,6 +110198,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutLeadsInput = {
@@ -107378,6 +110620,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutLeadsInput = {
@@ -107424,6 +110667,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutLeadsInput = {
@@ -107789,6 +111033,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutPropostasInput = {
@@ -107835,6 +111080,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutPropostasInput = {
@@ -108334,6 +111580,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutPropostasInput = {
@@ -108380,6 +111627,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutPropostasInput = {
@@ -109268,6 +112516,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutContratosInput = {
@@ -109314,6 +112563,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutContratosInput = {
@@ -109945,6 +113195,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutContratosInput = {
@@ -109991,6 +113242,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PropostaUpsertWithoutContratoInput = {
@@ -110468,6 +113720,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutProjetosInput = {
@@ -110514,6 +113767,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutProjetosInput = {
@@ -111114,6 +114368,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutProjetosInput = {
@@ -111160,6 +114415,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ContratoUpsertWithoutProjetoInput = {
@@ -113832,6 +117088,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutEtiquetas_tarefaInput = {
@@ -113878,6 +117135,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutEtiquetas_tarefaInput = {
@@ -113958,6 +117216,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutEtiquetas_tarefaInput = {
@@ -114004,6 +117263,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type TarefaEtiquetaUpsertWithWhereUniqueWithoutEtiquetaInput = {
@@ -114214,6 +117474,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutPastas_documentoInput = {
@@ -114260,6 +117521,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutPastas_documentoInput = {
@@ -114429,6 +117691,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutPastas_documentoInput = {
@@ -114475,6 +117738,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PastaDocumentoUpsertWithoutFilhosInput = {
@@ -114588,6 +117852,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutDocumentosInput = {
@@ -114634,6 +117899,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutDocumentosInput = {
@@ -115029,6 +118295,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutDocumentosInput = {
@@ -115075,6 +118342,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ProjetoUpsertWithoutDocumentosInput = {
@@ -115484,6 +118752,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutPlano_contasInput = {
@@ -115530,6 +118799,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutPlano_contasInput = {
@@ -115841,6 +119111,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutPlano_contasInput = {
@@ -115887,6 +119158,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PlanoDeContasUpsertWithoutFilhosInput = {
@@ -116104,6 +119376,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutContas_bancariasInput = {
@@ -116150,6 +119423,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutContas_bancariasInput = {
@@ -116417,6 +119691,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutContas_bancariasInput = {
@@ -116463,6 +119738,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type BancoUpsertWithoutContas_bancariasInput = {
@@ -116598,6 +119874,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutTransferencias_tesourariaInput = {
@@ -116644,6 +119921,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutTransferencias_tesourariaInput = {
@@ -116796,6 +120074,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutTransferencias_tesourariaInput = {
@@ -116842,6 +120121,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ContaBancariaUpsertWithoutTransferencias_origemInput = {
@@ -116990,6 +120270,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutCentros_custoInput = {
@@ -117036,6 +120317,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutCentros_custoInput = {
@@ -117275,6 +120557,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutCentros_custoInput = {
@@ -117321,6 +120604,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ProjetoUpsertWithoutCentro_custoInput = {
@@ -117456,6 +120740,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutRecebiveisInput = {
@@ -117502,6 +120787,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutRecebiveisInput = {
@@ -118030,6 +121316,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutRecebiveisInput = {
@@ -118076,6 +121363,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutRecebiveisInput = {
@@ -118636,6 +121924,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutContas_pagarInput = {
@@ -118682,6 +121971,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutContas_pagarInput = {
@@ -118981,6 +122271,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutContas_pagarInput = {
@@ -119027,6 +122318,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type PlanoDeContasUpsertWithoutContas_pagarInput = {
@@ -119340,6 +122632,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutFornecedoresInput = {
@@ -119386,6 +122679,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutFornecedoresInput = {
@@ -119498,6 +122792,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutFornecedoresInput = {
@@ -119544,6 +122839,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ContaPagarUpsertWithWhereUniqueWithoutFornecedor_relInput = {
@@ -119606,6 +122902,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutModelos_documentoInput = {
@@ -119652,6 +122949,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutModelos_documentoInput = {
@@ -119714,6 +123012,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutModelos_documentoInput = {
@@ -119760,6 +123059,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateWithoutEventosInput = {
@@ -119806,6 +123106,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutEventosInput = {
@@ -119852,6 +123153,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutEventosInput = {
@@ -120218,6 +123520,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutEventosInput = {
@@ -120264,6 +123567,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type UsuarioUpsertWithoutEventos_responsavelInput = {
@@ -120638,6 +123942,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutRegistros_auditoriaInput = {
@@ -120684,6 +123989,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutRegistros_auditoriaInput = {
@@ -120746,6 +124052,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutRegistros_auditoriaInput = {
@@ -120792,6 +124099,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateWithoutNotificacoesInput = {
@@ -120838,6 +124146,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutNotificacoesInput = {
@@ -120884,6 +124193,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutNotificacoesInput = {
@@ -120946,6 +124256,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutNotificacoesInput = {
@@ -120992,6 +124303,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateWithoutNotas_fiscaisInput = {
@@ -121038,6 +124350,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutNotas_fiscaisInput = {
@@ -121084,6 +124397,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutNotas_fiscaisInput = {
@@ -121407,6 +124721,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutNotas_fiscaisInput = {
@@ -121453,6 +124768,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutNotas_fiscaisInput = {
@@ -121778,6 +125094,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutBoletosInput = {
@@ -121824,6 +125141,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutBoletosInput = {
@@ -122046,6 +125364,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutBoletosInput = {
@@ -122092,6 +125411,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type RecebivelUpsertWithoutBoletoInput = {
@@ -122310,6 +125630,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutDiagnosticosInput = {
@@ -122356,6 +125677,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutDiagnosticosInput = {
@@ -122558,6 +125880,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutDiagnosticosInput = {
@@ -122604,6 +125927,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutDiagnosticosInput = {
@@ -122986,6 +126310,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutAplicacoes_diagnosticoInput = {
@@ -123032,6 +126357,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutAplicacoes_diagnosticoInput = {
@@ -123234,6 +126560,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutAplicacoes_diagnosticoInput = {
@@ -123280,6 +126607,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ProjetoUpsertWithoutAplicacoes_diagnosticoInput = {
@@ -123478,6 +126806,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutCampanhas_diagnosticoInput = {
@@ -123524,6 +126853,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutCampanhas_diagnosticoInput = {
@@ -123628,6 +126958,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutCampanhas_diagnosticoInput = {
@@ -123674,6 +127005,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type DiagnosticoParticipanteUpsertWithWhereUniqueWithoutCampanhaInput = {
@@ -123956,6 +127288,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutDiagnostico_templatesInput = {
@@ -124002,6 +127335,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutDiagnostico_templatesInput = {
@@ -124064,6 +127398,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutDiagnostico_templatesInput = {
@@ -124110,6 +127445,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaCreateWithoutCampanhas_cupomInput = {
@@ -124156,6 +127492,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutCampanhas_cupomInput = {
@@ -124202,6 +127539,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutCampanhas_cupomInput = {
@@ -124307,6 +127645,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutCampanhas_cupomInput = {
@@ -124353,6 +127692,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ServicoUpsertWithoutCampanhas_cupomInput = {
@@ -124448,6 +127788,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutAssinaturasInput = {
@@ -124494,6 +127835,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutAssinaturasInput = {
@@ -124688,6 +128030,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutAssinaturasInput = {
@@ -124734,6 +128077,7 @@ export namespace Prisma {
     centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type ClienteUpsertWithoutAssinaturasInput = {
@@ -124878,6 +128222,332 @@ export namespace Prisma {
     itens_proposta?: ItemPropostaUncheckedUpdateManyWithoutServicoNestedInput
     leads?: LeadUncheckedUpdateManyWithoutServicoNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutServicoNestedInput
+  }
+
+  export type EmpresaCreateWithoutReembolsosInput = {
+    id?: string
+    nome: string
+    slug: string
+    cnpj?: string | null
+    logo_url?: string | null
+    plano?: $Enums.PlanoTipo
+    status?: $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
+    perfis?: PerfilCreateNestedManyWithoutEmpresaInput
+    convites?: ConviteEmpresaCreateNestedManyWithoutEmpresaInput
+    convites_cliente?: ConviteClienteCreateNestedManyWithoutEmpresaInput
+    clientes?: ClienteCreateNestedManyWithoutEmpresaInput
+    servicos?: ServicoCreateNestedManyWithoutEmpresaInput
+    leads?: LeadCreateNestedManyWithoutEmpresaInput
+    propostas?: PropostaCreateNestedManyWithoutEmpresaInput
+    contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
+    documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
+    plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
+    contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
+    boletos?: BoletoCreateNestedManyWithoutEmpresaInput
+    recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
+    contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
+    modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
+    eventos?: EventoCreateNestedManyWithoutEmpresaInput
+    registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
+    notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
+    notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
+    diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+  }
+
+  export type EmpresaUncheckedCreateWithoutReembolsosInput = {
+    id?: string
+    nome: string
+    slug: string
+    cnpj?: string | null
+    logo_url?: string | null
+    plano?: $Enums.PlanoTipo
+    status?: $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
+    perfis?: PerfilUncheckedCreateNestedManyWithoutEmpresaInput
+    convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
+    convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutEmpresaInput
+    clientes?: ClienteUncheckedCreateNestedManyWithoutEmpresaInput
+    servicos?: ServicoUncheckedCreateNestedManyWithoutEmpresaInput
+    leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
+    propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
+    contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
+    contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
+    boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
+    recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
+    contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
+    modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
+    registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
+    notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
+    notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+  }
+
+  export type EmpresaCreateOrConnectWithoutReembolsosInput = {
+    where: EmpresaWhereUniqueInput
+    create: XOR<EmpresaCreateWithoutReembolsosInput, EmpresaUncheckedCreateWithoutReembolsosInput>
+  }
+
+  export type ReembolsoItemCreateWithoutReembolsoInput = {
+    id?: string
+    tipo: string
+    data: Date | string
+    descricao: string
+    valor: Decimal | DecimalJsLike | number | string
+    km?: Decimal | DecimalJsLike | number | string | null
+    valor_km?: Decimal | DecimalJsLike | number | string | null
+    clientes_ids?: ReembolsoItemCreateclientes_idsInput | string[]
+    criado_em?: Date | string
+  }
+
+  export type ReembolsoItemUncheckedCreateWithoutReembolsoInput = {
+    id?: string
+    tipo: string
+    data: Date | string
+    descricao: string
+    valor: Decimal | DecimalJsLike | number | string
+    km?: Decimal | DecimalJsLike | number | string | null
+    valor_km?: Decimal | DecimalJsLike | number | string | null
+    clientes_ids?: ReembolsoItemCreateclientes_idsInput | string[]
+    criado_em?: Date | string
+  }
+
+  export type ReembolsoItemCreateOrConnectWithoutReembolsoInput = {
+    where: ReembolsoItemWhereUniqueInput
+    create: XOR<ReembolsoItemCreateWithoutReembolsoInput, ReembolsoItemUncheckedCreateWithoutReembolsoInput>
+  }
+
+  export type ReembolsoItemCreateManyReembolsoInputEnvelope = {
+    data: ReembolsoItemCreateManyReembolsoInput | ReembolsoItemCreateManyReembolsoInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EmpresaUpsertWithoutReembolsosInput = {
+    update: XOR<EmpresaUpdateWithoutReembolsosInput, EmpresaUncheckedUpdateWithoutReembolsosInput>
+    create: XOR<EmpresaCreateWithoutReembolsosInput, EmpresaUncheckedCreateWithoutReembolsosInput>
+    where?: EmpresaWhereInput
+  }
+
+  export type EmpresaUpdateToOneWithWhereWithoutReembolsosInput = {
+    where?: EmpresaWhereInput
+    data: XOR<EmpresaUpdateWithoutReembolsosInput, EmpresaUncheckedUpdateWithoutReembolsosInput>
+  }
+
+  export type EmpresaUpdateWithoutReembolsosInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    logo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
+    status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
+    perfis?: PerfilUpdateManyWithoutEmpresaNestedInput
+    convites?: ConviteEmpresaUpdateManyWithoutEmpresaNestedInput
+    convites_cliente?: ConviteClienteUpdateManyWithoutEmpresaNestedInput
+    clientes?: ClienteUpdateManyWithoutEmpresaNestedInput
+    servicos?: ServicoUpdateManyWithoutEmpresaNestedInput
+    leads?: LeadUpdateManyWithoutEmpresaNestedInput
+    propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
+    contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
+    documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
+    plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
+    contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
+    boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
+    recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
+    contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
+    modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
+    eventos?: EventoUpdateManyWithoutEmpresaNestedInput
+    registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
+    notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
+    notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
+    diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+  }
+
+  export type EmpresaUncheckedUpdateWithoutReembolsosInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    logo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
+    status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
+    perfis?: PerfilUncheckedUpdateManyWithoutEmpresaNestedInput
+    convites?: ConviteEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
+    convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutEmpresaNestedInput
+    clientes?: ClienteUncheckedUpdateManyWithoutEmpresaNestedInput
+    servicos?: ServicoUncheckedUpdateManyWithoutEmpresaNestedInput
+    leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
+    propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
+    contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
+    contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
+    recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
+    contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
+    modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
+    registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
+    notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
+    notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+  }
+
+  export type ReembolsoItemUpsertWithWhereUniqueWithoutReembolsoInput = {
+    where: ReembolsoItemWhereUniqueInput
+    update: XOR<ReembolsoItemUpdateWithoutReembolsoInput, ReembolsoItemUncheckedUpdateWithoutReembolsoInput>
+    create: XOR<ReembolsoItemCreateWithoutReembolsoInput, ReembolsoItemUncheckedCreateWithoutReembolsoInput>
+  }
+
+  export type ReembolsoItemUpdateWithWhereUniqueWithoutReembolsoInput = {
+    where: ReembolsoItemWhereUniqueInput
+    data: XOR<ReembolsoItemUpdateWithoutReembolsoInput, ReembolsoItemUncheckedUpdateWithoutReembolsoInput>
+  }
+
+  export type ReembolsoItemUpdateManyWithWhereWithoutReembolsoInput = {
+    where: ReembolsoItemScalarWhereInput
+    data: XOR<ReembolsoItemUpdateManyMutationInput, ReembolsoItemUncheckedUpdateManyWithoutReembolsoInput>
+  }
+
+  export type ReembolsoItemScalarWhereInput = {
+    AND?: ReembolsoItemScalarWhereInput | ReembolsoItemScalarWhereInput[]
+    OR?: ReembolsoItemScalarWhereInput[]
+    NOT?: ReembolsoItemScalarWhereInput | ReembolsoItemScalarWhereInput[]
+    id?: StringFilter<"ReembolsoItem"> | string
+    reembolso_id?: StringFilter<"ReembolsoItem"> | string
+    tipo?: StringFilter<"ReembolsoItem"> | string
+    data?: DateTimeFilter<"ReembolsoItem"> | Date | string
+    descricao?: StringFilter<"ReembolsoItem"> | string
+    valor?: DecimalFilter<"ReembolsoItem"> | Decimal | DecimalJsLike | number | string
+    km?: DecimalNullableFilter<"ReembolsoItem"> | Decimal | DecimalJsLike | number | string | null
+    valor_km?: DecimalNullableFilter<"ReembolsoItem"> | Decimal | DecimalJsLike | number | string | null
+    clientes_ids?: StringNullableListFilter<"ReembolsoItem">
+    criado_em?: DateTimeFilter<"ReembolsoItem"> | Date | string
+  }
+
+  export type ReembolsoCreateWithoutItensInput = {
+    id?: string
+    periodo: string
+    descricao?: string | null
+    status?: string
+    total?: Decimal | DecimalJsLike | number | string
+    criado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutReembolsosInput
+  }
+
+  export type ReembolsoUncheckedCreateWithoutItensInput = {
+    id?: string
+    empresa_id: string
+    periodo: string
+    descricao?: string | null
+    status?: string
+    total?: Decimal | DecimalJsLike | number | string
+    criado_em?: Date | string
+  }
+
+  export type ReembolsoCreateOrConnectWithoutItensInput = {
+    where: ReembolsoWhereUniqueInput
+    create: XOR<ReembolsoCreateWithoutItensInput, ReembolsoUncheckedCreateWithoutItensInput>
+  }
+
+  export type ReembolsoUpsertWithoutItensInput = {
+    update: XOR<ReembolsoUpdateWithoutItensInput, ReembolsoUncheckedUpdateWithoutItensInput>
+    create: XOR<ReembolsoCreateWithoutItensInput, ReembolsoUncheckedCreateWithoutItensInput>
+    where?: ReembolsoWhereInput
+  }
+
+  export type ReembolsoUpdateToOneWithWhereWithoutItensInput = {
+    where?: ReembolsoWhereInput
+    data: XOR<ReembolsoUpdateWithoutItensInput, ReembolsoUncheckedUpdateWithoutItensInput>
+  }
+
+  export type ReembolsoUpdateWithoutItensInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    periodo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    total?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutReembolsosNestedInput
+  }
+
+  export type ReembolsoUncheckedUpdateWithoutItensInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    periodo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    total?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MembroEmpresaCreateManyEmpresaInput = {
@@ -125429,6 +129099,15 @@ export namespace Prisma {
     usos_count?: number
     criado_em?: Date | string
     atualizado_em?: Date | string
+  }
+
+  export type ReembolsoCreateManyEmpresaInput = {
+    id?: string
+    periodo: string
+    descricao?: string | null
+    status?: string
+    total?: Decimal | DecimalJsLike | number | string
+    criado_em?: Date | string
   }
 
   export type MembroEmpresaUpdateWithoutEmpresaInput = {
@@ -127196,6 +130875,35 @@ export namespace Prisma {
     usos_count?: IntFieldUpdateOperationsInput | number
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReembolsoUpdateWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    periodo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    total?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    itens?: ReembolsoItemUpdateManyWithoutReembolsoNestedInput
+  }
+
+  export type ReembolsoUncheckedUpdateWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    periodo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    total?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    itens?: ReembolsoItemUncheckedUpdateManyWithoutReembolsoNestedInput
+  }
+
+  export type ReembolsoUncheckedUpdateManyWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    periodo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    total?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MembroEmpresaCreateManyUsuarioInput = {
@@ -132897,6 +136605,54 @@ export namespace Prisma {
     respostas?: NullableJsonNullValueInput | InputJsonValue
     pontuacao?: NullableIntFieldUpdateOperationsInput | number | null
     email_enviado?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReembolsoItemCreateManyReembolsoInput = {
+    id?: string
+    tipo: string
+    data: Date | string
+    descricao: string
+    valor: Decimal | DecimalJsLike | number | string
+    km?: Decimal | DecimalJsLike | number | string | null
+    valor_km?: Decimal | DecimalJsLike | number | string | null
+    clientes_ids?: ReembolsoItemCreateclientes_idsInput | string[]
+    criado_em?: Date | string
+  }
+
+  export type ReembolsoItemUpdateWithoutReembolsoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    data?: DateTimeFieldUpdateOperationsInput | Date | string
+    descricao?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    clientes_ids?: ReembolsoItemUpdateclientes_idsInput | string[]
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReembolsoItemUncheckedUpdateWithoutReembolsoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    data?: DateTimeFieldUpdateOperationsInput | Date | string
+    descricao?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    clientes_ids?: ReembolsoItemUpdateclientes_idsInput | string[]
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReembolsoItemUncheckedUpdateManyWithoutReembolsoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    data?: DateTimeFieldUpdateOperationsInput | Date | string
+    descricao?: StringFieldUpdateOperationsInput | string
+    valor?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    clientes_ids?: ReembolsoItemUpdateclientes_idsInput | string[]
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
