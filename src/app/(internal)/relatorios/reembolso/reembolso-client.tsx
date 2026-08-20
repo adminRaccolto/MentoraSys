@@ -6,7 +6,7 @@ import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Plus, Trash2, Pencil, Printer, CheckCircle, Car, UtensilsCrossed, Hotel, ReceiptText } from "lucide-react";
+import { Plus, Trash2, Pencil, Printer, CheckCircle, Car, UtensilsCrossed, Hotel, ReceiptText, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -170,6 +170,7 @@ export default function ReembolsoClient({
   const [modalAberto, setModalAberto] = useState(false);
   const [editando, setEditando] = useState<Reembolso | null>(null);
   const [excluindo, setExcluindo] = useState<Reembolso | null>(null);
+  const [relatorioCliente, setRelatorioCliente] = useState<Reembolso | null>(null);
 
   const form = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -306,10 +307,16 @@ export default function ReembolsoClient({
                 <TableCell>
                   <div className="flex gap-1 justify-end">
                     <a href={`/reembolso/${r.id}`} target="_blank" rel="noopener noreferrer">
-                      <Button size="icon" variant="ghost" className="size-7" title="Imprimir relatório">
+                      <Button size="icon" variant="ghost" className="size-7" title="Relatório interno completo">
                         <Printer className="size-3.5" />
                       </Button>
                     </a>
+                    {r.itens.some((i) => i.clientes_ids.length > 0) && (
+                      <Button size="icon" variant="ghost" className="size-7 text-blue-600 hover:text-blue-600"
+                        title="Relatório por cliente" onClick={() => setRelatorioCliente(r)}>
+                        <Users className="size-3.5" />
+                      </Button>
+                    )}
                     {r.status !== "PAGO" && (
                       <Button size="icon" variant="ghost" className="size-7 text-green-600 hover:text-green-600"
                         title="Marcar como pago" onClick={() => handleMarcarPago(r.id)} disabled={isPending}>
@@ -545,6 +552,47 @@ export default function ReembolsoClient({
               </Button>
             </DialogFooter>
           </form>
+        </DialogContent>
+      </Dialog>
+
+      {/* Seleção de cliente para relatório rateado */}
+      <Dialog open={!!relatorioCliente} onOpenChange={(o) => !o && setRelatorioCliente(null)}>
+        <DialogContent className="max-w-sm">
+          <DialogHeader>
+            <DialogTitle>Relatório por Cliente</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-3">
+            <p className="text-sm text-muted-foreground">
+              Selecione o cliente para gerar o relatório com os valores rateados:
+            </p>
+            <div className="space-y-1.5">
+              {relatorioCliente && (() => {
+                const ids = [...new Set(relatorioCliente.itens.flatMap((i) => i.clientes_ids))];
+                const clientesDoRel = clientes.filter((c) => ids.includes(c.id));
+                if (clientesDoRel.length === 0) {
+                  return (
+                    <p className="text-sm text-muted-foreground text-center py-3">
+                      Nenhum cliente associado a itens de deslocamento.
+                    </p>
+                  );
+                }
+                return clientesDoRel.map((c) => (
+                  <a
+                    key={c.id}
+                    href={`/reembolso/${relatorioCliente.id}?cliente_id=${c.id}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setRelatorioCliente(null)}
+                  >
+                    <Button variant="outline" className="w-full justify-start gap-2 h-9">
+                      <Users className="size-3.5 shrink-0" />
+                      <span className="truncate">{c.nome}</span>
+                    </Button>
+                  </a>
+                ));
+              })()}
+            </div>
+          </div>
         </DialogContent>
       </Dialog>
 
