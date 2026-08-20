@@ -15,6 +15,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { criarReembolso, editarReembolso, excluirReembolso, marcarPago } from "@/actions/reembolsos";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -117,50 +118,42 @@ function ClientePicker({
 }: {
   selecionados: string[]; clientes: ClienteSimples[]; onChange: (ids: string[]) => void;
 }) {
-  const [open, setOpen] = useState(false);
   const nomes = selecionados.map((id) => clientes.find((c) => c.id === id)?.nome ?? id);
 
   return (
-    <div className="relative">
-      <button
-        type="button"
-        onClick={() => setOpen((o) => !o)}
-        className="text-xs border rounded px-2 h-7 w-full text-left truncate hover:bg-slate-50 flex items-center"
-      >
+    <Popover>
+      <PopoverTrigger className="text-xs border rounded px-2 h-7 w-full text-left hover:bg-slate-50 flex items-center gap-1 min-w-0">
         {nomes.length > 0
-          ? <span className="truncate">{nomes.join(", ")}</span>
+          ? <span className="truncate flex-1">{nomes.join(", ")}</span>
           : <span className="text-muted-foreground">Selecionar…</span>}
-      </button>
-      {open && (
-        <>
-          <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
-          <div className="absolute z-50 top-full left-0 mt-1 bg-white border rounded-lg shadow-lg p-2 min-w-52 max-h-48 overflow-y-auto space-y-0.5">
-            {clientes.map((c) => (
-              <label key={c.id} className="flex items-center gap-2 text-xs cursor-pointer hover:bg-slate-50 px-1.5 py-1 rounded">
-                <input
-                  type="checkbox"
-                  checked={selecionados.includes(c.id)}
-                  onChange={(e) => {
-                    const novo = e.target.checked
-                      ? [...selecionados, c.id]
-                      : selecionados.filter((id) => id !== c.id);
-                    onChange(novo);
-                  }}
-                  className="rounded"
-                />
-                <span className="flex-1 truncate">{c.nome}</span>
-                {c.distancia_km && (
-                  <span className="text-muted-foreground shrink-0">{c.distancia_km}km</span>
-                )}
-              </label>
-            ))}
-            {clientes.length === 0 && (
-              <p className="text-xs text-muted-foreground px-2 py-1">Nenhum cliente cadastrado</p>
-            )}
-          </div>
-        </>
-      )}
-    </div>
+      </PopoverTrigger>
+      <PopoverContent className="w-60 p-2 max-h-52 overflow-y-auto" align="start">
+        <div className="space-y-0.5">
+          {clientes.map((c) => (
+            <label key={c.id} className="flex items-center gap-2 text-xs cursor-pointer hover:bg-slate-50 px-1.5 py-1.5 rounded">
+              <input
+                type="checkbox"
+                checked={selecionados.includes(c.id)}
+                onChange={(e) => {
+                  const novo = e.target.checked
+                    ? [...selecionados, c.id]
+                    : selecionados.filter((id) => id !== c.id);
+                  onChange(novo);
+                }}
+                className="rounded shrink-0"
+              />
+              <span className="flex-1 truncate">{c.nome}</span>
+              {c.distancia_km && (
+                <span className="text-muted-foreground shrink-0">{c.distancia_km}km</span>
+              )}
+            </label>
+          ))}
+          {clientes.length === 0 && (
+            <p className="text-xs text-muted-foreground px-2 py-1">Nenhum cliente cadastrado</p>
+          )}
+        </div>
+      </PopoverContent>
+    </Popover>
   );
 }
 
