@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -191,6 +191,7 @@ function Field({ label, error, children }: { label: string; error?: string; chil
 export default function PropostasClient({ propostas: inicial, clientes, servicos, leads, modelosProposta, usuarios }: Props) {
   const [propostas, setPropostas] = useState(inicial);
   const [modalAberto, setModalAberto] = useState(false);
+  const editingRef = useRef<string | null>(null);
   const [propostaEditando, setPropostaEditando] = useState<Proposta | null>(null);
   const [propostaEnviando, setPropostaEnviando] = useState<Proposta | null>(null);
   const [propostaExcluindo, setPropostaExcluindo] = useState<Proposta | null>(null);
@@ -219,11 +220,16 @@ export default function PropostasClient({ propostas: inicial, clientes, servicos
   };
 
   useEffect(() => {
+    // Ao abrir uma proposta para edição, pula a regeneração automática uma vez
+    if (editingRef.current) {
+      editingRef.current = null;
+      return;
+    }
     const n = Number(numeroParcelas) || 0;
-    if (n < 1 || !primeiroVencimento || parcelasFields.length > 0) return;
+    if (n < 1 || !primeiroVencimento) return;
     replaceParcelas(gerarParcelasIguais(n, primeiroVencimento, periodicidade, calcularTotal()));
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [numeroParcelas, primeiroVencimento]);
+  }, [numeroParcelas, primeiroVencimento, periodicidade]);
 
   useEffect(() => {
     if (!clienteIdWatch) return;
@@ -256,12 +262,14 @@ export default function PropostasClient({ propostas: inicial, clientes, servicos
   };
 
   const abrirCriar = () => {
+    editingRef.current = null;
     setPropostaEditando(null);
     reset({ itens: [{ descricao: "", quantidade: 1, valor_unitario: 0, desconto: 0, ordem: 0 }] });
     setModalAberto(true);
   };
 
   const abrirEditar = (p: Proposta) => {
+    editingRef.current = p.id;
     setPropostaEditando(p);
     reset({
       cliente_id: p.cliente.id,
