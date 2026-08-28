@@ -23,7 +23,7 @@ import { cn } from "@/lib/utils";
 // ─── Types ───────────────────────────────────────────────────────────────────
 
 interface ClienteSimples {
-  id: string; nome: string;
+  id: string; nome: string; email: string | null;
   distancia_km: number | null; preco_km: number | null;
   cidade: string | null; estado: string | null;
 }
@@ -705,9 +705,10 @@ export default function ReembolsoClient({
                       <div key={c.id} className="flex items-center gap-2 text-sm py-1 px-2 rounded bg-slate-50">
                         <Users className="size-3.5 text-muted-foreground shrink-0" />
                         <span className="flex-1 truncate font-medium">{c.nome}</span>
-                        <span className={cn("text-xs truncate", c.distancia_km ? "text-muted-foreground" : "text-destructive")}>
-                          sem e-mail
-                        </span>
+                        {c.email
+                          ? <span className="text-xs text-muted-foreground truncate max-w-40">{c.email}</span>
+                          : <span className="text-xs text-destructive shrink-0">sem e-mail</span>
+                        }
                       </div>
                     ))}
                   </div>

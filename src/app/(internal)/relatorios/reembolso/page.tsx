@@ -39,6 +39,7 @@ export default async function ReembolsoPage() {
 
   const clientes = clientesRaw.map((c) => ({
     ...c,
+    email: c.email ?? null,
     distancia_km: c.distancia_km != null ? Number(c.distancia_km) : null,
     preco_km: c.preco_km != null ? Number(c.preco_km) : null,
   }));
