@@ -59,7 +59,14 @@ export default async function ReembolsoImprimivel({ params, searchParams }: Prop
   if (cliente_id) {
     const clienteNome = clienteMap[cliente_id] ?? "Cliente";
 
-    const itensCliente = reembolso.itens
+    // Nº total de clientes distintos no reembolso (para ratear outras despesas)
+    const clientesNoReembolso = [...new Set(
+      reembolso.itens.filter((i) => i.tipo === "DESLOCAMENTO").flatMap((i) => i.clientes_ids)
+    )];
+    const numClientesTotal = Math.max(clientesNoReembolso.length, 1);
+
+    // Deslocamentos: rateio por item (conforme clientes de cada item)
+    const deslocamentos = reembolso.itens
       .filter((i) => i.tipo === "DESLOCAMENTO" && i.clientes_ids.includes(cliente_id))
       .map((i) => {
         const valorTotal = Number(i.valor);
@@ -79,7 +86,18 @@ export default async function ReembolsoImprimivel({ params, searchParams }: Prop
         };
       });
 
-    const totalCliente = itensCliente.reduce((s, i) => s + i.valorRateio, 0);
+    // Outras despesas (refeição, hotel, pedágio): rateadas igualmente entre todos os clientes
+    const outrasDespesas = reembolso.itens
+      .filter((i) => i.tipo !== "DESLOCAMENTO")
+      .map((i) => ({
+        ...i,
+        valorTotal: Number(i.valor),
+        valorRateio: Number(i.valor) / numClientesTotal,
+      }));
+
+    const totalDeslocamento = deslocamentos.reduce((s, i) => s + i.valorRateio, 0);
+    const totalOutras = outrasDespesas.reduce((s, i) => s + i.valorRateio, 0);
+    const totalCliente = totalDeslocamento + totalOutras;
 
     return (
       <div className="min-h-screen bg-slate-100 print:bg-white">
@@ -97,7 +115,7 @@ export default async function ReembolsoImprimivel({ params, searchParams }: Prop
               </div>
               <div className="text-right">
                 <p className="text-2xl font-black text-[#1B4F72] uppercase tracking-wide">
-                  Reembolso de Deslocamento
+                  Relatório de Reembolso
                 </p>
                 <p className="text-lg text-slate-500 mt-1">{periodoLabel(reembolso.periodo)}</p>
                 {reembolso.descricao && (
@@ -112,15 +130,11 @@ export default async function ReembolsoImprimivel({ params, searchParams }: Prop
               <p className="text-lg font-bold text-slate-800">{clienteNome}</p>
             </div>
 
-            {/* Tabela de itens rateados */}
-            {itensCliente.length === 0 ? (
-              <p className="text-center text-slate-400 py-8">
-                Nenhum item de deslocamento associado a este cliente.
-              </p>
-            ) : (
+            {/* Deslocamentos */}
+            {deslocamentos.length > 0 && (
               <div>
                 <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
-                  Deslocamentos
+                  Deslocamento
                 </p>
                 <table className="w-full border border-slate-200 rounded-lg overflow-hidden text-sm">
                   <thead>
@@ -133,7 +147,7 @@ export default async function ReembolsoImprimivel({ params, searchParams }: Prop
                     </tr>
                   </thead>
                   <tbody>
-                    {itensCliente.map((item) => (
+                    {deslocamentos.map((item) => (
                       <tr key={item.id} className="border-t border-slate-100">
                         <td className="px-3 py-2 text-slate-600 whitespace-nowrap">{fmtDate(item.data)}</td>
                         <td className="px-3 py-2 text-slate-600">
@@ -165,9 +179,58 @@ export default async function ReembolsoImprimivel({ params, searchParams }: Prop
                     ))}
                     <tr className="border-t-2 border-slate-300 bg-slate-50">
                       <td colSpan={4} className="px-3 py-2 text-sm font-semibold text-slate-600">
-                        Total de deslocamento
+                        Subtotal deslocamento
                       </td>
-                      <td className="px-3 py-2 text-right font-bold">{fmtBRL(totalCliente)}</td>
+                      <td className="px-3 py-2 text-right font-bold">{fmtBRL(totalDeslocamento)}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+            {/* Outras despesas rateadas */}
+            {outrasDespesas.length > 0 && (
+              <div>
+                <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+                  Outras despesas
+                </p>
+                <table className="w-full border border-slate-200 rounded-lg overflow-hidden text-sm">
+                  <thead>
+                    <tr className="bg-[#1B4F72] text-white">
+                      <th className="text-left px-3 py-2 font-medium">Tipo</th>
+                      <th className="text-left px-3 py-2 font-medium">Data</th>
+                      <th className="text-left px-3 py-2 font-medium">Descrição</th>
+                      <th className="text-left px-3 py-2 font-medium">Rateio</th>
+                      <th className="text-right px-3 py-2 font-medium">Seu valor</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {outrasDespesas.map((item) => (
+                      <tr key={item.id} className="border-t border-slate-100">
+                        <td className="px-3 py-2 text-slate-600 whitespace-nowrap">
+                          {TIPO_LABELS[item.tipo] ?? item.tipo}
+                        </td>
+                        <td className="px-3 py-2 text-slate-600 whitespace-nowrap">{fmtDate(item.data)}</td>
+                        <td className="px-3 py-2 text-slate-700">{item.descricao}</td>
+                        <td className="px-3 py-2 text-slate-500 text-xs">
+                          {numClientesTotal > 1 ? (
+                            <span className="font-medium text-slate-700">
+                              {fmtBRL(item.valorTotal)} ÷ {numClientesTotal}
+                            </span>
+                          ) : (
+                            <span className="text-slate-400">Exclusivo</span>
+                          )}
+                        </td>
+                        <td className="px-3 py-2 text-right font-bold text-[#1B4F72]">
+                          {fmtBRL(item.valorRateio)}
+                        </td>
+                      </tr>
+                    ))}
+                    <tr className="border-t-2 border-slate-300 bg-slate-50">
+                      <td colSpan={4} className="px-3 py-2 text-sm font-semibold text-slate-600">
+                        Subtotal outras despesas
+                      </td>
+                      <td className="px-3 py-2 text-right font-bold">{fmtBRL(totalOutras)}</td>
                     </tr>
                   </tbody>
                 </table>
