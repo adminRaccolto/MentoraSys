@@ -6,7 +6,7 @@ import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Plus, Trash2, Pencil, Printer, CheckCircle, Car, UtensilsCrossed, Hotel, ReceiptText, Users } from "lucide-react";
+import { Plus, Trash2, Pencil, Printer, CheckCircle, Car, UtensilsCrossed, Hotel, ReceiptText, Users, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -15,6 +15,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { criarReembolso, editarReembolso, excluirReembolso, marcarPago } from "@/actions/reembolsos";
+import { salvarPagamentoReembolso } from "@/actions/configuracoes";
+import type { PagamentoReembolso } from "./page";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 
@@ -159,11 +161,21 @@ function ClientePicker({
 
 // ─── Componente principal ─────────────────────────────────────────────────────
 
+const schemaPagamento = z.object({
+  banco: z.string(),
+  agencia: z.string(),
+  conta: z.string(),
+  tipo_conta: z.string(),
+  chave_pix: z.string(),
+});
+type PagamentoForm = z.infer<typeof schemaPagamento>;
+
 export default function ReembolsoClient({
-  reembolsos, clientes,
+  reembolsos, clientes, pagamentoConfig,
 }: {
   reembolsos: Reembolso[];
   clientes: ClienteSimples[];
+  pagamentoConfig: PagamentoReembolso | null;
 }) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
@@ -171,6 +183,48 @@ export default function ReembolsoClient({
   const [editando, setEditando] = useState<Reembolso | null>(null);
   const [excluindo, setExcluindo] = useState<Reembolso | null>(null);
   const [relatorioCliente, setRelatorioCliente] = useState<Reembolso | null>(null);
+  const [modalPagamento, setModalPagamento] = useState(false);
+
+  const formPagamento = useForm<PagamentoForm>({
+    resolver: zodResolver(schemaPagamento),
+    defaultValues: {
+      banco: pagamentoConfig?.banco ?? "",
+      agencia: pagamentoConfig?.agencia ?? "",
+      conta: pagamentoConfig?.conta ?? "",
+      tipo_conta: pagamentoConfig?.tipo_conta ?? "corrente",
+      chave_pix: pagamentoConfig?.chave_pix ?? "",
+    },
+  });
+
+  function abrirPagamento() {
+    formPagamento.reset({
+      banco: pagamentoConfig?.banco ?? "",
+      agencia: pagamentoConfig?.agencia ?? "",
+      conta: pagamentoConfig?.conta ?? "",
+      tipo_conta: pagamentoConfig?.tipo_conta ?? "corrente",
+      chave_pix: pagamentoConfig?.chave_pix ?? "",
+    });
+    setModalPagamento(true);
+  }
+
+  function salvarPagamento(data: PagamentoForm) {
+    startTransition(async () => {
+      try {
+        await salvarPagamentoReembolso({
+          banco: data.banco ?? "",
+          agencia: data.agencia ?? "",
+          conta: data.conta ?? "",
+          tipo_conta: data.tipo_conta ?? "corrente",
+          chave_pix: data.chave_pix ?? "",
+        });
+        toast.success("Dados de pagamento salvos!");
+        setModalPagamento(false);
+        router.refresh();
+      } catch (e) {
+        toast.error(e instanceof Error ? e.message : "Erro ao salvar");
+      }
+    });
+  }
 
   const form = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -269,9 +323,14 @@ export default function ReembolsoClient({
           <h1 className="text-2xl font-bold text-foreground">Relatórios de Reembolso</h1>
           <p className="text-muted-foreground text-sm">Deslocamento, refeição, hotel e pedágios</p>
         </div>
-        <Button onClick={abrirNovo} className="gap-2">
-          <Plus className="size-4" /> Novo Reembolso
-        </Button>
+        <div className="flex gap-2">
+          <Button variant="outline" size="icon" onClick={abrirPagamento} title="Dados de pagamento">
+            <Settings className="size-4" />
+          </Button>
+          <Button onClick={abrirNovo} className="gap-2">
+            <Plus className="size-4" /> Novo Reembolso
+          </Button>
+        </div>
       </div>
 
       {/* Lista de reembolsos */}
@@ -593,6 +652,57 @@ export default function ReembolsoClient({
               })()}
             </div>
           </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Modal de dados de pagamento */}
+      <Dialog open={modalPagamento} onOpenChange={setModalPagamento}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>Dados de Pagamento do Reembolso</DialogTitle>
+          </DialogHeader>
+          <form onSubmit={formPagamento.handleSubmit(salvarPagamento)} className="space-y-4">
+            <p className="text-sm text-muted-foreground">
+              Essas informações aparecem no relatório enviado ao cliente.
+            </p>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="col-span-2 space-y-1">
+                <Label>Banco</Label>
+                <Input placeholder="Ex: Banco do Brasil, Itaú…" {...formPagamento.register("banco")} />
+              </div>
+              <div className="space-y-1">
+                <Label>Agência</Label>
+                <Input placeholder="0000" {...formPagamento.register("agencia")} />
+              </div>
+              <div className="space-y-1">
+                <Label>Conta</Label>
+                <Input placeholder="00000-0" {...formPagamento.register("conta")} />
+              </div>
+              <div className="space-y-1">
+                <Label>Tipo de conta</Label>
+                <select
+                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm"
+                  {...formPagamento.register("tipo_conta")}
+                >
+                  <option value="corrente">Conta Corrente</option>
+                  <option value="poupanca">Conta Poupança</option>
+                  <option value="pix">Somente PIX</option>
+                </select>
+              </div>
+              <div className="space-y-1">
+                <Label>Chave PIX</Label>
+                <Input placeholder="CPF, e-mail, telefone…" {...formPagamento.register("chave_pix")} />
+              </div>
+            </div>
+            <DialogFooter>
+              <Button type="button" variant="outline" onClick={() => setModalPagamento(false)}>
+                Cancelar
+              </Button>
+              <Button type="submit" disabled={isPending}>
+                {isPending ? "Salvando…" : "Salvar"}
+              </Button>
+            </DialogFooter>
+          </form>
         </DialogContent>
       </Dialog>
 

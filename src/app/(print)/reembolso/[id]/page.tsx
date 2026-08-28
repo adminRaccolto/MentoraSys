@@ -54,6 +54,10 @@ export default async function ReembolsoImprimivel({ params, searchParams }: Prop
 
   const cfg = (empresa.configuracoes as Record<string, unknown>) ?? {};
   const enderecoEmpresa = (cfg.endereco as string) ?? "";
+  const pagamento = (cfg.pagamento_reembolso as {
+    banco?: string; agencia?: string; conta?: string;
+    tipo_conta?: string; chave_pix?: string;
+  }) ?? null;
 
   // ── Relatório por cliente (valores rateados) ─────────────────────────────
   if (cliente_id) {
@@ -247,15 +251,64 @@ export default async function ReembolsoImprimivel({ params, searchParams }: Prop
               </div>
             </div>
 
-            {/* Rodapé */}
+            {/* Dados de pagamento */}
+            {pagamento && (pagamento.banco || pagamento.chave_pix) && (
+              <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
+                <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+                  Dados para pagamento
+                </p>
+                <div className="grid grid-cols-2 gap-x-8 gap-y-1 text-sm">
+                  {pagamento.banco && (
+                    <div className="flex gap-2">
+                      <span className="text-slate-400 w-20 shrink-0">Banco</span>
+                      <span className="font-medium text-slate-700">{pagamento.banco}</span>
+                    </div>
+                  )}
+                  {pagamento.agencia && (
+                    <div className="flex gap-2">
+                      <span className="text-slate-400 w-20 shrink-0">Agência</span>
+                      <span className="font-medium text-slate-700">{pagamento.agencia}</span>
+                    </div>
+                  )}
+                  {pagamento.conta && (
+                    <div className="flex gap-2">
+                      <span className="text-slate-400 w-20 shrink-0">Conta</span>
+                      <span className="font-medium text-slate-700">{pagamento.conta}
+                        {pagamento.tipo_conta && pagamento.tipo_conta !== "pix" && (
+                          <span className="text-slate-400 ml-1 text-xs">
+                            ({pagamento.tipo_conta === "corrente" ? "Corrente" : "Poupança"})
+                          </span>
+                        )}
+                      </span>
+                    </div>
+                  )}
+                  {pagamento.chave_pix && (
+                    <div className="flex gap-2">
+                      <span className="text-slate-400 w-20 shrink-0">Chave PIX</span>
+                      <span className="font-medium text-slate-700">{pagamento.chave_pix}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Rodapé com assinatura */}
             <div className="border-t border-slate-200 pt-6 flex justify-between items-end text-xs text-slate-400">
               <div>
                 <p>{empresa.nome}{empresa.cnpj ? ` · CNPJ ${empresa.cnpj}` : ""}</p>
                 <p className="mt-0.5">Relatório gerado em {fmtDate(new Date())}</p>
               </div>
-              <div className="text-right space-y-6">
-                <div className="border-t border-slate-300 pt-2 w-48 text-center">
-                  <p>Assinatura / Responsável</p>
+              <div className="text-right">
+                <div className="flex flex-col items-center w-56">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/assinatura-responsavel.png"
+                    alt="Assinatura"
+                    className="h-16 object-contain mb-1"
+                  />
+                  <div className="border-t border-slate-300 pt-1.5 w-full text-center">
+                    <p>Assinatura / Responsável</p>
+                  </div>
                 </div>
               </div>
             </div>

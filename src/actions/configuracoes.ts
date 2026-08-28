@@ -304,6 +304,28 @@ export async function removerChaveAsaas() {
   return { ok: true };
 }
 
+export async function salvarPagamentoReembolso(dados: {
+  banco: string;
+  agencia: string;
+  conta: string;
+  tipo_conta: string;
+  chave_pix: string;
+}) {
+  const empresaId = await obterEmpresaAtiva();
+  await verificarPermissao("configuracoes", "editar");
+  const atual = await prisma.empresa.findUnique({
+    where: { id: empresaId },
+    select: { configuracoes: true },
+  });
+  const cfg = (atual?.configuracoes as Record<string, unknown>) ?? {};
+  await prisma.empresa.update({
+    where: { id: empresaId },
+    data: { configuracoes: { ...cfg, pagamento_reembolso: dados } },
+  });
+  revalidatePath("/relatorios/reembolso");
+  return { ok: true as const };
+}
+
 export async function obterChaveAsaasConfigurada(): Promise<boolean> {
   const empresaId = await obterEmpresaAtiva();
   const empresa = await prisma.empresa.findUnique({
