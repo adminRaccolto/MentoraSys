@@ -186,7 +186,7 @@ export default function ReembolsoClient({
   const [modalPagamento, setModalPagamento] = useState(false);
   const [enviandoEmails, setEnviandoEmails] = useState<Reembolso | null>(null);
   const [resultadoEnvio, setResultadoEnvio] = useState<
-    { clienteId: string; nome: string; email: string | null; ok: boolean; erro?: string }[] | null
+    { clienteId: string; nome: string; email: string | null; ok: boolean; erro?: string; recebivel?: "criado" | "existente" }[] | null
   >(null);
 
   const formPagamento = useForm<PagamentoForm>({
@@ -751,6 +751,13 @@ export default function ReembolsoClient({
                       }
                       {!r.ok && r.erro && r.email && (
                         <p className="text-xs text-destructive mt-0.5">{r.erro}</p>
+                      )}
+                      {r.ok && r.recebivel && (
+                        <p className="text-xs text-emerald-700 mt-0.5">
+                          {r.recebivel === "criado"
+                            ? "✓ Lançado no contas a receber (venc. 30 dias)"
+                            : "Já existe no contas a receber"}
+                        </p>
                       )}
                     </div>
                     <span className={cn("text-xs font-semibold shrink-0", r.ok ? "text-green-700" : "text-red-600")}>

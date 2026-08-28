@@ -122,8 +122,15 @@ export async function excluirReembolso(id: string) {
   revalidatePath("/relatorios/reembolso");
 }
 
+function periodoLabel(p: string): string {
+  const [ano, mes] = p.split("-");
+  const meses = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho",
+                  "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
+  return `${meses[parseInt(mes) - 1]} de ${ano}`;
+}
+
 export async function enviarEmailsReembolso(id: string): Promise<{
-  resultados: { clienteId: string; nome: string; email: string | null; ok: boolean; erro?: string }[];
+  resultados: { clienteId: string; nome: string; email: string | null; ok: boolean; erro?: string; recebivel?: "criado" | "existente" }[];
 }> {
   const empresaId = await obterEmpresaAtiva();
 
@@ -206,7 +213,32 @@ export async function enviarEmailsReembolso(id: string): Promise<{
           pagamento,
         });
 
-        return { clienteId: cliente.id, nome: cliente.nome, email: cliente.email, ok: true };
+        // Lança no contas a receber (evita duplicata em reenvios)
+        const marcador = `reembolso:${id}|cliente:${cliente.id}`;
+        const recebivelExistente = await prisma.recebivel.findFirst({
+          where: { empresa_id: empresaId, cliente_id: cliente.id, observacoes: { contains: marcador } },
+          select: { id: true },
+        });
+
+        let recebivelStatus: "criado" | "existente" = "existente";
+        if (!recebivelExistente) {
+          const vencimento = new Date();
+          vencimento.setDate(vencimento.getDate() + 30);
+
+          await prisma.recebivel.create({
+            data: {
+              empresa_id: empresaId,
+              cliente_id: cliente.id,
+              descricao: `Reembolso de viagem — ${periodoLabel(reembolso.periodo)}${reembolso.descricao ? ` — ${reembolso.descricao}` : ""}`,
+              valor: totalCliente,
+              data_vencimento: vencimento,
+              observacoes: marcador,
+            },
+          });
+          recebivelStatus = "criado";
+        }
+
+        return { clienteId: cliente.id, nome: cliente.nome, email: cliente.email, ok: true, recebivel: recebivelStatus };
       } catch (err) {
         return {
           clienteId: cliente.id,
@@ -219,6 +251,7 @@ export async function enviarEmailsReembolso(id: string): Promise<{
     })
   );
 
+  revalidatePath("/financeiro");
   return { resultados };
 }
 
