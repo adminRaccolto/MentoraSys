@@ -194,6 +194,7 @@ export async function enviarEmailsReembolso(id: string): Promise<{
         const link = `${baseUrl}/reembolso/${id}?cliente_id=${cliente.id}`;
 
         await enviarReembolso({
+          bcc: "financeiro@raccolto.com.br",
           para: cliente.email,
           clienteNome: cliente.nome,
           empresaNome: empresa.nome,

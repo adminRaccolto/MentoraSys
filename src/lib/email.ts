@@ -372,6 +372,7 @@ interface ItemReembolsoEmail {
 
 interface EnviarReembolsoOpts {
   para: string;
+  bcc?: string;
   clienteNome: string;
   empresaNome: string;
   periodo: string;        // "2026-08"
@@ -400,7 +401,7 @@ function periodoLabelEmail(p: string): string {
 }
 
 export async function enviarReembolso(opts: EnviarReembolsoOpts) {
-  const { para, clienteNome, empresaNome, periodo, descricaoReembolso, itens, totalCliente, link, pagamento } = opts;
+  const { para, bcc, clienteNome, empresaNome, periodo, descricaoReembolso, itens, totalCliente, link, pagamento } = opts;
   const fmtBRL = (v: number) => v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
   const linhasItens = itens.map((i) => `
@@ -443,6 +444,7 @@ export async function enviarReembolso(opts: EnviarReembolsoOpts) {
   await getResend().emails.send({
     from: FROM,
     to: para,
+    ...(bcc ? { bcc } : {}),
     subject: `Reembolso de viagem — ${periodoLabelEmail(periodo)}`,
     html: emailWrapper(`
       <p style="color:#1e293b;font-size:15px;margin:0 0 20px;">Prezado(a) <strong>${clienteNome}</strong>,</p>
