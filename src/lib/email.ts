@@ -362,6 +362,135 @@ export async function enviarFatura(opts: EnviarFaturaOpts) {
   });
 }
 
+// ─── Reembolso por cliente ───────────────────────────────────────────────────
+
+interface ItemReembolsoEmail {
+  descricao: string;
+  tipo: string;
+  valorRateio: number;
+}
+
+interface EnviarReembolsoOpts {
+  para: string;
+  clienteNome: string;
+  empresaNome: string;
+  periodo: string;        // "2026-08"
+  descricaoReembolso: string | null;
+  itens: ItemReembolsoEmail[];
+  totalCliente: number;
+  link: string;
+  pagamento?: {
+    banco?: string; agencia?: string; conta?: string;
+    tipo_conta?: string; chave_pix?: string;
+  } | null;
+}
+
+const TIPO_LABELS_EMAIL: Record<string, string> = {
+  DESLOCAMENTO: "Deslocamento",
+  REFEICAO: "Refeição",
+  HOTEL: "Hotel",
+  PEDAGIO: "Pedágio",
+};
+
+function periodoLabelEmail(p: string): string {
+  const [ano, mes] = p.split("-");
+  const meses = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho",
+                  "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
+  return `${meses[parseInt(mes) - 1]} de ${ano}`;
+}
+
+export async function enviarReembolso(opts: EnviarReembolsoOpts) {
+  const { para, clienteNome, empresaNome, periodo, descricaoReembolso, itens, totalCliente, link, pagamento } = opts;
+  const fmtBRL = (v: number) => v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+
+  const linhasItens = itens.map((i) => `
+    <tr>
+      <td style="padding:8px 14px;font-size:13px;color:#374151;border-bottom:1px solid #f1f5f9;">
+        ${TIPO_LABELS_EMAIL[i.tipo] ?? i.tipo}
+        ${i.descricao ? `<span style="color:#64748b;"> — ${i.descricao}</span>` : ""}
+      </td>
+      <td style="padding:8px 14px;font-size:13px;font-weight:600;color:#1B4F72;text-align:right;border-bottom:1px solid #f1f5f9;">
+        ${fmtBRL(i.valorRateio)}
+      </td>
+    </tr>`).join("");
+
+  const secaoPagamento = pagamento && (pagamento.banco || pagamento.chave_pix)
+    ? `
+      <p style="margin:28px 0 10px;color:#374151;font-size:14px;font-weight:700;">Dados para pagamento</p>
+      <table width="100%" cellpadding="0" cellspacing="0"
+        style="border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;margin:0 0 24px;">
+        <tbody>
+          ${pagamento.banco ? `<tr>
+            <td style="padding:8px 14px;color:#64748b;font-size:13px;width:120px;border-bottom:1px solid #f1f5f9;">Banco</td>
+            <td style="padding:8px 14px;font-size:13px;color:#374151;border-bottom:1px solid #f1f5f9;">${pagamento.banco}</td>
+          </tr>` : ""}
+          ${pagamento.agencia ? `<tr>
+            <td style="padding:8px 14px;color:#64748b;font-size:13px;border-bottom:1px solid #f1f5f9;">Agência</td>
+            <td style="padding:8px 14px;font-size:13px;color:#374151;border-bottom:1px solid #f1f5f9;">${pagamento.agencia}</td>
+          </tr>` : ""}
+          ${pagamento.conta ? `<tr>
+            <td style="padding:8px 14px;color:#64748b;font-size:13px;border-bottom:1px solid #f1f5f9;">Conta</td>
+            <td style="padding:8px 14px;font-size:13px;color:#374151;border-bottom:1px solid #f1f5f9;">${pagamento.conta}${pagamento.tipo_conta && pagamento.tipo_conta !== "pix" ? ` (${pagamento.tipo_conta === "corrente" ? "Corrente" : "Poupança"})` : ""}</td>
+          </tr>` : ""}
+          ${pagamento.chave_pix ? `<tr>
+            <td style="padding:8px 14px;color:#64748b;font-size:13px;">Chave PIX</td>
+            <td style="padding:8px 14px;font-size:13px;font-weight:600;color:#1B4F72;font-family:monospace;">${pagamento.chave_pix}</td>
+          </tr>` : ""}
+        </tbody>
+      </table>`
+    : "";
+
+  await getResend().emails.send({
+    from: FROM,
+    to: para,
+    subject: `Reembolso de viagem — ${periodoLabelEmail(periodo)}`,
+    html: emailWrapper(`
+      <p style="color:#1e293b;font-size:15px;margin:0 0 20px;">Prezado(a) <strong>${clienteNome}</strong>,</p>
+
+      <p style="color:#475569;font-size:14px;line-height:1.7;margin:0 0 24px;">
+        Segue o detalhamento do reembolso de despesas de viagem referente a
+        <strong>${periodoLabelEmail(periodo)}</strong>${descricaoReembolso ? ` — ${descricaoReembolso}` : ""}.
+      </p>
+
+      <!-- Itens -->
+      <table width="100%" cellpadding="0" cellspacing="0"
+        style="border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;margin:0 0 8px;">
+        <thead>
+          <tr style="background:#1B4F72;">
+            <th style="padding:12px 14px;text-align:left;color:#ffffff;font-size:13px;font-weight:600;">Descrição</th>
+            <th style="padding:12px 14px;text-align:right;color:#ffffff;font-size:13px;font-weight:600;">Seu valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${linhasItens}
+          <tr style="background:#f8fafc;">
+            <td style="padding:12px 14px;font-size:14px;font-weight:700;color:#374151;">Total a reembolsar</td>
+            <td style="padding:12px 14px;font-size:20px;font-weight:900;color:#1B4F72;text-align:right;">${fmtBRL(totalCliente)}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Link relatório -->
+      <div style="text-align:center;margin:28px 0;">
+        <a href="${link}"
+          style="background:#1B4F72;color:#ffffff;padding:14px 36px;border-radius:8px;
+          text-decoration:none;font-weight:700;font-size:15px;display:inline-block;">
+          Ver relatório completo
+        </a>
+      </div>
+
+      ${secaoPagamento}
+
+      <p style="color:#475569;font-size:14px;line-height:1.7;margin:24px 0 4px;">
+        Agradecemos sua atenção e estamos à disposição.
+      </p>
+      <p style="color:#1e293b;font-size:14px;font-weight:600;margin:0;">
+        Att.;<br>${empresaNome}
+      </p>
+    `),
+  });
+}
+
 // ─── Lembrete de evento ───────────────────────────────────────────────────────
 
 export async function enviarLembrete(para: string, titulo: string, inicio: Date) {

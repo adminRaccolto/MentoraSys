@@ -6,7 +6,7 @@ import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Plus, Trash2, Pencil, Printer, CheckCircle, Car, UtensilsCrossed, Hotel, ReceiptText, Users, Settings } from "lucide-react";
+import { Plus, Trash2, Pencil, Printer, CheckCircle, Car, UtensilsCrossed, Hotel, ReceiptText, Users, Settings, Mail, CheckCircle2, XCircle, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,7 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { criarReembolso, editarReembolso, excluirReembolso, marcarPago } from "@/actions/reembolsos";
+import { criarReembolso, editarReembolso, excluirReembolso, marcarPago, enviarEmailsReembolso } from "@/actions/reembolsos";
 import { salvarPagamentoReembolso } from "@/actions/configuracoes";
 import type { PagamentoReembolso } from "./page";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -184,6 +184,10 @@ export default function ReembolsoClient({
   const [excluindo, setExcluindo] = useState<Reembolso | null>(null);
   const [relatorioCliente, setRelatorioCliente] = useState<Reembolso | null>(null);
   const [modalPagamento, setModalPagamento] = useState(false);
+  const [enviandoEmails, setEnviandoEmails] = useState<Reembolso | null>(null);
+  const [resultadoEnvio, setResultadoEnvio] = useState<
+    { clienteId: string; nome: string; email: string | null; ok: boolean; erro?: string }[] | null
+  >(null);
 
   const formPagamento = useForm<PagamentoForm>({
     resolver: zodResolver(schemaPagamento),
@@ -195,6 +199,22 @@ export default function ReembolsoClient({
       chave_pix: pagamentoConfig?.chave_pix ?? "",
     },
   });
+
+  function abrirEnvioEmails(r: Reembolso) {
+    setResultadoEnvio(null);
+    setEnviandoEmails(r);
+  }
+
+  function handleEnviarEmails(r: Reembolso) {
+    startTransition(async () => {
+      try {
+        const { resultados } = await enviarEmailsReembolso(r.id);
+        setResultadoEnvio(resultados);
+      } catch (e) {
+        toast.error(e instanceof Error ? e.message : "Erro ao enviar e-mails");
+      }
+    });
+  }
 
   function abrirPagamento() {
     formPagamento.reset({
@@ -374,6 +394,12 @@ export default function ReembolsoClient({
                       <Button size="icon" variant="ghost" className="size-7 text-blue-600 hover:text-blue-600"
                         title="Relatório por cliente" onClick={() => setRelatorioCliente(r)}>
                         <Users className="size-3.5" />
+                      </Button>
+                    )}
+                    {r.itens.some((i) => i.clientes_ids.length > 0) && (
+                      <Button size="icon" variant="ghost" className="size-7 text-emerald-600 hover:text-emerald-600"
+                        title="Enviar e-mails de cobrança" onClick={() => abrirEnvioEmails(r)}>
+                        <Mail className="size-3.5" />
                       </Button>
                     )}
                     {r.status !== "PAGO" && (
@@ -652,6 +678,93 @@ export default function ReembolsoClient({
               })()}
             </div>
           </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Modal de envio de e-mails */}
+      <Dialog open={!!enviandoEmails} onOpenChange={(o) => { if (!o && !isPending) { setEnviandoEmails(null); setResultadoEnvio(null); } }}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>Enviar e-mails de reembolso</DialogTitle>
+          </DialogHeader>
+
+          {!resultadoEnvio ? (
+            <div className="space-y-4">
+              <p className="text-sm text-muted-foreground">
+                Cada cliente associado ao reembolso receberá um e-mail com o seu valor rateado e o link para o relatório.
+              </p>
+              {enviandoEmails && (() => {
+                const ids = [...new Set(enviandoEmails.itens.flatMap((i) => i.clientes_ids))];
+                const clientesDoRel = clientes.filter((c) => ids.includes(c.id));
+                return (
+                  <div className="space-y-1.5">
+                    <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+                      Destinatários ({clientesDoRel.length})
+                    </p>
+                    {clientesDoRel.map((c) => (
+                      <div key={c.id} className="flex items-center gap-2 text-sm py-1 px-2 rounded bg-slate-50">
+                        <Users className="size-3.5 text-muted-foreground shrink-0" />
+                        <span className="flex-1 truncate font-medium">{c.nome}</span>
+                        <span className={cn("text-xs truncate", c.distancia_km ? "text-muted-foreground" : "text-destructive")}>
+                          sem e-mail
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                );
+              })()}
+              <DialogFooter>
+                <Button variant="outline" onClick={() => setEnviandoEmails(null)} disabled={isPending}>
+                  Cancelar
+                </Button>
+                <Button
+                  onClick={() => enviandoEmails && handleEnviarEmails(enviandoEmails)}
+                  disabled={isPending}
+                  className="gap-2"
+                >
+                  {isPending ? (
+                    <><Loader2 className="size-4 animate-spin" /> Enviando…</>
+                  ) : (
+                    <><Mail className="size-4" /> Enviar e-mails</>
+                  )}
+                </Button>
+              </DialogFooter>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              <div className="space-y-2">
+                {resultadoEnvio.map((r) => (
+                  <div key={r.clienteId} className={cn(
+                    "flex items-start gap-3 rounded-lg p-3 text-sm",
+                    r.ok ? "bg-green-50" : "bg-red-50"
+                  )}>
+                    {r.ok
+                      ? <CheckCircle2 className="size-4 text-green-600 shrink-0 mt-0.5" />
+                      : <XCircle className="size-4 text-red-500 shrink-0 mt-0.5" />
+                    }
+                    <div className="flex-1 min-w-0">
+                      <p className="font-medium truncate">{r.nome}</p>
+                      {r.email
+                        ? <p className="text-xs text-muted-foreground truncate">{r.email}</p>
+                        : <p className="text-xs text-destructive">{r.erro}</p>
+                      }
+                      {!r.ok && r.erro && r.email && (
+                        <p className="text-xs text-destructive mt-0.5">{r.erro}</p>
+                      )}
+                    </div>
+                    <span className={cn("text-xs font-semibold shrink-0", r.ok ? "text-green-700" : "text-red-600")}>
+                      {r.ok ? "Enviado" : "Falhou"}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <DialogFooter>
+                <Button onClick={() => { setEnviandoEmails(null); setResultadoEnvio(null); }}>
+                  Fechar
+                </Button>
+              </DialogFooter>
+            </div>
+          )}
         </DialogContent>
       </Dialog>
 

@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { obterEmpresaAtiva } from "@/lib/permissoes";
+import { enviarReembolso } from "@/lib/email";
 
 const schemaItem = z.object({
   tipo: z.enum(["DESLOCAMENTO", "REFEICAO", "HOTEL", "PEDAGIO"]),
@@ -119,6 +120,105 @@ export async function excluirReembolso(id: string) {
 
   await prisma.reembolso.delete({ where: { id } });
   revalidatePath("/relatorios/reembolso");
+}
+
+export async function enviarEmailsReembolso(id: string): Promise<{
+  resultados: { clienteId: string; nome: string; email: string | null; ok: boolean; erro?: string }[];
+}> {
+  const empresaId = await obterEmpresaAtiva();
+
+  const [reembolso, empresa] = await Promise.all([
+    prisma.reembolso.findFirst({
+      where: { id, empresa_id: empresaId },
+      include: { itens: true },
+    }),
+    prisma.empresa.findUnique({
+      where: { id: empresaId },
+      select: { nome: true, configuracoes: true },
+    }),
+  ]);
+
+  if (!reembolso || !empresa) throw new Error("Reembolso não encontrado");
+
+  const cfg = (empresa.configuracoes as Record<string, unknown>) ?? {};
+  const pagamento = (cfg.pagamento_reembolso as {
+    banco?: string; agencia?: string; conta?: string; tipo_conta?: string; chave_pix?: string;
+  }) ?? null;
+
+  // Clientes distintos de deslocamento (para calcular rateio das outras despesas)
+  const idsDeslocamento = [...new Set(
+    reembolso.itens.filter((i) => i.tipo === "DESLOCAMENTO").flatMap((i) => i.clientes_ids)
+  )];
+  const numClientesTotal = Math.max(idsDeslocamento.length, 1);
+
+  // Todos os clientes presentes em qualquer item
+  const todosIds = [...new Set(reembolso.itens.flatMap((i) => i.clientes_ids))];
+
+  const clientes = await prisma.cliente.findMany({
+    where: { id: { in: todosIds }, empresa_id: empresaId },
+    select: { id: true, nome: true, email: true },
+  });
+
+  const baseUrl =
+    process.env.NEXT_PUBLIC_APP_URL ??
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+
+  const resultados = await Promise.all(
+    clientes.map(async (cliente) => {
+      if (!cliente.email) {
+        return { clienteId: cliente.id, nome: cliente.nome, email: null, ok: false, erro: "Sem e-mail cadastrado" };
+      }
+
+      try {
+        // Deslocamentos deste cliente
+        const deslocamentos = reembolso.itens
+          .filter((i) => i.tipo === "DESLOCAMENTO" && i.clientes_ids.includes(cliente.id))
+          .map((i) => ({
+            descricao: i.descricao,
+            tipo: i.tipo,
+            valorRateio: Number(i.valor) / Math.max(i.clientes_ids.length, 1),
+          }));
+
+        // Outras despesas rateadas igualmente
+        const outrasDespesas = reembolso.itens
+          .filter((i) => i.tipo !== "DESLOCAMENTO")
+          .map((i) => ({
+            descricao: i.descricao,
+            tipo: i.tipo,
+            valorRateio: Number(i.valor) / numClientesTotal,
+          }));
+
+        const itens = [...deslocamentos, ...outrasDespesas];
+        const totalCliente = itens.reduce((s, i) => s + i.valorRateio, 0);
+
+        const link = `${baseUrl}/reembolso/${id}?cliente_id=${cliente.id}`;
+
+        await enviarReembolso({
+          para: cliente.email,
+          clienteNome: cliente.nome,
+          empresaNome: empresa.nome,
+          periodo: reembolso.periodo,
+          descricaoReembolso: reembolso.descricao,
+          itens,
+          totalCliente,
+          link,
+          pagamento,
+        });
+
+        return { clienteId: cliente.id, nome: cliente.nome, email: cliente.email, ok: true };
+      } catch (err) {
+        return {
+          clienteId: cliente.id,
+          nome: cliente.nome,
+          email: cliente.email,
+          ok: false,
+          erro: err instanceof Error ? err.message : "Erro ao enviar",
+        };
+      }
+    })
+  );
+
+  return { resultados };
 }
 
 export async function listarClientesParaDeslocamento() {
