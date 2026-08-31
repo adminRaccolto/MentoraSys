@@ -263,21 +263,6 @@ export default async function FaturaPage({ params }: Props) {
                   <p className="text-xs opacity-70 mt-1 text-right">{recebivel.forma_pagamento}</p>
                 )}
               </div>
-              {parcelasEmAberto.length > 0 && (() => {
-                const totalVencido = parcelasEmAberto.reduce((s, p) => s + Number(p.valor), 0);
-                const totalDevido = valor + totalVencido;
-                return (
-                  <div className="bg-red-700 text-white rounded-lg p-4">
-                    <div className="flex justify-between items-baseline gap-4">
-                      <div>
-                        <p className="text-sm font-semibold leading-tight">Total devido</p>
-                        <p className="text-xs opacity-75 mt-0.5">Esta fatura + {parcelasEmAberto.length} vencida{parcelasEmAberto.length > 1 ? "s" : ""}</p>
-                      </div>
-                      <span className="text-2xl font-black whitespace-nowrap">{fmtBRL(totalDevido)}</span>
-                    </div>
-                  </div>
-                );
-              })()}
             </div>
           </div>
 
@@ -347,9 +332,15 @@ export default async function FaturaPage({ params }: Props) {
                 </tbody>
                 <tfoot>
                   <tr className="border-t border-amber-300">
-                    <td colSpan={2} className="pt-2 text-sm font-semibold text-amber-800">Total em aberto</td>
+                    <td colSpan={2} className="pt-2 text-sm font-semibold text-amber-800">Total em Atraso</td>
                     <td className="pt-2 text-right font-bold text-amber-900">
                       {fmtBRL(parcelasEmAberto.reduce((s, p) => s + Number(p.valor), 0))}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colSpan={2} className="pt-1.5 text-sm font-bold text-red-800">Total em Aberto</td>
+                    <td className="pt-1.5 text-right font-black text-red-800">
+                      {fmtBRL(valor + parcelasEmAberto.reduce((s, p) => s + Number(p.valor), 0))}
                     </td>
                   </tr>
                 </tfoot>
