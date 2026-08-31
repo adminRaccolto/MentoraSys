@@ -121,12 +121,17 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
   const [formLoteData, setFormLoteData] = useState({ data_pagamento: new Date().toISOString().split("T")[0], forma_pagamento: "", conta_bancaria_id: "" });
   const [filtroDe, setFiltroDe] = useState(de);
   const [filtroAte, setFiltroAte] = useState(ate);
+  const [filtroFornecedor, setFiltroFornecedor] = useState("TODOS");
 
   const aplicarFiltro = () => {
     router.push(`/financeiro/contas-a-pagar?de=${filtroDe}&ate=${filtroAte}&status=${statusFiltro}`);
   };
 
   const filtradas = statusFiltro === "TODOS" ? contas : contas.filter((c) => c.status === statusFiltro);
+
+  const exibidas = filtroFornecedor === "TODOS"
+    ? filtradas
+    : filtradas.filter((c) => c.fornecedor === filtroFornecedor);
   const totalPendente = contas.filter((c) => c.status === "PENDENTE").reduce((s, c) => s + Number(c.valor), 0);
   const totalPago = contas.filter((c) => c.status === "PAGO").reduce((s, c) => s + Number(c.valor_pago ?? c.valor), 0);
 
@@ -274,7 +279,7 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
   };
 
   const toggleSelecionado = (id: string) => setSelecionados(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
-  const elegiveisLote = filtradas.filter(c => c.status === "PENDENTE" || c.status === "VENCIDO" || c.status === "PARCIAL");
+  const elegiveisLote = exibidas.filter(c => c.status === "PENDENTE" || c.status === "VENCIDO" || c.status === "PARCIAL");
   const todosElegivelsSelecionados = elegiveisLote.length > 0 && elegiveisLote.every(c => selecionados.has(c.id));
   const toggleTodos = () => {
     if (todosElegivelsSelecionados) setSelecionados(new Set());
@@ -306,6 +311,17 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
           <span className="text-sm text-muted-foreground">Até</span>
           <Input type="date" value={filtroAte} onChange={(e) => setFiltroAte(e.target.value)} className="h-8 w-36 text-sm" />
           <Button size="sm" variant="outline" className="h-8" onClick={aplicarFiltro}>Aplicar</Button>
+          <Select value={filtroFornecedor} onValueChange={(v) => setFiltroFornecedor(v ?? "TODOS")}>
+            <SelectTrigger className="h-8 w-44 text-sm">
+              <SelectValue placeholder="Todos os fornecedores" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="TODOS">Todos os fornecedores</SelectItem>
+              {fornecedores.map((f) => (
+                <SelectItem key={f.id} value={f.nome}>{f.nome}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
         <div className="flex gap-4 text-sm">
           <span className="text-muted-foreground">Pendente: <strong className="text-foreground">{formatBRL(totalPendente)}</strong></span>
@@ -354,12 +370,12 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
             </TableRow>
           </TableHeader>
           <TableBody>
-            {filtradas.length === 0 && (
+            {exibidas.length === 0 && (
               <TableRow>
                 <TableCell colSpan={9} className="text-center text-muted-foreground py-10">Nenhuma conta encontrada</TableCell>
               </TableRow>
             )}
-            {filtradas.map((c) => {
+            {exibidas.map((c) => {
               const vencido = isVencido(c.data_vencimento, c.status);
               const cfg = STATUS_CONFIG[vencido ? "VENCIDO" : c.status];
               const elegivel = c.status === "PENDENTE" || c.status === "VENCIDO" || c.status === "PARCIAL";

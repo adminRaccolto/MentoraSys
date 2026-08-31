@@ -173,6 +173,7 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
   const [formLoteData, setFormLoteData] = useState({ data_pagamento: new Date().toISOString().split("T")[0], forma_pagamento: "", conta_bancaria_id: "" });
   const [filtroDe, setFiltroDe] = useState(de);
   const [filtroAte, setFiltroAte] = useState(ate);
+  const [filtroCliente, setFiltroCliente] = useState("TODOS");
   const [isSyncingAsaas, setIsSyncingAsaas] = useState(false);
 
   const handleSyncBulkAsaas = async () => {
@@ -200,6 +201,10 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
     if (statusFiltro === "PENDENTE") return recebiveis.filter((r) => r.status === "PENDENTE" && new Date(r.data_vencimento) >= new Date());
     return recebiveis.filter((r) => r.status === statusFiltro);
   })();
+
+  const exibidos = filtroCliente === "TODOS"
+    ? statusFiltrados
+    : statusFiltrados.filter((r) => r.cliente?.id === filtroCliente);
 
   const totalPendente = recebiveis.filter((r) => r.status === "PENDENTE" && new Date(r.data_vencimento) >= new Date()).reduce((s, r) => s + Number(r.valor), 0);
   const totalVencido = recebiveis.filter((r) => r.status === "VENCIDO" || (r.status === "PENDENTE" && new Date(r.data_vencimento) < new Date())).reduce((s, r) => s + Number(r.valor), 0);
@@ -491,7 +496,7 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
   };
 
   const toggleSelecionado = (id: string) => setSelecionados(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
-  const elegiveisLote = statusFiltrados.filter(r => r.status === "PENDENTE" || r.status === "VENCIDO" || r.status === "PARCIAL");
+  const elegiveisLote = exibidos.filter(r => r.status === "PENDENTE" || r.status === "VENCIDO" || r.status === "PARCIAL");
   const todosElegivelsSelecionados = elegiveisLote.length > 0 && elegiveisLote.every(r => selecionados.has(r.id));
   const toggleTodos = () => {
     if (todosElegivelsSelecionados) setSelecionados(new Set());
@@ -537,6 +542,17 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
           <span className="text-sm text-muted-foreground">Até</span>
           <Input type="date" value={filtroAte} onChange={(e) => setFiltroAte(e.target.value)} className="h-8 w-36 text-sm" />
           <Button size="sm" variant="outline" className="h-8" onClick={aplicarFiltro}>Aplicar</Button>
+          <Select value={filtroCliente} onValueChange={(v) => setFiltroCliente(v ?? "TODOS")}>
+            <SelectTrigger className="h-8 w-44 text-sm">
+              <SelectValue placeholder="Todos os clientes" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="TODOS">Todos os clientes</SelectItem>
+              {clientes.map((c) => (
+                <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
         <div className="flex gap-4 text-sm">
           <span className="text-muted-foreground">Pendente: <strong className="text-foreground">{formatBRL(totalPendente)}</strong></span>
@@ -594,14 +610,14 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
             </TableRow>
           </TableHeader>
           <TableBody>
-            {statusFiltrados.length === 0 && (
+            {exibidos.length === 0 && (
               <TableRow>
                 <TableCell colSpan={9} className="text-center text-muted-foreground py-10">
                   Nenhum recebível encontrado
                 </TableCell>
               </TableRow>
             )}
-            {statusFiltrados.map((r) => {
+            {exibidos.map((r) => {
               const vencido = isVencido(r.data_vencimento, r.status);
               const cfg = STATUS_CONFIG[vencido ? "VENCIDO" : r.status];
               const elegivel = r.status === "PENDENTE" || r.status === "VENCIDO" || r.status === "PARCIAL";
