@@ -253,14 +253,31 @@ export default async function FaturaPage({ params }: Props) {
 
           {/* ── Total ────────────────────────────────────────────────────────── */}
           <div className="flex justify-end">
-            <div className="w-64 bg-[#1B4F72] text-white rounded-lg p-4">
-              <div className="flex justify-between items-center">
-                <span className="text-sm opacity-80">Total a pagar</span>
-                <span className="text-2xl font-black">{fmtBRL(valor)}</span>
+            <div className="w-72 space-y-2">
+              <div className="bg-[#1B4F72] text-white rounded-lg p-4">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm opacity-80">Total a pagar</span>
+                  <span className="text-2xl font-black">{fmtBRL(valor)}</span>
+                </div>
+                {recebivel.forma_pagamento && (
+                  <p className="text-xs opacity-70 mt-1 text-right">{recebivel.forma_pagamento}</p>
+                )}
               </div>
-              {recebivel.forma_pagamento && (
-                <p className="text-xs opacity-70 mt-1 text-right">{recebivel.forma_pagamento}</p>
-              )}
+              {parcelasEmAberto.length > 0 && (() => {
+                const totalVencido = parcelasEmAberto.reduce((s, p) => s + Number(p.valor), 0);
+                const totalDevido = valor + totalVencido;
+                return (
+                  <div className="bg-red-700 text-white rounded-lg p-4">
+                    <div className="flex justify-between items-baseline gap-4">
+                      <div>
+                        <p className="text-sm font-semibold leading-tight">Total devido</p>
+                        <p className="text-xs opacity-75 mt-0.5">Esta fatura + {parcelasEmAberto.length} vencida{parcelasEmAberto.length > 1 ? "s" : ""}</p>
+                      </div>
+                      <span className="text-2xl font-black whitespace-nowrap">{fmtBRL(totalDevido)}</span>
+                    </div>
+                  </div>
+                );
+              })()}
             </div>
           </div>
 
