@@ -51,6 +51,26 @@ export default async function FaturaPage({ params }: Props) {
 
   if (!recebivel || !empresa) notFound();
 
+  // Outras parcelas em aberto do mesmo cliente (vencidas ou pendentes com data passada)
+  const parcelasEmAberto = recebivel.cliente_id
+    ? await prisma.recebivel.findMany({
+        where: {
+          empresa_id: empresaId,
+          cliente_id: recebivel.cliente_id,
+          id: { not: recebivelId },
+          OR: [
+            { status: "VENCIDO" },
+            { status: "PENDENTE", data_vencimento: { lt: new Date() } },
+          ],
+        },
+        orderBy: { data_vencimento: "asc" },
+        select: {
+          descricao: true, valor: true, data_vencimento: true,
+          numero_parcela: true, total_parcelas: true,
+        },
+      })
+    : [];
+
   const cfg = (empresa.configuracoes as Record<string, unknown>) ?? {};
   const nomeFantasia = (cfg.nome_fantasia as string) ?? "";
   const enderecoEmpresa = (cfg.endereco as string) ?? "";
@@ -273,6 +293,53 @@ export default async function FaturaPage({ params }: Props) {
                   </div>
                 </div>
               </div>
+            </div>
+          )}
+
+          {/* ── Parcelas em aberto ────────────────────────────────────────── */}
+          {parcelasEmAberto.length > 0 && (
+            <div className="border border-amber-200 bg-amber-50 rounded-lg p-5">
+              <p className="text-xs font-semibold text-amber-700 uppercase tracking-wider mb-3">
+                ⚠️ Parcelas em aberto ({parcelasEmAberto.length})
+              </p>
+              <table className="w-full text-sm border-collapse">
+                <thead>
+                  <tr className="border-b border-amber-200">
+                    <th className="text-left pb-2 font-semibold text-amber-800">Descrição</th>
+                    <th className="text-center pb-2 font-semibold text-amber-800 whitespace-nowrap">Vencimento</th>
+                    <th className="text-right pb-2 font-semibold text-amber-800">Valor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {parcelasEmAberto.map((p, i) => {
+                    const parcLabel = p.numero_parcela && p.total_parcelas
+                      ? ` (${p.numero_parcela}/${p.total_parcelas})`
+                      : "";
+                    return (
+                      <tr key={i} className="border-b border-amber-100 last:border-0">
+                        <td className="py-2 text-slate-700">{p.descricao}{parcLabel}</td>
+                        <td className="py-2 text-center font-semibold text-red-600 whitespace-nowrap">
+                          {fmtDate(p.data_vencimento)}
+                        </td>
+                        <td className="py-2 text-right font-semibold text-slate-800">
+                          {fmtBRL(Number(p.valor))}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+                <tfoot>
+                  <tr className="border-t border-amber-300">
+                    <td colSpan={2} className="pt-2 text-sm font-semibold text-amber-800">Total em aberto</td>
+                    <td className="pt-2 text-right font-bold text-amber-900">
+                      {fmtBRL(parcelasEmAberto.reduce((s, p) => s + Number(p.valor), 0))}
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+              <p className="text-xs text-amber-700 mt-3">
+                Caso já tenha efetuado o pagamento, pedimos que entre em contato.
+              </p>
             </div>
           )}
 
