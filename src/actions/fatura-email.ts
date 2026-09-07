@@ -45,7 +45,10 @@ export async function enviarFaturaPorEmail(
             empresa_id: empresaId,
             cliente_id: recebivel.cliente_id,
             id: { not: recebivelId },
-            status: "VENCIDO",
+            OR: [
+              { status: "VENCIDO" },
+              { status: "PENDENTE", data_vencimento: { lt: new Date() } },
+            ],
           },
           orderBy: { data_vencimento: "asc" },
           select: { descricao: true, valor: true, data_vencimento: true, numero_parcela: true, total_parcelas: true },
