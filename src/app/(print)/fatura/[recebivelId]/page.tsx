@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { obterEmpresaAtiva } from "@/lib/permissoes";
+import { saldoRecebivel } from "@/lib/recebiveis";
 import FaturaToolbar from "./print-button";
 import Image from "next/image";
 
@@ -51,7 +52,8 @@ export default async function FaturaPage({ params }: Props) {
 
   if (!recebivel || !empresa) notFound();
 
-  // Outras parcelas em aberto do mesmo cliente (vencidas ou pendentes com data passada)
+  // Outras parcelas em aberto do mesmo cliente (vencidas, pendentes com data
+  // passada, ou pagas parcialmente — nesse caso só o saldo restante é cobrado)
   const parcelasEmAberto = recebivel.cliente_id
     ? await prisma.recebivel.findMany({
         where: {
@@ -61,11 +63,12 @@ export default async function FaturaPage({ params }: Props) {
           OR: [
             { status: "VENCIDO" },
             { status: "PENDENTE", data_vencimento: { lt: new Date() } },
+            { status: "PARCIAL" },
           ],
         },
         orderBy: { data_vencimento: "asc" },
         select: {
-          descricao: true, valor: true, data_vencimento: true,
+          descricao: true, valor: true, valor_pago: true, data_vencimento: true,
           numero_parcela: true, total_parcelas: true,
         },
       })
@@ -317,14 +320,23 @@ export default async function FaturaPage({ params }: Props) {
                     const parcLabel = p.numero_parcela && p.total_parcelas
                       ? ` (${p.numero_parcela}/${p.total_parcelas})`
                       : "";
+                    const saldo = saldoRecebivel(p);
+                    const pago = Number(p.valor_pago ?? 0) > 0;
                     return (
                       <tr key={i} className="border-b border-amber-100 last:border-0">
-                        <td className="py-2 text-slate-700">{p.descricao}{parcLabel}</td>
+                        <td className="py-2 text-slate-700">
+                          {p.descricao}{parcLabel}
+                          {pago && (
+                            <span className="block text-[11px] text-amber-700">
+                              Pago parcialmente — saldo restante
+                            </span>
+                          )}
+                        </td>
                         <td className="py-2 text-center font-semibold text-red-600 whitespace-nowrap">
                           {fmtDate(p.data_vencimento)}
                         </td>
                         <td className="py-2 text-right font-semibold text-slate-800">
-                          {fmtBRL(Number(p.valor))}
+                          {fmtBRL(saldo)}
                         </td>
                       </tr>
                     );
@@ -334,13 +346,13 @@ export default async function FaturaPage({ params }: Props) {
                   <tr className="border-t border-amber-300">
                     <td colSpan={2} className="pt-2 text-sm font-semibold text-amber-800">Total em Atraso</td>
                     <td className="pt-2 text-right font-bold text-amber-900">
-                      {fmtBRL(parcelasEmAberto.reduce((s, p) => s + Number(p.valor), 0))}
+                      {fmtBRL(parcelasEmAberto.reduce((s, p) => s + saldoRecebivel(p), 0))}
                     </td>
                   </tr>
                   <tr>
                     <td colSpan={2} className="pt-1.5 text-sm font-bold text-red-800">Total em Aberto</td>
                     <td className="pt-1.5 text-right font-black text-red-800">
-                      {fmtBRL(valor + parcelasEmAberto.reduce((s, p) => s + Number(p.valor), 0))}
+                      {fmtBRL(valor + parcelasEmAberto.reduce((s, p) => s + saldoRecebivel(p), 0))}
                     </td>
                   </tr>
                 </tfoot>

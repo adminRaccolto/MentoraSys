@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { obterEmpresaAtiva } from "@/lib/permissoes";
+import { saldoRecebivel, saldoContaPagar } from "@/lib/recebiveis";
 import Link from "next/link";
 import { DollarSign, AlertTriangle, ArrowUpCircle, ArrowDownCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -15,12 +16,12 @@ export default async function FinanceiroPage() {
 
   const [recebiveis, contasPagar, contasBancarias] = await Promise.all([
     prisma.recebivel.findMany({
-      where: { empresa_id: empresaId, status: { in: ["PENDENTE", "VENCIDO"] } },
+      where: { empresa_id: empresaId, status: { in: ["PENDENTE", "VENCIDO", "PARCIAL"] } },
       include: { cliente: { select: { nome: true } }, contrato: { select: { titulo: true } } },
       orderBy: { data_vencimento: "asc" },
     }),
     prisma.contaPagar.findMany({
-      where: { empresa_id: empresaId, status: { in: ["PENDENTE", "VENCIDO"] } },
+      where: { empresa_id: empresaId, status: { in: ["PENDENTE", "VENCIDO", "PARCIAL"] } },
       include: { plano_contas: { select: { nome: true } } },
       orderBy: { data_vencimento: "asc" },
     }),
@@ -33,11 +34,11 @@ export default async function FinanceiroPage() {
     }),
   ]);
 
-  const totalReceber = recebiveis.reduce((s, r) => s + Number(r.valor), 0);
+  const totalReceber = recebiveis.reduce((s, r) => s + saldoRecebivel(r), 0);
   const totalVencidos = recebiveis
     .filter((r) => r.data_vencimento < hoje)
-    .reduce((s, r) => s + Number(r.valor), 0);
-  const totalPagar = contasPagar.reduce((s, c) => s + Number(c.valor), 0);
+    .reduce((s, r) => s + saldoRecebivel(r), 0);
+  const totalPagar = contasPagar.reduce((s, c) => s + saldoContaPagar(c), 0);
 
   const saldoContas = contasBancarias.reduce((s, c) => {
     const entradas = c.recebiveis.reduce((acc, r) => acc + Number(r.valor_pago ?? 0), 0);
@@ -53,7 +54,7 @@ export default async function FinanceiroPage() {
         tipo: "recebivel" as const,
         descricao: r.descricao,
         referencia: r.cliente?.nome ?? r.contrato?.titulo ?? "—",
-        valor: Number(r.valor),
+        valor: saldoRecebivel(r),
         data: r.data_vencimento,
         vencido: r.data_vencimento < hoje,
       })),
@@ -64,7 +65,7 @@ export default async function FinanceiroPage() {
         tipo: "pagar" as const,
         descricao: c.descricao,
         referencia: c.fornecedor ?? c.plano_contas?.nome ?? "—",
-        valor: Number(c.valor),
+        valor: saldoContaPagar(c),
         data: c.data_vencimento,
         vencido: c.data_vencimento < hoje,
       })),

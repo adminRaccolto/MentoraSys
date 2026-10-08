@@ -19,6 +19,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { criarRecebivel, criarRecebivelParcelado, baixarRecebivel, excluirRecebivel, gerarParcelasContrato, estornarRecebivel, baixarLoteRecebiveis, refaturarRecebivel, editarRecebivel } from "@/actions/recebiveis";
 import { gerarBoleto, consultarBoleto, cancelarBoleto } from "@/actions/boletos";
 import { gerarCobrancaAsaas, cancelarCobrancaAsaas, sincronizarCobrancaAsaas, sincronizarReceiveisConselhoAgro } from "@/actions/asaas";
+import { saldoRecebivel } from "@/lib/recebiveis";
 
 type Status = "PENDENTE" | "PARCIAL" | "PAGO" | "VENCIDO" | "CANCELADO" | "RENEGOCIADO";
 
@@ -208,6 +209,7 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
 
   const totalPendente = recebiveis.filter((r) => r.status === "PENDENTE" && new Date(r.data_vencimento) >= new Date()).reduce((s, r) => s + Number(r.valor), 0);
   const totalVencido = recebiveis.filter((r) => r.status === "VENCIDO" || (r.status === "PENDENTE" && new Date(r.data_vencimento) < new Date())).reduce((s, r) => s + Number(r.valor), 0);
+  const totalParcial = recebiveis.filter((r) => r.status === "PARCIAL").reduce((s, r) => s + saldoRecebivel(r), 0);
   const totalPago = recebiveis.filter((r) => r.status === "PAGO").reduce((s, r) => s + Number(r.valor_pago ?? r.valor), 0);
 
   // Formulário criar
@@ -557,6 +559,7 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
         <div className="flex gap-4 text-sm">
           <span className="text-muted-foreground">Pendente: <strong className="text-foreground">{formatBRL(totalPendente)}</strong></span>
           {totalVencido > 0 && <span className="text-muted-foreground">Vencido: <strong className="text-destructive">{formatBRL(totalVencido)}</strong></span>}
+          {totalParcial > 0 && <span className="text-muted-foreground">Saldo parcial: <strong className="text-amber-700">{formatBRL(totalParcial)}</strong></span>}
           <span className="text-muted-foreground">Recebido: <strong className="text-primary">{formatBRL(totalPago)}</strong></span>
         </div>
       </div>
@@ -640,7 +643,14 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
                   <TableCell className="text-muted-foreground text-sm">
                     {r.contrato?.numero_contrato ?? r.contrato?.titulo ?? "—"}
                   </TableCell>
-                  <TableCell className="text-right font-medium">{formatBRL(r.valor)}</TableCell>
+                  <TableCell className="text-right font-medium">
+                    {formatBRL(r.valor)}
+                    {r.status === "PARCIAL" && (
+                      <span className="block text-xs font-normal text-amber-700">
+                        Saldo: {formatBRL(saldoRecebivel(r))}
+                      </span>
+                    )}
+                  </TableCell>
                   <TableCell className={`text-sm ${vencido ? "text-destructive font-medium" : "text-muted-foreground"}`}>
                     {new Date(r.data_vencimento).toLocaleDateString("pt-BR")}
                   </TableCell>

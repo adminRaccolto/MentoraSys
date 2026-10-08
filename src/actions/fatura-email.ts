@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { obterEmpresaAtiva } from "@/lib/permissoes";
 import { gerarTokenFatura } from "@/lib/fatura-token";
 import { enviarFatura } from "@/lib/email";
+import { saldoRecebivel } from "@/lib/recebiveis";
 
 export async function enviarFaturaPorEmail(
   recebivelId: string,
@@ -38,7 +39,8 @@ export async function enviarFaturaPorEmail(
       empresa.contas_bancarias[0] ??
       null;
 
-    // Busca outras faturas em aberto do mesmo cliente (exceto a atual)
+    // Busca outras faturas em aberto do mesmo cliente (exceto a atual),
+    // incluindo as pagas parcialmente — nesse caso só o saldo é cobrado
     const faturasEmAberto = recebivel.cliente_id
       ? await prisma.recebivel.findMany({
           where: {
@@ -48,10 +50,11 @@ export async function enviarFaturaPorEmail(
             OR: [
               { status: "VENCIDO" },
               { status: "PENDENTE", data_vencimento: { lt: new Date() } },
+              { status: "PARCIAL" },
             ],
           },
           orderBy: { data_vencimento: "asc" },
-          select: { descricao: true, valor: true, data_vencimento: true, numero_parcela: true, total_parcelas: true },
+          select: { descricao: true, valor: true, valor_pago: true, data_vencimento: true, numero_parcela: true, total_parcelas: true },
         })
       : [];
 
@@ -76,7 +79,7 @@ export async function enviarFaturaPorEmail(
       link,
       faturasEmAberto: faturasEmAberto.map((f) => ({
         descricao: f.descricao,
-        valor: Number(f.valor),
+        valor: saldoRecebivel(f),
         dataVencimento: f.data_vencimento,
         numeroParcela: f.numero_parcela,
         totalParcelas: f.total_parcelas,
