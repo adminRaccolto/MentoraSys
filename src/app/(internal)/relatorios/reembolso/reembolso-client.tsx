@@ -14,7 +14,10 @@ import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { criarReembolso, editarReembolso, excluirReembolso, marcarPago, enviarEmailsReembolso } from "@/actions/reembolsos";
+import {
+  criarReembolso, editarReembolso, excluirReembolso, marcarPago, enviarEmailsReembolso,
+  obterRateioReembolso, marcarPagoRateioCliente, desmarcarPagoRateioCliente,
+} from "@/actions/reembolsos";
 import { salvarPagamentoReembolso } from "@/actions/configuracoes";
 import type { PagamentoReembolso } from "./page";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -37,6 +40,11 @@ interface Reembolso {
   id: string; periodo: string; descricao: string | null;
   status: string; total: number | string; criado_em: Date;
   itens: ReembolsoItem[];
+}
+
+interface RateioClienteInfo {
+  clienteId: string; nome: string; email: string | null;
+  total: number; pago: boolean; dataPagamento: Date | null;
 }
 
 // ─── Schema ───────────────────────────────────────────────────────────────────
@@ -186,8 +194,41 @@ export default function ReembolsoClient({
   const [modalPagamento, setModalPagamento] = useState(false);
   const [enviandoEmails, setEnviandoEmails] = useState<Reembolso | null>(null);
   const [resultadoEnvio, setResultadoEnvio] = useState<
-    { clienteId: string; nome: string; email: string | null; ok: boolean; erro?: string; recebivel?: "criado" | "existente" }[] | null
+    { clienteId: string; nome: string; email: string | null; ok: boolean; erro?: string; recebivel?: "criado" | "existente"; jaPago?: boolean }[] | null
   >(null);
+  const [rateioInfo, setRateioInfo] = useState<RateioClienteInfo[] | null>(null);
+
+  function carregarRateio(r: Reembolso) {
+    setRateioInfo(null);
+    startTransition(async () => {
+      try {
+        const info = await obterRateioReembolso(r.id);
+        setRateioInfo(info);
+      } catch (e) {
+        toast.error(e instanceof Error ? e.message : "Erro ao carregar rateio");
+      }
+    });
+  }
+
+  function handleTogglePagoCliente(reembolsoId: string, clienteId: string, pagoAtual: boolean) {
+    startTransition(async () => {
+      try {
+        if (pagoAtual) {
+          await desmarcarPagoRateioCliente(reembolsoId, clienteId);
+          toast.success("Pagamento desfeito");
+        } else {
+          await marcarPagoRateioCliente(reembolsoId, clienteId);
+          toast.success("Pagamento registrado!");
+        }
+        setRateioInfo((prev) =>
+          prev?.map((c) => (c.clienteId === clienteId ? { ...c, pago: !pagoAtual } : c)) ?? null
+        );
+        router.refresh();
+      } catch (e) {
+        toast.error(e instanceof Error ? e.message : "Erro ao atualizar pagamento");
+      }
+    });
+  }
 
   const formPagamento = useForm<PagamentoForm>({
     resolver: zodResolver(schemaPagamento),
@@ -203,6 +244,7 @@ export default function ReembolsoClient({
   function abrirEnvioEmails(r: Reembolso) {
     setResultadoEnvio(null);
     setEnviandoEmails(r);
+    carregarRateio(r);
   }
 
   function handleEnviarEmails(r: Reembolso) {
@@ -392,7 +434,7 @@ export default function ReembolsoClient({
                     </a>
                     {r.itens.some((i) => i.clientes_ids.length > 0) && (
                       <Button size="icon" variant="ghost" className="size-7 text-blue-600 hover:text-blue-600"
-                        title="Relatório por cliente" onClick={() => setRelatorioCliente(r)}>
+                        title="Rateio por cliente" onClick={() => { setRelatorioCliente(r); carregarRateio(r); }}>
                         <Users className="size-3.5" />
                       </Button>
                     )}
@@ -640,49 +682,61 @@ export default function ReembolsoClient({
         </DialogContent>
       </Dialog>
 
-      {/* Seleção de cliente para relatório rateado */}
-      <Dialog open={!!relatorioCliente} onOpenChange={(o) => !o && setRelatorioCliente(null)}>
-        <DialogContent className="max-w-sm">
+      {/* Rateio por cliente: valores e status de pagamento */}
+      <Dialog open={!!relatorioCliente} onOpenChange={(o) => { if (!o) { setRelatorioCliente(null); setRateioInfo(null); } }}>
+        <DialogContent className="max-w-md">
           <DialogHeader>
-            <DialogTitle>Relatório por Cliente</DialogTitle>
+            <DialogTitle>Rateio por Cliente</DialogTitle>
           </DialogHeader>
           <div className="space-y-3">
             <p className="text-sm text-muted-foreground">
-              Selecione o cliente para gerar o relatório com os valores rateados:
+              Registre o pagamento de cada cliente. Quem já pagou não recebe cobrança em um reenvio.
             </p>
             <div className="space-y-1.5">
-              {relatorioCliente && (() => {
-                const ids = [...new Set(relatorioCliente.itens.flatMap((i) => i.clientes_ids))];
-                const clientesDoRel = clientes.filter((c) => ids.includes(c.id));
-                if (clientesDoRel.length === 0) {
-                  return (
-                    <p className="text-sm text-muted-foreground text-center py-3">
-                      Nenhum cliente associado a itens de deslocamento.
-                    </p>
-                  );
-                }
-                return clientesDoRel.map((c) => (
-                  <a
-                    key={c.id}
-                    href={`/reembolso/${relatorioCliente.id}?cliente_id=${c.id}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setRelatorioCliente(null)}
-                  >
-                    <Button variant="outline" className="w-full justify-start gap-2 h-9">
-                      <Users className="size-3.5 shrink-0" />
-                      <span className="truncate">{c.nome}</span>
+              {!rateioInfo ? (
+                <div className="flex justify-center py-6">
+                  <Loader2 className="size-4 animate-spin text-muted-foreground" />
+                </div>
+              ) : rateioInfo.length === 0 ? (
+                <p className="text-sm text-muted-foreground text-center py-3">
+                  Nenhum cliente associado a itens de deslocamento.
+                </p>
+              ) : (
+                rateioInfo.map((c) => (
+                  <div key={c.clienteId} className="flex items-center gap-2 rounded-lg border px-3 py-2">
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium truncate">{c.nome}</p>
+                      <p className="text-xs text-muted-foreground">{fmtBRL(c.total)}</p>
+                    </div>
+                    <Badge variant={c.pago ? "default" : "outline"}
+                      className={c.pago ? "bg-green-600 text-white" : "text-amber-700 border-amber-400"}>
+                      {c.pago ? "Pago" : "Pendente"}
+                    </Badge>
+                    <a href={`/reembolso/${relatorioCliente?.id}?cliente_id=${c.clienteId}`}
+                       target="_blank" rel="noopener noreferrer">
+                      <Button size="icon" variant="ghost" className="size-7" title="Ver relatório">
+                        <Printer className="size-3.5" />
+                      </Button>
+                    </a>
+                    <Button
+                      size="icon" variant="ghost"
+                      className={cn("size-7", c.pago ? "text-amber-600 hover:text-amber-600" : "text-green-600 hover:text-green-600")}
+                      title={c.pago ? "Desfazer pagamento" : "Registrar pagamento"}
+                      disabled={isPending}
+                      onClick={() => relatorioCliente && handleTogglePagoCliente(relatorioCliente.id, c.clienteId, c.pago)}
+                    >
+                      {c.pago ? <XCircle className="size-3.5" /> : <CheckCircle className="size-3.5" />}
                     </Button>
-                  </a>
-                ));
-              })()}
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </DialogContent>
       </Dialog>
 
       {/* Modal de envio de e-mails */}
-      <Dialog open={!!enviandoEmails} onOpenChange={(o) => { if (!o && !isPending) { setEnviandoEmails(null); setResultadoEnvio(null); } }}>
+      <Dialog open={!!enviandoEmails} onOpenChange={(o) => { if (!o && !isPending) { setEnviandoEmails(null); setResultadoEnvio(null); setRateioInfo(null); } }}>
         <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle>Enviar e-mails de reembolso</DialogTitle>
@@ -692,28 +746,32 @@ export default function ReembolsoClient({
             <div className="space-y-4">
               <p className="text-sm text-muted-foreground">
                 Cada cliente associado ao reembolso receberá um e-mail com o seu valor rateado e o link para o relatório.
+                Clientes já marcados como pagos não recebem cobrança novamente.
               </p>
-              {enviandoEmails && (() => {
-                const ids = [...new Set(enviandoEmails.itens.flatMap((i) => i.clientes_ids))];
-                const clientesDoRel = clientes.filter((c) => ids.includes(c.id));
-                return (
-                  <div className="space-y-1.5">
-                    <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
-                      Destinatários ({clientesDoRel.length})
-                    </p>
-                    {clientesDoRel.map((c) => (
-                      <div key={c.id} className="flex items-center gap-2 text-sm py-1 px-2 rounded bg-slate-50">
-                        <Users className="size-3.5 text-muted-foreground shrink-0" />
-                        <span className="flex-1 truncate font-medium">{c.nome}</span>
-                        {c.email
-                          ? <span className="text-xs text-muted-foreground truncate max-w-40">{c.email}</span>
-                          : <span className="text-xs text-destructive shrink-0">sem e-mail</span>
-                        }
-                      </div>
-                    ))}
+              <div className="space-y-1.5">
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+                  Destinatários ({rateioInfo?.length ?? 0})
+                </p>
+                {!rateioInfo ? (
+                  <div className="flex justify-center py-4">
+                    <Loader2 className="size-4 animate-spin text-muted-foreground" />
                   </div>
-                );
-              })()}
+                ) : (
+                  rateioInfo.map((c) => (
+                    <div key={c.clienteId} className="flex items-center gap-2 text-sm py-1 px-2 rounded bg-slate-50">
+                      <Users className="size-3.5 text-muted-foreground shrink-0" />
+                      <span className="flex-1 truncate font-medium">{c.nome}</span>
+                      {c.pago ? (
+                        <span className="text-xs text-green-700 shrink-0">Já pago — não será cobrado</span>
+                      ) : c.email ? (
+                        <span className="text-xs text-muted-foreground truncate max-w-40">{c.email}</span>
+                      ) : (
+                        <span className="text-xs text-destructive shrink-0">sem e-mail</span>
+                      )}
+                    </div>
+                  ))
+                )}
+              </div>
               <DialogFooter>
                 <Button variant="outline" onClick={() => setEnviandoEmails(null)} disabled={isPending}>
                   Cancelar
@@ -737,22 +795,27 @@ export default function ReembolsoClient({
                 {resultadoEnvio.map((r) => (
                   <div key={r.clienteId} className={cn(
                     "flex items-start gap-3 rounded-lg p-3 text-sm",
-                    r.ok ? "bg-green-50" : "bg-red-50"
+                    r.jaPago ? "bg-slate-50" : r.ok ? "bg-green-50" : "bg-red-50"
                   )}>
-                    {r.ok
+                    {r.jaPago
+                      ? <CheckCircle2 className="size-4 text-slate-400 shrink-0 mt-0.5" />
+                      : r.ok
                       ? <CheckCircle2 className="size-4 text-green-600 shrink-0 mt-0.5" />
                       : <XCircle className="size-4 text-red-500 shrink-0 mt-0.5" />
                     }
                     <div className="flex-1 min-w-0">
                       <p className="font-medium truncate">{r.nome}</p>
-                      {r.email
-                        ? <p className="text-xs text-muted-foreground truncate">{r.email}</p>
-                        : <p className="text-xs text-destructive">{r.erro}</p>
-                      }
-                      {!r.ok && r.erro && r.email && (
+                      {r.jaPago ? (
+                        <p className="text-xs text-muted-foreground">Já pago — cobrança não reenviada</p>
+                      ) : r.email ? (
+                        <p className="text-xs text-muted-foreground truncate">{r.email}</p>
+                      ) : (
+                        <p className="text-xs text-destructive">{r.erro}</p>
+                      )}
+                      {!r.jaPago && !r.ok && r.erro && r.email && (
                         <p className="text-xs text-destructive mt-0.5">{r.erro}</p>
                       )}
-                      {r.ok && r.recebivel && (
+                      {!r.jaPago && r.ok && r.recebivel && (
                         <p className="text-xs text-emerald-700 mt-0.5">
                           {r.recebivel === "criado"
                             ? "✓ Lançado no contas a receber (venc. 30 dias)"
@@ -760,14 +823,14 @@ export default function ReembolsoClient({
                         </p>
                       )}
                     </div>
-                    <span className={cn("text-xs font-semibold shrink-0", r.ok ? "text-green-700" : "text-red-600")}>
-                      {r.ok ? "Enviado" : "Falhou"}
+                    <span className={cn("text-xs font-semibold shrink-0", r.jaPago ? "text-slate-500" : r.ok ? "text-green-700" : "text-red-600")}>
+                      {r.jaPago ? "Pulado" : r.ok ? "Enviado" : "Falhou"}
                     </span>
                   </div>
                 ))}
               </div>
               <DialogFooter>
-                <Button onClick={() => { setEnviandoEmails(null); setResultadoEnvio(null); }}>
+                <Button onClick={() => { setEnviandoEmails(null); setResultadoEnvio(null); setRateioInfo(null); }}>
                   Fechar
                 </Button>
               </DialogFooter>
