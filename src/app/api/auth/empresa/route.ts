@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import { prisma } from "@/lib/prisma";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { z } from "zod";
@@ -16,6 +17,14 @@ export async function POST(request: Request) {
   const body = await request.json();
   const parsed = schema.safeParse(body);
   if (!parsed.success) return NextResponse.json({ error: "Inválido" }, { status: 400 });
+
+  const membro = await prisma.membroEmpresa.findUnique({
+    where: { usuario_id_empresa_id: { usuario_id: user.id, empresa_id: parsed.data.empresaId } },
+    select: { ativo: true },
+  });
+  if (!membro?.ativo) {
+    return NextResponse.json({ error: "Você não tem acesso a esta empresa" }, { status: 403 });
+  }
 
   const cookieStore = await cookies();
   cookieStore.set("empresa_ativa", parsed.data.empresaId, {
