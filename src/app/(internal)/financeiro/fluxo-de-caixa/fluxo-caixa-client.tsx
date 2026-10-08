@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import { BarChart2, ChevronDown, ChevronRight, Pencil, X, Settings2 } from "lucide-react";
+import { BarChart2, ChevronDown, ChevronRight, Pencil, X, Settings2, FileSpreadsheet, Printer } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -104,14 +104,18 @@ export default function FluxoCaixaClient({ lancamentos, de, ate, saldoAnterior }
     };
   }), [lancFiltrados, simsAtivas, meses]);
 
+  // Entradas agrupadas por cliente (não por parcela/descrição); saídas seguem
+  // agrupadas por plano de contas, que já é a categoria de despesa.
   const dfcRows = useMemo(() => {
-    const cats = new Map<string, { tipo: "ENTRADA" | "SAIDA"; mes: Record<string, number> }>();
+    const cats = new Map<string, { tipo: "ENTRADA" | "SAIDA"; nome: string; mes: Record<string, number> }>();
     for (const l of lancFiltrados) {
-      if (!cats.has(l.descricao)) cats.set(l.descricao, { tipo: l.tipo, mes: {} });
-      const e = cats.get(l.descricao)!;
+      const nome = l.tipo === "ENTRADA" ? l.referencia : l.descricao;
+      const chave = `${l.tipo}:${nome}`;
+      if (!cats.has(chave)) cats.set(chave, { tipo: l.tipo, nome, mes: {} });
+      const e = cats.get(chave)!;
       e.mes[l.data.slice(0, 7)] = (e.mes[l.data.slice(0, 7)] ?? 0) + l.valor;
     }
-    return Array.from(cats.entries()).map(([nome, v]) => ({ nome, ...v }));
+    return Array.from(cats.values());
   }, [lancFiltrados]);
 
   const totalEntradas = somasMes.reduce((s, m) => s + m.entradas, 0);
@@ -146,6 +150,48 @@ export default function FluxoCaixaClient({ lancamentos, de, ate, saldoAnterior }
   const impactoEntradas = simulacoes.filter(s => s.ativa && s.tipo === "ENTRADA").reduce((s, x) => s + x.valor, 0);
   const impactoSaidas   = simulacoes.filter(s => s.ativa && s.tipo === "SAIDA").reduce((s, x) => s + x.valor, 0);
   const qtdAtivas = simulacoes.filter(s => s.ativa).length;
+
+  const pdfHref = `/fluxo-caixa?de=${de}&ate=${ate}&vista=${vista}&tipo=${tipoFiltro}`;
+
+  async function exportarExcel() {
+    const XLSX = await import("xlsx");
+    const wb = XLSX.utils.book_new();
+    const linhas: (string | number)[][] = [];
+
+    if (vista === "mensal") {
+      linhas.push(["Conta / Descrição", ...meses.map(m => m.label), "Total"]);
+      linhas.push(["ENTRADAS (CR)", ...somasMes.map(m => m.entradas), totalEntradas]);
+      for (const row of dfcRows.filter(r => r.tipo === "ENTRADA")) {
+        const total = Object.values(row.mes).reduce((s, v) => s + v, 0);
+        linhas.push([row.nome, ...meses.map(m => row.mes[m.key] ?? 0), total]);
+      }
+      linhas.push(["SAÍDAS (CP)", ...somasMes.map(m => m.saidas), totalSaidas]);
+      for (const row of dfcRows.filter(r => r.tipo === "SAIDA")) {
+        const total = Object.values(row.mes).reduce((s, v) => s + v, 0);
+        linhas.push([row.nome, ...meses.map(m => row.mes[m.key] ?? 0), total]);
+      }
+      linhas.push(["= Diferença", ...somasMes.map(m => m.entradas - m.saidas), saldoPeriodo]);
+      let acum = saldoAnterior;
+      linhas.push(["Saldo Acumulado", ...somasMes.map(m => { acum += m.entradas - m.saidas; return acum; }), acum]);
+    } else if (vista === "prevreal") {
+      linhas.push(["Linha", ...meses.map(m => m.label)]);
+      linhas.push(["Entradas — Previstas", ...somasMes.map(m => m.entPrev)]);
+      linhas.push(["Entradas — Realizadas", ...somasMes.map(m => m.entReal)]);
+      linhas.push(["Saídas — Previstas", ...somasMes.map(m => m.saiPrev)]);
+      linhas.push(["Saídas — Realizadas", ...somasMes.map(m => m.saiReal)]);
+      linhas.push(["Saldo Previsto", ...somasMes.map(m => m.entPrev - m.saiPrev)]);
+      linhas.push(["Saldo Realizado", ...somasMes.map(m => m.entReal - m.saiReal)]);
+    } else {
+      linhas.push(["Data", "Tipo", "Descrição", "Referência", "Valor", "Projetado"]);
+      for (const l of lancFiltrados) {
+        linhas.push([fmtData(l.data), l.tipo === "ENTRADA" ? "Entrada" : "Saída", l.descricao, l.referencia, l.valor, l.projetado ? "Sim" : "Não"]);
+      }
+    }
+
+    const ws = XLSX.utils.aoa_to_sheet(linhas);
+    XLSX.utils.book_append_sheet(wb, ws, vista === "mensal" ? "DFC Mensal" : vista === "prevreal" ? "Previsto x Realizado" : "Dia a dia");
+    XLSX.writeFile(wb, `fluxo-de-caixa_${de}_a_${ate}.xlsx`);
+  }
 
   const pct = (real: number, prev: number) => prev === 0 ? null : ((real - prev) / Math.abs(prev)) * 100;
   const fmtPct = (v: number | null) => {
@@ -252,6 +298,16 @@ export default function FluxoCaixaClient({ lancamentos, de, ate, saldoAnterior }
             </button>
           ))}
           <div className="flex-1" />
+          <div className="flex items-center gap-1 px-2">
+            <Button size="sm" variant="outline" className="h-7 text-xs gap-1.5" onClick={exportarExcel}>
+              <FileSpreadsheet className="size-3.5" /> Excel
+            </Button>
+            <a href={pdfHref} target="_blank" rel="noopener noreferrer">
+              <Button size="sm" variant="outline" className="h-7 text-xs gap-1.5">
+                <Printer className="size-3.5" /> Gerar PDF
+              </Button>
+            </a>
+          </div>
           {vista === "dia" && (
             <div className="flex items-center gap-1 px-4">
               <Button size="sm" variant="ghost" className="h-7 text-xs" onClick={() => setDiasExp(new Set(diasOrdenados))}>Expandir tudo</Button>
