@@ -198,7 +198,7 @@ export default function PropostasClient({ propostas: inicial, clientes, servicos
   const [propostaAceitando, setPropostaAceitando] = useState<Proposta | null>(null);
   const [isPending, startTransition] = useTransition();
 
-  const { register, handleSubmit, reset, setValue, watch, control, formState: { errors } } =
+  const { register, handleSubmit, reset, setValue, watch, getValues, control, formState: { errors } } =
     useForm<FormData>({
       resolver: zodResolver(schema),
       defaultValues: { itens: [{ descricao: "", quantidade: 1, valor_unitario: 0, desconto: 0, ordem: 0 }] },
@@ -208,23 +208,24 @@ export default function PropostasClient({ propostas: inicial, clientes, servicos
   const { fields: parcelasFields, replace: replaceParcelas } = useFieldArray({ control, name: "parcelas_json" });
   const itensWatch = watch("itens");
   const clienteIdWatch = watch("cliente_id");
-  const numeroParcelas = watch("numero_parcelas");
-  const primeiroVencimento = watch("primeiro_vencimento");
-  const periodicidade = watch("periodicidade");
+  // Lidos com getValues() (não watch()) dentro dos handlers abaixo, para
+  // sempre pegar o valor mais atual do formulário no momento do clique.
 
   const [confirmarGerarParcelas, setConfirmarGerarParcelas] = useState(false);
 
   const distribuirIgualmente = () => {
-    const n = Number(numeroParcelas) || 0;
+    const n = Number(getValues("numero_parcelas")) || 0;
+    const primeiroVencimento = getValues("primeiro_vencimento");
     if (n < 1 || !primeiroVencimento) return;
-    replaceParcelas(gerarParcelasIguais(n, primeiroVencimento, periodicidade, calcularTotal()));
+    replaceParcelas(gerarParcelasIguais(n, primeiroVencimento, getValues("periodicidade"), calcularTotal()));
   };
 
   // Geração das parcelas é sempre um gesto explícito do usuário (botão "Gerar
   // parcelas"), nunca automática — regenerar sozinho sobrescrevia edições
   // manuais da grade a cada mudança de nº de parcelas/vencimento/periodicidade.
   const gerarParcelas = () => {
-    const n = Number(numeroParcelas) || 0;
+    const n = Number(getValues("numero_parcelas")) || 0;
+    const primeiroVencimento = getValues("primeiro_vencimento");
     if (n < 1 || !primeiroVencimento) {
       toast.error("Informe o número de parcelas e o 1º vencimento antes de gerar.");
       return;
