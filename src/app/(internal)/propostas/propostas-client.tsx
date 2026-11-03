@@ -618,84 +618,9 @@ export default function PropostasClient({ propostas: inicial, clientes, servicos
                       <SelectItem value="">Não informado</SelectItem>
                       {PERIODICIDADES.map((p) => <SelectItem key={p} value={p}>{p}</SelectItem>)}
                     </SelectField>
-                    <Field label="Nº de parcelas">
-                      <Input
-                        {...register("numero_parcelas", { valueAsNumber: true })}
-                        type="number" min="1" className="h-9 text-sm"
-                        placeholder="Ex: 12"
-                      />
-                    </Field>
-                    <Field label="1º vencimento">
-                      <Input {...register("primeiro_vencimento")} type="date" className="h-9 text-sm" />
-                    </Field>
-
-                    <Button
-                      type="button"
-                      variant="outline"
-                      className="w-full h-9 text-xs gap-1.5"
-                      onClick={gerarParcelas}
-                    >
-                      <Calculator className="size-3.5" />
-                      {parcelasFields.length > 0 ? "Gerar parcelas novamente" : "Gerar parcelas"}
-                    </Button>
-
-                    {/* Grid de parcelas */}
-                    {parcelasFields.length > 0 && (
-                      <div className="space-y-2 pt-1">
-                        <div className="flex items-center justify-between">
-                          <p className="text-[10px] font-semibold text-primary uppercase tracking-widest">Grade de Parcelas</p>
-                          <button
-                            type="button"
-                            onClick={distribuirIgualmente}
-                            className="text-[10px] text-primary hover:underline"
-                          >
-                            Distribuir igualmente
-                          </button>
-                        </div>
-                        <div className="border rounded-md overflow-hidden">
-                          <table className="w-full text-xs">
-                            <thead>
-                              <tr className="bg-muted/50 border-b">
-                                <th className="px-2 py-1.5 text-left text-muted-foreground font-medium w-8">#</th>
-                                <th className="px-2 py-1.5 text-left text-muted-foreground font-medium">Vencimento</th>
-                                <th className="px-2 py-1.5 text-right text-muted-foreground font-medium">Valor (R$)</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {parcelasFields.map((p, idx) => (
-                                <tr key={p.id} className={idx % 2 === 0 ? "bg-white" : "bg-muted/20"}>
-                                  <td className="px-2 py-1 text-muted-foreground">{idx + 1}</td>
-                                  <td className="px-2 py-1">
-                                    <input
-                                      {...register(`parcelas_json.${idx}.vencimento`)}
-                                      type="date"
-                                      className="w-full border-0 bg-transparent text-xs outline-none focus:bg-white focus:ring-1 focus:ring-primary rounded px-1"
-                                    />
-                                  </td>
-                                  <td className="px-2 py-1">
-                                    <input
-                                      {...register(`parcelas_json.${idx}.valor`, { valueAsNumber: true })}
-                                      type="number"
-                                      step="0.01"
-                                      min="0"
-                                      className="w-full border-0 bg-transparent text-xs text-right outline-none focus:bg-white focus:ring-1 focus:ring-primary rounded px-1"
-                                    />
-                                  </td>
-                                </tr>
-                              ))}
-                            </tbody>
-                            <tfoot>
-                              <tr className="border-t bg-muted/30">
-                                <td colSpan={2} className="px-2 py-1.5 text-xs font-semibold text-muted-foreground text-right">Total parcelas:</td>
-                                <td className="px-2 py-1.5 text-xs font-bold text-right">
-                                  {watch("parcelas_json")?.reduce((s, p) => s + (Number(p.valor) || 0), 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
-                                </td>
-                              </tr>
-                            </tfoot>
-                          </table>
-                        </div>
-                      </div>
-                    )}
+                    <p className="text-xs text-muted-foreground pt-1">
+                      O parcelamento (nº de parcelas, 1º vencimento e a grade) é definido na aba &quot;Itens&quot;, depois do valor total da proposta.
+                    </p>
                   </div>
 
                   {/* Coluna 3: Contato cliente */}
@@ -796,6 +721,92 @@ export default function PropostasClient({ propostas: inicial, clientes, servicos
                     <p className="text-xs text-muted-foreground">Total da proposta</p>
                     <p className="text-2xl font-bold text-primary">{formatarValor(calcularTotal())}</p>
                   </div>
+                </div>
+
+                {/* Parcelamento — depois do total, pois a grade é calculada a partir dele */}
+                <Separator />
+                <div className="space-y-3">
+                  <p className="text-xs font-semibold text-primary uppercase tracking-widest">Parcelamento</p>
+                  <div className="grid grid-cols-2 gap-3 max-w-md">
+                    <Field label="Nº de parcelas">
+                      <Input
+                        {...register("numero_parcelas", { valueAsNumber: true })}
+                        type="number" min="1" className="h-9 text-sm"
+                        placeholder="Ex: 12"
+                      />
+                    </Field>
+                    <Field label="1º vencimento">
+                      <Input {...register("primeiro_vencimento")} type="date" className="h-9 text-sm" />
+                    </Field>
+                  </div>
+
+                  <Button
+                    type="button"
+                    variant="outline"
+                    className="h-9 text-xs gap-1.5"
+                    onClick={gerarParcelas}
+                  >
+                    <Calculator className="size-3.5" />
+                    {parcelasFields.length > 0 ? "Gerar parcelas novamente" : "Gerar parcelas"}
+                  </Button>
+
+                  {/* Grid de parcelas */}
+                  {parcelasFields.length > 0 && (
+                    <div className="space-y-2 pt-1 max-w-md">
+                      <div className="flex items-center justify-between">
+                        <p className="text-[10px] font-semibold text-primary uppercase tracking-widest">Grade de Parcelas</p>
+                        <button
+                          type="button"
+                          onClick={distribuirIgualmente}
+                          className="text-[10px] text-primary hover:underline"
+                        >
+                          Distribuir igualmente
+                        </button>
+                      </div>
+                      <div className="border rounded-md overflow-hidden">
+                        <table className="w-full text-xs">
+                          <thead>
+                            <tr className="bg-muted/50 border-b">
+                              <th className="px-2 py-1.5 text-left text-muted-foreground font-medium w-8">#</th>
+                              <th className="px-2 py-1.5 text-left text-muted-foreground font-medium">Vencimento</th>
+                              <th className="px-2 py-1.5 text-right text-muted-foreground font-medium">Valor (R$)</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {parcelasFields.map((p, idx) => (
+                              <tr key={p.id} className={idx % 2 === 0 ? "bg-white" : "bg-muted/20"}>
+                                <td className="px-2 py-1 text-muted-foreground">{idx + 1}</td>
+                                <td className="px-2 py-1">
+                                  <input
+                                    {...register(`parcelas_json.${idx}.vencimento`)}
+                                    type="date"
+                                    className="w-full border-0 bg-transparent text-xs outline-none focus:bg-white focus:ring-1 focus:ring-primary rounded px-1"
+                                  />
+                                </td>
+                                <td className="px-2 py-1">
+                                  <input
+                                    {...register(`parcelas_json.${idx}.valor`, { valueAsNumber: true })}
+                                    type="number"
+                                    step="0.01"
+                                    min="0"
+                                    className="w-full border-0 bg-transparent text-xs text-right outline-none focus:bg-white focus:ring-1 focus:ring-primary rounded px-1"
+                                  />
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                          <tfoot>
+                            <tr className="border-t bg-muted/30">
+                              <td colSpan={2} className="px-2 py-1.5 text-xs font-semibold text-muted-foreground text-right">Total parcelas:</td>
+                              <td className="px-2 py-1.5 text-xs font-bold text-right">
+                                {watch("parcelas_json")?.reduce((s, p) => s + (Number(p.valor) || 0), 0).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                              </td>
+                            </tr>
+                          </tfoot>
+                        </table>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </TabsContent>
 
