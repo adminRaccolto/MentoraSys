@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Plus, FileText, Trash2, Send, Copy, ExternalLink, CheckCircle } from "lucide-react";
+import { Plus, FileText, Trash2, Send, Copy, ExternalLink, CheckCircle, Calculator } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -191,7 +191,6 @@ function Field({ label, error, children }: { label: string; error?: string; chil
 export default function PropostasClient({ propostas: inicial, clientes, servicos, leads, modelosProposta, usuarios }: Props) {
   const [propostas, setPropostas] = useState(inicial);
   const [modalAberto, setModalAberto] = useState(false);
-  const editingRef = useRef<string | null>(null);
   const [propostaEditando, setPropostaEditando] = useState<Proposta | null>(null);
   const [propostaEnviando, setPropostaEnviando] = useState<Proposta | null>(null);
   const [propostaExcluindo, setPropostaExcluindo] = useState<Proposta | null>(null);
@@ -213,23 +212,29 @@ export default function PropostasClient({ propostas: inicial, clientes, servicos
   const primeiroVencimento = watch("primeiro_vencimento");
   const periodicidade = watch("periodicidade");
 
+  const [confirmarGerarParcelas, setConfirmarGerarParcelas] = useState(false);
+
   const distribuirIgualmente = () => {
     const n = Number(numeroParcelas) || 0;
     if (n < 1 || !primeiroVencimento) return;
     replaceParcelas(gerarParcelasIguais(n, primeiroVencimento, periodicidade, calcularTotal()));
   };
 
-  useEffect(() => {
-    // Ao abrir uma proposta para edição, pula a regeneração automática uma vez
-    if (editingRef.current) {
-      editingRef.current = null;
+  // Geração das parcelas é sempre um gesto explícito do usuário (botão "Gerar
+  // parcelas"), nunca automática — regenerar sozinho sobrescrevia edições
+  // manuais da grade a cada mudança de nº de parcelas/vencimento/periodicidade.
+  const gerarParcelas = () => {
+    const n = Number(numeroParcelas) || 0;
+    if (n < 1 || !primeiroVencimento) {
+      toast.error("Informe o número de parcelas e o 1º vencimento antes de gerar.");
       return;
     }
-    const n = Number(numeroParcelas) || 0;
-    if (n < 1 || !primeiroVencimento) return;
-    replaceParcelas(gerarParcelasIguais(n, primeiroVencimento, periodicidade, calcularTotal()));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [numeroParcelas, primeiroVencimento, periodicidade]);
+    if (parcelasFields.length > 0) {
+      setConfirmarGerarParcelas(true);
+      return;
+    }
+    distribuirIgualmente();
+  };
 
   useEffect(() => {
     if (!clienteIdWatch) return;
@@ -262,14 +267,12 @@ export default function PropostasClient({ propostas: inicial, clientes, servicos
   };
 
   const abrirCriar = () => {
-    editingRef.current = null;
     setPropostaEditando(null);
     reset({ itens: [{ descricao: "", quantidade: 1, valor_unitario: 0, desconto: 0, ordem: 0 }] });
     setModalAberto(true);
   };
 
   const abrirEditar = (p: Proposta) => {
-    editingRef.current = p.id;
     setPropostaEditando(p);
     reset({
       cliente_id: p.cliente.id,
@@ -625,6 +628,16 @@ export default function PropostasClient({ propostas: inicial, clientes, servicos
                       <Input {...register("primeiro_vencimento")} type="date" className="h-9 text-sm" />
                     </Field>
 
+                    <Button
+                      type="button"
+                      variant="outline"
+                      className="w-full h-9 text-xs gap-1.5"
+                      onClick={gerarParcelas}
+                    >
+                      <Calculator className="size-3.5" />
+                      {parcelasFields.length > 0 ? "Gerar parcelas novamente" : "Gerar parcelas"}
+                    </Button>
+
                     {/* Grid de parcelas */}
                     {parcelasFields.length > 0 && (
                       <div className="space-y-2 pt-1">
@@ -681,16 +694,6 @@ export default function PropostasClient({ propostas: inicial, clientes, servicos
                           </table>
                         </div>
                       </div>
-                    )}
-
-                    {Number(numeroParcelas) >= 1 && primeiroVencimento && parcelasFields.length === 0 && (
-                      <button
-                        type="button"
-                        onClick={distribuirIgualmente}
-                        className="w-full text-xs text-primary border border-dashed border-primary/40 rounded-md py-2 hover:bg-primary/5 transition-colors"
-                      >
-                        + Gerar grade de parcelas
-                      </button>
                     )}
                   </div>
 
@@ -914,6 +917,23 @@ export default function PropostasClient({ propostas: inicial, clientes, servicos
             <AlertDialogCancel>Cancelar</AlertDialogCancel>
             <AlertDialogAction onClick={confirmarExcluir} className="bg-destructive text-white hover:bg-destructive/90">
               Excluir
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      <AlertDialog open={confirmarGerarParcelas} onOpenChange={setConfirmarGerarParcelas}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Substituir a grade de parcelas?</AlertDialogTitle>
+            <AlertDialogDescription>
+              Já existem parcelas nesta proposta. Gerar novamente vai substituir todas as datas e valores pelos calculados agora, descartando edições manuais feitas na grade.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction onClick={() => { distribuirIgualmente(); setConfirmarGerarParcelas(false); }}>
+              Gerar parcelas
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
