@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { obterEmpresaAtiva } from "@/lib/permissoes";
 import { buscarFluxoCaixa } from "@/lib/fluxo-caixa-query";
 import FluxoCaixaPrintToolbar from "./print-button";
+import "./print.css";
 
 type Vista = "dia" | "mensal" | "prevreal";
 type TipoFiltro = "ambos" | "previsto" | "realizado";
@@ -100,8 +101,7 @@ export default async function FluxoCaixaPrintPage({ searchParams }: Props) {
   const largo = vista !== "dia";
 
   return (
-    <div className="min-h-screen bg-slate-100 print:bg-white">
-      <style>{`@page { size: ${largo ? "A4 landscape" : "A4"}; margin: 12mm; }`}</style>
+    <div className={`min-h-screen print:min-h-0 bg-slate-100 print:bg-white ${largo ? "fluxo-caixa-print-landscape" : "fluxo-caixa-print-portrait"}`}>
       <FluxoCaixaPrintToolbar title={`Fluxo de Caixa — ${VISTA_LABEL[vista]}`} />
 
       <div className={`${largo ? "max-w-[1200px]" : "max-w-[900px]"} mx-auto my-8 print:my-0 bg-white shadow-xl print:shadow-none`}>
