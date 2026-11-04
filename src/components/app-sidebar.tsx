@@ -36,6 +36,7 @@ import {
   Repeat2,
   Ticket,
   Car,
+  Percent,
 } from "lucide-react";
 import NotificacoesBell from "@/components/notificacoes-bell";
 import { type Notificacao } from "@/hooks/useNotificacoes";
@@ -75,6 +76,7 @@ const NAV_FINANCEIRO = [
   { label: "Faturamento",    href: "/faturamento",                icon: Receipt },
   { label: "Contas a Receber", href: "/financeiro/recebiveis",     icon: ArrowDownCircle },
   { label: "Contas a Pagar", href: "/financeiro/contas-a-pagar",  icon: ArrowUpCircle },
+  { label: "Impostos",      href: "/financeiro/impostos",         icon: Percent },
   { label: "Fluxo de Caixa", href: "/financeiro/fluxo-de-caixa",  icon: BarChart2 },
   { label: "Tesouraria",    href: "/financeiro/tesouraria",       icon: ArrowLeftRight },
   { label: "Contas Bancárias", href: "/financeiro/contas-bancarias", icon: Landmark },
