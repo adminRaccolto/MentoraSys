@@ -101,14 +101,15 @@ export default async function FluxoCaixaPrintPage({ searchParams }: Props) {
   const largo = vista !== "dia";
 
   return (
-    <div className={`min-h-screen print:min-h-0 bg-slate-100 print:bg-white ${largo ? "fluxo-caixa-print-landscape" : "fluxo-caixa-print-portrait"}`}>
+    <div className="min-h-screen print:min-h-0 bg-slate-100 print:bg-white">
+      <style>{`@page { size: ${largo ? "A4 landscape" : "A4"}; margin: 12mm; }`}</style>
       <FluxoCaixaPrintToolbar title={`Fluxo de Caixa — ${VISTA_LABEL[vista]}`} />
 
       <div className={`${largo ? "max-w-[1200px]" : "max-w-[900px]"} mx-auto my-8 print:my-0 bg-white shadow-xl print:shadow-none`}>
-        <div className="p-10 print:p-8 space-y-6">
+        <div className="fluxo-caixa-print-page p-10 print:p-8 space-y-6">
 
           {/* Cabeçalho */}
-          <div className="flex items-start justify-between gap-6 pb-5 border-b-2 border-[#1B4F72]">
+          <div className="fluxo-caixa-print-header flex items-start justify-between gap-6 pb-5 border-b-2 border-[#1B4F72]">
             <div className="flex-1">
               {empresa.logo_url && (
                 <div className="mb-3">
@@ -131,7 +132,7 @@ export default async function FluxoCaixaPrintPage({ searchParams }: Props) {
           </div>
 
           {/* KPIs */}
-          <div className="grid grid-cols-3 gap-4">
+          <div className="fluxo-caixa-print-kpis grid grid-cols-3 gap-4">
             <div className="rounded-lg border border-slate-200 p-4">
               <p className="text-xs text-slate-500 mb-1">Entradas</p>
               <p className="text-xl font-bold text-[#1B4F72]">{fmtBRL(totalEntradas)}</p>
@@ -204,7 +205,7 @@ export default async function FluxoCaixaPrintPage({ searchParams }: Props) {
                 {(() => {
                   let acum = saldoAnterior;
                   return (
-                    <tr className="bg-[#1B4F72] text-white font-bold">
+                    <tr className="fluxo-caixa-destaque bg-[#1B4F72] text-white font-bold">
                       <td className="px-3 py-1.5">Saldo Acumulado</td>
                       {somasMes.map((m) => { acum += m.entradas - m.saidas; return <td key={m.key} className="text-right px-2 py-1.5">{fmtBRL(acum)}</td>; })}
                       <td className="text-right px-3 py-1.5">{fmtBRL(acum)}</td>

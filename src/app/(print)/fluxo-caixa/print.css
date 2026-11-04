@@ -1,24 +1,43 @@
+/* Safári (WebKit) tem um histórico de bugs ao imprimir/exportar PDF de
+   páginas que usam flex/grid, e o Tailwind v4 gera cores em oklch() por
+   padrão — o motor de impressão do Safari pode falhar em pintar oklch()
+   e deixar a página em branco. As regras abaixo só valem na impressão:
+   forçam fundo colorido a aparecer e convertem flex/grid em layout de
+   tabela (mais confiável para impressão) com cores em hex puro. */
 @media print {
   * {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
-}
 
-@page landscape {
-  size: A4 landscape;
-  margin: 12mm;
-}
+  .fluxo-caixa-print-header {
+    display: table !important;
+    width: 100%;
+  }
+  .fluxo-caixa-print-header > * {
+    display: table-cell !important;
+    vertical-align: top;
+  }
+  .fluxo-caixa-print-kpis {
+    display: table !important;
+    width: 100%;
+    border-spacing: 12px 0;
+  }
+  .fluxo-caixa-print-kpis > * {
+    display: table-cell !important;
+    width: 33.33%;
+  }
 
-@page portrait {
-  size: A4 portrait;
-  margin: 12mm;
-}
-
-.fluxo-caixa-print-landscape {
-  page: landscape;
-}
-
-.fluxo-caixa-print-portrait {
-  page: portrait;
+  .fluxo-caixa-print-page table,
+  .fluxo-caixa-print-page th,
+  .fluxo-caixa-print-page td {
+    color: #1e293b !important;
+  }
+  .fluxo-caixa-print-page thead tr,
+  .fluxo-caixa-print-page thead th,
+  .fluxo-caixa-print-page tr.fluxo-caixa-destaque,
+  .fluxo-caixa-print-page tr.fluxo-caixa-destaque td {
+    background: #1b4f72 !important;
+    color: #ffffff !important;
+  }
 }
