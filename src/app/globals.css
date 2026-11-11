@@ -132,6 +132,19 @@
   }
 }
 
+/* ─── Impressão (telas (print)/*) ───────────────────────────────────── */
+/* Alguns navegadores (Safari, principalmente) só imprimem fundos coloridos
+   se o usuário marcar "Imprimir fundos" no diálogo — por padrão vem
+   desmarcado, o que deixa textos brancos sobre fundo branco (invisíveis).
+   Isso força a impressão das cores independente dessa opção. */
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+}
+
 /* ─── Mind Elixir editor ─────────────────────────────────────────────── */
 .mind-elixir-container {
   --bgcolor: #f8fafc;
