@@ -389,6 +389,9 @@ exports.Prisma.ContratoScalarFieldEnum = {
   pdf_assinado_url: 'pdf_assinado_url',
   juros_ao_mes_percentual: 'juros_ao_mes_percentual',
   multa_percentual: 'multa_percentual',
+  probono_arato: 'probono_arato',
+  probono_versao: 'probono_versao',
+  probono_meses: 'probono_meses',
   criado_em: 'criado_em',
   atualizado_em: 'atualizado_em'
 };

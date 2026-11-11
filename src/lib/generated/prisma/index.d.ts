@@ -29872,6 +29872,7 @@ export namespace Prisma {
     dia_vencimento: number | null
     juros_ao_mes_percentual: Decimal | null
     multa_percentual: Decimal | null
+    probono_meses: number | null
   }
 
   export type ContratoSumAggregateOutputType = {
@@ -29880,6 +29881,7 @@ export namespace Prisma {
     dia_vencimento: number | null
     juros_ao_mes_percentual: Decimal | null
     multa_percentual: Decimal | null
+    probono_meses: number | null
   }
 
   export type ContratoMinAggregateOutputType = {
@@ -29921,6 +29923,9 @@ export namespace Prisma {
     pdf_assinado_url: string | null
     juros_ao_mes_percentual: Decimal | null
     multa_percentual: Decimal | null
+    probono_arato: boolean | null
+    probono_versao: string | null
+    probono_meses: number | null
     criado_em: Date | null
     atualizado_em: Date | null
   }
@@ -29964,6 +29969,9 @@ export namespace Prisma {
     pdf_assinado_url: string | null
     juros_ao_mes_percentual: Decimal | null
     multa_percentual: Decimal | null
+    probono_arato: boolean | null
+    probono_versao: string | null
+    probono_meses: number | null
     criado_em: Date | null
     atualizado_em: Date | null
   }
@@ -30008,6 +30016,9 @@ export namespace Prisma {
     pdf_assinado_url: number
     juros_ao_mes_percentual: number
     multa_percentual: number
+    probono_arato: number
+    probono_versao: number
+    probono_meses: number
     criado_em: number
     atualizado_em: number
     _all: number
@@ -30020,6 +30031,7 @@ export namespace Prisma {
     dia_vencimento?: true
     juros_ao_mes_percentual?: true
     multa_percentual?: true
+    probono_meses?: true
   }
 
   export type ContratoSumAggregateInputType = {
@@ -30028,6 +30040,7 @@ export namespace Prisma {
     dia_vencimento?: true
     juros_ao_mes_percentual?: true
     multa_percentual?: true
+    probono_meses?: true
   }
 
   export type ContratoMinAggregateInputType = {
@@ -30069,6 +30082,9 @@ export namespace Prisma {
     pdf_assinado_url?: true
     juros_ao_mes_percentual?: true
     multa_percentual?: true
+    probono_arato?: true
+    probono_versao?: true
+    probono_meses?: true
     criado_em?: true
     atualizado_em?: true
   }
@@ -30112,6 +30128,9 @@ export namespace Prisma {
     pdf_assinado_url?: true
     juros_ao_mes_percentual?: true
     multa_percentual?: true
+    probono_arato?: true
+    probono_versao?: true
+    probono_meses?: true
     criado_em?: true
     atualizado_em?: true
   }
@@ -30156,6 +30175,9 @@ export namespace Prisma {
     pdf_assinado_url?: true
     juros_ao_mes_percentual?: true
     multa_percentual?: true
+    probono_arato?: true
+    probono_versao?: true
+    probono_meses?: true
     criado_em?: true
     atualizado_em?: true
     _all?: true
@@ -30287,6 +30309,9 @@ export namespace Prisma {
     pdf_assinado_url: string | null
     juros_ao_mes_percentual: Decimal | null
     multa_percentual: Decimal | null
+    probono_arato: boolean
+    probono_versao: string | null
+    probono_meses: number | null
     criado_em: Date
     atualizado_em: Date
     _count: ContratoCountAggregateOutputType | null
@@ -30350,6 +30375,9 @@ export namespace Prisma {
     pdf_assinado_url?: boolean
     juros_ao_mes_percentual?: boolean
     multa_percentual?: boolean
+    probono_arato?: boolean
+    probono_versao?: boolean
+    probono_meses?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -30405,6 +30433,9 @@ export namespace Prisma {
     pdf_assinado_url?: boolean
     juros_ao_mes_percentual?: boolean
     multa_percentual?: boolean
+    probono_arato?: boolean
+    probono_versao?: boolean
+    probono_meses?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -30454,6 +30485,9 @@ export namespace Prisma {
     pdf_assinado_url?: boolean
     juros_ao_mes_percentual?: boolean
     multa_percentual?: boolean
+    probono_arato?: boolean
+    probono_versao?: boolean
+    probono_meses?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -30503,11 +30537,14 @@ export namespace Prisma {
     pdf_assinado_url?: boolean
     juros_ao_mes_percentual?: boolean
     multa_percentual?: boolean
+    probono_arato?: boolean
+    probono_versao?: boolean
+    probono_meses?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
   }
 
-  export type ContratoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "proposta_id" | "cliente_id" | "criado_por" | "responsavel_id" | "numero_contrato" | "tipo_contrato" | "titulo" | "objeto" | "status" | "conteudo" | "valor_total" | "forma_pagamento" | "periodicidade" | "numero_parcelas" | "primeiro_vencimento" | "dia_vencimento" | "parcelas_json" | "indice_reajuste" | "periodicidade_reajuste" | "renovacao_automatica" | "gerar_projeto" | "gerar_financeiro" | "cliente_nome" | "cliente_cpf_cnpj" | "cliente_contato_nome" | "cliente_contato_email" | "cliente_contato_tel" | "data_emissao" | "data_inicio" | "data_fim" | "assinado_em" | "anexo_url" | "authentique_id" | "authentique_url" | "pdf_assinado_url" | "juros_ao_mes_percentual" | "multa_percentual" | "criado_em" | "atualizado_em", ExtArgs["result"]["contrato"]>
+  export type ContratoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "proposta_id" | "cliente_id" | "criado_por" | "responsavel_id" | "numero_contrato" | "tipo_contrato" | "titulo" | "objeto" | "status" | "conteudo" | "valor_total" | "forma_pagamento" | "periodicidade" | "numero_parcelas" | "primeiro_vencimento" | "dia_vencimento" | "parcelas_json" | "indice_reajuste" | "periodicidade_reajuste" | "renovacao_automatica" | "gerar_projeto" | "gerar_financeiro" | "cliente_nome" | "cliente_cpf_cnpj" | "cliente_contato_nome" | "cliente_contato_email" | "cliente_contato_tel" | "data_emissao" | "data_inicio" | "data_fim" | "assinado_em" | "anexo_url" | "authentique_id" | "authentique_url" | "pdf_assinado_url" | "juros_ao_mes_percentual" | "multa_percentual" | "probono_arato" | "probono_versao" | "probono_meses" | "criado_em" | "atualizado_em", ExtArgs["result"]["contrato"]>
   export type ContratoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     proposta?: boolean | Contrato$propostaArgs<ExtArgs>
@@ -30590,6 +30627,9 @@ export namespace Prisma {
       pdf_assinado_url: string | null
       juros_ao_mes_percentual: Prisma.Decimal | null
       multa_percentual: Prisma.Decimal | null
+      probono_arato: boolean
+      probono_versao: string | null
+      probono_meses: number | null
       criado_em: Date
       atualizado_em: Date
     }, ExtArgs["result"]["contrato"]>
@@ -31064,6 +31104,9 @@ export namespace Prisma {
     readonly pdf_assinado_url: FieldRef<"Contrato", 'String'>
     readonly juros_ao_mes_percentual: FieldRef<"Contrato", 'Decimal'>
     readonly multa_percentual: FieldRef<"Contrato", 'Decimal'>
+    readonly probono_arato: FieldRef<"Contrato", 'Boolean'>
+    readonly probono_versao: FieldRef<"Contrato", 'String'>
+    readonly probono_meses: FieldRef<"Contrato", 'Int'>
     readonly criado_em: FieldRef<"Contrato", 'DateTime'>
     readonly atualizado_em: FieldRef<"Contrato", 'DateTime'>
   }
@@ -77147,6 +77190,9 @@ export namespace Prisma {
     pdf_assinado_url: 'pdf_assinado_url',
     juros_ao_mes_percentual: 'juros_ao_mes_percentual',
     multa_percentual: 'multa_percentual',
+    probono_arato: 'probono_arato',
+    probono_versao: 'probono_versao',
+    probono_meses: 'probono_meses',
     criado_em: 'criado_em',
     atualizado_em: 'atualizado_em'
   };
@@ -80007,6 +80053,9 @@ export namespace Prisma {
     pdf_assinado_url?: StringNullableFilter<"Contrato"> | string | null
     juros_ao_mes_percentual?: DecimalNullableFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: DecimalNullableFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFilter<"Contrato"> | boolean
+    probono_versao?: StringNullableFilter<"Contrato"> | string | null
+    probono_meses?: IntNullableFilter<"Contrato"> | number | null
     criado_em?: DateTimeFilter<"Contrato"> | Date | string
     atualizado_em?: DateTimeFilter<"Contrato"> | Date | string
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
@@ -80061,6 +80110,9 @@ export namespace Prisma {
     pdf_assinado_url?: SortOrderInput | SortOrder
     juros_ao_mes_percentual?: SortOrderInput | SortOrder
     multa_percentual?: SortOrderInput | SortOrder
+    probono_arato?: SortOrder
+    probono_versao?: SortOrderInput | SortOrder
+    probono_meses?: SortOrderInput | SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     empresa?: EmpresaOrderByWithRelationInput
@@ -80118,6 +80170,9 @@ export namespace Prisma {
     pdf_assinado_url?: StringNullableFilter<"Contrato"> | string | null
     juros_ao_mes_percentual?: DecimalNullableFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: DecimalNullableFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFilter<"Contrato"> | boolean
+    probono_versao?: StringNullableFilter<"Contrato"> | string | null
+    probono_meses?: IntNullableFilter<"Contrato"> | number | null
     criado_em?: DateTimeFilter<"Contrato"> | Date | string
     atualizado_em?: DateTimeFilter<"Contrato"> | Date | string
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
@@ -80172,6 +80227,9 @@ export namespace Prisma {
     pdf_assinado_url?: SortOrderInput | SortOrder
     juros_ao_mes_percentual?: SortOrderInput | SortOrder
     multa_percentual?: SortOrderInput | SortOrder
+    probono_arato?: SortOrder
+    probono_versao?: SortOrderInput | SortOrder
+    probono_meses?: SortOrderInput | SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     _count?: ContratoCountOrderByAggregateInput
@@ -80224,6 +80282,9 @@ export namespace Prisma {
     pdf_assinado_url?: StringNullableWithAggregatesFilter<"Contrato"> | string | null
     juros_ao_mes_percentual?: DecimalNullableWithAggregatesFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: DecimalNullableWithAggregatesFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolWithAggregatesFilter<"Contrato"> | boolean
+    probono_versao?: StringNullableWithAggregatesFilter<"Contrato"> | string | null
+    probono_meses?: IntNullableWithAggregatesFilter<"Contrato"> | number | null
     criado_em?: DateTimeWithAggregatesFilter<"Contrato"> | Date | string
     atualizado_em?: DateTimeWithAggregatesFilter<"Contrato"> | Date | string
   }
@@ -85673,6 +85734,9 @@ export namespace Prisma {
     pdf_assinado_url?: string | null
     juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
     multa_percentual?: Decimal | DecimalJsLike | number | string | null
+    probono_arato?: boolean
+    probono_versao?: string | null
+    probono_meses?: number | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutContratosInput
@@ -85727,6 +85791,9 @@ export namespace Prisma {
     pdf_assinado_url?: string | null
     juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
     multa_percentual?: Decimal | DecimalJsLike | number | string | null
+    probono_arato?: boolean
+    probono_versao?: string | null
+    probono_meses?: number | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
@@ -85771,6 +85838,9 @@ export namespace Prisma {
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
     juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFieldUpdateOperationsInput | boolean
+    probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
+    probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
@@ -85825,6 +85895,9 @@ export namespace Prisma {
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
     juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFieldUpdateOperationsInput | boolean
+    probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
+    probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
@@ -85874,6 +85947,9 @@ export namespace Prisma {
     pdf_assinado_url?: string | null
     juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
     multa_percentual?: Decimal | DecimalJsLike | number | string | null
+    probono_arato?: boolean
+    probono_versao?: string | null
+    probono_meses?: number | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -85913,6 +85989,9 @@ export namespace Prisma {
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
     juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFieldUpdateOperationsInput | boolean
+    probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
+    probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -85957,6 +86036,9 @@ export namespace Prisma {
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
     juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFieldUpdateOperationsInput | boolean
+    probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
+    probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -91538,6 +91620,9 @@ export namespace Prisma {
     pdf_assinado_url?: SortOrder
     juros_ao_mes_percentual?: SortOrder
     multa_percentual?: SortOrder
+    probono_arato?: SortOrder
+    probono_versao?: SortOrder
+    probono_meses?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -91548,6 +91633,7 @@ export namespace Prisma {
     dia_vencimento?: SortOrder
     juros_ao_mes_percentual?: SortOrder
     multa_percentual?: SortOrder
+    probono_meses?: SortOrder
   }
 
   export type ContratoMaxOrderByAggregateInput = {
@@ -91589,6 +91675,9 @@ export namespace Prisma {
     pdf_assinado_url?: SortOrder
     juros_ao_mes_percentual?: SortOrder
     multa_percentual?: SortOrder
+    probono_arato?: SortOrder
+    probono_versao?: SortOrder
+    probono_meses?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -91632,6 +91721,9 @@ export namespace Prisma {
     pdf_assinado_url?: SortOrder
     juros_ao_mes_percentual?: SortOrder
     multa_percentual?: SortOrder
+    probono_arato?: SortOrder
+    probono_versao?: SortOrder
+    probono_meses?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -91642,6 +91734,7 @@ export namespace Prisma {
     dia_vencimento?: SortOrder
     juros_ao_mes_percentual?: SortOrder
     multa_percentual?: SortOrder
+    probono_meses?: SortOrder
   }
 
   export type EnumStatusContratoWithAggregatesFilter<$PrismaModel = never> = {
@@ -102033,6 +102126,9 @@ export namespace Prisma {
     pdf_assinado_url?: string | null
     juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
     multa_percentual?: Decimal | DecimalJsLike | number | string | null
+    probono_arato?: boolean
+    probono_versao?: string | null
+    probono_meses?: number | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     proposta?: PropostaCreateNestedOneWithoutContratoInput
@@ -102085,6 +102181,9 @@ export namespace Prisma {
     pdf_assinado_url?: string | null
     juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
     multa_percentual?: Decimal | DecimalJsLike | number | string | null
+    probono_arato?: boolean
+    probono_versao?: string | null
+    probono_meses?: number | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
@@ -103524,6 +103623,9 @@ export namespace Prisma {
     pdf_assinado_url?: StringNullableFilter<"Contrato"> | string | null
     juros_ao_mes_percentual?: DecimalNullableFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: DecimalNullableFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFilter<"Contrato"> | boolean
+    probono_versao?: StringNullableFilter<"Contrato"> | string | null
+    probono_meses?: IntNullableFilter<"Contrato"> | number | null
     criado_em?: DateTimeFilter<"Contrato"> | Date | string
     atualizado_em?: DateTimeFilter<"Contrato"> | Date | string
   }
@@ -104673,6 +104775,9 @@ export namespace Prisma {
     pdf_assinado_url?: string | null
     juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
     multa_percentual?: Decimal | DecimalJsLike | number | string | null
+    probono_arato?: boolean
+    probono_versao?: string | null
+    probono_meses?: number | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutContratosInput
@@ -104725,6 +104830,9 @@ export namespace Prisma {
     pdf_assinado_url?: string | null
     juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
     multa_percentual?: Decimal | DecimalJsLike | number | string | null
+    probono_arato?: boolean
+    probono_versao?: string | null
+    probono_meses?: number | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
@@ -105181,6 +105289,9 @@ export namespace Prisma {
     pdf_assinado_url?: string | null
     juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
     multa_percentual?: Decimal | DecimalJsLike | number | string | null
+    probono_arato?: boolean
+    probono_versao?: string | null
+    probono_meses?: number | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutContratosInput
@@ -105233,6 +105344,9 @@ export namespace Prisma {
     pdf_assinado_url?: string | null
     juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
     multa_percentual?: Decimal | DecimalJsLike | number | string | null
+    probono_arato?: boolean
+    probono_versao?: string | null
+    probono_meses?: number | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
@@ -107844,6 +107958,9 @@ export namespace Prisma {
     pdf_assinado_url?: string | null
     juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
     multa_percentual?: Decimal | DecimalJsLike | number | string | null
+    probono_arato?: boolean
+    probono_versao?: string | null
+    probono_meses?: number | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutContratosInput
@@ -107896,6 +108013,9 @@ export namespace Prisma {
     pdf_assinado_url?: string | null
     juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
     multa_percentual?: Decimal | DecimalJsLike | number | string | null
+    probono_arato?: boolean
+    probono_versao?: string | null
+    probono_meses?: number | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
@@ -111431,6 +111551,9 @@ export namespace Prisma {
     pdf_assinado_url?: string | null
     juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
     multa_percentual?: Decimal | DecimalJsLike | number | string | null
+    probono_arato?: boolean
+    probono_versao?: string | null
+    probono_meses?: number | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutContratosInput
@@ -111483,6 +111606,9 @@ export namespace Prisma {
     pdf_assinado_url?: string | null
     juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
     multa_percentual?: Decimal | DecimalJsLike | number | string | null
+    probono_arato?: boolean
+    probono_versao?: string | null
+    probono_meses?: number | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
@@ -111994,6 +112120,9 @@ export namespace Prisma {
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
     juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFieldUpdateOperationsInput | boolean
+    probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
+    probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
@@ -112046,6 +112175,9 @@ export namespace Prisma {
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
     juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFieldUpdateOperationsInput | boolean
+    probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
+    probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
@@ -113810,6 +113942,9 @@ export namespace Prisma {
     pdf_assinado_url?: string | null
     juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
     multa_percentual?: Decimal | DecimalJsLike | number | string | null
+    probono_arato?: boolean
+    probono_versao?: string | null
+    probono_meses?: number | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutContratosInput
@@ -113863,6 +113998,9 @@ export namespace Prisma {
     pdf_assinado_url?: string | null
     juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
     multa_percentual?: Decimal | DecimalJsLike | number | string | null
+    probono_arato?: boolean
+    probono_versao?: string | null
+    probono_meses?: number | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutContratoInput
@@ -114464,6 +114602,9 @@ export namespace Prisma {
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
     juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFieldUpdateOperationsInput | boolean
+    probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
+    probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
@@ -114517,6 +114658,9 @@ export namespace Prisma {
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
     juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFieldUpdateOperationsInput | boolean
+    probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
+    probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     recebiveis?: RecebivelUncheckedUpdateManyWithoutContratoNestedInput
@@ -118082,6 +118226,9 @@ export namespace Prisma {
     pdf_assinado_url?: string | null
     juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
     multa_percentual?: Decimal | DecimalJsLike | number | string | null
+    probono_arato?: boolean
+    probono_versao?: string | null
+    probono_meses?: number | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutContratosInput
@@ -118135,6 +118282,9 @@ export namespace Prisma {
     pdf_assinado_url?: string | null
     juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
     multa_percentual?: Decimal | DecimalJsLike | number | string | null
+    probono_arato?: boolean
+    probono_versao?: string | null
+    probono_meses?: number | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
@@ -118543,6 +118693,9 @@ export namespace Prisma {
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
     juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFieldUpdateOperationsInput | boolean
+    probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
+    probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
@@ -118596,6 +118749,9 @@ export namespace Prisma {
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
     juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFieldUpdateOperationsInput | boolean
+    probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
+    probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
@@ -120919,6 +121075,9 @@ export namespace Prisma {
     pdf_assinado_url?: string | null
     juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
     multa_percentual?: Decimal | DecimalJsLike | number | string | null
+    probono_arato?: boolean
+    probono_versao?: string | null
+    probono_meses?: number | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutContratosInput
@@ -120972,6 +121131,9 @@ export namespace Prisma {
     pdf_assinado_url?: string | null
     juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
     multa_percentual?: Decimal | DecimalJsLike | number | string | null
+    probono_arato?: boolean
+    probono_versao?: string | null
+    probono_meses?: number | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
@@ -121507,6 +121669,9 @@ export namespace Prisma {
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
     juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFieldUpdateOperationsInput | boolean
+    probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
+    probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
@@ -121560,6 +121725,9 @@ export namespace Prisma {
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
     juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFieldUpdateOperationsInput | boolean
+    probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
+    probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
@@ -123348,6 +123516,9 @@ export namespace Prisma {
     pdf_assinado_url?: string | null
     juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
     multa_percentual?: Decimal | DecimalJsLike | number | string | null
+    probono_arato?: boolean
+    probono_versao?: string | null
+    probono_meses?: number | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutContratosInput
@@ -123401,6 +123572,9 @@ export namespace Prisma {
     pdf_assinado_url?: string | null
     juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
     multa_percentual?: Decimal | DecimalJsLike | number | string | null
+    probono_arato?: boolean
+    probono_versao?: string | null
+    probono_meses?: number | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
@@ -123780,6 +123954,9 @@ export namespace Prisma {
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
     juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFieldUpdateOperationsInput | boolean
+    probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
+    probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
@@ -123833,6 +124010,9 @@ export namespace Prisma {
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
     juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFieldUpdateOperationsInput | boolean
+    probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
+    probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
@@ -124529,6 +124709,9 @@ export namespace Prisma {
     pdf_assinado_url?: string | null
     juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
     multa_percentual?: Decimal | DecimalJsLike | number | string | null
+    probono_arato?: boolean
+    probono_versao?: string | null
+    probono_meses?: number | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutContratosInput
@@ -124582,6 +124765,9 @@ export namespace Prisma {
     pdf_assinado_url?: string | null
     juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
     multa_percentual?: Decimal | DecimalJsLike | number | string | null
+    probono_arato?: boolean
+    probono_versao?: string | null
+    probono_meses?: number | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
@@ -124912,6 +125098,9 @@ export namespace Prisma {
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
     juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFieldUpdateOperationsInput | boolean
+    probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
+    probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
@@ -124965,6 +125154,9 @@ export namespace Prisma {
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
     juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFieldUpdateOperationsInput | boolean
+    probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
+    probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
@@ -128724,6 +128916,9 @@ export namespace Prisma {
     pdf_assinado_url?: string | null
     juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
     multa_percentual?: Decimal | DecimalJsLike | number | string | null
+    probono_arato?: boolean
+    probono_versao?: string | null
+    probono_meses?: number | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -129604,6 +129799,9 @@ export namespace Prisma {
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
     juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFieldUpdateOperationsInput | boolean
+    probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
+    probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     proposta?: PropostaUpdateOneWithoutContratoNestedInput
@@ -129656,6 +129854,9 @@ export namespace Prisma {
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
     juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFieldUpdateOperationsInput | boolean
+    probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
+    probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
@@ -129704,6 +129905,9 @@ export namespace Prisma {
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
     juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFieldUpdateOperationsInput | boolean
+    probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
+    probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -131028,6 +131232,9 @@ export namespace Prisma {
     pdf_assinado_url?: string | null
     juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
     multa_percentual?: Decimal | DecimalJsLike | number | string | null
+    probono_arato?: boolean
+    probono_versao?: string | null
+    probono_meses?: number | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -131218,6 +131425,9 @@ export namespace Prisma {
     pdf_assinado_url?: string | null
     juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
     multa_percentual?: Decimal | DecimalJsLike | number | string | null
+    probono_arato?: boolean
+    probono_versao?: string | null
+    probono_meses?: number | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -131577,6 +131787,9 @@ export namespace Prisma {
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
     juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFieldUpdateOperationsInput | boolean
+    probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
+    probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
@@ -131629,6 +131842,9 @@ export namespace Prisma {
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
     juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFieldUpdateOperationsInput | boolean
+    probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
+    probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
@@ -131677,6 +131893,9 @@ export namespace Prisma {
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
     juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFieldUpdateOperationsInput | boolean
+    probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
+    probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -132195,6 +132414,9 @@ export namespace Prisma {
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
     juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFieldUpdateOperationsInput | boolean
+    probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
+    probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
@@ -132247,6 +132469,9 @@ export namespace Prisma {
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
     juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFieldUpdateOperationsInput | boolean
+    probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
+    probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
@@ -132295,6 +132520,9 @@ export namespace Prisma {
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
     juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFieldUpdateOperationsInput | boolean
+    probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
+    probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -132645,6 +132873,9 @@ export namespace Prisma {
     pdf_assinado_url?: string | null
     juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
     multa_percentual?: Decimal | DecimalJsLike | number | string | null
+    probono_arato?: boolean
+    probono_versao?: string | null
+    probono_meses?: number | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -133081,6 +133312,9 @@ export namespace Prisma {
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
     juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFieldUpdateOperationsInput | boolean
+    probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
+    probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
@@ -133133,6 +133367,9 @@ export namespace Prisma {
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
     juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFieldUpdateOperationsInput | boolean
+    probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
+    probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
@@ -133181,6 +133418,9 @@ export namespace Prisma {
     pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
     juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFieldUpdateOperationsInput | boolean
+    probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
+    probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }

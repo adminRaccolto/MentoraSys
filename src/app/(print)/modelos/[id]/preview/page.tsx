@@ -2,6 +2,8 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import { obterEmpresaAtiva } from "@/lib/permissoes";
+import { textoParaHtml } from "@/lib/texto-html";
+import { gerarClausulaProbono, garantirVariavelProbono } from "@/lib/clausula-probono";
 import { PrintButton } from "./print-button";
 
 // Título em branco: remove o nome do app do cabeçalho/rodapé do browser ao imprimir
@@ -99,6 +101,7 @@ export default async function PreviewModeloPage({ params, searchParams }: Props)
     "empresa.representante": config.representante ?? "",
     "empresa.representante_cpf": config.representante_cpf ?? "",
     "empresa.representante_cargo": config.representante_cargo ?? "Sócio Administrador",
+    "contrato.clausula_probono": "",
   };
 
   if (contrato_id) {
@@ -122,7 +125,8 @@ export default async function PreviewModeloPage({ params, searchParams }: Props)
       vars["cliente.telefone"] = contrato.cliente.telefone ?? "";
       vars["contrato.numero"] = contrato.numero_contrato ?? "";
       vars["contrato.titulo"] = contrato.titulo;
-      vars["contrato.objeto"] = contrato.objeto ?? "";
+      vars["contrato.objeto"] = textoParaHtml(contrato.objeto);
+      vars["contrato.clausula_probono"] = gerarClausulaProbono(contrato);
       vars["contrato.valor_total"] = fmtMoney(contrato.valor_total);
       vars["contrato.data_inicio"] = fmt(contrato.data_inicio);
       vars["contrato.data_fim"] = fmt(contrato.data_fim);
@@ -298,7 +302,7 @@ export default async function PreviewModeloPage({ params, searchParams }: Props)
     }
   }
 
-  let html = substituir(modelo.conteudo, vars);
+  let html = substituir(contrato_id ? garantirVariavelProbono(modelo.conteudo) : modelo.conteudo, vars);
 
   // Fallback para modelos antigos que não têm {{proposta.tabela_parcelas}}:
   // injeta a tabela de parcelas antes da seção "CONDIÇÕES DE DESENVOLVIMENTO"

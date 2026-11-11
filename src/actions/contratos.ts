@@ -39,9 +39,23 @@ const schemaContrato = z.object({
   parcelas_json: z.array(z.object({ numero: z.number(), vencimento: z.string(), valor: z.number() })).optional(),
   juros_ao_mes_percentual: z.coerce.number().min(0).optional().nullable(),
   multa_percentual: z.coerce.number().min(0).optional().nullable(),
+  probono_arato: z.boolean().default(false),
+  probono_versao: z.enum(["ESSENCIAL", "GESTAO", "PERFORMANCE"]).optional().nullable(),
+  probono_meses: z.coerce.number().int().positive().max(99).optional().nullable(),
+}).refine((d) => !d.probono_arato || (d.probono_versao && d.probono_meses), {
+  message: "Informe a versão e o período do Arato pro bono",
+  path: ["probono_versao"],
 });
 
-type ContratoInput = z.infer<typeof schemaContrato>;
+type ContratoInput = z.input<typeof schemaContrato>;
+
+function camposProbono(data: z.infer<typeof schemaContrato>) {
+  return {
+    probono_arato: data.probono_arato,
+    probono_versao: data.probono_arato ? data.probono_versao ?? null : null,
+    probono_meses: data.probono_arato ? data.probono_meses ?? null : null,
+  };
+}
 
 export async function criarContrato(input: ContratoInput) {
   await verificarPermissao("contratos", "criar");
@@ -90,6 +104,7 @@ export async function criarContrato(input: ContratoInput) {
       parcelas_json: data.parcelas_json && data.parcelas_json.length > 0 ? data.parcelas_json : undefined,
       juros_ao_mes_percentual: data.juros_ao_mes_percentual ?? null,
       multa_percentual: data.multa_percentual ?? null,
+      ...camposProbono(data),
     },
   });
 
@@ -140,6 +155,7 @@ export async function editarContrato(id: string, input: ContratoInput) {
       parcelas_json: data.parcelas_json && data.parcelas_json.length > 0 ? data.parcelas_json : undefined,
       juros_ao_mes_percentual: data.juros_ao_mes_percentual ?? null,
       multa_percentual: data.multa_percentual ?? null,
+      ...camposProbono(data),
     },
   });
 

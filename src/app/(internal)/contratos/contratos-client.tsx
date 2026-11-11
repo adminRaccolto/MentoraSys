@@ -21,6 +21,7 @@ import { Separator } from "@/components/ui/separator";
 import { criarContrato, editarContrato, excluirContrato, marcarAssinado, salvarAnexoContrato } from "@/actions/contratos";
 import { gerarParcelasContrato } from "@/actions/recebiveis";
 import { enviarParaAssinatura } from "@/actions/assinatura";
+import { gerarClausulaProbono, VERSOES_ARATO } from "@/lib/clausula-probono";
 
 const FORMAS_PAGAMENTO = ["À vista", "Parcelado", "Recorrente", "Mensal", "Trimestral", "Semestral", "Anual"];
 const PERIODICIDADES = ["Mensal", "Bimestral", "Trimestral", "Semestral", "Anual", "Única"];
@@ -78,6 +79,16 @@ const schema = z.object({
   anexo_url: z.string().optional(),
   juros_ao_mes_percentual: z.coerce.number().min(0).optional(),
   multa_percentual: z.coerce.number().min(0).optional(),
+  probono_arato: z.boolean().default(false),
+  probono_versao: z.string().optional(),
+  probono_meses: z.string().optional(),
+}).superRefine((d, ctx) => {
+  if (!d.probono_arato) return;
+  if (!d.probono_versao) ctx.addIssue({ code: "custom", path: ["probono_versao"], message: "Selecione a versão" });
+  const meses = Number(d.probono_meses);
+  if (!Number.isInteger(meses) || meses < 1 || meses > 99) {
+    ctx.addIssue({ code: "custom", path: ["probono_meses"], message: "Informe o período em meses (1 a 99)" });
+  }
 });
 
 type FormData = z.input<typeof schema>;
@@ -133,6 +144,9 @@ interface Contrato {
   anexo_url: string | null;
   juros_ao_mes_percentual: number | null;
   multa_percentual: number | null;
+  probono_arato: boolean;
+  probono_versao: string | null;
+  probono_meses: number | null;
 }
 
 interface Cliente {
@@ -254,7 +268,7 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
   const [uploadandoAnexo, setUploadandoAnexo] = useState(false);
   const anexoFileRef = useRef<HTMLInputElement>(null);
 
-  const { register, handleSubmit, reset, setValue, watch, control, formState: { errors } } = useForm<FormData>({
+  const { register, handleSubmit, reset, setValue, watch, control, formState: { errors, isDirty } } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: {
       gerar_financeiro: true,
@@ -290,6 +304,16 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
   const watchRenovacao = watch("renovacao_automatica");
   const watchGerarFinanceiro = watch("gerar_financeiro");
   const watchGerarProjeto = watch("gerar_projeto");
+  const watchProbono = watch("probono_arato");
+  const watchProbonoVersao = watch("probono_versao");
+  const watchProbonoMeses = watch("probono_meses");
+  const watchDataInicio = watch("data_inicio");
+  const previaClausulaProbono = gerarClausulaProbono({
+    probono_arato: !!watchProbono,
+    probono_versao: watchProbonoVersao,
+    probono_meses: Number(watchProbonoMeses) || null,
+    data_inicio: watchDataInicio ? `${watchDataInicio}T12:00:00` : null,
+  });
 
   const preencherSnapshotCliente = (clienteId: string) => {
     const c = clientes.find((cl) => cl.id === clienteId);
@@ -373,6 +397,9 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
       anexo_url: c.anexo_url ?? "",
       juros_ao_mes_percentual: c.juros_ao_mes_percentual ?? undefined,
       multa_percentual: c.multa_percentual ?? undefined,
+      probono_arato: c.probono_arato,
+      probono_versao: c.probono_versao ?? "",
+      probono_meses: c.probono_meses ? String(c.probono_meses) : "",
     });
     setModalAberto(true);
   };
@@ -403,7 +430,17 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
     toast.success("Anexo removido");
   };
 
-  const onSubmit = (data: FormData) => {
+  // Visualizar/Enviar para assinatura geram o documento a partir do que está no banco,
+  // então alterações pendentes no modal precisam ser salvas antes.
+  const salvarAntesDe = (acao: () => void, onInvalido?: () => void) => {
+    if (!isDirty) { acao(); return; }
+    handleSubmit((data) => onSubmit(data, acao), () => {
+      onInvalido?.();
+      toast.error("Corrija os campos obrigatórios antes de continuar");
+    })();
+  };
+
+  const onSubmit = (data: FormData, aposSalvar?: () => void) => {
     startTransition(async () => {
       try {
         const payload = {
@@ -416,6 +453,9 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
           gerar_projeto: data.gerar_projeto ?? false,
           juros_ao_mes_percentual: data.juros_ao_mes_percentual ? Number(data.juros_ao_mes_percentual) : null,
           multa_percentual: data.multa_percentual ? Number(data.multa_percentual) : null,
+          probono_arato: data.probono_arato ?? false,
+          probono_versao: (data.probono_versao || null) as "ESSENCIAL" | "GESTAO" | "PERFORMANCE" | null,
+          probono_meses: data.probono_meses ? Number(data.probono_meses) : null,
         };
 
         if (contratoEditando) {
@@ -430,6 +470,11 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
             )
           );
           toast.success("Contrato atualizado");
+          if (aposSalvar) {
+            reset(data);
+            aposSalvar();
+            return;
+          }
         } else {
           const res = await criarContrato(payload);
           const clienteSel = clientes.find((cl) => cl.id === data.cliente_id)!;
@@ -742,7 +787,9 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
               {contratoEditando ? "Editar contrato" : "Novo contrato"}
             </DialogTitle>
           </DialogHeader>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit((data) => onSubmit(data), (errs) => {
+            if (errs.probono_versao || errs.probono_meses) toast.error("Complete a versão e o período na aba Pro Bono Arato");
+          })}>
             <Tabs defaultValue="identificacao" className="w-full">
               <div className="px-6 pt-3">
                 <TabsList>
@@ -750,6 +797,10 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
                   <TabsTrigger value="financeiro">Financeiro</TabsTrigger>
                   <TabsTrigger value="datas">Datas e Reajuste</TabsTrigger>
                   <TabsTrigger value="automacoes">Automações</TabsTrigger>
+                  <TabsTrigger value="probono">
+                    Pro Bono Arato
+                    {watchProbono && <span className="ml-1.5 size-1.5 rounded-full bg-accent inline-block" />}
+                  </TabsTrigger>
                 </TabsList>
               </div>
 
@@ -1081,6 +1132,63 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
                   </div>
                 </div>
               </TabsContent>
+
+              {/* Tab 5: Pro Bono Arato */}
+              <TabsContent value="probono" className="mt-0">
+                <div className="grid grid-cols-3 divide-x">
+                  <div className="px-6 py-5 space-y-4">
+                    <p className="text-xs font-semibold text-primary uppercase tracking-widest">Sistema de Gestão Arato</p>
+                    <CheckField
+                      label="Incluir cláusula de Arato pro bono"
+                      description="Cede o uso gratuito do Arato por um período; ao final o cliente recebe proposta de permanência (facultativa)"
+                      checked={!!watchProbono}
+                      onChange={(v) => setValue("probono_arato", v, { shouldDirty: true })}
+                    />
+                    {watchProbono && (
+                      <>
+                        <SelectField
+                          label="Versão do Arato"
+                          value={watchProbonoVersao ?? ""}
+                          onValueChange={(v) => setValue("probono_versao", v, { shouldDirty: true, shouldValidate: true })}
+                          resolvedLabel={VERSOES_ARATO[watchProbonoVersao as keyof typeof VERSOES_ARATO]}
+                          placeholder="Selecione a versão..."
+                        >
+                          {Object.entries(VERSOES_ARATO).map(([valor, label]) => (
+                            <SelectItem key={valor} value={valor}>{label}</SelectItem>
+                          ))}
+                        </SelectField>
+                        {errors.probono_versao && <p className="text-xs text-destructive -mt-2">{errors.probono_versao.message}</p>}
+                        <Field label="Período pro bono (meses)">
+                          <Input {...register("probono_meses")} type="number" min={1} max={99} className="h-9 text-sm" placeholder="Ex: 6" />
+                        </Field>
+                        {errors.probono_meses && <p className="text-xs text-destructive -mt-2">{errors.probono_meses.message}</p>}
+                        <p className="text-xs text-muted-foreground">
+                          O período conta a partir do início da vigência (aba &quot;Datas e Reajuste&quot;).
+                        </p>
+                      </>
+                    )}
+                  </div>
+                  <div className="col-span-2 px-6 py-5 space-y-3">
+                    <p className="text-xs font-semibold text-primary uppercase tracking-widest">Prévia da cláusula</p>
+                    {previaClausulaProbono ? (
+                      <>
+                        <div
+                          className="rounded-md border bg-muted/20 p-4 text-sm leading-relaxed max-h-80 overflow-y-auto"
+                          dangerouslySetInnerHTML={{ __html: previaClausulaProbono }}
+                        />
+                        <p className="text-xs text-muted-foreground">
+                          Entra no documento logo após o objeto/escopo (Cláusula Primeira). Em modelos próprios, use a variável
+                          {" "}<code className="text-[11px]">{"{{contrato.clausula_probono}}"}</code> para posicioná-la onde preferir.
+                        </p>
+                      </>
+                    ) : (
+                      <p className="text-sm text-muted-foreground py-8 text-center border rounded-md">
+                        {watchProbono ? "Selecione a versão e o período para ver a cláusula." : "Cláusula desligada — não aparece no contrato."}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </TabsContent>
             </Tabs>
 
             <DialogFooter className="px-6 pt-4 pb-6 border-t bg-muted/20 flex-wrap gap-2">
@@ -1091,12 +1199,21 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
                 <Button
                   type="button"
                   variant="outline"
+                  disabled={isPending}
                   onClick={() => {
                     if (modelosContrato.length === 1) {
-                      window.open(`/modelos/${modelosContrato[0].id}/preview?contrato_id=${contratoEditando.id}`, "_blank");
+                      // Abre a aba já no clique (senão o Safari bloqueia o pop-up após o await do salvamento)
+                      const aba = window.open("about:blank", "_blank");
+                      const url = `/modelos/${modelosContrato[0].id}/preview?contrato_id=${contratoEditando.id}`;
+                      salvarAntesDe(
+                        () => { if (aba) aba.location.href = url; else window.open(url, "_blank"); },
+                        () => aba?.close(),
+                      );
                     } else {
-                      setModalAberto(false);
-                      setContratoDocumento(contratoEditando);
+                      salvarAntesDe(() => {
+                        setModalAberto(false);
+                        setContratoDocumento(contratoEditando);
+                      });
                     }
                   }}
                 >
@@ -1118,7 +1235,7 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
                   variant="outline"
                   className="text-primary border-primary hover:bg-primary/5"
                   disabled={isPending}
-                  onClick={() => { setModalAberto(false); abrirAssinatura(contratoEditando); }}
+                  onClick={() => salvarAntesDe(() => { setModalAberto(false); abrirAssinatura(contratoEditando); })}
                 >
                   <Send className="size-4 mr-2" />
                   Enviar para assinatura

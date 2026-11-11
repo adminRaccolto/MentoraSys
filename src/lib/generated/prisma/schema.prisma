@@ -514,6 +514,9 @@ model Contrato {
   pdf_assinado_url        String?
   juros_ao_mes_percentual Decimal?       @db.Decimal(5, 2)
   multa_percentual        Decimal?       @db.Decimal(5, 2)
+  probono_arato           Boolean        @default(false)
+  probono_versao          String?
+  probono_meses           Int?
   criado_em               DateTime       @default(now())
   atualizado_em           DateTime       @updatedAt
 

@@ -6,6 +6,8 @@ import { prisma } from "@/lib/prisma";
 import { verificarPermissao, obterEmpresaAtiva } from "@/lib/permissoes";
 import { criarDocumentoAuthentique } from "@/lib/authentique";
 import { registrar } from "@/lib/auditoria";
+import { textoParaHtml } from "@/lib/texto-html";
+import { gerarClausulaProbono, garantirVariavelProbono } from "@/lib/clausula-probono";
 
 const schemaEnviar = z.object({
   contrato_id: z.string().min(1),
@@ -158,7 +160,8 @@ export async function enviarParaAssinatura(input: Input) {
     "cliente.telefone": contrato.cliente.telefone ?? "",
     "contrato.numero": contrato.numero_contrato ?? "",
     "contrato.titulo": contrato.titulo,
-    "contrato.objeto": contrato.objeto ?? "",
+    "contrato.objeto": textoParaHtml(contrato.objeto),
+    "contrato.clausula_probono": gerarClausulaProbono(contrato),
     "contrato.valor_total": fmtMoney(contrato.valor_total),
     "contrato.data_inicio": fmt(contrato.data_inicio),
     "contrato.data_fim": fmt(contrato.data_fim),
@@ -239,7 +242,7 @@ export async function enviarParaAssinatura(input: Input) {
         sandbox: data.sandbox,
       });
     } else {
-      const htmlContent = substituir(modelo!.conteudo, vars);
+      const htmlContent = substituir(garantirVariavelProbono(modelo!.conteudo), vars);
       doc = await criarDocumentoAuthentique({
         nome: contrato.titulo,
         htmlContent,
