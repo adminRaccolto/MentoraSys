@@ -684,6 +684,7 @@ exports.Prisma.ModeloDocumentoScalarFieldEnum = {
   tipo: 'tipo',
   conteudo: 'conteudo',
   ativo: 'ativo',
+  cliente_assina: 'cliente_assina',
   criado_em: 'criado_em',
   atualizado_em: 'atualizado_em'
 };

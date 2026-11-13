@@ -14,6 +14,7 @@ const schemaEdit = z.object({
   nome: z.string().min(1, "Nome obrigatório").optional(),
   tipo: z.enum(["CONTRATO", "PROPOSTA", "RECIBO", "GENERICO"]).optional(),
   ativo: z.boolean().optional(),
+  cliente_assina: z.boolean().optional(),
 });
 
 type InputCreate = z.input<typeof schemaCreate>;
@@ -78,6 +79,7 @@ export async function duplicarModelo(id: string) {
       nome: `Cópia de ${original.nome}`,
       tipo: original.tipo,
       conteudo: original.conteudo,
+      cliente_assina: original.cliente_assina,
     },
   });
 

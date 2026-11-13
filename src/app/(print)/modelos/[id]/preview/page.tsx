@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { obterEmpresaAtiva } from "@/lib/permissoes";
 import { textoParaHtml } from "@/lib/texto-html";
 import { gerarClausulaProbono, garantirVariavelProbono } from "@/lib/clausula-probono";
+import { variaveisCliente } from "@/lib/variaveis-cliente";
 import { PrintButton } from "./print-button";
 
 // Título em branco: remove o nome do app do cabeçalho/rodapé do browser ao imprimir
@@ -119,10 +120,7 @@ export default async function PreviewModeloPage({ params, searchParams }: Props)
       }),
     ]);
     if (contrato) {
-      vars["cliente.nome"] = contrato.cliente_nome ?? contrato.cliente.nome;
-      vars["cliente.cpf_cnpj"] = fmtCnpj(contrato.cliente_cpf_cnpj ?? contrato.cliente.cpf_cnpj);
-      vars["cliente.email"] = contrato.cliente.email ?? "";
-      vars["cliente.telefone"] = contrato.cliente.telefone ?? "";
+      Object.assign(vars, variaveisCliente(contrato.cliente, { nome: contrato.cliente_nome, cpf_cnpj: contrato.cliente_cpf_cnpj }));
       vars["contrato.numero"] = contrato.numero_contrato ?? "";
       vars["contrato.titulo"] = contrato.titulo;
       vars["contrato.objeto"] = textoParaHtml(contrato.objeto);
@@ -199,10 +197,7 @@ export default async function PreviewModeloPage({ params, searchParams }: Props)
       },
     });
     if (proposta) {
-      vars["cliente.nome"] = proposta.cliente.nome;
-      vars["cliente.cpf_cnpj"] = fmtCnpj(proposta.cliente.cpf_cnpj);
-      vars["cliente.email"] = proposta.cliente.email ?? "";
-      vars["cliente.telefone"] = proposta.cliente.telefone ?? "";
+      Object.assign(vars, variaveisCliente(proposta.cliente));
       vars["proposta.titulo"] = proposta.titulo;
       vars["proposta.objeto"] = proposta.objeto ?? "";
       vars["proposta.introducao"] = proposta.introducao ?? "";
@@ -287,10 +282,7 @@ export default async function PreviewModeloPage({ params, searchParams }: Props)
     });
     if (recebivel) {
       if (recebivel.cliente) {
-        vars["cliente.nome"] = recebivel.cliente.nome;
-        vars["cliente.cpf_cnpj"] = fmtCnpj(recebivel.cliente.cpf_cnpj);
-        vars["cliente.email"] = recebivel.cliente.email ?? "";
-        vars["cliente.telefone"] = recebivel.cliente.telefone ?? "";
+        Object.assign(vars, variaveisCliente(recebivel.cliente));
       }
       vars["recebivel.descricao"] = recebivel.descricao;
       vars["recebivel.valor"] = fmtMoney(recebivel.valor_pago ?? recebivel.valor);

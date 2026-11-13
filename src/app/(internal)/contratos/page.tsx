@@ -68,7 +68,7 @@ export default async function ContratosPage() {
     }).then((rows) => rows.map((r) => ({ ...r, valor_total: Number(r.valor_total) }))),
     prisma.modeloDocumento.findMany({
       where: { empresa_id: empresaId, tipo: "CONTRATO", ativo: true },
-      select: { id: true, nome: true },
+      select: { id: true, nome: true, cliente_assina: true },
       orderBy: { nome: "asc" },
     }),
     prisma.membroEmpresa.findMany({

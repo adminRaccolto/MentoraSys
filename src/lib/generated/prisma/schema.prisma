@@ -1081,14 +1081,15 @@ enum TipoModelo {
 // ─── MODELOS DE DOCUMENTO ─────────────────────────────────────────────────────
 
 model ModeloDocumento {
-  id            String     @id @default(cuid())
-  empresa_id    String
-  nome          String
-  tipo          TipoModelo
-  conteudo      String     @default("")
-  ativo         Boolean    @default(true)
-  criado_em     DateTime   @default(now())
-  atualizado_em DateTime   @updatedAt
+  id             String     @id @default(cuid())
+  empresa_id     String
+  nome           String
+  tipo           TipoModelo
+  conteudo       String     @default("")
+  ativo          Boolean    @default(true)
+  cliente_assina Boolean    @default(true)
+  criado_em      DateTime   @default(now())
+  atualizado_em  DateTime   @updatedAt
 
   empresa Empresa @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
 

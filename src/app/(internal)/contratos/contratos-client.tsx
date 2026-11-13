@@ -171,7 +171,7 @@ interface PropostaAceita {
   cliente: { nome: string };
 }
 
-interface ModeloDoc { id: string; nome: string }
+interface ModeloDoc { id: string; nome: string; cliente_assina: boolean }
 interface Usuario { id: string; nome: string }
 interface EmpresaConfig { email: string; representante: string }
 
@@ -196,8 +196,8 @@ const schemaAssinatura = z.object({
   modelo_id: z.string().optional(), // opcional quando há PDF anexado
   email_empresa: z.string().email("E-mail inválido"),
   nome_empresa: z.string().min(1, "Nome obrigatório"),
-  email_cliente: z.string().email("E-mail inválido"),
-  nome_cliente: z.string().min(1, "Nome obrigatório"),
+  email_cliente: z.string().optional(),
+  nome_cliente: z.string().optional(),
 });
 type FormAssinatura = z.input<typeof schemaAssinatura>;
 
@@ -569,8 +569,24 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
     setContratoAssinatura(c);
   };
 
+  const modeloAssinaturaId = formAssinatura.watch("modelo_id");
+  const clienteAssina = !!contratoAssinatura?.anexo_url
+    || modelosContrato.find((m) => m.id === modeloAssinaturaId)?.cliente_assina !== false;
+
   const onSubmitAssinatura = formAssinatura.handleSubmit((data) => {
     if (!contratoAssinatura) return;
+    if (clienteAssina) {
+      let invalido = false;
+      if (!data.nome_cliente?.trim()) {
+        formAssinatura.setError("nome_cliente", { message: "Nome obrigatório" });
+        invalido = true;
+      }
+      if (!z.string().email().safeParse(data.email_cliente).success) {
+        formAssinatura.setError("email_cliente", { message: "E-mail inválido" });
+        invalido = true;
+      }
+      if (invalido) return;
+    }
     startTransition(async () => {
       try {
         const res = await enviarParaAssinatura({
@@ -578,8 +594,8 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
           modelo_id: data.modelo_id,
           email_empresa: data.email_empresa,
           nome_empresa: data.nome_empresa,
-          email_cliente: data.email_cliente,
-          nome_cliente: data.nome_cliente,
+          email_cliente: clienteAssina ? data.email_cliente : undefined,
+          nome_cliente: clienteAssina ? data.nome_cliente : undefined,
           sandbox: false,
         });
         if (res.ok) {
@@ -1399,7 +1415,10 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
           </DialogHeader>
           <form onSubmit={onSubmitAssinatura} className="space-y-4">
             <p className="text-sm text-muted-foreground">
-              O contrato <strong>{contratoAssinatura?.titulo}</strong> será enviado para assinatura eletrônica via Authentique. Ambos receberão um e-mail com o link para assinar.
+              O contrato <strong>{contratoAssinatura?.titulo}</strong> será enviado para assinatura eletrônica via Authentique.{" "}
+              {clienteAssina
+                ? "Ambos receberão um e-mail com o link para assinar."
+                : "Este modelo é assinado somente pela empresa — o cliente não recebe pedido de assinatura."}
             </p>
 
             {contratoAssinatura?.anexo_url ? (
@@ -1452,7 +1471,7 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
               </div>
             </div>
 
-            <div className="rounded-lg border p-3 space-y-3">
+            {clienteAssina && <div className="rounded-lg border p-3 space-y-3">
               <p className="text-xs font-semibold uppercase tracking-wide text-primary">Signatário 2 — Cliente</p>
               <div className="grid grid-cols-1 gap-2">
                 <div className="space-y-1">
@@ -1470,7 +1489,7 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
                   )}
                 </div>
               </div>
-            </div>
+            </div>}
 
             <DialogFooter>
               <Button type="button" variant="outline" onClick={() => setContratoAssinatura(null)}>Cancelar</Button>

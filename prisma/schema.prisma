@@ -1087,6 +1087,7 @@ model ModeloDocumento {
   tipo          TipoModelo
   conteudo      String     @default("")
   ativo         Boolean    @default(true)
+  cliente_assina Boolean   @default(true)
   criado_em     DateTime   @default(now())
   atualizado_em DateTime   @updatedAt
 

@@ -57549,6 +57549,7 @@ export namespace Prisma {
     tipo: $Enums.TipoModelo | null
     conteudo: string | null
     ativo: boolean | null
+    cliente_assina: boolean | null
     criado_em: Date | null
     atualizado_em: Date | null
   }
@@ -57560,6 +57561,7 @@ export namespace Prisma {
     tipo: $Enums.TipoModelo | null
     conteudo: string | null
     ativo: boolean | null
+    cliente_assina: boolean | null
     criado_em: Date | null
     atualizado_em: Date | null
   }
@@ -57571,6 +57573,7 @@ export namespace Prisma {
     tipo: number
     conteudo: number
     ativo: number
+    cliente_assina: number
     criado_em: number
     atualizado_em: number
     _all: number
@@ -57584,6 +57587,7 @@ export namespace Prisma {
     tipo?: true
     conteudo?: true
     ativo?: true
+    cliente_assina?: true
     criado_em?: true
     atualizado_em?: true
   }
@@ -57595,6 +57599,7 @@ export namespace Prisma {
     tipo?: true
     conteudo?: true
     ativo?: true
+    cliente_assina?: true
     criado_em?: true
     atualizado_em?: true
   }
@@ -57606,6 +57611,7 @@ export namespace Prisma {
     tipo?: true
     conteudo?: true
     ativo?: true
+    cliente_assina?: true
     criado_em?: true
     atualizado_em?: true
     _all?: true
@@ -57690,6 +57696,7 @@ export namespace Prisma {
     tipo: $Enums.TipoModelo
     conteudo: string
     ativo: boolean
+    cliente_assina: boolean
     criado_em: Date
     atualizado_em: Date
     _count: ModeloDocumentoCountAggregateOutputType | null
@@ -57718,6 +57725,7 @@ export namespace Prisma {
     tipo?: boolean
     conteudo?: boolean
     ativo?: boolean
+    cliente_assina?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -57730,6 +57738,7 @@ export namespace Prisma {
     tipo?: boolean
     conteudo?: boolean
     ativo?: boolean
+    cliente_assina?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -57742,6 +57751,7 @@ export namespace Prisma {
     tipo?: boolean
     conteudo?: boolean
     ativo?: boolean
+    cliente_assina?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -57754,11 +57764,12 @@ export namespace Prisma {
     tipo?: boolean
     conteudo?: boolean
     ativo?: boolean
+    cliente_assina?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
   }
 
-  export type ModeloDocumentoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "nome" | "tipo" | "conteudo" | "ativo" | "criado_em" | "atualizado_em", ExtArgs["result"]["modeloDocumento"]>
+  export type ModeloDocumentoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "nome" | "tipo" | "conteudo" | "ativo" | "cliente_assina" | "criado_em" | "atualizado_em", ExtArgs["result"]["modeloDocumento"]>
   export type ModeloDocumentoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
   }
@@ -57781,6 +57792,7 @@ export namespace Prisma {
       tipo: $Enums.TipoModelo
       conteudo: string
       ativo: boolean
+      cliente_assina: boolean
       criado_em: Date
       atualizado_em: Date
     }, ExtArgs["result"]["modeloDocumento"]>
@@ -58213,6 +58225,7 @@ export namespace Prisma {
     readonly tipo: FieldRef<"ModeloDocumento", 'TipoModelo'>
     readonly conteudo: FieldRef<"ModeloDocumento", 'String'>
     readonly ativo: FieldRef<"ModeloDocumento", 'Boolean'>
+    readonly cliente_assina: FieldRef<"ModeloDocumento", 'Boolean'>
     readonly criado_em: FieldRef<"ModeloDocumento", 'DateTime'>
     readonly atualizado_em: FieldRef<"ModeloDocumento", 'DateTime'>
   }
@@ -77551,6 +77564,7 @@ export namespace Prisma {
     tipo: 'tipo',
     conteudo: 'conteudo',
     ativo: 'ativo',
+    cliente_assina: 'cliente_assina',
     criado_em: 'criado_em',
     atualizado_em: 'atualizado_em'
   };
@@ -82234,6 +82248,7 @@ export namespace Prisma {
     tipo?: EnumTipoModeloFilter<"ModeloDocumento"> | $Enums.TipoModelo
     conteudo?: StringFilter<"ModeloDocumento"> | string
     ativo?: BoolFilter<"ModeloDocumento"> | boolean
+    cliente_assina?: BoolFilter<"ModeloDocumento"> | boolean
     criado_em?: DateTimeFilter<"ModeloDocumento"> | Date | string
     atualizado_em?: DateTimeFilter<"ModeloDocumento"> | Date | string
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
@@ -82246,6 +82261,7 @@ export namespace Prisma {
     tipo?: SortOrder
     conteudo?: SortOrder
     ativo?: SortOrder
+    cliente_assina?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     empresa?: EmpresaOrderByWithRelationInput
@@ -82261,6 +82277,7 @@ export namespace Prisma {
     tipo?: EnumTipoModeloFilter<"ModeloDocumento"> | $Enums.TipoModelo
     conteudo?: StringFilter<"ModeloDocumento"> | string
     ativo?: BoolFilter<"ModeloDocumento"> | boolean
+    cliente_assina?: BoolFilter<"ModeloDocumento"> | boolean
     criado_em?: DateTimeFilter<"ModeloDocumento"> | Date | string
     atualizado_em?: DateTimeFilter<"ModeloDocumento"> | Date | string
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
@@ -82273,6 +82290,7 @@ export namespace Prisma {
     tipo?: SortOrder
     conteudo?: SortOrder
     ativo?: SortOrder
+    cliente_assina?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     _count?: ModeloDocumentoCountOrderByAggregateInput
@@ -82290,6 +82308,7 @@ export namespace Prisma {
     tipo?: EnumTipoModeloWithAggregatesFilter<"ModeloDocumento"> | $Enums.TipoModelo
     conteudo?: StringWithAggregatesFilter<"ModeloDocumento"> | string
     ativo?: BoolWithAggregatesFilter<"ModeloDocumento"> | boolean
+    cliente_assina?: BoolWithAggregatesFilter<"ModeloDocumento"> | boolean
     criado_em?: DateTimeWithAggregatesFilter<"ModeloDocumento"> | Date | string
     atualizado_em?: DateTimeWithAggregatesFilter<"ModeloDocumento"> | Date | string
   }
@@ -88092,6 +88111,7 @@ export namespace Prisma {
     tipo: $Enums.TipoModelo
     conteudo?: string
     ativo?: boolean
+    cliente_assina?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutModelos_documentoInput
@@ -88104,6 +88124,7 @@ export namespace Prisma {
     tipo: $Enums.TipoModelo
     conteudo?: string
     ativo?: boolean
+    cliente_assina?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -88114,6 +88135,7 @@ export namespace Prisma {
     tipo?: EnumTipoModeloFieldUpdateOperationsInput | $Enums.TipoModelo
     conteudo?: StringFieldUpdateOperationsInput | string
     ativo?: BoolFieldUpdateOperationsInput | boolean
+    cliente_assina?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutModelos_documentoNestedInput
@@ -88126,6 +88148,7 @@ export namespace Prisma {
     tipo?: EnumTipoModeloFieldUpdateOperationsInput | $Enums.TipoModelo
     conteudo?: StringFieldUpdateOperationsInput | string
     ativo?: BoolFieldUpdateOperationsInput | boolean
+    cliente_assina?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -88137,6 +88160,7 @@ export namespace Prisma {
     tipo: $Enums.TipoModelo
     conteudo?: string
     ativo?: boolean
+    cliente_assina?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -88147,6 +88171,7 @@ export namespace Prisma {
     tipo?: EnumTipoModeloFieldUpdateOperationsInput | $Enums.TipoModelo
     conteudo?: StringFieldUpdateOperationsInput | string
     ativo?: BoolFieldUpdateOperationsInput | boolean
+    cliente_assina?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -88158,6 +88183,7 @@ export namespace Prisma {
     tipo?: EnumTipoModeloFieldUpdateOperationsInput | $Enums.TipoModelo
     conteudo?: StringFieldUpdateOperationsInput | string
     ativo?: BoolFieldUpdateOperationsInput | boolean
+    cliente_assina?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -92960,6 +92986,7 @@ export namespace Prisma {
     tipo?: SortOrder
     conteudo?: SortOrder
     ativo?: SortOrder
+    cliente_assina?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -92971,6 +92998,7 @@ export namespace Prisma {
     tipo?: SortOrder
     conteudo?: SortOrder
     ativo?: SortOrder
+    cliente_assina?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -92982,6 +93010,7 @@ export namespace Prisma {
     tipo?: SortOrder
     conteudo?: SortOrder
     ativo?: SortOrder
+    cliente_assina?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -102703,6 +102732,7 @@ export namespace Prisma {
     tipo: $Enums.TipoModelo
     conteudo?: string
     ativo?: boolean
+    cliente_assina?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -102713,6 +102743,7 @@ export namespace Prisma {
     tipo: $Enums.TipoModelo
     conteudo?: string
     ativo?: boolean
+    cliente_assina?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -104033,6 +104064,7 @@ export namespace Prisma {
     tipo?: EnumTipoModeloFilter<"ModeloDocumento"> | $Enums.TipoModelo
     conteudo?: StringFilter<"ModeloDocumento"> | string
     ativo?: BoolFilter<"ModeloDocumento"> | boolean
+    cliente_assina?: BoolFilter<"ModeloDocumento"> | boolean
     criado_em?: DateTimeFilter<"ModeloDocumento"> | Date | string
     atualizado_em?: DateTimeFilter<"ModeloDocumento"> | Date | string
   }
@@ -129106,6 +129138,7 @@ export namespace Prisma {
     tipo: $Enums.TipoModelo
     conteudo?: string
     ativo?: boolean
+    cliente_assina?: boolean
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -130489,6 +130522,7 @@ export namespace Prisma {
     tipo?: EnumTipoModeloFieldUpdateOperationsInput | $Enums.TipoModelo
     conteudo?: StringFieldUpdateOperationsInput | string
     ativo?: BoolFieldUpdateOperationsInput | boolean
+    cliente_assina?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -130499,6 +130533,7 @@ export namespace Prisma {
     tipo?: EnumTipoModeloFieldUpdateOperationsInput | $Enums.TipoModelo
     conteudo?: StringFieldUpdateOperationsInput | string
     ativo?: BoolFieldUpdateOperationsInput | boolean
+    cliente_assina?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -130509,6 +130544,7 @@ export namespace Prisma {
     tipo?: EnumTipoModeloFieldUpdateOperationsInput | $Enums.TipoModelo
     conteudo?: StringFieldUpdateOperationsInput | string
     ativo?: BoolFieldUpdateOperationsInput | boolean
+    cliente_assina?: BoolFieldUpdateOperationsInput | boolean
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }

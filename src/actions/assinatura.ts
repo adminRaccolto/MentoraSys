@@ -8,14 +8,16 @@ import { criarDocumentoAuthentique } from "@/lib/authentique";
 import { registrar } from "@/lib/auditoria";
 import { textoParaHtml } from "@/lib/texto-html";
 import { gerarClausulaProbono, garantirVariavelProbono } from "@/lib/clausula-probono";
+import { variaveisCliente } from "@/lib/variaveis-cliente";
 
 const schemaEnviar = z.object({
   contrato_id: z.string().min(1),
   modelo_id: z.string().optional(), // opcional quando há anexo_url
   email_empresa: z.string().email("E-mail da empresa inválido"),
   nome_empresa: z.string().min(1, "Nome do representante obrigatório"),
-  email_cliente: z.string().email("E-mail do cliente inválido"),
-  nome_cliente: z.string().min(1, "Nome do cliente obrigatório"),
+  // opcionais: modelos com cliente_assina = false (ex.: termo de sigilo) só têm a empresa como signatária
+  email_cliente: z.string().optional(),
+  nome_cliente: z.string().optional(),
   sandbox: z.boolean().default(false),
 });
 
@@ -112,6 +114,15 @@ export async function enviarParaAssinatura(input: Input) {
     return { ok: false, error: "Apenas contratos em rascunho podem ser enviados para assinatura" };
   }
 
+  const clienteAssina = !!contrato.anexo_url || modelo?.cliente_assina !== false;
+  const signatarios = [{ email: data.email_empresa, nome: data.nome_empresa }];
+  if (clienteAssina) {
+    if (!data.nome_cliente || !z.string().email().safeParse(data.email_cliente).success) {
+      return { ok: false, error: "Informe nome e e-mail válidos do cliente" };
+    }
+    signatarios.push({ email: data.email_cliente!, nome: data.nome_cliente });
+  }
+
   const config = (empresa.configuracoes as Record<string, string>) ?? {};
 
   // ── Logo em base64 (Autentique não acessa URLs externas) ─────────────────────
@@ -154,10 +165,7 @@ export async function enviarParaAssinatura(input: Input) {
     "empresa.representante": config.representante ?? "",
     "empresa.representante_cpf": config.representante_cpf ?? "",
     "empresa.representante_cargo": config.representante_cargo ?? "Sócio Administrador",
-    "cliente.nome": contrato.cliente_nome ?? contrato.cliente.nome,
-    "cliente.cpf_cnpj": fmtCnpj(contrato.cliente_cpf_cnpj ?? contrato.cliente.cpf_cnpj),
-    "cliente.email": contrato.cliente.email ?? "",
-    "cliente.telefone": contrato.cliente.telefone ?? "",
+    ...variaveisCliente(contrato.cliente, { nome: contrato.cliente_nome, cpf_cnpj: contrato.cliente_cpf_cnpj }),
     "contrato.numero": contrato.numero_contrato ?? "",
     "contrato.titulo": contrato.titulo,
     "contrato.objeto": textoParaHtml(contrato.objeto),
@@ -235,10 +243,7 @@ export async function enviarParaAssinatura(input: Input) {
         nome: contrato.titulo,
         htmlContent: "",
         pdfBuffer,
-        signatarios: [
-          { email: data.email_empresa, nome: data.nome_empresa },
-          { email: data.email_cliente, nome: data.nome_cliente },
-        ],
+        signatarios,
         sandbox: data.sandbox,
       });
     } else {
@@ -246,10 +251,7 @@ export async function enviarParaAssinatura(input: Input) {
       doc = await criarDocumentoAuthentique({
         nome: contrato.titulo,
         htmlContent,
-        signatarios: [
-          { email: data.email_empresa, nome: data.nome_empresa },
-          { email: data.email_cliente, nome: data.nome_cliente },
-        ],
+        signatarios,
         sandbox: data.sandbox,
       });
     }
@@ -274,7 +276,7 @@ export async function enviarParaAssinatura(input: Input) {
     recurso: "contratos",
     acao: "enviar_assinatura",
     registroId: data.contrato_id,
-    detalhes: { authentique_id: doc.id, email_empresa: data.email_empresa, email_cliente: data.email_cliente },
+    detalhes: { authentique_id: doc.id, email_empresa: data.email_empresa, email_cliente: clienteAssina ? data.email_cliente : null },
   });
 
   revalidatePath("/contratos");

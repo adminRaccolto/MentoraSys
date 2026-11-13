@@ -38,6 +38,7 @@ interface Modelo {
   nome: string;
   tipo: TipoModelo;
   conteudo: string;
+  cliente_assina: boolean;
 }
 
 interface Props {
@@ -76,6 +77,11 @@ const VARIAVEIS_CLIENTE = [
   { chave: "{{cliente.cpf_cnpj}}", label: "CPF/CNPJ do cliente" },
   { chave: "{{cliente.email}}", label: "E-mail do cliente" },
   { chave: "{{cliente.telefone}}", label: "Telefone do cliente" },
+  { chave: "{{cliente.endereco}}", label: "Endereço completo" },
+  { chave: "{{cliente.logradouro}}", label: "Logradouro, nº e bairro" },
+  { chave: "{{cliente.cidade}}", label: "Cidade do cliente" },
+  { chave: "{{cliente.estado}}", label: "Estado (UF) do cliente" },
+  { chave: "{{cliente.cep}}", label: "CEP do cliente" },
 ];
 
 const VARIAVEIS_CONTRATO = [
@@ -186,6 +192,7 @@ export default function EditorClient({ modelo }: Props) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [nome, setNome] = useState(modelo.nome);
+  const [clienteAssina, setClienteAssina] = useState(modelo.cliente_assina);
   const [salvo, setSalvo] = useState(true);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -234,6 +241,13 @@ export default function EditorClient({ modelo }: Props) {
       });
     }
   }, [nome, modelo.id, modelo.nome]);
+
+  const alterarClienteAssina = (valor: boolean) => {
+    setClienteAssina(valor);
+    startTransition(async () => {
+      await editarModelo(modelo.id, { cliente_assina: valor });
+    });
+  };
 
   const toggleModo = () => {
     if (modoHtml) {
@@ -313,6 +327,21 @@ export default function EditorClient({ modelo }: Props) {
         <Badge className={`${TIPO_COLORS[modelo.tipo]} border-0`} variant="outline">
           {TIPO_LABELS[modelo.tipo]}
         </Badge>
+
+        {modelo.tipo === "CONTRATO" && (
+          <label
+            className="flex items-center gap-1.5 text-xs text-muted-foreground cursor-pointer select-none"
+            title="Desmarque para documentos assinados só pela empresa (ex.: termo de sigilo unilateral)"
+          >
+            <input
+              type="checkbox"
+              checked={clienteAssina}
+              onChange={(e) => alterarClienteAssina(e.target.checked)}
+              className="h-3.5 w-3.5 rounded border-gray-300"
+            />
+            Cliente assina
+          </label>
+        )}
 
         <div className="ml-auto flex items-center gap-2">
           {salvo ? (
