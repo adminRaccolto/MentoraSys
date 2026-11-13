@@ -2,7 +2,8 @@
 
 import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import { BarChart2, ChevronDown, ChevronRight, Pencil, X, Settings2, FileSpreadsheet, Printer } from "lucide-react";
+import { toast } from "sonner";
+import { BarChart2, ChevronDown, ChevronRight, Pencil, X, Settings2, FileSpreadsheet, FileDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -28,6 +29,7 @@ interface Props {
   lancamentos: Lancamento[];
   de: string; ate: string;
   saldoAnterior: number;
+  empresaNome: string;
 }
 
 const fmtBRL = (v: number) => v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
@@ -37,7 +39,7 @@ const NOMES_MES = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","
 
 const FORM_VAZIO = { tipo: "SAIDA" as "ENTRADA" | "SAIDA", descricao: "", referencia: "", data: TODAY, valor: "" };
 
-export default function FluxoCaixaClient({ lancamentos, de, ate, saldoAnterior }: Props) {
+export default function FluxoCaixaClient({ lancamentos, de, ate, saldoAnterior, empresaNome }: Props) {
   const router = useRouter();
   const [filtroDe, setFiltroDe] = useState(de);
   const [filtroAte, setFiltroAte] = useState(ate);
@@ -151,7 +153,30 @@ export default function FluxoCaixaClient({ lancamentos, de, ate, saldoAnterior }
   const impactoSaidas   = simulacoes.filter(s => s.ativa && s.tipo === "SAIDA").reduce((s, x) => s + x.valor, 0);
   const qtdAtivas = simulacoes.filter(s => s.ativa).length;
 
-  const pdfHref = `/fluxo-caixa?de=${de}&ate=${ate}&vista=${vista}&tipo=${tipoFiltro}`;
+  const [gerandoPdf, setGerandoPdf] = useState(false);
+
+  async function exportarPdf() {
+    setGerandoPdf(true);
+    try {
+      const { gerarPdfFluxoCaixa } = await import("@/lib/pdf-fluxo-caixa");
+      await gerarPdfFluxoCaixa({
+        empresaNome,
+        de, ate, vista,
+        tipoFiltroLabel: { ambos: "previstos e realizados", previsto: "somente previstos", realizado: "somente realizados" }[tipoFiltro],
+        saldoAnterior, totalEntradas, totalSaidas,
+        meses, somasMes, dfcRows,
+        lancamentos: [
+          ...lancFiltrados.map(l => ({ ...l, situacao: l.projetado ? "Previsto" as const : "Realizado" as const })),
+          ...simsAtivas.map(s => ({ ...s, situacao: "Simulação" as const })),
+        ].filter(l => l.data >= de && l.data <= ate),
+      });
+    } catch (e) {
+      console.error(e);
+      toast.error("Não foi possível gerar o PDF");
+    } finally {
+      setGerandoPdf(false);
+    }
+  }
 
   async function exportarExcel() {
     const XLSX = await import("xlsx");
@@ -302,11 +327,9 @@ export default function FluxoCaixaClient({ lancamentos, de, ate, saldoAnterior }
             <Button size="sm" variant="outline" className="h-7 text-xs gap-1.5" onClick={exportarExcel}>
               <FileSpreadsheet className="size-3.5" /> Excel
             </Button>
-            <a href={pdfHref} target="_blank" rel="noopener noreferrer">
-              <Button size="sm" variant="outline" className="h-7 text-xs gap-1.5">
-                <Printer className="size-3.5" /> Gerar PDF
-              </Button>
-            </a>
+            <Button size="sm" variant="outline" className="h-7 text-xs gap-1.5" onClick={exportarPdf} disabled={gerandoPdf}>
+              <FileDown className="size-3.5" /> {gerandoPdf ? "Gerando..." : "Gerar PDF"}
+            </Button>
           </div>
           {vista === "dia" && (
             <div className="flex items-center gap-1 px-4">

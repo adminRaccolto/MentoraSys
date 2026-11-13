@@ -1,4 +1,5 @@
 import { obterEmpresaAtiva } from "@/lib/permissoes";
+import { prisma } from "@/lib/prisma";
 import { buscarFluxoCaixa } from "@/lib/fluxo-caixa-query";
 import FluxoCaixaClient from "./fluxo-caixa-client";
 
@@ -16,7 +17,10 @@ export default async function FluxoCaixaPage({ searchParams }: Props) {
   const inicio = new Date(`${deStr}T00:00:00`);
   const fim = new Date(`${ateStr}T23:59:59`);
 
-  const { lancamentos, saldoAnterior } = await buscarFluxoCaixa(empresaId, inicio, fim);
+  const [{ lancamentos, saldoAnterior }, empresa] = await Promise.all([
+    buscarFluxoCaixa(empresaId, inicio, fim),
+    prisma.empresa.findUnique({ where: { id: empresaId }, select: { nome: true } }),
+  ]);
 
   return (
     <FluxoCaixaClient
@@ -25,6 +29,7 @@ export default async function FluxoCaixaPage({ searchParams }: Props) {
       de={deStr}
       ate={ateStr}
       saldoAnterior={saldoAnterior}
+      empresaNome={empresa?.nome ?? ""}
     />
   );
 }
