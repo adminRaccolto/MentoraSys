@@ -3,6 +3,7 @@ import { obterReembolso } from "@/actions/reembolsos";
 import { prisma } from "@/lib/prisma";
 import { obterEmpresaAtiva } from "@/lib/permissoes";
 import PrintButton from "./print-button";
+import type { DadosPdfReembolso, SecaoPdfReembolso } from "@/lib/pdf-reembolso";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -22,6 +23,28 @@ function fmtBRL(v: number | string) {
 
 function fmtDate(d: Date | string) {
   return new Date(d).toLocaleDateString("pt-BR");
+}
+
+type DadosPagamento = {
+  banco?: string; agencia?: string; conta?: string;
+  tipo_conta?: string; chave_pix?: string;
+} | null;
+
+function paresPagamento(p: DadosPagamento): [string, string][] {
+  if (!p || (!p.banco && !p.chave_pix)) return [];
+  const pares: [string, string][] = [];
+  if (p.banco) pares.push(["Banco", p.banco]);
+  if (p.agencia) pares.push(["Agência", p.agencia]);
+  if (p.conta) {
+    const tipo = p.tipo_conta && p.tipo_conta !== "pix" ? ` (${p.tipo_conta === "corrente" ? "Corrente" : "Poupança"})` : "";
+    pares.push(["Conta", p.conta + tipo]);
+  }
+  if (p.chave_pix) pares.push(["Chave PIX", p.chave_pix]);
+  return pares;
+}
+
+function nomeArquivo(texto: string) {
+  return texto.normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-zA-Z0-9]+/g, "-").replace(/^-|-$/g, "").toLowerCase();
 }
 
 function periodoLabel(p: string) {
@@ -54,10 +77,7 @@ export default async function ReembolsoImprimivel({ params, searchParams }: Prop
 
   const cfg = (empresa.configuracoes as Record<string, unknown>) ?? {};
   const enderecoEmpresa = (cfg.endereco as string) ?? "";
-  const pagamento = (cfg.pagamento_reembolso as {
-    banco?: string; agencia?: string; conta?: string;
-    tipo_conta?: string; chave_pix?: string;
-  }) ?? null;
+  const pagamento = (cfg.pagamento_reembolso as DadosPagamento) ?? null;
 
   // ── Relatório por cliente (valores rateados) ─────────────────────────────
   if (cliente_id) {
@@ -103,9 +123,60 @@ export default async function ReembolsoImprimivel({ params, searchParams }: Prop
     const totalOutras = outrasDespesas.reduce((s, i) => s + i.valorRateio, 0);
     const totalCliente = totalDeslocamento + totalOutras;
 
+    const secoesPdf: SecaoPdfReembolso[] = [];
+    if (deslocamentos.length > 0) {
+      secoesPdf.push({
+        titulo: "Deslocamento",
+        colunas: ["Data", "km", "R$/km", "Rateio", "Seu valor"],
+        colunasDireita: [1, 2],
+        linhas: deslocamentos.map((i) => [
+          fmtDate(i.data),
+          i.km != null ? `${i.km} km` : "-",
+          i.valor_km != null ? fmtBRL(i.valor_km) : "-",
+          i.qtdClientes > 1
+            ? `${fmtBRL(i.valorTotal)} ÷ ${i.qtdClientes}${i.outrosClientes.length ? `\nCompartilhado com: ${i.outrosClientes.join(", ")}` : ""}`
+            : "Exclusivo",
+          fmtBRL(i.valorRateio),
+        ]),
+        subtotal: fmtBRL(totalDeslocamento),
+      });
+    }
+    if (outrasDespesas.length > 0) {
+      secoesPdf.push({
+        titulo: "Outras despesas",
+        colunas: ["Tipo", "Data", "Descrição", "Rateio", "Seu valor"],
+        colunasDireita: [],
+        linhas: outrasDespesas.map((i) => [
+          TIPO_LABELS[i.tipo] ?? i.tipo,
+          fmtDate(i.data),
+          i.descricao,
+          numClientesTotal > 1 ? `${fmtBRL(i.valorTotal)} ÷ ${numClientesTotal}` : "Exclusivo",
+          fmtBRL(i.valorRateio),
+        ]),
+        subtotal: fmtBRL(totalOutras),
+      });
+    }
+
+    const dadosPdf: DadosPdfReembolso = {
+      empresaNome: empresa.nome,
+      empresaCnpj: empresa.cnpj,
+      empresaEndereco: enderecoEmpresa,
+      titulo: "RELATÓRIO DE REEMBOLSO",
+      periodo: periodoLabel(reembolso.periodo),
+      descricao: reembolso.descricao,
+      status: null,
+      clienteNome,
+      secoes: secoesPdf,
+      total: fmtBRL(totalCliente),
+      resumo: [],
+      pagamento: paresPagamento(pagamento),
+      comAssinatura: true,
+      nomeArquivo: `reembolso_${reembolso.periodo}_${nomeArquivo(clienteNome)}.pdf`,
+    };
+
     return (
       <div className="min-h-screen bg-slate-100 print:bg-white">
-        <PrintButton />
+        <PrintButton dados={dadosPdf} />
 
         <div className="max-w-3xl mx-auto my-8 print:my-0 bg-white shadow-xl print:shadow-none">
           <div className="p-10 print:p-8 space-y-8">
@@ -158,7 +229,7 @@ export default async function ReembolsoImprimivel({ params, searchParams }: Prop
                           {item.km != null ? `${item.km} km` : "—"}
                         </td>
                         <td className="px-3 py-2 text-slate-600">
-                          {item.valor_km != null ? `R$ ${item.valor_km.toFixed(2)}` : "—"}
+                          {item.valor_km != null ? fmtBRL(item.valor_km) : "—"}
                         </td>
                         <td className="px-3 py-2 text-slate-500 text-xs">
                           {item.qtdClientes > 1 ? (
@@ -338,9 +409,46 @@ export default async function ReembolsoImprimivel({ params, searchParams }: Prop
       .reduce((s, i) => s + i.valor, 0),
   })).filter((g) => g.itens.length > 0);
 
+  const dadosPdf: DadosPdfReembolso = {
+    empresaNome: empresa.nome,
+    empresaCnpj: empresa.cnpj,
+    empresaEndereco: enderecoEmpresa,
+    titulo: "REEMBOLSO",
+    periodo: periodoLabel(reembolso.periodo),
+    descricao: reembolso.descricao,
+    status: reembolso.status === "PAGO" ? "Pago" : "Em aberto",
+    clienteNome: null,
+    secoes: porTipo.map(({ tipo, label, itens, subtotal }) => ({
+      titulo: label,
+      colunas: tipo === "DESLOCAMENTO"
+        ? ["Data", "Descrição", "km", "R$/km", "Clientes", "Valor"]
+        : ["Data", "Descrição", "Valor"],
+      colunasDireita: tipo === "DESLOCAMENTO" ? [2, 3] : [],
+      linhas: itens.map((item) => {
+        const base = [fmtDate(item.data), item.descricao];
+        if (tipo !== "DESLOCAMENTO") return [...base, fmtBRL(item.valor)];
+        const nomes = item.clientes_ids.map((cid) => clienteMap[cid] ?? cid).join(", ") || "-";
+        const rateio = item.clientes_ids.length > 1 ? `\nRateio: ${fmtBRL(item.valor / item.clientes_ids.length)}/cliente` : "";
+        return [
+          ...base,
+          item.km != null ? String(item.km) : "-",
+          item.valor_km != null ? fmtBRL(item.valor_km) : "-",
+          nomes + rateio,
+          fmtBRL(item.valor),
+        ];
+      }),
+      subtotal: fmtBRL(subtotal),
+    })),
+    total: fmtBRL(Number(reembolso.total)),
+    resumo: porTipo.map(({ label, subtotal }) => [label, fmtBRL(subtotal)]),
+    pagamento: [],
+    comAssinatura: false,
+    nomeArquivo: `reembolso_${reembolso.periodo}.pdf`,
+  };
+
   return (
     <div className="min-h-screen bg-slate-100 print:bg-white">
-      <PrintButton />
+      <PrintButton dados={dadosPdf} />
 
       <div className="max-w-225 mx-auto my-8 print:my-0 bg-white shadow-xl print:shadow-none">
         <div className="p-10 print:p-8 space-y-8">
@@ -409,7 +517,7 @@ export default async function ReembolsoImprimivel({ params, searchParams }: Prop
                               {item.km != null ? item.km : "—"}
                             </td>
                             <td className="px-3 py-2 text-center text-slate-600">
-                              {item.valor_km != null ? `R$ ${item.valor_km.toFixed(2)}` : "—"}
+                              {item.valor_km != null ? fmtBRL(item.valor_km) : "—"}
                             </td>
                             <td className="px-3 py-2 text-slate-600 text-xs">
                               {nomesClientes || "—"}
