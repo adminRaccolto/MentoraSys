@@ -392,6 +392,11 @@ exports.Prisma.ContratoScalarFieldEnum = {
   probono_arato: 'probono_arato',
   probono_versao: 'probono_versao',
   probono_meses: 'probono_meses',
+  reembolso_despesas: 'reembolso_despesas',
+  reembolso_valor_km: 'reembolso_valor_km',
+  reembolso_distancia_km: 'reembolso_distancia_km',
+  reembolso_limite_alimentacao: 'reembolso_limite_alimentacao',
+  reembolso_limite_hospedagem: 'reembolso_limite_hospedagem',
   criado_em: 'criado_em',
   atualizado_em: 'atualizado_em'
 };

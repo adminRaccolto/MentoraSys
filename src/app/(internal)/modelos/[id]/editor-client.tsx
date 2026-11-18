@@ -88,6 +88,7 @@ const VARIAVEIS_CONTRATO = [
   { chave: "{{contrato.titulo}}", label: "Título do contrato" },
   { chave: "{{contrato.objeto}}", label: "Objeto / escopo" },
   { chave: "{{contrato.clausula_probono}}", label: "Cláusula Pro Bono Arato" },
+  { chave: "{{contrato.clausula_reembolso}}", label: "Cláusula de reembolso (4.4.2)" },
   { chave: "{{contrato.valor_total}}", label: "Valor total" },
   { chave: "{{contrato.data_inicio}}", label: "Data de início" },
   { chave: "{{contrato.data_fim}}", label: "Data de encerramento" },

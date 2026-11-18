@@ -22,11 +22,20 @@ import { criarContrato, editarContrato, excluirContrato, marcarAssinado, salvarA
 import { gerarParcelasContrato } from "@/actions/recebiveis";
 import { enviarParaAssinatura } from "@/actions/assinatura";
 import { gerarClausulaProbono, VERSOES_ARATO } from "@/lib/clausula-probono";
+import { gerarClausulaReembolso, resolverValoresReembolso } from "@/lib/clausula-reembolso";
 
 const FORMAS_PAGAMENTO = ["À vista", "Parcelado", "Recorrente", "Mensal", "Trimestral", "Semestral", "Anual"];
 const PERIODICIDADES = ["Mensal", "Bimestral", "Trimestral", "Semestral", "Anual", "Única"];
 const TIPOS_CONTRATO = ["Consultoria", "Mentoria", "Assessoria", "Prestação de Serviços", "Retainer", "Outro"];
 const INDICES_REAJUSTE = ["IPCA", "IGPM", "IGP-DI", "INPC", "Nenhum"];
+
+// Aceita "3,50", "3.50" e "1.234,56"
+function numeroOuNulo(v: string | undefined): number | null {
+  const t = (v ?? "").trim();
+  if (!t) return null;
+  const n = Number(t.includes(",") ? t.replace(/\./g, "").replace(",", ".") : t);
+  return Number.isFinite(n) && n > 0 ? n : null;
+}
 const PERIODICIDADES_REAJUSTE = ["Anual", "Semestral", "A definir"];
 
 function periodoParaMeses(p?: string | null): number {
@@ -82,6 +91,11 @@ const schema = z.object({
   probono_arato: z.boolean().default(false),
   probono_versao: z.string().optional(),
   probono_meses: z.string().optional(),
+  reembolso_despesas: z.boolean().default(true),
+  reembolso_valor_km: z.string().optional(),
+  reembolso_distancia_km: z.string().optional(),
+  reembolso_limite_alimentacao: z.string().optional(),
+  reembolso_limite_hospedagem: z.string().optional(),
 }).superRefine((d, ctx) => {
   if (!d.probono_arato) return;
   if (!d.probono_versao) ctx.addIssue({ code: "custom", path: ["probono_versao"], message: "Selecione a versão" });
@@ -147,6 +161,11 @@ interface Contrato {
   probono_arato: boolean;
   probono_versao: string | null;
   probono_meses: number | null;
+  reembolso_despesas: boolean;
+  reembolso_valor_km: number | null;
+  reembolso_distancia_km: number | null;
+  reembolso_limite_alimentacao: number | null;
+  reembolso_limite_hospedagem: number | null;
 }
 
 interface Cliente {
@@ -156,6 +175,8 @@ interface Cliente {
   contato_principal: string | null;
   email: string | null;
   telefone: string | null;
+  preco_km: number | null;
+  distancia_km: number | null;
 }
 
 interface PropostaAceita {
@@ -173,7 +194,7 @@ interface PropostaAceita {
 
 interface ModeloDoc { id: string; nome: string; cliente_assina: boolean }
 interface Usuario { id: string; nome: string }
-interface EmpresaConfig { email: string; representante: string }
+interface EmpresaConfig { email: string; representante: string; cidade: string; estado: string }
 
 interface Props {
   contratos: Contrato[];
@@ -274,6 +295,7 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
       gerar_financeiro: true,
       gerar_projeto: false,
       renovacao_automatica: false,
+      reembolso_despesas: true,
       parcelas_json: [],
     },
   });
@@ -315,6 +337,22 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
     data_inicio: watchDataInicio ? `${watchDataInicio}T12:00:00` : null,
   });
 
+  const watchReembolso = watch("reembolso_despesas");
+  const clienteSelecionado = clientes.find((c) => c.id === watchClienteId);
+  const dadosReembolso = {
+    reembolso_despesas: watchReembolso !== false,
+    reembolso_valor_km: numeroOuNulo(watch("reembolso_valor_km")),
+    reembolso_distancia_km: numeroOuNulo(watch("reembolso_distancia_km")),
+    reembolso_limite_alimentacao: numeroOuNulo(watch("reembolso_limite_alimentacao")),
+    reembolso_limite_hospedagem: numeroOuNulo(watch("reembolso_limite_hospedagem")),
+    cliente_preco_km: clienteSelecionado?.preco_km,
+    cliente_distancia_km: clienteSelecionado?.distancia_km,
+    empresa_cidade: empresaConfig.cidade,
+    empresa_estado: empresaConfig.estado,
+  };
+  const previaClausulaReembolso = gerarClausulaReembolso(dadosReembolso);
+  const kmEfetivo = resolverValoresReembolso(dadosReembolso);
+
   const preencherSnapshotCliente = (clienteId: string) => {
     const c = clientes.find((cl) => cl.id === clienteId);
     if (!c) return;
@@ -344,6 +382,7 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
         gerar_financeiro: true,
         gerar_projeto: false,
         renovacao_automatica: false,
+        reembolso_despesas: true,
         parcelas_json: parcelasPropostos,
         cliente_nome: c?.nome ?? "",
         cliente_cpf_cnpj: c?.cpf_cnpj ?? "",
@@ -356,6 +395,7 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
         gerar_financeiro: true,
         gerar_projeto: false,
         renovacao_automatica: false,
+        reembolso_despesas: true,
       });
     }
     setModalAberto(true);
@@ -400,6 +440,11 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
       probono_arato: c.probono_arato,
       probono_versao: c.probono_versao ?? "",
       probono_meses: c.probono_meses ? String(c.probono_meses) : "",
+      reembolso_despesas: c.reembolso_despesas,
+      reembolso_valor_km: c.reembolso_valor_km != null ? String(c.reembolso_valor_km) : "",
+      reembolso_distancia_km: c.reembolso_distancia_km != null ? String(c.reembolso_distancia_km) : "",
+      reembolso_limite_alimentacao: c.reembolso_limite_alimentacao != null ? String(c.reembolso_limite_alimentacao) : "",
+      reembolso_limite_hospedagem: c.reembolso_limite_hospedagem != null ? String(c.reembolso_limite_hospedagem) : "",
     });
     setModalAberto(true);
   };
@@ -456,6 +501,11 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
           probono_arato: data.probono_arato ?? false,
           probono_versao: (data.probono_versao || null) as "ESSENCIAL" | "GESTAO" | "PERFORMANCE" | null,
           probono_meses: data.probono_meses ? Number(data.probono_meses) : null,
+          reembolso_despesas: data.reembolso_despesas ?? true,
+          reembolso_valor_km: numeroOuNulo(data.reembolso_valor_km),
+          reembolso_distancia_km: numeroOuNulo(data.reembolso_distancia_km),
+          reembolso_limite_alimentacao: numeroOuNulo(data.reembolso_limite_alimentacao),
+          reembolso_limite_hospedagem: numeroOuNulo(data.reembolso_limite_hospedagem),
         };
 
         if (contratoEditando) {
@@ -813,6 +863,7 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
                   <TabsTrigger value="financeiro">Financeiro</TabsTrigger>
                   <TabsTrigger value="datas">Datas e Reajuste</TabsTrigger>
                   <TabsTrigger value="automacoes">Automações</TabsTrigger>
+                  <TabsTrigger value="despesas">Despesas</TabsTrigger>
                   <TabsTrigger value="probono">
                     Pro Bono Arato
                     {watchProbono && <span className="ml-1.5 size-1.5 rounded-full bg-accent inline-block" />}
@@ -1149,7 +1200,81 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
                 </div>
               </TabsContent>
 
-              {/* Tab 5: Pro Bono Arato */}
+              {/* Tab 5: Reembolso de despesas */}
+              <TabsContent value="despesas" className="mt-0">
+                <div className="grid grid-cols-3 divide-x">
+                  <div className="px-6 py-5 space-y-4">
+                    <p className="text-xs font-semibold text-primary uppercase tracking-widest">Reembolso de Despesas</p>
+                    <CheckField
+                      label="Incluir cláusula de reembolso (item 4.4.2)"
+                      description="Deslocamento por km rodado, alimentação e hospedagem com limite diário, sem comprovantes"
+                      checked={watchReembolso !== false}
+                      onChange={(v) => setValue("reembolso_despesas", v, { shouldDirty: true })}
+                    />
+                    {watchReembolso !== false && (
+                      <>
+                        <div className="grid grid-cols-2 gap-3">
+                          <Field label="R$ por km">
+                            <Input {...register("reembolso_valor_km")} inputMode="decimal" className="h-9 text-sm"
+                              placeholder={clienteSelecionado?.preco_km ? String(clienteSelecionado.preco_km).replace(".", ",") : "Ex: 3,00"} />
+                          </Field>
+                          <Field label="Distância (km)">
+                            <Input {...register("reembolso_distancia_km")} inputMode="decimal" className="h-9 text-sm"
+                              placeholder={clienteSelecionado?.distancia_km ? String(clienteSelecionado.distancia_km) : "Ex: 150"} />
+                          </Field>
+                        </div>
+                        <p className="text-xs text-muted-foreground -mt-2">
+                          Em branco, usa o cadastro do cliente
+                          {clienteSelecionado && (clienteSelecionado.preco_km || clienteSelecionado.distancia_km)
+                            ? ` (${clienteSelecionado.preco_km ? `R$ ${String(clienteSelecionado.preco_km).replace(".", ",")}/km` : "sem R$/km"}${clienteSelecionado.distancia_km ? ` · ${clienteSelecionado.distancia_km} km` : ""})`
+                            : clienteSelecionado ? " (o cliente não tem R$/km cadastrado)" : ""}.
+                        </p>
+                        <div className="grid grid-cols-2 gap-3">
+                          <Field label="Alimentação (R$/dia)">
+                            <Input {...register("reembolso_limite_alimentacao")} inputMode="decimal" className="h-9 text-sm" placeholder="Ex: 120,00" />
+                          </Field>
+                          <Field label="Hospedagem (R$/diária)">
+                            <Input {...register("reembolso_limite_hospedagem")} inputMode="decimal" className="h-9 text-sm" placeholder="Ex: 250,00" />
+                          </Field>
+                        </div>
+                        {!kmEfetivo.valorKm && (
+                          <p className="text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-md px-2 py-1.5">
+                            Sem valor por km: o contrato vai citar o km rodado sem valor definido.
+                          </p>
+                        )}
+                        {(!kmEfetivo.limiteAlimentacao || !kmEfetivo.limiteHospedagem) && (
+                          <p className="text-xs text-muted-foreground">
+                            Limite em branco = {!kmEfetivo.limiteAlimentacao && !kmEfetivo.limiteHospedagem
+                              ? "alimentação e hospedagem não entram"
+                              : !kmEfetivo.limiteAlimentacao ? "alimentação não entra" : "hospedagem não entra"} no contrato.
+                          </p>
+                        )}
+                      </>
+                    )}
+                  </div>
+                  <div className="col-span-2 px-6 py-5 space-y-3">
+                    <p className="text-xs font-semibold text-primary uppercase tracking-widest">Prévia da cláusula</p>
+                    {previaClausulaReembolso ? (
+                      <>
+                        <div
+                          className="rounded-md border bg-muted/20 p-4 text-sm leading-relaxed max-h-80 overflow-y-auto space-y-1.5"
+                          dangerouslySetInnerHTML={{ __html: previaClausulaReembolso }}
+                        />
+                        <p className="text-xs text-muted-foreground">
+                          Substitui o item 4.4.2 do modelo de contrato. Em modelos próprios, use a variável
+                          {" "}<code className="text-[11px]">{"{{contrato.clausula_reembolso}}"}</code>.
+                        </p>
+                      </>
+                    ) : (
+                      <p className="text-sm text-muted-foreground py-8 text-center border rounded-md">
+                        Cláusula desligada — o contrato não terá o item de reembolso de despesas.
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </TabsContent>
+
+              {/* Tab 6: Pro Bono Arato */}
               <TabsContent value="probono" className="mt-0">
                 <div className="grid grid-cols-3 divide-x">
                   <div className="px-6 py-5 space-y-4">

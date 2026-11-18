@@ -8,6 +8,7 @@ import { criarDocumentoAuthentique } from "@/lib/authentique";
 import { registrar } from "@/lib/auditoria";
 import { textoParaHtml } from "@/lib/texto-html";
 import { gerarClausulaProbono, garantirVariavelProbono } from "@/lib/clausula-probono";
+import { clausulaReembolsoDoContrato, garantirVariavelReembolso } from "@/lib/clausula-reembolso";
 import { variaveisCliente } from "@/lib/variaveis-cliente";
 
 const schemaEnviar = z.object({
@@ -170,6 +171,7 @@ export async function enviarParaAssinatura(input: Input) {
     "contrato.titulo": contrato.titulo,
     "contrato.objeto": textoParaHtml(contrato.objeto),
     "contrato.clausula_probono": gerarClausulaProbono(contrato),
+    "contrato.clausula_reembolso": clausulaReembolsoDoContrato(contrato, config),
     "contrato.valor_total": fmtMoney(contrato.valor_total),
     "contrato.data_inicio": fmt(contrato.data_inicio),
     "contrato.data_fim": fmt(contrato.data_fim),
@@ -247,7 +249,7 @@ export async function enviarParaAssinatura(input: Input) {
         sandbox: data.sandbox,
       });
     } else {
-      const htmlContent = substituir(garantirVariavelProbono(modelo!.conteudo), vars);
+      const htmlContent = substituir(garantirVariavelReembolso(garantirVariavelProbono(modelo!.conteudo)), vars);
       doc = await criarDocumentoAuthentique({
         nome: contrato.titulo,
         htmlContent,

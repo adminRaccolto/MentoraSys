@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { obterEmpresaAtiva } from "@/lib/permissoes";
 import { textoParaHtml } from "@/lib/texto-html";
 import { gerarClausulaProbono, garantirVariavelProbono } from "@/lib/clausula-probono";
+import { clausulaReembolsoDoContrato, garantirVariavelReembolso } from "@/lib/clausula-reembolso";
 import { variaveisCliente } from "@/lib/variaveis-cliente";
 import { PrintButton } from "./print-button";
 
@@ -103,6 +104,7 @@ export default async function PreviewModeloPage({ params, searchParams }: Props)
     "empresa.representante_cpf": config.representante_cpf ?? "",
     "empresa.representante_cargo": config.representante_cargo ?? "Sócio Administrador",
     "contrato.clausula_probono": "",
+    "contrato.clausula_reembolso": "",
   };
 
   if (contrato_id) {
@@ -125,6 +127,7 @@ export default async function PreviewModeloPage({ params, searchParams }: Props)
       vars["contrato.titulo"] = contrato.titulo;
       vars["contrato.objeto"] = textoParaHtml(contrato.objeto);
       vars["contrato.clausula_probono"] = gerarClausulaProbono(contrato);
+      vars["contrato.clausula_reembolso"] = clausulaReembolsoDoContrato(contrato, config);
       vars["contrato.valor_total"] = fmtMoney(contrato.valor_total);
       vars["contrato.data_inicio"] = fmt(contrato.data_inicio);
       vars["contrato.data_fim"] = fmt(contrato.data_fim);
@@ -294,7 +297,10 @@ export default async function PreviewModeloPage({ params, searchParams }: Props)
     }
   }
 
-  let html = substituir(contrato_id ? garantirVariavelProbono(modelo.conteudo) : modelo.conteudo, vars);
+  let html = substituir(
+    contrato_id ? garantirVariavelReembolso(garantirVariavelProbono(modelo.conteudo)) : modelo.conteudo,
+    vars,
+  );
 
   // Fallback para modelos antigos que não têm {{proposta.tabela_parcelas}}:
   // injeta a tabela de parcelas antes da seção "CONDIÇÕES DE DESENVOLVIMENTO"

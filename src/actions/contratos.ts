@@ -42,6 +42,11 @@ const schemaContrato = z.object({
   probono_arato: z.boolean().default(false),
   probono_versao: z.enum(["ESSENCIAL", "GESTAO", "PERFORMANCE"]).optional().nullable(),
   probono_meses: z.coerce.number().int().positive().max(99).optional().nullable(),
+  reembolso_despesas: z.boolean().default(true),
+  reembolso_valor_km: z.coerce.number().min(0).optional().nullable(),
+  reembolso_distancia_km: z.coerce.number().min(0).optional().nullable(),
+  reembolso_limite_alimentacao: z.coerce.number().min(0).optional().nullable(),
+  reembolso_limite_hospedagem: z.coerce.number().min(0).optional().nullable(),
 }).refine((d) => !d.probono_arato || (d.probono_versao && d.probono_meses), {
   message: "Informe a versão e o período do Arato pro bono",
   path: ["probono_versao"],
@@ -54,6 +59,29 @@ function camposProbono(data: z.infer<typeof schemaContrato>) {
     probono_arato: data.probono_arato,
     probono_versao: data.probono_arato ? data.probono_versao ?? null : null,
     probono_meses: data.probono_arato ? data.probono_meses ?? null : null,
+    reembolso_despesas: data.reembolso_despesas,
+    reembolso_valor_km: data.reembolso_valor_km || null,
+    reembolso_distancia_km: data.reembolso_distancia_km || null,
+    reembolso_limite_alimentacao: data.reembolso_limite_alimentacao || null,
+    reembolso_limite_hospedagem: data.reembolso_limite_hospedagem || null,
+  };
+}
+
+function serializarContrato<T extends {
+  valor_total: unknown; juros_ao_mes_percentual: unknown; multa_percentual: unknown;
+  reembolso_valor_km: unknown; reembolso_distancia_km: unknown;
+  reembolso_limite_alimentacao: unknown; reembolso_limite_hospedagem: unknown;
+}>(c: T) {
+  const num = (v: unknown) => (v != null ? Number(v) : null);
+  return {
+    ...c,
+    valor_total: Number(c.valor_total),
+    juros_ao_mes_percentual: num(c.juros_ao_mes_percentual),
+    multa_percentual: num(c.multa_percentual),
+    reembolso_valor_km: num(c.reembolso_valor_km),
+    reembolso_distancia_km: num(c.reembolso_distancia_km),
+    reembolso_limite_alimentacao: num(c.reembolso_limite_alimentacao),
+    reembolso_limite_hospedagem: num(c.reembolso_limite_hospedagem),
   };
 }
 
@@ -110,7 +138,7 @@ export async function criarContrato(input: ContratoInput) {
 
   await registrar({ recurso: "contratos", acao: "criar", registroId: contrato.id, detalhes: { titulo: data.titulo } });
   revalidatePath("/contratos");
-  return { data: { ...contrato, valor_total: Number(contrato.valor_total), juros_ao_mes_percentual: contrato.juros_ao_mes_percentual != null ? Number(contrato.juros_ao_mes_percentual) : null, multa_percentual: contrato.multa_percentual != null ? Number(contrato.multa_percentual) : null } };
+  return { data: serializarContrato(contrato) };
 }
 
 export async function editarContrato(id: string, input: ContratoInput) {
@@ -161,7 +189,7 @@ export async function editarContrato(id: string, input: ContratoInput) {
 
   await registrar({ recurso: "contratos", acao: "editar", registroId: id });
   revalidatePath("/contratos");
-  return { data: { ...contrato, valor_total: Number(contrato.valor_total), juros_ao_mes_percentual: contrato.juros_ao_mes_percentual != null ? Number(contrato.juros_ao_mes_percentual) : null, multa_percentual: contrato.multa_percentual != null ? Number(contrato.multa_percentual) : null } };
+  return { data: serializarContrato(contrato) };
 }
 
 export async function salvarAnexoContrato(id: string, anexo_url: string | null) {

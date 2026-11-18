@@ -29873,6 +29873,10 @@ export namespace Prisma {
     juros_ao_mes_percentual: Decimal | null
     multa_percentual: Decimal | null
     probono_meses: number | null
+    reembolso_valor_km: Decimal | null
+    reembolso_distancia_km: Decimal | null
+    reembolso_limite_alimentacao: Decimal | null
+    reembolso_limite_hospedagem: Decimal | null
   }
 
   export type ContratoSumAggregateOutputType = {
@@ -29882,6 +29886,10 @@ export namespace Prisma {
     juros_ao_mes_percentual: Decimal | null
     multa_percentual: Decimal | null
     probono_meses: number | null
+    reembolso_valor_km: Decimal | null
+    reembolso_distancia_km: Decimal | null
+    reembolso_limite_alimentacao: Decimal | null
+    reembolso_limite_hospedagem: Decimal | null
   }
 
   export type ContratoMinAggregateOutputType = {
@@ -29926,6 +29934,11 @@ export namespace Prisma {
     probono_arato: boolean | null
     probono_versao: string | null
     probono_meses: number | null
+    reembolso_despesas: boolean | null
+    reembolso_valor_km: Decimal | null
+    reembolso_distancia_km: Decimal | null
+    reembolso_limite_alimentacao: Decimal | null
+    reembolso_limite_hospedagem: Decimal | null
     criado_em: Date | null
     atualizado_em: Date | null
   }
@@ -29972,6 +29985,11 @@ export namespace Prisma {
     probono_arato: boolean | null
     probono_versao: string | null
     probono_meses: number | null
+    reembolso_despesas: boolean | null
+    reembolso_valor_km: Decimal | null
+    reembolso_distancia_km: Decimal | null
+    reembolso_limite_alimentacao: Decimal | null
+    reembolso_limite_hospedagem: Decimal | null
     criado_em: Date | null
     atualizado_em: Date | null
   }
@@ -30019,6 +30037,11 @@ export namespace Prisma {
     probono_arato: number
     probono_versao: number
     probono_meses: number
+    reembolso_despesas: number
+    reembolso_valor_km: number
+    reembolso_distancia_km: number
+    reembolso_limite_alimentacao: number
+    reembolso_limite_hospedagem: number
     criado_em: number
     atualizado_em: number
     _all: number
@@ -30032,6 +30055,10 @@ export namespace Prisma {
     juros_ao_mes_percentual?: true
     multa_percentual?: true
     probono_meses?: true
+    reembolso_valor_km?: true
+    reembolso_distancia_km?: true
+    reembolso_limite_alimentacao?: true
+    reembolso_limite_hospedagem?: true
   }
 
   export type ContratoSumAggregateInputType = {
@@ -30041,6 +30068,10 @@ export namespace Prisma {
     juros_ao_mes_percentual?: true
     multa_percentual?: true
     probono_meses?: true
+    reembolso_valor_km?: true
+    reembolso_distancia_km?: true
+    reembolso_limite_alimentacao?: true
+    reembolso_limite_hospedagem?: true
   }
 
   export type ContratoMinAggregateInputType = {
@@ -30085,6 +30116,11 @@ export namespace Prisma {
     probono_arato?: true
     probono_versao?: true
     probono_meses?: true
+    reembolso_despesas?: true
+    reembolso_valor_km?: true
+    reembolso_distancia_km?: true
+    reembolso_limite_alimentacao?: true
+    reembolso_limite_hospedagem?: true
     criado_em?: true
     atualizado_em?: true
   }
@@ -30131,6 +30167,11 @@ export namespace Prisma {
     probono_arato?: true
     probono_versao?: true
     probono_meses?: true
+    reembolso_despesas?: true
+    reembolso_valor_km?: true
+    reembolso_distancia_km?: true
+    reembolso_limite_alimentacao?: true
+    reembolso_limite_hospedagem?: true
     criado_em?: true
     atualizado_em?: true
   }
@@ -30178,6 +30219,11 @@ export namespace Prisma {
     probono_arato?: true
     probono_versao?: true
     probono_meses?: true
+    reembolso_despesas?: true
+    reembolso_valor_km?: true
+    reembolso_distancia_km?: true
+    reembolso_limite_alimentacao?: true
+    reembolso_limite_hospedagem?: true
     criado_em?: true
     atualizado_em?: true
     _all?: true
@@ -30312,6 +30358,11 @@ export namespace Prisma {
     probono_arato: boolean
     probono_versao: string | null
     probono_meses: number | null
+    reembolso_despesas: boolean
+    reembolso_valor_km: Decimal | null
+    reembolso_distancia_km: Decimal | null
+    reembolso_limite_alimentacao: Decimal | null
+    reembolso_limite_hospedagem: Decimal | null
     criado_em: Date
     atualizado_em: Date
     _count: ContratoCountAggregateOutputType | null
@@ -30378,6 +30429,11 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: boolean
     probono_meses?: boolean
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: boolean
+    reembolso_distancia_km?: boolean
+    reembolso_limite_alimentacao?: boolean
+    reembolso_limite_hospedagem?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -30436,6 +30492,11 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: boolean
     probono_meses?: boolean
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: boolean
+    reembolso_distancia_km?: boolean
+    reembolso_limite_alimentacao?: boolean
+    reembolso_limite_hospedagem?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -30488,6 +30549,11 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: boolean
     probono_meses?: boolean
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: boolean
+    reembolso_distancia_km?: boolean
+    reembolso_limite_alimentacao?: boolean
+    reembolso_limite_hospedagem?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
@@ -30540,11 +30606,16 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: boolean
     probono_meses?: boolean
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: boolean
+    reembolso_distancia_km?: boolean
+    reembolso_limite_alimentacao?: boolean
+    reembolso_limite_hospedagem?: boolean
     criado_em?: boolean
     atualizado_em?: boolean
   }
 
-  export type ContratoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "proposta_id" | "cliente_id" | "criado_por" | "responsavel_id" | "numero_contrato" | "tipo_contrato" | "titulo" | "objeto" | "status" | "conteudo" | "valor_total" | "forma_pagamento" | "periodicidade" | "numero_parcelas" | "primeiro_vencimento" | "dia_vencimento" | "parcelas_json" | "indice_reajuste" | "periodicidade_reajuste" | "renovacao_automatica" | "gerar_projeto" | "gerar_financeiro" | "cliente_nome" | "cliente_cpf_cnpj" | "cliente_contato_nome" | "cliente_contato_email" | "cliente_contato_tel" | "data_emissao" | "data_inicio" | "data_fim" | "assinado_em" | "anexo_url" | "authentique_id" | "authentique_url" | "pdf_assinado_url" | "juros_ao_mes_percentual" | "multa_percentual" | "probono_arato" | "probono_versao" | "probono_meses" | "criado_em" | "atualizado_em", ExtArgs["result"]["contrato"]>
+  export type ContratoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "proposta_id" | "cliente_id" | "criado_por" | "responsavel_id" | "numero_contrato" | "tipo_contrato" | "titulo" | "objeto" | "status" | "conteudo" | "valor_total" | "forma_pagamento" | "periodicidade" | "numero_parcelas" | "primeiro_vencimento" | "dia_vencimento" | "parcelas_json" | "indice_reajuste" | "periodicidade_reajuste" | "renovacao_automatica" | "gerar_projeto" | "gerar_financeiro" | "cliente_nome" | "cliente_cpf_cnpj" | "cliente_contato_nome" | "cliente_contato_email" | "cliente_contato_tel" | "data_emissao" | "data_inicio" | "data_fim" | "assinado_em" | "anexo_url" | "authentique_id" | "authentique_url" | "pdf_assinado_url" | "juros_ao_mes_percentual" | "multa_percentual" | "probono_arato" | "probono_versao" | "probono_meses" | "reembolso_despesas" | "reembolso_valor_km" | "reembolso_distancia_km" | "reembolso_limite_alimentacao" | "reembolso_limite_hospedagem" | "criado_em" | "atualizado_em", ExtArgs["result"]["contrato"]>
   export type ContratoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
     proposta?: boolean | Contrato$propostaArgs<ExtArgs>
@@ -30630,6 +30701,11 @@ export namespace Prisma {
       probono_arato: boolean
       probono_versao: string | null
       probono_meses: number | null
+      reembolso_despesas: boolean
+      reembolso_valor_km: Prisma.Decimal | null
+      reembolso_distancia_km: Prisma.Decimal | null
+      reembolso_limite_alimentacao: Prisma.Decimal | null
+      reembolso_limite_hospedagem: Prisma.Decimal | null
       criado_em: Date
       atualizado_em: Date
     }, ExtArgs["result"]["contrato"]>
@@ -31107,6 +31183,11 @@ export namespace Prisma {
     readonly probono_arato: FieldRef<"Contrato", 'Boolean'>
     readonly probono_versao: FieldRef<"Contrato", 'String'>
     readonly probono_meses: FieldRef<"Contrato", 'Int'>
+    readonly reembolso_despesas: FieldRef<"Contrato", 'Boolean'>
+    readonly reembolso_valor_km: FieldRef<"Contrato", 'Decimal'>
+    readonly reembolso_distancia_km: FieldRef<"Contrato", 'Decimal'>
+    readonly reembolso_limite_alimentacao: FieldRef<"Contrato", 'Decimal'>
+    readonly reembolso_limite_hospedagem: FieldRef<"Contrato", 'Decimal'>
     readonly criado_em: FieldRef<"Contrato", 'DateTime'>
     readonly atualizado_em: FieldRef<"Contrato", 'DateTime'>
   }
@@ -77206,6 +77287,11 @@ export namespace Prisma {
     probono_arato: 'probono_arato',
     probono_versao: 'probono_versao',
     probono_meses: 'probono_meses',
+    reembolso_despesas: 'reembolso_despesas',
+    reembolso_valor_km: 'reembolso_valor_km',
+    reembolso_distancia_km: 'reembolso_distancia_km',
+    reembolso_limite_alimentacao: 'reembolso_limite_alimentacao',
+    reembolso_limite_hospedagem: 'reembolso_limite_hospedagem',
     criado_em: 'criado_em',
     atualizado_em: 'atualizado_em'
   };
@@ -80070,6 +80156,11 @@ export namespace Prisma {
     probono_arato?: BoolFilter<"Contrato"> | boolean
     probono_versao?: StringNullableFilter<"Contrato"> | string | null
     probono_meses?: IntNullableFilter<"Contrato"> | number | null
+    reembolso_despesas?: BoolFilter<"Contrato"> | boolean
+    reembolso_valor_km?: DecimalNullableFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: DecimalNullableFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: DecimalNullableFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: DecimalNullableFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFilter<"Contrato"> | Date | string
     atualizado_em?: DateTimeFilter<"Contrato"> | Date | string
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
@@ -80127,6 +80218,11 @@ export namespace Prisma {
     probono_arato?: SortOrder
     probono_versao?: SortOrderInput | SortOrder
     probono_meses?: SortOrderInput | SortOrder
+    reembolso_despesas?: SortOrder
+    reembolso_valor_km?: SortOrderInput | SortOrder
+    reembolso_distancia_km?: SortOrderInput | SortOrder
+    reembolso_limite_alimentacao?: SortOrderInput | SortOrder
+    reembolso_limite_hospedagem?: SortOrderInput | SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     empresa?: EmpresaOrderByWithRelationInput
@@ -80187,6 +80283,11 @@ export namespace Prisma {
     probono_arato?: BoolFilter<"Contrato"> | boolean
     probono_versao?: StringNullableFilter<"Contrato"> | string | null
     probono_meses?: IntNullableFilter<"Contrato"> | number | null
+    reembolso_despesas?: BoolFilter<"Contrato"> | boolean
+    reembolso_valor_km?: DecimalNullableFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: DecimalNullableFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: DecimalNullableFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: DecimalNullableFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFilter<"Contrato"> | Date | string
     atualizado_em?: DateTimeFilter<"Contrato"> | Date | string
     empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
@@ -80244,6 +80345,11 @@ export namespace Prisma {
     probono_arato?: SortOrder
     probono_versao?: SortOrderInput | SortOrder
     probono_meses?: SortOrderInput | SortOrder
+    reembolso_despesas?: SortOrder
+    reembolso_valor_km?: SortOrderInput | SortOrder
+    reembolso_distancia_km?: SortOrderInput | SortOrder
+    reembolso_limite_alimentacao?: SortOrderInput | SortOrder
+    reembolso_limite_hospedagem?: SortOrderInput | SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
     _count?: ContratoCountOrderByAggregateInput
@@ -80299,6 +80405,11 @@ export namespace Prisma {
     probono_arato?: BoolWithAggregatesFilter<"Contrato"> | boolean
     probono_versao?: StringNullableWithAggregatesFilter<"Contrato"> | string | null
     probono_meses?: IntNullableWithAggregatesFilter<"Contrato"> | number | null
+    reembolso_despesas?: BoolWithAggregatesFilter<"Contrato"> | boolean
+    reembolso_valor_km?: DecimalNullableWithAggregatesFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: DecimalNullableWithAggregatesFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: DecimalNullableWithAggregatesFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: DecimalNullableWithAggregatesFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeWithAggregatesFilter<"Contrato"> | Date | string
     atualizado_em?: DateTimeWithAggregatesFilter<"Contrato"> | Date | string
   }
@@ -85756,6 +85867,11 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: string | null
     probono_meses?: number | null
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutContratosInput
@@ -85813,6 +85929,11 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: string | null
     probono_meses?: number | null
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
@@ -85860,6 +85981,11 @@ export namespace Prisma {
     probono_arato?: BoolFieldUpdateOperationsInput | boolean
     probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
     probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
+    reembolso_despesas?: BoolFieldUpdateOperationsInput | boolean
+    reembolso_valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
@@ -85917,6 +86043,11 @@ export namespace Prisma {
     probono_arato?: BoolFieldUpdateOperationsInput | boolean
     probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
     probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
+    reembolso_despesas?: BoolFieldUpdateOperationsInput | boolean
+    reembolso_valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
@@ -85969,6 +86100,11 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: string | null
     probono_meses?: number | null
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -86011,6 +86147,11 @@ export namespace Prisma {
     probono_arato?: BoolFieldUpdateOperationsInput | boolean
     probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
     probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
+    reembolso_despesas?: BoolFieldUpdateOperationsInput | boolean
+    reembolso_valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -86058,6 +86199,11 @@ export namespace Prisma {
     probono_arato?: BoolFieldUpdateOperationsInput | boolean
     probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
     probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
+    reembolso_despesas?: BoolFieldUpdateOperationsInput | boolean
+    reembolso_valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -91649,6 +91795,11 @@ export namespace Prisma {
     probono_arato?: SortOrder
     probono_versao?: SortOrder
     probono_meses?: SortOrder
+    reembolso_despesas?: SortOrder
+    reembolso_valor_km?: SortOrder
+    reembolso_distancia_km?: SortOrder
+    reembolso_limite_alimentacao?: SortOrder
+    reembolso_limite_hospedagem?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -91660,6 +91811,10 @@ export namespace Prisma {
     juros_ao_mes_percentual?: SortOrder
     multa_percentual?: SortOrder
     probono_meses?: SortOrder
+    reembolso_valor_km?: SortOrder
+    reembolso_distancia_km?: SortOrder
+    reembolso_limite_alimentacao?: SortOrder
+    reembolso_limite_hospedagem?: SortOrder
   }
 
   export type ContratoMaxOrderByAggregateInput = {
@@ -91704,6 +91859,11 @@ export namespace Prisma {
     probono_arato?: SortOrder
     probono_versao?: SortOrder
     probono_meses?: SortOrder
+    reembolso_despesas?: SortOrder
+    reembolso_valor_km?: SortOrder
+    reembolso_distancia_km?: SortOrder
+    reembolso_limite_alimentacao?: SortOrder
+    reembolso_limite_hospedagem?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -91750,6 +91910,11 @@ export namespace Prisma {
     probono_arato?: SortOrder
     probono_versao?: SortOrder
     probono_meses?: SortOrder
+    reembolso_despesas?: SortOrder
+    reembolso_valor_km?: SortOrder
+    reembolso_distancia_km?: SortOrder
+    reembolso_limite_alimentacao?: SortOrder
+    reembolso_limite_hospedagem?: SortOrder
     criado_em?: SortOrder
     atualizado_em?: SortOrder
   }
@@ -91761,6 +91926,10 @@ export namespace Prisma {
     juros_ao_mes_percentual?: SortOrder
     multa_percentual?: SortOrder
     probono_meses?: SortOrder
+    reembolso_valor_km?: SortOrder
+    reembolso_distancia_km?: SortOrder
+    reembolso_limite_alimentacao?: SortOrder
+    reembolso_limite_hospedagem?: SortOrder
   }
 
   export type EnumStatusContratoWithAggregatesFilter<$PrismaModel = never> = {
@@ -102158,6 +102327,11 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: string | null
     probono_meses?: number | null
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     proposta?: PropostaCreateNestedOneWithoutContratoInput
@@ -102213,6 +102387,11 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: string | null
     probono_meses?: number | null
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
@@ -103657,6 +103836,11 @@ export namespace Prisma {
     probono_arato?: BoolFilter<"Contrato"> | boolean
     probono_versao?: StringNullableFilter<"Contrato"> | string | null
     probono_meses?: IntNullableFilter<"Contrato"> | number | null
+    reembolso_despesas?: BoolFilter<"Contrato"> | boolean
+    reembolso_valor_km?: DecimalNullableFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: DecimalNullableFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: DecimalNullableFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: DecimalNullableFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFilter<"Contrato"> | Date | string
     atualizado_em?: DateTimeFilter<"Contrato"> | Date | string
   }
@@ -104810,6 +104994,11 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: string | null
     probono_meses?: number | null
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutContratosInput
@@ -104865,6 +105054,11 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: string | null
     probono_meses?: number | null
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
@@ -105324,6 +105518,11 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: string | null
     probono_meses?: number | null
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutContratosInput
@@ -105379,6 +105578,11 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: string | null
     probono_meses?: number | null
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
@@ -107993,6 +108197,11 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: string | null
     probono_meses?: number | null
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutContratosInput
@@ -108048,6 +108257,11 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: string | null
     probono_meses?: number | null
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
@@ -111586,6 +111800,11 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: string | null
     probono_meses?: number | null
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutContratosInput
@@ -111641,6 +111860,11 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: string | null
     probono_meses?: number | null
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
@@ -112155,6 +112379,11 @@ export namespace Prisma {
     probono_arato?: BoolFieldUpdateOperationsInput | boolean
     probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
     probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
+    reembolso_despesas?: BoolFieldUpdateOperationsInput | boolean
+    reembolso_valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
@@ -112210,6 +112439,11 @@ export namespace Prisma {
     probono_arato?: BoolFieldUpdateOperationsInput | boolean
     probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
     probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
+    reembolso_despesas?: BoolFieldUpdateOperationsInput | boolean
+    reembolso_valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
@@ -113977,6 +114211,11 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: string | null
     probono_meses?: number | null
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutContratosInput
@@ -114033,6 +114272,11 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: string | null
     probono_meses?: number | null
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutContratoInput
@@ -114637,6 +114881,11 @@ export namespace Prisma {
     probono_arato?: BoolFieldUpdateOperationsInput | boolean
     probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
     probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
+    reembolso_despesas?: BoolFieldUpdateOperationsInput | boolean
+    reembolso_valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
@@ -114693,6 +114942,11 @@ export namespace Prisma {
     probono_arato?: BoolFieldUpdateOperationsInput | boolean
     probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
     probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
+    reembolso_despesas?: BoolFieldUpdateOperationsInput | boolean
+    reembolso_valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     recebiveis?: RecebivelUncheckedUpdateManyWithoutContratoNestedInput
@@ -118261,6 +118515,11 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: string | null
     probono_meses?: number | null
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutContratosInput
@@ -118317,6 +118576,11 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: string | null
     probono_meses?: number | null
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
@@ -118728,6 +118992,11 @@ export namespace Prisma {
     probono_arato?: BoolFieldUpdateOperationsInput | boolean
     probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
     probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
+    reembolso_despesas?: BoolFieldUpdateOperationsInput | boolean
+    reembolso_valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
@@ -118784,6 +119053,11 @@ export namespace Prisma {
     probono_arato?: BoolFieldUpdateOperationsInput | boolean
     probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
     probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
+    reembolso_despesas?: BoolFieldUpdateOperationsInput | boolean
+    reembolso_valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
@@ -121110,6 +121384,11 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: string | null
     probono_meses?: number | null
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutContratosInput
@@ -121166,6 +121445,11 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: string | null
     probono_meses?: number | null
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
@@ -121704,6 +121988,11 @@ export namespace Prisma {
     probono_arato?: BoolFieldUpdateOperationsInput | boolean
     probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
     probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
+    reembolso_despesas?: BoolFieldUpdateOperationsInput | boolean
+    reembolso_valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
@@ -121760,6 +122049,11 @@ export namespace Prisma {
     probono_arato?: BoolFieldUpdateOperationsInput | boolean
     probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
     probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
+    reembolso_despesas?: BoolFieldUpdateOperationsInput | boolean
+    reembolso_valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
@@ -123551,6 +123845,11 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: string | null
     probono_meses?: number | null
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutContratosInput
@@ -123607,6 +123906,11 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: string | null
     probono_meses?: number | null
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
@@ -123989,6 +124293,11 @@ export namespace Prisma {
     probono_arato?: BoolFieldUpdateOperationsInput | boolean
     probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
     probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
+    reembolso_despesas?: BoolFieldUpdateOperationsInput | boolean
+    reembolso_valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
@@ -124045,6 +124354,11 @@ export namespace Prisma {
     probono_arato?: BoolFieldUpdateOperationsInput | boolean
     probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
     probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
+    reembolso_despesas?: BoolFieldUpdateOperationsInput | boolean
+    reembolso_valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
@@ -124744,6 +125058,11 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: string | null
     probono_meses?: number | null
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     empresa: EmpresaCreateNestedOneWithoutContratosInput
@@ -124800,6 +125119,11 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: string | null
     probono_meses?: number | null
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
     projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
@@ -125133,6 +125457,11 @@ export namespace Prisma {
     probono_arato?: BoolFieldUpdateOperationsInput | boolean
     probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
     probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
+    reembolso_despesas?: BoolFieldUpdateOperationsInput | boolean
+    reembolso_valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
@@ -125189,6 +125518,11 @@ export namespace Prisma {
     probono_arato?: BoolFieldUpdateOperationsInput | boolean
     probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
     probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
+    reembolso_despesas?: BoolFieldUpdateOperationsInput | boolean
+    reembolso_valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
@@ -128951,6 +129285,11 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: string | null
     probono_meses?: number | null
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -129835,6 +130174,11 @@ export namespace Prisma {
     probono_arato?: BoolFieldUpdateOperationsInput | boolean
     probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
     probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
+    reembolso_despesas?: BoolFieldUpdateOperationsInput | boolean
+    reembolso_valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     proposta?: PropostaUpdateOneWithoutContratoNestedInput
@@ -129890,6 +130234,11 @@ export namespace Prisma {
     probono_arato?: BoolFieldUpdateOperationsInput | boolean
     probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
     probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
+    reembolso_despesas?: BoolFieldUpdateOperationsInput | boolean
+    reembolso_valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
@@ -129941,6 +130290,11 @@ export namespace Prisma {
     probono_arato?: BoolFieldUpdateOperationsInput | boolean
     probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
     probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
+    reembolso_despesas?: BoolFieldUpdateOperationsInput | boolean
+    reembolso_valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -131271,6 +131625,11 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: string | null
     probono_meses?: number | null
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -131464,6 +131823,11 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: string | null
     probono_meses?: number | null
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -131826,6 +132190,11 @@ export namespace Prisma {
     probono_arato?: BoolFieldUpdateOperationsInput | boolean
     probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
     probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
+    reembolso_despesas?: BoolFieldUpdateOperationsInput | boolean
+    reembolso_valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
@@ -131881,6 +132250,11 @@ export namespace Prisma {
     probono_arato?: BoolFieldUpdateOperationsInput | boolean
     probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
     probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
+    reembolso_despesas?: BoolFieldUpdateOperationsInput | boolean
+    reembolso_valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
@@ -131932,6 +132306,11 @@ export namespace Prisma {
     probono_arato?: BoolFieldUpdateOperationsInput | boolean
     probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
     probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
+    reembolso_despesas?: BoolFieldUpdateOperationsInput | boolean
+    reembolso_valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -132453,6 +132832,11 @@ export namespace Prisma {
     probono_arato?: BoolFieldUpdateOperationsInput | boolean
     probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
     probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
+    reembolso_despesas?: BoolFieldUpdateOperationsInput | boolean
+    reembolso_valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
@@ -132508,6 +132892,11 @@ export namespace Prisma {
     probono_arato?: BoolFieldUpdateOperationsInput | boolean
     probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
     probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
+    reembolso_despesas?: BoolFieldUpdateOperationsInput | boolean
+    reembolso_valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
@@ -132559,6 +132948,11 @@ export namespace Prisma {
     probono_arato?: BoolFieldUpdateOperationsInput | boolean
     probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
     probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
+    reembolso_despesas?: BoolFieldUpdateOperationsInput | boolean
+    reembolso_valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -132912,6 +133306,11 @@ export namespace Prisma {
     probono_arato?: boolean
     probono_versao?: string | null
     probono_meses?: number | null
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: Decimal | DecimalJsLike | number | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -133351,6 +133750,11 @@ export namespace Prisma {
     probono_arato?: BoolFieldUpdateOperationsInput | boolean
     probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
     probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
+    reembolso_despesas?: BoolFieldUpdateOperationsInput | boolean
+    reembolso_valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
@@ -133406,6 +133810,11 @@ export namespace Prisma {
     probono_arato?: BoolFieldUpdateOperationsInput | boolean
     probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
     probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
+    reembolso_despesas?: BoolFieldUpdateOperationsInput | boolean
+    reembolso_valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
@@ -133457,6 +133866,11 @@ export namespace Prisma {
     probono_arato?: BoolFieldUpdateOperationsInput | boolean
     probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
     probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
+    reembolso_despesas?: BoolFieldUpdateOperationsInput | boolean
+    reembolso_valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }

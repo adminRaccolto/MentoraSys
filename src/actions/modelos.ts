@@ -390,7 +390,7 @@ const TEMPLATE_CONTRATO_CONSULTORIA = `
   <p><strong>Parcelas Regulares Mensais (Valores Expressos em Reais):</strong></p>
   {{contrato.tabela_parcelas}}
   <p>4.4. Os honorários pagos após a data avençada acarretarão à CONTRATANTE o acréscimo de multa de 10,00%, e juros moratórios de 2,00% ao mês ou fração em distribuição "pro rata die".</p>
-  <p>4.4.2. A CONTRATANTE reembolsará mensalmente à CONTRATADA os custos decorrentes de deslocamento quando este ocorrer fora do perímetro urbano de {{empresa.cidade}} – {{empresa.estado}}, sendo estas, despesas com quilometragem, hospedagem e alimentação.</p>
+  {{contrato.clausula_reembolso}}
   <p>4.4.3. Os serviços solicitados pela CONTRATANTE não especificados na Cláusula Primeira serão cobrados pela CONTRATADA em apartado, como extraordinários, segundo valor específico constante de orçamento previamente aprovado.</p>
   <p>4.5. À CONTRATANTE fica vedada a contratação direta de Projetistas que trabalhem para a CONTRATADA, ainda que na condição de autônomos, pelo período de 12 meses do desligamento deste com a CONTRATADA.</p>
 

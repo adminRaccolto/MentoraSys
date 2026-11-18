@@ -20,13 +20,21 @@ export default async function ContratosPage() {
       valor_total: Number(r.valor_total),
       juros_ao_mes_percentual: r.juros_ao_mes_percentual != null ? Number(r.juros_ao_mes_percentual) : null,
       multa_percentual: r.multa_percentual != null ? Number(r.multa_percentual) : null,
+      reembolso_valor_km: r.reembolso_valor_km != null ? Number(r.reembolso_valor_km) : null,
+      reembolso_distancia_km: r.reembolso_distancia_km != null ? Number(r.reembolso_distancia_km) : null,
+      reembolso_limite_alimentacao: r.reembolso_limite_alimentacao != null ? Number(r.reembolso_limite_alimentacao) : null,
+      reembolso_limite_hospedagem: r.reembolso_limite_hospedagem != null ? Number(r.reembolso_limite_hospedagem) : null,
       recebiveis_count: r._count.recebiveis,
     }))),
     prisma.cliente.findMany({
       where: { empresa_id: empresaId },
-      select: { id: true, nome: true, cpf_cnpj: true, contato_principal: true, email: true, telefone: true },
+      select: { id: true, nome: true, cpf_cnpj: true, contato_principal: true, email: true, telefone: true, preco_km: true, distancia_km: true },
       orderBy: { nome: "asc" },
-    }),
+    }).then((rows) => rows.map((c) => ({
+      ...c,
+      preco_km: c.preco_km != null ? Number(c.preco_km) : null,
+      distancia_km: c.distancia_km != null ? Number(c.distancia_km) : null,
+    }))),
     prisma.proposta.findMany({
       where: {
         empresa_id: empresaId,
@@ -92,7 +100,7 @@ export default async function ContratosPage() {
       propostasParaBanner={propostasParaBanner}
       modelosContrato={modelosContrato}
       usuarios={usuarios.map((m) => m.usuario)}
-      empresaConfig={{ email: cfg.email_contato ?? "", representante: cfg.representante ?? "" }}
+      empresaConfig={{ email: cfg.email_contato ?? "", representante: cfg.representante ?? "", cidade: cfg.cidade ?? "", estado: cfg.estado ?? "" }}
     />
   );
 }

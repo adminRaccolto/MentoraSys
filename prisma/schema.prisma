@@ -517,6 +517,11 @@ model Contrato {
   probono_arato         Boolean        @default(false)
   probono_versao        String?
   probono_meses         Int?
+  reembolso_despesas           Boolean  @default(true)
+  reembolso_valor_km           Decimal? @db.Decimal(10, 2)
+  reembolso_distancia_km       Decimal? @db.Decimal(8, 2)
+  reembolso_limite_alimentacao Decimal? @db.Decimal(10, 2)
+  reembolso_limite_hospedagem  Decimal? @db.Decimal(10, 2)
   criado_em             DateTime       @default(now())
   atualizado_em         DateTime       @updatedAt
 
