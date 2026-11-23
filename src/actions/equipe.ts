@@ -141,7 +141,9 @@ export async function criarUsuarioDireto(input: z.input<typeof schemaCriarUsuari
     const { data: { user: currentUser } } = await supabase.auth.getUser();
     if (!currentUser) return { ok: false as const, error: "Não autenticado" };
 
-    const data = schemaCriarUsuario.parse(input);
+    const parsed = schemaCriarUsuario.safeParse(input);
+    if (!parsed.success) return { ok: false as const, error: parsed.error.issues[0].message };
+    const data = { ...parsed.data, email: parsed.data.email.trim().toLowerCase() };
     const empresaId = data.empresa_id;
 
     const temPermissao = await verificarPermissaoEmpresa(currentUser.id, empresaId, "configuracoes", "criar");
@@ -181,23 +183,30 @@ export async function criarUsuarioDireto(input: z.input<typeof schemaCriarUsuari
       userId = newUser.user.id;
     }
 
-    await prisma.$transaction(async (tx) => {
+    const membro = await prisma.$transaction(async (tx) => {
       await tx.usuario.upsert({
         where: { id: userId },
         update: { nome: data.nome },
         create: { id: userId, nome: data.nome, email: data.email },
       });
 
-      await tx.membroEmpresa.upsert({
+      return tx.membroEmpresa.upsert({
         where: { usuario_id_empresa_id: { usuario_id: userId, empresa_id: empresaId } },
         update: { perfil_id: data.perfil_id, ativo: true },
         create: { usuario_id: userId, empresa_id: empresaId, perfil_id: data.perfil_id, ativo: true },
+        select: {
+          id: true,
+          ativo: true,
+          usuario: { select: { id: true, nome: true, email: true, avatar_url: true } },
+          perfil: { select: { id: true, nome: true } },
+        },
       });
     });
 
     revalidatePath("/configuracoes");
-    return { ok: true as const, userId };
+    return { ok: true as const, userId, membro };
   } catch (e) {
+    console.error("[criarUsuarioDireto]", e);
     return { ok: false as const, error: e instanceof Error ? e.message : "Erro interno ao criar usuário" };
   }
 }

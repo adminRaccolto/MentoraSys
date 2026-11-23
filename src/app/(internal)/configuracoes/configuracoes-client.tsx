@@ -1128,10 +1128,15 @@ export default function ConfiguracoesClient({ empresa, usuario, membros: membros
                         const res = await criarUsuarioDireto({ nome: novoNome, email: novoEmail, senha: novaSenha, perfil_id: novoPerfilId, empresa_id: novaEmpresaId });
                         if (res.ok) {
                           toast.success(`Usuário ${novoEmail} criado com sucesso`);
+                          if (novaEmpresaId === empresaAtualId) {
+                            setMembros((prev) => [...prev.filter((m) => m.id !== res.membro.id), res.membro]);
+                          }
                           setNovoNome(""); setNovoEmail(""); setNovaSenha("");
                         } else {
                           setErroCriar(res.error);
                         }
+                      } catch (err) {
+                        setErroCriar(err instanceof Error ? err.message : "Erro ao criar usuário");
                       } finally {
                         setCriando(false);
                       }
