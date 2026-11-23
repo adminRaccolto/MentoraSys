@@ -401,6 +401,25 @@ exports.Prisma.ContratoScalarFieldEnum = {
   atualizado_em: 'atualizado_em'
 };
 
+exports.Prisma.ContratoAditivoScalarFieldEnum = {
+  id: 'id',
+  empresa_id: 'empresa_id',
+  contrato_id: 'contrato_id',
+  criado_por: 'criado_por',
+  numero: 'numero',
+  inclui_reembolso: 'inclui_reembolso',
+  inclui_probono: 'inclui_probono',
+  texto_livre: 'texto_livre',
+  conteudo: 'conteudo',
+  status: 'status',
+  authentique_id: 'authentique_id',
+  authentique_url: 'authentique_url',
+  pdf_assinado_url: 'pdf_assinado_url',
+  assinado_em: 'assinado_em',
+  criado_em: 'criado_em',
+  atualizado_em: 'atualizado_em'
+};
+
 exports.Prisma.ProjetoScalarFieldEnum = {
   id: 'id',
   empresa_id: 'empresa_id',
@@ -1136,6 +1155,7 @@ exports.Prisma.ModelName = {
   AceiteOtp: 'AceiteOtp',
   ItemProposta: 'ItemProposta',
   Contrato: 'Contrato',
+  ContratoAditivo: 'ContratoAditivo',
   Projeto: 'Projeto',
   Etapa: 'Etapa',
   Tarefa: 'Tarefa',

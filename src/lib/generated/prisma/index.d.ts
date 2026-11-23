@@ -104,6 +104,11 @@ export type ItemProposta = $Result.DefaultSelection<Prisma.$ItemPropostaPayload>
  */
 export type Contrato = $Result.DefaultSelection<Prisma.$ContratoPayload>
 /**
+ * Model ContratoAditivo
+ * 
+ */
+export type ContratoAditivo = $Result.DefaultSelection<Prisma.$ContratoAditivoPayload>
+/**
  * Model Projeto
  * 
  */
@@ -903,6 +908,16 @@ export class PrismaClient<
     * ```
     */
   get contrato(): Prisma.ContratoDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.contratoAditivo`: Exposes CRUD operations for the **ContratoAditivo** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ContratoAditivos
+    * const contratoAditivos = await prisma.contratoAditivo.findMany()
+    * ```
+    */
+  get contratoAditivo(): Prisma.ContratoAditivoDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.projeto`: Exposes CRUD operations for the **Projeto** model.
@@ -1725,6 +1740,7 @@ export namespace Prisma {
     AceiteOtp: 'AceiteOtp',
     ItemProposta: 'ItemProposta',
     Contrato: 'Contrato',
+    ContratoAditivo: 'ContratoAditivo',
     Projeto: 'Projeto',
     Etapa: 'Etapa',
     Tarefa: 'Tarefa',
@@ -1777,7 +1793,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "etapaCrm" | "comentarioCrm" | "lead" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "projeto" | "etapa" | "tarefa" | "tarefaResponsavel" | "comentarioTarefa" | "anexoTarefa" | "atividadeTarefa" | "aprovacaoTarefa" | "itemChecklist" | "etiquetaTarefa" | "tarefaEtiqueta" | "pastaDocumento" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "centroCusto" | "recebivel" | "contaPagar" | "fornecedor" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "boleto" | "diagnostico" | "tokenPortal" | "aplicacaoDiagnostico" | "campanhaDiagnostico" | "diagnosticoParticipante" | "diagnosticoTemplate" | "campanhaCupom" | "assinatura" | "reembolso" | "reembolsoItem"
+      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "etapaCrm" | "comentarioCrm" | "lead" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "contratoAditivo" | "projeto" | "etapa" | "tarefa" | "tarefaResponsavel" | "comentarioTarefa" | "anexoTarefa" | "atividadeTarefa" | "aprovacaoTarefa" | "itemChecklist" | "etiquetaTarefa" | "tarefaEtiqueta" | "pastaDocumento" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "centroCusto" | "recebivel" | "contaPagar" | "fornecedor" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "boleto" | "diagnostico" | "tokenPortal" | "aplicacaoDiagnostico" | "campanhaDiagnostico" | "diagnosticoParticipante" | "diagnosticoTemplate" | "campanhaCupom" | "assinatura" | "reembolso" | "reembolsoItem"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3110,6 +3126,80 @@ export namespace Prisma {
           count: {
             args: Prisma.ContratoCountArgs<ExtArgs>
             result: $Utils.Optional<ContratoCountAggregateOutputType> | number
+          }
+        }
+      }
+      ContratoAditivo: {
+        payload: Prisma.$ContratoAditivoPayload<ExtArgs>
+        fields: Prisma.ContratoAditivoFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ContratoAditivoFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContratoAditivoPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ContratoAditivoFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContratoAditivoPayload>
+          }
+          findFirst: {
+            args: Prisma.ContratoAditivoFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContratoAditivoPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ContratoAditivoFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContratoAditivoPayload>
+          }
+          findMany: {
+            args: Prisma.ContratoAditivoFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContratoAditivoPayload>[]
+          }
+          create: {
+            args: Prisma.ContratoAditivoCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContratoAditivoPayload>
+          }
+          createMany: {
+            args: Prisma.ContratoAditivoCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ContratoAditivoCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContratoAditivoPayload>[]
+          }
+          delete: {
+            args: Prisma.ContratoAditivoDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContratoAditivoPayload>
+          }
+          update: {
+            args: Prisma.ContratoAditivoUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContratoAditivoPayload>
+          }
+          deleteMany: {
+            args: Prisma.ContratoAditivoDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ContratoAditivoUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ContratoAditivoUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContratoAditivoPayload>[]
+          }
+          upsert: {
+            args: Prisma.ContratoAditivoUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContratoAditivoPayload>
+          }
+          aggregate: {
+            args: Prisma.ContratoAditivoAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateContratoAditivo>
+          }
+          groupBy: {
+            args: Prisma.ContratoAditivoGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ContratoAditivoGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ContratoAditivoCountArgs<ExtArgs>
+            result: $Utils.Optional<ContratoAditivoCountAggregateOutputType> | number
           }
         }
       }
@@ -5977,6 +6067,7 @@ export namespace Prisma {
     aceiteOtp?: AceiteOtpOmit
     itemProposta?: ItemPropostaOmit
     contrato?: ContratoOmit
+    contratoAditivo?: ContratoAditivoOmit
     projeto?: ProjetoOmit
     etapa?: EtapaOmit
     tarefa?: TarefaOmit
@@ -6103,6 +6194,7 @@ export namespace Prisma {
     leads: number
     propostas: number
     contratos: number
+    contrato_aditivos: number
     projetos: number
     documentos: number
     pastas_documento: number
@@ -6140,6 +6232,7 @@ export namespace Prisma {
     leads?: boolean | EmpresaCountOutputTypeCountLeadsArgs
     propostas?: boolean | EmpresaCountOutputTypeCountPropostasArgs
     contratos?: boolean | EmpresaCountOutputTypeCountContratosArgs
+    contrato_aditivos?: boolean | EmpresaCountOutputTypeCountContrato_aditivosArgs
     projetos?: boolean | EmpresaCountOutputTypeCountProjetosArgs
     documentos?: boolean | EmpresaCountOutputTypeCountDocumentosArgs
     pastas_documento?: boolean | EmpresaCountOutputTypeCountPastas_documentoArgs
@@ -6239,6 +6332,13 @@ export namespace Prisma {
    */
   export type EmpresaCountOutputTypeCountContratosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ContratoWhereInput
+  }
+
+  /**
+   * EmpresaCountOutputType without action
+   */
+  export type EmpresaCountOutputTypeCountContrato_aditivosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContratoAditivoWhereInput
   }
 
   /**
@@ -7025,6 +7125,7 @@ export namespace Prisma {
     eventos: number
     notas_fiscais: number
     documentos: number
+    aditivos: number
   }
 
   export type ContratoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7032,6 +7133,7 @@ export namespace Prisma {
     eventos?: boolean | ContratoCountOutputTypeCountEventosArgs
     notas_fiscais?: boolean | ContratoCountOutputTypeCountNotas_fiscaisArgs
     documentos?: boolean | ContratoCountOutputTypeCountDocumentosArgs
+    aditivos?: boolean | ContratoCountOutputTypeCountAditivosArgs
   }
 
   // Custom InputTypes
@@ -7071,6 +7173,13 @@ export namespace Prisma {
    */
   export type ContratoCountOutputTypeCountDocumentosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: DocumentoWhereInput
+  }
+
+  /**
+   * ContratoCountOutputType without action
+   */
+  export type ContratoCountOutputTypeCountAditivosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContratoAditivoWhereInput
   }
 
 
@@ -7838,6 +7947,7 @@ export namespace Prisma {
     leads?: boolean | Empresa$leadsArgs<ExtArgs>
     propostas?: boolean | Empresa$propostasArgs<ExtArgs>
     contratos?: boolean | Empresa$contratosArgs<ExtArgs>
+    contrato_aditivos?: boolean | Empresa$contrato_aditivosArgs<ExtArgs>
     projetos?: boolean | Empresa$projetosArgs<ExtArgs>
     documentos?: boolean | Empresa$documentosArgs<ExtArgs>
     pastas_documento?: boolean | Empresa$pastas_documentoArgs<ExtArgs>
@@ -7919,6 +8029,7 @@ export namespace Prisma {
     leads?: boolean | Empresa$leadsArgs<ExtArgs>
     propostas?: boolean | Empresa$propostasArgs<ExtArgs>
     contratos?: boolean | Empresa$contratosArgs<ExtArgs>
+    contrato_aditivos?: boolean | Empresa$contrato_aditivosArgs<ExtArgs>
     projetos?: boolean | Empresa$projetosArgs<ExtArgs>
     documentos?: boolean | Empresa$documentosArgs<ExtArgs>
     pastas_documento?: boolean | Empresa$pastas_documentoArgs<ExtArgs>
@@ -7961,6 +8072,7 @@ export namespace Prisma {
       leads: Prisma.$LeadPayload<ExtArgs>[]
       propostas: Prisma.$PropostaPayload<ExtArgs>[]
       contratos: Prisma.$ContratoPayload<ExtArgs>[]
+      contrato_aditivos: Prisma.$ContratoAditivoPayload<ExtArgs>[]
       projetos: Prisma.$ProjetoPayload<ExtArgs>[]
       documentos: Prisma.$DocumentoPayload<ExtArgs>[]
       pastas_documento: Prisma.$PastaDocumentoPayload<ExtArgs>[]
@@ -8402,6 +8514,7 @@ export namespace Prisma {
     leads<T extends Empresa$leadsArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$leadsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LeadPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     propostas<T extends Empresa$propostasArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$propostasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PropostaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     contratos<T extends Empresa$contratosArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$contratosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContratoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    contrato_aditivos<T extends Empresa$contrato_aditivosArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$contrato_aditivosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContratoAditivoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     projetos<T extends Empresa$projetosArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$projetosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjetoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     documentos<T extends Empresa$documentosArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$documentosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DocumentoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     pastas_documento<T extends Empresa$pastas_documentoArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$pastas_documentoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PastaDocumentoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -9073,6 +9186,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ContratoScalarFieldEnum | ContratoScalarFieldEnum[]
+  }
+
+  /**
+   * Empresa.contrato_aditivos
+   */
+  export type Empresa$contrato_aditivosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContratoAditivo
+     */
+    select?: ContratoAditivoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContratoAditivo
+     */
+    omit?: ContratoAditivoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratoAditivoInclude<ExtArgs> | null
+    where?: ContratoAditivoWhereInput
+    orderBy?: ContratoAditivoOrderByWithRelationInput | ContratoAditivoOrderByWithRelationInput[]
+    cursor?: ContratoAditivoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ContratoAditivoScalarFieldEnum | ContratoAditivoScalarFieldEnum[]
   }
 
   /**
@@ -30446,6 +30583,7 @@ export namespace Prisma {
     eventos?: boolean | Contrato$eventosArgs<ExtArgs>
     notas_fiscais?: boolean | Contrato$notas_fiscaisArgs<ExtArgs>
     documentos?: boolean | Contrato$documentosArgs<ExtArgs>
+    aditivos?: boolean | Contrato$aditivosArgs<ExtArgs>
     _count?: boolean | ContratoCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["contrato"]>
 
@@ -30627,6 +30765,7 @@ export namespace Prisma {
     eventos?: boolean | Contrato$eventosArgs<ExtArgs>
     notas_fiscais?: boolean | Contrato$notas_fiscaisArgs<ExtArgs>
     documentos?: boolean | Contrato$documentosArgs<ExtArgs>
+    aditivos?: boolean | Contrato$aditivosArgs<ExtArgs>
     _count?: boolean | ContratoCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ContratoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -30657,6 +30796,7 @@ export namespace Prisma {
       eventos: Prisma.$EventoPayload<ExtArgs>[]
       notas_fiscais: Prisma.$NotaFiscalPayload<ExtArgs>[]
       documentos: Prisma.$DocumentoPayload<ExtArgs>[]
+      aditivos: Prisma.$ContratoAditivoPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -31112,6 +31252,7 @@ export namespace Prisma {
     eventos<T extends Contrato$eventosArgs<ExtArgs> = {}>(args?: Subset<T, Contrato$eventosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     notas_fiscais<T extends Contrato$notas_fiscaisArgs<ExtArgs> = {}>(args?: Subset<T, Contrato$notas_fiscaisArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotaFiscalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     documentos<T extends Contrato$documentosArgs<ExtArgs> = {}>(args?: Subset<T, Contrato$documentosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DocumentoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    aditivos<T extends Contrato$aditivosArgs<ExtArgs> = {}>(args?: Subset<T, Contrato$aditivosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContratoAditivoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -31763,6 +31904,30 @@ export namespace Prisma {
   }
 
   /**
+   * Contrato.aditivos
+   */
+  export type Contrato$aditivosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContratoAditivo
+     */
+    select?: ContratoAditivoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContratoAditivo
+     */
+    omit?: ContratoAditivoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratoAditivoInclude<ExtArgs> | null
+    where?: ContratoAditivoWhereInput
+    orderBy?: ContratoAditivoOrderByWithRelationInput | ContratoAditivoOrderByWithRelationInput[]
+    cursor?: ContratoAditivoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ContratoAditivoScalarFieldEnum | ContratoAditivoScalarFieldEnum[]
+  }
+
+  /**
    * Contrato without action
    */
   export type ContratoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -31778,6 +31943,1254 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ContratoInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ContratoAditivo
+   */
+
+  export type AggregateContratoAditivo = {
+    _count: ContratoAditivoCountAggregateOutputType | null
+    _avg: ContratoAditivoAvgAggregateOutputType | null
+    _sum: ContratoAditivoSumAggregateOutputType | null
+    _min: ContratoAditivoMinAggregateOutputType | null
+    _max: ContratoAditivoMaxAggregateOutputType | null
+  }
+
+  export type ContratoAditivoAvgAggregateOutputType = {
+    numero: number | null
+  }
+
+  export type ContratoAditivoSumAggregateOutputType = {
+    numero: number | null
+  }
+
+  export type ContratoAditivoMinAggregateOutputType = {
+    id: string | null
+    empresa_id: string | null
+    contrato_id: string | null
+    criado_por: string | null
+    numero: number | null
+    inclui_reembolso: boolean | null
+    inclui_probono: boolean | null
+    texto_livre: string | null
+    conteudo: string | null
+    status: $Enums.StatusContrato | null
+    authentique_id: string | null
+    authentique_url: string | null
+    pdf_assinado_url: string | null
+    assinado_em: Date | null
+    criado_em: Date | null
+    atualizado_em: Date | null
+  }
+
+  export type ContratoAditivoMaxAggregateOutputType = {
+    id: string | null
+    empresa_id: string | null
+    contrato_id: string | null
+    criado_por: string | null
+    numero: number | null
+    inclui_reembolso: boolean | null
+    inclui_probono: boolean | null
+    texto_livre: string | null
+    conteudo: string | null
+    status: $Enums.StatusContrato | null
+    authentique_id: string | null
+    authentique_url: string | null
+    pdf_assinado_url: string | null
+    assinado_em: Date | null
+    criado_em: Date | null
+    atualizado_em: Date | null
+  }
+
+  export type ContratoAditivoCountAggregateOutputType = {
+    id: number
+    empresa_id: number
+    contrato_id: number
+    criado_por: number
+    numero: number
+    inclui_reembolso: number
+    inclui_probono: number
+    texto_livre: number
+    conteudo: number
+    status: number
+    authentique_id: number
+    authentique_url: number
+    pdf_assinado_url: number
+    assinado_em: number
+    criado_em: number
+    atualizado_em: number
+    _all: number
+  }
+
+
+  export type ContratoAditivoAvgAggregateInputType = {
+    numero?: true
+  }
+
+  export type ContratoAditivoSumAggregateInputType = {
+    numero?: true
+  }
+
+  export type ContratoAditivoMinAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    contrato_id?: true
+    criado_por?: true
+    numero?: true
+    inclui_reembolso?: true
+    inclui_probono?: true
+    texto_livre?: true
+    conteudo?: true
+    status?: true
+    authentique_id?: true
+    authentique_url?: true
+    pdf_assinado_url?: true
+    assinado_em?: true
+    criado_em?: true
+    atualizado_em?: true
+  }
+
+  export type ContratoAditivoMaxAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    contrato_id?: true
+    criado_por?: true
+    numero?: true
+    inclui_reembolso?: true
+    inclui_probono?: true
+    texto_livre?: true
+    conteudo?: true
+    status?: true
+    authentique_id?: true
+    authentique_url?: true
+    pdf_assinado_url?: true
+    assinado_em?: true
+    criado_em?: true
+    atualizado_em?: true
+  }
+
+  export type ContratoAditivoCountAggregateInputType = {
+    id?: true
+    empresa_id?: true
+    contrato_id?: true
+    criado_por?: true
+    numero?: true
+    inclui_reembolso?: true
+    inclui_probono?: true
+    texto_livre?: true
+    conteudo?: true
+    status?: true
+    authentique_id?: true
+    authentique_url?: true
+    pdf_assinado_url?: true
+    assinado_em?: true
+    criado_em?: true
+    atualizado_em?: true
+    _all?: true
+  }
+
+  export type ContratoAditivoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ContratoAditivo to aggregate.
+     */
+    where?: ContratoAditivoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContratoAditivos to fetch.
+     */
+    orderBy?: ContratoAditivoOrderByWithRelationInput | ContratoAditivoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ContratoAditivoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContratoAditivos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContratoAditivos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ContratoAditivos
+    **/
+    _count?: true | ContratoAditivoCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ContratoAditivoAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ContratoAditivoSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ContratoAditivoMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ContratoAditivoMaxAggregateInputType
+  }
+
+  export type GetContratoAditivoAggregateType<T extends ContratoAditivoAggregateArgs> = {
+        [P in keyof T & keyof AggregateContratoAditivo]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateContratoAditivo[P]>
+      : GetScalarType<T[P], AggregateContratoAditivo[P]>
+  }
+
+
+
+
+  export type ContratoAditivoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContratoAditivoWhereInput
+    orderBy?: ContratoAditivoOrderByWithAggregationInput | ContratoAditivoOrderByWithAggregationInput[]
+    by: ContratoAditivoScalarFieldEnum[] | ContratoAditivoScalarFieldEnum
+    having?: ContratoAditivoScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ContratoAditivoCountAggregateInputType | true
+    _avg?: ContratoAditivoAvgAggregateInputType
+    _sum?: ContratoAditivoSumAggregateInputType
+    _min?: ContratoAditivoMinAggregateInputType
+    _max?: ContratoAditivoMaxAggregateInputType
+  }
+
+  export type ContratoAditivoGroupByOutputType = {
+    id: string
+    empresa_id: string
+    contrato_id: string
+    criado_por: string | null
+    numero: number
+    inclui_reembolso: boolean
+    inclui_probono: boolean
+    texto_livre: string | null
+    conteudo: string | null
+    status: $Enums.StatusContrato
+    authentique_id: string | null
+    authentique_url: string | null
+    pdf_assinado_url: string | null
+    assinado_em: Date | null
+    criado_em: Date
+    atualizado_em: Date
+    _count: ContratoAditivoCountAggregateOutputType | null
+    _avg: ContratoAditivoAvgAggregateOutputType | null
+    _sum: ContratoAditivoSumAggregateOutputType | null
+    _min: ContratoAditivoMinAggregateOutputType | null
+    _max: ContratoAditivoMaxAggregateOutputType | null
+  }
+
+  type GetContratoAditivoGroupByPayload<T extends ContratoAditivoGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ContratoAditivoGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ContratoAditivoGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ContratoAditivoGroupByOutputType[P]>
+            : GetScalarType<T[P], ContratoAditivoGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ContratoAditivoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    contrato_id?: boolean
+    criado_por?: boolean
+    numero?: boolean
+    inclui_reembolso?: boolean
+    inclui_probono?: boolean
+    texto_livre?: boolean
+    conteudo?: boolean
+    status?: boolean
+    authentique_id?: boolean
+    authentique_url?: boolean
+    pdf_assinado_url?: boolean
+    assinado_em?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    contrato?: boolean | ContratoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["contratoAditivo"]>
+
+  export type ContratoAditivoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    contrato_id?: boolean
+    criado_por?: boolean
+    numero?: boolean
+    inclui_reembolso?: boolean
+    inclui_probono?: boolean
+    texto_livre?: boolean
+    conteudo?: boolean
+    status?: boolean
+    authentique_id?: boolean
+    authentique_url?: boolean
+    pdf_assinado_url?: boolean
+    assinado_em?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    contrato?: boolean | ContratoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["contratoAditivo"]>
+
+  export type ContratoAditivoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    empresa_id?: boolean
+    contrato_id?: boolean
+    criado_por?: boolean
+    numero?: boolean
+    inclui_reembolso?: boolean
+    inclui_probono?: boolean
+    texto_livre?: boolean
+    conteudo?: boolean
+    status?: boolean
+    authentique_id?: boolean
+    authentique_url?: boolean
+    pdf_assinado_url?: boolean
+    assinado_em?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    contrato?: boolean | ContratoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["contratoAditivo"]>
+
+  export type ContratoAditivoSelectScalar = {
+    id?: boolean
+    empresa_id?: boolean
+    contrato_id?: boolean
+    criado_por?: boolean
+    numero?: boolean
+    inclui_reembolso?: boolean
+    inclui_probono?: boolean
+    texto_livre?: boolean
+    conteudo?: boolean
+    status?: boolean
+    authentique_id?: boolean
+    authentique_url?: boolean
+    pdf_assinado_url?: boolean
+    assinado_em?: boolean
+    criado_em?: boolean
+    atualizado_em?: boolean
+  }
+
+  export type ContratoAditivoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "empresa_id" | "contrato_id" | "criado_por" | "numero" | "inclui_reembolso" | "inclui_probono" | "texto_livre" | "conteudo" | "status" | "authentique_id" | "authentique_url" | "pdf_assinado_url" | "assinado_em" | "criado_em" | "atualizado_em", ExtArgs["result"]["contratoAditivo"]>
+  export type ContratoAditivoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    contrato?: boolean | ContratoDefaultArgs<ExtArgs>
+  }
+  export type ContratoAditivoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    contrato?: boolean | ContratoDefaultArgs<ExtArgs>
+  }
+  export type ContratoAditivoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+    contrato?: boolean | ContratoDefaultArgs<ExtArgs>
+  }
+
+  export type $ContratoAditivoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ContratoAditivo"
+    objects: {
+      empresa: Prisma.$EmpresaPayload<ExtArgs>
+      contrato: Prisma.$ContratoPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      empresa_id: string
+      contrato_id: string
+      criado_por: string | null
+      numero: number
+      inclui_reembolso: boolean
+      inclui_probono: boolean
+      texto_livre: string | null
+      conteudo: string | null
+      status: $Enums.StatusContrato
+      authentique_id: string | null
+      authentique_url: string | null
+      pdf_assinado_url: string | null
+      assinado_em: Date | null
+      criado_em: Date
+      atualizado_em: Date
+    }, ExtArgs["result"]["contratoAditivo"]>
+    composites: {}
+  }
+
+  type ContratoAditivoGetPayload<S extends boolean | null | undefined | ContratoAditivoDefaultArgs> = $Result.GetResult<Prisma.$ContratoAditivoPayload, S>
+
+  type ContratoAditivoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ContratoAditivoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ContratoAditivoCountAggregateInputType | true
+    }
+
+  export interface ContratoAditivoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ContratoAditivo'], meta: { name: 'ContratoAditivo' } }
+    /**
+     * Find zero or one ContratoAditivo that matches the filter.
+     * @param {ContratoAditivoFindUniqueArgs} args - Arguments to find a ContratoAditivo
+     * @example
+     * // Get one ContratoAditivo
+     * const contratoAditivo = await prisma.contratoAditivo.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ContratoAditivoFindUniqueArgs>(args: SelectSubset<T, ContratoAditivoFindUniqueArgs<ExtArgs>>): Prisma__ContratoAditivoClient<$Result.GetResult<Prisma.$ContratoAditivoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ContratoAditivo that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ContratoAditivoFindUniqueOrThrowArgs} args - Arguments to find a ContratoAditivo
+     * @example
+     * // Get one ContratoAditivo
+     * const contratoAditivo = await prisma.contratoAditivo.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ContratoAditivoFindUniqueOrThrowArgs>(args: SelectSubset<T, ContratoAditivoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ContratoAditivoClient<$Result.GetResult<Prisma.$ContratoAditivoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ContratoAditivo that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContratoAditivoFindFirstArgs} args - Arguments to find a ContratoAditivo
+     * @example
+     * // Get one ContratoAditivo
+     * const contratoAditivo = await prisma.contratoAditivo.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ContratoAditivoFindFirstArgs>(args?: SelectSubset<T, ContratoAditivoFindFirstArgs<ExtArgs>>): Prisma__ContratoAditivoClient<$Result.GetResult<Prisma.$ContratoAditivoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ContratoAditivo that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContratoAditivoFindFirstOrThrowArgs} args - Arguments to find a ContratoAditivo
+     * @example
+     * // Get one ContratoAditivo
+     * const contratoAditivo = await prisma.contratoAditivo.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ContratoAditivoFindFirstOrThrowArgs>(args?: SelectSubset<T, ContratoAditivoFindFirstOrThrowArgs<ExtArgs>>): Prisma__ContratoAditivoClient<$Result.GetResult<Prisma.$ContratoAditivoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ContratoAditivos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContratoAditivoFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ContratoAditivos
+     * const contratoAditivos = await prisma.contratoAditivo.findMany()
+     * 
+     * // Get first 10 ContratoAditivos
+     * const contratoAditivos = await prisma.contratoAditivo.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const contratoAditivoWithIdOnly = await prisma.contratoAditivo.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ContratoAditivoFindManyArgs>(args?: SelectSubset<T, ContratoAditivoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContratoAditivoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ContratoAditivo.
+     * @param {ContratoAditivoCreateArgs} args - Arguments to create a ContratoAditivo.
+     * @example
+     * // Create one ContratoAditivo
+     * const ContratoAditivo = await prisma.contratoAditivo.create({
+     *   data: {
+     *     // ... data to create a ContratoAditivo
+     *   }
+     * })
+     * 
+     */
+    create<T extends ContratoAditivoCreateArgs>(args: SelectSubset<T, ContratoAditivoCreateArgs<ExtArgs>>): Prisma__ContratoAditivoClient<$Result.GetResult<Prisma.$ContratoAditivoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ContratoAditivos.
+     * @param {ContratoAditivoCreateManyArgs} args - Arguments to create many ContratoAditivos.
+     * @example
+     * // Create many ContratoAditivos
+     * const contratoAditivo = await prisma.contratoAditivo.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ContratoAditivoCreateManyArgs>(args?: SelectSubset<T, ContratoAditivoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ContratoAditivos and returns the data saved in the database.
+     * @param {ContratoAditivoCreateManyAndReturnArgs} args - Arguments to create many ContratoAditivos.
+     * @example
+     * // Create many ContratoAditivos
+     * const contratoAditivo = await prisma.contratoAditivo.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ContratoAditivos and only return the `id`
+     * const contratoAditivoWithIdOnly = await prisma.contratoAditivo.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ContratoAditivoCreateManyAndReturnArgs>(args?: SelectSubset<T, ContratoAditivoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContratoAditivoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ContratoAditivo.
+     * @param {ContratoAditivoDeleteArgs} args - Arguments to delete one ContratoAditivo.
+     * @example
+     * // Delete one ContratoAditivo
+     * const ContratoAditivo = await prisma.contratoAditivo.delete({
+     *   where: {
+     *     // ... filter to delete one ContratoAditivo
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ContratoAditivoDeleteArgs>(args: SelectSubset<T, ContratoAditivoDeleteArgs<ExtArgs>>): Prisma__ContratoAditivoClient<$Result.GetResult<Prisma.$ContratoAditivoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ContratoAditivo.
+     * @param {ContratoAditivoUpdateArgs} args - Arguments to update one ContratoAditivo.
+     * @example
+     * // Update one ContratoAditivo
+     * const contratoAditivo = await prisma.contratoAditivo.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ContratoAditivoUpdateArgs>(args: SelectSubset<T, ContratoAditivoUpdateArgs<ExtArgs>>): Prisma__ContratoAditivoClient<$Result.GetResult<Prisma.$ContratoAditivoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ContratoAditivos.
+     * @param {ContratoAditivoDeleteManyArgs} args - Arguments to filter ContratoAditivos to delete.
+     * @example
+     * // Delete a few ContratoAditivos
+     * const { count } = await prisma.contratoAditivo.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ContratoAditivoDeleteManyArgs>(args?: SelectSubset<T, ContratoAditivoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ContratoAditivos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContratoAditivoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ContratoAditivos
+     * const contratoAditivo = await prisma.contratoAditivo.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ContratoAditivoUpdateManyArgs>(args: SelectSubset<T, ContratoAditivoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ContratoAditivos and returns the data updated in the database.
+     * @param {ContratoAditivoUpdateManyAndReturnArgs} args - Arguments to update many ContratoAditivos.
+     * @example
+     * // Update many ContratoAditivos
+     * const contratoAditivo = await prisma.contratoAditivo.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ContratoAditivos and only return the `id`
+     * const contratoAditivoWithIdOnly = await prisma.contratoAditivo.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ContratoAditivoUpdateManyAndReturnArgs>(args: SelectSubset<T, ContratoAditivoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContratoAditivoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ContratoAditivo.
+     * @param {ContratoAditivoUpsertArgs} args - Arguments to update or create a ContratoAditivo.
+     * @example
+     * // Update or create a ContratoAditivo
+     * const contratoAditivo = await prisma.contratoAditivo.upsert({
+     *   create: {
+     *     // ... data to create a ContratoAditivo
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ContratoAditivo we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ContratoAditivoUpsertArgs>(args: SelectSubset<T, ContratoAditivoUpsertArgs<ExtArgs>>): Prisma__ContratoAditivoClient<$Result.GetResult<Prisma.$ContratoAditivoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ContratoAditivos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContratoAditivoCountArgs} args - Arguments to filter ContratoAditivos to count.
+     * @example
+     * // Count the number of ContratoAditivos
+     * const count = await prisma.contratoAditivo.count({
+     *   where: {
+     *     // ... the filter for the ContratoAditivos we want to count
+     *   }
+     * })
+    **/
+    count<T extends ContratoAditivoCountArgs>(
+      args?: Subset<T, ContratoAditivoCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ContratoAditivoCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ContratoAditivo.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContratoAditivoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ContratoAditivoAggregateArgs>(args: Subset<T, ContratoAditivoAggregateArgs>): Prisma.PrismaPromise<GetContratoAditivoAggregateType<T>>
+
+    /**
+     * Group by ContratoAditivo.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContratoAditivoGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ContratoAditivoGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ContratoAditivoGroupByArgs['orderBy'] }
+        : { orderBy?: ContratoAditivoGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ContratoAditivoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetContratoAditivoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ContratoAditivo model
+   */
+  readonly fields: ContratoAditivoFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ContratoAditivo.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ContratoAditivoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    empresa<T extends EmpresaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmpresaDefaultArgs<ExtArgs>>): Prisma__EmpresaClient<$Result.GetResult<Prisma.$EmpresaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    contrato<T extends ContratoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ContratoDefaultArgs<ExtArgs>>): Prisma__ContratoClient<$Result.GetResult<Prisma.$ContratoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ContratoAditivo model
+   */
+  interface ContratoAditivoFieldRefs {
+    readonly id: FieldRef<"ContratoAditivo", 'String'>
+    readonly empresa_id: FieldRef<"ContratoAditivo", 'String'>
+    readonly contrato_id: FieldRef<"ContratoAditivo", 'String'>
+    readonly criado_por: FieldRef<"ContratoAditivo", 'String'>
+    readonly numero: FieldRef<"ContratoAditivo", 'Int'>
+    readonly inclui_reembolso: FieldRef<"ContratoAditivo", 'Boolean'>
+    readonly inclui_probono: FieldRef<"ContratoAditivo", 'Boolean'>
+    readonly texto_livre: FieldRef<"ContratoAditivo", 'String'>
+    readonly conteudo: FieldRef<"ContratoAditivo", 'String'>
+    readonly status: FieldRef<"ContratoAditivo", 'StatusContrato'>
+    readonly authentique_id: FieldRef<"ContratoAditivo", 'String'>
+    readonly authentique_url: FieldRef<"ContratoAditivo", 'String'>
+    readonly pdf_assinado_url: FieldRef<"ContratoAditivo", 'String'>
+    readonly assinado_em: FieldRef<"ContratoAditivo", 'DateTime'>
+    readonly criado_em: FieldRef<"ContratoAditivo", 'DateTime'>
+    readonly atualizado_em: FieldRef<"ContratoAditivo", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ContratoAditivo findUnique
+   */
+  export type ContratoAditivoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContratoAditivo
+     */
+    select?: ContratoAditivoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContratoAditivo
+     */
+    omit?: ContratoAditivoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratoAditivoInclude<ExtArgs> | null
+    /**
+     * Filter, which ContratoAditivo to fetch.
+     */
+    where: ContratoAditivoWhereUniqueInput
+  }
+
+  /**
+   * ContratoAditivo findUniqueOrThrow
+   */
+  export type ContratoAditivoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContratoAditivo
+     */
+    select?: ContratoAditivoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContratoAditivo
+     */
+    omit?: ContratoAditivoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratoAditivoInclude<ExtArgs> | null
+    /**
+     * Filter, which ContratoAditivo to fetch.
+     */
+    where: ContratoAditivoWhereUniqueInput
+  }
+
+  /**
+   * ContratoAditivo findFirst
+   */
+  export type ContratoAditivoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContratoAditivo
+     */
+    select?: ContratoAditivoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContratoAditivo
+     */
+    omit?: ContratoAditivoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratoAditivoInclude<ExtArgs> | null
+    /**
+     * Filter, which ContratoAditivo to fetch.
+     */
+    where?: ContratoAditivoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContratoAditivos to fetch.
+     */
+    orderBy?: ContratoAditivoOrderByWithRelationInput | ContratoAditivoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ContratoAditivos.
+     */
+    cursor?: ContratoAditivoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContratoAditivos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContratoAditivos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ContratoAditivos.
+     */
+    distinct?: ContratoAditivoScalarFieldEnum | ContratoAditivoScalarFieldEnum[]
+  }
+
+  /**
+   * ContratoAditivo findFirstOrThrow
+   */
+  export type ContratoAditivoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContratoAditivo
+     */
+    select?: ContratoAditivoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContratoAditivo
+     */
+    omit?: ContratoAditivoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratoAditivoInclude<ExtArgs> | null
+    /**
+     * Filter, which ContratoAditivo to fetch.
+     */
+    where?: ContratoAditivoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContratoAditivos to fetch.
+     */
+    orderBy?: ContratoAditivoOrderByWithRelationInput | ContratoAditivoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ContratoAditivos.
+     */
+    cursor?: ContratoAditivoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContratoAditivos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContratoAditivos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ContratoAditivos.
+     */
+    distinct?: ContratoAditivoScalarFieldEnum | ContratoAditivoScalarFieldEnum[]
+  }
+
+  /**
+   * ContratoAditivo findMany
+   */
+  export type ContratoAditivoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContratoAditivo
+     */
+    select?: ContratoAditivoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContratoAditivo
+     */
+    omit?: ContratoAditivoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratoAditivoInclude<ExtArgs> | null
+    /**
+     * Filter, which ContratoAditivos to fetch.
+     */
+    where?: ContratoAditivoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContratoAditivos to fetch.
+     */
+    orderBy?: ContratoAditivoOrderByWithRelationInput | ContratoAditivoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ContratoAditivos.
+     */
+    cursor?: ContratoAditivoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContratoAditivos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContratoAditivos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ContratoAditivos.
+     */
+    distinct?: ContratoAditivoScalarFieldEnum | ContratoAditivoScalarFieldEnum[]
+  }
+
+  /**
+   * ContratoAditivo create
+   */
+  export type ContratoAditivoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContratoAditivo
+     */
+    select?: ContratoAditivoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContratoAditivo
+     */
+    omit?: ContratoAditivoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratoAditivoInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ContratoAditivo.
+     */
+    data: XOR<ContratoAditivoCreateInput, ContratoAditivoUncheckedCreateInput>
+  }
+
+  /**
+   * ContratoAditivo createMany
+   */
+  export type ContratoAditivoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ContratoAditivos.
+     */
+    data: ContratoAditivoCreateManyInput | ContratoAditivoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ContratoAditivo createManyAndReturn
+   */
+  export type ContratoAditivoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContratoAditivo
+     */
+    select?: ContratoAditivoSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContratoAditivo
+     */
+    omit?: ContratoAditivoOmit<ExtArgs> | null
+    /**
+     * The data used to create many ContratoAditivos.
+     */
+    data: ContratoAditivoCreateManyInput | ContratoAditivoCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratoAditivoIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ContratoAditivo update
+   */
+  export type ContratoAditivoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContratoAditivo
+     */
+    select?: ContratoAditivoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContratoAditivo
+     */
+    omit?: ContratoAditivoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratoAditivoInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ContratoAditivo.
+     */
+    data: XOR<ContratoAditivoUpdateInput, ContratoAditivoUncheckedUpdateInput>
+    /**
+     * Choose, which ContratoAditivo to update.
+     */
+    where: ContratoAditivoWhereUniqueInput
+  }
+
+  /**
+   * ContratoAditivo updateMany
+   */
+  export type ContratoAditivoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ContratoAditivos.
+     */
+    data: XOR<ContratoAditivoUpdateManyMutationInput, ContratoAditivoUncheckedUpdateManyInput>
+    /**
+     * Filter which ContratoAditivos to update
+     */
+    where?: ContratoAditivoWhereInput
+    /**
+     * Limit how many ContratoAditivos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ContratoAditivo updateManyAndReturn
+   */
+  export type ContratoAditivoUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContratoAditivo
+     */
+    select?: ContratoAditivoSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContratoAditivo
+     */
+    omit?: ContratoAditivoOmit<ExtArgs> | null
+    /**
+     * The data used to update ContratoAditivos.
+     */
+    data: XOR<ContratoAditivoUpdateManyMutationInput, ContratoAditivoUncheckedUpdateManyInput>
+    /**
+     * Filter which ContratoAditivos to update
+     */
+    where?: ContratoAditivoWhereInput
+    /**
+     * Limit how many ContratoAditivos to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratoAditivoIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ContratoAditivo upsert
+   */
+  export type ContratoAditivoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContratoAditivo
+     */
+    select?: ContratoAditivoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContratoAditivo
+     */
+    omit?: ContratoAditivoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratoAditivoInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ContratoAditivo to update in case it exists.
+     */
+    where: ContratoAditivoWhereUniqueInput
+    /**
+     * In case the ContratoAditivo found by the `where` argument doesn't exist, create a new ContratoAditivo with this data.
+     */
+    create: XOR<ContratoAditivoCreateInput, ContratoAditivoUncheckedCreateInput>
+    /**
+     * In case the ContratoAditivo was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ContratoAditivoUpdateInput, ContratoAditivoUncheckedUpdateInput>
+  }
+
+  /**
+   * ContratoAditivo delete
+   */
+  export type ContratoAditivoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContratoAditivo
+     */
+    select?: ContratoAditivoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContratoAditivo
+     */
+    omit?: ContratoAditivoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratoAditivoInclude<ExtArgs> | null
+    /**
+     * Filter which ContratoAditivo to delete.
+     */
+    where: ContratoAditivoWhereUniqueInput
+  }
+
+  /**
+   * ContratoAditivo deleteMany
+   */
+  export type ContratoAditivoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ContratoAditivos to delete
+     */
+    where?: ContratoAditivoWhereInput
+    /**
+     * Limit how many ContratoAditivos to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ContratoAditivo without action
+   */
+  export type ContratoAditivoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContratoAditivo
+     */
+    select?: ContratoAditivoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContratoAditivo
+     */
+    omit?: ContratoAditivoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContratoAditivoInclude<ExtArgs> | null
   }
 
 
@@ -77299,6 +78712,28 @@ export namespace Prisma {
   export type ContratoScalarFieldEnum = (typeof ContratoScalarFieldEnum)[keyof typeof ContratoScalarFieldEnum]
 
 
+  export const ContratoAditivoScalarFieldEnum: {
+    id: 'id',
+    empresa_id: 'empresa_id',
+    contrato_id: 'contrato_id',
+    criado_por: 'criado_por',
+    numero: 'numero',
+    inclui_reembolso: 'inclui_reembolso',
+    inclui_probono: 'inclui_probono',
+    texto_livre: 'texto_livre',
+    conteudo: 'conteudo',
+    status: 'status',
+    authentique_id: 'authentique_id',
+    authentique_url: 'authentique_url',
+    pdf_assinado_url: 'pdf_assinado_url',
+    assinado_em: 'assinado_em',
+    criado_em: 'criado_em',
+    atualizado_em: 'atualizado_em'
+  };
+
+  export type ContratoAditivoScalarFieldEnum = (typeof ContratoAditivoScalarFieldEnum)[keyof typeof ContratoAditivoScalarFieldEnum]
+
+
   export const ProjetoScalarFieldEnum: {
     id: 'id',
     empresa_id: 'empresa_id',
@@ -78421,6 +79856,7 @@ export namespace Prisma {
     leads?: LeadListRelationFilter
     propostas?: PropostaListRelationFilter
     contratos?: ContratoListRelationFilter
+    contrato_aditivos?: ContratoAditivoListRelationFilter
     projetos?: ProjetoListRelationFilter
     documentos?: DocumentoListRelationFilter
     pastas_documento?: PastaDocumentoListRelationFilter
@@ -78469,6 +79905,7 @@ export namespace Prisma {
     leads?: LeadOrderByRelationAggregateInput
     propostas?: PropostaOrderByRelationAggregateInput
     contratos?: ContratoOrderByRelationAggregateInput
+    contrato_aditivos?: ContratoAditivoOrderByRelationAggregateInput
     projetos?: ProjetoOrderByRelationAggregateInput
     documentos?: DocumentoOrderByRelationAggregateInput
     pastas_documento?: PastaDocumentoOrderByRelationAggregateInput
@@ -78520,6 +79957,7 @@ export namespace Prisma {
     leads?: LeadListRelationFilter
     propostas?: PropostaListRelationFilter
     contratos?: ContratoListRelationFilter
+    contrato_aditivos?: ContratoAditivoListRelationFilter
     projetos?: ProjetoListRelationFilter
     documentos?: DocumentoListRelationFilter
     pastas_documento?: PastaDocumentoListRelationFilter
@@ -80173,6 +81611,7 @@ export namespace Prisma {
     eventos?: EventoListRelationFilter
     notas_fiscais?: NotaFiscalListRelationFilter
     documentos?: DocumentoListRelationFilter
+    aditivos?: ContratoAditivoListRelationFilter
   }
 
   export type ContratoOrderByWithRelationInput = {
@@ -80235,6 +81674,7 @@ export namespace Prisma {
     eventos?: EventoOrderByRelationAggregateInput
     notas_fiscais?: NotaFiscalOrderByRelationAggregateInput
     documentos?: DocumentoOrderByRelationAggregateInput
+    aditivos?: ContratoAditivoOrderByRelationAggregateInput
   }
 
   export type ContratoWhereUniqueInput = Prisma.AtLeast<{
@@ -80300,6 +81740,7 @@ export namespace Prisma {
     eventos?: EventoListRelationFilter
     notas_fiscais?: NotaFiscalListRelationFilter
     documentos?: DocumentoListRelationFilter
+    aditivos?: ContratoAditivoListRelationFilter
   }, "id" | "proposta_id">
 
   export type ContratoOrderByWithAggregationInput = {
@@ -80412,6 +81853,122 @@ export namespace Prisma {
     reembolso_limite_hospedagem?: DecimalNullableWithAggregatesFilter<"Contrato"> | Decimal | DecimalJsLike | number | string | null
     criado_em?: DateTimeWithAggregatesFilter<"Contrato"> | Date | string
     atualizado_em?: DateTimeWithAggregatesFilter<"Contrato"> | Date | string
+  }
+
+  export type ContratoAditivoWhereInput = {
+    AND?: ContratoAditivoWhereInput | ContratoAditivoWhereInput[]
+    OR?: ContratoAditivoWhereInput[]
+    NOT?: ContratoAditivoWhereInput | ContratoAditivoWhereInput[]
+    id?: StringFilter<"ContratoAditivo"> | string
+    empresa_id?: StringFilter<"ContratoAditivo"> | string
+    contrato_id?: StringFilter<"ContratoAditivo"> | string
+    criado_por?: StringNullableFilter<"ContratoAditivo"> | string | null
+    numero?: IntFilter<"ContratoAditivo"> | number
+    inclui_reembolso?: BoolFilter<"ContratoAditivo"> | boolean
+    inclui_probono?: BoolFilter<"ContratoAditivo"> | boolean
+    texto_livre?: StringNullableFilter<"ContratoAditivo"> | string | null
+    conteudo?: StringNullableFilter<"ContratoAditivo"> | string | null
+    status?: EnumStatusContratoFilter<"ContratoAditivo"> | $Enums.StatusContrato
+    authentique_id?: StringNullableFilter<"ContratoAditivo"> | string | null
+    authentique_url?: StringNullableFilter<"ContratoAditivo"> | string | null
+    pdf_assinado_url?: StringNullableFilter<"ContratoAditivo"> | string | null
+    assinado_em?: DateTimeNullableFilter<"ContratoAditivo"> | Date | string | null
+    criado_em?: DateTimeFilter<"ContratoAditivo"> | Date | string
+    atualizado_em?: DateTimeFilter<"ContratoAditivo"> | Date | string
+    empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
+    contrato?: XOR<ContratoScalarRelationFilter, ContratoWhereInput>
+  }
+
+  export type ContratoAditivoOrderByWithRelationInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    contrato_id?: SortOrder
+    criado_por?: SortOrderInput | SortOrder
+    numero?: SortOrder
+    inclui_reembolso?: SortOrder
+    inclui_probono?: SortOrder
+    texto_livre?: SortOrderInput | SortOrder
+    conteudo?: SortOrderInput | SortOrder
+    status?: SortOrder
+    authentique_id?: SortOrderInput | SortOrder
+    authentique_url?: SortOrderInput | SortOrder
+    pdf_assinado_url?: SortOrderInput | SortOrder
+    assinado_em?: SortOrderInput | SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+    empresa?: EmpresaOrderByWithRelationInput
+    contrato?: ContratoOrderByWithRelationInput
+  }
+
+  export type ContratoAditivoWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    contrato_id_numero?: ContratoAditivoContrato_idNumeroCompoundUniqueInput
+    AND?: ContratoAditivoWhereInput | ContratoAditivoWhereInput[]
+    OR?: ContratoAditivoWhereInput[]
+    NOT?: ContratoAditivoWhereInput | ContratoAditivoWhereInput[]
+    empresa_id?: StringFilter<"ContratoAditivo"> | string
+    contrato_id?: StringFilter<"ContratoAditivo"> | string
+    criado_por?: StringNullableFilter<"ContratoAditivo"> | string | null
+    numero?: IntFilter<"ContratoAditivo"> | number
+    inclui_reembolso?: BoolFilter<"ContratoAditivo"> | boolean
+    inclui_probono?: BoolFilter<"ContratoAditivo"> | boolean
+    texto_livre?: StringNullableFilter<"ContratoAditivo"> | string | null
+    conteudo?: StringNullableFilter<"ContratoAditivo"> | string | null
+    status?: EnumStatusContratoFilter<"ContratoAditivo"> | $Enums.StatusContrato
+    authentique_id?: StringNullableFilter<"ContratoAditivo"> | string | null
+    authentique_url?: StringNullableFilter<"ContratoAditivo"> | string | null
+    pdf_assinado_url?: StringNullableFilter<"ContratoAditivo"> | string | null
+    assinado_em?: DateTimeNullableFilter<"ContratoAditivo"> | Date | string | null
+    criado_em?: DateTimeFilter<"ContratoAditivo"> | Date | string
+    atualizado_em?: DateTimeFilter<"ContratoAditivo"> | Date | string
+    empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
+    contrato?: XOR<ContratoScalarRelationFilter, ContratoWhereInput>
+  }, "id" | "contrato_id_numero">
+
+  export type ContratoAditivoOrderByWithAggregationInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    contrato_id?: SortOrder
+    criado_por?: SortOrderInput | SortOrder
+    numero?: SortOrder
+    inclui_reembolso?: SortOrder
+    inclui_probono?: SortOrder
+    texto_livre?: SortOrderInput | SortOrder
+    conteudo?: SortOrderInput | SortOrder
+    status?: SortOrder
+    authentique_id?: SortOrderInput | SortOrder
+    authentique_url?: SortOrderInput | SortOrder
+    pdf_assinado_url?: SortOrderInput | SortOrder
+    assinado_em?: SortOrderInput | SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+    _count?: ContratoAditivoCountOrderByAggregateInput
+    _avg?: ContratoAditivoAvgOrderByAggregateInput
+    _max?: ContratoAditivoMaxOrderByAggregateInput
+    _min?: ContratoAditivoMinOrderByAggregateInput
+    _sum?: ContratoAditivoSumOrderByAggregateInput
+  }
+
+  export type ContratoAditivoScalarWhereWithAggregatesInput = {
+    AND?: ContratoAditivoScalarWhereWithAggregatesInput | ContratoAditivoScalarWhereWithAggregatesInput[]
+    OR?: ContratoAditivoScalarWhereWithAggregatesInput[]
+    NOT?: ContratoAditivoScalarWhereWithAggregatesInput | ContratoAditivoScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ContratoAditivo"> | string
+    empresa_id?: StringWithAggregatesFilter<"ContratoAditivo"> | string
+    contrato_id?: StringWithAggregatesFilter<"ContratoAditivo"> | string
+    criado_por?: StringNullableWithAggregatesFilter<"ContratoAditivo"> | string | null
+    numero?: IntWithAggregatesFilter<"ContratoAditivo"> | number
+    inclui_reembolso?: BoolWithAggregatesFilter<"ContratoAditivo"> | boolean
+    inclui_probono?: BoolWithAggregatesFilter<"ContratoAditivo"> | boolean
+    texto_livre?: StringNullableWithAggregatesFilter<"ContratoAditivo"> | string | null
+    conteudo?: StringNullableWithAggregatesFilter<"ContratoAditivo"> | string | null
+    status?: EnumStatusContratoWithAggregatesFilter<"ContratoAditivo"> | $Enums.StatusContrato
+    authentique_id?: StringNullableWithAggregatesFilter<"ContratoAditivo"> | string | null
+    authentique_url?: StringNullableWithAggregatesFilter<"ContratoAditivo"> | string | null
+    pdf_assinado_url?: StringNullableWithAggregatesFilter<"ContratoAditivo"> | string | null
+    assinado_em?: DateTimeNullableWithAggregatesFilter<"ContratoAditivo"> | Date | string | null
+    criado_em?: DateTimeWithAggregatesFilter<"ContratoAditivo"> | Date | string
+    atualizado_em?: DateTimeWithAggregatesFilter<"ContratoAditivo"> | Date | string
   }
 
   export type ProjetoWhereInput = {
@@ -83941,6 +85498,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -83989,6 +85547,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -84037,6 +85596,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -84085,6 +85645,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -85884,6 +87445,7 @@ export namespace Prisma {
     eventos?: EventoCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutContratoInput
     documentos?: DocumentoCreateNestedManyWithoutContratoInput
+    aditivos?: ContratoAditivoCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoUncheckedCreateInput = {
@@ -85941,6 +87503,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutContratoInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutContratoInput
+    aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoUpdateInput = {
@@ -85998,6 +87561,7 @@ export namespace Prisma {
     eventos?: EventoUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutContratoNestedInput
     documentos?: DocumentoUpdateManyWithoutContratoNestedInput
+    aditivos?: ContratoAditivoUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoUncheckedUpdateInput = {
@@ -86055,6 +87619,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutContratoNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutContratoNestedInput
+    aditivos?: ContratoAditivoUncheckedUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoCreateManyInput = {
@@ -86204,6 +87769,137 @@ export namespace Prisma {
     reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContratoAditivoCreateInput = {
+    id?: string
+    criado_por?: string | null
+    numero: number
+    inclui_reembolso?: boolean
+    inclui_probono?: boolean
+    texto_livre?: string | null
+    conteudo?: string | null
+    status?: $Enums.StatusContrato
+    authentique_id?: string | null
+    authentique_url?: string | null
+    pdf_assinado_url?: string | null
+    assinado_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutContrato_aditivosInput
+    contrato: ContratoCreateNestedOneWithoutAditivosInput
+  }
+
+  export type ContratoAditivoUncheckedCreateInput = {
+    id?: string
+    empresa_id: string
+    contrato_id: string
+    criado_por?: string | null
+    numero: number
+    inclui_reembolso?: boolean
+    inclui_probono?: boolean
+    texto_livre?: string | null
+    conteudo?: string | null
+    status?: $Enums.StatusContrato
+    authentique_id?: string | null
+    authentique_url?: string | null
+    pdf_assinado_url?: string | null
+    assinado_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type ContratoAditivoUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    numero?: IntFieldUpdateOperationsInput | number
+    inclui_reembolso?: BoolFieldUpdateOperationsInput | boolean
+    inclui_probono?: BoolFieldUpdateOperationsInput | boolean
+    texto_livre?: NullableStringFieldUpdateOperationsInput | string | null
+    conteudo?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusContratoFieldUpdateOperationsInput | $Enums.StatusContrato
+    authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
+    authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
+    pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutContrato_aditivosNestedInput
+    contrato?: ContratoUpdateOneRequiredWithoutAditivosNestedInput
+  }
+
+  export type ContratoAditivoUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    contrato_id?: StringFieldUpdateOperationsInput | string
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    numero?: IntFieldUpdateOperationsInput | number
+    inclui_reembolso?: BoolFieldUpdateOperationsInput | boolean
+    inclui_probono?: BoolFieldUpdateOperationsInput | boolean
+    texto_livre?: NullableStringFieldUpdateOperationsInput | string | null
+    conteudo?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusContratoFieldUpdateOperationsInput | $Enums.StatusContrato
+    authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
+    authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
+    pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContratoAditivoCreateManyInput = {
+    id?: string
+    empresa_id: string
+    contrato_id: string
+    criado_por?: string | null
+    numero: number
+    inclui_reembolso?: boolean
+    inclui_probono?: boolean
+    texto_livre?: string | null
+    conteudo?: string | null
+    status?: $Enums.StatusContrato
+    authentique_id?: string | null
+    authentique_url?: string | null
+    pdf_assinado_url?: string | null
+    assinado_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type ContratoAditivoUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    numero?: IntFieldUpdateOperationsInput | number
+    inclui_reembolso?: BoolFieldUpdateOperationsInput | boolean
+    inclui_probono?: BoolFieldUpdateOperationsInput | boolean
+    texto_livre?: NullableStringFieldUpdateOperationsInput | string | null
+    conteudo?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusContratoFieldUpdateOperationsInput | $Enums.StatusContrato
+    authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
+    authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
+    pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContratoAditivoUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    contrato_id?: StringFieldUpdateOperationsInput | string
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    numero?: IntFieldUpdateOperationsInput | number
+    inclui_reembolso?: BoolFieldUpdateOperationsInput | boolean
+    inclui_probono?: BoolFieldUpdateOperationsInput | boolean
+    texto_livre?: NullableStringFieldUpdateOperationsInput | string | null
+    conteudo?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusContratoFieldUpdateOperationsInput | $Enums.StatusContrato
+    authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
+    authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
+    pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -90115,6 +91811,12 @@ export namespace Prisma {
     none?: ContratoWhereInput
   }
 
+  export type ContratoAditivoListRelationFilter = {
+    every?: ContratoAditivoWhereInput
+    some?: ContratoAditivoWhereInput
+    none?: ContratoAditivoWhereInput
+  }
+
   export type ProjetoListRelationFilter = {
     every?: ProjetoWhereInput
     some?: ProjetoWhereInput
@@ -90303,6 +92005,10 @@ export namespace Prisma {
   }
 
   export type ContratoOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ContratoAditivoOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -91940,6 +93646,81 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumStatusContratoFilter<$PrismaModel>
     _max?: NestedEnumStatusContratoFilter<$PrismaModel>
+  }
+
+  export type ContratoScalarRelationFilter = {
+    is?: ContratoWhereInput
+    isNot?: ContratoWhereInput
+  }
+
+  export type ContratoAditivoContrato_idNumeroCompoundUniqueInput = {
+    contrato_id: string
+    numero: number
+  }
+
+  export type ContratoAditivoCountOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    contrato_id?: SortOrder
+    criado_por?: SortOrder
+    numero?: SortOrder
+    inclui_reembolso?: SortOrder
+    inclui_probono?: SortOrder
+    texto_livre?: SortOrder
+    conteudo?: SortOrder
+    status?: SortOrder
+    authentique_id?: SortOrder
+    authentique_url?: SortOrder
+    pdf_assinado_url?: SortOrder
+    assinado_em?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+  }
+
+  export type ContratoAditivoAvgOrderByAggregateInput = {
+    numero?: SortOrder
+  }
+
+  export type ContratoAditivoMaxOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    contrato_id?: SortOrder
+    criado_por?: SortOrder
+    numero?: SortOrder
+    inclui_reembolso?: SortOrder
+    inclui_probono?: SortOrder
+    texto_livre?: SortOrder
+    conteudo?: SortOrder
+    status?: SortOrder
+    authentique_id?: SortOrder
+    authentique_url?: SortOrder
+    pdf_assinado_url?: SortOrder
+    assinado_em?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+  }
+
+  export type ContratoAditivoMinOrderByAggregateInput = {
+    id?: SortOrder
+    empresa_id?: SortOrder
+    contrato_id?: SortOrder
+    criado_por?: SortOrder
+    numero?: SortOrder
+    inclui_reembolso?: SortOrder
+    inclui_probono?: SortOrder
+    texto_livre?: SortOrder
+    conteudo?: SortOrder
+    status?: SortOrder
+    authentique_id?: SortOrder
+    authentique_url?: SortOrder
+    pdf_assinado_url?: SortOrder
+    assinado_em?: SortOrder
+    criado_em?: SortOrder
+    atualizado_em?: SortOrder
+  }
+
+  export type ContratoAditivoSumOrderByAggregateInput = {
+    numero?: SortOrder
   }
 
   export type EnumStatusProjetoFilter<$PrismaModel = never> = {
@@ -94177,6 +95958,13 @@ export namespace Prisma {
     connect?: ContratoWhereUniqueInput | ContratoWhereUniqueInput[]
   }
 
+  export type ContratoAditivoCreateNestedManyWithoutEmpresaInput = {
+    create?: XOR<ContratoAditivoCreateWithoutEmpresaInput, ContratoAditivoUncheckedCreateWithoutEmpresaInput> | ContratoAditivoCreateWithoutEmpresaInput[] | ContratoAditivoUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: ContratoAditivoCreateOrConnectWithoutEmpresaInput | ContratoAditivoCreateOrConnectWithoutEmpresaInput[]
+    createMany?: ContratoAditivoCreateManyEmpresaInputEnvelope
+    connect?: ContratoAditivoWhereUniqueInput | ContratoAditivoWhereUniqueInput[]
+  }
+
   export type ProjetoCreateNestedManyWithoutEmpresaInput = {
     create?: XOR<ProjetoCreateWithoutEmpresaInput, ProjetoUncheckedCreateWithoutEmpresaInput> | ProjetoCreateWithoutEmpresaInput[] | ProjetoUncheckedCreateWithoutEmpresaInput[]
     connectOrCreate?: ProjetoCreateOrConnectWithoutEmpresaInput | ProjetoCreateOrConnectWithoutEmpresaInput[]
@@ -94413,6 +96201,13 @@ export namespace Prisma {
     connectOrCreate?: ContratoCreateOrConnectWithoutEmpresaInput | ContratoCreateOrConnectWithoutEmpresaInput[]
     createMany?: ContratoCreateManyEmpresaInputEnvelope
     connect?: ContratoWhereUniqueInput | ContratoWhereUniqueInput[]
+  }
+
+  export type ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput = {
+    create?: XOR<ContratoAditivoCreateWithoutEmpresaInput, ContratoAditivoUncheckedCreateWithoutEmpresaInput> | ContratoAditivoCreateWithoutEmpresaInput[] | ContratoAditivoUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: ContratoAditivoCreateOrConnectWithoutEmpresaInput | ContratoAditivoCreateOrConnectWithoutEmpresaInput[]
+    createMany?: ContratoAditivoCreateManyEmpresaInputEnvelope
+    connect?: ContratoAditivoWhereUniqueInput | ContratoAditivoWhereUniqueInput[]
   }
 
   export type ProjetoUncheckedCreateNestedManyWithoutEmpresaInput = {
@@ -94734,6 +96529,20 @@ export namespace Prisma {
     update?: ContratoUpdateWithWhereUniqueWithoutEmpresaInput | ContratoUpdateWithWhereUniqueWithoutEmpresaInput[]
     updateMany?: ContratoUpdateManyWithWhereWithoutEmpresaInput | ContratoUpdateManyWithWhereWithoutEmpresaInput[]
     deleteMany?: ContratoScalarWhereInput | ContratoScalarWhereInput[]
+  }
+
+  export type ContratoAditivoUpdateManyWithoutEmpresaNestedInput = {
+    create?: XOR<ContratoAditivoCreateWithoutEmpresaInput, ContratoAditivoUncheckedCreateWithoutEmpresaInput> | ContratoAditivoCreateWithoutEmpresaInput[] | ContratoAditivoUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: ContratoAditivoCreateOrConnectWithoutEmpresaInput | ContratoAditivoCreateOrConnectWithoutEmpresaInput[]
+    upsert?: ContratoAditivoUpsertWithWhereUniqueWithoutEmpresaInput | ContratoAditivoUpsertWithWhereUniqueWithoutEmpresaInput[]
+    createMany?: ContratoAditivoCreateManyEmpresaInputEnvelope
+    set?: ContratoAditivoWhereUniqueInput | ContratoAditivoWhereUniqueInput[]
+    disconnect?: ContratoAditivoWhereUniqueInput | ContratoAditivoWhereUniqueInput[]
+    delete?: ContratoAditivoWhereUniqueInput | ContratoAditivoWhereUniqueInput[]
+    connect?: ContratoAditivoWhereUniqueInput | ContratoAditivoWhereUniqueInput[]
+    update?: ContratoAditivoUpdateWithWhereUniqueWithoutEmpresaInput | ContratoAditivoUpdateWithWhereUniqueWithoutEmpresaInput[]
+    updateMany?: ContratoAditivoUpdateManyWithWhereWithoutEmpresaInput | ContratoAditivoUpdateManyWithWhereWithoutEmpresaInput[]
+    deleteMany?: ContratoAditivoScalarWhereInput | ContratoAditivoScalarWhereInput[]
   }
 
   export type ProjetoUpdateManyWithoutEmpresaNestedInput = {
@@ -95210,6 +97019,20 @@ export namespace Prisma {
     update?: ContratoUpdateWithWhereUniqueWithoutEmpresaInput | ContratoUpdateWithWhereUniqueWithoutEmpresaInput[]
     updateMany?: ContratoUpdateManyWithWhereWithoutEmpresaInput | ContratoUpdateManyWithWhereWithoutEmpresaInput[]
     deleteMany?: ContratoScalarWhereInput | ContratoScalarWhereInput[]
+  }
+
+  export type ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput = {
+    create?: XOR<ContratoAditivoCreateWithoutEmpresaInput, ContratoAditivoUncheckedCreateWithoutEmpresaInput> | ContratoAditivoCreateWithoutEmpresaInput[] | ContratoAditivoUncheckedCreateWithoutEmpresaInput[]
+    connectOrCreate?: ContratoAditivoCreateOrConnectWithoutEmpresaInput | ContratoAditivoCreateOrConnectWithoutEmpresaInput[]
+    upsert?: ContratoAditivoUpsertWithWhereUniqueWithoutEmpresaInput | ContratoAditivoUpsertWithWhereUniqueWithoutEmpresaInput[]
+    createMany?: ContratoAditivoCreateManyEmpresaInputEnvelope
+    set?: ContratoAditivoWhereUniqueInput | ContratoAditivoWhereUniqueInput[]
+    disconnect?: ContratoAditivoWhereUniqueInput | ContratoAditivoWhereUniqueInput[]
+    delete?: ContratoAditivoWhereUniqueInput | ContratoAditivoWhereUniqueInput[]
+    connect?: ContratoAditivoWhereUniqueInput | ContratoAditivoWhereUniqueInput[]
+    update?: ContratoAditivoUpdateWithWhereUniqueWithoutEmpresaInput | ContratoAditivoUpdateWithWhereUniqueWithoutEmpresaInput[]
+    updateMany?: ContratoAditivoUpdateManyWithWhereWithoutEmpresaInput | ContratoAditivoUpdateManyWithWhereWithoutEmpresaInput[]
+    deleteMany?: ContratoAditivoScalarWhereInput | ContratoAditivoScalarWhereInput[]
   }
 
   export type ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput = {
@@ -98219,6 +100042,13 @@ export namespace Prisma {
     connect?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
   }
 
+  export type ContratoAditivoCreateNestedManyWithoutContratoInput = {
+    create?: XOR<ContratoAditivoCreateWithoutContratoInput, ContratoAditivoUncheckedCreateWithoutContratoInput> | ContratoAditivoCreateWithoutContratoInput[] | ContratoAditivoUncheckedCreateWithoutContratoInput[]
+    connectOrCreate?: ContratoAditivoCreateOrConnectWithoutContratoInput | ContratoAditivoCreateOrConnectWithoutContratoInput[]
+    createMany?: ContratoAditivoCreateManyContratoInputEnvelope
+    connect?: ContratoAditivoWhereUniqueInput | ContratoAditivoWhereUniqueInput[]
+  }
+
   export type ProjetoUncheckedCreateNestedOneWithoutContratoInput = {
     create?: XOR<ProjetoCreateWithoutContratoInput, ProjetoUncheckedCreateWithoutContratoInput>
     connectOrCreate?: ProjetoCreateOrConnectWithoutContratoInput
@@ -98251,6 +100081,13 @@ export namespace Prisma {
     connectOrCreate?: DocumentoCreateOrConnectWithoutContratoInput | DocumentoCreateOrConnectWithoutContratoInput[]
     createMany?: DocumentoCreateManyContratoInputEnvelope
     connect?: DocumentoWhereUniqueInput | DocumentoWhereUniqueInput[]
+  }
+
+  export type ContratoAditivoUncheckedCreateNestedManyWithoutContratoInput = {
+    create?: XOR<ContratoAditivoCreateWithoutContratoInput, ContratoAditivoUncheckedCreateWithoutContratoInput> | ContratoAditivoCreateWithoutContratoInput[] | ContratoAditivoUncheckedCreateWithoutContratoInput[]
+    connectOrCreate?: ContratoAditivoCreateOrConnectWithoutContratoInput | ContratoAditivoCreateOrConnectWithoutContratoInput[]
+    createMany?: ContratoAditivoCreateManyContratoInputEnvelope
+    connect?: ContratoAditivoWhereUniqueInput | ContratoAditivoWhereUniqueInput[]
   }
 
   export type EnumStatusContratoFieldUpdateOperationsInput = {
@@ -98369,6 +100206,20 @@ export namespace Prisma {
     deleteMany?: DocumentoScalarWhereInput | DocumentoScalarWhereInput[]
   }
 
+  export type ContratoAditivoUpdateManyWithoutContratoNestedInput = {
+    create?: XOR<ContratoAditivoCreateWithoutContratoInput, ContratoAditivoUncheckedCreateWithoutContratoInput> | ContratoAditivoCreateWithoutContratoInput[] | ContratoAditivoUncheckedCreateWithoutContratoInput[]
+    connectOrCreate?: ContratoAditivoCreateOrConnectWithoutContratoInput | ContratoAditivoCreateOrConnectWithoutContratoInput[]
+    upsert?: ContratoAditivoUpsertWithWhereUniqueWithoutContratoInput | ContratoAditivoUpsertWithWhereUniqueWithoutContratoInput[]
+    createMany?: ContratoAditivoCreateManyContratoInputEnvelope
+    set?: ContratoAditivoWhereUniqueInput | ContratoAditivoWhereUniqueInput[]
+    disconnect?: ContratoAditivoWhereUniqueInput | ContratoAditivoWhereUniqueInput[]
+    delete?: ContratoAditivoWhereUniqueInput | ContratoAditivoWhereUniqueInput[]
+    connect?: ContratoAditivoWhereUniqueInput | ContratoAditivoWhereUniqueInput[]
+    update?: ContratoAditivoUpdateWithWhereUniqueWithoutContratoInput | ContratoAditivoUpdateWithWhereUniqueWithoutContratoInput[]
+    updateMany?: ContratoAditivoUpdateManyWithWhereWithoutContratoInput | ContratoAditivoUpdateManyWithWhereWithoutContratoInput[]
+    deleteMany?: ContratoAditivoScalarWhereInput | ContratoAditivoScalarWhereInput[]
+  }
+
   export type ProjetoUncheckedUpdateOneWithoutContratoNestedInput = {
     create?: XOR<ProjetoCreateWithoutContratoInput, ProjetoUncheckedCreateWithoutContratoInput>
     connectOrCreate?: ProjetoCreateOrConnectWithoutContratoInput
@@ -98433,6 +100284,48 @@ export namespace Prisma {
     update?: DocumentoUpdateWithWhereUniqueWithoutContratoInput | DocumentoUpdateWithWhereUniqueWithoutContratoInput[]
     updateMany?: DocumentoUpdateManyWithWhereWithoutContratoInput | DocumentoUpdateManyWithWhereWithoutContratoInput[]
     deleteMany?: DocumentoScalarWhereInput | DocumentoScalarWhereInput[]
+  }
+
+  export type ContratoAditivoUncheckedUpdateManyWithoutContratoNestedInput = {
+    create?: XOR<ContratoAditivoCreateWithoutContratoInput, ContratoAditivoUncheckedCreateWithoutContratoInput> | ContratoAditivoCreateWithoutContratoInput[] | ContratoAditivoUncheckedCreateWithoutContratoInput[]
+    connectOrCreate?: ContratoAditivoCreateOrConnectWithoutContratoInput | ContratoAditivoCreateOrConnectWithoutContratoInput[]
+    upsert?: ContratoAditivoUpsertWithWhereUniqueWithoutContratoInput | ContratoAditivoUpsertWithWhereUniqueWithoutContratoInput[]
+    createMany?: ContratoAditivoCreateManyContratoInputEnvelope
+    set?: ContratoAditivoWhereUniqueInput | ContratoAditivoWhereUniqueInput[]
+    disconnect?: ContratoAditivoWhereUniqueInput | ContratoAditivoWhereUniqueInput[]
+    delete?: ContratoAditivoWhereUniqueInput | ContratoAditivoWhereUniqueInput[]
+    connect?: ContratoAditivoWhereUniqueInput | ContratoAditivoWhereUniqueInput[]
+    update?: ContratoAditivoUpdateWithWhereUniqueWithoutContratoInput | ContratoAditivoUpdateWithWhereUniqueWithoutContratoInput[]
+    updateMany?: ContratoAditivoUpdateManyWithWhereWithoutContratoInput | ContratoAditivoUpdateManyWithWhereWithoutContratoInput[]
+    deleteMany?: ContratoAditivoScalarWhereInput | ContratoAditivoScalarWhereInput[]
+  }
+
+  export type EmpresaCreateNestedOneWithoutContrato_aditivosInput = {
+    create?: XOR<EmpresaCreateWithoutContrato_aditivosInput, EmpresaUncheckedCreateWithoutContrato_aditivosInput>
+    connectOrCreate?: EmpresaCreateOrConnectWithoutContrato_aditivosInput
+    connect?: EmpresaWhereUniqueInput
+  }
+
+  export type ContratoCreateNestedOneWithoutAditivosInput = {
+    create?: XOR<ContratoCreateWithoutAditivosInput, ContratoUncheckedCreateWithoutAditivosInput>
+    connectOrCreate?: ContratoCreateOrConnectWithoutAditivosInput
+    connect?: ContratoWhereUniqueInput
+  }
+
+  export type EmpresaUpdateOneRequiredWithoutContrato_aditivosNestedInput = {
+    create?: XOR<EmpresaCreateWithoutContrato_aditivosInput, EmpresaUncheckedCreateWithoutContrato_aditivosInput>
+    connectOrCreate?: EmpresaCreateOrConnectWithoutContrato_aditivosInput
+    upsert?: EmpresaUpsertWithoutContrato_aditivosInput
+    connect?: EmpresaWhereUniqueInput
+    update?: XOR<XOR<EmpresaUpdateToOneWithWhereWithoutContrato_aditivosInput, EmpresaUpdateWithoutContrato_aditivosInput>, EmpresaUncheckedUpdateWithoutContrato_aditivosInput>
+  }
+
+  export type ContratoUpdateOneRequiredWithoutAditivosNestedInput = {
+    create?: XOR<ContratoCreateWithoutAditivosInput, ContratoUncheckedCreateWithoutAditivosInput>
+    connectOrCreate?: ContratoCreateOrConnectWithoutAditivosInput
+    upsert?: ContratoUpsertWithoutAditivosInput
+    connect?: ContratoWhereUniqueInput
+    update?: XOR<XOR<ContratoUpdateToOneWithWhereWithoutAditivosInput, ContratoUpdateWithoutAditivosInput>, ContratoUncheckedUpdateWithoutAditivosInput>
   }
 
   export type EmpresaCreateNestedOneWithoutProjetosInput = {
@@ -102343,6 +104236,7 @@ export namespace Prisma {
     eventos?: EventoCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutContratoInput
     documentos?: DocumentoCreateNestedManyWithoutContratoInput
+    aditivos?: ContratoAditivoCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoUncheckedCreateWithoutEmpresaInput = {
@@ -102399,6 +104293,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutContratoInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutContratoInput
+    aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoCreateOrConnectWithoutEmpresaInput = {
@@ -102408,6 +104303,52 @@ export namespace Prisma {
 
   export type ContratoCreateManyEmpresaInputEnvelope = {
     data: ContratoCreateManyEmpresaInput | ContratoCreateManyEmpresaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ContratoAditivoCreateWithoutEmpresaInput = {
+    id?: string
+    criado_por?: string | null
+    numero: number
+    inclui_reembolso?: boolean
+    inclui_probono?: boolean
+    texto_livre?: string | null
+    conteudo?: string | null
+    status?: $Enums.StatusContrato
+    authentique_id?: string | null
+    authentique_url?: string | null
+    pdf_assinado_url?: string | null
+    assinado_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    contrato: ContratoCreateNestedOneWithoutAditivosInput
+  }
+
+  export type ContratoAditivoUncheckedCreateWithoutEmpresaInput = {
+    id?: string
+    contrato_id: string
+    criado_por?: string | null
+    numero: number
+    inclui_reembolso?: boolean
+    inclui_probono?: boolean
+    texto_livre?: string | null
+    conteudo?: string | null
+    status?: $Enums.StatusContrato
+    authentique_id?: string | null
+    authentique_url?: string | null
+    pdf_assinado_url?: string | null
+    assinado_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type ContratoAditivoCreateOrConnectWithoutEmpresaInput = {
+    where: ContratoAditivoWhereUniqueInput
+    create: XOR<ContratoAditivoCreateWithoutEmpresaInput, ContratoAditivoUncheckedCreateWithoutEmpresaInput>
+  }
+
+  export type ContratoAditivoCreateManyEmpresaInputEnvelope = {
+    data: ContratoAditivoCreateManyEmpresaInput | ContratoAditivoCreateManyEmpresaInput[]
     skipDuplicates?: boolean
   }
 
@@ -103845,6 +105786,44 @@ export namespace Prisma {
     atualizado_em?: DateTimeFilter<"Contrato"> | Date | string
   }
 
+  export type ContratoAditivoUpsertWithWhereUniqueWithoutEmpresaInput = {
+    where: ContratoAditivoWhereUniqueInput
+    update: XOR<ContratoAditivoUpdateWithoutEmpresaInput, ContratoAditivoUncheckedUpdateWithoutEmpresaInput>
+    create: XOR<ContratoAditivoCreateWithoutEmpresaInput, ContratoAditivoUncheckedCreateWithoutEmpresaInput>
+  }
+
+  export type ContratoAditivoUpdateWithWhereUniqueWithoutEmpresaInput = {
+    where: ContratoAditivoWhereUniqueInput
+    data: XOR<ContratoAditivoUpdateWithoutEmpresaInput, ContratoAditivoUncheckedUpdateWithoutEmpresaInput>
+  }
+
+  export type ContratoAditivoUpdateManyWithWhereWithoutEmpresaInput = {
+    where: ContratoAditivoScalarWhereInput
+    data: XOR<ContratoAditivoUpdateManyMutationInput, ContratoAditivoUncheckedUpdateManyWithoutEmpresaInput>
+  }
+
+  export type ContratoAditivoScalarWhereInput = {
+    AND?: ContratoAditivoScalarWhereInput | ContratoAditivoScalarWhereInput[]
+    OR?: ContratoAditivoScalarWhereInput[]
+    NOT?: ContratoAditivoScalarWhereInput | ContratoAditivoScalarWhereInput[]
+    id?: StringFilter<"ContratoAditivo"> | string
+    empresa_id?: StringFilter<"ContratoAditivo"> | string
+    contrato_id?: StringFilter<"ContratoAditivo"> | string
+    criado_por?: StringNullableFilter<"ContratoAditivo"> | string | null
+    numero?: IntFilter<"ContratoAditivo"> | number
+    inclui_reembolso?: BoolFilter<"ContratoAditivo"> | boolean
+    inclui_probono?: BoolFilter<"ContratoAditivo"> | boolean
+    texto_livre?: StringNullableFilter<"ContratoAditivo"> | string | null
+    conteudo?: StringNullableFilter<"ContratoAditivo"> | string | null
+    status?: EnumStatusContratoFilter<"ContratoAditivo"> | $Enums.StatusContrato
+    authentique_id?: StringNullableFilter<"ContratoAditivo"> | string | null
+    authentique_url?: StringNullableFilter<"ContratoAditivo"> | string | null
+    pdf_assinado_url?: StringNullableFilter<"ContratoAditivo"> | string | null
+    assinado_em?: DateTimeNullableFilter<"ContratoAditivo"> | Date | string | null
+    criado_em?: DateTimeFilter<"ContratoAditivo"> | Date | string
+    atualizado_em?: DateTimeFilter<"ContratoAditivo"> | Date | string
+  }
+
   export type ProjetoUpsertWithWhereUniqueWithoutEmpresaInput = {
     where: ProjetoWhereUniqueInput
     update: XOR<ProjetoUpdateWithoutEmpresaInput, ProjetoUncheckedUpdateWithoutEmpresaInput>
@@ -105010,6 +106989,7 @@ export namespace Prisma {
     eventos?: EventoCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutContratoInput
     documentos?: DocumentoCreateNestedManyWithoutContratoInput
+    aditivos?: ContratoAditivoCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoUncheckedCreateWithoutCriadorInput = {
@@ -105066,6 +107046,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutContratoInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutContratoInput
+    aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoCreateOrConnectWithoutCriadorInput = {
@@ -105534,6 +107515,7 @@ export namespace Prisma {
     eventos?: EventoCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutContratoInput
     documentos?: DocumentoCreateNestedManyWithoutContratoInput
+    aditivos?: ContratoAditivoCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoUncheckedCreateWithoutResponsavelInput = {
@@ -105590,6 +107572,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutContratoInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutContratoInput
+    aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoCreateOrConnectWithoutResponsavelInput = {
@@ -106299,6 +108282,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -106346,6 +108330,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -106503,6 +108488,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -106550,6 +108536,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -106628,6 +108615,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -106675,6 +108663,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -106782,6 +108771,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -106829,6 +108819,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -107050,6 +109041,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -107097,6 +109089,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -107223,6 +109216,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -107270,6 +109264,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -107386,6 +109381,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -107433,6 +109429,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -107648,6 +109645,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -107695,6 +109693,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -107906,6 +109905,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -107953,6 +109953,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -108213,6 +110214,7 @@ export namespace Prisma {
     eventos?: EventoCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutContratoInput
     documentos?: DocumentoCreateNestedManyWithoutContratoInput
+    aditivos?: ContratoAditivoCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoUncheckedCreateWithoutClienteInput = {
@@ -108269,6 +110271,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutContratoInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutContratoInput
+    aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoCreateOrConnectWithoutClienteInput = {
@@ -108829,6 +110832,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -108876,6 +110880,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -109389,6 +111394,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -109436,6 +111442,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -109728,6 +111735,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -109775,6 +111783,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -109942,6 +111951,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -109989,6 +111999,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -110120,6 +112131,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -110167,6 +112179,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -110493,6 +112506,7 @@ export namespace Prisma {
     servicos?: ServicoCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -110540,6 +112554,7 @@ export namespace Prisma {
     servicos?: ServicoUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -110962,6 +112977,7 @@ export namespace Prisma {
     servicos?: ServicoUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -111009,6 +113025,7 @@ export namespace Prisma {
     servicos?: ServicoUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -111375,6 +113392,7 @@ export namespace Prisma {
     servicos?: ServicoCreateNestedManyWithoutEmpresaInput
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -111422,6 +113440,7 @@ export namespace Prisma {
     servicos?: ServicoUncheckedCreateNestedManyWithoutEmpresaInput
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -111816,6 +113835,7 @@ export namespace Prisma {
     eventos?: EventoCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutContratoInput
     documentos?: DocumentoCreateNestedManyWithoutContratoInput
+    aditivos?: ContratoAditivoCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoUncheckedCreateWithoutPropostaInput = {
@@ -111872,6 +113892,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutContratoInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutContratoInput
+    aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoCreateOrConnectWithoutPropostaInput = {
@@ -111938,6 +113959,7 @@ export namespace Prisma {
     servicos?: ServicoUpdateManyWithoutEmpresaNestedInput
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -111985,6 +114007,7 @@ export namespace Prisma {
     servicos?: ServicoUncheckedUpdateManyWithoutEmpresaNestedInput
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -112395,6 +114418,7 @@ export namespace Prisma {
     eventos?: EventoUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutContratoNestedInput
     documentos?: DocumentoUpdateManyWithoutContratoNestedInput
+    aditivos?: ContratoAditivoUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoUncheckedUpdateWithoutPropostaInput = {
@@ -112451,6 +114475,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutContratoNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutContratoNestedInput
+    aditivos?: ContratoAditivoUncheckedUpdateManyWithoutContratoNestedInput
   }
 
   export type AceiteOtpUpsertWithWhereUniqueWithoutPropostaInput = {
@@ -112890,6 +114915,7 @@ export namespace Prisma {
     servicos?: ServicoCreateNestedManyWithoutEmpresaInput
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -112937,6 +114963,7 @@ export namespace Prisma {
     servicos?: ServicoUncheckedCreateNestedManyWithoutEmpresaInput
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -113538,6 +115565,52 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ContratoAditivoCreateWithoutContratoInput = {
+    id?: string
+    criado_por?: string | null
+    numero: number
+    inclui_reembolso?: boolean
+    inclui_probono?: boolean
+    texto_livre?: string | null
+    conteudo?: string | null
+    status?: $Enums.StatusContrato
+    authentique_id?: string | null
+    authentique_url?: string | null
+    pdf_assinado_url?: string | null
+    assinado_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutContrato_aditivosInput
+  }
+
+  export type ContratoAditivoUncheckedCreateWithoutContratoInput = {
+    id?: string
+    empresa_id: string
+    criado_por?: string | null
+    numero: number
+    inclui_reembolso?: boolean
+    inclui_probono?: boolean
+    texto_livre?: string | null
+    conteudo?: string | null
+    status?: $Enums.StatusContrato
+    authentique_id?: string | null
+    authentique_url?: string | null
+    pdf_assinado_url?: string | null
+    assinado_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type ContratoAditivoCreateOrConnectWithoutContratoInput = {
+    where: ContratoAditivoWhereUniqueInput
+    create: XOR<ContratoAditivoCreateWithoutContratoInput, ContratoAditivoUncheckedCreateWithoutContratoInput>
+  }
+
+  export type ContratoAditivoCreateManyContratoInputEnvelope = {
+    data: ContratoAditivoCreateManyContratoInput | ContratoAditivoCreateManyContratoInput[]
+    skipDuplicates?: boolean
+  }
+
   export type EmpresaUpsertWithoutContratosInput = {
     update: XOR<EmpresaUpdateWithoutContratosInput, EmpresaUncheckedUpdateWithoutContratosInput>
     create: XOR<EmpresaCreateWithoutContratosInput, EmpresaUncheckedCreateWithoutContratosInput>
@@ -113569,6 +115642,7 @@ export namespace Prisma {
     servicos?: ServicoUpdateManyWithoutEmpresaNestedInput
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -113616,6 +115690,7 @@ export namespace Prisma {
     servicos?: ServicoUncheckedUpdateManyWithoutEmpresaNestedInput
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -114074,6 +116149,474 @@ export namespace Prisma {
     data: XOR<DocumentoUpdateManyMutationInput, DocumentoUncheckedUpdateManyWithoutContratoInput>
   }
 
+  export type ContratoAditivoUpsertWithWhereUniqueWithoutContratoInput = {
+    where: ContratoAditivoWhereUniqueInput
+    update: XOR<ContratoAditivoUpdateWithoutContratoInput, ContratoAditivoUncheckedUpdateWithoutContratoInput>
+    create: XOR<ContratoAditivoCreateWithoutContratoInput, ContratoAditivoUncheckedCreateWithoutContratoInput>
+  }
+
+  export type ContratoAditivoUpdateWithWhereUniqueWithoutContratoInput = {
+    where: ContratoAditivoWhereUniqueInput
+    data: XOR<ContratoAditivoUpdateWithoutContratoInput, ContratoAditivoUncheckedUpdateWithoutContratoInput>
+  }
+
+  export type ContratoAditivoUpdateManyWithWhereWithoutContratoInput = {
+    where: ContratoAditivoScalarWhereInput
+    data: XOR<ContratoAditivoUpdateManyMutationInput, ContratoAditivoUncheckedUpdateManyWithoutContratoInput>
+  }
+
+  export type EmpresaCreateWithoutContrato_aditivosInput = {
+    id?: string
+    nome: string
+    slug: string
+    cnpj?: string | null
+    logo_url?: string | null
+    plano?: $Enums.PlanoTipo
+    status?: $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
+    perfis?: PerfilCreateNestedManyWithoutEmpresaInput
+    convites?: ConviteEmpresaCreateNestedManyWithoutEmpresaInput
+    convites_cliente?: ConviteClienteCreateNestedManyWithoutEmpresaInput
+    clientes?: ClienteCreateNestedManyWithoutEmpresaInput
+    servicos?: ServicoCreateNestedManyWithoutEmpresaInput
+    leads?: LeadCreateNestedManyWithoutEmpresaInput
+    propostas?: PropostaCreateNestedManyWithoutEmpresaInput
+    contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
+    documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
+    plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
+    contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
+    boletos?: BoletoCreateNestedManyWithoutEmpresaInput
+    recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
+    contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
+    modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
+    eventos?: EventoCreateNestedManyWithoutEmpresaInput
+    registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
+    notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
+    notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
+    diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+  }
+
+  export type EmpresaUncheckedCreateWithoutContrato_aditivosInput = {
+    id?: string
+    nome: string
+    slug: string
+    cnpj?: string | null
+    logo_url?: string | null
+    plano?: $Enums.PlanoTipo
+    status?: $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
+    perfis?: PerfilUncheckedCreateNestedManyWithoutEmpresaInput
+    convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
+    convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutEmpresaInput
+    clientes?: ClienteUncheckedCreateNestedManyWithoutEmpresaInput
+    servicos?: ServicoUncheckedCreateNestedManyWithoutEmpresaInput
+    leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
+    propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
+    contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
+    contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
+    boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
+    recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
+    contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
+    modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
+    registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
+    notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
+    notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+  }
+
+  export type EmpresaCreateOrConnectWithoutContrato_aditivosInput = {
+    where: EmpresaWhereUniqueInput
+    create: XOR<EmpresaCreateWithoutContrato_aditivosInput, EmpresaUncheckedCreateWithoutContrato_aditivosInput>
+  }
+
+  export type ContratoCreateWithoutAditivosInput = {
+    id?: string
+    numero_contrato?: string | null
+    tipo_contrato?: string | null
+    titulo: string
+    objeto?: string | null
+    status?: $Enums.StatusContrato
+    conteudo?: string | null
+    valor_total?: Decimal | DecimalJsLike | number | string
+    forma_pagamento?: string | null
+    periodicidade?: string | null
+    numero_parcelas?: number | null
+    primeiro_vencimento?: Date | string | null
+    dia_vencimento?: number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
+    indice_reajuste?: string | null
+    periodicidade_reajuste?: string | null
+    renovacao_automatica?: boolean
+    gerar_projeto?: boolean
+    gerar_financeiro?: boolean
+    cliente_nome?: string | null
+    cliente_cpf_cnpj?: string | null
+    cliente_contato_nome?: string | null
+    cliente_contato_email?: string | null
+    cliente_contato_tel?: string | null
+    data_emissao?: Date | string | null
+    data_inicio?: Date | string | null
+    data_fim?: Date | string | null
+    assinado_em?: Date | string | null
+    anexo_url?: string | null
+    authentique_id?: string | null
+    authentique_url?: string | null
+    pdf_assinado_url?: string | null
+    juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: Decimal | DecimalJsLike | number | string | null
+    probono_arato?: boolean
+    probono_versao?: string | null
+    probono_meses?: number | null
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: Decimal | DecimalJsLike | number | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutContratosInput
+    proposta?: PropostaCreateNestedOneWithoutContratoInput
+    cliente: ClienteCreateNestedOneWithoutContratosInput
+    criador?: UsuarioCreateNestedOneWithoutContratos_criadosInput
+    responsavel?: UsuarioCreateNestedOneWithoutContratos_responsavelInput
+    projeto?: ProjetoCreateNestedOneWithoutContratoInput
+    recebiveis?: RecebivelCreateNestedManyWithoutContratoInput
+    eventos?: EventoCreateNestedManyWithoutContratoInput
+    notas_fiscais?: NotaFiscalCreateNestedManyWithoutContratoInput
+    documentos?: DocumentoCreateNestedManyWithoutContratoInput
+  }
+
+  export type ContratoUncheckedCreateWithoutAditivosInput = {
+    id?: string
+    empresa_id: string
+    proposta_id?: string | null
+    cliente_id: string
+    criado_por?: string | null
+    responsavel_id?: string | null
+    numero_contrato?: string | null
+    tipo_contrato?: string | null
+    titulo: string
+    objeto?: string | null
+    status?: $Enums.StatusContrato
+    conteudo?: string | null
+    valor_total?: Decimal | DecimalJsLike | number | string
+    forma_pagamento?: string | null
+    periodicidade?: string | null
+    numero_parcelas?: number | null
+    primeiro_vencimento?: Date | string | null
+    dia_vencimento?: number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
+    indice_reajuste?: string | null
+    periodicidade_reajuste?: string | null
+    renovacao_automatica?: boolean
+    gerar_projeto?: boolean
+    gerar_financeiro?: boolean
+    cliente_nome?: string | null
+    cliente_cpf_cnpj?: string | null
+    cliente_contato_nome?: string | null
+    cliente_contato_email?: string | null
+    cliente_contato_tel?: string | null
+    data_emissao?: Date | string | null
+    data_inicio?: Date | string | null
+    data_fim?: Date | string | null
+    assinado_em?: Date | string | null
+    anexo_url?: string | null
+    authentique_id?: string | null
+    authentique_url?: string | null
+    pdf_assinado_url?: string | null
+    juros_ao_mes_percentual?: Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: Decimal | DecimalJsLike | number | string | null
+    probono_arato?: boolean
+    probono_versao?: string | null
+    probono_meses?: number | null
+    reembolso_despesas?: boolean
+    reembolso_valor_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: Decimal | DecimalJsLike | number | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    projeto?: ProjetoUncheckedCreateNestedOneWithoutContratoInput
+    recebiveis?: RecebivelUncheckedCreateNestedManyWithoutContratoInput
+    eventos?: EventoUncheckedCreateNestedManyWithoutContratoInput
+    notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutContratoInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutContratoInput
+  }
+
+  export type ContratoCreateOrConnectWithoutAditivosInput = {
+    where: ContratoWhereUniqueInput
+    create: XOR<ContratoCreateWithoutAditivosInput, ContratoUncheckedCreateWithoutAditivosInput>
+  }
+
+  export type EmpresaUpsertWithoutContrato_aditivosInput = {
+    update: XOR<EmpresaUpdateWithoutContrato_aditivosInput, EmpresaUncheckedUpdateWithoutContrato_aditivosInput>
+    create: XOR<EmpresaCreateWithoutContrato_aditivosInput, EmpresaUncheckedCreateWithoutContrato_aditivosInput>
+    where?: EmpresaWhereInput
+  }
+
+  export type EmpresaUpdateToOneWithWhereWithoutContrato_aditivosInput = {
+    where?: EmpresaWhereInput
+    data: XOR<EmpresaUpdateWithoutContrato_aditivosInput, EmpresaUncheckedUpdateWithoutContrato_aditivosInput>
+  }
+
+  export type EmpresaUpdateWithoutContrato_aditivosInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    logo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
+    status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
+    perfis?: PerfilUpdateManyWithoutEmpresaNestedInput
+    convites?: ConviteEmpresaUpdateManyWithoutEmpresaNestedInput
+    convites_cliente?: ConviteClienteUpdateManyWithoutEmpresaNestedInput
+    clientes?: ClienteUpdateManyWithoutEmpresaNestedInput
+    servicos?: ServicoUpdateManyWithoutEmpresaNestedInput
+    leads?: LeadUpdateManyWithoutEmpresaNestedInput
+    propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
+    contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
+    documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
+    plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
+    contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
+    boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
+    recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
+    contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
+    modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
+    eventos?: EventoUpdateManyWithoutEmpresaNestedInput
+    registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
+    notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
+    notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
+    diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+  }
+
+  export type EmpresaUncheckedUpdateWithoutContrato_aditivosInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    logo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
+    status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
+    perfis?: PerfilUncheckedUpdateManyWithoutEmpresaNestedInput
+    convites?: ConviteEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
+    convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutEmpresaNestedInput
+    clientes?: ClienteUncheckedUpdateManyWithoutEmpresaNestedInput
+    servicos?: ServicoUncheckedUpdateManyWithoutEmpresaNestedInput
+    leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
+    propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
+    contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
+    contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
+    recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
+    contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
+    modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
+    registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
+    notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
+    notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+  }
+
+  export type ContratoUpsertWithoutAditivosInput = {
+    update: XOR<ContratoUpdateWithoutAditivosInput, ContratoUncheckedUpdateWithoutAditivosInput>
+    create: XOR<ContratoCreateWithoutAditivosInput, ContratoUncheckedCreateWithoutAditivosInput>
+    where?: ContratoWhereInput
+  }
+
+  export type ContratoUpdateToOneWithWhereWithoutAditivosInput = {
+    where?: ContratoWhereInput
+    data: XOR<ContratoUpdateWithoutAditivosInput, ContratoUncheckedUpdateWithoutAditivosInput>
+  }
+
+  export type ContratoUpdateWithoutAditivosInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    numero_contrato?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_contrato?: NullableStringFieldUpdateOperationsInput | string | null
+    titulo?: StringFieldUpdateOperationsInput | string
+    objeto?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusContratoFieldUpdateOperationsInput | $Enums.StatusContrato
+    conteudo?: NullableStringFieldUpdateOperationsInput | string | null
+    valor_total?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    forma_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
+    periodicidade?: NullableStringFieldUpdateOperationsInput | string | null
+    numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
+    primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
+    indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
+    periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
+    renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
+    gerar_projeto?: BoolFieldUpdateOperationsInput | boolean
+    gerar_financeiro?: BoolFieldUpdateOperationsInput | boolean
+    cliente_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_cpf_cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_contato_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_contato_email?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_contato_tel?: NullableStringFieldUpdateOperationsInput | string | null
+    data_emissao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    anexo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
+    authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
+    pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFieldUpdateOperationsInput | boolean
+    probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
+    probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
+    reembolso_despesas?: BoolFieldUpdateOperationsInput | boolean
+    reembolso_valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutContratosNestedInput
+    proposta?: PropostaUpdateOneWithoutContratoNestedInput
+    cliente?: ClienteUpdateOneRequiredWithoutContratosNestedInput
+    criador?: UsuarioUpdateOneWithoutContratos_criadosNestedInput
+    responsavel?: UsuarioUpdateOneWithoutContratos_responsavelNestedInput
+    projeto?: ProjetoUpdateOneWithoutContratoNestedInput
+    recebiveis?: RecebivelUpdateManyWithoutContratoNestedInput
+    eventos?: EventoUpdateManyWithoutContratoNestedInput
+    notas_fiscais?: NotaFiscalUpdateManyWithoutContratoNestedInput
+    documentos?: DocumentoUpdateManyWithoutContratoNestedInput
+  }
+
+  export type ContratoUncheckedUpdateWithoutAditivosInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    proposta_id?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_id?: StringFieldUpdateOperationsInput | string
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    responsavel_id?: NullableStringFieldUpdateOperationsInput | string | null
+    numero_contrato?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo_contrato?: NullableStringFieldUpdateOperationsInput | string | null
+    titulo?: StringFieldUpdateOperationsInput | string
+    objeto?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusContratoFieldUpdateOperationsInput | $Enums.StatusContrato
+    conteudo?: NullableStringFieldUpdateOperationsInput | string | null
+    valor_total?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    forma_pagamento?: NullableStringFieldUpdateOperationsInput | string | null
+    periodicidade?: NullableStringFieldUpdateOperationsInput | string | null
+    numero_parcelas?: NullableIntFieldUpdateOperationsInput | number | null
+    primeiro_vencimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dia_vencimento?: NullableIntFieldUpdateOperationsInput | number | null
+    parcelas_json?: NullableJsonNullValueInput | InputJsonValue
+    indice_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
+    periodicidade_reajuste?: NullableStringFieldUpdateOperationsInput | string | null
+    renovacao_automatica?: BoolFieldUpdateOperationsInput | boolean
+    gerar_projeto?: BoolFieldUpdateOperationsInput | boolean
+    gerar_financeiro?: BoolFieldUpdateOperationsInput | boolean
+    cliente_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_cpf_cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_contato_nome?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_contato_email?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_contato_tel?: NullableStringFieldUpdateOperationsInput | string | null
+    data_emissao?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data_inicio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    data_fim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    anexo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
+    authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
+    pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    juros_ao_mes_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    multa_percentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    probono_arato?: BoolFieldUpdateOperationsInput | boolean
+    probono_versao?: NullableStringFieldUpdateOperationsInput | string | null
+    probono_meses?: NullableIntFieldUpdateOperationsInput | number | null
+    reembolso_despesas?: BoolFieldUpdateOperationsInput | boolean
+    reembolso_valor_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    projeto?: ProjetoUncheckedUpdateOneWithoutContratoNestedInput
+    recebiveis?: RecebivelUncheckedUpdateManyWithoutContratoNestedInput
+    eventos?: EventoUncheckedUpdateManyWithoutContratoNestedInput
+    notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutContratoNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutContratoNestedInput
+  }
+
   export type EmpresaCreateWithoutProjetosInput = {
     id?: string
     nome: string
@@ -114095,6 +116638,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
@@ -114142,6 +116686,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
@@ -114227,6 +116772,7 @@ export namespace Prisma {
     eventos?: EventoCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutContratoInput
     documentos?: DocumentoCreateNestedManyWithoutContratoInput
+    aditivos?: ContratoAditivoCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoUncheckedCreateWithoutProjetoInput = {
@@ -114283,6 +116829,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutContratoInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutContratoInput
+    aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoCreateOrConnectWithoutProjetoInput = {
@@ -114759,6 +117306,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
@@ -114806,6 +117354,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -114897,6 +117446,7 @@ export namespace Prisma {
     eventos?: EventoUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutContratoNestedInput
     documentos?: DocumentoUpdateManyWithoutContratoNestedInput
+    aditivos?: ContratoAditivoUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoUncheckedUpdateWithoutProjetoInput = {
@@ -114953,6 +117503,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutContratoNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutContratoNestedInput
+    aditivos?: ContratoAditivoUncheckedUpdateManyWithoutContratoNestedInput
   }
 
   export type ClienteUpsertWithoutProjetosInput = {
@@ -117495,6 +120046,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -117542,6 +120094,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -117623,6 +120176,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -117670,6 +120224,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -117881,6 +120436,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
@@ -117928,6 +120484,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
@@ -118098,6 +120655,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
@@ -118145,6 +120703,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -118259,6 +120818,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
@@ -118306,6 +120866,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
@@ -118531,6 +121092,7 @@ export namespace Prisma {
     recebiveis?: RecebivelCreateNestedManyWithoutContratoInput
     eventos?: EventoCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutContratoInput
+    aditivos?: ContratoAditivoCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoUncheckedCreateWithoutDocumentosInput = {
@@ -118587,6 +121149,7 @@ export namespace Prisma {
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutContratoInput
     eventos?: EventoUncheckedCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutContratoInput
+    aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoCreateOrConnectWithoutDocumentosInput = {
@@ -118718,6 +121281,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
@@ -118765,6 +121329,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -119008,6 +121573,7 @@ export namespace Prisma {
     recebiveis?: RecebivelUpdateManyWithoutContratoNestedInput
     eventos?: EventoUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutContratoNestedInput
+    aditivos?: ContratoAditivoUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoUncheckedUpdateWithoutDocumentosInput = {
@@ -119064,6 +121630,7 @@ export namespace Prisma {
     recebiveis?: RecebivelUncheckedUpdateManyWithoutContratoNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutContratoNestedInput
+    aditivos?: ContratoAditivoUncheckedUpdateManyWithoutContratoNestedInput
   }
 
   export type PastaDocumentoUpsertWithoutDocumentosInput = {
@@ -119191,6 +121758,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -119238,6 +121806,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -119550,6 +122119,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -119597,6 +122167,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -119815,6 +122386,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -119862,6 +122434,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -120130,6 +122703,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -120177,6 +122751,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -120313,6 +122888,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -120360,6 +122936,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -120513,6 +123090,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -120560,6 +123138,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -120709,6 +123288,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -120756,6 +123336,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -120996,6 +123577,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -121043,6 +123625,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -121179,6 +123762,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -121226,6 +123810,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -121400,6 +123985,7 @@ export namespace Prisma {
     eventos?: EventoCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutContratoInput
     documentos?: DocumentoCreateNestedManyWithoutContratoInput
+    aditivos?: ContratoAditivoCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoUncheckedCreateWithoutRecebiveisInput = {
@@ -121456,6 +124042,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutContratoInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutContratoInput
+    aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoCreateOrConnectWithoutRecebiveisInput = {
@@ -121771,6 +124358,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -121818,6 +124406,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -122004,6 +124593,7 @@ export namespace Prisma {
     eventos?: EventoUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutContratoNestedInput
     documentos?: DocumentoUpdateManyWithoutContratoNestedInput
+    aditivos?: ContratoAditivoUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoUncheckedUpdateWithoutRecebiveisInput = {
@@ -122060,6 +124650,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutContratoNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutContratoNestedInput
+    aditivos?: ContratoAditivoUncheckedUpdateManyWithoutContratoNestedInput
   }
 
   export type PlanoDeContasUpsertWithoutRecebiveisInput = {
@@ -122395,6 +124986,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -122442,6 +125034,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -122742,6 +125335,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -122789,6 +125383,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -123103,6 +125698,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -123150,6 +125746,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -123263,6 +125860,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -123310,6 +125908,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -123373,6 +125972,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -123420,6 +126020,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -123483,6 +126084,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -123530,6 +126132,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -123577,6 +126180,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -123624,6 +126228,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -123861,6 +126466,7 @@ export namespace Prisma {
     recebiveis?: RecebivelCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalCreateNestedManyWithoutContratoInput
     documentos?: DocumentoCreateNestedManyWithoutContratoInput
+    aditivos?: ContratoAditivoCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoUncheckedCreateWithoutEventosInput = {
@@ -123917,6 +126523,7 @@ export namespace Prisma {
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutContratoInput
     notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutContratoInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutContratoInput
+    aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoCreateOrConnectWithoutEventosInput = {
@@ -124007,6 +126614,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -124054,6 +126662,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -124309,6 +126918,7 @@ export namespace Prisma {
     recebiveis?: RecebivelUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutContratoNestedInput
     documentos?: DocumentoUpdateManyWithoutContratoNestedInput
+    aditivos?: ContratoAditivoUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoUncheckedUpdateWithoutEventosInput = {
@@ -124365,6 +126975,7 @@ export namespace Prisma {
     recebiveis?: RecebivelUncheckedUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutContratoNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutContratoNestedInput
+    aditivos?: ContratoAditivoUncheckedUpdateManyWithoutContratoNestedInput
   }
 
   export type ProjetoUpsertWithoutEventosInput = {
@@ -124445,6 +127056,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -124492,6 +127104,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -124555,6 +127168,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -124602,6 +127216,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -124649,6 +127264,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -124696,6 +127312,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -124759,6 +127376,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -124806,6 +127424,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -124853,6 +127472,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -124900,6 +127520,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -125074,6 +127695,7 @@ export namespace Prisma {
     recebiveis?: RecebivelCreateNestedManyWithoutContratoInput
     eventos?: EventoCreateNestedManyWithoutContratoInput
     documentos?: DocumentoCreateNestedManyWithoutContratoInput
+    aditivos?: ContratoAditivoCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoUncheckedCreateWithoutNotas_fiscaisInput = {
@@ -125130,6 +127752,7 @@ export namespace Prisma {
     recebiveis?: RecebivelUncheckedCreateNestedManyWithoutContratoInput
     eventos?: EventoUncheckedCreateNestedManyWithoutContratoInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutContratoInput
+    aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutContratoInput
   }
 
   export type ContratoCreateOrConnectWithoutNotas_fiscaisInput = {
@@ -125240,6 +127863,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -125287,6 +127911,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -125473,6 +128098,7 @@ export namespace Prisma {
     recebiveis?: RecebivelUpdateManyWithoutContratoNestedInput
     eventos?: EventoUpdateManyWithoutContratoNestedInput
     documentos?: DocumentoUpdateManyWithoutContratoNestedInput
+    aditivos?: ContratoAditivoUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoUncheckedUpdateWithoutNotas_fiscaisInput = {
@@ -125529,6 +128155,7 @@ export namespace Prisma {
     recebiveis?: RecebivelUncheckedUpdateManyWithoutContratoNestedInput
     eventos?: EventoUncheckedUpdateManyWithoutContratoNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutContratoNestedInput
+    aditivos?: ContratoAditivoUncheckedUpdateManyWithoutContratoNestedInput
   }
 
   export type RecebivelUpsertWithoutNota_fiscalInput = {
@@ -125629,6 +128256,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -125676,6 +128304,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -125899,6 +128528,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -125946,6 +128576,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -126165,6 +128796,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -126212,6 +128844,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -126415,6 +129048,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -126462,6 +129096,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -126845,6 +129480,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -126892,6 +129528,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -127095,6 +129732,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -127142,6 +129780,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -127341,6 +129980,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -127388,6 +130028,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -127493,6 +130134,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -127540,6 +130182,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -127823,6 +130466,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -127870,6 +130514,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -127933,6 +130578,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -127980,6 +130626,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -128027,6 +130674,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -128074,6 +130722,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -128180,6 +130829,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -128227,6 +130877,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -128323,6 +130974,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -128370,6 +131022,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -128565,6 +131218,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -128612,6 +131266,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -128803,6 +131458,7 @@ export namespace Prisma {
     leads?: LeadCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
@@ -128850,6 +131506,7 @@ export namespace Prisma {
     leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
     propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
     contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
     projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
     documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
     pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
@@ -128947,6 +131604,7 @@ export namespace Prisma {
     leads?: LeadUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
@@ -128994,6 +131652,7 @@ export namespace Prisma {
     leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
     propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
     contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
     projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
     pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
@@ -129290,6 +131949,24 @@ export namespace Prisma {
     reembolso_distancia_km?: Decimal | DecimalJsLike | number | string | null
     reembolso_limite_alimentacao?: Decimal | DecimalJsLike | number | string | null
     reembolso_limite_hospedagem?: Decimal | DecimalJsLike | number | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
+  export type ContratoAditivoCreateManyEmpresaInput = {
+    id?: string
+    contrato_id: string
+    criado_por?: string | null
+    numero: number
+    inclui_reembolso?: boolean
+    inclui_probono?: boolean
+    texto_livre?: string | null
+    conteudo?: string | null
+    status?: $Enums.StatusContrato
+    authentique_id?: string | null
+    authentique_url?: string | null
+    pdf_assinado_url?: string | null
+    assinado_em?: Date | string | null
     criado_em?: Date | string
     atualizado_em?: Date | string
   }
@@ -130190,6 +132867,7 @@ export namespace Prisma {
     eventos?: EventoUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutContratoNestedInput
     documentos?: DocumentoUpdateManyWithoutContratoNestedInput
+    aditivos?: ContratoAditivoUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoUncheckedUpdateWithoutEmpresaInput = {
@@ -130246,6 +132924,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutContratoNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutContratoNestedInput
+    aditivos?: ContratoAditivoUncheckedUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoUncheckedUpdateManyWithoutEmpresaInput = {
@@ -130295,6 +132974,60 @@ export namespace Prisma {
     reembolso_distancia_km?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     reembolso_limite_alimentacao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     reembolso_limite_hospedagem?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContratoAditivoUpdateWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    numero?: IntFieldUpdateOperationsInput | number
+    inclui_reembolso?: BoolFieldUpdateOperationsInput | boolean
+    inclui_probono?: BoolFieldUpdateOperationsInput | boolean
+    texto_livre?: NullableStringFieldUpdateOperationsInput | string | null
+    conteudo?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusContratoFieldUpdateOperationsInput | $Enums.StatusContrato
+    authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
+    authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
+    pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    contrato?: ContratoUpdateOneRequiredWithoutAditivosNestedInput
+  }
+
+  export type ContratoAditivoUncheckedUpdateWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    contrato_id?: StringFieldUpdateOperationsInput | string
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    numero?: IntFieldUpdateOperationsInput | number
+    inclui_reembolso?: BoolFieldUpdateOperationsInput | boolean
+    inclui_probono?: BoolFieldUpdateOperationsInput | boolean
+    texto_livre?: NullableStringFieldUpdateOperationsInput | string | null
+    conteudo?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusContratoFieldUpdateOperationsInput | $Enums.StatusContrato
+    authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
+    authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
+    pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContratoAditivoUncheckedUpdateManyWithoutEmpresaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    contrato_id?: StringFieldUpdateOperationsInput | string
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    numero?: IntFieldUpdateOperationsInput | number
+    inclui_reembolso?: BoolFieldUpdateOperationsInput | boolean
+    inclui_probono?: BoolFieldUpdateOperationsInput | boolean
+    texto_livre?: NullableStringFieldUpdateOperationsInput | string | null
+    conteudo?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusContratoFieldUpdateOperationsInput | $Enums.StatusContrato
+    authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
+    authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
+    pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -132206,6 +134939,7 @@ export namespace Prisma {
     eventos?: EventoUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutContratoNestedInput
     documentos?: DocumentoUpdateManyWithoutContratoNestedInput
+    aditivos?: ContratoAditivoUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoUncheckedUpdateWithoutCriadorInput = {
@@ -132262,6 +134996,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutContratoNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutContratoNestedInput
+    aditivos?: ContratoAditivoUncheckedUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoUncheckedUpdateManyWithoutCriadorInput = {
@@ -132848,6 +135583,7 @@ export namespace Prisma {
     eventos?: EventoUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutContratoNestedInput
     documentos?: DocumentoUpdateManyWithoutContratoNestedInput
+    aditivos?: ContratoAditivoUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoUncheckedUpdateWithoutResponsavelInput = {
@@ -132904,6 +135640,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutContratoNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutContratoNestedInput
+    aditivos?: ContratoAditivoUncheckedUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoUncheckedUpdateManyWithoutResponsavelInput = {
@@ -133766,6 +136503,7 @@ export namespace Prisma {
     eventos?: EventoUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUpdateManyWithoutContratoNestedInput
     documentos?: DocumentoUpdateManyWithoutContratoNestedInput
+    aditivos?: ContratoAditivoUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoUncheckedUpdateWithoutClienteInput = {
@@ -133822,6 +136560,7 @@ export namespace Prisma {
     eventos?: EventoUncheckedUpdateManyWithoutContratoNestedInput
     notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutContratoNestedInput
     documentos?: DocumentoUncheckedUpdateManyWithoutContratoNestedInput
+    aditivos?: ContratoAditivoUncheckedUpdateManyWithoutContratoNestedInput
   }
 
   export type ContratoUncheckedUpdateManyWithoutClienteInput = {
@@ -135194,6 +137933,24 @@ export namespace Prisma {
     criado_em?: Date | string
   }
 
+  export type ContratoAditivoCreateManyContratoInput = {
+    id?: string
+    empresa_id: string
+    criado_por?: string | null
+    numero: number
+    inclui_reembolso?: boolean
+    inclui_probono?: boolean
+    texto_livre?: string | null
+    conteudo?: string | null
+    status?: $Enums.StatusContrato
+    authentique_id?: string | null
+    authentique_url?: string | null
+    pdf_assinado_url?: string | null
+    assinado_em?: Date | string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+  }
+
   export type RecebivelUpdateWithoutContratoInput = {
     id?: StringFieldUpdateOperationsInput | string
     descricao?: StringFieldUpdateOperationsInput | string
@@ -135478,6 +138235,60 @@ export namespace Prisma {
     arquivo_tamanho?: IntFieldUpdateOperationsInput | number
     mime_type?: StringFieldUpdateOperationsInput | string
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContratoAditivoUpdateWithoutContratoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    numero?: IntFieldUpdateOperationsInput | number
+    inclui_reembolso?: BoolFieldUpdateOperationsInput | boolean
+    inclui_probono?: BoolFieldUpdateOperationsInput | boolean
+    texto_livre?: NullableStringFieldUpdateOperationsInput | string | null
+    conteudo?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusContratoFieldUpdateOperationsInput | $Enums.StatusContrato
+    authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
+    authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
+    pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutContrato_aditivosNestedInput
+  }
+
+  export type ContratoAditivoUncheckedUpdateWithoutContratoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    numero?: IntFieldUpdateOperationsInput | number
+    inclui_reembolso?: BoolFieldUpdateOperationsInput | boolean
+    inclui_probono?: BoolFieldUpdateOperationsInput | boolean
+    texto_livre?: NullableStringFieldUpdateOperationsInput | string | null
+    conteudo?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusContratoFieldUpdateOperationsInput | $Enums.StatusContrato
+    authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
+    authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
+    pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContratoAditivoUncheckedUpdateManyWithoutContratoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    criado_por?: NullableStringFieldUpdateOperationsInput | string | null
+    numero?: IntFieldUpdateOperationsInput | number
+    inclui_reembolso?: BoolFieldUpdateOperationsInput | boolean
+    inclui_probono?: BoolFieldUpdateOperationsInput | boolean
+    texto_livre?: NullableStringFieldUpdateOperationsInput | string | null
+    conteudo?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusContratoFieldUpdateOperationsInput | $Enums.StatusContrato
+    authentique_id?: NullableStringFieldUpdateOperationsInput | string | null
+    authentique_url?: NullableStringFieldUpdateOperationsInput | string | null
+    pdf_assinado_url?: NullableStringFieldUpdateOperationsInput | string | null
+    assinado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EtapaCreateManyProjetoInput = {

@@ -45,6 +45,7 @@ model Empresa {
   leads      Lead[]
   propostas  Proposta[]
   contratos  Contrato[]
+  contrato_aditivos ContratoAditivo[]
   projetos         Projeto[]
   documentos       Documento[]
   pastas_documento PastaDocumento[]
@@ -535,8 +536,35 @@ model Contrato {
   eventos       Evento[]
   notas_fiscais NotaFiscal[]
   documentos    Documento[]
+  aditivos      ContratoAditivo[]
 
   @@map("contratos")
+}
+
+model ContratoAditivo {
+  id               String         @id @default(cuid())
+  empresa_id       String
+  contrato_id      String
+  criado_por       String?
+  numero           Int
+  inclui_reembolso Boolean        @default(false)
+  inclui_probono   Boolean        @default(false)
+  texto_livre      String?
+  conteudo         String?
+  status           StatusContrato @default(RASCUNHO)
+  authentique_id   String?
+  authentique_url  String?
+  pdf_assinado_url String?
+  assinado_em      DateTime?
+  criado_em        DateTime       @default(now())
+  atualizado_em    DateTime       @updatedAt
+
+  empresa  Empresa  @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  contrato Contrato @relation(fields: [contrato_id], references: [id], onDelete: Cascade)
+
+  @@unique([contrato_id, numero])
+  @@index([authentique_id])
+  @@map("contrato_aditivos")
 }
 
 // ─── FASE 2: ENUMS ────────────────────────────────────────────────────────────

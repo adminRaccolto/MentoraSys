@@ -6,7 +6,7 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Plus, Trash2, FileSignature, Link as LinkIcon, DollarSign, FileText, RefreshCw, Printer, Send, Download, ExternalLink, Copy, CheckCircle, Upload, X as XIcon } from "lucide-react";
+import { Plus, Trash2, FileSignature, Link as LinkIcon, DollarSign, FileText, RefreshCw, Printer, Send, Download, ExternalLink, Copy, CheckCircle, Upload, X as XIcon, FilePlus2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -23,6 +23,7 @@ import { gerarParcelasContrato } from "@/actions/recebiveis";
 import { enviarParaAssinatura } from "@/actions/assinatura";
 import { gerarClausulaProbono, VERSOES_ARATO } from "@/lib/clausula-probono";
 import { gerarClausulaReembolso, resolverValoresReembolso } from "@/lib/clausula-reembolso";
+import { AditivosDialog } from "./aditivos-dialog";
 
 const FORMAS_PAGAMENTO = ["À vista", "Parcelado", "Recorrente", "Mensal", "Trimestral", "Semestral", "Anual"];
 const PERIODICIDADES = ["Mensal", "Bimestral", "Trimestral", "Semestral", "Anual", "Única"];
@@ -284,6 +285,9 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
   const [contratoDocumento, setContratoDocumento] = useState<Contrato | null>(null);
   const [contratoAssinatura, setContratoAssinatura] = useState<Contrato | null>(null);
   const [contratoMarcarAssinado, setContratoMarcarAssinado] = useState<Contrato | null>(null);
+  // Guarda o id: após salvar no modal, o contrato atualizado é lido da lista
+  const [aditivosContratoId, setAditivosContratoId] = useState<string | null>(null);
+  const contratoAditivos = contratos.find((c) => c.id === aditivosContratoId) ?? null;
   const [dataAssinatura, setDataAssinatura] = useState(new Date().toISOString().split("T")[0]);
   const [isPending, startTransition] = useTransition();
   const [uploadandoAnexo, setUploadandoAnexo] = useState(false);
@@ -793,6 +797,10 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
                       )}
                       {c.status === "ASSINADO" && (
                         <>
+                          <Button size="icon" variant="ghost" className="size-8 text-primary" title="Aditivos"
+                            onClick={() => setAditivosContratoId(c.id)}>
+                            <FilePlus2 className="size-3.5" />
+                          </Button>
                           {c.pdf_assinado_url && (
                             <Button size="icon" variant="ghost" className="size-8 text-green-600" title="Baixar contrato assinado"
                               onClick={() => window.open(c.pdf_assinado_url!, "_blank")}>
@@ -1427,6 +1435,18 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
                 </Button>
               )}
 
+              {contratoEditando && contratoEditando.status === "ASSINADO" && (
+                <Button
+                  type="button"
+                  variant="outline"
+                  disabled={isPending}
+                  onClick={() => salvarAntesDe(() => { setModalAberto(false); setAditivosContratoId(contratoEditando.id); })}
+                >
+                  <FilePlus2 className="size-4 mr-2" />
+                  Aditivos
+                </Button>
+              )}
+
               {/* Gerar recebíveis — só aparece quando ASSINADO e sem parcelas */}
               {contratoEditando && contratoEditando.status === "ASSINADO" && contratoEditando.recebiveis_count === 0 && (
                 <Button
@@ -1695,6 +1715,13 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      <AditivosDialog
+        contrato={contratoAditivos}
+        onClose={() => setAditivosContratoId(null)}
+        cliente={clientes.find((cl) => cl.id === contratoAditivos?.cliente.id) ?? null}
+        empresaConfig={empresaConfig}
+      />
     </div>
   );
 }

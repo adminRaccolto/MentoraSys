@@ -10,6 +10,7 @@ import { textoParaHtml } from "@/lib/texto-html";
 import { gerarClausulaProbono, garantirVariavelProbono } from "@/lib/clausula-probono";
 import { clausulaReembolsoDoContrato, garantirVariavelReembolso } from "@/lib/clausula-reembolso";
 import { variaveisCliente } from "@/lib/variaveis-cliente";
+import { logoImgBase64 } from "@/lib/logo-base64";
 
 const schemaEnviar = z.object({
   contrato_id: z.string().min(1),
@@ -126,21 +127,7 @@ export async function enviarParaAssinatura(input: Input) {
 
   const config = (empresa.configuracoes as Record<string, string>) ?? {};
 
-  // ── Logo em base64 (Autentique não acessa URLs externas) ─────────────────────
-  let logoImgTag = "";
-  if (empresa.logo_url) {
-    try {
-      const logoRes = await fetch(empresa.logo_url);
-      if (logoRes.ok) {
-        const buffer = await logoRes.arrayBuffer();
-        const mime = logoRes.headers.get("content-type") ?? "image/png";
-        const b64 = Buffer.from(buffer).toString("base64");
-        logoImgTag = `<img src="data:${mime};base64,${b64}" alt="Logo" style="max-height:60px;max-width:180px;object-fit:contain;" />`;
-      }
-    } catch {
-      // se não conseguir buscar, deixa sem logo
-    }
-  }
+  const logoImgTag = await logoImgBase64(empresa.logo_url);
 
   // ── Montar variáveis ────────────────────────────────────────────────────────
   const vars: Record<string, string> = {

@@ -55,7 +55,15 @@ export async function POST(req: Request) {
           pdf_assinado_url: signedPdfUrl,
         },
       });
-      console.log("[authentique-webhook] updated contratos:", result.count);
+      const aditivos = await prisma.contratoAditivo.updateMany({
+        where: { authentique_id: documentId },
+        data: {
+          status: "ASSINADO",
+          assinado_em: new Date(),
+          pdf_assinado_url: signedPdfUrl,
+        },
+      });
+      console.log("[authentique-webhook] updated contratos:", result.count, "aditivos:", aditivos.count);
     }
   }
 
