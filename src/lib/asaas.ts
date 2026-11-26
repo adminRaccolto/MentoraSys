@@ -1,16 +1,30 @@
 import { prisma } from "@/lib/prisma";
 
+export class AsaasApiError extends Error {
+  constructor(public readonly status: number, message: string) {
+    super(message);
+  }
+}
+
+export function idCobrancaAsaasValido(id: string): boolean {
+  return /^pay_[a-zA-Z0-9_]+$/.test(id);
+}
+
+export function idCheckoutAsaasValido(id: string): boolean {
+  return /^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/i.test(id);
+}
+
 const BASE = process.env.ASAAS_SANDBOX === "true"
   ? "https://sandbox.asaas.com/api/v3"
   : "https://www.asaas.com/api/v3";
 
 // Busca a chave Asaas da empresa no banco; cai no env var como fallback.
-export async function obterChaveAsaas(empresaId: string): Promise<string> {
+export async function obterChaveAsaas(empresaId: string, permitirFallback = true): Promise<string> {
   const empresa = await prisma.empresa.findUnique({
     where: { id: empresaId },
     select: { asaas_api_key: true },
   });
-  const key = empresa?.asaas_api_key ?? process.env.ASAAS_API_KEY;
+  const key = empresa?.asaas_api_key ?? (permitirFallback ? process.env.ASAAS_API_KEY : undefined);
   if (!key) throw new Error("Chave de API Asaas não configurada para esta empresa");
   return key;
 }
@@ -29,7 +43,7 @@ async function req<T = unknown>(method: string, path: string, body?: object, api
   if (!res.ok) {
     const msg = (json as { errors?: { description: string }[] }).errors?.[0]?.description
       ?? `Asaas ${res.status}`;
-    throw new Error(msg);
+    throw new AsaasApiError(res.status, msg);
   }
   return json as T;
 }
@@ -44,19 +58,23 @@ interface AsaasListResponse<T> { data: T[]; totalCount?: number; hasMore?: boole
 
 export interface AsaasPaymentFull {
   id: string; status: string; value: number; dueDate: string;
+  netValue?: number; paymentDate?: string; confirmedDate?: string; clientPaymentDate?: string;
+  deleted?: boolean;
   description?: string; externalReference?: string;
   customer?: string;
   subscription?: string;
+  checkoutSession?: string;
   installment?: string; installmentNumber?: number; installmentCount?: number;
   bankSlipUrl?: string; invoiceUrl?: string; nossoNumero?: string;
 }
 
 export async function asaasListPayments(params?: {
-  offset?: number; limit?: number; externalReference?: string;
+  offset?: number; limit?: number; externalReference?: string; checkoutSession?: string;
 }, apiKey?: string): Promise<{ data: AsaasPaymentFull[]; totalCount: number; hasMore: boolean }> {
   const qs = new URLSearchParams({ limit: String(params?.limit ?? 100) })
   if (params?.offset) qs.set("offset", String(params.offset))
   if (params?.externalReference) qs.set("externalReference", params.externalReference)
+  if (params?.checkoutSession) qs.set("checkoutSession", params.checkoutSession)
   const res = await req<AsaasListResponse<AsaasPaymentFull>>("GET", `/payments?${qs}`, undefined, apiKey)
   return { data: res.data, totalCount: res.totalCount ?? res.data.length, hasMore: res.hasMore ?? false }
 }
@@ -84,8 +102,8 @@ export async function asaasCreateBoleto(params: {
   }, apiKey);
 }
 
-export async function asaasGetPayment(paymentId: string, apiKey?: string): Promise<AsaasPayment> {
-  return req<AsaasPayment>("GET", `/payments/${paymentId}`, undefined, apiKey);
+export async function asaasGetPayment(paymentId: string, apiKey?: string): Promise<AsaasPaymentFull> {
+  return req<AsaasPaymentFull>("GET", `/payments/${encodeURIComponent(paymentId)}`, undefined, apiKey);
 }
 
 export async function asaasGetBarCode(paymentId: string, apiKey?: string): Promise<AsaasBarCode> {

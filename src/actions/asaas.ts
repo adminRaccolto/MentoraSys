@@ -16,9 +16,11 @@ import {
   asaasUpdateSubscription,
   asaasCreatePaymentLink,
   asaasListPayments,
-  asaasGetCustomer,
+  idCheckoutAsaasValido,
+  idCobrancaAsaasValido,
   obterChaveAsaas,
 } from "@/lib/asaas";
+import { importarRecebivelAsaas, importarRecebiveisCheckoutAsaas, localizarVendaConselhoAgro } from "@/lib/asaas-recebiveis";
 
 // ─── COBRANÇAS (Recebíveis) ───────────────────────────────────────────────────
 
@@ -143,168 +145,74 @@ export async function sincronizarReceiveisConselhoAgro(): Promise<{
   await verificarPermissao("financeiro", "editar");
   const empresaId = await obterEmpresaAtiva();
 
-  const statusMap: Record<string, string> = {
-    PENDING:              "PENDENTE",
-    RECEIVED:             "PAGO",
-    CONFIRMED:            "PAGO",
-    OVERDUE:              "VENCIDO",
-    REFUNDED:             "CANCELADO",
-    CANCELLED:            "CANCELADO",
-    AWAITING_RISK_ANALYSIS: "PENDENTE",
-    APPROVED_BY_RISK_ANALYSIS: "PENDENTE",
-    PARTIALLY_REFUNDED:   "PAGO",
-  };
-
   const apiKey = await obterChaveAsaas(empresaId);
   let criados = 0, atualizados = 0, ignorados = 0;
   const erros: string[] = [];
   const debug: string[] = [];
-  let offset = 0;
+  const referencias = new Map<string, string>();
   const limit = 100;
-  // Cache: subscriptionId → externalReference para não repetir chamadas API
-  const subEmailCache = new Map<string, string>();
 
-  // Plano de contas "Novo Agro" para classificação das receitas
-  const planoContasNovoAgro = await prisma.planoDeContas.findFirst({
-    where: { empresa_id: empresaId, nome: "Novo Agro", ativo: true },
-    select: { id: true },
-  });
-
-  while (true) {
+  for (let offset = 0; ; offset += limit) {
     const { data: pagamentos, hasMore } = await asaasListPayments({ offset, limit }, apiKey);
-    if (pagamentos.length === 0) break;
-
-    for (const pag of pagamentos) {
+    for (const pagamento of pagamentos) {
       try {
-        let email = pag.externalReference;
-
-        // Pagamentos mensais de assinatura CC não herdam externalReference da sub —
-        // busca no objeto pai com cache para não explodir a quota da API Asaas
-        if ((!email || !email.includes("@")) && pag.subscription) {
-          let cached = subEmailCache.get(pag.subscription);
-          if (cached === undefined) {
-            try {
-              const sub = await asaasGetSubscription(pag.subscription, apiKey);
-              cached = sub.externalReference ?? "";
-              if (debug.length < 20) debug.push(`sub:${pag.subscription} extRef="${sub.externalReference ?? "(vazio)"}"`)
-            } catch (e) {
-              cached = "";
-              if (debug.length < 20) debug.push(`sub:${pag.subscription} erro=${String(e)}`)
-            }
-            subEmailCache.set(pag.subscription, cached);
-          }
-          if (cached) email = cached;
-        }
-
-        if (!email || !email.includes("@")) {
-          if (debug.length < 20) debug.push(`ignorado sem email: id=${pag.id} extRef="${pag.externalReference ?? ""}" sub="${pag.subscription ?? ""}"`)
-          ignorados++; continue;
-        }
-
-        // Idempotência: já existe recebível com esse payment_id?
-        const existing = await prisma.recebivel.findFirst({
-          where: { empresa_id: empresaId, asaas_payment_id: pag.id },
-        });
-
-        if (existing) {
-          // Só atualiza status se necessário
-          const novoStatus = statusMap[pag.status] ?? existing.status;
-          if (existing.asaas_status !== pag.status) {
-            await prisma.recebivel.update({
-              where: { id: existing.id },
-              data: {
-                asaas_status: pag.status,
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                status: novoStatus as any,
-                ...( ["RECEIVED","CONFIRMED"].includes(pag.status) && !existing.data_pagamento
-                  ? { data_pagamento: new Date(), valor_pago: pag.value }
-                  : {}),
-              },
-            });
-            atualizados++;
-          } else {
-            ignorados++;
-          }
+        const conselho = await localizarVendaConselhoAgro(pagamento, empresaId, apiKey, referencias);
+        if (!conselho) {
+          ignorados++;
+          if (debug.length < 20) debug.push(`Sem referência do Conselho Agro: ${pagamento.id}`);
           continue;
         }
-
-        // Localiza cliente pelo e-mail; cria automaticamente se não existir
-        let cliente = await prisma.cliente.findFirst({
-          where: { empresa_id: empresaId, email },
-          select: { id: true },
-        });
-        if (!cliente) {
-          // Busca dados do cliente no Asaas para preencher o registro local
-          let nomeCliente = email.split("@")[0];
-          let asaasClienteId: string | null = pag.customer ?? null;
-          if (pag.customer) {
-            try {
-              const asaasCustomer = await asaasGetCustomer(pag.customer, apiKey);
-              nomeCliente = asaasCustomer.name ?? nomeCliente;
-              asaasClienteId = asaasCustomer.id;
-            } catch { /* usa fallback */ }
-          }
-          const novo = await prisma.cliente.create({
-            data: {
-              empresa_id: empresaId,
-              nome: nomeCliente,
-              tipo: "PESSOA_FISICA",
-              email,
-              asaas_id: asaasClienteId,
-            },
-            select: { id: true },
-          });
-          cliente = novo;
-          if (debug.length < 20) debug.push(`criado cliente: email="${email}" nome="${nomeCliente}"`)
-        }
-
-        const isAnual = (pag.installmentCount ?? 1) > 1;
-        const totalParcelas = pag.installmentCount ?? 1;
-        const numParcela    = pag.installmentNumber ?? 1;
-        const descBase      = isAnual
-          ? "O Conselho Agro — Plano Anual"
-          : "O Conselho Agro — Mensalidade";
-        const descricao = isAnual
-          ? `${descBase} — Parcela ${numParcela}/${totalParcelas}`
-          : descBase;
-
-        const venc = pag.dueDate ? new Date(`${pag.dueDate}T12:00:00`) : new Date();
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const novoStatus = (statusMap[pag.status] ?? "PENDENTE") as any;
-
-        await prisma.recebivel.create({
-          data: {
-            empresa_id:       empresaId,
-            cliente_id:       cliente.id,
-            plano_contas_id:  planoContasNovoAgro?.id ?? null,
-            descricao,
-            valor:            pag.value,
-            data_vencimento:  venc,
-            numero_parcela:   numParcela,
-            total_parcelas:   totalParcelas,
-            asaas_payment_id: pag.id,
-            asaas_status:     pag.status,
-            asaas_invoice_url: pag.invoiceUrl ?? null,
-            asaas_boleto_url:  pag.bankSlipUrl ?? null,
-            status:           novoStatus,
-            ...( ["RECEIVED","CONFIRMED"].includes(pag.status)
-              ? { data_pagamento: new Date(), valor_pago: pag.value }
-              : {}),
-          },
-        });
-        criados++;
+        const resultado = await importarRecebivelAsaas(pagamento, empresaId, apiKey, conselho);
+        if (resultado === "criado") criados++;
+        else if (resultado === "atualizado") atualizados++;
+        else ignorados++;
       } catch (err) {
         const msg = err instanceof Error ? err.message : String(err);
-        erros.push(`${pag.id}: ${msg}`);
+        erros.push(`${pagamento.id}: ${msg}`);
       }
     }
-
-    if (!hasMore) break;
-    offset += limit;
+    if (!hasMore || pagamentos.length === 0) break;
   }
 
   revalidatePath("/financeiro/recebiveis");
+  revalidatePath("/financeiro/fluxo-caixa");
   return { criados, atualizados, ignorados, erros, debug };
+}
+
+export async function importarCobrancaAsaas(id: string) {
+  await verificarPermissao("financeiro", "editar");
+  const empresaId = await obterEmpresaAtiva();
+  const pagamentoId = typeof id === "string" ? id.trim() : "";
+  const checkout = idCheckoutAsaasValido(pagamentoId);
+  if (!checkout && !idCobrancaAsaasValido(pagamentoId)) {
+    return { erro: "Informe o ID da cobrança (pay_...) ou da sessão de checkout." };
+  }
+
+  try {
+    const ehEmpresaConselho = empresaId === process.env.CONSELHO_AGRO_EMPRESA_ID;
+    const apiKey = await obterChaveAsaas(empresaId, ehEmpresaConselho);
+    if (checkout) {
+      const info = await importarRecebiveisCheckoutAsaas(pagamentoId.toLowerCase(), empresaId, apiKey);
+      if (!info.confirmados) {
+        return { erro: info.encontradas
+          ? "O Asaas ainda não confirmou o pagamento desse checkout."
+          : "Nenhuma cobrança vinculada a esse checkout foi encontrada na conta Asaas desta empresa." };
+      }
+      revalidatePath("/financeiro/recebiveis");
+      revalidatePath("/financeiro/fluxo-caixa");
+      return { checkout: info };
+    }
+    const pagamento = await asaasGetPayment(pagamentoId, apiKey);
+    const conselho = ehEmpresaConselho
+      ? await localizarVendaConselhoAgro(pagamento, empresaId, apiKey)
+      : null;
+    const resultado = await importarRecebivelAsaas(pagamento, empresaId, apiKey, conselho ?? undefined);
+    revalidatePath("/financeiro/recebiveis");
+    revalidatePath("/financeiro/fluxo-caixa");
+    return { resultado };
+  } catch (err) {
+    return { erro: err instanceof Error ? err.message : "Erro ao importar cobrança do Asaas." };
+  }
 }
 
 // ─── LINKS DE PAGAMENTO (produto fixo) ───────────────────────────────────────
