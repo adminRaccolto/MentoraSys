@@ -72,7 +72,8 @@ model Empresa {
   campanhas_cupom           CampanhaCupom[]
   reembolsos                Reembolso[]
 
-  mentorias Mentoria[]
+  zoom_mentorias IntegracaoZoomMentoria?
+  mentorias      Mentoria[]
 
   @@map("empresas")
 }
@@ -1696,4 +1697,13 @@ model MentoriaMaterial {
 
   @@index([mentoria_id, criado_em])
   @@map("mentoria_materiais")
+}
+
+model IntegracaoZoomMentoria {
+  empresa_id String @id
+  dados      String
+
+  empresa Empresa @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+
+  @@map("integracoes_zoom_mentorias")
 }

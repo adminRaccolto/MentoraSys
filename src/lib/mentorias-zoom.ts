@@ -1,20 +1,16 @@
 import { z } from "zod";
 import { urlOpcional } from "@/lib/mentorias";
 
-export function zoomDisponivel(empresaId: string) {
-  return process.env.ZOOM_EMPRESA_ID === empresaId && Boolean(
-    process.env.ZOOM_ACCOUNT_ID && process.env.ZOOM_CLIENT_ID && process.env.ZOOM_CLIENT_SECRET && process.env.ZOOM_HOST_ID,
-  );
-}
+import type { ConfiguracaoZoom } from "@/lib/mentorias-zoom-config";
 
 export class ErroZoom extends Error {}
 
-async function obterTokenZoom() {
+export async function obterTokenZoom(configuracao: ConfiguracaoZoom) {
   const params = new URLSearchParams({
     grant_type: "account_credentials",
-    account_id: process.env.ZOOM_ACCOUNT_ID!,
+    account_id: configuracao.conta,
   });
-  const credenciais = Buffer.from(`${process.env.ZOOM_CLIENT_ID}:${process.env.ZOOM_CLIENT_SECRET}`).toString("base64");
+  const credenciais = Buffer.from(`${configuracao.cliente}:${configuracao.segredo}`).toString("base64");
   const resposta = await fetch(`https://zoom.us/oauth/token?${params}`, {
     method: "POST",
     headers: { Authorization: `Basic ${credenciais}` },
@@ -37,9 +33,9 @@ function corpoEncontro(encontro: HorarioZoom) {
   };
 }
 
-export async function criarSalaZoom(encontro: HorarioZoom, gravar: boolean) {
-  const token = await obterTokenZoom();
-  const host = encodeURIComponent(process.env.ZOOM_HOST_ID!);
+export async function criarSalaZoom(configuracao: ConfiguracaoZoom, encontro: HorarioZoom, gravar: boolean) {
+  const token = await obterTokenZoom(configuracao);
+  const host = encodeURIComponent(configuracao.anfitriao);
   const resposta = await fetch(`https://api.zoom.us/v2/users/${host}/meetings`, {
     method: "POST",
     headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
@@ -56,8 +52,8 @@ export async function criarSalaZoom(encontro: HorarioZoom, gravar: boolean) {
   return { zoom_id: String(dados.id), sala_url: dados.join_url };
 }
 
-export async function atualizarSalaZoom(id: string, encontro: HorarioZoom | null) {
-  const token = await obterTokenZoom();
+export async function atualizarSalaZoom(configuracao: ConfiguracaoZoom, id: string, encontro: HorarioZoom | null) {
+  const token = await obterTokenZoom(configuracao);
   const resposta = await fetch(`https://api.zoom.us/v2/meetings/${encodeURIComponent(id)}`, {
     method: encontro ? "PATCH" : "DELETE",
     headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },

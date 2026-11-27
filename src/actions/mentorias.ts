@@ -5,7 +5,8 @@ import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { criarTokenPortal } from "@/lib/portal-sessao";
 import { alunoMentoria, checkinAberto, empresaMentorias, localEncontro, NOME_MESA, textoObrigatorio, textoOpcional, urlOpcional } from "@/lib/mentorias";
-import { atualizarSalaZoom, criarSalaZoom, ErroZoom, zoomDisponivel } from "@/lib/mentorias-zoom";
+import { atualizarSalaZoom, criarSalaZoom, ErroZoom } from "@/lib/mentorias-zoom";
+import { obterConfiguracaoZoom } from "@/lib/mentorias-zoom-config";
 
 type Resultado = { erro?: string; sucesso?: string; link?: string };
 
@@ -170,10 +171,11 @@ export async function salvarEncontro(id: string, encontroId: string | null, _: R
       const alterouHorario = atual.titulo !== dados.titulo || atual.pauta !== dados.pauta ||
         atual.inicio.getTime() !== dados.inicio.getTime() || atual.duracao !== dados.duracao;
       if (atual.zoom_id && atual.status === "AGENDADO" && alterouHorario) {
-        if (!zoomDisponivel(mentoria.empresa_id)) throw new ErroFormulario("Configure o Zoom para alterar este encontro.");
+        const zoom = await obterConfiguracaoZoom(mentoria.empresa_id);
+        if (!zoom) throw new ErroFormulario("Configure o Zoom para alterar este encontro.");
         await reservarAlteracaoZoom(atual.id, atual.zoom_id);
         try {
-          await atualizarSalaZoom(atual.zoom_id, dados);
+          await atualizarSalaZoom(zoom, atual.zoom_id, dados);
           await prisma.mentoriaEncontro.update({
             where: { id: atual.id },
             data: { ...dados, sala_url: atual.sala_url, zoom_pendente: null },
@@ -200,14 +202,15 @@ export async function salvarEncontro(id: string, encontroId: string | null, _: R
 export async function conectarZoom(id: string, encontroId: string, _: Resultado, form: FormData) {
   return executar(async () => {
     const mentoria = await buscarMentoria(id);
-    if (!zoomDisponivel(mentoria.empresa_id)) throw new ErroFormulario("A integração Zoom precisa ser configurada para esta empresa.");
+    const zoom = await obterConfiguracaoZoom(mentoria.empresa_id);
+    if (!zoom) throw new ErroFormulario("A integração Zoom precisa ser configurada para esta empresa.");
     const encontro = await buscarEncontro(id, encontroId);
     if (encontro.status !== "AGENDADO" || encontro.zoom_id || encontro.sala_url) {
       throw new ErroFormulario("Só é possível criar uma sala para um encontro agendado sem link.");
     }
     await reservarAlteracaoZoom(encontro.id, null);
     try {
-      const dados = await criarSalaZoom(encontro, form.get("gravar") === "on");
+      const dados = await criarSalaZoom(zoom, encontro, form.get("gravar") === "on");
       await prisma.mentoriaEncontro.update({ where: { id: encontro.id }, data: { ...dados, zoom_pendente: null } });
     } catch (erro) {
       if (erro instanceof ErroZoom) {
@@ -229,10 +232,11 @@ export async function alterarStatusEncontro(id: string, encontroId: string, stat
     if (encontro.status === status) return { sucesso: "Status atualizado." };
     if (encontro.status !== "AGENDADO") throw new ErroFormulario("O encontro já foi encerrado.");
     if (status === "CANCELADO" && encontro.zoom_id) {
-      if (!zoomDisponivel(mentoria.empresa_id)) throw new ErroFormulario("Configure o Zoom para cancelar este encontro.");
+      const zoom = await obterConfiguracaoZoom(mentoria.empresa_id);
+      if (!zoom) throw new ErroFormulario("Configure o Zoom para cancelar este encontro.");
       await reservarAlteracaoZoom(encontro.id, encontro.zoom_id);
       try {
-        await atualizarSalaZoom(encontro.zoom_id, null);
+        await atualizarSalaZoom(zoom, encontro.zoom_id, null);
         await prisma.mentoriaEncontro.update({ where: { id: encontroId }, data: { status, zoom_pendente: null } });
       } catch (erro) {
         await prisma.mentoriaEncontro.update({ where: { id: encontroId }, data: { zoom_pendente: null } });

@@ -1,43 +1,32 @@
+import Image from "next/image";
 import { Mail } from "lucide-react";
+import { obterClientePortal } from "@/lib/portal-sessao";
+import Link from "next/link";
 
 interface Props {
   searchParams: Promise<{ erro?: string }>;
 }
 
 const ERROS: Record<string, string> = {
-  invalido: "Este link de acesso é inválido ou não existe.",
-  expirado: "Este link de acesso expirou. Solicite um novo link à sua consultoria.",
+  invalido: "Este convite de acesso é inválido. Solicite outro link à equipe.",
+  expirado: "O prazo do convite terminou. Solicite um novo link à equipe.",
 };
 
 export default async function PortalAcessoPage({ searchParams }: Props) {
-  const { erro } = await searchParams;
+  const [{ erro }, sessao] = await Promise.all([searchParams, obterClientePortal()]);
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center px-4">
-      <div className="max-w-sm w-full text-center space-y-6">
-        <div className="flex justify-center">
-          <div className="size-14 rounded-full bg-primary/10 flex items-center justify-center">
-            <Mail className="size-6 text-primary" />
-          </div>
+    <main className="grid min-h-dvh place-items-center bg-[#f4f6ef] p-4">
+      <section className="w-full max-w-md space-y-5 rounded-2xl border bg-card p-6 shadow-sm sm:p-8" aria-labelledby="titulo-acesso">
+        <Image src="/logo-raccolto.svg" width={120} height={42} alt="Raccolto" className="h-9 w-auto" />
+        <div className="space-y-2 border-t pt-5">
+          <span className="grid size-10 place-items-center rounded-lg bg-secondary text-primary"><Mail className="size-5" aria-hidden /></span>
+          <h1 id="titulo-acesso" className="font-serif text-3xl tracking-tight">Entrar no portal</h1>
+          <p className="text-sm leading-relaxed text-muted-foreground">Abra o link pessoal que recebeu da equipe da Raccolto. O convite dá acesso ao seu espaço por até sete dias.</p>
         </div>
-
-        <div className="space-y-2">
-          <h1 className="text-xl font-semibold">Acesso ao portal</h1>
-          <p className="text-muted-foreground text-sm">
-            Para acessar o portal do cliente, solicite um link de acesso à sua consultoria.
-          </p>
-        </div>
-
-        {erro && ERROS[erro] && (
-          <div className="rounded-md bg-destructive/10 border border-destructive/20 px-4 py-3">
-            <p className="text-sm text-destructive">{ERROS[erro]}</p>
-          </div>
-        )}
-
-        <p className="text-xs text-muted-foreground">
-          O link de acesso é enviado por e-mail e é válido por 7 dias.
-        </p>
-      </div>
-    </div>
+        {erro && ERROS[erro] && <p role="alert" className="rounded-lg border border-destructive/20 bg-destructive/5 p-3 text-sm text-destructive">{ERROS[erro]}</p>}
+        {sessao && <Link href={sessao.mentoria_id ? "/portal/mentorias" : "/portal"} className="inline-flex rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground">Continuar para o portal</Link>}
+      </section>
+    </main>
   );
 }

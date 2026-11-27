@@ -1054,6 +1054,11 @@ exports.Prisma.MentoriaMaterialScalarFieldEnum = {
   criado_em: 'criado_em'
 };
 
+exports.Prisma.IntegracaoZoomMentoriaScalarFieldEnum = {
+  empresa_id: 'empresa_id',
+  dados: 'dados'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1320,7 +1325,8 @@ exports.Prisma.ModelName = {
   MentoriaArquivo: 'MentoriaArquivo',
   MentoriaPagina: 'MentoriaPagina',
   MentoriaItem: 'MentoriaItem',
-  MentoriaMaterial: 'MentoriaMaterial'
+  MentoriaMaterial: 'MentoriaMaterial',
+  IntegracaoZoomMentoria: 'IntegracaoZoomMentoria'
 };
 
 /**

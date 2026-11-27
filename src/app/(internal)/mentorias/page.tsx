@@ -1,15 +1,19 @@
 import Link from "next/link";
-import { CalendarDays, Layers3, UserRound, UsersRound } from "lucide-react";
+import { CalendarDays, Layers3, UserRound, UsersRound, Video } from "lucide-react";
 import { cadastrarMentoria } from "@/actions/mentorias";
 import { Formulario } from "@/components/mentorias/formulario";
 import { AtalhoCapa, BlocoAcao, CabecalhoMentorias, caixa, campo, LinhaMentoria, paginaMentorias, rotulo, superficieMentorias, Vazio } from "@/components/mentorias/painel";
 import { prisma } from "@/lib/prisma";
+import { verificarPermissao } from "@/lib/permissoes";
 import { empresaMentorias, NOME_MESA } from "@/lib/mentorias";
 
 export default async function MentoriasPage() {
   const acesso = await empresaMentorias().catch(() => null);
   if (!acesso) return <div className="p-6"><Vazio>Seu perfil não tem acesso à gestão de mentorias.</Vazio></div>;
-  const podeCriar = Boolean(await empresaMentorias("criar").catch(() => null));
+  const [podeCriar, podeConfigurarZoom] = await Promise.all([
+    empresaMentorias("criar").then(() => true, () => false),
+    verificarPermissao("configuracoes", "editar").then(() => true, () => false),
+  ]);
   const [mentorias, clientes] = await Promise.all([
     prisma.mentoria.findMany({
       where: { empresa_id: acesso },
@@ -33,7 +37,16 @@ export default async function MentoriasPage() {
     <div className={paginaMentorias}>
       <div className="mx-auto max-w-[83rem] space-y-5 p-3.5 sm:space-y-6 sm:p-7 xl:p-9">
         <CabecalhoMentorias titulo="Mentorias" contexto="Raccolto">
-          {podeCriar && <AtalhoCapa href="#nova-mentoria">Nova mentoria</AtalhoCapa>}
+          {(podeCriar || podeConfigurarZoom) && (
+            <div className="flex flex-wrap gap-2">
+              {podeConfigurarZoom && (
+                <Link href="/mentorias/integracao-zoom" className="inline-flex items-center gap-2 rounded-md border bg-card px-3 py-2 text-sm font-semibold text-primary hover:bg-muted">
+                  <Video className="size-4" aria-hidden /> Configurar Zoom
+                </Link>
+              )}
+              {podeCriar && <AtalhoCapa href="#nova-mentoria">Nova mentoria</AtalhoCapa>}
+            </div>
+          )}
         </CabecalhoMentorias>
 
         <dl className="grid grid-cols-3 gap-2 sm:gap-4">

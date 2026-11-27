@@ -9,7 +9,7 @@ type NomeArquivo = Pick<MentoriaMaterial, "id" | "nome" | "categoria" | "tamanho
 type Evento = Pick<MentoriaEncontro, "id" | "titulo" | "inicio" | "duracao" | "status" | "sala_url">;
 
 export const secoesComuns: [string, string][] = [
-  ["inicio", "Início"], ["encontros", "Calendário"], ["publicacoes", "Notícias"],
+  ["inicio", "Início"], ["encontros", "Reuniões"], ["publicacoes", "Notícias"],
   ["paginas", "Páginas"], ["mural", "Mural"], ["biblioteca", "Biblioteca"],
 ];
 
@@ -108,7 +108,7 @@ export function InicioEspaco<E extends Evento>({ secoes, encontros, noticias, ag
               </li>
             ))}
           </ul>
-          <Link href={hrefSecao("encontros")} className="text-sm font-medium text-primary underline">Ver calendário</Link>
+          <Link href={hrefSecao("encontros")} className="text-sm font-medium text-primary underline">Ver reuniões e calendário</Link>
         </Secao>
         <Secao id="noticias-recentes" titulo="Notícias recentes">
           <ListaPosts posts={noticias.slice(0, 3)} publicacoes />

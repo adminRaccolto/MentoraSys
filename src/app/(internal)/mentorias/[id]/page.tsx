@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CalendarPlus, PencilLine } from "lucide-react";
+import { CalendarPlus, PencilLine, Video } from "lucide-react";
 import { alterarAcessoAluno, editarMentoria, emitirAcessoAluno, matricularAluno, publicarMentoria, salvarEncontro } from "@/actions/mentorias";
 import { AnexarArquivo, Formulario } from "@/components/mentorias/formulario";
 import { CamposEncontro, GerenciarEncontro, GerenciarTarefas } from "@/components/mentorias/gestao";
 import { BlocoAcao, CabecalhoMentorias, campo, ListaArquivos, ListaPosts, NavegacaoMentoria, paginaMentorias, rotulo, Secao, Vazio, VoltarMentorias } from "@/components/mentorias/painel";
 import { prisma } from "@/lib/prisma";
 import { carregarEspacoMentoria, empresaMentorias } from "@/lib/mentorias";
-import { zoomDisponivel } from "@/lib/mentorias-zoom";
+import { obterConfiguracaoZoom } from "@/lib/mentorias-zoom-config";
+import { verificarPermissao } from "@/lib/permissoes";
 import { BibliotecaEspaco, BuscaEspaco, CalendarioEspaco, indexarEspaco, InicioEspaco, ListaAcompanhamento, PaginasEspaco, secaoSelecionada, secoesComuns } from "@/components/mentorias/espaco";
 import { EditorItemMentoria, EditorNoticiaMentoria, EditorPaginaMentoria } from "@/components/mentorias/editor-espaco";
 
@@ -48,7 +49,12 @@ export default async function MentoriaInterna({ params, searchParams }: Props) {
   secoes.push(["cadastro", "Cadastro"]);
   const ativa = secaoSelecionada(filtros.secao, secoes);
   const consulta = typeof filtros.q === "string" ? filtros.q.trim().slice(0, 100) : "";
-  const projeto = await carregarEspacoMentoria(id, grupo, ativa, Boolean(consulta));
+  const agenda = ativa === "encontros" && !consulta;
+  const [projeto, zoom, podeConfigurarZoom] = await Promise.all([
+    carregarEspacoMentoria(id, grupo, ativa, Boolean(consulta)),
+    agenda ? obterConfiguracaoZoom(empresaId).then((config) => Boolean(config), () => false) : false,
+    agenda ? verificarPermissao("configuracoes", "editar").then(() => true, () => false) : false,
+  ]);
   const noticias = mentoria.posts.filter((post) => post.tipo === "PUBLICACAO");
   // eslint-disable-next-line react-hooks/purity -- relógio da requisição no servidor
   const agora = Date.now();
@@ -73,15 +79,23 @@ export default async function MentoriaInterna({ params, searchParams }: Props) {
           </BlocoAcao>
         )}
         {!consulta && ativa === "encontros" && (
-          <Secao id="encontros" titulo="Calendário de encontros">
+          <Secao id="encontros" titulo={grupo ? "Reuniões da turma" : "Reuniões da mentoria"}>
+            <div className="flex flex-wrap items-center justify-between gap-2 rounded-lg border bg-secondary/50 p-3">
+              <div className="flex items-center gap-2 text-sm">
+                <Video className="size-4 shrink-0 text-primary" aria-hidden />
+                <span className="font-semibold">Zoom</span>
+                <span className="text-muted-foreground">{zoom ? "Credenciais cadastradas" : "Integração não configurada"}</span>
+              </div>
+              {podeConfigurarZoom && <Link href="/mentorias/integracao-zoom" className="text-sm font-semibold text-primary underline underline-offset-4">Configurar Zoom</Link>}
+            </div>
             <CalendarioEspaco encontros={mentoria.encontros} mes={filtros.mes} agora={agora} />
-            <BlocoAcao titulo="Agendar encontro" icone={CalendarPlus} aberto={mentoria.encontros.length === 0}>
-              <Formulario className="mt-3 space-y-3 pb-2" acao={salvarEncontro.bind(null, id, null)} botao="Agendar encontro" variant="default">
+            <BlocoAcao titulo="Agendar reunião" icone={CalendarPlus} aberto>
+              <Formulario className="mt-3 space-y-3 pb-2" acao={salvarEncontro.bind(null, id, null)} botao="Agendar reunião" variant="default">
                 <CamposEncontro />
               </Formulario>
             </BlocoAcao>
             {!mentoria.encontros.length && <Vazio>Nenhum encontro agendado.</Vazio>}
-            {mentoria.encontros.map((encontro) => <GerenciarEncontro key={encontro.id} encontro={encontro} grupo={grupo} alunos={mentoria.alunos} zoom={zoomDisponivel(empresaId)} />)}
+            {mentoria.encontros.map((encontro) => <GerenciarEncontro key={encontro.id} encontro={encontro} grupo={grupo} alunos={mentoria.alunos} zoom={zoom} />)}
           </Secao>
         )}
         {!consulta && ativa === "alunos" && (
@@ -101,7 +115,7 @@ export default async function MentoriaInterna({ params, searchParams }: Props) {
                 <li key={aluno.id} className="space-y-2 py-3">
                   <div><p className="font-medium">{aluno.cliente.nome}</p><Vazio>{aluno.ativo ? "Acesso ativo" : "Acesso suspenso"}</Vazio></div>
                   <div className="flex flex-wrap gap-2">
-                    {aluno.ativo && <Formulario acao={emitirAcessoAluno.bind(null, id, aluno.id)} botao="Gerar link do portal" />}
+                    {aluno.ativo && <Formulario acao={emitirAcessoAluno.bind(null, id, aluno.id)} botao="Gerar convite do aluno" />}
                     <Formulario acao={alterarAcessoAluno.bind(null, id, aluno.id, !aluno.ativo)} botao={aluno.ativo ? "Suspender acesso" : "Ativar acesso"} />
                   </div>
                 </li>

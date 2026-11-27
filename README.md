@@ -41,14 +41,11 @@ Os perfis Administrador e Gestor recebem acesso pela migração de mentorias. Em
 
 ### Integração com Zoom
 
-Os links de videoconferência e de gravação podem ser cadastrados pela equipe. Para criar salas pelo MentoraSys, configure um app [Server-to-Server OAuth do Zoom](https://developers.zoom.us/docs/internal-apps/s2s-oauth/) com permissões de criação, atualização e exclusão de reuniões e preencha estas variáveis no servidor.
+Abra **Mentorias → Configurar Zoom** com um perfil que pode editar as configurações da empresa. Use um app [Server-to-Server OAuth do Zoom](https://developers.zoom.us/docs/internal-apps/s2s-oauth/) com permissões de criação, atualização e exclusão de reuniões. Informe o Account ID, o Client ID, o Client Secret e o anfitrião. O servidor cifra as credenciais por empresa usando `ZOOM_CONFIG_ENCRYPTION_KEY`, uma chave de 32 bytes em Base64. A chave é própria de cada ambiente e precisa ser preservada entre publicações.
 
-- `ZOOM_EMPRESA_ID` identifica a empresa autorizada a usar a conta Zoom.
-- `ZOOM_ACCOUNT_ID`, `ZOOM_CLIENT_ID` e `ZOOM_CLIENT_SECRET` identificam o app Zoom.
-- `ZOOM_HOST_ID` é o ID ou o e-mail do usuário anfitrião.
-- `ZOOM_WEBHOOK_SECRET_TOKEN` valida as solicitações enviadas pelo Zoom.
+Use a URL de webhook exibida na tela e cadastre o Secret Token para receber `meeting.participant_joined` e `recording.completed`. A entrada na sala é identificada pelo e-mail quando o Zoom o disponibiliza e há um único aluno correspondente na turma. A gravação automática exige que o anfitrião tenha gravação na nuvem habilitada. A equipe confere as permissões de compartilhamento da gravação no Zoom antes de publicá-la no portal.
 
-Cadastre `/api/webhooks/zoom` no domínio da aplicação como destino para `meeting.participant_joined` e `recording.completed`. A entrada na sala é identificada pelo e-mail quando o Zoom o disponibiliza e há um único aluno correspondente na turma. A gravação automática exige que o anfitrião tenha gravação na nuvem habilitada. A equipe confere as permissões de compartilhamento da gravação no Zoom antes de publicá-la no portal.
+Em **Mentorias → turma → Reuniões**, agende a reunião. Em seguida, crie a sala Zoom ou informe um link de videoconferência existente. Em **Alunos**, gere o convite individual e compartilhe o link. Ele abre a mentoria vinculada e vence em sete dias. A configuração anterior por variáveis `ZOOM_EMPRESA_ID`, `ZOOM_ACCOUNT_ID`, `ZOOM_CLIENT_ID`, `ZOOM_CLIENT_SECRET`, `ZOOM_HOST_ID` e `ZOOM_WEBHOOK_SECRET_TOKEN` segue compatível com `/api/webhooks/zoom`.
 
 ### Espaço de projeto da mentoria
 

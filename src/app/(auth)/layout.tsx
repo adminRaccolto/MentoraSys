@@ -2,11 +2,11 @@ import Image from "next/image";
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
-    <main className="grid min-h-dvh bg-[#f3f5ed] lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)]">
-      <div className="relative hidden overflow-hidden bg-[#172e29] lg:block" aria-hidden>
-        <Image src="/login-bg.jpg" alt="" fill sizes="50vw" className="object-cover object-center" loading="eager" />
+    <main className="grid min-h-dvh grid-rows-[9rem_1fr] bg-[#f3f5ed] lg:grid-rows-1 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)]">
+      <div className="relative overflow-hidden bg-[#172e29]" aria-hidden>
+        <Image src="/login-raccolto-agro.webp" alt="" fill sizes="(max-width: 1023px) 100vw, 50vw" className="object-cover object-[center_43%] lg:object-center" loading="eager" />
         <div className="absolute inset-0 bg-linear-to-b from-[#172e29]/20 via-transparent to-[#0d211c]/80" />
-        <div className="absolute bottom-11 left-11 right-11 border-t border-white/40 pt-6 text-white">
+        <div className="absolute bottom-11 left-11 right-11 hidden border-t border-white/40 pt-6 text-white lg:block">
           <p className="font-serif text-5xl tracking-tight">MentoraSys</p>
           <p className="mt-2 text-sm text-[#e7dfc6]">Gestão Raccolto</p>
         </div>

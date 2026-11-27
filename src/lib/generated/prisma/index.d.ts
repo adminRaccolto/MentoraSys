@@ -343,6 +343,11 @@ export type MentoriaItem = $Result.DefaultSelection<Prisma.$MentoriaItemPayload>
  *
  */
 export type MentoriaMaterial = $Result.DefaultSelection<Prisma.$MentoriaMaterialPayload>
+/**
+ * Model IntegracaoZoomMentoria
+ *
+ */
+export type IntegracaoZoomMentoria = $Result.DefaultSelection<Prisma.$IntegracaoZoomMentoriaPayload>
 
 /**
  * Enums
@@ -1475,6 +1480,16 @@ export class PrismaClient<
     * ```
     */
   get mentoriaMaterial(): Prisma.MentoriaMaterialDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.integracaoZoomMentoria`: Exposes CRUD operations for the **IntegracaoZoomMentoria** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more IntegracaoZoomMentorias
+    * const integracaoZoomMentorias = await prisma.integracaoZoomMentoria.findMany()
+    * ```
+    */
+  get integracaoZoomMentoria(): Prisma.IntegracaoZoomMentoriaDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1974,7 +1989,8 @@ export namespace Prisma {
     MentoriaArquivo: 'MentoriaArquivo',
     MentoriaPagina: 'MentoriaPagina',
     MentoriaItem: 'MentoriaItem',
-    MentoriaMaterial: 'MentoriaMaterial'
+    MentoriaMaterial: 'MentoriaMaterial',
+    IntegracaoZoomMentoria: 'IntegracaoZoomMentoria'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1990,7 +2006,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "etapaCrm" | "comentarioCrm" | "lead" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "contratoAditivo" | "projeto" | "etapa" | "tarefa" | "tarefaResponsavel" | "comentarioTarefa" | "anexoTarefa" | "atividadeTarefa" | "aprovacaoTarefa" | "itemChecklist" | "etiquetaTarefa" | "tarefaEtiqueta" | "pastaDocumento" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "centroCusto" | "recebivel" | "contaPagar" | "fornecedor" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "boleto" | "diagnostico" | "tokenPortal" | "aplicacaoDiagnostico" | "campanhaDiagnostico" | "diagnosticoParticipante" | "diagnosticoTemplate" | "campanhaCupom" | "assinatura" | "reembolso" | "reembolsoItem" | "mentoria" | "mentoriaAluno" | "mentoriaEncontro" | "mentoriaPost" | "mentoriaPresenca" | "mentoriaTarefa" | "mentoriaArquivo" | "mentoriaPagina" | "mentoriaItem" | "mentoriaMaterial"
+      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "etapaCrm" | "comentarioCrm" | "lead" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "contratoAditivo" | "projeto" | "etapa" | "tarefa" | "tarefaResponsavel" | "comentarioTarefa" | "anexoTarefa" | "atividadeTarefa" | "aprovacaoTarefa" | "itemChecklist" | "etiquetaTarefa" | "tarefaEtiqueta" | "pastaDocumento" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "centroCusto" | "recebivel" | "contaPagar" | "fornecedor" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "boleto" | "diagnostico" | "tokenPortal" | "aplicacaoDiagnostico" | "campanhaDiagnostico" | "diagnosticoParticipante" | "diagnosticoTemplate" | "campanhaCupom" | "assinatura" | "reembolso" | "reembolsoItem" | "mentoria" | "mentoriaAluno" | "mentoriaEncontro" | "mentoriaPost" | "mentoriaPresenca" | "mentoriaTarefa" | "mentoriaArquivo" | "mentoriaPagina" | "mentoriaItem" | "mentoriaMaterial" | "integracaoZoomMentoria"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -6878,6 +6894,80 @@ export namespace Prisma {
           }
         }
       }
+      IntegracaoZoomMentoria: {
+        payload: Prisma.$IntegracaoZoomMentoriaPayload<ExtArgs>
+        fields: Prisma.IntegracaoZoomMentoriaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.IntegracaoZoomMentoriaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegracaoZoomMentoriaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.IntegracaoZoomMentoriaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegracaoZoomMentoriaPayload>
+          }
+          findFirst: {
+            args: Prisma.IntegracaoZoomMentoriaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegracaoZoomMentoriaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.IntegracaoZoomMentoriaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegracaoZoomMentoriaPayload>
+          }
+          findMany: {
+            args: Prisma.IntegracaoZoomMentoriaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegracaoZoomMentoriaPayload>[]
+          }
+          create: {
+            args: Prisma.IntegracaoZoomMentoriaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegracaoZoomMentoriaPayload>
+          }
+          createMany: {
+            args: Prisma.IntegracaoZoomMentoriaCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.IntegracaoZoomMentoriaCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegracaoZoomMentoriaPayload>[]
+          }
+          delete: {
+            args: Prisma.IntegracaoZoomMentoriaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegracaoZoomMentoriaPayload>
+          }
+          update: {
+            args: Prisma.IntegracaoZoomMentoriaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegracaoZoomMentoriaPayload>
+          }
+          deleteMany: {
+            args: Prisma.IntegracaoZoomMentoriaDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.IntegracaoZoomMentoriaUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.IntegracaoZoomMentoriaUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegracaoZoomMentoriaPayload>[]
+          }
+          upsert: {
+            args: Prisma.IntegracaoZoomMentoriaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegracaoZoomMentoriaPayload>
+          }
+          aggregate: {
+            args: Prisma.IntegracaoZoomMentoriaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateIntegracaoZoomMentoria>
+          }
+          groupBy: {
+            args: Prisma.IntegracaoZoomMentoriaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<IntegracaoZoomMentoriaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.IntegracaoZoomMentoriaCountArgs<ExtArgs>
+            result: $Utils.Optional<IntegracaoZoomMentoriaCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -7052,6 +7142,7 @@ export namespace Prisma {
     mentoriaPagina?: MentoriaPaginaOmit
     mentoriaItem?: MentoriaItemOmit
     mentoriaMaterial?: MentoriaMaterialOmit
+    integracaoZoomMentoria?: IntegracaoZoomMentoriaOmit
   }
 
   /* Types for Logging */
@@ -9103,6 +9194,7 @@ export namespace Prisma {
     assinaturas?: boolean | Empresa$assinaturasArgs<ExtArgs>
     campanhas_cupom?: boolean | Empresa$campanhas_cupomArgs<ExtArgs>
     reembolsos?: boolean | Empresa$reembolsosArgs<ExtArgs>
+    zoom_mentorias?: boolean | Empresa$zoom_mentoriasArgs<ExtArgs>
     mentorias?: boolean | Empresa$mentoriasArgs<ExtArgs>
     _count?: boolean | EmpresaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["empresa"]>
@@ -9186,6 +9278,7 @@ export namespace Prisma {
     assinaturas?: boolean | Empresa$assinaturasArgs<ExtArgs>
     campanhas_cupom?: boolean | Empresa$campanhas_cupomArgs<ExtArgs>
     reembolsos?: boolean | Empresa$reembolsosArgs<ExtArgs>
+    zoom_mentorias?: boolean | Empresa$zoom_mentoriasArgs<ExtArgs>
     mentorias?: boolean | Empresa$mentoriasArgs<ExtArgs>
     _count?: boolean | EmpresaCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -9230,6 +9323,7 @@ export namespace Prisma {
       assinaturas: Prisma.$AssinaturaPayload<ExtArgs>[]
       campanhas_cupom: Prisma.$CampanhaCupomPayload<ExtArgs>[]
       reembolsos: Prisma.$ReembolsoPayload<ExtArgs>[]
+      zoom_mentorias: Prisma.$IntegracaoZoomMentoriaPayload<ExtArgs> | null
       mentorias: Prisma.$MentoriaPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -9673,6 +9767,7 @@ export namespace Prisma {
     assinaturas<T extends Empresa$assinaturasArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$assinaturasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssinaturaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     campanhas_cupom<T extends Empresa$campanhas_cupomArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$campanhas_cupomArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CampanhaCupomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     reembolsos<T extends Empresa$reembolsosArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$reembolsosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReembolsoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    zoom_mentorias<T extends Empresa$zoom_mentoriasArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$zoom_mentoriasArgs<ExtArgs>>): Prisma__IntegracaoZoomMentoriaClient<$Result.GetResult<Prisma.$IntegracaoZoomMentoriaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     mentorias<T extends Empresa$mentoriasArgs<ExtArgs> = {}>(args?: Subset<T, Empresa$mentoriasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MentoriaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -10944,6 +11039,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ReembolsoScalarFieldEnum | ReembolsoScalarFieldEnum[]
+  }
+
+  /**
+   * Empresa.zoom_mentorias
+   */
+  export type Empresa$zoom_mentoriasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegracaoZoomMentoria
+     */
+    select?: IntegracaoZoomMentoriaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegracaoZoomMentoria
+     */
+    omit?: IntegracaoZoomMentoriaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IntegracaoZoomMentoriaInclude<ExtArgs> | null
+    where?: IntegracaoZoomMentoriaWhereInput
   }
 
   /**
@@ -90925,6 +91039,1030 @@ export namespace Prisma {
 
 
   /**
+   * Model IntegracaoZoomMentoria
+   */
+
+  export type AggregateIntegracaoZoomMentoria = {
+    _count: IntegracaoZoomMentoriaCountAggregateOutputType | null
+    _min: IntegracaoZoomMentoriaMinAggregateOutputType | null
+    _max: IntegracaoZoomMentoriaMaxAggregateOutputType | null
+  }
+
+  export type IntegracaoZoomMentoriaMinAggregateOutputType = {
+    empresa_id: string | null
+    dados: string | null
+  }
+
+  export type IntegracaoZoomMentoriaMaxAggregateOutputType = {
+    empresa_id: string | null
+    dados: string | null
+  }
+
+  export type IntegracaoZoomMentoriaCountAggregateOutputType = {
+    empresa_id: number
+    dados: number
+    _all: number
+  }
+
+
+  export type IntegracaoZoomMentoriaMinAggregateInputType = {
+    empresa_id?: true
+    dados?: true
+  }
+
+  export type IntegracaoZoomMentoriaMaxAggregateInputType = {
+    empresa_id?: true
+    dados?: true
+  }
+
+  export type IntegracaoZoomMentoriaCountAggregateInputType = {
+    empresa_id?: true
+    dados?: true
+    _all?: true
+  }
+
+  export type IntegracaoZoomMentoriaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which IntegracaoZoomMentoria to aggregate.
+     */
+    where?: IntegracaoZoomMentoriaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of IntegracaoZoomMentorias to fetch.
+     */
+    orderBy?: IntegracaoZoomMentoriaOrderByWithRelationInput | IntegracaoZoomMentoriaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the start position
+     */
+    cursor?: IntegracaoZoomMentoriaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` IntegracaoZoomMentorias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` IntegracaoZoomMentorias.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Count returned IntegracaoZoomMentorias
+    **/
+    _count?: true | IntegracaoZoomMentoriaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the minimum value
+    **/
+    _min?: IntegracaoZoomMentoriaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the maximum value
+    **/
+    _max?: IntegracaoZoomMentoriaMaxAggregateInputType
+  }
+
+  export type GetIntegracaoZoomMentoriaAggregateType<T extends IntegracaoZoomMentoriaAggregateArgs> = {
+        [P in keyof T & keyof AggregateIntegracaoZoomMentoria]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateIntegracaoZoomMentoria[P]>
+      : GetScalarType<T[P], AggregateIntegracaoZoomMentoria[P]>
+  }
+
+
+
+
+  export type IntegracaoZoomMentoriaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: IntegracaoZoomMentoriaWhereInput
+    orderBy?: IntegracaoZoomMentoriaOrderByWithAggregationInput | IntegracaoZoomMentoriaOrderByWithAggregationInput[]
+    by: IntegracaoZoomMentoriaScalarFieldEnum[] | IntegracaoZoomMentoriaScalarFieldEnum
+    having?: IntegracaoZoomMentoriaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: IntegracaoZoomMentoriaCountAggregateInputType | true
+    _min?: IntegracaoZoomMentoriaMinAggregateInputType
+    _max?: IntegracaoZoomMentoriaMaxAggregateInputType
+  }
+
+  export type IntegracaoZoomMentoriaGroupByOutputType = {
+    empresa_id: string
+    dados: string
+    _count: IntegracaoZoomMentoriaCountAggregateOutputType | null
+    _min: IntegracaoZoomMentoriaMinAggregateOutputType | null
+    _max: IntegracaoZoomMentoriaMaxAggregateOutputType | null
+  }
+
+  type GetIntegracaoZoomMentoriaGroupByPayload<T extends IntegracaoZoomMentoriaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<IntegracaoZoomMentoriaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof IntegracaoZoomMentoriaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], IntegracaoZoomMentoriaGroupByOutputType[P]>
+            : GetScalarType<T[P], IntegracaoZoomMentoriaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type IntegracaoZoomMentoriaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    empresa_id?: boolean
+    dados?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["integracaoZoomMentoria"]>
+
+  export type IntegracaoZoomMentoriaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    empresa_id?: boolean
+    dados?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["integracaoZoomMentoria"]>
+
+  export type IntegracaoZoomMentoriaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    empresa_id?: boolean
+    dados?: boolean
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["integracaoZoomMentoria"]>
+
+  export type IntegracaoZoomMentoriaSelectScalar = {
+    empresa_id?: boolean
+    dados?: boolean
+  }
+
+  export type IntegracaoZoomMentoriaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"empresa_id" | "dados", ExtArgs["result"]["integracaoZoomMentoria"]>
+  export type IntegracaoZoomMentoriaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }
+  export type IntegracaoZoomMentoriaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }
+  export type IntegracaoZoomMentoriaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empresa?: boolean | EmpresaDefaultArgs<ExtArgs>
+  }
+
+  export type $IntegracaoZoomMentoriaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "IntegracaoZoomMentoria"
+    objects: {
+      empresa: Prisma.$EmpresaPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      empresa_id: string
+      dados: string
+    }, ExtArgs["result"]["integracaoZoomMentoria"]>
+    composites: {}
+  }
+
+  type IntegracaoZoomMentoriaGetPayload<S extends boolean | null | undefined | IntegracaoZoomMentoriaDefaultArgs> = $Result.GetResult<Prisma.$IntegracaoZoomMentoriaPayload, S>
+
+  type IntegracaoZoomMentoriaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<IntegracaoZoomMentoriaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: IntegracaoZoomMentoriaCountAggregateInputType | true
+    }
+
+  export interface IntegracaoZoomMentoriaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['IntegracaoZoomMentoria'], meta: { name: 'IntegracaoZoomMentoria' } }
+    /**
+     * Find zero or one IntegracaoZoomMentoria that matches the filter.
+     * @param {IntegracaoZoomMentoriaFindUniqueArgs} args - Arguments to find a IntegracaoZoomMentoria
+     * @example
+     * // Get one IntegracaoZoomMentoria
+     * const integracaoZoomMentoria = await prisma.integracaoZoomMentoria.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends IntegracaoZoomMentoriaFindUniqueArgs>(args: SelectSubset<T, IntegracaoZoomMentoriaFindUniqueArgs<ExtArgs>>): Prisma__IntegracaoZoomMentoriaClient<$Result.GetResult<Prisma.$IntegracaoZoomMentoriaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one IntegracaoZoomMentoria that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {IntegracaoZoomMentoriaFindUniqueOrThrowArgs} args - Arguments to find a IntegracaoZoomMentoria
+     * @example
+     * // Get one IntegracaoZoomMentoria
+     * const integracaoZoomMentoria = await prisma.integracaoZoomMentoria.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends IntegracaoZoomMentoriaFindUniqueOrThrowArgs>(args: SelectSubset<T, IntegracaoZoomMentoriaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__IntegracaoZoomMentoriaClient<$Result.GetResult<Prisma.$IntegracaoZoomMentoriaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first IntegracaoZoomMentoria that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IntegracaoZoomMentoriaFindFirstArgs} args - Arguments to find a IntegracaoZoomMentoria
+     * @example
+     * // Get one IntegracaoZoomMentoria
+     * const integracaoZoomMentoria = await prisma.integracaoZoomMentoria.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends IntegracaoZoomMentoriaFindFirstArgs>(args?: SelectSubset<T, IntegracaoZoomMentoriaFindFirstArgs<ExtArgs>>): Prisma__IntegracaoZoomMentoriaClient<$Result.GetResult<Prisma.$IntegracaoZoomMentoriaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first IntegracaoZoomMentoria that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IntegracaoZoomMentoriaFindFirstOrThrowArgs} args - Arguments to find a IntegracaoZoomMentoria
+     * @example
+     * // Get one IntegracaoZoomMentoria
+     * const integracaoZoomMentoria = await prisma.integracaoZoomMentoria.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends IntegracaoZoomMentoriaFindFirstOrThrowArgs>(args?: SelectSubset<T, IntegracaoZoomMentoriaFindFirstOrThrowArgs<ExtArgs>>): Prisma__IntegracaoZoomMentoriaClient<$Result.GetResult<Prisma.$IntegracaoZoomMentoriaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more IntegracaoZoomMentorias that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IntegracaoZoomMentoriaFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all IntegracaoZoomMentorias
+     * const integracaoZoomMentorias = await prisma.integracaoZoomMentoria.findMany()
+     *
+     * // Get first 10 IntegracaoZoomMentorias
+     * const integracaoZoomMentorias = await prisma.integracaoZoomMentoria.findMany({ take: 10 })
+     *
+     * // Only select the `empresa_id`
+     * const integracaoZoomMentoriaWithEmpresa_idOnly = await prisma.integracaoZoomMentoria.findMany({ select: { empresa_id: true } })
+     *
+     */
+    findMany<T extends IntegracaoZoomMentoriaFindManyArgs>(args?: SelectSubset<T, IntegracaoZoomMentoriaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IntegracaoZoomMentoriaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a IntegracaoZoomMentoria.
+     * @param {IntegracaoZoomMentoriaCreateArgs} args - Arguments to create a IntegracaoZoomMentoria.
+     * @example
+     * // Create one IntegracaoZoomMentoria
+     * const IntegracaoZoomMentoria = await prisma.integracaoZoomMentoria.create({
+     *   data: {
+     *     // ... data to create a IntegracaoZoomMentoria
+     *   }
+     * })
+     *
+     */
+    create<T extends IntegracaoZoomMentoriaCreateArgs>(args: SelectSubset<T, IntegracaoZoomMentoriaCreateArgs<ExtArgs>>): Prisma__IntegracaoZoomMentoriaClient<$Result.GetResult<Prisma.$IntegracaoZoomMentoriaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many IntegracaoZoomMentorias.
+     * @param {IntegracaoZoomMentoriaCreateManyArgs} args - Arguments to create many IntegracaoZoomMentorias.
+     * @example
+     * // Create many IntegracaoZoomMentorias
+     * const integracaoZoomMentoria = await prisma.integracaoZoomMentoria.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     */
+    createMany<T extends IntegracaoZoomMentoriaCreateManyArgs>(args?: SelectSubset<T, IntegracaoZoomMentoriaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many IntegracaoZoomMentorias and returns the data saved in the database.
+     * @param {IntegracaoZoomMentoriaCreateManyAndReturnArgs} args - Arguments to create many IntegracaoZoomMentorias.
+     * @example
+     * // Create many IntegracaoZoomMentorias
+     * const integracaoZoomMentoria = await prisma.integracaoZoomMentoria.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Create many IntegracaoZoomMentorias and only return the `empresa_id`
+     * const integracaoZoomMentoriaWithEmpresa_idOnly = await prisma.integracaoZoomMentoria.createManyAndReturn({
+     *   select: { empresa_id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    createManyAndReturn<T extends IntegracaoZoomMentoriaCreateManyAndReturnArgs>(args?: SelectSubset<T, IntegracaoZoomMentoriaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IntegracaoZoomMentoriaPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a IntegracaoZoomMentoria.
+     * @param {IntegracaoZoomMentoriaDeleteArgs} args - Arguments to delete one IntegracaoZoomMentoria.
+     * @example
+     * // Delete one IntegracaoZoomMentoria
+     * const IntegracaoZoomMentoria = await prisma.integracaoZoomMentoria.delete({
+     *   where: {
+     *     // ... filter to delete one IntegracaoZoomMentoria
+     *   }
+     * })
+     *
+     */
+    delete<T extends IntegracaoZoomMentoriaDeleteArgs>(args: SelectSubset<T, IntegracaoZoomMentoriaDeleteArgs<ExtArgs>>): Prisma__IntegracaoZoomMentoriaClient<$Result.GetResult<Prisma.$IntegracaoZoomMentoriaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one IntegracaoZoomMentoria.
+     * @param {IntegracaoZoomMentoriaUpdateArgs} args - Arguments to update one IntegracaoZoomMentoria.
+     * @example
+     * // Update one IntegracaoZoomMentoria
+     * const integracaoZoomMentoria = await prisma.integracaoZoomMentoria.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    update<T extends IntegracaoZoomMentoriaUpdateArgs>(args: SelectSubset<T, IntegracaoZoomMentoriaUpdateArgs<ExtArgs>>): Prisma__IntegracaoZoomMentoriaClient<$Result.GetResult<Prisma.$IntegracaoZoomMentoriaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more IntegracaoZoomMentorias.
+     * @param {IntegracaoZoomMentoriaDeleteManyArgs} args - Arguments to filter IntegracaoZoomMentorias to delete.
+     * @example
+     * // Delete a few IntegracaoZoomMentorias
+     * const { count } = await prisma.integracaoZoomMentoria.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     *
+     */
+    deleteMany<T extends IntegracaoZoomMentoriaDeleteManyArgs>(args?: SelectSubset<T, IntegracaoZoomMentoriaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more IntegracaoZoomMentorias.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IntegracaoZoomMentoriaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many IntegracaoZoomMentorias
+     * const integracaoZoomMentoria = await prisma.integracaoZoomMentoria.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    updateMany<T extends IntegracaoZoomMentoriaUpdateManyArgs>(args: SelectSubset<T, IntegracaoZoomMentoriaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more IntegracaoZoomMentorias and returns the data updated in the database.
+     * @param {IntegracaoZoomMentoriaUpdateManyAndReturnArgs} args - Arguments to update many IntegracaoZoomMentorias.
+     * @example
+     * // Update many IntegracaoZoomMentorias
+     * const integracaoZoomMentoria = await prisma.integracaoZoomMentoria.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Update zero or more IntegracaoZoomMentorias and only return the `empresa_id`
+     * const integracaoZoomMentoriaWithEmpresa_idOnly = await prisma.integracaoZoomMentoria.updateManyAndReturn({
+     *   select: { empresa_id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    updateManyAndReturn<T extends IntegracaoZoomMentoriaUpdateManyAndReturnArgs>(args: SelectSubset<T, IntegracaoZoomMentoriaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IntegracaoZoomMentoriaPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one IntegracaoZoomMentoria.
+     * @param {IntegracaoZoomMentoriaUpsertArgs} args - Arguments to update or create a IntegracaoZoomMentoria.
+     * @example
+     * // Update or create a IntegracaoZoomMentoria
+     * const integracaoZoomMentoria = await prisma.integracaoZoomMentoria.upsert({
+     *   create: {
+     *     // ... data to create a IntegracaoZoomMentoria
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the IntegracaoZoomMentoria we want to update
+     *   }
+     * })
+     */
+    upsert<T extends IntegracaoZoomMentoriaUpsertArgs>(args: SelectSubset<T, IntegracaoZoomMentoriaUpsertArgs<ExtArgs>>): Prisma__IntegracaoZoomMentoriaClient<$Result.GetResult<Prisma.$IntegracaoZoomMentoriaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of IntegracaoZoomMentorias.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IntegracaoZoomMentoriaCountArgs} args - Arguments to filter IntegracaoZoomMentorias to count.
+     * @example
+     * // Count the number of IntegracaoZoomMentorias
+     * const count = await prisma.integracaoZoomMentoria.count({
+     *   where: {
+     *     // ... the filter for the IntegracaoZoomMentorias we want to count
+     *   }
+     * })
+    **/
+    count<T extends IntegracaoZoomMentoriaCountArgs>(
+      args?: Subset<T, IntegracaoZoomMentoriaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], IntegracaoZoomMentoriaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a IntegracaoZoomMentoria.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IntegracaoZoomMentoriaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends IntegracaoZoomMentoriaAggregateArgs>(args: Subset<T, IntegracaoZoomMentoriaAggregateArgs>): Prisma.PrismaPromise<GetIntegracaoZoomMentoriaAggregateType<T>>
+
+    /**
+     * Group by IntegracaoZoomMentoria.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IntegracaoZoomMentoriaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     *
+    **/
+    groupBy<
+      T extends IntegracaoZoomMentoriaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: IntegracaoZoomMentoriaGroupByArgs['orderBy'] }
+        : { orderBy?: IntegracaoZoomMentoriaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, IntegracaoZoomMentoriaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetIntegracaoZoomMentoriaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the IntegracaoZoomMentoria model
+   */
+  readonly fields: IntegracaoZoomMentoriaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for IntegracaoZoomMentoria.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__IntegracaoZoomMentoriaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    empresa<T extends EmpresaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmpresaDefaultArgs<ExtArgs>>): Prisma__EmpresaClient<$Result.GetResult<Prisma.$EmpresaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the IntegracaoZoomMentoria model
+   */
+  interface IntegracaoZoomMentoriaFieldRefs {
+    readonly empresa_id: FieldRef<"IntegracaoZoomMentoria", 'String'>
+    readonly dados: FieldRef<"IntegracaoZoomMentoria", 'String'>
+  }
+
+
+  // Custom InputTypes
+  /**
+   * IntegracaoZoomMentoria findUnique
+   */
+  export type IntegracaoZoomMentoriaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegracaoZoomMentoria
+     */
+    select?: IntegracaoZoomMentoriaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegracaoZoomMentoria
+     */
+    omit?: IntegracaoZoomMentoriaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IntegracaoZoomMentoriaInclude<ExtArgs> | null
+    /**
+     * Filter, which IntegracaoZoomMentoria to fetch.
+     */
+    where: IntegracaoZoomMentoriaWhereUniqueInput
+  }
+
+  /**
+   * IntegracaoZoomMentoria findUniqueOrThrow
+   */
+  export type IntegracaoZoomMentoriaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegracaoZoomMentoria
+     */
+    select?: IntegracaoZoomMentoriaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegracaoZoomMentoria
+     */
+    omit?: IntegracaoZoomMentoriaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IntegracaoZoomMentoriaInclude<ExtArgs> | null
+    /**
+     * Filter, which IntegracaoZoomMentoria to fetch.
+     */
+    where: IntegracaoZoomMentoriaWhereUniqueInput
+  }
+
+  /**
+   * IntegracaoZoomMentoria findFirst
+   */
+  export type IntegracaoZoomMentoriaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegracaoZoomMentoria
+     */
+    select?: IntegracaoZoomMentoriaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegracaoZoomMentoria
+     */
+    omit?: IntegracaoZoomMentoriaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IntegracaoZoomMentoriaInclude<ExtArgs> | null
+    /**
+     * Filter, which IntegracaoZoomMentoria to fetch.
+     */
+    where?: IntegracaoZoomMentoriaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of IntegracaoZoomMentorias to fetch.
+     */
+    orderBy?: IntegracaoZoomMentoriaOrderByWithRelationInput | IntegracaoZoomMentoriaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for IntegracaoZoomMentorias.
+     */
+    cursor?: IntegracaoZoomMentoriaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` IntegracaoZoomMentorias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` IntegracaoZoomMentorias.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of IntegracaoZoomMentorias.
+     */
+    distinct?: IntegracaoZoomMentoriaScalarFieldEnum | IntegracaoZoomMentoriaScalarFieldEnum[]
+  }
+
+  /**
+   * IntegracaoZoomMentoria findFirstOrThrow
+   */
+  export type IntegracaoZoomMentoriaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegracaoZoomMentoria
+     */
+    select?: IntegracaoZoomMentoriaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegracaoZoomMentoria
+     */
+    omit?: IntegracaoZoomMentoriaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IntegracaoZoomMentoriaInclude<ExtArgs> | null
+    /**
+     * Filter, which IntegracaoZoomMentoria to fetch.
+     */
+    where?: IntegracaoZoomMentoriaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of IntegracaoZoomMentorias to fetch.
+     */
+    orderBy?: IntegracaoZoomMentoriaOrderByWithRelationInput | IntegracaoZoomMentoriaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for IntegracaoZoomMentorias.
+     */
+    cursor?: IntegracaoZoomMentoriaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` IntegracaoZoomMentorias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` IntegracaoZoomMentorias.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of IntegracaoZoomMentorias.
+     */
+    distinct?: IntegracaoZoomMentoriaScalarFieldEnum | IntegracaoZoomMentoriaScalarFieldEnum[]
+  }
+
+  /**
+   * IntegracaoZoomMentoria findMany
+   */
+  export type IntegracaoZoomMentoriaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegracaoZoomMentoria
+     */
+    select?: IntegracaoZoomMentoriaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegracaoZoomMentoria
+     */
+    omit?: IntegracaoZoomMentoriaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IntegracaoZoomMentoriaInclude<ExtArgs> | null
+    /**
+     * Filter, which IntegracaoZoomMentorias to fetch.
+     */
+    where?: IntegracaoZoomMentoriaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of IntegracaoZoomMentorias to fetch.
+     */
+    orderBy?: IntegracaoZoomMentoriaOrderByWithRelationInput | IntegracaoZoomMentoriaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for listing IntegracaoZoomMentorias.
+     */
+    cursor?: IntegracaoZoomMentoriaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` IntegracaoZoomMentorias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` IntegracaoZoomMentorias.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of IntegracaoZoomMentorias.
+     */
+    distinct?: IntegracaoZoomMentoriaScalarFieldEnum | IntegracaoZoomMentoriaScalarFieldEnum[]
+  }
+
+  /**
+   * IntegracaoZoomMentoria create
+   */
+  export type IntegracaoZoomMentoriaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegracaoZoomMentoria
+     */
+    select?: IntegracaoZoomMentoriaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegracaoZoomMentoria
+     */
+    omit?: IntegracaoZoomMentoriaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IntegracaoZoomMentoriaInclude<ExtArgs> | null
+    /**
+     * The data needed to create a IntegracaoZoomMentoria.
+     */
+    data: XOR<IntegracaoZoomMentoriaCreateInput, IntegracaoZoomMentoriaUncheckedCreateInput>
+  }
+
+  /**
+   * IntegracaoZoomMentoria createMany
+   */
+  export type IntegracaoZoomMentoriaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many IntegracaoZoomMentorias.
+     */
+    data: IntegracaoZoomMentoriaCreateManyInput | IntegracaoZoomMentoriaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * IntegracaoZoomMentoria createManyAndReturn
+   */
+  export type IntegracaoZoomMentoriaCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegracaoZoomMentoria
+     */
+    select?: IntegracaoZoomMentoriaSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegracaoZoomMentoria
+     */
+    omit?: IntegracaoZoomMentoriaOmit<ExtArgs> | null
+    /**
+     * The data used to create many IntegracaoZoomMentorias.
+     */
+    data: IntegracaoZoomMentoriaCreateManyInput | IntegracaoZoomMentoriaCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IntegracaoZoomMentoriaIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * IntegracaoZoomMentoria update
+   */
+  export type IntegracaoZoomMentoriaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegracaoZoomMentoria
+     */
+    select?: IntegracaoZoomMentoriaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegracaoZoomMentoria
+     */
+    omit?: IntegracaoZoomMentoriaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IntegracaoZoomMentoriaInclude<ExtArgs> | null
+    /**
+     * The data needed to update a IntegracaoZoomMentoria.
+     */
+    data: XOR<IntegracaoZoomMentoriaUpdateInput, IntegracaoZoomMentoriaUncheckedUpdateInput>
+    /**
+     * Choose, which IntegracaoZoomMentoria to update.
+     */
+    where: IntegracaoZoomMentoriaWhereUniqueInput
+  }
+
+  /**
+   * IntegracaoZoomMentoria updateMany
+   */
+  export type IntegracaoZoomMentoriaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update IntegracaoZoomMentorias.
+     */
+    data: XOR<IntegracaoZoomMentoriaUpdateManyMutationInput, IntegracaoZoomMentoriaUncheckedUpdateManyInput>
+    /**
+     * Filter which IntegracaoZoomMentorias to update
+     */
+    where?: IntegracaoZoomMentoriaWhereInput
+    /**
+     * Limit how many IntegracaoZoomMentorias to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * IntegracaoZoomMentoria updateManyAndReturn
+   */
+  export type IntegracaoZoomMentoriaUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegracaoZoomMentoria
+     */
+    select?: IntegracaoZoomMentoriaSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegracaoZoomMentoria
+     */
+    omit?: IntegracaoZoomMentoriaOmit<ExtArgs> | null
+    /**
+     * The data used to update IntegracaoZoomMentorias.
+     */
+    data: XOR<IntegracaoZoomMentoriaUpdateManyMutationInput, IntegracaoZoomMentoriaUncheckedUpdateManyInput>
+    /**
+     * Filter which IntegracaoZoomMentorias to update
+     */
+    where?: IntegracaoZoomMentoriaWhereInput
+    /**
+     * Limit how many IntegracaoZoomMentorias to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IntegracaoZoomMentoriaIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * IntegracaoZoomMentoria upsert
+   */
+  export type IntegracaoZoomMentoriaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegracaoZoomMentoria
+     */
+    select?: IntegracaoZoomMentoriaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegracaoZoomMentoria
+     */
+    omit?: IntegracaoZoomMentoriaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IntegracaoZoomMentoriaInclude<ExtArgs> | null
+    /**
+     * The filter to search for the IntegracaoZoomMentoria to update in case it exists.
+     */
+    where: IntegracaoZoomMentoriaWhereUniqueInput
+    /**
+     * In case the IntegracaoZoomMentoria found by the `where` argument doesn't exist, create a new IntegracaoZoomMentoria with this data.
+     */
+    create: XOR<IntegracaoZoomMentoriaCreateInput, IntegracaoZoomMentoriaUncheckedCreateInput>
+    /**
+     * In case the IntegracaoZoomMentoria was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<IntegracaoZoomMentoriaUpdateInput, IntegracaoZoomMentoriaUncheckedUpdateInput>
+  }
+
+  /**
+   * IntegracaoZoomMentoria delete
+   */
+  export type IntegracaoZoomMentoriaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegracaoZoomMentoria
+     */
+    select?: IntegracaoZoomMentoriaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegracaoZoomMentoria
+     */
+    omit?: IntegracaoZoomMentoriaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IntegracaoZoomMentoriaInclude<ExtArgs> | null
+    /**
+     * Filter which IntegracaoZoomMentoria to delete.
+     */
+    where: IntegracaoZoomMentoriaWhereUniqueInput
+  }
+
+  /**
+   * IntegracaoZoomMentoria deleteMany
+   */
+  export type IntegracaoZoomMentoriaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which IntegracaoZoomMentorias to delete
+     */
+    where?: IntegracaoZoomMentoriaWhereInput
+    /**
+     * Limit how many IntegracaoZoomMentorias to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * IntegracaoZoomMentoria without action
+   */
+  export type IntegracaoZoomMentoriaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegracaoZoomMentoria
+     */
+    select?: IntegracaoZoomMentoriaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegracaoZoomMentoria
+     */
+    omit?: IntegracaoZoomMentoriaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IntegracaoZoomMentoriaInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -92070,6 +93208,14 @@ export namespace Prisma {
   export type MentoriaMaterialScalarFieldEnum = (typeof MentoriaMaterialScalarFieldEnum)[keyof typeof MentoriaMaterialScalarFieldEnum]
 
 
+  export const IntegracaoZoomMentoriaScalarFieldEnum: {
+    empresa_id: 'empresa_id',
+    dados: 'dados'
+  };
+
+  export type IntegracaoZoomMentoriaScalarFieldEnum = (typeof IntegracaoZoomMentoriaScalarFieldEnum)[keyof typeof IntegracaoZoomMentoriaScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -92617,6 +93763,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaListRelationFilter
     campanhas_cupom?: CampanhaCupomListRelationFilter
     reembolsos?: ReembolsoListRelationFilter
+    zoom_mentorias?: XOR<IntegracaoZoomMentoriaNullableScalarRelationFilter, IntegracaoZoomMentoriaWhereInput> | null
     mentorias?: MentoriaListRelationFilter
   }
 
@@ -92667,6 +93814,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaOrderByRelationAggregateInput
     campanhas_cupom?: CampanhaCupomOrderByRelationAggregateInput
     reembolsos?: ReembolsoOrderByRelationAggregateInput
+    zoom_mentorias?: IntegracaoZoomMentoriaOrderByWithRelationInput
     mentorias?: MentoriaOrderByRelationAggregateInput
   }
 
@@ -92720,6 +93868,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaListRelationFilter
     campanhas_cupom?: CampanhaCupomListRelationFilter
     reembolsos?: ReembolsoListRelationFilter
+    zoom_mentorias?: XOR<IntegracaoZoomMentoriaNullableScalarRelationFilter, IntegracaoZoomMentoriaWhereInput> | null
     mentorias?: MentoriaListRelationFilter
   }, "id" | "slug" | "cnpj">
 
@@ -98928,6 +100077,46 @@ export namespace Prisma {
     criado_em?: DateTimeWithAggregatesFilter<"MentoriaMaterial"> | Date | string
   }
 
+  export type IntegracaoZoomMentoriaWhereInput = {
+    AND?: IntegracaoZoomMentoriaWhereInput | IntegracaoZoomMentoriaWhereInput[]
+    OR?: IntegracaoZoomMentoriaWhereInput[]
+    NOT?: IntegracaoZoomMentoriaWhereInput | IntegracaoZoomMentoriaWhereInput[]
+    empresa_id?: StringFilter<"IntegracaoZoomMentoria"> | string
+    dados?: StringFilter<"IntegracaoZoomMentoria"> | string
+    empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
+  }
+
+  export type IntegracaoZoomMentoriaOrderByWithRelationInput = {
+    empresa_id?: SortOrder
+    dados?: SortOrder
+    empresa?: EmpresaOrderByWithRelationInput
+  }
+
+  export type IntegracaoZoomMentoriaWhereUniqueInput = Prisma.AtLeast<{
+    empresa_id?: string
+    AND?: IntegracaoZoomMentoriaWhereInput | IntegracaoZoomMentoriaWhereInput[]
+    OR?: IntegracaoZoomMentoriaWhereInput[]
+    NOT?: IntegracaoZoomMentoriaWhereInput | IntegracaoZoomMentoriaWhereInput[]
+    dados?: StringFilter<"IntegracaoZoomMentoria"> | string
+    empresa?: XOR<EmpresaScalarRelationFilter, EmpresaWhereInput>
+  }, "empresa_id">
+
+  export type IntegracaoZoomMentoriaOrderByWithAggregationInput = {
+    empresa_id?: SortOrder
+    dados?: SortOrder
+    _count?: IntegracaoZoomMentoriaCountOrderByAggregateInput
+    _max?: IntegracaoZoomMentoriaMaxOrderByAggregateInput
+    _min?: IntegracaoZoomMentoriaMinOrderByAggregateInput
+  }
+
+  export type IntegracaoZoomMentoriaScalarWhereWithAggregatesInput = {
+    AND?: IntegracaoZoomMentoriaScalarWhereWithAggregatesInput | IntegracaoZoomMentoriaScalarWhereWithAggregatesInput[]
+    OR?: IntegracaoZoomMentoriaScalarWhereWithAggregatesInput[]
+    NOT?: IntegracaoZoomMentoriaScalarWhereWithAggregatesInput | IntegracaoZoomMentoriaScalarWhereWithAggregatesInput[]
+    empresa_id?: StringWithAggregatesFilter<"IntegracaoZoomMentoria"> | string
+    dados?: StringWithAggregatesFilter<"IntegracaoZoomMentoria"> | string
+  }
+
   export type EmpresaCreateInput = {
     id?: string
     nome: string
@@ -98975,6 +100164,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -99025,6 +100215,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -99075,6 +100266,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -99125,6 +100317,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -105883,6 +107076,40 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type IntegracaoZoomMentoriaCreateInput = {
+    dados: string
+    empresa: EmpresaCreateNestedOneWithoutZoom_mentoriasInput
+  }
+
+  export type IntegracaoZoomMentoriaUncheckedCreateInput = {
+    empresa_id: string
+    dados: string
+  }
+
+  export type IntegracaoZoomMentoriaUpdateInput = {
+    dados?: StringFieldUpdateOperationsInput | string
+    empresa?: EmpresaUpdateOneRequiredWithoutZoom_mentoriasNestedInput
+  }
+
+  export type IntegracaoZoomMentoriaUncheckedUpdateInput = {
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    dados?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type IntegracaoZoomMentoriaCreateManyInput = {
+    empresa_id: string
+    dados: string
+  }
+
+  export type IntegracaoZoomMentoriaUpdateManyMutationInput = {
+    dados?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type IntegracaoZoomMentoriaUncheckedUpdateManyInput = {
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    dados?: StringFieldUpdateOperationsInput | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -106169,6 +107396,11 @@ export namespace Prisma {
     every?: ReembolsoWhereInput
     some?: ReembolsoWhereInput
     none?: ReembolsoWhereInput
+  }
+
+  export type IntegracaoZoomMentoriaNullableScalarRelationFilter = {
+    is?: IntegracaoZoomMentoriaWhereInput | null
+    isNot?: IntegracaoZoomMentoriaWhereInput | null
   }
 
   export type MentoriaListRelationFilter = {
@@ -110623,6 +111855,21 @@ export namespace Prisma {
     tamanho?: SortOrder
   }
 
+  export type IntegracaoZoomMentoriaCountOrderByAggregateInput = {
+    empresa_id?: SortOrder
+    dados?: SortOrder
+  }
+
+  export type IntegracaoZoomMentoriaMaxOrderByAggregateInput = {
+    empresa_id?: SortOrder
+    dados?: SortOrder
+  }
+
+  export type IntegracaoZoomMentoriaMinOrderByAggregateInput = {
+    empresa_id?: SortOrder
+    dados?: SortOrder
+  }
+
   export type MembroEmpresaCreateNestedManyWithoutEmpresaInput = {
     create?: XOR<MembroEmpresaCreateWithoutEmpresaInput, MembroEmpresaUncheckedCreateWithoutEmpresaInput> | MembroEmpresaCreateWithoutEmpresaInput[] | MembroEmpresaUncheckedCreateWithoutEmpresaInput[]
     connectOrCreate?: MembroEmpresaCreateOrConnectWithoutEmpresaInput | MembroEmpresaCreateOrConnectWithoutEmpresaInput[]
@@ -110866,6 +112113,12 @@ export namespace Prisma {
     connectOrCreate?: ReembolsoCreateOrConnectWithoutEmpresaInput | ReembolsoCreateOrConnectWithoutEmpresaInput[]
     createMany?: ReembolsoCreateManyEmpresaInputEnvelope
     connect?: ReembolsoWhereUniqueInput | ReembolsoWhereUniqueInput[]
+  }
+
+  export type IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput = {
+    create?: XOR<IntegracaoZoomMentoriaCreateWithoutEmpresaInput, IntegracaoZoomMentoriaUncheckedCreateWithoutEmpresaInput>
+    connectOrCreate?: IntegracaoZoomMentoriaCreateOrConnectWithoutEmpresaInput
+    connect?: IntegracaoZoomMentoriaWhereUniqueInput
   }
 
   export type MentoriaCreateNestedManyWithoutEmpresaInput = {
@@ -111118,6 +112371,12 @@ export namespace Prisma {
     connectOrCreate?: ReembolsoCreateOrConnectWithoutEmpresaInput | ReembolsoCreateOrConnectWithoutEmpresaInput[]
     createMany?: ReembolsoCreateManyEmpresaInputEnvelope
     connect?: ReembolsoWhereUniqueInput | ReembolsoWhereUniqueInput[]
+  }
+
+  export type IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput = {
+    create?: XOR<IntegracaoZoomMentoriaCreateWithoutEmpresaInput, IntegracaoZoomMentoriaUncheckedCreateWithoutEmpresaInput>
+    connectOrCreate?: IntegracaoZoomMentoriaCreateOrConnectWithoutEmpresaInput
+    connect?: IntegracaoZoomMentoriaWhereUniqueInput
   }
 
   export type MentoriaUncheckedCreateNestedManyWithoutEmpresaInput = {
@@ -111637,6 +112896,16 @@ export namespace Prisma {
     deleteMany?: ReembolsoScalarWhereInput | ReembolsoScalarWhereInput[]
   }
 
+  export type IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput = {
+    create?: XOR<IntegracaoZoomMentoriaCreateWithoutEmpresaInput, IntegracaoZoomMentoriaUncheckedCreateWithoutEmpresaInput>
+    connectOrCreate?: IntegracaoZoomMentoriaCreateOrConnectWithoutEmpresaInput
+    upsert?: IntegracaoZoomMentoriaUpsertWithoutEmpresaInput
+    disconnect?: IntegracaoZoomMentoriaWhereInput | boolean
+    delete?: IntegracaoZoomMentoriaWhereInput | boolean
+    connect?: IntegracaoZoomMentoriaWhereUniqueInput
+    update?: XOR<XOR<IntegracaoZoomMentoriaUpdateToOneWithWhereWithoutEmpresaInput, IntegracaoZoomMentoriaUpdateWithoutEmpresaInput>, IntegracaoZoomMentoriaUncheckedUpdateWithoutEmpresaInput>
+  }
+
   export type MentoriaUpdateManyWithoutEmpresaNestedInput = {
     create?: XOR<MentoriaCreateWithoutEmpresaInput, MentoriaUncheckedCreateWithoutEmpresaInput> | MentoriaCreateWithoutEmpresaInput[] | MentoriaUncheckedCreateWithoutEmpresaInput[]
     connectOrCreate?: MentoriaCreateOrConnectWithoutEmpresaInput | MentoriaCreateOrConnectWithoutEmpresaInput[]
@@ -112139,6 +113408,16 @@ export namespace Prisma {
     update?: ReembolsoUpdateWithWhereUniqueWithoutEmpresaInput | ReembolsoUpdateWithWhereUniqueWithoutEmpresaInput[]
     updateMany?: ReembolsoUpdateManyWithWhereWithoutEmpresaInput | ReembolsoUpdateManyWithWhereWithoutEmpresaInput[]
     deleteMany?: ReembolsoScalarWhereInput | ReembolsoScalarWhereInput[]
+  }
+
+  export type IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput = {
+    create?: XOR<IntegracaoZoomMentoriaCreateWithoutEmpresaInput, IntegracaoZoomMentoriaUncheckedCreateWithoutEmpresaInput>
+    connectOrCreate?: IntegracaoZoomMentoriaCreateOrConnectWithoutEmpresaInput
+    upsert?: IntegracaoZoomMentoriaUpsertWithoutEmpresaInput
+    disconnect?: IntegracaoZoomMentoriaWhereInput | boolean
+    delete?: IntegracaoZoomMentoriaWhereInput | boolean
+    connect?: IntegracaoZoomMentoriaWhereUniqueInput
+    update?: XOR<XOR<IntegracaoZoomMentoriaUpdateToOneWithWhereWithoutEmpresaInput, IntegracaoZoomMentoriaUpdateWithoutEmpresaInput>, IntegracaoZoomMentoriaUncheckedUpdateWithoutEmpresaInput>
   }
 
   export type MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput = {
@@ -118577,6 +119856,20 @@ export namespace Prisma {
     update?: XOR<XOR<MentoriaUpdateToOneWithWhereWithoutMateriaisInput, MentoriaUpdateWithoutMateriaisInput>, MentoriaUncheckedUpdateWithoutMateriaisInput>
   }
 
+  export type EmpresaCreateNestedOneWithoutZoom_mentoriasInput = {
+    create?: XOR<EmpresaCreateWithoutZoom_mentoriasInput, EmpresaUncheckedCreateWithoutZoom_mentoriasInput>
+    connectOrCreate?: EmpresaCreateOrConnectWithoutZoom_mentoriasInput
+    connect?: EmpresaWhereUniqueInput
+  }
+
+  export type EmpresaUpdateOneRequiredWithoutZoom_mentoriasNestedInput = {
+    create?: XOR<EmpresaCreateWithoutZoom_mentoriasInput, EmpresaUncheckedCreateWithoutZoom_mentoriasInput>
+    connectOrCreate?: EmpresaCreateOrConnectWithoutZoom_mentoriasInput
+    upsert?: EmpresaUpsertWithoutZoom_mentoriasInput
+    connect?: EmpresaWhereUniqueInput
+    update?: XOR<XOR<EmpresaUpdateToOneWithWhereWithoutZoom_mentoriasInput, EmpresaUpdateWithoutZoom_mentoriasInput>, EmpresaUncheckedUpdateWithoutZoom_mentoriasInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -120960,6 +122253,19 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type IntegracaoZoomMentoriaCreateWithoutEmpresaInput = {
+    dados: string
+  }
+
+  export type IntegracaoZoomMentoriaUncheckedCreateWithoutEmpresaInput = {
+    dados: string
+  }
+
+  export type IntegracaoZoomMentoriaCreateOrConnectWithoutEmpresaInput = {
+    where: IntegracaoZoomMentoriaWhereUniqueInput
+    create: XOR<IntegracaoZoomMentoriaCreateWithoutEmpresaInput, IntegracaoZoomMentoriaUncheckedCreateWithoutEmpresaInput>
+  }
+
   export type MentoriaCreateWithoutEmpresaInput = {
     id?: string
     nome: string
@@ -122287,6 +123593,25 @@ export namespace Prisma {
     status?: StringFilter<"Reembolso"> | string
     total?: DecimalFilter<"Reembolso"> | Decimal | DecimalJsLike | number | string
     criado_em?: DateTimeFilter<"Reembolso"> | Date | string
+  }
+
+  export type IntegracaoZoomMentoriaUpsertWithoutEmpresaInput = {
+    update: XOR<IntegracaoZoomMentoriaUpdateWithoutEmpresaInput, IntegracaoZoomMentoriaUncheckedUpdateWithoutEmpresaInput>
+    create: XOR<IntegracaoZoomMentoriaCreateWithoutEmpresaInput, IntegracaoZoomMentoriaUncheckedCreateWithoutEmpresaInput>
+    where?: IntegracaoZoomMentoriaWhereInput
+  }
+
+  export type IntegracaoZoomMentoriaUpdateToOneWithWhereWithoutEmpresaInput = {
+    where?: IntegracaoZoomMentoriaWhereInput
+    data: XOR<IntegracaoZoomMentoriaUpdateWithoutEmpresaInput, IntegracaoZoomMentoriaUncheckedUpdateWithoutEmpresaInput>
+  }
+
+  export type IntegracaoZoomMentoriaUpdateWithoutEmpresaInput = {
+    dados?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type IntegracaoZoomMentoriaUncheckedUpdateWithoutEmpresaInput = {
+    dados?: StringFieldUpdateOperationsInput | string
   }
 
   export type MentoriaUpsertWithWhereUniqueWithoutEmpresaInput = {
@@ -123919,6 +125244,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -123968,6 +125294,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -124127,6 +125454,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -124176,6 +125504,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -124256,6 +125585,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -124305,6 +125635,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -124414,6 +125745,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -124463,6 +125795,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -124686,6 +126019,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -124735,6 +126069,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -124863,6 +126198,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -124912,6 +126248,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -125030,6 +126367,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -125079,6 +126417,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -125298,6 +126637,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -125347,6 +126687,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -125562,6 +126903,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -125611,6 +126953,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -126523,6 +127866,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -126572,6 +127916,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -127119,6 +128464,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -127168,6 +128514,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -127462,6 +128809,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -127511,6 +128859,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -127679,6 +129028,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -127728,6 +129078,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -127861,6 +129212,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -127910,6 +129262,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -128239,6 +129592,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -128288,6 +129642,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -128714,6 +130069,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -128763,6 +130119,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -129133,6 +130490,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -129182,6 +130540,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -129704,6 +131063,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -129753,6 +131113,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -130664,6 +132025,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -130713,6 +132075,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -131395,6 +132758,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -131444,6 +132808,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -131942,6 +133307,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -131991,6 +133357,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -132175,6 +133542,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -132224,6 +133592,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -132398,6 +133767,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -132447,6 +133817,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -133070,6 +134441,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -133119,6 +134491,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -135814,6 +137187,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -135863,6 +137237,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -135946,6 +137321,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -135995,6 +137371,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -136208,6 +137585,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -136257,6 +137635,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -136429,6 +137808,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -136478,6 +137858,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -136594,6 +137975,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -136643,6 +138025,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -137061,6 +138444,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -137110,6 +138494,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -137542,6 +138927,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -137591,6 +138977,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -137905,6 +139292,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -137954,6 +139342,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -138174,6 +139563,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -138223,6 +139613,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -138493,6 +139884,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -138542,6 +139934,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -138680,6 +140073,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -138729,6 +140123,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -138884,6 +140279,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -138933,6 +140329,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -139084,6 +140481,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -139133,6 +140531,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -139375,6 +140774,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -139424,6 +140824,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -139562,6 +140963,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -139611,6 +141013,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -140162,6 +141565,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -140211,6 +141615,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -140794,6 +142199,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -140843,6 +142249,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -141145,6 +142552,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -141194,6 +142602,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -141510,6 +142919,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -141559,6 +142969,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -141674,6 +143085,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -141723,6 +143135,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -141788,6 +143201,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -141837,6 +143251,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -141902,6 +143317,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -141951,6 +143367,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -142000,6 +143417,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -142049,6 +143467,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -142438,6 +143857,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -142487,6 +143907,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -142884,6 +144305,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -142933,6 +144355,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -142998,6 +144421,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -143047,6 +144471,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -143096,6 +144521,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -143145,6 +144571,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -143210,6 +144637,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -143259,6 +144687,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -143308,6 +144737,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -143357,6 +144787,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -143703,6 +145134,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -143752,6 +145184,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -144100,6 +145533,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -144149,6 +145583,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -144376,6 +145811,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -144425,6 +145861,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -144648,6 +146085,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -144697,6 +146135,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -144904,6 +146343,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -144953,6 +146393,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -145424,6 +146865,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -145473,6 +146915,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -145680,6 +147123,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -145729,6 +147173,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -145932,6 +147377,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -145981,6 +147427,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -146088,6 +147535,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -146137,6 +147585,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -146422,6 +147871,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -146471,6 +147921,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -146536,6 +147987,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -146585,6 +148037,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -146634,6 +148087,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -146683,6 +148137,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -146791,6 +148246,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -146840,6 +148296,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -146938,6 +148395,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -146987,6 +148445,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -147186,6 +148645,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -147235,6 +148695,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -147430,6 +148891,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
   }
 
@@ -147479,6 +148941,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
     mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
   }
 
@@ -147578,6 +149041,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -147627,6 +149091,7 @@ export namespace Prisma {
     diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
     mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
@@ -147765,6 +149230,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaCreateNestedOneWithoutEmpresaInput
   }
 
   export type EmpresaUncheckedCreateWithoutMentoriasInput = {
@@ -147814,6 +149280,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
     campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
     reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedCreateNestedOneWithoutEmpresaInput
   }
 
   export type EmpresaCreateOrConnectWithoutMentoriasInput = {
@@ -148093,6 +149560,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUpdateOneWithoutEmpresaNestedInput
   }
 
   export type EmpresaUncheckedUpdateWithoutMentoriasInput = {
@@ -148142,6 +149610,7 @@ export namespace Prisma {
     assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
     campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
     reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    zoom_mentorias?: IntegracaoZoomMentoriaUncheckedUpdateOneWithoutEmpresaNestedInput
   }
 
   export type MentoriaAlunoUpsertWithWhereUniqueWithoutMentoriaInput = {
@@ -149439,6 +150908,222 @@ export namespace Prisma {
     tokens?: TokenPortalUncheckedUpdateManyWithoutMentoriaNestedInput
     paginas?: MentoriaPaginaUncheckedUpdateManyWithoutMentoriaNestedInput
     itens?: MentoriaItemUncheckedUpdateManyWithoutMentoriaNestedInput
+  }
+
+  export type EmpresaCreateWithoutZoom_mentoriasInput = {
+    id?: string
+    nome: string
+    slug: string
+    cnpj?: string | null
+    logo_url?: string | null
+    plano?: $Enums.PlanoTipo
+    status?: $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaCreateNestedManyWithoutEmpresaInput
+    perfis?: PerfilCreateNestedManyWithoutEmpresaInput
+    convites?: ConviteEmpresaCreateNestedManyWithoutEmpresaInput
+    convites_cliente?: ConviteClienteCreateNestedManyWithoutEmpresaInput
+    clientes?: ClienteCreateNestedManyWithoutEmpresaInput
+    servicos?: ServicoCreateNestedManyWithoutEmpresaInput
+    leads?: LeadCreateNestedManyWithoutEmpresaInput
+    propostas?: PropostaCreateNestedManyWithoutEmpresaInput
+    contratos?: ContratoCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoCreateNestedManyWithoutEmpresaInput
+    projetos?: ProjetoCreateNestedManyWithoutEmpresaInput
+    documentos?: DocumentoCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoCreateNestedManyWithoutEmpresaInput
+    plano_contas?: PlanoDeContasCreateNestedManyWithoutEmpresaInput
+    contas_bancarias?: ContaBancariaCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaCreateNestedManyWithoutEmpresaInput
+    boletos?: BoletoCreateNestedManyWithoutEmpresaInput
+    recebiveis?: RecebivelCreateNestedManyWithoutEmpresaInput
+    contas_pagar?: ContaPagarCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorCreateNestedManyWithoutEmpresaInput
+    modelos_documento?: ModeloDocumentoCreateNestedManyWithoutEmpresaInput
+    eventos?: EventoCreateNestedManyWithoutEmpresaInput
+    registros_auditoria?: RegistroAuditoriaCreateNestedManyWithoutEmpresaInput
+    notificacoes?: NotificacaoCreateNestedManyWithoutEmpresaInput
+    notas_fiscais?: NotaFiscalCreateNestedManyWithoutEmpresaInput
+    diagnosticos?: DiagnosticoCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoCreateNestedManyWithoutEmpresaInput
+    mentorias?: MentoriaCreateNestedManyWithoutEmpresaInput
+  }
+
+  export type EmpresaUncheckedCreateWithoutZoom_mentoriasInput = {
+    id?: string
+    nome: string
+    slug: string
+    cnpj?: string | null
+    logo_url?: string | null
+    plano?: $Enums.PlanoTipo
+    status?: $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: string | null
+    criado_em?: Date | string
+    atualizado_em?: Date | string
+    membros?: MembroEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
+    perfis?: PerfilUncheckedCreateNestedManyWithoutEmpresaInput
+    convites?: ConviteEmpresaUncheckedCreateNestedManyWithoutEmpresaInput
+    convites_cliente?: ConviteClienteUncheckedCreateNestedManyWithoutEmpresaInput
+    clientes?: ClienteUncheckedCreateNestedManyWithoutEmpresaInput
+    servicos?: ServicoUncheckedCreateNestedManyWithoutEmpresaInput
+    leads?: LeadUncheckedCreateNestedManyWithoutEmpresaInput
+    propostas?: PropostaUncheckedCreateNestedManyWithoutEmpresaInput
+    contratos?: ContratoUncheckedCreateNestedManyWithoutEmpresaInput
+    contrato_aditivos?: ContratoAditivoUncheckedCreateNestedManyWithoutEmpresaInput
+    projetos?: ProjetoUncheckedCreateNestedManyWithoutEmpresaInput
+    documentos?: DocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    pastas_documento?: PastaDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    plano_contas?: PlanoDeContasUncheckedCreateNestedManyWithoutEmpresaInput
+    contas_bancarias?: ContaBancariaUncheckedCreateNestedManyWithoutEmpresaInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedCreateNestedManyWithoutEmpresaInput
+    boletos?: BoletoUncheckedCreateNestedManyWithoutEmpresaInput
+    recebiveis?: RecebivelUncheckedCreateNestedManyWithoutEmpresaInput
+    contas_pagar?: ContaPagarUncheckedCreateNestedManyWithoutEmpresaInput
+    fornecedores?: FornecedorUncheckedCreateNestedManyWithoutEmpresaInput
+    modelos_documento?: ModeloDocumentoUncheckedCreateNestedManyWithoutEmpresaInput
+    eventos?: EventoUncheckedCreateNestedManyWithoutEmpresaInput
+    registros_auditoria?: RegistroAuditoriaUncheckedCreateNestedManyWithoutEmpresaInput
+    notificacoes?: NotificacaoUncheckedCreateNestedManyWithoutEmpresaInput
+    notas_fiscais?: NotaFiscalUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnosticos?: DiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedCreateNestedManyWithoutEmpresaInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    etapas_crm?: EtapaCrmUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedCreateNestedManyWithoutEmpresaInput
+    centros_custo?: CentroCustoUncheckedCreateNestedManyWithoutEmpresaInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedCreateNestedManyWithoutEmpresaInput
+    assinaturas?: AssinaturaUncheckedCreateNestedManyWithoutEmpresaInput
+    campanhas_cupom?: CampanhaCupomUncheckedCreateNestedManyWithoutEmpresaInput
+    reembolsos?: ReembolsoUncheckedCreateNestedManyWithoutEmpresaInput
+    mentorias?: MentoriaUncheckedCreateNestedManyWithoutEmpresaInput
+  }
+
+  export type EmpresaCreateOrConnectWithoutZoom_mentoriasInput = {
+    where: EmpresaWhereUniqueInput
+    create: XOR<EmpresaCreateWithoutZoom_mentoriasInput, EmpresaUncheckedCreateWithoutZoom_mentoriasInput>
+  }
+
+  export type EmpresaUpsertWithoutZoom_mentoriasInput = {
+    update: XOR<EmpresaUpdateWithoutZoom_mentoriasInput, EmpresaUncheckedUpdateWithoutZoom_mentoriasInput>
+    create: XOR<EmpresaCreateWithoutZoom_mentoriasInput, EmpresaUncheckedCreateWithoutZoom_mentoriasInput>
+    where?: EmpresaWhereInput
+  }
+
+  export type EmpresaUpdateToOneWithWhereWithoutZoom_mentoriasInput = {
+    where?: EmpresaWhereInput
+    data: XOR<EmpresaUpdateWithoutZoom_mentoriasInput, EmpresaUncheckedUpdateWithoutZoom_mentoriasInput>
+  }
+
+  export type EmpresaUpdateWithoutZoom_mentoriasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    logo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
+    status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUpdateManyWithoutEmpresaNestedInput
+    perfis?: PerfilUpdateManyWithoutEmpresaNestedInput
+    convites?: ConviteEmpresaUpdateManyWithoutEmpresaNestedInput
+    convites_cliente?: ConviteClienteUpdateManyWithoutEmpresaNestedInput
+    clientes?: ClienteUpdateManyWithoutEmpresaNestedInput
+    servicos?: ServicoUpdateManyWithoutEmpresaNestedInput
+    leads?: LeadUpdateManyWithoutEmpresaNestedInput
+    propostas?: PropostaUpdateManyWithoutEmpresaNestedInput
+    contratos?: ContratoUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUpdateManyWithoutEmpresaNestedInput
+    projetos?: ProjetoUpdateManyWithoutEmpresaNestedInput
+    documentos?: DocumentoUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUpdateManyWithoutEmpresaNestedInput
+    plano_contas?: PlanoDeContasUpdateManyWithoutEmpresaNestedInput
+    contas_bancarias?: ContaBancariaUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUpdateManyWithoutEmpresaNestedInput
+    boletos?: BoletoUpdateManyWithoutEmpresaNestedInput
+    recebiveis?: RecebivelUpdateManyWithoutEmpresaNestedInput
+    contas_pagar?: ContaPagarUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUpdateManyWithoutEmpresaNestedInput
+    modelos_documento?: ModeloDocumentoUpdateManyWithoutEmpresaNestedInput
+    eventos?: EventoUpdateManyWithoutEmpresaNestedInput
+    registros_auditoria?: RegistroAuditoriaUpdateManyWithoutEmpresaNestedInput
+    notificacoes?: NotificacaoUpdateManyWithoutEmpresaNestedInput
+    notas_fiscais?: NotaFiscalUpdateManyWithoutEmpresaNestedInput
+    diagnosticos?: DiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUpdateManyWithoutEmpresaNestedInput
+    mentorias?: MentoriaUpdateManyWithoutEmpresaNestedInput
+  }
+
+  export type EmpresaUncheckedUpdateWithoutZoom_mentoriasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    logo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    plano?: EnumPlanoTipoFieldUpdateOperationsInput | $Enums.PlanoTipo
+    status?: EnumStatusEmpresaFieldUpdateOperationsInput | $Enums.StatusEmpresa
+    configuracoes?: JsonNullValueInput | InputJsonValue
+    asaas_api_key?: NullableStringFieldUpdateOperationsInput | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    membros?: MembroEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
+    perfis?: PerfilUncheckedUpdateManyWithoutEmpresaNestedInput
+    convites?: ConviteEmpresaUncheckedUpdateManyWithoutEmpresaNestedInput
+    convites_cliente?: ConviteClienteUncheckedUpdateManyWithoutEmpresaNestedInput
+    clientes?: ClienteUncheckedUpdateManyWithoutEmpresaNestedInput
+    servicos?: ServicoUncheckedUpdateManyWithoutEmpresaNestedInput
+    leads?: LeadUncheckedUpdateManyWithoutEmpresaNestedInput
+    propostas?: PropostaUncheckedUpdateManyWithoutEmpresaNestedInput
+    contratos?: ContratoUncheckedUpdateManyWithoutEmpresaNestedInput
+    contrato_aditivos?: ContratoAditivoUncheckedUpdateManyWithoutEmpresaNestedInput
+    projetos?: ProjetoUncheckedUpdateManyWithoutEmpresaNestedInput
+    documentos?: DocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    pastas_documento?: PastaDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    plano_contas?: PlanoDeContasUncheckedUpdateManyWithoutEmpresaNestedInput
+    contas_bancarias?: ContaBancariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    transferencias_tesouraria?: TransferenciaTesourariaUncheckedUpdateManyWithoutEmpresaNestedInput
+    boletos?: BoletoUncheckedUpdateManyWithoutEmpresaNestedInput
+    recebiveis?: RecebivelUncheckedUpdateManyWithoutEmpresaNestedInput
+    contas_pagar?: ContaPagarUncheckedUpdateManyWithoutEmpresaNestedInput
+    fornecedores?: FornecedorUncheckedUpdateManyWithoutEmpresaNestedInput
+    modelos_documento?: ModeloDocumentoUncheckedUpdateManyWithoutEmpresaNestedInput
+    eventos?: EventoUncheckedUpdateManyWithoutEmpresaNestedInput
+    registros_auditoria?: RegistroAuditoriaUncheckedUpdateManyWithoutEmpresaNestedInput
+    notificacoes?: NotificacaoUncheckedUpdateManyWithoutEmpresaNestedInput
+    notas_fiscais?: NotaFiscalUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnosticos?: DiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etiquetas_tarefa?: EtiquetaTarefaUncheckedUpdateManyWithoutEmpresaNestedInput
+    aplicacoes_diagnostico?: AplicacaoDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    etapas_crm?: EtapaCrmUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_diagnostico?: CampanhaDiagnosticoUncheckedUpdateManyWithoutEmpresaNestedInput
+    centros_custo?: CentroCustoUncheckedUpdateManyWithoutEmpresaNestedInput
+    diagnostico_templates?: DiagnosticoTemplateUncheckedUpdateManyWithoutEmpresaNestedInput
+    assinaturas?: AssinaturaUncheckedUpdateManyWithoutEmpresaNestedInput
+    campanhas_cupom?: CampanhaCupomUncheckedUpdateManyWithoutEmpresaNestedInput
+    reembolsos?: ReembolsoUncheckedUpdateManyWithoutEmpresaNestedInput
+    mentorias?: MentoriaUncheckedUpdateManyWithoutEmpresaNestedInput
   }
 
   export type MembroEmpresaCreateManyEmpresaInput = {

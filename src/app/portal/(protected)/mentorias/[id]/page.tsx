@@ -57,7 +57,7 @@ export default async function MentoriaDoAluno({ params, searchParams }: Props) {
           )} />
       )}
         {!consulta && ativa === "encontros" && (
-          <Secao id="encontros" titulo="Calendário de encontros">
+          <Secao id="encontros" titulo="Reuniões e gravações">
         <CalendarioEspaco encontros={encontros} mes={filtros.mes} agora={agora} />
         {!emOrdem.length && <Vazio>Nenhum encontro cadastrado.</Vazio>}
         {!!emOrdem.length && <Vazio>Horários de Cuiabá</Vazio>}
