@@ -155,7 +155,7 @@ export async function criarLead(input: LeadInput) {
       email: data.email || null,
       telefone: data.telefone || null,
       whatsapp: data.whatsapp || null,
-      origem: data.origem || null,
+      origem: data.origem?.trim() || "Manual",
       servico_id: data.servico_id || null,
       responsavel_id: data.responsavel_id || null,
       cliente_id: data.cliente_id || null,

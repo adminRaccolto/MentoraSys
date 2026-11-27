@@ -1569,6 +1569,7 @@ model MentoriaAluno {
   presencas MentoriaPresenca[]
   tarefas   MentoriaTarefa[]
   arquivos  MentoriaArquivo[]
+  convites  PortalAlunoConvite[]
 
   @@unique([mentoria_id, cliente_id])
   @@index([cliente_id, ativo])
@@ -1742,4 +1743,18 @@ model PortalAlunoLimite {
 
   @@index([expira_em])
   @@map("portal_aluno_limites")
+}
+
+model PortalAlunoConvite {
+  token_hash String   @id
+  aluno_id   String
+  email      String
+  expira_em  DateTime
+  usado_em   DateTime?
+
+  aluno MentoriaAluno @relation(fields: [aluno_id], references: [id], onDelete: Cascade)
+
+  @@index([aluno_id])
+  @@index([expira_em])
+  @@map("portal_aluno_convites")
 }

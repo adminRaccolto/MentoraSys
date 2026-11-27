@@ -1,17 +1,20 @@
 "use client";
 
 import { useActionState } from "react";
-import { definirSenhaPortalAluno, entrarPortalAluno } from "@/actions/portal-aluno";
+import { ativarPortalAluno, definirSenhaPortalAluno, entrarPortalAluno } from "@/actions/portal-aluno";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 const estiloCampo = "mt-1.5 h-11 bg-background";
 
-export function PortalAlunoFormulario({ troca = false }: { troca?: boolean }) {
-  const [resultado, executar, pendente] = useActionState(troca ? definirSenhaPortalAluno : entrarPortalAluno, {});
+export function PortalAlunoFormulario({ troca = false, convite, mentoria }: { troca?: boolean; convite?: string; mentoria?: string }) {
+  const [resultado, executar, pendente] = useActionState(
+    convite ? ativarPortalAluno.bind(null, convite) : troca ? definirSenhaPortalAluno : entrarPortalAluno, {},
+  );
 
   return (
     <form action={executar} className="space-y-4">
+      {!troca && mentoria && <input type="hidden" name="mentoria" value={mentoria} />}
       {!troca && (
         <label className="block text-sm font-medium">E-mail
           <Input name="email" type="email" autoComplete="username" required maxLength={254} className={estiloCampo} />

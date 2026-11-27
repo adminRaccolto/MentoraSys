@@ -37,7 +37,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Mentorias
 
-Os perfis Administrador e Gestor recebem acesso pela migração de mentorias. Em **Mentorias**, crie uma turma de **A Mesa das Decisões** ou vincule um cliente a uma mentoria individual. Na aba **Alunos**, cadastre o e-mail de acesso e gere uma senha provisória válida por sete dias. O aluno entra em `/portal/acesso`, define sua senha pessoal no primeiro acesso e vê as mentorias em que tem matrícula ativa. O Supabase Storage cria o bucket privado `mentorias-privadas` no primeiro anexo, com limite de 4 MB por arquivo.
+Os perfis Administrador e Gestor recebem acesso pela migração de mentorias. Em **CRM → Ganho → Matricular mentorado**, confira os dados do cliente e escolha uma turma ou uma mentoria individual. Também é possível matricular um cliente diretamente em **Mentorias**. A matrícula envia um e-mail pelo Resend com um link de uso único, válido por sete dias, para o aluno criar a senha. Em **Alunos**, a equipe pode reenviar o convite, copiar o link ou gerar uma senha provisória. Depois de definir a senha, o aluno entra em `/portal/acesso` com e-mail e senha e vê as mentorias em que tem matrícula ativa. O Supabase Storage cria o bucket privado `mentorias-privadas` no primeiro anexo, com limite de 4 MB por arquivo.
 
 ### Integração com Zoom
 

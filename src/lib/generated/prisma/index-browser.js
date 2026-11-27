@@ -1080,6 +1080,14 @@ exports.Prisma.PortalAlunoLimiteScalarFieldEnum = {
   expira_em: 'expira_em'
 };
 
+exports.Prisma.PortalAlunoConviteScalarFieldEnum = {
+  token_hash: 'token_hash',
+  aluno_id: 'aluno_id',
+  email: 'email',
+  expira_em: 'expira_em',
+  usado_em: 'usado_em'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1350,7 +1358,8 @@ exports.Prisma.ModelName = {
   IntegracaoZoomMentoria: 'IntegracaoZoomMentoria',
   PortalAlunoAcesso: 'PortalAlunoAcesso',
   PortalAlunoSessao: 'PortalAlunoSessao',
-  PortalAlunoLimite: 'PortalAlunoLimite'
+  PortalAlunoLimite: 'PortalAlunoLimite',
+  PortalAlunoConvite: 'PortalAlunoConvite'
 };
 
 /**

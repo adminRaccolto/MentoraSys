@@ -2,6 +2,7 @@
 
 import { useState, useTransition, useMemo } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useAtualizarAoRetomarTela } from "@/hooks/useAtualizarAoRetomarTela";
 import { BarraSelecaoEmLote, BotaoExclusaoEmLote, useSelecaoEmLote } from "@/components/exclusao-em-lote";
 import { useForm } from "react-hook-form";
@@ -612,7 +613,12 @@ export default function CrmClient({ etapasIniciais, leadsIniciais, clientes, ser
                 <span>{selected.comentarios.length} comentário(s)</span>
               </div>
             </div>
-            <div className="flex gap-1.5 shrink-0">
+            <div className="flex flex-wrap gap-1.5">
+              {selected.etapa_chave === "GANHO" && (
+                <Link href={`/mentorias/matricular/${selected.id}`} className="inline-flex h-7 items-center rounded-md bg-primary px-2.5 text-xs font-medium text-primary-foreground hover:opacity-90">
+                  Matricular mentorado
+                </Link>
+              )}
               <Button size="sm" variant="outline" className="h-7 text-xs" onClick={() => abrirEditar(selected)}>Editar</Button>
               <Button size="sm" variant="outline" className="h-7 text-xs" onClick={() => setConverterId(selected.id)}>
                 <ArrowRightLeft className="size-3.5 mr-1" /> Converter
@@ -713,7 +719,10 @@ export default function CrmClient({ etapasIniciais, leadsIniciais, clientes, ser
                 </div>
                 <div className="space-y-1.5">
                   <Label>Origem</Label>
-                  <Input className="h-10" {...form.register("origem")} placeholder="Indicação, site, evento..." />
+                  <Input className="h-10" {...form.register("origem")} list="opcoes-origem-lead" placeholder="Manual, Diagnóstico, Instagram…" />
+                  <datalist id="opcoes-origem-lead">
+                    <option value="Manual" /><option value="Diagnóstico" /><option value="Instagram" />
+                  </datalist>
                 </div>
                 <div className="space-y-1.5">
                   <Label>Responsável</Label>

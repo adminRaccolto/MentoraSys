@@ -520,3 +520,16 @@ export async function enviarLembrete(para: string, titulo: string, inicio: Date)
     `),
   });
 }
+
+export async function enviarEmailMentoria({ email, nomeMentoria, url, primeiroAcesso }: {
+  email: string; nomeMentoria: string; url: string; primeiroAcesso: boolean;
+}) {
+  const titulo = primeiroAcesso ? "Crie sua senha na Área do Aluno" : "Sua matrícula está disponível";
+  const { error } = await getResend().emails.send({
+    from: FROM,
+    to: email,
+    subject: titulo,
+    text: `O Conselho Agro\n\nSua matrícula em ${nomeMentoria} está disponível.\n\n${primeiroAcesso ? "Abra o endereço abaixo para criar sua senha. O convite vence em sete dias." : "Entre com seu e-mail e senha para abrir a mentoria."}\n\n${url}\n`,
+  });
+  if (error) throw new Error("Falha ao entregar e-mail de matrícula");
+}

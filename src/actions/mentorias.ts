@@ -7,6 +7,8 @@ import { prisma } from "@/lib/prisma";
 import { emailAluno, protegerSenhaAluno } from "@/lib/portal-aluno-seguranca";
 import { alunoMentoria, checkinAberto, empresaMentorias, localEncontro, NOME_MESA, textoObrigatorio, textoOpcional, urlOpcional } from "@/lib/mentorias";
 import { atualizarSalaZoom, criarSalaZoom, ErroZoom } from "@/lib/mentorias-zoom";
+import { notificarMatricula } from "@/lib/convite-mentoria";
+import { matricularClienteMentoria } from "@/lib/matriculas-mentoria";
 import { obterConfiguracaoZoom } from "@/lib/mentorias-zoom-config";
 
 type Resultado = {
@@ -14,6 +16,9 @@ type Resultado = {
   sucesso?: string;
   link?: string;
   acesso?: { email: string; senha: string };
+  aviso?: string;
+  convite?: string;
+  envioConfirmado?: boolean;
 };
 
 class ErroFormulario extends Error {}
@@ -85,9 +90,11 @@ export async function cadastrarMentoria(_: Resultado, form: FormData) {
         descricao: dados.descricao,
         alunos: cliente ? { create: { cliente_id: cliente.id } } : undefined,
       },
+      include: { alunos: { select: { id: true } } },
     });
+    const convite = mentoria.alunos[0] ? await notificarMatricula(mentoria.alunos[0].id, empresaId) : {};
     atualizarPaginas(mentoria.id);
-    return { sucesso: "Mentoria cadastrada.", link: `/mentorias/${mentoria.id}` };
+    return { sucesso: "Mentoria cadastrada.", link: `/mentorias/${mentoria.id}`, ...convite };
   });
 }
 
@@ -108,13 +115,10 @@ export async function matricularAluno(id: string, _: Resultado, form: FormData) 
     const { cliente: clienteId } = campos(form, { cliente: textoObrigatorio(100) });
     const cliente = await prisma.cliente.findUnique({ where: { id: clienteId, empresa_id: mentoria.empresa_id, status: "ATIVO" }, select: { id: true } });
     if (!cliente) throw new ErroFormulario("Cliente não encontrado.");
-    await prisma.mentoriaAluno.upsert({
-      where: { mentoria_id_cliente_id: { mentoria_id: id, cliente_id: cliente.id } },
-      update: { ativo: true },
-      create: { mentoria_id: id, cliente_id: cliente.id },
-    });
+    const matricula = await prisma.$transaction((tx) => matricularClienteMentoria(tx, id, cliente.id));
+    const convite = matricula.alterada ? await notificarMatricula(matricula.alunoId, mentoria.empresa_id) : {};
     atualizarPaginas(id);
-    return { sucesso: "Aluno matriculado." };
+    return { sucesso: matricula.alterada ? "Aluno matriculado." : "O aluno já está matriculado.", ...convite };
   });
 }
 
@@ -124,6 +128,15 @@ export async function alterarAcessoAluno(id: string, alunoId: string, ativo: boo
     await prisma.mentoriaAluno.update({ where: { id: aluno.id }, data: { ativo } });
     atualizarPaginas(id);
     return { sucesso: ativo ? "Acesso ativado." : "Acesso suspenso." };
+  });
+}
+
+export async function enviarConviteAluno(id: string, alunoId: string, _: Resultado, form: FormData) {
+  return executar(async () => {
+    const { mentoria, aluno } = await buscarAluno(id, alunoId);
+    if (!aluno.ativo) throw new ErroFormulario("Ative a matrícula antes de enviar o convite.");
+    const { email } = campos(form, { email: emailAluno });
+    return notificarMatricula(aluno.id, mentoria.empresa_id, email);
   });
 }
 

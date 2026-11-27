@@ -4,16 +4,18 @@ import { useActionState, useEffect, useState, type FormEvent, type ReactNode } f
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { ConviteMatricula, type ResultadoConvite } from "./convite-matricula";
 import { confirmarPresenca } from "@/actions/mentorias";
 
-type Resultado = { erro?: string; sucesso?: string; link?: string };
+type Resultado = ResultadoConvite & { erro?: string; sucesso?: string; link?: string };
 type Acao = (anterior: Resultado, form: FormData) => Promise<Resultado>;
 
 export function Formulario({
-  acao, botao, children, className = "space-y-3", variant = "outline",
+  acao, botao, children, className = "space-y-3", variant = "outline", textoLink = "Abrir mentoria",
 }: {
   acao: Acao;
   botao: string;
+  textoLink?: string;
   children?: ReactNode;
   className?: string;
   variant?: "default" | "outline" | "destructive";
@@ -25,7 +27,8 @@ export function Formulario({
       <Button size="sm" type="submit" variant={variant} disabled={pendente}>{pendente ? "Salvando…" : botao}</Button>
       {estado.erro && <p className="text-sm text-destructive" role="alert">{estado.erro}</p>}
       {estado.sucesso && <p className="text-sm text-muted-foreground" role="status">{estado.sucesso}</p>}
-      {estado.link && <Link className="ml-2 text-sm text-primary underline" href={estado.link}>Abrir mentoria</Link>}
+      {estado.link && <Link className="ml-2 text-sm text-primary underline" href={estado.link}>{textoLink}</Link>}
+      <ConviteMatricula {...estado} />
     </form>
   );
 }

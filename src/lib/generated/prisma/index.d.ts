@@ -363,6 +363,11 @@ export type PortalAlunoSessao = $Result.DefaultSelection<Prisma.$PortalAlunoSess
  *
  */
 export type PortalAlunoLimite = $Result.DefaultSelection<Prisma.$PortalAlunoLimitePayload>
+/**
+ * Model PortalAlunoConvite
+ *
+ */
+export type PortalAlunoConvite = $Result.DefaultSelection<Prisma.$PortalAlunoConvitePayload>
 
 /**
  * Enums
@@ -1535,6 +1540,16 @@ export class PrismaClient<
     * ```
     */
   get portalAlunoLimite(): Prisma.PortalAlunoLimiteDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.portalAlunoConvite`: Exposes CRUD operations for the **PortalAlunoConvite** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PortalAlunoConvites
+    * const portalAlunoConvites = await prisma.portalAlunoConvite.findMany()
+    * ```
+    */
+  get portalAlunoConvite(): Prisma.PortalAlunoConviteDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -2038,7 +2053,8 @@ export namespace Prisma {
     IntegracaoZoomMentoria: 'IntegracaoZoomMentoria',
     PortalAlunoAcesso: 'PortalAlunoAcesso',
     PortalAlunoSessao: 'PortalAlunoSessao',
-    PortalAlunoLimite: 'PortalAlunoLimite'
+    PortalAlunoLimite: 'PortalAlunoLimite',
+    PortalAlunoConvite: 'PortalAlunoConvite'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -2054,7 +2070,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "etapaCrm" | "comentarioCrm" | "lead" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "contratoAditivo" | "projeto" | "etapa" | "tarefa" | "tarefaResponsavel" | "comentarioTarefa" | "anexoTarefa" | "atividadeTarefa" | "aprovacaoTarefa" | "itemChecklist" | "etiquetaTarefa" | "tarefaEtiqueta" | "pastaDocumento" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "centroCusto" | "recebivel" | "contaPagar" | "fornecedor" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "boleto" | "diagnostico" | "tokenPortal" | "aplicacaoDiagnostico" | "campanhaDiagnostico" | "diagnosticoParticipante" | "diagnosticoTemplate" | "campanhaCupom" | "assinatura" | "reembolso" | "reembolsoItem" | "mentoria" | "mentoriaAluno" | "mentoriaEncontro" | "mentoriaPost" | "mentoriaPresenca" | "mentoriaTarefa" | "mentoriaArquivo" | "mentoriaPagina" | "mentoriaItem" | "mentoriaMaterial" | "integracaoZoomMentoria" | "portalAlunoAcesso" | "portalAlunoSessao" | "portalAlunoLimite"
+      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "etapaCrm" | "comentarioCrm" | "lead" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "contratoAditivo" | "projeto" | "etapa" | "tarefa" | "tarefaResponsavel" | "comentarioTarefa" | "anexoTarefa" | "atividadeTarefa" | "aprovacaoTarefa" | "itemChecklist" | "etiquetaTarefa" | "tarefaEtiqueta" | "pastaDocumento" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "centroCusto" | "recebivel" | "contaPagar" | "fornecedor" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "boleto" | "diagnostico" | "tokenPortal" | "aplicacaoDiagnostico" | "campanhaDiagnostico" | "diagnosticoParticipante" | "diagnosticoTemplate" | "campanhaCupom" | "assinatura" | "reembolso" | "reembolsoItem" | "mentoria" | "mentoriaAluno" | "mentoriaEncontro" | "mentoriaPost" | "mentoriaPresenca" | "mentoriaTarefa" | "mentoriaArquivo" | "mentoriaPagina" | "mentoriaItem" | "mentoriaMaterial" | "integracaoZoomMentoria" | "portalAlunoAcesso" | "portalAlunoSessao" | "portalAlunoLimite" | "portalAlunoConvite"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -7238,6 +7254,80 @@ export namespace Prisma {
           }
         }
       }
+      PortalAlunoConvite: {
+        payload: Prisma.$PortalAlunoConvitePayload<ExtArgs>
+        fields: Prisma.PortalAlunoConviteFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PortalAlunoConviteFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PortalAlunoConvitePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PortalAlunoConviteFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PortalAlunoConvitePayload>
+          }
+          findFirst: {
+            args: Prisma.PortalAlunoConviteFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PortalAlunoConvitePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PortalAlunoConviteFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PortalAlunoConvitePayload>
+          }
+          findMany: {
+            args: Prisma.PortalAlunoConviteFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PortalAlunoConvitePayload>[]
+          }
+          create: {
+            args: Prisma.PortalAlunoConviteCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PortalAlunoConvitePayload>
+          }
+          createMany: {
+            args: Prisma.PortalAlunoConviteCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PortalAlunoConviteCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PortalAlunoConvitePayload>[]
+          }
+          delete: {
+            args: Prisma.PortalAlunoConviteDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PortalAlunoConvitePayload>
+          }
+          update: {
+            args: Prisma.PortalAlunoConviteUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PortalAlunoConvitePayload>
+          }
+          deleteMany: {
+            args: Prisma.PortalAlunoConviteDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PortalAlunoConviteUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PortalAlunoConviteUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PortalAlunoConvitePayload>[]
+          }
+          upsert: {
+            args: Prisma.PortalAlunoConviteUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PortalAlunoConvitePayload>
+          }
+          aggregate: {
+            args: Prisma.PortalAlunoConviteAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePortalAlunoConvite>
+          }
+          groupBy: {
+            args: Prisma.PortalAlunoConviteGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PortalAlunoConviteGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PortalAlunoConviteCountArgs<ExtArgs>
+            result: $Utils.Optional<PortalAlunoConviteCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -7416,6 +7506,7 @@ export namespace Prisma {
     portalAlunoAcesso?: PortalAlunoAcessoOmit
     portalAlunoSessao?: PortalAlunoSessaoOmit
     portalAlunoLimite?: PortalAlunoLimiteOmit
+    portalAlunoConvite?: PortalAlunoConviteOmit
   }
 
   /* Types for Logging */
@@ -9148,12 +9239,14 @@ export namespace Prisma {
     presencas: number
     tarefas: number
     arquivos: number
+    convites: number
   }
 
   export type MentoriaAlunoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     presencas?: boolean | MentoriaAlunoCountOutputTypeCountPresencasArgs
     tarefas?: boolean | MentoriaAlunoCountOutputTypeCountTarefasArgs
     arquivos?: boolean | MentoriaAlunoCountOutputTypeCountArquivosArgs
+    convites?: boolean | MentoriaAlunoCountOutputTypeCountConvitesArgs
   }
 
   // Custom InputTypes
@@ -9186,6 +9279,13 @@ export namespace Prisma {
    */
   export type MentoriaAlunoCountOutputTypeCountArquivosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: MentoriaArquivoWhereInput
+  }
+
+  /**
+   * MentoriaAlunoCountOutputType without action
+   */
+  export type MentoriaAlunoCountOutputTypeCountConvitesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PortalAlunoConviteWhereInput
   }
 
 
@@ -81486,6 +81586,7 @@ export namespace Prisma {
     presencas?: boolean | MentoriaAluno$presencasArgs<ExtArgs>
     tarefas?: boolean | MentoriaAluno$tarefasArgs<ExtArgs>
     arquivos?: boolean | MentoriaAluno$arquivosArgs<ExtArgs>
+    convites?: boolean | MentoriaAluno$convitesArgs<ExtArgs>
     _count?: boolean | MentoriaAlunoCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["mentoriaAluno"]>
 
@@ -81524,6 +81625,7 @@ export namespace Prisma {
     presencas?: boolean | MentoriaAluno$presencasArgs<ExtArgs>
     tarefas?: boolean | MentoriaAluno$tarefasArgs<ExtArgs>
     arquivos?: boolean | MentoriaAluno$arquivosArgs<ExtArgs>
+    convites?: boolean | MentoriaAluno$convitesArgs<ExtArgs>
     _count?: boolean | MentoriaAlunoCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type MentoriaAlunoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -81543,6 +81645,7 @@ export namespace Prisma {
       presencas: Prisma.$MentoriaPresencaPayload<ExtArgs>[]
       tarefas: Prisma.$MentoriaTarefaPayload<ExtArgs>[]
       arquivos: Prisma.$MentoriaArquivoPayload<ExtArgs>[]
+      convites: Prisma.$PortalAlunoConvitePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -81949,6 +82052,7 @@ export namespace Prisma {
     presencas<T extends MentoriaAluno$presencasArgs<ExtArgs> = {}>(args?: Subset<T, MentoriaAluno$presencasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MentoriaPresencaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     tarefas<T extends MentoriaAluno$tarefasArgs<ExtArgs> = {}>(args?: Subset<T, MentoriaAluno$tarefasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MentoriaTarefaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     arquivos<T extends MentoriaAluno$arquivosArgs<ExtArgs> = {}>(args?: Subset<T, MentoriaAluno$arquivosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MentoriaArquivoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    convites<T extends MentoriaAluno$convitesArgs<ExtArgs> = {}>(args?: Subset<T, MentoriaAluno$convitesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PortalAlunoConvitePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -82453,6 +82557,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: MentoriaArquivoScalarFieldEnum | MentoriaArquivoScalarFieldEnum[]
+  }
+
+  /**
+   * MentoriaAluno.convites
+   */
+  export type MentoriaAluno$convitesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PortalAlunoConvite
+     */
+    select?: PortalAlunoConviteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PortalAlunoConvite
+     */
+    omit?: PortalAlunoConviteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PortalAlunoConviteInclude<ExtArgs> | null
+    where?: PortalAlunoConviteWhereInput
+    orderBy?: PortalAlunoConviteOrderByWithRelationInput | PortalAlunoConviteOrderByWithRelationInput[]
+    cursor?: PortalAlunoConviteWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PortalAlunoConviteScalarFieldEnum | PortalAlunoConviteScalarFieldEnum[]
   }
 
   /**
@@ -95609,6 +95737,1069 @@ export namespace Prisma {
 
 
   /**
+   * Model PortalAlunoConvite
+   */
+
+  export type AggregatePortalAlunoConvite = {
+    _count: PortalAlunoConviteCountAggregateOutputType | null
+    _min: PortalAlunoConviteMinAggregateOutputType | null
+    _max: PortalAlunoConviteMaxAggregateOutputType | null
+  }
+
+  export type PortalAlunoConviteMinAggregateOutputType = {
+    token_hash: string | null
+    aluno_id: string | null
+    email: string | null
+    expira_em: Date | null
+    usado_em: Date | null
+  }
+
+  export type PortalAlunoConviteMaxAggregateOutputType = {
+    token_hash: string | null
+    aluno_id: string | null
+    email: string | null
+    expira_em: Date | null
+    usado_em: Date | null
+  }
+
+  export type PortalAlunoConviteCountAggregateOutputType = {
+    token_hash: number
+    aluno_id: number
+    email: number
+    expira_em: number
+    usado_em: number
+    _all: number
+  }
+
+
+  export type PortalAlunoConviteMinAggregateInputType = {
+    token_hash?: true
+    aluno_id?: true
+    email?: true
+    expira_em?: true
+    usado_em?: true
+  }
+
+  export type PortalAlunoConviteMaxAggregateInputType = {
+    token_hash?: true
+    aluno_id?: true
+    email?: true
+    expira_em?: true
+    usado_em?: true
+  }
+
+  export type PortalAlunoConviteCountAggregateInputType = {
+    token_hash?: true
+    aluno_id?: true
+    email?: true
+    expira_em?: true
+    usado_em?: true
+    _all?: true
+  }
+
+  export type PortalAlunoConviteAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PortalAlunoConvite to aggregate.
+     */
+    where?: PortalAlunoConviteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of PortalAlunoConvites to fetch.
+     */
+    orderBy?: PortalAlunoConviteOrderByWithRelationInput | PortalAlunoConviteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the start position
+     */
+    cursor?: PortalAlunoConviteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` PortalAlunoConvites from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` PortalAlunoConvites.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Count returned PortalAlunoConvites
+    **/
+    _count?: true | PortalAlunoConviteCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the minimum value
+    **/
+    _min?: PortalAlunoConviteMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the maximum value
+    **/
+    _max?: PortalAlunoConviteMaxAggregateInputType
+  }
+
+  export type GetPortalAlunoConviteAggregateType<T extends PortalAlunoConviteAggregateArgs> = {
+        [P in keyof T & keyof AggregatePortalAlunoConvite]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePortalAlunoConvite[P]>
+      : GetScalarType<T[P], AggregatePortalAlunoConvite[P]>
+  }
+
+
+
+
+  export type PortalAlunoConviteGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PortalAlunoConviteWhereInput
+    orderBy?: PortalAlunoConviteOrderByWithAggregationInput | PortalAlunoConviteOrderByWithAggregationInput[]
+    by: PortalAlunoConviteScalarFieldEnum[] | PortalAlunoConviteScalarFieldEnum
+    having?: PortalAlunoConviteScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PortalAlunoConviteCountAggregateInputType | true
+    _min?: PortalAlunoConviteMinAggregateInputType
+    _max?: PortalAlunoConviteMaxAggregateInputType
+  }
+
+  export type PortalAlunoConviteGroupByOutputType = {
+    token_hash: string
+    aluno_id: string
+    email: string
+    expira_em: Date
+    usado_em: Date | null
+    _count: PortalAlunoConviteCountAggregateOutputType | null
+    _min: PortalAlunoConviteMinAggregateOutputType | null
+    _max: PortalAlunoConviteMaxAggregateOutputType | null
+  }
+
+  type GetPortalAlunoConviteGroupByPayload<T extends PortalAlunoConviteGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PortalAlunoConviteGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PortalAlunoConviteGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PortalAlunoConviteGroupByOutputType[P]>
+            : GetScalarType<T[P], PortalAlunoConviteGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PortalAlunoConviteSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    token_hash?: boolean
+    aluno_id?: boolean
+    email?: boolean
+    expira_em?: boolean
+    usado_em?: boolean
+    aluno?: boolean | MentoriaAlunoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["portalAlunoConvite"]>
+
+  export type PortalAlunoConviteSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    token_hash?: boolean
+    aluno_id?: boolean
+    email?: boolean
+    expira_em?: boolean
+    usado_em?: boolean
+    aluno?: boolean | MentoriaAlunoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["portalAlunoConvite"]>
+
+  export type PortalAlunoConviteSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    token_hash?: boolean
+    aluno_id?: boolean
+    email?: boolean
+    expira_em?: boolean
+    usado_em?: boolean
+    aluno?: boolean | MentoriaAlunoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["portalAlunoConvite"]>
+
+  export type PortalAlunoConviteSelectScalar = {
+    token_hash?: boolean
+    aluno_id?: boolean
+    email?: boolean
+    expira_em?: boolean
+    usado_em?: boolean
+  }
+
+  export type PortalAlunoConviteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"token_hash" | "aluno_id" | "email" | "expira_em" | "usado_em", ExtArgs["result"]["portalAlunoConvite"]>
+  export type PortalAlunoConviteInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    aluno?: boolean | MentoriaAlunoDefaultArgs<ExtArgs>
+  }
+  export type PortalAlunoConviteIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    aluno?: boolean | MentoriaAlunoDefaultArgs<ExtArgs>
+  }
+  export type PortalAlunoConviteIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    aluno?: boolean | MentoriaAlunoDefaultArgs<ExtArgs>
+  }
+
+  export type $PortalAlunoConvitePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PortalAlunoConvite"
+    objects: {
+      aluno: Prisma.$MentoriaAlunoPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      token_hash: string
+      aluno_id: string
+      email: string
+      expira_em: Date
+      usado_em: Date | null
+    }, ExtArgs["result"]["portalAlunoConvite"]>
+    composites: {}
+  }
+
+  type PortalAlunoConviteGetPayload<S extends boolean | null | undefined | PortalAlunoConviteDefaultArgs> = $Result.GetResult<Prisma.$PortalAlunoConvitePayload, S>
+
+  type PortalAlunoConviteCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PortalAlunoConviteFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PortalAlunoConviteCountAggregateInputType | true
+    }
+
+  export interface PortalAlunoConviteDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PortalAlunoConvite'], meta: { name: 'PortalAlunoConvite' } }
+    /**
+     * Find zero or one PortalAlunoConvite that matches the filter.
+     * @param {PortalAlunoConviteFindUniqueArgs} args - Arguments to find a PortalAlunoConvite
+     * @example
+     * // Get one PortalAlunoConvite
+     * const portalAlunoConvite = await prisma.portalAlunoConvite.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PortalAlunoConviteFindUniqueArgs>(args: SelectSubset<T, PortalAlunoConviteFindUniqueArgs<ExtArgs>>): Prisma__PortalAlunoConviteClient<$Result.GetResult<Prisma.$PortalAlunoConvitePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PortalAlunoConvite that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PortalAlunoConviteFindUniqueOrThrowArgs} args - Arguments to find a PortalAlunoConvite
+     * @example
+     * // Get one PortalAlunoConvite
+     * const portalAlunoConvite = await prisma.portalAlunoConvite.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PortalAlunoConviteFindUniqueOrThrowArgs>(args: SelectSubset<T, PortalAlunoConviteFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PortalAlunoConviteClient<$Result.GetResult<Prisma.$PortalAlunoConvitePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PortalAlunoConvite that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PortalAlunoConviteFindFirstArgs} args - Arguments to find a PortalAlunoConvite
+     * @example
+     * // Get one PortalAlunoConvite
+     * const portalAlunoConvite = await prisma.portalAlunoConvite.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PortalAlunoConviteFindFirstArgs>(args?: SelectSubset<T, PortalAlunoConviteFindFirstArgs<ExtArgs>>): Prisma__PortalAlunoConviteClient<$Result.GetResult<Prisma.$PortalAlunoConvitePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PortalAlunoConvite that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PortalAlunoConviteFindFirstOrThrowArgs} args - Arguments to find a PortalAlunoConvite
+     * @example
+     * // Get one PortalAlunoConvite
+     * const portalAlunoConvite = await prisma.portalAlunoConvite.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PortalAlunoConviteFindFirstOrThrowArgs>(args?: SelectSubset<T, PortalAlunoConviteFindFirstOrThrowArgs<ExtArgs>>): Prisma__PortalAlunoConviteClient<$Result.GetResult<Prisma.$PortalAlunoConvitePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PortalAlunoConvites that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PortalAlunoConviteFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PortalAlunoConvites
+     * const portalAlunoConvites = await prisma.portalAlunoConvite.findMany()
+     *
+     * // Get first 10 PortalAlunoConvites
+     * const portalAlunoConvites = await prisma.portalAlunoConvite.findMany({ take: 10 })
+     *
+     * // Only select the `token_hash`
+     * const portalAlunoConviteWithToken_hashOnly = await prisma.portalAlunoConvite.findMany({ select: { token_hash: true } })
+     *
+     */
+    findMany<T extends PortalAlunoConviteFindManyArgs>(args?: SelectSubset<T, PortalAlunoConviteFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PortalAlunoConvitePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PortalAlunoConvite.
+     * @param {PortalAlunoConviteCreateArgs} args - Arguments to create a PortalAlunoConvite.
+     * @example
+     * // Create one PortalAlunoConvite
+     * const PortalAlunoConvite = await prisma.portalAlunoConvite.create({
+     *   data: {
+     *     // ... data to create a PortalAlunoConvite
+     *   }
+     * })
+     *
+     */
+    create<T extends PortalAlunoConviteCreateArgs>(args: SelectSubset<T, PortalAlunoConviteCreateArgs<ExtArgs>>): Prisma__PortalAlunoConviteClient<$Result.GetResult<Prisma.$PortalAlunoConvitePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PortalAlunoConvites.
+     * @param {PortalAlunoConviteCreateManyArgs} args - Arguments to create many PortalAlunoConvites.
+     * @example
+     * // Create many PortalAlunoConvites
+     * const portalAlunoConvite = await prisma.portalAlunoConvite.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     */
+    createMany<T extends PortalAlunoConviteCreateManyArgs>(args?: SelectSubset<T, PortalAlunoConviteCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PortalAlunoConvites and returns the data saved in the database.
+     * @param {PortalAlunoConviteCreateManyAndReturnArgs} args - Arguments to create many PortalAlunoConvites.
+     * @example
+     * // Create many PortalAlunoConvites
+     * const portalAlunoConvite = await prisma.portalAlunoConvite.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Create many PortalAlunoConvites and only return the `token_hash`
+     * const portalAlunoConviteWithToken_hashOnly = await prisma.portalAlunoConvite.createManyAndReturn({
+     *   select: { token_hash: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    createManyAndReturn<T extends PortalAlunoConviteCreateManyAndReturnArgs>(args?: SelectSubset<T, PortalAlunoConviteCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PortalAlunoConvitePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a PortalAlunoConvite.
+     * @param {PortalAlunoConviteDeleteArgs} args - Arguments to delete one PortalAlunoConvite.
+     * @example
+     * // Delete one PortalAlunoConvite
+     * const PortalAlunoConvite = await prisma.portalAlunoConvite.delete({
+     *   where: {
+     *     // ... filter to delete one PortalAlunoConvite
+     *   }
+     * })
+     *
+     */
+    delete<T extends PortalAlunoConviteDeleteArgs>(args: SelectSubset<T, PortalAlunoConviteDeleteArgs<ExtArgs>>): Prisma__PortalAlunoConviteClient<$Result.GetResult<Prisma.$PortalAlunoConvitePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PortalAlunoConvite.
+     * @param {PortalAlunoConviteUpdateArgs} args - Arguments to update one PortalAlunoConvite.
+     * @example
+     * // Update one PortalAlunoConvite
+     * const portalAlunoConvite = await prisma.portalAlunoConvite.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    update<T extends PortalAlunoConviteUpdateArgs>(args: SelectSubset<T, PortalAlunoConviteUpdateArgs<ExtArgs>>): Prisma__PortalAlunoConviteClient<$Result.GetResult<Prisma.$PortalAlunoConvitePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PortalAlunoConvites.
+     * @param {PortalAlunoConviteDeleteManyArgs} args - Arguments to filter PortalAlunoConvites to delete.
+     * @example
+     * // Delete a few PortalAlunoConvites
+     * const { count } = await prisma.portalAlunoConvite.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     *
+     */
+    deleteMany<T extends PortalAlunoConviteDeleteManyArgs>(args?: SelectSubset<T, PortalAlunoConviteDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PortalAlunoConvites.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PortalAlunoConviteUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PortalAlunoConvites
+     * const portalAlunoConvite = await prisma.portalAlunoConvite.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    updateMany<T extends PortalAlunoConviteUpdateManyArgs>(args: SelectSubset<T, PortalAlunoConviteUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PortalAlunoConvites and returns the data updated in the database.
+     * @param {PortalAlunoConviteUpdateManyAndReturnArgs} args - Arguments to update many PortalAlunoConvites.
+     * @example
+     * // Update many PortalAlunoConvites
+     * const portalAlunoConvite = await prisma.portalAlunoConvite.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Update zero or more PortalAlunoConvites and only return the `token_hash`
+     * const portalAlunoConviteWithToken_hashOnly = await prisma.portalAlunoConvite.updateManyAndReturn({
+     *   select: { token_hash: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    updateManyAndReturn<T extends PortalAlunoConviteUpdateManyAndReturnArgs>(args: SelectSubset<T, PortalAlunoConviteUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PortalAlunoConvitePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one PortalAlunoConvite.
+     * @param {PortalAlunoConviteUpsertArgs} args - Arguments to update or create a PortalAlunoConvite.
+     * @example
+     * // Update or create a PortalAlunoConvite
+     * const portalAlunoConvite = await prisma.portalAlunoConvite.upsert({
+     *   create: {
+     *     // ... data to create a PortalAlunoConvite
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PortalAlunoConvite we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PortalAlunoConviteUpsertArgs>(args: SelectSubset<T, PortalAlunoConviteUpsertArgs<ExtArgs>>): Prisma__PortalAlunoConviteClient<$Result.GetResult<Prisma.$PortalAlunoConvitePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PortalAlunoConvites.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PortalAlunoConviteCountArgs} args - Arguments to filter PortalAlunoConvites to count.
+     * @example
+     * // Count the number of PortalAlunoConvites
+     * const count = await prisma.portalAlunoConvite.count({
+     *   where: {
+     *     // ... the filter for the PortalAlunoConvites we want to count
+     *   }
+     * })
+    **/
+    count<T extends PortalAlunoConviteCountArgs>(
+      args?: Subset<T, PortalAlunoConviteCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PortalAlunoConviteCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PortalAlunoConvite.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PortalAlunoConviteAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PortalAlunoConviteAggregateArgs>(args: Subset<T, PortalAlunoConviteAggregateArgs>): Prisma.PrismaPromise<GetPortalAlunoConviteAggregateType<T>>
+
+    /**
+     * Group by PortalAlunoConvite.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PortalAlunoConviteGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     *
+    **/
+    groupBy<
+      T extends PortalAlunoConviteGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PortalAlunoConviteGroupByArgs['orderBy'] }
+        : { orderBy?: PortalAlunoConviteGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PortalAlunoConviteGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPortalAlunoConviteGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PortalAlunoConvite model
+   */
+  readonly fields: PortalAlunoConviteFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PortalAlunoConvite.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PortalAlunoConviteClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    aluno<T extends MentoriaAlunoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MentoriaAlunoDefaultArgs<ExtArgs>>): Prisma__MentoriaAlunoClient<$Result.GetResult<Prisma.$MentoriaAlunoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PortalAlunoConvite model
+   */
+  interface PortalAlunoConviteFieldRefs {
+    readonly token_hash: FieldRef<"PortalAlunoConvite", 'String'>
+    readonly aluno_id: FieldRef<"PortalAlunoConvite", 'String'>
+    readonly email: FieldRef<"PortalAlunoConvite", 'String'>
+    readonly expira_em: FieldRef<"PortalAlunoConvite", 'DateTime'>
+    readonly usado_em: FieldRef<"PortalAlunoConvite", 'DateTime'>
+  }
+
+
+  // Custom InputTypes
+  /**
+   * PortalAlunoConvite findUnique
+   */
+  export type PortalAlunoConviteFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PortalAlunoConvite
+     */
+    select?: PortalAlunoConviteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PortalAlunoConvite
+     */
+    omit?: PortalAlunoConviteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PortalAlunoConviteInclude<ExtArgs> | null
+    /**
+     * Filter, which PortalAlunoConvite to fetch.
+     */
+    where: PortalAlunoConviteWhereUniqueInput
+  }
+
+  /**
+   * PortalAlunoConvite findUniqueOrThrow
+   */
+  export type PortalAlunoConviteFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PortalAlunoConvite
+     */
+    select?: PortalAlunoConviteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PortalAlunoConvite
+     */
+    omit?: PortalAlunoConviteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PortalAlunoConviteInclude<ExtArgs> | null
+    /**
+     * Filter, which PortalAlunoConvite to fetch.
+     */
+    where: PortalAlunoConviteWhereUniqueInput
+  }
+
+  /**
+   * PortalAlunoConvite findFirst
+   */
+  export type PortalAlunoConviteFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PortalAlunoConvite
+     */
+    select?: PortalAlunoConviteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PortalAlunoConvite
+     */
+    omit?: PortalAlunoConviteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PortalAlunoConviteInclude<ExtArgs> | null
+    /**
+     * Filter, which PortalAlunoConvite to fetch.
+     */
+    where?: PortalAlunoConviteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of PortalAlunoConvites to fetch.
+     */
+    orderBy?: PortalAlunoConviteOrderByWithRelationInput | PortalAlunoConviteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for PortalAlunoConvites.
+     */
+    cursor?: PortalAlunoConviteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` PortalAlunoConvites from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` PortalAlunoConvites.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of PortalAlunoConvites.
+     */
+    distinct?: PortalAlunoConviteScalarFieldEnum | PortalAlunoConviteScalarFieldEnum[]
+  }
+
+  /**
+   * PortalAlunoConvite findFirstOrThrow
+   */
+  export type PortalAlunoConviteFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PortalAlunoConvite
+     */
+    select?: PortalAlunoConviteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PortalAlunoConvite
+     */
+    omit?: PortalAlunoConviteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PortalAlunoConviteInclude<ExtArgs> | null
+    /**
+     * Filter, which PortalAlunoConvite to fetch.
+     */
+    where?: PortalAlunoConviteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of PortalAlunoConvites to fetch.
+     */
+    orderBy?: PortalAlunoConviteOrderByWithRelationInput | PortalAlunoConviteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for PortalAlunoConvites.
+     */
+    cursor?: PortalAlunoConviteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` PortalAlunoConvites from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` PortalAlunoConvites.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of PortalAlunoConvites.
+     */
+    distinct?: PortalAlunoConviteScalarFieldEnum | PortalAlunoConviteScalarFieldEnum[]
+  }
+
+  /**
+   * PortalAlunoConvite findMany
+   */
+  export type PortalAlunoConviteFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PortalAlunoConvite
+     */
+    select?: PortalAlunoConviteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PortalAlunoConvite
+     */
+    omit?: PortalAlunoConviteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PortalAlunoConviteInclude<ExtArgs> | null
+    /**
+     * Filter, which PortalAlunoConvites to fetch.
+     */
+    where?: PortalAlunoConviteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of PortalAlunoConvites to fetch.
+     */
+    orderBy?: PortalAlunoConviteOrderByWithRelationInput | PortalAlunoConviteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for listing PortalAlunoConvites.
+     */
+    cursor?: PortalAlunoConviteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` PortalAlunoConvites from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` PortalAlunoConvites.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of PortalAlunoConvites.
+     */
+    distinct?: PortalAlunoConviteScalarFieldEnum | PortalAlunoConviteScalarFieldEnum[]
+  }
+
+  /**
+   * PortalAlunoConvite create
+   */
+  export type PortalAlunoConviteCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PortalAlunoConvite
+     */
+    select?: PortalAlunoConviteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PortalAlunoConvite
+     */
+    omit?: PortalAlunoConviteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PortalAlunoConviteInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PortalAlunoConvite.
+     */
+    data: XOR<PortalAlunoConviteCreateInput, PortalAlunoConviteUncheckedCreateInput>
+  }
+
+  /**
+   * PortalAlunoConvite createMany
+   */
+  export type PortalAlunoConviteCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PortalAlunoConvites.
+     */
+    data: PortalAlunoConviteCreateManyInput | PortalAlunoConviteCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PortalAlunoConvite createManyAndReturn
+   */
+  export type PortalAlunoConviteCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PortalAlunoConvite
+     */
+    select?: PortalAlunoConviteSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PortalAlunoConvite
+     */
+    omit?: PortalAlunoConviteOmit<ExtArgs> | null
+    /**
+     * The data used to create many PortalAlunoConvites.
+     */
+    data: PortalAlunoConviteCreateManyInput | PortalAlunoConviteCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PortalAlunoConviteIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PortalAlunoConvite update
+   */
+  export type PortalAlunoConviteUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PortalAlunoConvite
+     */
+    select?: PortalAlunoConviteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PortalAlunoConvite
+     */
+    omit?: PortalAlunoConviteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PortalAlunoConviteInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PortalAlunoConvite.
+     */
+    data: XOR<PortalAlunoConviteUpdateInput, PortalAlunoConviteUncheckedUpdateInput>
+    /**
+     * Choose, which PortalAlunoConvite to update.
+     */
+    where: PortalAlunoConviteWhereUniqueInput
+  }
+
+  /**
+   * PortalAlunoConvite updateMany
+   */
+  export type PortalAlunoConviteUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PortalAlunoConvites.
+     */
+    data: XOR<PortalAlunoConviteUpdateManyMutationInput, PortalAlunoConviteUncheckedUpdateManyInput>
+    /**
+     * Filter which PortalAlunoConvites to update
+     */
+    where?: PortalAlunoConviteWhereInput
+    /**
+     * Limit how many PortalAlunoConvites to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PortalAlunoConvite updateManyAndReturn
+   */
+  export type PortalAlunoConviteUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PortalAlunoConvite
+     */
+    select?: PortalAlunoConviteSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PortalAlunoConvite
+     */
+    omit?: PortalAlunoConviteOmit<ExtArgs> | null
+    /**
+     * The data used to update PortalAlunoConvites.
+     */
+    data: XOR<PortalAlunoConviteUpdateManyMutationInput, PortalAlunoConviteUncheckedUpdateManyInput>
+    /**
+     * Filter which PortalAlunoConvites to update
+     */
+    where?: PortalAlunoConviteWhereInput
+    /**
+     * Limit how many PortalAlunoConvites to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PortalAlunoConviteIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PortalAlunoConvite upsert
+   */
+  export type PortalAlunoConviteUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PortalAlunoConvite
+     */
+    select?: PortalAlunoConviteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PortalAlunoConvite
+     */
+    omit?: PortalAlunoConviteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PortalAlunoConviteInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PortalAlunoConvite to update in case it exists.
+     */
+    where: PortalAlunoConviteWhereUniqueInput
+    /**
+     * In case the PortalAlunoConvite found by the `where` argument doesn't exist, create a new PortalAlunoConvite with this data.
+     */
+    create: XOR<PortalAlunoConviteCreateInput, PortalAlunoConviteUncheckedCreateInput>
+    /**
+     * In case the PortalAlunoConvite was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PortalAlunoConviteUpdateInput, PortalAlunoConviteUncheckedUpdateInput>
+  }
+
+  /**
+   * PortalAlunoConvite delete
+   */
+  export type PortalAlunoConviteDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PortalAlunoConvite
+     */
+    select?: PortalAlunoConviteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PortalAlunoConvite
+     */
+    omit?: PortalAlunoConviteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PortalAlunoConviteInclude<ExtArgs> | null
+    /**
+     * Filter which PortalAlunoConvite to delete.
+     */
+    where: PortalAlunoConviteWhereUniqueInput
+  }
+
+  /**
+   * PortalAlunoConvite deleteMany
+   */
+  export type PortalAlunoConviteDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PortalAlunoConvites to delete
+     */
+    where?: PortalAlunoConviteWhereInput
+    /**
+     * Limit how many PortalAlunoConvites to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PortalAlunoConvite without action
+   */
+  export type PortalAlunoConviteDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PortalAlunoConvite
+     */
+    select?: PortalAlunoConviteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PortalAlunoConvite
+     */
+    omit?: PortalAlunoConviteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PortalAlunoConviteInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -96790,6 +97981,17 @@ export namespace Prisma {
   };
 
   export type PortalAlunoLimiteScalarFieldEnum = (typeof PortalAlunoLimiteScalarFieldEnum)[keyof typeof PortalAlunoLimiteScalarFieldEnum]
+
+
+  export const PortalAlunoConviteScalarFieldEnum: {
+    token_hash: 'token_hash',
+    aluno_id: 'aluno_id',
+    email: 'email',
+    expira_em: 'expira_em',
+    usado_em: 'usado_em'
+  };
+
+  export type PortalAlunoConviteScalarFieldEnum = (typeof PortalAlunoConviteScalarFieldEnum)[keyof typeof PortalAlunoConviteScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -103054,6 +104256,7 @@ export namespace Prisma {
     presencas?: MentoriaPresencaListRelationFilter
     tarefas?: MentoriaTarefaListRelationFilter
     arquivos?: MentoriaArquivoListRelationFilter
+    convites?: PortalAlunoConviteListRelationFilter
   }
 
   export type MentoriaAlunoOrderByWithRelationInput = {
@@ -103067,6 +104270,7 @@ export namespace Prisma {
     presencas?: MentoriaPresencaOrderByRelationAggregateInput
     tarefas?: MentoriaTarefaOrderByRelationAggregateInput
     arquivos?: MentoriaArquivoOrderByRelationAggregateInput
+    convites?: PortalAlunoConviteOrderByRelationAggregateInput
   }
 
   export type MentoriaAlunoWhereUniqueInput = Prisma.AtLeast<{
@@ -103084,6 +104288,7 @@ export namespace Prisma {
     presencas?: MentoriaPresencaListRelationFilter
     tarefas?: MentoriaTarefaListRelationFilter
     arquivos?: MentoriaArquivoListRelationFilter
+    convites?: PortalAlunoConviteListRelationFilter
   }, "id" | "mentoria_id_cliente_id">
 
   export type MentoriaAlunoOrderByWithAggregationInput = {
@@ -103850,6 +105055,61 @@ export namespace Prisma {
     chave?: StringWithAggregatesFilter<"PortalAlunoLimite"> | string
     tentativas?: IntWithAggregatesFilter<"PortalAlunoLimite"> | number
     expira_em?: DateTimeWithAggregatesFilter<"PortalAlunoLimite"> | Date | string
+  }
+
+  export type PortalAlunoConviteWhereInput = {
+    AND?: PortalAlunoConviteWhereInput | PortalAlunoConviteWhereInput[]
+    OR?: PortalAlunoConviteWhereInput[]
+    NOT?: PortalAlunoConviteWhereInput | PortalAlunoConviteWhereInput[]
+    token_hash?: StringFilter<"PortalAlunoConvite"> | string
+    aluno_id?: StringFilter<"PortalAlunoConvite"> | string
+    email?: StringFilter<"PortalAlunoConvite"> | string
+    expira_em?: DateTimeFilter<"PortalAlunoConvite"> | Date | string
+    usado_em?: DateTimeNullableFilter<"PortalAlunoConvite"> | Date | string | null
+    aluno?: XOR<MentoriaAlunoScalarRelationFilter, MentoriaAlunoWhereInput>
+  }
+
+  export type PortalAlunoConviteOrderByWithRelationInput = {
+    token_hash?: SortOrder
+    aluno_id?: SortOrder
+    email?: SortOrder
+    expira_em?: SortOrder
+    usado_em?: SortOrderInput | SortOrder
+    aluno?: MentoriaAlunoOrderByWithRelationInput
+  }
+
+  export type PortalAlunoConviteWhereUniqueInput = Prisma.AtLeast<{
+    token_hash?: string
+    AND?: PortalAlunoConviteWhereInput | PortalAlunoConviteWhereInput[]
+    OR?: PortalAlunoConviteWhereInput[]
+    NOT?: PortalAlunoConviteWhereInput | PortalAlunoConviteWhereInput[]
+    aluno_id?: StringFilter<"PortalAlunoConvite"> | string
+    email?: StringFilter<"PortalAlunoConvite"> | string
+    expira_em?: DateTimeFilter<"PortalAlunoConvite"> | Date | string
+    usado_em?: DateTimeNullableFilter<"PortalAlunoConvite"> | Date | string | null
+    aluno?: XOR<MentoriaAlunoScalarRelationFilter, MentoriaAlunoWhereInput>
+  }, "token_hash">
+
+  export type PortalAlunoConviteOrderByWithAggregationInput = {
+    token_hash?: SortOrder
+    aluno_id?: SortOrder
+    email?: SortOrder
+    expira_em?: SortOrder
+    usado_em?: SortOrderInput | SortOrder
+    _count?: PortalAlunoConviteCountOrderByAggregateInput
+    _max?: PortalAlunoConviteMaxOrderByAggregateInput
+    _min?: PortalAlunoConviteMinOrderByAggregateInput
+  }
+
+  export type PortalAlunoConviteScalarWhereWithAggregatesInput = {
+    AND?: PortalAlunoConviteScalarWhereWithAggregatesInput | PortalAlunoConviteScalarWhereWithAggregatesInput[]
+    OR?: PortalAlunoConviteScalarWhereWithAggregatesInput[]
+    NOT?: PortalAlunoConviteScalarWhereWithAggregatesInput | PortalAlunoConviteScalarWhereWithAggregatesInput[]
+    token_hash?: StringWithAggregatesFilter<"PortalAlunoConvite"> | string
+    aluno_id?: StringWithAggregatesFilter<"PortalAlunoConvite"> | string
+    email?: StringWithAggregatesFilter<"PortalAlunoConvite"> | string
+    expira_em?: DateTimeWithAggregatesFilter<"PortalAlunoConvite"> | Date | string
+    usado_em?: DateTimeNullableWithAggregatesFilter<"PortalAlunoConvite"> | Date | string | null
   }
 
   export type EmpresaCreateInput = {
@@ -110182,6 +111442,7 @@ export namespace Prisma {
     presencas?: MentoriaPresencaCreateNestedManyWithoutAlunoInput
     tarefas?: MentoriaTarefaCreateNestedManyWithoutAlunoInput
     arquivos?: MentoriaArquivoCreateNestedManyWithoutAlunoInput
+    convites?: PortalAlunoConviteCreateNestedManyWithoutAlunoInput
   }
 
   export type MentoriaAlunoUncheckedCreateInput = {
@@ -110193,6 +111454,7 @@ export namespace Prisma {
     presencas?: MentoriaPresencaUncheckedCreateNestedManyWithoutAlunoInput
     tarefas?: MentoriaTarefaUncheckedCreateNestedManyWithoutAlunoInput
     arquivos?: MentoriaArquivoUncheckedCreateNestedManyWithoutAlunoInput
+    convites?: PortalAlunoConviteUncheckedCreateNestedManyWithoutAlunoInput
   }
 
   export type MentoriaAlunoUpdateInput = {
@@ -110204,6 +111466,7 @@ export namespace Prisma {
     presencas?: MentoriaPresencaUpdateManyWithoutAlunoNestedInput
     tarefas?: MentoriaTarefaUpdateManyWithoutAlunoNestedInput
     arquivos?: MentoriaArquivoUpdateManyWithoutAlunoNestedInput
+    convites?: PortalAlunoConviteUpdateManyWithoutAlunoNestedInput
   }
 
   export type MentoriaAlunoUncheckedUpdateInput = {
@@ -110215,6 +111478,7 @@ export namespace Prisma {
     presencas?: MentoriaPresencaUncheckedUpdateManyWithoutAlunoNestedInput
     tarefas?: MentoriaTarefaUncheckedUpdateManyWithoutAlunoNestedInput
     arquivos?: MentoriaArquivoUncheckedUpdateManyWithoutAlunoNestedInput
+    convites?: PortalAlunoConviteUncheckedUpdateManyWithoutAlunoNestedInput
   }
 
   export type MentoriaAlunoCreateManyInput = {
@@ -110996,6 +112260,61 @@ export namespace Prisma {
     chave?: StringFieldUpdateOperationsInput | string
     tentativas?: IntFieldUpdateOperationsInput | number
     expira_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PortalAlunoConviteCreateInput = {
+    token_hash: string
+    email: string
+    expira_em: Date | string
+    usado_em?: Date | string | null
+    aluno: MentoriaAlunoCreateNestedOneWithoutConvitesInput
+  }
+
+  export type PortalAlunoConviteUncheckedCreateInput = {
+    token_hash: string
+    aluno_id: string
+    email: string
+    expira_em: Date | string
+    usado_em?: Date | string | null
+  }
+
+  export type PortalAlunoConviteUpdateInput = {
+    token_hash?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    expira_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    usado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    aluno?: MentoriaAlunoUpdateOneRequiredWithoutConvitesNestedInput
+  }
+
+  export type PortalAlunoConviteUncheckedUpdateInput = {
+    token_hash?: StringFieldUpdateOperationsInput | string
+    aluno_id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    expira_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    usado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PortalAlunoConviteCreateManyInput = {
+    token_hash: string
+    aluno_id: string
+    email: string
+    expira_em: Date | string
+    usado_em?: Date | string | null
+  }
+
+  export type PortalAlunoConviteUpdateManyMutationInput = {
+    token_hash?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    expira_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    usado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PortalAlunoConviteUncheckedUpdateManyInput = {
+    token_hash?: StringFieldUpdateOperationsInput | string
+    aluno_id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    expira_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    usado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -115372,6 +116691,12 @@ export namespace Prisma {
     none?: MentoriaArquivoWhereInput
   }
 
+  export type PortalAlunoConviteListRelationFilter = {
+    every?: PortalAlunoConviteWhereInput
+    some?: PortalAlunoConviteWhereInput
+    none?: PortalAlunoConviteWhereInput
+  }
+
   export type MentoriaPresencaOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -115381,6 +116706,10 @@ export namespace Prisma {
   }
 
   export type MentoriaArquivoOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PortalAlunoConviteOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -115863,6 +117192,30 @@ export namespace Prisma {
 
   export type PortalAlunoLimiteSumOrderByAggregateInput = {
     tentativas?: SortOrder
+  }
+
+  export type PortalAlunoConviteCountOrderByAggregateInput = {
+    token_hash?: SortOrder
+    aluno_id?: SortOrder
+    email?: SortOrder
+    expira_em?: SortOrder
+    usado_em?: SortOrder
+  }
+
+  export type PortalAlunoConviteMaxOrderByAggregateInput = {
+    token_hash?: SortOrder
+    aluno_id?: SortOrder
+    email?: SortOrder
+    expira_em?: SortOrder
+    usado_em?: SortOrder
+  }
+
+  export type PortalAlunoConviteMinOrderByAggregateInput = {
+    token_hash?: SortOrder
+    aluno_id?: SortOrder
+    email?: SortOrder
+    expira_em?: SortOrder
+    usado_em?: SortOrder
   }
 
   export type MembroEmpresaCreateNestedManyWithoutEmpresaInput = {
@@ -123582,6 +124935,13 @@ export namespace Prisma {
     connect?: MentoriaArquivoWhereUniqueInput | MentoriaArquivoWhereUniqueInput[]
   }
 
+  export type PortalAlunoConviteCreateNestedManyWithoutAlunoInput = {
+    create?: XOR<PortalAlunoConviteCreateWithoutAlunoInput, PortalAlunoConviteUncheckedCreateWithoutAlunoInput> | PortalAlunoConviteCreateWithoutAlunoInput[] | PortalAlunoConviteUncheckedCreateWithoutAlunoInput[]
+    connectOrCreate?: PortalAlunoConviteCreateOrConnectWithoutAlunoInput | PortalAlunoConviteCreateOrConnectWithoutAlunoInput[]
+    createMany?: PortalAlunoConviteCreateManyAlunoInputEnvelope
+    connect?: PortalAlunoConviteWhereUniqueInput | PortalAlunoConviteWhereUniqueInput[]
+  }
+
   export type MentoriaPresencaUncheckedCreateNestedManyWithoutAlunoInput = {
     create?: XOR<MentoriaPresencaCreateWithoutAlunoInput, MentoriaPresencaUncheckedCreateWithoutAlunoInput> | MentoriaPresencaCreateWithoutAlunoInput[] | MentoriaPresencaUncheckedCreateWithoutAlunoInput[]
     connectOrCreate?: MentoriaPresencaCreateOrConnectWithoutAlunoInput | MentoriaPresencaCreateOrConnectWithoutAlunoInput[]
@@ -123601,6 +124961,13 @@ export namespace Prisma {
     connectOrCreate?: MentoriaArquivoCreateOrConnectWithoutAlunoInput | MentoriaArquivoCreateOrConnectWithoutAlunoInput[]
     createMany?: MentoriaArquivoCreateManyAlunoInputEnvelope
     connect?: MentoriaArquivoWhereUniqueInput | MentoriaArquivoWhereUniqueInput[]
+  }
+
+  export type PortalAlunoConviteUncheckedCreateNestedManyWithoutAlunoInput = {
+    create?: XOR<PortalAlunoConviteCreateWithoutAlunoInput, PortalAlunoConviteUncheckedCreateWithoutAlunoInput> | PortalAlunoConviteCreateWithoutAlunoInput[] | PortalAlunoConviteUncheckedCreateWithoutAlunoInput[]
+    connectOrCreate?: PortalAlunoConviteCreateOrConnectWithoutAlunoInput | PortalAlunoConviteCreateOrConnectWithoutAlunoInput[]
+    createMany?: PortalAlunoConviteCreateManyAlunoInputEnvelope
+    connect?: PortalAlunoConviteWhereUniqueInput | PortalAlunoConviteWhereUniqueInput[]
   }
 
   export type MentoriaUpdateOneRequiredWithoutAlunosNestedInput = {
@@ -123661,6 +125028,20 @@ export namespace Prisma {
     deleteMany?: MentoriaArquivoScalarWhereInput | MentoriaArquivoScalarWhereInput[]
   }
 
+  export type PortalAlunoConviteUpdateManyWithoutAlunoNestedInput = {
+    create?: XOR<PortalAlunoConviteCreateWithoutAlunoInput, PortalAlunoConviteUncheckedCreateWithoutAlunoInput> | PortalAlunoConviteCreateWithoutAlunoInput[] | PortalAlunoConviteUncheckedCreateWithoutAlunoInput[]
+    connectOrCreate?: PortalAlunoConviteCreateOrConnectWithoutAlunoInput | PortalAlunoConviteCreateOrConnectWithoutAlunoInput[]
+    upsert?: PortalAlunoConviteUpsertWithWhereUniqueWithoutAlunoInput | PortalAlunoConviteUpsertWithWhereUniqueWithoutAlunoInput[]
+    createMany?: PortalAlunoConviteCreateManyAlunoInputEnvelope
+    set?: PortalAlunoConviteWhereUniqueInput | PortalAlunoConviteWhereUniqueInput[]
+    disconnect?: PortalAlunoConviteWhereUniqueInput | PortalAlunoConviteWhereUniqueInput[]
+    delete?: PortalAlunoConviteWhereUniqueInput | PortalAlunoConviteWhereUniqueInput[]
+    connect?: PortalAlunoConviteWhereUniqueInput | PortalAlunoConviteWhereUniqueInput[]
+    update?: PortalAlunoConviteUpdateWithWhereUniqueWithoutAlunoInput | PortalAlunoConviteUpdateWithWhereUniqueWithoutAlunoInput[]
+    updateMany?: PortalAlunoConviteUpdateManyWithWhereWithoutAlunoInput | PortalAlunoConviteUpdateManyWithWhereWithoutAlunoInput[]
+    deleteMany?: PortalAlunoConviteScalarWhereInput | PortalAlunoConviteScalarWhereInput[]
+  }
+
   export type MentoriaPresencaUncheckedUpdateManyWithoutAlunoNestedInput = {
     create?: XOR<MentoriaPresencaCreateWithoutAlunoInput, MentoriaPresencaUncheckedCreateWithoutAlunoInput> | MentoriaPresencaCreateWithoutAlunoInput[] | MentoriaPresencaUncheckedCreateWithoutAlunoInput[]
     connectOrCreate?: MentoriaPresencaCreateOrConnectWithoutAlunoInput | MentoriaPresencaCreateOrConnectWithoutAlunoInput[]
@@ -123701,6 +125082,20 @@ export namespace Prisma {
     update?: MentoriaArquivoUpdateWithWhereUniqueWithoutAlunoInput | MentoriaArquivoUpdateWithWhereUniqueWithoutAlunoInput[]
     updateMany?: MentoriaArquivoUpdateManyWithWhereWithoutAlunoInput | MentoriaArquivoUpdateManyWithWhereWithoutAlunoInput[]
     deleteMany?: MentoriaArquivoScalarWhereInput | MentoriaArquivoScalarWhereInput[]
+  }
+
+  export type PortalAlunoConviteUncheckedUpdateManyWithoutAlunoNestedInput = {
+    create?: XOR<PortalAlunoConviteCreateWithoutAlunoInput, PortalAlunoConviteUncheckedCreateWithoutAlunoInput> | PortalAlunoConviteCreateWithoutAlunoInput[] | PortalAlunoConviteUncheckedCreateWithoutAlunoInput[]
+    connectOrCreate?: PortalAlunoConviteCreateOrConnectWithoutAlunoInput | PortalAlunoConviteCreateOrConnectWithoutAlunoInput[]
+    upsert?: PortalAlunoConviteUpsertWithWhereUniqueWithoutAlunoInput | PortalAlunoConviteUpsertWithWhereUniqueWithoutAlunoInput[]
+    createMany?: PortalAlunoConviteCreateManyAlunoInputEnvelope
+    set?: PortalAlunoConviteWhereUniqueInput | PortalAlunoConviteWhereUniqueInput[]
+    disconnect?: PortalAlunoConviteWhereUniqueInput | PortalAlunoConviteWhereUniqueInput[]
+    delete?: PortalAlunoConviteWhereUniqueInput | PortalAlunoConviteWhereUniqueInput[]
+    connect?: PortalAlunoConviteWhereUniqueInput | PortalAlunoConviteWhereUniqueInput[]
+    update?: PortalAlunoConviteUpdateWithWhereUniqueWithoutAlunoInput | PortalAlunoConviteUpdateWithWhereUniqueWithoutAlunoInput[]
+    updateMany?: PortalAlunoConviteUpdateManyWithWhereWithoutAlunoInput | PortalAlunoConviteUpdateManyWithWhereWithoutAlunoInput[]
+    deleteMany?: PortalAlunoConviteScalarWhereInput | PortalAlunoConviteScalarWhereInput[]
   }
 
   export type MentoriaCreateNestedOneWithoutEncontrosInput = {
@@ -123965,6 +125360,20 @@ export namespace Prisma {
     upsert?: PortalAlunoAcessoUpsertWithoutSessoesInput
     connect?: PortalAlunoAcessoWhereUniqueInput
     update?: XOR<XOR<PortalAlunoAcessoUpdateToOneWithWhereWithoutSessoesInput, PortalAlunoAcessoUpdateWithoutSessoesInput>, PortalAlunoAcessoUncheckedUpdateWithoutSessoesInput>
+  }
+
+  export type MentoriaAlunoCreateNestedOneWithoutConvitesInput = {
+    create?: XOR<MentoriaAlunoCreateWithoutConvitesInput, MentoriaAlunoUncheckedCreateWithoutConvitesInput>
+    connectOrCreate?: MentoriaAlunoCreateOrConnectWithoutConvitesInput
+    connect?: MentoriaAlunoWhereUniqueInput
+  }
+
+  export type MentoriaAlunoUpdateOneRequiredWithoutConvitesNestedInput = {
+    create?: XOR<MentoriaAlunoCreateWithoutConvitesInput, MentoriaAlunoUncheckedCreateWithoutConvitesInput>
+    connectOrCreate?: MentoriaAlunoCreateOrConnectWithoutConvitesInput
+    upsert?: MentoriaAlunoUpsertWithoutConvitesInput
+    connect?: MentoriaAlunoWhereUniqueInput
+    update?: XOR<XOR<MentoriaAlunoUpdateToOneWithWhereWithoutConvitesInput, MentoriaAlunoUpdateWithoutConvitesInput>, MentoriaAlunoUncheckedUpdateWithoutConvitesInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -131911,6 +133320,7 @@ export namespace Prisma {
     presencas?: MentoriaPresencaCreateNestedManyWithoutAlunoInput
     tarefas?: MentoriaTarefaCreateNestedManyWithoutAlunoInput
     arquivos?: MentoriaArquivoCreateNestedManyWithoutAlunoInput
+    convites?: PortalAlunoConviteCreateNestedManyWithoutAlunoInput
   }
 
   export type MentoriaAlunoUncheckedCreateWithoutClienteInput = {
@@ -131921,6 +133331,7 @@ export namespace Prisma {
     presencas?: MentoriaPresencaUncheckedCreateNestedManyWithoutAlunoInput
     tarefas?: MentoriaTarefaUncheckedCreateNestedManyWithoutAlunoInput
     arquivos?: MentoriaArquivoUncheckedCreateNestedManyWithoutAlunoInput
+    convites?: PortalAlunoConviteUncheckedCreateNestedManyWithoutAlunoInput
   }
 
   export type MentoriaAlunoCreateOrConnectWithoutClienteInput = {
@@ -153503,6 +154914,7 @@ export namespace Prisma {
     presencas?: MentoriaPresencaCreateNestedManyWithoutAlunoInput
     tarefas?: MentoriaTarefaCreateNestedManyWithoutAlunoInput
     arquivos?: MentoriaArquivoCreateNestedManyWithoutAlunoInput
+    convites?: PortalAlunoConviteCreateNestedManyWithoutAlunoInput
   }
 
   export type MentoriaAlunoUncheckedCreateWithoutMentoriaInput = {
@@ -153513,6 +154925,7 @@ export namespace Prisma {
     presencas?: MentoriaPresencaUncheckedCreateNestedManyWithoutAlunoInput
     tarefas?: MentoriaTarefaUncheckedCreateNestedManyWithoutAlunoInput
     arquivos?: MentoriaArquivoUncheckedCreateNestedManyWithoutAlunoInput
+    convites?: PortalAlunoConviteUncheckedCreateNestedManyWithoutAlunoInput
   }
 
   export type MentoriaAlunoCreateOrConnectWithoutMentoriaInput = {
@@ -154211,6 +155624,30 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type PortalAlunoConviteCreateWithoutAlunoInput = {
+    token_hash: string
+    email: string
+    expira_em: Date | string
+    usado_em?: Date | string | null
+  }
+
+  export type PortalAlunoConviteUncheckedCreateWithoutAlunoInput = {
+    token_hash: string
+    email: string
+    expira_em: Date | string
+    usado_em?: Date | string | null
+  }
+
+  export type PortalAlunoConviteCreateOrConnectWithoutAlunoInput = {
+    where: PortalAlunoConviteWhereUniqueInput
+    create: XOR<PortalAlunoConviteCreateWithoutAlunoInput, PortalAlunoConviteUncheckedCreateWithoutAlunoInput>
+  }
+
+  export type PortalAlunoConviteCreateManyAlunoInputEnvelope = {
+    data: PortalAlunoConviteCreateManyAlunoInput | PortalAlunoConviteCreateManyAlunoInput[]
+    skipDuplicates?: boolean
+  }
+
   export type MentoriaUpsertWithoutAlunosInput = {
     update: XOR<MentoriaUpdateWithoutAlunosInput, MentoriaUncheckedUpdateWithoutAlunosInput>
     create: XOR<MentoriaCreateWithoutAlunosInput, MentoriaUncheckedCreateWithoutAlunosInput>
@@ -154435,6 +155872,33 @@ export namespace Prisma {
     caminho?: StringFilter<"MentoriaArquivo"> | string
     tamanho?: IntFilter<"MentoriaArquivo"> | number
     criado_em?: DateTimeFilter<"MentoriaArquivo"> | Date | string
+  }
+
+  export type PortalAlunoConviteUpsertWithWhereUniqueWithoutAlunoInput = {
+    where: PortalAlunoConviteWhereUniqueInput
+    update: XOR<PortalAlunoConviteUpdateWithoutAlunoInput, PortalAlunoConviteUncheckedUpdateWithoutAlunoInput>
+    create: XOR<PortalAlunoConviteCreateWithoutAlunoInput, PortalAlunoConviteUncheckedCreateWithoutAlunoInput>
+  }
+
+  export type PortalAlunoConviteUpdateWithWhereUniqueWithoutAlunoInput = {
+    where: PortalAlunoConviteWhereUniqueInput
+    data: XOR<PortalAlunoConviteUpdateWithoutAlunoInput, PortalAlunoConviteUncheckedUpdateWithoutAlunoInput>
+  }
+
+  export type PortalAlunoConviteUpdateManyWithWhereWithoutAlunoInput = {
+    where: PortalAlunoConviteScalarWhereInput
+    data: XOR<PortalAlunoConviteUpdateManyMutationInput, PortalAlunoConviteUncheckedUpdateManyWithoutAlunoInput>
+  }
+
+  export type PortalAlunoConviteScalarWhereInput = {
+    AND?: PortalAlunoConviteScalarWhereInput | PortalAlunoConviteScalarWhereInput[]
+    OR?: PortalAlunoConviteScalarWhereInput[]
+    NOT?: PortalAlunoConviteScalarWhereInput | PortalAlunoConviteScalarWhereInput[]
+    token_hash?: StringFilter<"PortalAlunoConvite"> | string
+    aluno_id?: StringFilter<"PortalAlunoConvite"> | string
+    email?: StringFilter<"PortalAlunoConvite"> | string
+    expira_em?: DateTimeFilter<"PortalAlunoConvite"> | Date | string
+    usado_em?: DateTimeNullableFilter<"PortalAlunoConvite"> | Date | string | null
   }
 
   export type MentoriaCreateWithoutEncontrosInput = {
@@ -154680,6 +156144,7 @@ export namespace Prisma {
     cliente: ClienteCreateNestedOneWithoutMentoriasInput
     tarefas?: MentoriaTarefaCreateNestedManyWithoutAlunoInput
     arquivos?: MentoriaArquivoCreateNestedManyWithoutAlunoInput
+    convites?: PortalAlunoConviteCreateNestedManyWithoutAlunoInput
   }
 
   export type MentoriaAlunoUncheckedCreateWithoutPresencasInput = {
@@ -154690,6 +156155,7 @@ export namespace Prisma {
     criado_em?: Date | string
     tarefas?: MentoriaTarefaUncheckedCreateNestedManyWithoutAlunoInput
     arquivos?: MentoriaArquivoUncheckedCreateNestedManyWithoutAlunoInput
+    convites?: PortalAlunoConviteUncheckedCreateNestedManyWithoutAlunoInput
   }
 
   export type MentoriaAlunoCreateOrConnectWithoutPresencasInput = {
@@ -154757,6 +156223,7 @@ export namespace Prisma {
     cliente?: ClienteUpdateOneRequiredWithoutMentoriasNestedInput
     tarefas?: MentoriaTarefaUpdateManyWithoutAlunoNestedInput
     arquivos?: MentoriaArquivoUpdateManyWithoutAlunoNestedInput
+    convites?: PortalAlunoConviteUpdateManyWithoutAlunoNestedInput
   }
 
   export type MentoriaAlunoUncheckedUpdateWithoutPresencasInput = {
@@ -154767,6 +156234,7 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     tarefas?: MentoriaTarefaUncheckedUpdateManyWithoutAlunoNestedInput
     arquivos?: MentoriaArquivoUncheckedUpdateManyWithoutAlunoNestedInput
+    convites?: PortalAlunoConviteUncheckedUpdateManyWithoutAlunoNestedInput
   }
 
   export type MentoriaAlunoCreateWithoutTarefasInput = {
@@ -154777,6 +156245,7 @@ export namespace Prisma {
     cliente: ClienteCreateNestedOneWithoutMentoriasInput
     presencas?: MentoriaPresencaCreateNestedManyWithoutAlunoInput
     arquivos?: MentoriaArquivoCreateNestedManyWithoutAlunoInput
+    convites?: PortalAlunoConviteCreateNestedManyWithoutAlunoInput
   }
 
   export type MentoriaAlunoUncheckedCreateWithoutTarefasInput = {
@@ -154787,6 +156256,7 @@ export namespace Prisma {
     criado_em?: Date | string
     presencas?: MentoriaPresencaUncheckedCreateNestedManyWithoutAlunoInput
     arquivos?: MentoriaArquivoUncheckedCreateNestedManyWithoutAlunoInput
+    convites?: PortalAlunoConviteUncheckedCreateNestedManyWithoutAlunoInput
   }
 
   export type MentoriaAlunoCreateOrConnectWithoutTarefasInput = {
@@ -154813,6 +156283,7 @@ export namespace Prisma {
     cliente?: ClienteUpdateOneRequiredWithoutMentoriasNestedInput
     presencas?: MentoriaPresencaUpdateManyWithoutAlunoNestedInput
     arquivos?: MentoriaArquivoUpdateManyWithoutAlunoNestedInput
+    convites?: PortalAlunoConviteUpdateManyWithoutAlunoNestedInput
   }
 
   export type MentoriaAlunoUncheckedUpdateWithoutTarefasInput = {
@@ -154823,6 +156294,7 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     presencas?: MentoriaPresencaUncheckedUpdateManyWithoutAlunoNestedInput
     arquivos?: MentoriaArquivoUncheckedUpdateManyWithoutAlunoNestedInput
+    convites?: PortalAlunoConviteUncheckedUpdateManyWithoutAlunoNestedInput
   }
 
   export type MentoriaAlunoCreateWithoutArquivosInput = {
@@ -154833,6 +156305,7 @@ export namespace Prisma {
     cliente: ClienteCreateNestedOneWithoutMentoriasInput
     presencas?: MentoriaPresencaCreateNestedManyWithoutAlunoInput
     tarefas?: MentoriaTarefaCreateNestedManyWithoutAlunoInput
+    convites?: PortalAlunoConviteCreateNestedManyWithoutAlunoInput
   }
 
   export type MentoriaAlunoUncheckedCreateWithoutArquivosInput = {
@@ -154843,6 +156316,7 @@ export namespace Prisma {
     criado_em?: Date | string
     presencas?: MentoriaPresencaUncheckedCreateNestedManyWithoutAlunoInput
     tarefas?: MentoriaTarefaUncheckedCreateNestedManyWithoutAlunoInput
+    convites?: PortalAlunoConviteUncheckedCreateNestedManyWithoutAlunoInput
   }
 
   export type MentoriaAlunoCreateOrConnectWithoutArquivosInput = {
@@ -154869,6 +156343,7 @@ export namespace Prisma {
     cliente?: ClienteUpdateOneRequiredWithoutMentoriasNestedInput
     presencas?: MentoriaPresencaUpdateManyWithoutAlunoNestedInput
     tarefas?: MentoriaTarefaUpdateManyWithoutAlunoNestedInput
+    convites?: PortalAlunoConviteUpdateManyWithoutAlunoNestedInput
   }
 
   export type MentoriaAlunoUncheckedUpdateWithoutArquivosInput = {
@@ -154879,6 +156354,7 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     presencas?: MentoriaPresencaUncheckedUpdateManyWithoutAlunoNestedInput
     tarefas?: MentoriaTarefaUncheckedUpdateManyWithoutAlunoNestedInput
+    convites?: PortalAlunoConviteUncheckedUpdateManyWithoutAlunoNestedInput
   }
 
   export type MentoriaCreateWithoutPaginasInput = {
@@ -155623,6 +157099,66 @@ export namespace Prisma {
     senha_hash?: StringFieldUpdateOperationsInput | string
     provisoria_expira_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     versao?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type MentoriaAlunoCreateWithoutConvitesInput = {
+    id?: string
+    ativo?: boolean
+    criado_em?: Date | string
+    mentoria: MentoriaCreateNestedOneWithoutAlunosInput
+    cliente: ClienteCreateNestedOneWithoutMentoriasInput
+    presencas?: MentoriaPresencaCreateNestedManyWithoutAlunoInput
+    tarefas?: MentoriaTarefaCreateNestedManyWithoutAlunoInput
+    arquivos?: MentoriaArquivoCreateNestedManyWithoutAlunoInput
+  }
+
+  export type MentoriaAlunoUncheckedCreateWithoutConvitesInput = {
+    id?: string
+    mentoria_id: string
+    cliente_id: string
+    ativo?: boolean
+    criado_em?: Date | string
+    presencas?: MentoriaPresencaUncheckedCreateNestedManyWithoutAlunoInput
+    tarefas?: MentoriaTarefaUncheckedCreateNestedManyWithoutAlunoInput
+    arquivos?: MentoriaArquivoUncheckedCreateNestedManyWithoutAlunoInput
+  }
+
+  export type MentoriaAlunoCreateOrConnectWithoutConvitesInput = {
+    where: MentoriaAlunoWhereUniqueInput
+    create: XOR<MentoriaAlunoCreateWithoutConvitesInput, MentoriaAlunoUncheckedCreateWithoutConvitesInput>
+  }
+
+  export type MentoriaAlunoUpsertWithoutConvitesInput = {
+    update: XOR<MentoriaAlunoUpdateWithoutConvitesInput, MentoriaAlunoUncheckedUpdateWithoutConvitesInput>
+    create: XOR<MentoriaAlunoCreateWithoutConvitesInput, MentoriaAlunoUncheckedCreateWithoutConvitesInput>
+    where?: MentoriaAlunoWhereInput
+  }
+
+  export type MentoriaAlunoUpdateToOneWithWhereWithoutConvitesInput = {
+    where?: MentoriaAlunoWhereInput
+    data: XOR<MentoriaAlunoUpdateWithoutConvitesInput, MentoriaAlunoUncheckedUpdateWithoutConvitesInput>
+  }
+
+  export type MentoriaAlunoUpdateWithoutConvitesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    mentoria?: MentoriaUpdateOneRequiredWithoutAlunosNestedInput
+    cliente?: ClienteUpdateOneRequiredWithoutMentoriasNestedInput
+    presencas?: MentoriaPresencaUpdateManyWithoutAlunoNestedInput
+    tarefas?: MentoriaTarefaUpdateManyWithoutAlunoNestedInput
+    arquivos?: MentoriaArquivoUpdateManyWithoutAlunoNestedInput
+  }
+
+  export type MentoriaAlunoUncheckedUpdateWithoutConvitesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mentoria_id?: StringFieldUpdateOperationsInput | string
+    cliente_id?: StringFieldUpdateOperationsInput | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    presencas?: MentoriaPresencaUncheckedUpdateManyWithoutAlunoNestedInput
+    tarefas?: MentoriaTarefaUncheckedUpdateManyWithoutAlunoNestedInput
+    arquivos?: MentoriaArquivoUncheckedUpdateManyWithoutAlunoNestedInput
   }
 
   export type MembroEmpresaCreateManyEmpresaInput = {
@@ -161124,6 +162660,7 @@ export namespace Prisma {
     presencas?: MentoriaPresencaUpdateManyWithoutAlunoNestedInput
     tarefas?: MentoriaTarefaUpdateManyWithoutAlunoNestedInput
     arquivos?: MentoriaArquivoUpdateManyWithoutAlunoNestedInput
+    convites?: PortalAlunoConviteUpdateManyWithoutAlunoNestedInput
   }
 
   export type MentoriaAlunoUncheckedUpdateWithoutClienteInput = {
@@ -161134,6 +162671,7 @@ export namespace Prisma {
     presencas?: MentoriaPresencaUncheckedUpdateManyWithoutAlunoNestedInput
     tarefas?: MentoriaTarefaUncheckedUpdateManyWithoutAlunoNestedInput
     arquivos?: MentoriaArquivoUncheckedUpdateManyWithoutAlunoNestedInput
+    convites?: PortalAlunoConviteUncheckedUpdateManyWithoutAlunoNestedInput
   }
 
   export type MentoriaAlunoUncheckedUpdateManyWithoutClienteInput = {
@@ -164183,6 +165721,7 @@ export namespace Prisma {
     presencas?: MentoriaPresencaUpdateManyWithoutAlunoNestedInput
     tarefas?: MentoriaTarefaUpdateManyWithoutAlunoNestedInput
     arquivos?: MentoriaArquivoUpdateManyWithoutAlunoNestedInput
+    convites?: PortalAlunoConviteUpdateManyWithoutAlunoNestedInput
   }
 
   export type MentoriaAlunoUncheckedUpdateWithoutMentoriaInput = {
@@ -164193,6 +165732,7 @@ export namespace Prisma {
     presencas?: MentoriaPresencaUncheckedUpdateManyWithoutAlunoNestedInput
     tarefas?: MentoriaTarefaUncheckedUpdateManyWithoutAlunoNestedInput
     arquivos?: MentoriaArquivoUncheckedUpdateManyWithoutAlunoNestedInput
+    convites?: PortalAlunoConviteUncheckedUpdateManyWithoutAlunoNestedInput
   }
 
   export type MentoriaAlunoUncheckedUpdateManyWithoutMentoriaInput = {
@@ -164411,6 +165951,13 @@ export namespace Prisma {
     criado_em?: Date | string
   }
 
+  export type PortalAlunoConviteCreateManyAlunoInput = {
+    token_hash: string
+    email: string
+    expira_em: Date | string
+    usado_em?: Date | string | null
+  }
+
   export type MentoriaPresencaUpdateWithoutAlunoInput = {
     checkin_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     entrada_zoom_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -164481,6 +166028,27 @@ export namespace Prisma {
     caminho?: StringFieldUpdateOperationsInput | string
     tamanho?: IntFieldUpdateOperationsInput | number
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PortalAlunoConviteUpdateWithoutAlunoInput = {
+    token_hash?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    expira_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    usado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PortalAlunoConviteUncheckedUpdateWithoutAlunoInput = {
+    token_hash?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    expira_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    usado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PortalAlunoConviteUncheckedUpdateManyWithoutAlunoInput = {
+    token_hash?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    expira_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    usado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type MentoriaPresencaCreateManyEncontroInput = {
