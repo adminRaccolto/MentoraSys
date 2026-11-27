@@ -2,6 +2,12 @@
   background: #fbfdf9;
 }
 
+:global(.portal-cliente):has(.pagina) [data-portal-largura] {
+  width: 100%;
+  max-width: 156rem;
+  padding-inline: clamp(1rem, 2.4vw, 3.75rem);
+}
+
 .ferramentas {
   display: grid;
   gap: .6rem 1rem;
@@ -83,7 +89,7 @@
   max-width: 14ch;
   font-family: Georgia, "Times New Roman", serif;
   font-weight: 500;
-  font-size: clamp(2.4rem, 5vw, 4.6rem);
+  font-size: clamp(2.4rem, 4.15vw, 6rem);
   letter-spacing: -.055em;
   line-height: .97;
   overflow-wrap: anywhere;
@@ -150,6 +156,9 @@
 }
 
 .label {
+  display: flex;
+  align-items: center;
+  gap: .45rem;
   margin-bottom: .7rem;
   font-size: .75rem;
   font-weight: 700;
@@ -209,9 +218,23 @@
   font-weight: 700;
 }
 
-.atalho:last-child {
+.atalho:nth-child(2) {
   color: white;
   background: #087968;
+}
+
+.atalhoLargo {
+  display: none;
+}
+
+.atalho:nth-child(3) {
+  background: #e4f4ec;
+  color: #124c38;
+}
+
+.atalho:nth-child(4) {
+  background: #f0eadf;
+  color: #463d2b;
 }
 
 .atalho:hover {
@@ -284,6 +307,7 @@
 .noticia p {
   display: -webkit-box;
   margin-top: .35rem;
+  max-width: 65ch;
   overflow: hidden;
   color: #4b6558;
   font-size: .875rem;
@@ -329,6 +353,57 @@
   .atalho {
     min-height: 7.4rem;
     padding: 1.15rem;
+  }
+}
+
+@media (min-width: 78rem) {
+  .destaques {
+    grid-template-columns: minmax(0, 1.46fr) minmax(0, 1fr);
+    gap: clamp(.85rem, 1.1vw, 1.45rem);
+  }
+
+  .lateral, .atalhos {
+    gap: clamp(.85rem, 1.1vw, 1.45rem);
+  }
+
+  .capa {
+    min-height: clamp(26.5rem, 21vw, 35rem);
+  }
+
+  .textoCapa {
+    padding: clamp(2.2rem, 3vw, 3.9rem);
+  }
+
+  .proxima {
+    padding: clamp(1.4rem, 2vw, 2.5rem);
+  }
+
+  .atalhos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .atalhoLargo {
+    display: grid;
+  }
+}
+
+@media (min-width: 112rem) {
+  .atalhos {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .atalho {
+    min-height: clamp(7.4rem, 7vw, 10rem);
+    font-size: clamp(.88rem, .78vw, 1.1rem);
+  }
+
+  .nomeReuniao {
+    max-width: 27ch;
+    font-size: clamp(1.8rem, 1.85vw, 2.55rem);
+  }
+
+  .listaNoticias {
+    gap: 1.4rem 2.4rem;
   }
 }
 

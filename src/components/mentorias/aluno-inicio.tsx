@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, CalendarDays, FolderOpen, MessageCircle, Video } from "lucide-react";
+import { ArrowRight, ArrowUpRight, CalendarDays, ClipboardList, FileText, FolderOpen, MessageCircle, Video } from "lucide-react";
 import type { ReactNode } from "react";
 import type { MentoriaPost } from "@/lib/generated/prisma";
 import { horarioMentoria } from "@/lib/mentorias";
@@ -12,7 +12,7 @@ const dataNoticia = new Intl.DateTimeFormat("pt-BR", {
   timeZone: "America/Cuiaba", day: "numeric", month: "short",
 });
 
-const atalhos = [
+const atalhosPrincipais = [
   { secao: "biblioteca", titulo: "Biblioteca", icone: FolderOpen },
   { secao: "mural", titulo: "Mural", icone: MessageCircle },
 ];
@@ -33,13 +33,18 @@ export function InicioMentoriaAluno<E extends Evento>({ nome, turma, descricao, 
 }) {
   const [primeiro, ...restantes] = proximosEncontros(encontros, agora);
   const exibirTurma = turma && turma.trim().toLocaleLowerCase("pt-BR") !== nome.trim().toLocaleLowerCase("pt-BR");
+  const atalhos = [
+    ...atalhosPrincipais,
+    { secao: "paginas", titulo: "Páginas", icone: FileText },
+    { secao: grupo ? "acompanhamento" : "tarefas", titulo: grupo ? "Acompanhamento" : "Tarefas", icone: ClipboardList },
+  ];
 
   return (
     <div className={styles.inicio}>
       <div className={styles.destaques}>
         <section className={styles.capa} aria-labelledby="titulo-mentoria">
           <Image src="/mentorias/portal-conselho-agro.webp" alt="" fill
-            sizes="(min-width: 1200px) 690px, (min-width: 900px) 62vw, 100vw"
+            sizes="(min-width: 2496px) 1440px, (min-width: 900px) 59vw, 100vw"
             className={styles.foto} loading="eager" fetchPriority="high" />
           <div className={styles.textoCapa}>
             <p className={styles.tipo}>{grupo ? "Mentoria em grupo" : "Mentoria individual"}</p>
@@ -55,7 +60,9 @@ export function InicioMentoriaAluno<E extends Evento>({ nome, turma, descricao, 
         <div className={styles.lateral}>
           <section className={styles.proxima} aria-labelledby="proxima-reuniao">
             <div>
-              <h2 id="proxima-reuniao" className={styles.label}>Próxima reunião</h2>
+              <h2 id="proxima-reuniao" className={styles.label}>
+                <CalendarDays className="size-4 shrink-0" aria-hidden /> Próxima reunião
+              </h2>
               {primeiro ? (
                 <>
                   <time className={styles.data} dateTime={primeiro.inicio.toISOString()}>{horarioMentoria(primeiro.inicio)} · Cuiabá</time>
@@ -77,8 +84,8 @@ export function InicioMentoriaAluno<E extends Evento>({ nome, turma, descricao, 
             )}
           </section>
           <nav aria-label="Atalhos da mentoria" className={styles.atalhos}>
-            {atalhos.map(({ secao, titulo, icone: Icon }) => (
-              <Link key={secao} href={hrefSecao(secao)} className={styles.atalho}>
+            {atalhos.map(({ secao, titulo, icone: Icon }, indice) => (
+              <Link key={secao} href={hrefSecao(secao)} className={`${styles.atalho} ${indice >= atalhosPrincipais.length ? styles.atalhoLargo : ""}`}>
                 <span className="flex items-center justify-between gap-2">
                   <Icon className="size-5" aria-hidden />
                   <ArrowUpRight className="size-4" aria-hidden />

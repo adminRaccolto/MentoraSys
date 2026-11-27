@@ -10,7 +10,7 @@ export default async function PortalProtectedLayout({ children }: { children: Re
   return (
     <div className="portal-cliente min-h-dvh bg-[#f4f6ef]">
       <header className="border-b border-[#dfe5da] bg-white">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-3 sm:px-7">
+        <div data-portal-largura className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-3 sm:px-7">
           <PortalMarca conviteMentoria={Boolean(cliente.mentoria_id)} />
           <nav aria-label="Portal do cliente" className="flex min-w-0 flex-wrap items-center gap-0.5">
             {!cliente.mentoria_id && <Link href="/portal" className="rounded-lg px-2 py-2 text-sm font-medium text-primary hover:bg-muted sm:px-3">Projetos</Link>}
@@ -18,7 +18,7 @@ export default async function PortalProtectedLayout({ children }: { children: Re
           </nav>
         </div>
       </header>
-      <main className="mx-auto max-w-6xl px-4 py-5 sm:px-7 sm:py-8">{children}</main>
+      <main data-portal-largura className="mx-auto max-w-6xl px-4 py-5 sm:px-7 sm:py-8">{children}</main>
     </div>
   );
 }
