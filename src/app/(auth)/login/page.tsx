@@ -37,7 +37,7 @@ export default function LoginPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="font-serif text-[2rem] leading-tight tracking-tight sm:text-[2.45rem]">Entrar no MentoraSys</h1>
+        <h1 className="font-semibold text-[2rem] leading-tight tracking-tight sm:text-[2.45rem]">Entrar na Raccolto</h1>
         <p className="mt-2 text-sm text-muted-foreground">Acesse com o e-mail da sua conta.</p>
       </div>
 

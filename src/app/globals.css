@@ -131,18 +131,151 @@
   }
 }
 
-/* Estrutura comum da área de gestão */
+/* Área de gestão */
+body:has(.app-shell),
+.app-auth,
 .app-shell {
+  --foreground: #17273b;
+  --card-foreground: #17273b;
+  --popover-foreground: #17273b;
+  --background: #f7f8fb;
+  --primary: #244777;
+  --secondary: #eef2f8;
+  --secondary-foreground: #294569;
+  --muted: #eef1f5;
+  --muted-foreground: #53637a;
+  --accent: #f7edd8;
+  --accent-foreground: #52391f;
+  --border: #dce4ed;
+  --input: #cad5e2;
+  --ring: #466f9d;
+  --workspace: #f3f5f8;
   background: var(--workspace);
+  color: var(--foreground);
+}
+
+.app-sidebar {
+  background: #fff;
+  color: #17273b;
+  border-right: 1px solid #dce4ed;
+}
+
+.app-brand {
+  padding: 1rem 0.9rem 1.05rem;
+}
+
+.app-brand-logo {
+  display: inline-flex;
+  padding: 0.25rem 0.35rem;
+  margin-bottom: 0.85rem;
+}
+
+.app-company,
+.app-sidebar-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.app-company {
+  padding: 0.38rem 0.55rem 0.38rem 0.38rem;
+  border: 1px solid #dce4ed;
+  border-radius: 0.7rem;
+  background: #f7f9fc;
+}
+
+.app-company:hover,
+.app-signout:hover {
+  background: #eaf0f8;
+}
+
+.app-company-icon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  overflow: hidden;
+  color: #35547b;
+  background: #e6edf7;
+  border-radius: 0.4rem;
+}
+
+.app-nav {
+  padding: 0 0.75rem 0.4rem;
+  scrollbar-color: #cad5e2 transparent;
+  scrollbar-width: thin;
+}
+
+.app-nav-group {
+  margin-top: 0.4rem;
+}
+
+.app-nav-subgroup {
+  margin: 0.25rem 0 0.65rem 1.05rem;
+  padding-left: 0.5rem;
+  border-left: 1px solid #dce4ed;
+}
+
+.app-nav .app-nav-area {
+  width: 100%;
+  min-height: 2.65rem;
+  color: #30465f;
+  font-weight: 650;
+}
+
+.app-nav-area[data-area-atual="true"],
+.app-nav-area[aria-expanded="true"] {
+  background: #f0f4fa;
+}
+
+.app-nav-link {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 0.65rem;
+  min-height: 2.1rem;
+  padding: 0.35rem 0.65rem;
+  color: #43546c;
+  border-radius: 0.48rem;
+  font-size: 0.81rem;
+  font-weight: 500;
+}
+
+.app-nav-link:hover {
+  color: #183b65;
+  background: #f2f5fa;
+}
+
+.app-nav-link[aria-current="page"] {
+  color: #183b65;
+  background: #e8effa;
+  box-shadow: inset 3px 0 #365d8f;
+  font-weight: 700;
+}
+
+.app-sidebar-footer {
+  padding: 0.75rem;
+  border-top: 1px solid #dce4ed;
+}
+
+.app-signout {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  min-width: 2rem;
+  min-height: 2rem;
+  border-radius: 0.5rem;
+  color: #53637a;
 }
 
 .app-topbar {
-  background: var(--card);
+  background: #fff;
   border-bottom: 1px solid var(--border);
 }
 
 .app-content {
-  scrollbar-color: #a8b6a8 transparent;
+  scrollbar-color: #b4c3d4 transparent;
   scrollbar-width: thin;
 }
 
@@ -151,14 +284,14 @@
 }
 
 .app-content :where(h1) {
-  font-size: clamp(1.45rem, 1.13rem + 1.15vw, 2.05rem);
-  letter-spacing: -0.045em;
-  line-height: 1.18;
+  font-size: clamp(1.5rem, 1.12rem + 1.18vw, 2.2rem);
+  letter-spacing: -0.055em;
+  line-height: 1.12;
   text-wrap: balance;
 }
 
 .app-content :where(h2) {
-  letter-spacing: -0.025em;
+  letter-spacing: -0.035em;
 }
 
 .app-content :where(table) {
@@ -166,28 +299,37 @@
 }
 
 .app-content :where(thead th) {
-  background-color: color-mix(in srgb, var(--secondary) 70%, var(--card));
-  color: var(--secondary-foreground);
+  background-color: #edf2f8;
+  color: #314866;
 }
 
 .app-content :where(tbody tr:hover) {
-  background-color: color-mix(in srgb, var(--secondary) 56%, var(--card));
+  background-color: #f4f7fb;
 }
 
 .app-content :where([data-slot="card"]) {
-  box-shadow: 0 2px 4px rgb(37 52 45 / 0.035);
+  box-shadow: 0 2px 7px rgb(27 46 74 / 0.045);
 }
 
-.dashboard-hero {
-  background-color: #203c33;
-  background-image: radial-gradient(ellipse at 94% 0%, #3d5944 4%, transparent 56%);
+.dashboard-cover {
+  background: #162e4c;
+  background-image: radial-gradient(ellipse at 100% 0%, #2b5579, transparent 70%);
 }
 
-.dashboard-hero h1 {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.25rem, 2rem + 2vw, 3.85rem);
-  font-weight: 500;
-  line-height: 0.99;
+.dashboard-cover h1 {
+  font-size: clamp(2.6rem, 1.9rem + 2.1vw, 4.3rem);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.075em;
+}
+
+.dashboard-panel {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 1.1rem;
+  background: var(--card);
+  box-shadow: 0 3px 12px rgb(27 46 74 / 0.045);
 }
 
 @media (max-width: 639px) {

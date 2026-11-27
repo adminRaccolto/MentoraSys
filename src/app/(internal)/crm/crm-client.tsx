@@ -3,6 +3,7 @@
 import { useState, useTransition, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { CabecalhoModulo } from "@/components/cabecalho-modulo";
 import { useAtualizarAoRetomarTela } from "@/hooks/useAtualizarAoRetomarTela";
 import { BarraSelecaoEmLote, BotaoExclusaoEmLote, useSelecaoEmLote } from "@/components/exclusao-em-lote";
 import { useForm } from "react-hook-form";
@@ -10,7 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import {
   Plus, Settings, List, Kanban, Trash2, ArrowRightLeft, X,
-  ChevronRight, MessageSquare, Send, RefreshCw, Zap,
+  ChevronRight, MessageSquare, Send, RefreshCw, TrendingUp, Zap,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -387,13 +388,16 @@ export default function CrmClient({ etapasIniciais, leadsIniciais, clientes, ser
   return (
     <div className="flex h-full min-h-0 flex-col overflow-hidden">
 
-      {/* Header */}
-      <header className="z-10 flex shrink-0 flex-wrap items-center justify-between gap-3 border-b bg-card px-4 py-3 sm:px-6">
-        <div>
-          <h1 className="text-xl font-bold">CRM</h1>
-          <p className="text-xs text-muted-foreground">{leadsFiltrados.length} oportunidade(s)</p>
-        </div>
-        <div className="flex flex-wrap items-center gap-2">
+      <div className="shrink-0 space-y-3 px-4 pt-4 sm:px-6 sm:pt-6 xl:px-8">
+        <CabecalhoModulo titulo="CRM" icone={<TrendingUp />} quantidade={leadsFiltrados.length}>
+          <Button size="sm" variant="outline" onClick={() => router.push("/crm/configuracoes")}>
+            <Settings className="size-4" /> Etapas
+          </Button>
+          <Button size="sm" onClick={abrirNovo}>
+            <Plus className="size-4" /> Nova oportunidade
+          </Button>
+        </CabecalhoModulo>
+        <div className="flex flex-wrap items-center gap-2 rounded-xl border bg-card p-2.5">
           <Select value={filtroEtapa} onValueChange={(v) => setFiltroEtapa(v ?? "")}>
             <SelectTrigger className="h-8 text-xs w-36"><SelectValue placeholder="Todas as etapas" /></SelectTrigger>
             <SelectContent>
@@ -416,31 +420,27 @@ export default function CrmClient({ etapasIniciais, leadsIniciais, clientes, ser
             </SelectContent>
           </Select>
 
-          <div className="flex rounded-md border overflow-hidden shrink-0">
+          <div className="flex shrink-0 overflow-hidden rounded-lg border bg-secondary sm:ml-auto">
             <button
               onClick={() => setViewMode("KANBAN")}
+              aria-pressed={viewMode === "KANBAN"}
               className={`px-2.5 py-1.5 text-xs flex items-center gap-1 transition-colors ${viewMode === "KANBAN" ? "bg-primary text-primary-foreground" : "hover:bg-muted"}`}
             >
               <Kanban className="size-3.5" /> Kanban
             </button>
             <button
               onClick={() => setViewMode("LISTA")}
+              aria-pressed={viewMode === "LISTA"}
               className={`px-2.5 py-1.5 text-xs flex items-center gap-1 transition-colors ${viewMode === "LISTA" ? "bg-primary text-primary-foreground" : "hover:bg-muted"}`}
             >
               <List className="size-3.5" /> Lista
             </button>
           </div>
 
-          <Button size="sm" variant="outline" className="h-8 text-xs shrink-0" onClick={() => router.push("/crm/configuracoes")}>
-            <Settings className="size-3.5 mr-1" /> Etapas
-          </Button>
-          <Button size="sm" className="h-8 text-xs shrink-0" onClick={abrirNovo}>
-            <Plus className="size-3.5 mr-1" /> Nova oportunidade
-          </Button>
         </div>
-      </header>
+      </div>
 
-      <div className="flex flex-wrap items-center gap-3 border-b px-4 py-2">
+      <div className="flex shrink-0 flex-wrap items-center gap-3 px-4 pt-2.5 sm:px-6 xl:px-8">
         <div className="flex items-center gap-2 text-sm">
           {lote.selecionarTodos}
           <span>Selecionar oportunidades visíveis</span>
@@ -460,18 +460,18 @@ export default function CrmClient({ etapasIniciais, leadsIniciais, clientes, ser
 
         {/* ── Kanban ── */}
         {viewMode === "KANBAN" && (
-          <div className="flex h-full gap-0 overflow-x-auto p-4">
+          <div className="flex h-full gap-3 overflow-x-auto px-4 py-3 sm:px-6 xl:px-8">
             {etapas.map((etapa) => {
               const itens = leadsFiltrados.filter((l) => l.etapa_chave === etapa.chave);
               const total = itens.reduce((s, l) => s + (l.valor_estimado ?? 0), 0);
               return (
                 <div
                   key={etapa.chave}
-                  className="shrink-0 w-64 flex flex-col rounded-xl border border-border bg-card mr-3 overflow-hidden"
+                  className="flex w-64 shrink-0 flex-col overflow-hidden rounded-xl border border-border bg-secondary/55"
                   onDragOver={(e) => e.preventDefault()}
                   onDrop={() => handleDrop(etapa.chave, etapa.id)}
                 >
-                  <div className="px-3 py-2.5 flex items-center gap-2 border-b border-border/50" style={{ borderTopColor: etapa.cor, borderTopWidth: 3 }}>
+                  <div className="flex items-center gap-2 border-b border-border/70 bg-card px-3 py-3" style={{ borderTopColor: etapa.cor, borderTopWidth: 3 }}>
                     <span className="size-2.5 rounded-full shrink-0" style={{ background: etapa.cor }} />
                     <span className="text-xs font-semibold flex-1 truncate">{etapa.nome}</span>
                     <span className="text-[10px] text-muted-foreground bg-background border rounded-full px-1.5 py-0.5">{itens.length}</span>
@@ -536,15 +536,15 @@ export default function CrmClient({ etapasIniciais, leadsIniciais, clientes, ser
 
         {/* ── Lista ── */}
         {viewMode === "LISTA" && (
-          <div className="h-full overflow-auto p-4">
+          <div className="h-full overflow-auto px-4 py-3 sm:px-6 xl:px-8">
             {leadsFiltrados.length === 0 ? (
               <div className="py-16 text-center text-sm text-muted-foreground">Nenhuma oportunidade encontrada.</div>
             ) : (
-              <table className="w-full text-sm">
+              <table className="w-full rounded-xl bg-card text-sm">
                 <thead>
                   <tr className="text-left border-b border-border">
                     {["Seleção", "Oportunidade", "Etapa", "Tags", "Responsável", "Valor", "Previsão", ""].map((h) => (
-                      <th key={h} className="pb-2 pr-4 text-xs font-semibold text-muted-foreground">{h}</th>
+                      <th key={h} className="py-3 pr-4 text-xs font-semibold text-muted-foreground">{h}</th>
                     ))}
                   </tr>
                 </thead>

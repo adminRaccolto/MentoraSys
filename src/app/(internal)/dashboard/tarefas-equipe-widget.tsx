@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ChevronDown, ChevronUp, ArrowRight, AlertTriangle, CheckCircle2, Clock, Circle } from "lucide-react";
+import { ChevronDown, ChevronUp, ArrowRight, AlertTriangle, CheckCircle2, Circle } from "lucide-react";
 
 export type KpiUsuarioDash = {
   id: string;
@@ -62,6 +62,7 @@ function LinhaColaborador({ u }: { u: KpiUsuarioDash }) {
     <div className="border-b border-border last:border-0">
       <button
         type="button"
+        aria-expanded={aberto}
         onClick={() => setAberto((v) => !v)}
         className="w-full flex items-center gap-3 px-4 py-3 hover:bg-muted/30 transition-colors text-left"
       >
@@ -161,7 +162,7 @@ export function TarefasEquipeWidget({
   emAndamentoGeral: number;
 }) {
   return (
-    <div className="border border-border rounded-xl bg-card overflow-hidden">
+    <div className="dashboard-panel">
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-muted/30">
         <div className="flex items-center gap-2">
