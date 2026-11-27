@@ -193,6 +193,8 @@ export default function PropostasClient({ propostas: inicial, clientes, servicos
   const [modalAberto, setModalAberto] = useState(false);
   const [propostaEditando, setPropostaEditando] = useState<Proposta | null>(null);
   const [propostaEnviando, setPropostaEnviando] = useState<Proposta | null>(null);
+  const [erroEnvio, setErroEnvio] = useState<string | null>(null);
+  const [linkParaCopiar, setLinkParaCopiar] = useState<string | null>(null);
   const [propostaExcluindo, setPropostaExcluindo] = useState<Proposta | null>(null);
   const [propostaDocumento, setPropostaDocumento] = useState<Proposta | null>(null);
   const [propostaAceitando, setPropostaAceitando] = useState<Proposta | null>(null);
@@ -261,11 +263,17 @@ export default function PropostasClient({ propostas: inicial, clientes, servicos
     setValue(`itens.${idx}.valor_unitario`, Number(s.valor_base) || 0);
   };
 
-  const copiarLink = (token: string) => {
-    const url = `${window.location.origin}/p/${token}`;
-    navigator.clipboard.writeText(url);
-    toast.success("Link copiado!");
+  const copiarUrl = async (url: string) => {
+    try {
+      await navigator.clipboard.writeText(url);
+      toast.success("Link copiado!");
+      setLinkParaCopiar(null);
+    } catch {
+      setLinkParaCopiar(url);
+    }
   };
+
+  const copiarLink = (token: string) => copiarUrl(`${window.location.origin}/p/${token}`);
 
   const abrirCriar = () => {
     setPropostaEditando(null);
@@ -391,17 +399,22 @@ export default function PropostasClient({ propostas: inicial, clientes, servicos
 
   const confirmarEnvio = () => {
     if (!propostaEnviando) return;
+    setErroEnvio(null);
     startTransition(async () => {
       try {
-        await enviarProposta(propostaEnviando.id);
+        const { data, error } = await enviarProposta(propostaEnviando.id);
+        if (!data) {
+          setErroEnvio(error ?? "Não foi possível registrar o envio.");
+          return;
+        }
         setPropostas((prev) =>
-          prev.map((p) => (p.id === propostaEnviando.id ? { ...p, status: "ENVIADA" as StatusProposta } : p))
+          prev.map((p) => (p.id === data.id ? { ...p, status: data.status } : p))
         );
-        toast.success("Proposta marcada como enviada");
-        copiarLink(propostaEnviando.token_aceite);
         setPropostaEnviando(null);
+        toast.success(propostaEnviando.status === "RASCUNHO" ? "Proposta marcada como enviada" : "Reenvio registrado");
+        await copiarLink(data.token_aceite);
       } catch {
-        toast.error("Erro ao enviar proposta");
+        setErroEnvio("Não foi possível registrar o envio.");
       }
     });
   };
@@ -488,10 +501,15 @@ export default function PropostasClient({ propostas: inicial, clientes, servicos
                           <FileText className="size-3.5" />
                         </Button>
                       )}
-                      {p.status === "RASCUNHO" && (
-                        <Button size="icon" variant="ghost" className="size-8" title="Enviar proposta"
-                          onClick={() => setPropostaEnviando(p)}>
-                          <Send className="size-3.5" />
+                      {["RASCUNHO", "ENVIADA", "VISUALIZADA", "EXPIRADA"].includes(p.status) && (
+                        <Button size={p.status === "RASCUNHO" ? "icon" : "sm"} variant="ghost" className="h-8"
+                          aria-label={p.status === "RASCUNHO" ? "Enviar proposta" : "Reenviar proposta"}
+                          title={p.status === "RASCUNHO" ? "Enviar proposta" : "Reenviar proposta"}
+                          onClick={() => {
+                            setErroEnvio(null);
+                            setPropostaEnviando(p);
+                          }}>
+                          <Send className="size-3.5" />{p.status !== "RASCUNHO" && "Reenviar"}
                         </Button>
                       )}
                       <Button size="icon" variant="ghost" className="size-8" title="Copiar link de aceite"
@@ -859,22 +877,38 @@ export default function PropostasClient({ propostas: inicial, clientes, servicos
       </Dialog>
 
       {/* Confirmar envio */}
-      <AlertDialog open={!!propostaEnviando} onOpenChange={(v) => !v && setPropostaEnviando(null)}>
+      <AlertDialog open={!!propostaEnviando} onOpenChange={(v) => !v && !isPending && setPropostaEnviando(null)}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Marcar como enviada?</AlertDialogTitle>
+            <AlertDialogTitle>
+              {propostaEnviando?.status === "RASCUNHO" ? "Marcar como enviada?" : "Reenviar proposta?"}
+            </AlertDialogTitle>
             <AlertDialogDescription>
-              A proposta <strong>{propostaEnviando?.titulo}</strong> será marcada como enviada e o link de aceite será copiado para sua área de transferência.
+              Confirme para registrar o envio de <strong>{propostaEnviando?.titulo}</strong> e copiar o link da versão atual para compartilhar com o cliente.
             </AlertDialogDescription>
           </AlertDialogHeader>
+          {erroEnvio && <p role="alert" className="text-sm text-destructive">{erroEnvio}</p>}
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancelar</AlertDialogCancel>
-            <AlertDialogAction onClick={confirmarEnvio} disabled={isPending}>
-              Confirmar e copiar link
-            </AlertDialogAction>
+            <AlertDialogCancel disabled={isPending}>Cancelar</AlertDialogCancel>
+            <Button type="button" onClick={confirmarEnvio} disabled={isPending}>
+              {isPending ? "Registrando..." : "Confirmar e copiar link"}
+            </Button>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      <Dialog open={!!linkParaCopiar} onOpenChange={(open) => !open && setLinkParaCopiar(null)}>
+        <DialogContent className="max-w-md">
+          <DialogHeader><DialogTitle>Compartilhar proposta</DialogTitle></DialogHeader>
+          <Label htmlFor="link-proposta">Link da proposta</Label>
+          <Input id="link-proposta" value={linkParaCopiar ?? ""} readOnly onFocus={(event) => event.target.select()} />
+          <DialogFooter>
+            <Button type="button" onClick={() => linkParaCopiar && void copiarUrl(linkParaCopiar)}>
+              <Copy className="size-3.5" /> Copiar link
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       {/* Confirmar aceite manual */}
       <AlertDialog open={!!propostaAceitando} onOpenChange={(v) => !v && setPropostaAceitando(null)}>

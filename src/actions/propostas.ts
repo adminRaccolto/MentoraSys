@@ -159,16 +159,32 @@ export async function editarProposta(id: string, input: PropostaInput) {
 export async function enviarProposta(id: string) {
   await verificarPermissao("propostas", "editar");
   const empresaId = await obterEmpresaAtiva();
+  const agora = new Date();
 
-  const existente = await prisma.proposta.findFirst({ where: { id, empresa_id: empresaId } });
-  if (!existente) throw new Error("Proposta não encontrada");
-
-  const proposta = await prisma.proposta.update({
-    where: { id },
-    data: { status: "ENVIADA", enviado_em: new Date() },
+  const [proposta] = await prisma.proposta.updateManyAndReturn({
+    where: {
+      id,
+      empresa_id: empresaId,
+      status: { in: ["RASCUNHO", "ENVIADA", "VISUALIZADA", "EXPIRADA"] },
+      OR: [{ validade: null }, { validade: { gte: agora } }],
+    },
+    data: { status: "ENVIADA", enviado_em: agora, visualizado_em: null },
   });
 
+  if (!proposta) {
+    const existente = await prisma.proposta.findFirst({
+      where: { id, empresa_id: empresaId },
+      select: { status: true, validade: true },
+    });
+    if (!existente) return { error: "Proposta não encontrada." };
+    if (existente.status === "ACEITA" || existente.status === "RECUSADA") {
+      return { error: "Propostas aceitas ou recusadas não podem ser reenviadas." };
+    }
+    return { error: "Atualize a validade da proposta antes de enviá-la." };
+  }
+
   revalidatePath("/propostas");
+  revalidatePath(`/p/${proposta.token_aceite}`);
   return { data: { ...proposta, valor_total: Number(proposta.valor_total) } };
 }
 
