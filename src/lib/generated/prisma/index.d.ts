@@ -328,6 +328,21 @@ export type MentoriaTarefa = $Result.DefaultSelection<Prisma.$MentoriaTarefaPayl
  *
  */
 export type MentoriaArquivo = $Result.DefaultSelection<Prisma.$MentoriaArquivoPayload>
+/**
+ * Model MentoriaPagina
+ *
+ */
+export type MentoriaPagina = $Result.DefaultSelection<Prisma.$MentoriaPaginaPayload>
+/**
+ * Model MentoriaItem
+ *
+ */
+export type MentoriaItem = $Result.DefaultSelection<Prisma.$MentoriaItemPayload>
+/**
+ * Model MentoriaMaterial
+ *
+ */
+export type MentoriaMaterial = $Result.DefaultSelection<Prisma.$MentoriaMaterialPayload>
 
 /**
  * Enums
@@ -1430,6 +1445,36 @@ export class PrismaClient<
     * ```
     */
   get mentoriaArquivo(): Prisma.MentoriaArquivoDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.mentoriaPagina`: Exposes CRUD operations for the **MentoriaPagina** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MentoriaPaginas
+    * const mentoriaPaginas = await prisma.mentoriaPagina.findMany()
+    * ```
+    */
+  get mentoriaPagina(): Prisma.MentoriaPaginaDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.mentoriaItem`: Exposes CRUD operations for the **MentoriaItem** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MentoriaItems
+    * const mentoriaItems = await prisma.mentoriaItem.findMany()
+    * ```
+    */
+  get mentoriaItem(): Prisma.MentoriaItemDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.mentoriaMaterial`: Exposes CRUD operations for the **MentoriaMaterial** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MentoriaMaterials
+    * const mentoriaMaterials = await prisma.mentoriaMaterial.findMany()
+    * ```
+    */
+  get mentoriaMaterial(): Prisma.MentoriaMaterialDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1926,7 +1971,10 @@ export namespace Prisma {
     MentoriaPost: 'MentoriaPost',
     MentoriaPresenca: 'MentoriaPresenca',
     MentoriaTarefa: 'MentoriaTarefa',
-    MentoriaArquivo: 'MentoriaArquivo'
+    MentoriaArquivo: 'MentoriaArquivo',
+    MentoriaPagina: 'MentoriaPagina',
+    MentoriaItem: 'MentoriaItem',
+    MentoriaMaterial: 'MentoriaMaterial'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1942,7 +1990,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "etapaCrm" | "comentarioCrm" | "lead" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "contratoAditivo" | "projeto" | "etapa" | "tarefa" | "tarefaResponsavel" | "comentarioTarefa" | "anexoTarefa" | "atividadeTarefa" | "aprovacaoTarefa" | "itemChecklist" | "etiquetaTarefa" | "tarefaEtiqueta" | "pastaDocumento" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "centroCusto" | "recebivel" | "contaPagar" | "fornecedor" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "boleto" | "diagnostico" | "tokenPortal" | "aplicacaoDiagnostico" | "campanhaDiagnostico" | "diagnosticoParticipante" | "diagnosticoTemplate" | "campanhaCupom" | "assinatura" | "reembolso" | "reembolsoItem" | "mentoria" | "mentoriaAluno" | "mentoriaEncontro" | "mentoriaPost" | "mentoriaPresenca" | "mentoriaTarefa" | "mentoriaArquivo"
+      modelProps: "empresa" | "usuario" | "membroEmpresa" | "perfil" | "permissao" | "perfilPermissao" | "conviteEmpresa" | "conviteCliente" | "cliente" | "contato" | "servico" | "etapaCrm" | "comentarioCrm" | "lead" | "proposta" | "aceiteOtp" | "itemProposta" | "contrato" | "contratoAditivo" | "projeto" | "etapa" | "tarefa" | "tarefaResponsavel" | "comentarioTarefa" | "anexoTarefa" | "atividadeTarefa" | "aprovacaoTarefa" | "itemChecklist" | "etiquetaTarefa" | "tarefaEtiqueta" | "pastaDocumento" | "documento" | "planoDeContas" | "banco" | "contaBancaria" | "transferenciaTesouraria" | "centroCusto" | "recebivel" | "contaPagar" | "fornecedor" | "modeloDocumento" | "evento" | "registroAuditoria" | "notificacao" | "notaFiscal" | "boleto" | "diagnostico" | "tokenPortal" | "aplicacaoDiagnostico" | "campanhaDiagnostico" | "diagnosticoParticipante" | "diagnosticoTemplate" | "campanhaCupom" | "assinatura" | "reembolso" | "reembolsoItem" | "mentoria" | "mentoriaAluno" | "mentoriaEncontro" | "mentoriaPost" | "mentoriaPresenca" | "mentoriaTarefa" | "mentoriaArquivo" | "mentoriaPagina" | "mentoriaItem" | "mentoriaMaterial"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -6608,6 +6656,228 @@ export namespace Prisma {
           }
         }
       }
+      MentoriaPagina: {
+        payload: Prisma.$MentoriaPaginaPayload<ExtArgs>
+        fields: Prisma.MentoriaPaginaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MentoriaPaginaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaPaginaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MentoriaPaginaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaPaginaPayload>
+          }
+          findFirst: {
+            args: Prisma.MentoriaPaginaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaPaginaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MentoriaPaginaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaPaginaPayload>
+          }
+          findMany: {
+            args: Prisma.MentoriaPaginaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaPaginaPayload>[]
+          }
+          create: {
+            args: Prisma.MentoriaPaginaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaPaginaPayload>
+          }
+          createMany: {
+            args: Prisma.MentoriaPaginaCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MentoriaPaginaCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaPaginaPayload>[]
+          }
+          delete: {
+            args: Prisma.MentoriaPaginaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaPaginaPayload>
+          }
+          update: {
+            args: Prisma.MentoriaPaginaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaPaginaPayload>
+          }
+          deleteMany: {
+            args: Prisma.MentoriaPaginaDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MentoriaPaginaUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MentoriaPaginaUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaPaginaPayload>[]
+          }
+          upsert: {
+            args: Prisma.MentoriaPaginaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaPaginaPayload>
+          }
+          aggregate: {
+            args: Prisma.MentoriaPaginaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMentoriaPagina>
+          }
+          groupBy: {
+            args: Prisma.MentoriaPaginaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MentoriaPaginaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MentoriaPaginaCountArgs<ExtArgs>
+            result: $Utils.Optional<MentoriaPaginaCountAggregateOutputType> | number
+          }
+        }
+      }
+      MentoriaItem: {
+        payload: Prisma.$MentoriaItemPayload<ExtArgs>
+        fields: Prisma.MentoriaItemFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MentoriaItemFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaItemPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MentoriaItemFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaItemPayload>
+          }
+          findFirst: {
+            args: Prisma.MentoriaItemFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaItemPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MentoriaItemFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaItemPayload>
+          }
+          findMany: {
+            args: Prisma.MentoriaItemFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaItemPayload>[]
+          }
+          create: {
+            args: Prisma.MentoriaItemCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaItemPayload>
+          }
+          createMany: {
+            args: Prisma.MentoriaItemCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MentoriaItemCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaItemPayload>[]
+          }
+          delete: {
+            args: Prisma.MentoriaItemDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaItemPayload>
+          }
+          update: {
+            args: Prisma.MentoriaItemUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaItemPayload>
+          }
+          deleteMany: {
+            args: Prisma.MentoriaItemDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MentoriaItemUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MentoriaItemUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaItemPayload>[]
+          }
+          upsert: {
+            args: Prisma.MentoriaItemUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaItemPayload>
+          }
+          aggregate: {
+            args: Prisma.MentoriaItemAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMentoriaItem>
+          }
+          groupBy: {
+            args: Prisma.MentoriaItemGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MentoriaItemGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MentoriaItemCountArgs<ExtArgs>
+            result: $Utils.Optional<MentoriaItemCountAggregateOutputType> | number
+          }
+        }
+      }
+      MentoriaMaterial: {
+        payload: Prisma.$MentoriaMaterialPayload<ExtArgs>
+        fields: Prisma.MentoriaMaterialFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MentoriaMaterialFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaMaterialPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MentoriaMaterialFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaMaterialPayload>
+          }
+          findFirst: {
+            args: Prisma.MentoriaMaterialFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaMaterialPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MentoriaMaterialFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaMaterialPayload>
+          }
+          findMany: {
+            args: Prisma.MentoriaMaterialFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaMaterialPayload>[]
+          }
+          create: {
+            args: Prisma.MentoriaMaterialCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaMaterialPayload>
+          }
+          createMany: {
+            args: Prisma.MentoriaMaterialCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MentoriaMaterialCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaMaterialPayload>[]
+          }
+          delete: {
+            args: Prisma.MentoriaMaterialDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaMaterialPayload>
+          }
+          update: {
+            args: Prisma.MentoriaMaterialUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaMaterialPayload>
+          }
+          deleteMany: {
+            args: Prisma.MentoriaMaterialDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MentoriaMaterialUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MentoriaMaterialUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaMaterialPayload>[]
+          }
+          upsert: {
+            args: Prisma.MentoriaMaterialUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentoriaMaterialPayload>
+          }
+          aggregate: {
+            args: Prisma.MentoriaMaterialAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMentoriaMaterial>
+          }
+          groupBy: {
+            args: Prisma.MentoriaMaterialGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MentoriaMaterialGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MentoriaMaterialCountArgs<ExtArgs>
+            result: $Utils.Optional<MentoriaMaterialCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -6779,6 +7049,9 @@ export namespace Prisma {
     mentoriaPresenca?: MentoriaPresencaOmit
     mentoriaTarefa?: MentoriaTarefaOmit
     mentoriaArquivo?: MentoriaArquivoOmit
+    mentoriaPagina?: MentoriaPaginaOmit
+    mentoriaItem?: MentoriaItemOmit
+    mentoriaMaterial?: MentoriaMaterialOmit
   }
 
   /* Types for Logging */
@@ -8427,6 +8700,9 @@ export namespace Prisma {
     encontros: number
     posts: number
     tokens: number
+    paginas: number
+    itens: number
+    materiais: number
   }
 
   export type MentoriaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8434,6 +8710,9 @@ export namespace Prisma {
     encontros?: boolean | MentoriaCountOutputTypeCountEncontrosArgs
     posts?: boolean | MentoriaCountOutputTypeCountPostsArgs
     tokens?: boolean | MentoriaCountOutputTypeCountTokensArgs
+    paginas?: boolean | MentoriaCountOutputTypeCountPaginasArgs
+    itens?: boolean | MentoriaCountOutputTypeCountItensArgs
+    materiais?: boolean | MentoriaCountOutputTypeCountMateriaisArgs
   }
 
   // Custom InputTypes
@@ -8473,6 +8752,27 @@ export namespace Prisma {
    */
   export type MentoriaCountOutputTypeCountTokensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TokenPortalWhereInput
+  }
+
+  /**
+   * MentoriaCountOutputType without action
+   */
+  export type MentoriaCountOutputTypeCountPaginasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MentoriaPaginaWhereInput
+  }
+
+  /**
+   * MentoriaCountOutputType without action
+   */
+  export type MentoriaCountOutputTypeCountItensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MentoriaItemWhereInput
+  }
+
+  /**
+   * MentoriaCountOutputType without action
+   */
+  export type MentoriaCountOutputTypeCountMateriaisArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MentoriaMaterialWhereInput
   }
 
 
@@ -79474,6 +79774,9 @@ export namespace Prisma {
     encontros?: boolean | Mentoria$encontrosArgs<ExtArgs>
     posts?: boolean | Mentoria$postsArgs<ExtArgs>
     tokens?: boolean | Mentoria$tokensArgs<ExtArgs>
+    paginas?: boolean | Mentoria$paginasArgs<ExtArgs>
+    itens?: boolean | Mentoria$itensArgs<ExtArgs>
+    materiais?: boolean | Mentoria$materiaisArgs<ExtArgs>
     _count?: boolean | MentoriaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["mentoria"]>
 
@@ -79516,6 +79819,9 @@ export namespace Prisma {
     encontros?: boolean | Mentoria$encontrosArgs<ExtArgs>
     posts?: boolean | Mentoria$postsArgs<ExtArgs>
     tokens?: boolean | Mentoria$tokensArgs<ExtArgs>
+    paginas?: boolean | Mentoria$paginasArgs<ExtArgs>
+    itens?: boolean | Mentoria$itensArgs<ExtArgs>
+    materiais?: boolean | Mentoria$materiaisArgs<ExtArgs>
     _count?: boolean | MentoriaCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type MentoriaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -79533,6 +79839,9 @@ export namespace Prisma {
       encontros: Prisma.$MentoriaEncontroPayload<ExtArgs>[]
       posts: Prisma.$MentoriaPostPayload<ExtArgs>[]
       tokens: Prisma.$TokenPortalPayload<ExtArgs>[]
+      paginas: Prisma.$MentoriaPaginaPayload<ExtArgs>[]
+      itens: Prisma.$MentoriaItemPayload<ExtArgs>[]
+      materiais: Prisma.$MentoriaMaterialPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -79941,6 +80250,9 @@ export namespace Prisma {
     encontros<T extends Mentoria$encontrosArgs<ExtArgs> = {}>(args?: Subset<T, Mentoria$encontrosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MentoriaEncontroPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     posts<T extends Mentoria$postsArgs<ExtArgs> = {}>(args?: Subset<T, Mentoria$postsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MentoriaPostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     tokens<T extends Mentoria$tokensArgs<ExtArgs> = {}>(args?: Subset<T, Mentoria$tokensArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TokenPortalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    paginas<T extends Mentoria$paginasArgs<ExtArgs> = {}>(args?: Subset<T, Mentoria$paginasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MentoriaPaginaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    itens<T extends Mentoria$itensArgs<ExtArgs> = {}>(args?: Subset<T, Mentoria$itensArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MentoriaItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    materiais<T extends Mentoria$materiaisArgs<ExtArgs> = {}>(args?: Subset<T, Mentoria$materiaisArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MentoriaMaterialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -80471,6 +80783,78 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: TokenPortalScalarFieldEnum | TokenPortalScalarFieldEnum[]
+  }
+
+  /**
+   * Mentoria.paginas
+   */
+  export type Mentoria$paginasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaPagina
+     */
+    select?: MentoriaPaginaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaPagina
+     */
+    omit?: MentoriaPaginaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaPaginaInclude<ExtArgs> | null
+    where?: MentoriaPaginaWhereInput
+    orderBy?: MentoriaPaginaOrderByWithRelationInput | MentoriaPaginaOrderByWithRelationInput[]
+    cursor?: MentoriaPaginaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MentoriaPaginaScalarFieldEnum | MentoriaPaginaScalarFieldEnum[]
+  }
+
+  /**
+   * Mentoria.itens
+   */
+  export type Mentoria$itensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaItem
+     */
+    select?: MentoriaItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaItem
+     */
+    omit?: MentoriaItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaItemInclude<ExtArgs> | null
+    where?: MentoriaItemWhereInput
+    orderBy?: MentoriaItemOrderByWithRelationInput | MentoriaItemOrderByWithRelationInput[]
+    cursor?: MentoriaItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MentoriaItemScalarFieldEnum | MentoriaItemScalarFieldEnum[]
+  }
+
+  /**
+   * Mentoria.materiais
+   */
+  export type Mentoria$materiaisArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaMaterial
+     */
+    select?: MentoriaMaterialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaMaterial
+     */
+    omit?: MentoriaMaterialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaMaterialInclude<ExtArgs> | null
+    where?: MentoriaMaterialWhereInput
+    orderBy?: MentoriaMaterialOrderByWithRelationInput | MentoriaMaterialOrderByWithRelationInput[]
+    cursor?: MentoriaMaterialWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MentoriaMaterialScalarFieldEnum | MentoriaMaterialScalarFieldEnum[]
   }
 
   /**
@@ -87240,6 +87624,3307 @@ export namespace Prisma {
 
 
   /**
+   * Model MentoriaPagina
+   */
+
+  export type AggregateMentoriaPagina = {
+    _count: MentoriaPaginaCountAggregateOutputType | null
+    _min: MentoriaPaginaMinAggregateOutputType | null
+    _max: MentoriaPaginaMaxAggregateOutputType | null
+  }
+
+  export type MentoriaPaginaMinAggregateOutputType = {
+    id: string | null
+    mentoria_id: string | null
+    titulo: string | null
+    conteudo: string | null
+    criada_em: Date | null
+    alterada_em: Date | null
+  }
+
+  export type MentoriaPaginaMaxAggregateOutputType = {
+    id: string | null
+    mentoria_id: string | null
+    titulo: string | null
+    conteudo: string | null
+    criada_em: Date | null
+    alterada_em: Date | null
+  }
+
+  export type MentoriaPaginaCountAggregateOutputType = {
+    id: number
+    mentoria_id: number
+    titulo: number
+    conteudo: number
+    criada_em: number
+    alterada_em: number
+    _all: number
+  }
+
+
+  export type MentoriaPaginaMinAggregateInputType = {
+    id?: true
+    mentoria_id?: true
+    titulo?: true
+    conteudo?: true
+    criada_em?: true
+    alterada_em?: true
+  }
+
+  export type MentoriaPaginaMaxAggregateInputType = {
+    id?: true
+    mentoria_id?: true
+    titulo?: true
+    conteudo?: true
+    criada_em?: true
+    alterada_em?: true
+  }
+
+  export type MentoriaPaginaCountAggregateInputType = {
+    id?: true
+    mentoria_id?: true
+    titulo?: true
+    conteudo?: true
+    criada_em?: true
+    alterada_em?: true
+    _all?: true
+  }
+
+  export type MentoriaPaginaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MentoriaPagina to aggregate.
+     */
+    where?: MentoriaPaginaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of MentoriaPaginas to fetch.
+     */
+    orderBy?: MentoriaPaginaOrderByWithRelationInput | MentoriaPaginaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the start position
+     */
+    cursor?: MentoriaPaginaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` MentoriaPaginas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` MentoriaPaginas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Count returned MentoriaPaginas
+    **/
+    _count?: true | MentoriaPaginaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the minimum value
+    **/
+    _min?: MentoriaPaginaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the maximum value
+    **/
+    _max?: MentoriaPaginaMaxAggregateInputType
+  }
+
+  export type GetMentoriaPaginaAggregateType<T extends MentoriaPaginaAggregateArgs> = {
+        [P in keyof T & keyof AggregateMentoriaPagina]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMentoriaPagina[P]>
+      : GetScalarType<T[P], AggregateMentoriaPagina[P]>
+  }
+
+
+
+
+  export type MentoriaPaginaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MentoriaPaginaWhereInput
+    orderBy?: MentoriaPaginaOrderByWithAggregationInput | MentoriaPaginaOrderByWithAggregationInput[]
+    by: MentoriaPaginaScalarFieldEnum[] | MentoriaPaginaScalarFieldEnum
+    having?: MentoriaPaginaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MentoriaPaginaCountAggregateInputType | true
+    _min?: MentoriaPaginaMinAggregateInputType
+    _max?: MentoriaPaginaMaxAggregateInputType
+  }
+
+  export type MentoriaPaginaGroupByOutputType = {
+    id: string
+    mentoria_id: string
+    titulo: string
+    conteudo: string
+    criada_em: Date
+    alterada_em: Date
+    _count: MentoriaPaginaCountAggregateOutputType | null
+    _min: MentoriaPaginaMinAggregateOutputType | null
+    _max: MentoriaPaginaMaxAggregateOutputType | null
+  }
+
+  type GetMentoriaPaginaGroupByPayload<T extends MentoriaPaginaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MentoriaPaginaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MentoriaPaginaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MentoriaPaginaGroupByOutputType[P]>
+            : GetScalarType<T[P], MentoriaPaginaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MentoriaPaginaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    mentoria_id?: boolean
+    titulo?: boolean
+    conteudo?: boolean
+    criada_em?: boolean
+    alterada_em?: boolean
+    mentoria?: boolean | MentoriaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["mentoriaPagina"]>
+
+  export type MentoriaPaginaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    mentoria_id?: boolean
+    titulo?: boolean
+    conteudo?: boolean
+    criada_em?: boolean
+    alterada_em?: boolean
+    mentoria?: boolean | MentoriaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["mentoriaPagina"]>
+
+  export type MentoriaPaginaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    mentoria_id?: boolean
+    titulo?: boolean
+    conteudo?: boolean
+    criada_em?: boolean
+    alterada_em?: boolean
+    mentoria?: boolean | MentoriaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["mentoriaPagina"]>
+
+  export type MentoriaPaginaSelectScalar = {
+    id?: boolean
+    mentoria_id?: boolean
+    titulo?: boolean
+    conteudo?: boolean
+    criada_em?: boolean
+    alterada_em?: boolean
+  }
+
+  export type MentoriaPaginaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "mentoria_id" | "titulo" | "conteudo" | "criada_em" | "alterada_em", ExtArgs["result"]["mentoriaPagina"]>
+  export type MentoriaPaginaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    mentoria?: boolean | MentoriaDefaultArgs<ExtArgs>
+  }
+  export type MentoriaPaginaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    mentoria?: boolean | MentoriaDefaultArgs<ExtArgs>
+  }
+  export type MentoriaPaginaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    mentoria?: boolean | MentoriaDefaultArgs<ExtArgs>
+  }
+
+  export type $MentoriaPaginaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MentoriaPagina"
+    objects: {
+      mentoria: Prisma.$MentoriaPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      mentoria_id: string
+      titulo: string
+      conteudo: string
+      criada_em: Date
+      alterada_em: Date
+    }, ExtArgs["result"]["mentoriaPagina"]>
+    composites: {}
+  }
+
+  type MentoriaPaginaGetPayload<S extends boolean | null | undefined | MentoriaPaginaDefaultArgs> = $Result.GetResult<Prisma.$MentoriaPaginaPayload, S>
+
+  type MentoriaPaginaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MentoriaPaginaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MentoriaPaginaCountAggregateInputType | true
+    }
+
+  export interface MentoriaPaginaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MentoriaPagina'], meta: { name: 'MentoriaPagina' } }
+    /**
+     * Find zero or one MentoriaPagina that matches the filter.
+     * @param {MentoriaPaginaFindUniqueArgs} args - Arguments to find a MentoriaPagina
+     * @example
+     * // Get one MentoriaPagina
+     * const mentoriaPagina = await prisma.mentoriaPagina.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MentoriaPaginaFindUniqueArgs>(args: SelectSubset<T, MentoriaPaginaFindUniqueArgs<ExtArgs>>): Prisma__MentoriaPaginaClient<$Result.GetResult<Prisma.$MentoriaPaginaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MentoriaPagina that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MentoriaPaginaFindUniqueOrThrowArgs} args - Arguments to find a MentoriaPagina
+     * @example
+     * // Get one MentoriaPagina
+     * const mentoriaPagina = await prisma.mentoriaPagina.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MentoriaPaginaFindUniqueOrThrowArgs>(args: SelectSubset<T, MentoriaPaginaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MentoriaPaginaClient<$Result.GetResult<Prisma.$MentoriaPaginaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MentoriaPagina that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentoriaPaginaFindFirstArgs} args - Arguments to find a MentoriaPagina
+     * @example
+     * // Get one MentoriaPagina
+     * const mentoriaPagina = await prisma.mentoriaPagina.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MentoriaPaginaFindFirstArgs>(args?: SelectSubset<T, MentoriaPaginaFindFirstArgs<ExtArgs>>): Prisma__MentoriaPaginaClient<$Result.GetResult<Prisma.$MentoriaPaginaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MentoriaPagina that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentoriaPaginaFindFirstOrThrowArgs} args - Arguments to find a MentoriaPagina
+     * @example
+     * // Get one MentoriaPagina
+     * const mentoriaPagina = await prisma.mentoriaPagina.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MentoriaPaginaFindFirstOrThrowArgs>(args?: SelectSubset<T, MentoriaPaginaFindFirstOrThrowArgs<ExtArgs>>): Prisma__MentoriaPaginaClient<$Result.GetResult<Prisma.$MentoriaPaginaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MentoriaPaginas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentoriaPaginaFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MentoriaPaginas
+     * const mentoriaPaginas = await prisma.mentoriaPagina.findMany()
+     *
+     * // Get first 10 MentoriaPaginas
+     * const mentoriaPaginas = await prisma.mentoriaPagina.findMany({ take: 10 })
+     *
+     * // Only select the `id`
+     * const mentoriaPaginaWithIdOnly = await prisma.mentoriaPagina.findMany({ select: { id: true } })
+     *
+     */
+    findMany<T extends MentoriaPaginaFindManyArgs>(args?: SelectSubset<T, MentoriaPaginaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MentoriaPaginaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MentoriaPagina.
+     * @param {MentoriaPaginaCreateArgs} args - Arguments to create a MentoriaPagina.
+     * @example
+     * // Create one MentoriaPagina
+     * const MentoriaPagina = await prisma.mentoriaPagina.create({
+     *   data: {
+     *     // ... data to create a MentoriaPagina
+     *   }
+     * })
+     *
+     */
+    create<T extends MentoriaPaginaCreateArgs>(args: SelectSubset<T, MentoriaPaginaCreateArgs<ExtArgs>>): Prisma__MentoriaPaginaClient<$Result.GetResult<Prisma.$MentoriaPaginaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MentoriaPaginas.
+     * @param {MentoriaPaginaCreateManyArgs} args - Arguments to create many MentoriaPaginas.
+     * @example
+     * // Create many MentoriaPaginas
+     * const mentoriaPagina = await prisma.mentoriaPagina.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     */
+    createMany<T extends MentoriaPaginaCreateManyArgs>(args?: SelectSubset<T, MentoriaPaginaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MentoriaPaginas and returns the data saved in the database.
+     * @param {MentoriaPaginaCreateManyAndReturnArgs} args - Arguments to create many MentoriaPaginas.
+     * @example
+     * // Create many MentoriaPaginas
+     * const mentoriaPagina = await prisma.mentoriaPagina.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Create many MentoriaPaginas and only return the `id`
+     * const mentoriaPaginaWithIdOnly = await prisma.mentoriaPagina.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    createManyAndReturn<T extends MentoriaPaginaCreateManyAndReturnArgs>(args?: SelectSubset<T, MentoriaPaginaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MentoriaPaginaPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a MentoriaPagina.
+     * @param {MentoriaPaginaDeleteArgs} args - Arguments to delete one MentoriaPagina.
+     * @example
+     * // Delete one MentoriaPagina
+     * const MentoriaPagina = await prisma.mentoriaPagina.delete({
+     *   where: {
+     *     // ... filter to delete one MentoriaPagina
+     *   }
+     * })
+     *
+     */
+    delete<T extends MentoriaPaginaDeleteArgs>(args: SelectSubset<T, MentoriaPaginaDeleteArgs<ExtArgs>>): Prisma__MentoriaPaginaClient<$Result.GetResult<Prisma.$MentoriaPaginaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MentoriaPagina.
+     * @param {MentoriaPaginaUpdateArgs} args - Arguments to update one MentoriaPagina.
+     * @example
+     * // Update one MentoriaPagina
+     * const mentoriaPagina = await prisma.mentoriaPagina.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    update<T extends MentoriaPaginaUpdateArgs>(args: SelectSubset<T, MentoriaPaginaUpdateArgs<ExtArgs>>): Prisma__MentoriaPaginaClient<$Result.GetResult<Prisma.$MentoriaPaginaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MentoriaPaginas.
+     * @param {MentoriaPaginaDeleteManyArgs} args - Arguments to filter MentoriaPaginas to delete.
+     * @example
+     * // Delete a few MentoriaPaginas
+     * const { count } = await prisma.mentoriaPagina.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     *
+     */
+    deleteMany<T extends MentoriaPaginaDeleteManyArgs>(args?: SelectSubset<T, MentoriaPaginaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MentoriaPaginas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentoriaPaginaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MentoriaPaginas
+     * const mentoriaPagina = await prisma.mentoriaPagina.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    updateMany<T extends MentoriaPaginaUpdateManyArgs>(args: SelectSubset<T, MentoriaPaginaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MentoriaPaginas and returns the data updated in the database.
+     * @param {MentoriaPaginaUpdateManyAndReturnArgs} args - Arguments to update many MentoriaPaginas.
+     * @example
+     * // Update many MentoriaPaginas
+     * const mentoriaPagina = await prisma.mentoriaPagina.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Update zero or more MentoriaPaginas and only return the `id`
+     * const mentoriaPaginaWithIdOnly = await prisma.mentoriaPagina.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    updateManyAndReturn<T extends MentoriaPaginaUpdateManyAndReturnArgs>(args: SelectSubset<T, MentoriaPaginaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MentoriaPaginaPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one MentoriaPagina.
+     * @param {MentoriaPaginaUpsertArgs} args - Arguments to update or create a MentoriaPagina.
+     * @example
+     * // Update or create a MentoriaPagina
+     * const mentoriaPagina = await prisma.mentoriaPagina.upsert({
+     *   create: {
+     *     // ... data to create a MentoriaPagina
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MentoriaPagina we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MentoriaPaginaUpsertArgs>(args: SelectSubset<T, MentoriaPaginaUpsertArgs<ExtArgs>>): Prisma__MentoriaPaginaClient<$Result.GetResult<Prisma.$MentoriaPaginaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MentoriaPaginas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentoriaPaginaCountArgs} args - Arguments to filter MentoriaPaginas to count.
+     * @example
+     * // Count the number of MentoriaPaginas
+     * const count = await prisma.mentoriaPagina.count({
+     *   where: {
+     *     // ... the filter for the MentoriaPaginas we want to count
+     *   }
+     * })
+    **/
+    count<T extends MentoriaPaginaCountArgs>(
+      args?: Subset<T, MentoriaPaginaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MentoriaPaginaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MentoriaPagina.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentoriaPaginaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MentoriaPaginaAggregateArgs>(args: Subset<T, MentoriaPaginaAggregateArgs>): Prisma.PrismaPromise<GetMentoriaPaginaAggregateType<T>>
+
+    /**
+     * Group by MentoriaPagina.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentoriaPaginaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     *
+    **/
+    groupBy<
+      T extends MentoriaPaginaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MentoriaPaginaGroupByArgs['orderBy'] }
+        : { orderBy?: MentoriaPaginaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MentoriaPaginaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMentoriaPaginaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MentoriaPagina model
+   */
+  readonly fields: MentoriaPaginaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MentoriaPagina.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MentoriaPaginaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    mentoria<T extends MentoriaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MentoriaDefaultArgs<ExtArgs>>): Prisma__MentoriaClient<$Result.GetResult<Prisma.$MentoriaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MentoriaPagina model
+   */
+  interface MentoriaPaginaFieldRefs {
+    readonly id: FieldRef<"MentoriaPagina", 'String'>
+    readonly mentoria_id: FieldRef<"MentoriaPagina", 'String'>
+    readonly titulo: FieldRef<"MentoriaPagina", 'String'>
+    readonly conteudo: FieldRef<"MentoriaPagina", 'String'>
+    readonly criada_em: FieldRef<"MentoriaPagina", 'DateTime'>
+    readonly alterada_em: FieldRef<"MentoriaPagina", 'DateTime'>
+  }
+
+
+  // Custom InputTypes
+  /**
+   * MentoriaPagina findUnique
+   */
+  export type MentoriaPaginaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaPagina
+     */
+    select?: MentoriaPaginaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaPagina
+     */
+    omit?: MentoriaPaginaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaPaginaInclude<ExtArgs> | null
+    /**
+     * Filter, which MentoriaPagina to fetch.
+     */
+    where: MentoriaPaginaWhereUniqueInput
+  }
+
+  /**
+   * MentoriaPagina findUniqueOrThrow
+   */
+  export type MentoriaPaginaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaPagina
+     */
+    select?: MentoriaPaginaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaPagina
+     */
+    omit?: MentoriaPaginaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaPaginaInclude<ExtArgs> | null
+    /**
+     * Filter, which MentoriaPagina to fetch.
+     */
+    where: MentoriaPaginaWhereUniqueInput
+  }
+
+  /**
+   * MentoriaPagina findFirst
+   */
+  export type MentoriaPaginaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaPagina
+     */
+    select?: MentoriaPaginaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaPagina
+     */
+    omit?: MentoriaPaginaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaPaginaInclude<ExtArgs> | null
+    /**
+     * Filter, which MentoriaPagina to fetch.
+     */
+    where?: MentoriaPaginaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of MentoriaPaginas to fetch.
+     */
+    orderBy?: MentoriaPaginaOrderByWithRelationInput | MentoriaPaginaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for MentoriaPaginas.
+     */
+    cursor?: MentoriaPaginaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` MentoriaPaginas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` MentoriaPaginas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of MentoriaPaginas.
+     */
+    distinct?: MentoriaPaginaScalarFieldEnum | MentoriaPaginaScalarFieldEnum[]
+  }
+
+  /**
+   * MentoriaPagina findFirstOrThrow
+   */
+  export type MentoriaPaginaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaPagina
+     */
+    select?: MentoriaPaginaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaPagina
+     */
+    omit?: MentoriaPaginaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaPaginaInclude<ExtArgs> | null
+    /**
+     * Filter, which MentoriaPagina to fetch.
+     */
+    where?: MentoriaPaginaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of MentoriaPaginas to fetch.
+     */
+    orderBy?: MentoriaPaginaOrderByWithRelationInput | MentoriaPaginaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for MentoriaPaginas.
+     */
+    cursor?: MentoriaPaginaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` MentoriaPaginas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` MentoriaPaginas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of MentoriaPaginas.
+     */
+    distinct?: MentoriaPaginaScalarFieldEnum | MentoriaPaginaScalarFieldEnum[]
+  }
+
+  /**
+   * MentoriaPagina findMany
+   */
+  export type MentoriaPaginaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaPagina
+     */
+    select?: MentoriaPaginaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaPagina
+     */
+    omit?: MentoriaPaginaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaPaginaInclude<ExtArgs> | null
+    /**
+     * Filter, which MentoriaPaginas to fetch.
+     */
+    where?: MentoriaPaginaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of MentoriaPaginas to fetch.
+     */
+    orderBy?: MentoriaPaginaOrderByWithRelationInput | MentoriaPaginaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for listing MentoriaPaginas.
+     */
+    cursor?: MentoriaPaginaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` MentoriaPaginas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` MentoriaPaginas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of MentoriaPaginas.
+     */
+    distinct?: MentoriaPaginaScalarFieldEnum | MentoriaPaginaScalarFieldEnum[]
+  }
+
+  /**
+   * MentoriaPagina create
+   */
+  export type MentoriaPaginaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaPagina
+     */
+    select?: MentoriaPaginaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaPagina
+     */
+    omit?: MentoriaPaginaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaPaginaInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MentoriaPagina.
+     */
+    data: XOR<MentoriaPaginaCreateInput, MentoriaPaginaUncheckedCreateInput>
+  }
+
+  /**
+   * MentoriaPagina createMany
+   */
+  export type MentoriaPaginaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MentoriaPaginas.
+     */
+    data: MentoriaPaginaCreateManyInput | MentoriaPaginaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MentoriaPagina createManyAndReturn
+   */
+  export type MentoriaPaginaCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaPagina
+     */
+    select?: MentoriaPaginaSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaPagina
+     */
+    omit?: MentoriaPaginaOmit<ExtArgs> | null
+    /**
+     * The data used to create many MentoriaPaginas.
+     */
+    data: MentoriaPaginaCreateManyInput | MentoriaPaginaCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaPaginaIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MentoriaPagina update
+   */
+  export type MentoriaPaginaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaPagina
+     */
+    select?: MentoriaPaginaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaPagina
+     */
+    omit?: MentoriaPaginaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaPaginaInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MentoriaPagina.
+     */
+    data: XOR<MentoriaPaginaUpdateInput, MentoriaPaginaUncheckedUpdateInput>
+    /**
+     * Choose, which MentoriaPagina to update.
+     */
+    where: MentoriaPaginaWhereUniqueInput
+  }
+
+  /**
+   * MentoriaPagina updateMany
+   */
+  export type MentoriaPaginaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MentoriaPaginas.
+     */
+    data: XOR<MentoriaPaginaUpdateManyMutationInput, MentoriaPaginaUncheckedUpdateManyInput>
+    /**
+     * Filter which MentoriaPaginas to update
+     */
+    where?: MentoriaPaginaWhereInput
+    /**
+     * Limit how many MentoriaPaginas to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MentoriaPagina updateManyAndReturn
+   */
+  export type MentoriaPaginaUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaPagina
+     */
+    select?: MentoriaPaginaSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaPagina
+     */
+    omit?: MentoriaPaginaOmit<ExtArgs> | null
+    /**
+     * The data used to update MentoriaPaginas.
+     */
+    data: XOR<MentoriaPaginaUpdateManyMutationInput, MentoriaPaginaUncheckedUpdateManyInput>
+    /**
+     * Filter which MentoriaPaginas to update
+     */
+    where?: MentoriaPaginaWhereInput
+    /**
+     * Limit how many MentoriaPaginas to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaPaginaIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MentoriaPagina upsert
+   */
+  export type MentoriaPaginaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaPagina
+     */
+    select?: MentoriaPaginaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaPagina
+     */
+    omit?: MentoriaPaginaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaPaginaInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MentoriaPagina to update in case it exists.
+     */
+    where: MentoriaPaginaWhereUniqueInput
+    /**
+     * In case the MentoriaPagina found by the `where` argument doesn't exist, create a new MentoriaPagina with this data.
+     */
+    create: XOR<MentoriaPaginaCreateInput, MentoriaPaginaUncheckedCreateInput>
+    /**
+     * In case the MentoriaPagina was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MentoriaPaginaUpdateInput, MentoriaPaginaUncheckedUpdateInput>
+  }
+
+  /**
+   * MentoriaPagina delete
+   */
+  export type MentoriaPaginaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaPagina
+     */
+    select?: MentoriaPaginaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaPagina
+     */
+    omit?: MentoriaPaginaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaPaginaInclude<ExtArgs> | null
+    /**
+     * Filter which MentoriaPagina to delete.
+     */
+    where: MentoriaPaginaWhereUniqueInput
+  }
+
+  /**
+   * MentoriaPagina deleteMany
+   */
+  export type MentoriaPaginaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MentoriaPaginas to delete
+     */
+    where?: MentoriaPaginaWhereInput
+    /**
+     * Limit how many MentoriaPaginas to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MentoriaPagina without action
+   */
+  export type MentoriaPaginaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaPagina
+     */
+    select?: MentoriaPaginaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaPagina
+     */
+    omit?: MentoriaPaginaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaPaginaInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model MentoriaItem
+   */
+
+  export type AggregateMentoriaItem = {
+    _count: MentoriaItemCountAggregateOutputType | null
+    _min: MentoriaItemMinAggregateOutputType | null
+    _max: MentoriaItemMaxAggregateOutputType | null
+  }
+
+  export type MentoriaItemMinAggregateOutputType = {
+    id: string | null
+    mentoria_id: string | null
+    titulo: string | null
+    descricao: string | null
+    responsavel: string | null
+    prazo: Date | null
+    concluida_em: Date | null
+    criado_em: Date | null
+  }
+
+  export type MentoriaItemMaxAggregateOutputType = {
+    id: string | null
+    mentoria_id: string | null
+    titulo: string | null
+    descricao: string | null
+    responsavel: string | null
+    prazo: Date | null
+    concluida_em: Date | null
+    criado_em: Date | null
+  }
+
+  export type MentoriaItemCountAggregateOutputType = {
+    id: number
+    mentoria_id: number
+    titulo: number
+    descricao: number
+    responsavel: number
+    prazo: number
+    concluida_em: number
+    criado_em: number
+    _all: number
+  }
+
+
+  export type MentoriaItemMinAggregateInputType = {
+    id?: true
+    mentoria_id?: true
+    titulo?: true
+    descricao?: true
+    responsavel?: true
+    prazo?: true
+    concluida_em?: true
+    criado_em?: true
+  }
+
+  export type MentoriaItemMaxAggregateInputType = {
+    id?: true
+    mentoria_id?: true
+    titulo?: true
+    descricao?: true
+    responsavel?: true
+    prazo?: true
+    concluida_em?: true
+    criado_em?: true
+  }
+
+  export type MentoriaItemCountAggregateInputType = {
+    id?: true
+    mentoria_id?: true
+    titulo?: true
+    descricao?: true
+    responsavel?: true
+    prazo?: true
+    concluida_em?: true
+    criado_em?: true
+    _all?: true
+  }
+
+  export type MentoriaItemAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MentoriaItem to aggregate.
+     */
+    where?: MentoriaItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of MentoriaItems to fetch.
+     */
+    orderBy?: MentoriaItemOrderByWithRelationInput | MentoriaItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the start position
+     */
+    cursor?: MentoriaItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` MentoriaItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` MentoriaItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Count returned MentoriaItems
+    **/
+    _count?: true | MentoriaItemCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the minimum value
+    **/
+    _min?: MentoriaItemMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the maximum value
+    **/
+    _max?: MentoriaItemMaxAggregateInputType
+  }
+
+  export type GetMentoriaItemAggregateType<T extends MentoriaItemAggregateArgs> = {
+        [P in keyof T & keyof AggregateMentoriaItem]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMentoriaItem[P]>
+      : GetScalarType<T[P], AggregateMentoriaItem[P]>
+  }
+
+
+
+
+  export type MentoriaItemGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MentoriaItemWhereInput
+    orderBy?: MentoriaItemOrderByWithAggregationInput | MentoriaItemOrderByWithAggregationInput[]
+    by: MentoriaItemScalarFieldEnum[] | MentoriaItemScalarFieldEnum
+    having?: MentoriaItemScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MentoriaItemCountAggregateInputType | true
+    _min?: MentoriaItemMinAggregateInputType
+    _max?: MentoriaItemMaxAggregateInputType
+  }
+
+  export type MentoriaItemGroupByOutputType = {
+    id: string
+    mentoria_id: string
+    titulo: string
+    descricao: string | null
+    responsavel: string | null
+    prazo: Date | null
+    concluida_em: Date | null
+    criado_em: Date
+    _count: MentoriaItemCountAggregateOutputType | null
+    _min: MentoriaItemMinAggregateOutputType | null
+    _max: MentoriaItemMaxAggregateOutputType | null
+  }
+
+  type GetMentoriaItemGroupByPayload<T extends MentoriaItemGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MentoriaItemGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MentoriaItemGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MentoriaItemGroupByOutputType[P]>
+            : GetScalarType<T[P], MentoriaItemGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MentoriaItemSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    mentoria_id?: boolean
+    titulo?: boolean
+    descricao?: boolean
+    responsavel?: boolean
+    prazo?: boolean
+    concluida_em?: boolean
+    criado_em?: boolean
+    mentoria?: boolean | MentoriaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["mentoriaItem"]>
+
+  export type MentoriaItemSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    mentoria_id?: boolean
+    titulo?: boolean
+    descricao?: boolean
+    responsavel?: boolean
+    prazo?: boolean
+    concluida_em?: boolean
+    criado_em?: boolean
+    mentoria?: boolean | MentoriaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["mentoriaItem"]>
+
+  export type MentoriaItemSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    mentoria_id?: boolean
+    titulo?: boolean
+    descricao?: boolean
+    responsavel?: boolean
+    prazo?: boolean
+    concluida_em?: boolean
+    criado_em?: boolean
+    mentoria?: boolean | MentoriaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["mentoriaItem"]>
+
+  export type MentoriaItemSelectScalar = {
+    id?: boolean
+    mentoria_id?: boolean
+    titulo?: boolean
+    descricao?: boolean
+    responsavel?: boolean
+    prazo?: boolean
+    concluida_em?: boolean
+    criado_em?: boolean
+  }
+
+  export type MentoriaItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "mentoria_id" | "titulo" | "descricao" | "responsavel" | "prazo" | "concluida_em" | "criado_em", ExtArgs["result"]["mentoriaItem"]>
+  export type MentoriaItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    mentoria?: boolean | MentoriaDefaultArgs<ExtArgs>
+  }
+  export type MentoriaItemIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    mentoria?: boolean | MentoriaDefaultArgs<ExtArgs>
+  }
+  export type MentoriaItemIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    mentoria?: boolean | MentoriaDefaultArgs<ExtArgs>
+  }
+
+  export type $MentoriaItemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MentoriaItem"
+    objects: {
+      mentoria: Prisma.$MentoriaPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      mentoria_id: string
+      titulo: string
+      descricao: string | null
+      responsavel: string | null
+      prazo: Date | null
+      concluida_em: Date | null
+      criado_em: Date
+    }, ExtArgs["result"]["mentoriaItem"]>
+    composites: {}
+  }
+
+  type MentoriaItemGetPayload<S extends boolean | null | undefined | MentoriaItemDefaultArgs> = $Result.GetResult<Prisma.$MentoriaItemPayload, S>
+
+  type MentoriaItemCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MentoriaItemFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MentoriaItemCountAggregateInputType | true
+    }
+
+  export interface MentoriaItemDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MentoriaItem'], meta: { name: 'MentoriaItem' } }
+    /**
+     * Find zero or one MentoriaItem that matches the filter.
+     * @param {MentoriaItemFindUniqueArgs} args - Arguments to find a MentoriaItem
+     * @example
+     * // Get one MentoriaItem
+     * const mentoriaItem = await prisma.mentoriaItem.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MentoriaItemFindUniqueArgs>(args: SelectSubset<T, MentoriaItemFindUniqueArgs<ExtArgs>>): Prisma__MentoriaItemClient<$Result.GetResult<Prisma.$MentoriaItemPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MentoriaItem that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MentoriaItemFindUniqueOrThrowArgs} args - Arguments to find a MentoriaItem
+     * @example
+     * // Get one MentoriaItem
+     * const mentoriaItem = await prisma.mentoriaItem.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MentoriaItemFindUniqueOrThrowArgs>(args: SelectSubset<T, MentoriaItemFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MentoriaItemClient<$Result.GetResult<Prisma.$MentoriaItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MentoriaItem that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentoriaItemFindFirstArgs} args - Arguments to find a MentoriaItem
+     * @example
+     * // Get one MentoriaItem
+     * const mentoriaItem = await prisma.mentoriaItem.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MentoriaItemFindFirstArgs>(args?: SelectSubset<T, MentoriaItemFindFirstArgs<ExtArgs>>): Prisma__MentoriaItemClient<$Result.GetResult<Prisma.$MentoriaItemPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MentoriaItem that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentoriaItemFindFirstOrThrowArgs} args - Arguments to find a MentoriaItem
+     * @example
+     * // Get one MentoriaItem
+     * const mentoriaItem = await prisma.mentoriaItem.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MentoriaItemFindFirstOrThrowArgs>(args?: SelectSubset<T, MentoriaItemFindFirstOrThrowArgs<ExtArgs>>): Prisma__MentoriaItemClient<$Result.GetResult<Prisma.$MentoriaItemPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MentoriaItems that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentoriaItemFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MentoriaItems
+     * const mentoriaItems = await prisma.mentoriaItem.findMany()
+     *
+     * // Get first 10 MentoriaItems
+     * const mentoriaItems = await prisma.mentoriaItem.findMany({ take: 10 })
+     *
+     * // Only select the `id`
+     * const mentoriaItemWithIdOnly = await prisma.mentoriaItem.findMany({ select: { id: true } })
+     *
+     */
+    findMany<T extends MentoriaItemFindManyArgs>(args?: SelectSubset<T, MentoriaItemFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MentoriaItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MentoriaItem.
+     * @param {MentoriaItemCreateArgs} args - Arguments to create a MentoriaItem.
+     * @example
+     * // Create one MentoriaItem
+     * const MentoriaItem = await prisma.mentoriaItem.create({
+     *   data: {
+     *     // ... data to create a MentoriaItem
+     *   }
+     * })
+     *
+     */
+    create<T extends MentoriaItemCreateArgs>(args: SelectSubset<T, MentoriaItemCreateArgs<ExtArgs>>): Prisma__MentoriaItemClient<$Result.GetResult<Prisma.$MentoriaItemPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MentoriaItems.
+     * @param {MentoriaItemCreateManyArgs} args - Arguments to create many MentoriaItems.
+     * @example
+     * // Create many MentoriaItems
+     * const mentoriaItem = await prisma.mentoriaItem.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     */
+    createMany<T extends MentoriaItemCreateManyArgs>(args?: SelectSubset<T, MentoriaItemCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MentoriaItems and returns the data saved in the database.
+     * @param {MentoriaItemCreateManyAndReturnArgs} args - Arguments to create many MentoriaItems.
+     * @example
+     * // Create many MentoriaItems
+     * const mentoriaItem = await prisma.mentoriaItem.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Create many MentoriaItems and only return the `id`
+     * const mentoriaItemWithIdOnly = await prisma.mentoriaItem.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    createManyAndReturn<T extends MentoriaItemCreateManyAndReturnArgs>(args?: SelectSubset<T, MentoriaItemCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MentoriaItemPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a MentoriaItem.
+     * @param {MentoriaItemDeleteArgs} args - Arguments to delete one MentoriaItem.
+     * @example
+     * // Delete one MentoriaItem
+     * const MentoriaItem = await prisma.mentoriaItem.delete({
+     *   where: {
+     *     // ... filter to delete one MentoriaItem
+     *   }
+     * })
+     *
+     */
+    delete<T extends MentoriaItemDeleteArgs>(args: SelectSubset<T, MentoriaItemDeleteArgs<ExtArgs>>): Prisma__MentoriaItemClient<$Result.GetResult<Prisma.$MentoriaItemPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MentoriaItem.
+     * @param {MentoriaItemUpdateArgs} args - Arguments to update one MentoriaItem.
+     * @example
+     * // Update one MentoriaItem
+     * const mentoriaItem = await prisma.mentoriaItem.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    update<T extends MentoriaItemUpdateArgs>(args: SelectSubset<T, MentoriaItemUpdateArgs<ExtArgs>>): Prisma__MentoriaItemClient<$Result.GetResult<Prisma.$MentoriaItemPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MentoriaItems.
+     * @param {MentoriaItemDeleteManyArgs} args - Arguments to filter MentoriaItems to delete.
+     * @example
+     * // Delete a few MentoriaItems
+     * const { count } = await prisma.mentoriaItem.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     *
+     */
+    deleteMany<T extends MentoriaItemDeleteManyArgs>(args?: SelectSubset<T, MentoriaItemDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MentoriaItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentoriaItemUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MentoriaItems
+     * const mentoriaItem = await prisma.mentoriaItem.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    updateMany<T extends MentoriaItemUpdateManyArgs>(args: SelectSubset<T, MentoriaItemUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MentoriaItems and returns the data updated in the database.
+     * @param {MentoriaItemUpdateManyAndReturnArgs} args - Arguments to update many MentoriaItems.
+     * @example
+     * // Update many MentoriaItems
+     * const mentoriaItem = await prisma.mentoriaItem.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Update zero or more MentoriaItems and only return the `id`
+     * const mentoriaItemWithIdOnly = await prisma.mentoriaItem.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    updateManyAndReturn<T extends MentoriaItemUpdateManyAndReturnArgs>(args: SelectSubset<T, MentoriaItemUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MentoriaItemPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one MentoriaItem.
+     * @param {MentoriaItemUpsertArgs} args - Arguments to update or create a MentoriaItem.
+     * @example
+     * // Update or create a MentoriaItem
+     * const mentoriaItem = await prisma.mentoriaItem.upsert({
+     *   create: {
+     *     // ... data to create a MentoriaItem
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MentoriaItem we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MentoriaItemUpsertArgs>(args: SelectSubset<T, MentoriaItemUpsertArgs<ExtArgs>>): Prisma__MentoriaItemClient<$Result.GetResult<Prisma.$MentoriaItemPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MentoriaItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentoriaItemCountArgs} args - Arguments to filter MentoriaItems to count.
+     * @example
+     * // Count the number of MentoriaItems
+     * const count = await prisma.mentoriaItem.count({
+     *   where: {
+     *     // ... the filter for the MentoriaItems we want to count
+     *   }
+     * })
+    **/
+    count<T extends MentoriaItemCountArgs>(
+      args?: Subset<T, MentoriaItemCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MentoriaItemCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MentoriaItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentoriaItemAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MentoriaItemAggregateArgs>(args: Subset<T, MentoriaItemAggregateArgs>): Prisma.PrismaPromise<GetMentoriaItemAggregateType<T>>
+
+    /**
+     * Group by MentoriaItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentoriaItemGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     *
+    **/
+    groupBy<
+      T extends MentoriaItemGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MentoriaItemGroupByArgs['orderBy'] }
+        : { orderBy?: MentoriaItemGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MentoriaItemGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMentoriaItemGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MentoriaItem model
+   */
+  readonly fields: MentoriaItemFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MentoriaItem.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MentoriaItemClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    mentoria<T extends MentoriaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MentoriaDefaultArgs<ExtArgs>>): Prisma__MentoriaClient<$Result.GetResult<Prisma.$MentoriaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MentoriaItem model
+   */
+  interface MentoriaItemFieldRefs {
+    readonly id: FieldRef<"MentoriaItem", 'String'>
+    readonly mentoria_id: FieldRef<"MentoriaItem", 'String'>
+    readonly titulo: FieldRef<"MentoriaItem", 'String'>
+    readonly descricao: FieldRef<"MentoriaItem", 'String'>
+    readonly responsavel: FieldRef<"MentoriaItem", 'String'>
+    readonly prazo: FieldRef<"MentoriaItem", 'DateTime'>
+    readonly concluida_em: FieldRef<"MentoriaItem", 'DateTime'>
+    readonly criado_em: FieldRef<"MentoriaItem", 'DateTime'>
+  }
+
+
+  // Custom InputTypes
+  /**
+   * MentoriaItem findUnique
+   */
+  export type MentoriaItemFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaItem
+     */
+    select?: MentoriaItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaItem
+     */
+    omit?: MentoriaItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaItemInclude<ExtArgs> | null
+    /**
+     * Filter, which MentoriaItem to fetch.
+     */
+    where: MentoriaItemWhereUniqueInput
+  }
+
+  /**
+   * MentoriaItem findUniqueOrThrow
+   */
+  export type MentoriaItemFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaItem
+     */
+    select?: MentoriaItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaItem
+     */
+    omit?: MentoriaItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaItemInclude<ExtArgs> | null
+    /**
+     * Filter, which MentoriaItem to fetch.
+     */
+    where: MentoriaItemWhereUniqueInput
+  }
+
+  /**
+   * MentoriaItem findFirst
+   */
+  export type MentoriaItemFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaItem
+     */
+    select?: MentoriaItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaItem
+     */
+    omit?: MentoriaItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaItemInclude<ExtArgs> | null
+    /**
+     * Filter, which MentoriaItem to fetch.
+     */
+    where?: MentoriaItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of MentoriaItems to fetch.
+     */
+    orderBy?: MentoriaItemOrderByWithRelationInput | MentoriaItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for MentoriaItems.
+     */
+    cursor?: MentoriaItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` MentoriaItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` MentoriaItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of MentoriaItems.
+     */
+    distinct?: MentoriaItemScalarFieldEnum | MentoriaItemScalarFieldEnum[]
+  }
+
+  /**
+   * MentoriaItem findFirstOrThrow
+   */
+  export type MentoriaItemFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaItem
+     */
+    select?: MentoriaItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaItem
+     */
+    omit?: MentoriaItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaItemInclude<ExtArgs> | null
+    /**
+     * Filter, which MentoriaItem to fetch.
+     */
+    where?: MentoriaItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of MentoriaItems to fetch.
+     */
+    orderBy?: MentoriaItemOrderByWithRelationInput | MentoriaItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for MentoriaItems.
+     */
+    cursor?: MentoriaItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` MentoriaItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` MentoriaItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of MentoriaItems.
+     */
+    distinct?: MentoriaItemScalarFieldEnum | MentoriaItemScalarFieldEnum[]
+  }
+
+  /**
+   * MentoriaItem findMany
+   */
+  export type MentoriaItemFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaItem
+     */
+    select?: MentoriaItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaItem
+     */
+    omit?: MentoriaItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaItemInclude<ExtArgs> | null
+    /**
+     * Filter, which MentoriaItems to fetch.
+     */
+    where?: MentoriaItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of MentoriaItems to fetch.
+     */
+    orderBy?: MentoriaItemOrderByWithRelationInput | MentoriaItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for listing MentoriaItems.
+     */
+    cursor?: MentoriaItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` MentoriaItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` MentoriaItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of MentoriaItems.
+     */
+    distinct?: MentoriaItemScalarFieldEnum | MentoriaItemScalarFieldEnum[]
+  }
+
+  /**
+   * MentoriaItem create
+   */
+  export type MentoriaItemCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaItem
+     */
+    select?: MentoriaItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaItem
+     */
+    omit?: MentoriaItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaItemInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MentoriaItem.
+     */
+    data: XOR<MentoriaItemCreateInput, MentoriaItemUncheckedCreateInput>
+  }
+
+  /**
+   * MentoriaItem createMany
+   */
+  export type MentoriaItemCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MentoriaItems.
+     */
+    data: MentoriaItemCreateManyInput | MentoriaItemCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MentoriaItem createManyAndReturn
+   */
+  export type MentoriaItemCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaItem
+     */
+    select?: MentoriaItemSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaItem
+     */
+    omit?: MentoriaItemOmit<ExtArgs> | null
+    /**
+     * The data used to create many MentoriaItems.
+     */
+    data: MentoriaItemCreateManyInput | MentoriaItemCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaItemIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MentoriaItem update
+   */
+  export type MentoriaItemUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaItem
+     */
+    select?: MentoriaItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaItem
+     */
+    omit?: MentoriaItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaItemInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MentoriaItem.
+     */
+    data: XOR<MentoriaItemUpdateInput, MentoriaItemUncheckedUpdateInput>
+    /**
+     * Choose, which MentoriaItem to update.
+     */
+    where: MentoriaItemWhereUniqueInput
+  }
+
+  /**
+   * MentoriaItem updateMany
+   */
+  export type MentoriaItemUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MentoriaItems.
+     */
+    data: XOR<MentoriaItemUpdateManyMutationInput, MentoriaItemUncheckedUpdateManyInput>
+    /**
+     * Filter which MentoriaItems to update
+     */
+    where?: MentoriaItemWhereInput
+    /**
+     * Limit how many MentoriaItems to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MentoriaItem updateManyAndReturn
+   */
+  export type MentoriaItemUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaItem
+     */
+    select?: MentoriaItemSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaItem
+     */
+    omit?: MentoriaItemOmit<ExtArgs> | null
+    /**
+     * The data used to update MentoriaItems.
+     */
+    data: XOR<MentoriaItemUpdateManyMutationInput, MentoriaItemUncheckedUpdateManyInput>
+    /**
+     * Filter which MentoriaItems to update
+     */
+    where?: MentoriaItemWhereInput
+    /**
+     * Limit how many MentoriaItems to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaItemIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MentoriaItem upsert
+   */
+  export type MentoriaItemUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaItem
+     */
+    select?: MentoriaItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaItem
+     */
+    omit?: MentoriaItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaItemInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MentoriaItem to update in case it exists.
+     */
+    where: MentoriaItemWhereUniqueInput
+    /**
+     * In case the MentoriaItem found by the `where` argument doesn't exist, create a new MentoriaItem with this data.
+     */
+    create: XOR<MentoriaItemCreateInput, MentoriaItemUncheckedCreateInput>
+    /**
+     * In case the MentoriaItem was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MentoriaItemUpdateInput, MentoriaItemUncheckedUpdateInput>
+  }
+
+  /**
+   * MentoriaItem delete
+   */
+  export type MentoriaItemDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaItem
+     */
+    select?: MentoriaItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaItem
+     */
+    omit?: MentoriaItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaItemInclude<ExtArgs> | null
+    /**
+     * Filter which MentoriaItem to delete.
+     */
+    where: MentoriaItemWhereUniqueInput
+  }
+
+  /**
+   * MentoriaItem deleteMany
+   */
+  export type MentoriaItemDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MentoriaItems to delete
+     */
+    where?: MentoriaItemWhereInput
+    /**
+     * Limit how many MentoriaItems to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MentoriaItem without action
+   */
+  export type MentoriaItemDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaItem
+     */
+    select?: MentoriaItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaItem
+     */
+    omit?: MentoriaItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaItemInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model MentoriaMaterial
+   */
+
+  export type AggregateMentoriaMaterial = {
+    _count: MentoriaMaterialCountAggregateOutputType | null
+    _avg: MentoriaMaterialAvgAggregateOutputType | null
+    _sum: MentoriaMaterialSumAggregateOutputType | null
+    _min: MentoriaMaterialMinAggregateOutputType | null
+    _max: MentoriaMaterialMaxAggregateOutputType | null
+  }
+
+  export type MentoriaMaterialAvgAggregateOutputType = {
+    tamanho: number | null
+  }
+
+  export type MentoriaMaterialSumAggregateOutputType = {
+    tamanho: number | null
+  }
+
+  export type MentoriaMaterialMinAggregateOutputType = {
+    id: string | null
+    mentoria_id: string | null
+    nome: string | null
+    categoria: string | null
+    caminho: string | null
+    tamanho: number | null
+    criado_em: Date | null
+  }
+
+  export type MentoriaMaterialMaxAggregateOutputType = {
+    id: string | null
+    mentoria_id: string | null
+    nome: string | null
+    categoria: string | null
+    caminho: string | null
+    tamanho: number | null
+    criado_em: Date | null
+  }
+
+  export type MentoriaMaterialCountAggregateOutputType = {
+    id: number
+    mentoria_id: number
+    nome: number
+    categoria: number
+    caminho: number
+    tamanho: number
+    criado_em: number
+    _all: number
+  }
+
+
+  export type MentoriaMaterialAvgAggregateInputType = {
+    tamanho?: true
+  }
+
+  export type MentoriaMaterialSumAggregateInputType = {
+    tamanho?: true
+  }
+
+  export type MentoriaMaterialMinAggregateInputType = {
+    id?: true
+    mentoria_id?: true
+    nome?: true
+    categoria?: true
+    caminho?: true
+    tamanho?: true
+    criado_em?: true
+  }
+
+  export type MentoriaMaterialMaxAggregateInputType = {
+    id?: true
+    mentoria_id?: true
+    nome?: true
+    categoria?: true
+    caminho?: true
+    tamanho?: true
+    criado_em?: true
+  }
+
+  export type MentoriaMaterialCountAggregateInputType = {
+    id?: true
+    mentoria_id?: true
+    nome?: true
+    categoria?: true
+    caminho?: true
+    tamanho?: true
+    criado_em?: true
+    _all?: true
+  }
+
+  export type MentoriaMaterialAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MentoriaMaterial to aggregate.
+     */
+    where?: MentoriaMaterialWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of MentoriaMaterials to fetch.
+     */
+    orderBy?: MentoriaMaterialOrderByWithRelationInput | MentoriaMaterialOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the start position
+     */
+    cursor?: MentoriaMaterialWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` MentoriaMaterials from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` MentoriaMaterials.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Count returned MentoriaMaterials
+    **/
+    _count?: true | MentoriaMaterialCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to average
+    **/
+    _avg?: MentoriaMaterialAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to sum
+    **/
+    _sum?: MentoriaMaterialSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the minimum value
+    **/
+    _min?: MentoriaMaterialMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the maximum value
+    **/
+    _max?: MentoriaMaterialMaxAggregateInputType
+  }
+
+  export type GetMentoriaMaterialAggregateType<T extends MentoriaMaterialAggregateArgs> = {
+        [P in keyof T & keyof AggregateMentoriaMaterial]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMentoriaMaterial[P]>
+      : GetScalarType<T[P], AggregateMentoriaMaterial[P]>
+  }
+
+
+
+
+  export type MentoriaMaterialGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MentoriaMaterialWhereInput
+    orderBy?: MentoriaMaterialOrderByWithAggregationInput | MentoriaMaterialOrderByWithAggregationInput[]
+    by: MentoriaMaterialScalarFieldEnum[] | MentoriaMaterialScalarFieldEnum
+    having?: MentoriaMaterialScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MentoriaMaterialCountAggregateInputType | true
+    _avg?: MentoriaMaterialAvgAggregateInputType
+    _sum?: MentoriaMaterialSumAggregateInputType
+    _min?: MentoriaMaterialMinAggregateInputType
+    _max?: MentoriaMaterialMaxAggregateInputType
+  }
+
+  export type MentoriaMaterialGroupByOutputType = {
+    id: string
+    mentoria_id: string
+    nome: string
+    categoria: string | null
+    caminho: string
+    tamanho: number
+    criado_em: Date
+    _count: MentoriaMaterialCountAggregateOutputType | null
+    _avg: MentoriaMaterialAvgAggregateOutputType | null
+    _sum: MentoriaMaterialSumAggregateOutputType | null
+    _min: MentoriaMaterialMinAggregateOutputType | null
+    _max: MentoriaMaterialMaxAggregateOutputType | null
+  }
+
+  type GetMentoriaMaterialGroupByPayload<T extends MentoriaMaterialGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MentoriaMaterialGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MentoriaMaterialGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MentoriaMaterialGroupByOutputType[P]>
+            : GetScalarType<T[P], MentoriaMaterialGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MentoriaMaterialSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    mentoria_id?: boolean
+    nome?: boolean
+    categoria?: boolean
+    caminho?: boolean
+    tamanho?: boolean
+    criado_em?: boolean
+    mentoria?: boolean | MentoriaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["mentoriaMaterial"]>
+
+  export type MentoriaMaterialSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    mentoria_id?: boolean
+    nome?: boolean
+    categoria?: boolean
+    caminho?: boolean
+    tamanho?: boolean
+    criado_em?: boolean
+    mentoria?: boolean | MentoriaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["mentoriaMaterial"]>
+
+  export type MentoriaMaterialSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    mentoria_id?: boolean
+    nome?: boolean
+    categoria?: boolean
+    caminho?: boolean
+    tamanho?: boolean
+    criado_em?: boolean
+    mentoria?: boolean | MentoriaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["mentoriaMaterial"]>
+
+  export type MentoriaMaterialSelectScalar = {
+    id?: boolean
+    mentoria_id?: boolean
+    nome?: boolean
+    categoria?: boolean
+    caminho?: boolean
+    tamanho?: boolean
+    criado_em?: boolean
+  }
+
+  export type MentoriaMaterialOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "mentoria_id" | "nome" | "categoria" | "caminho" | "tamanho" | "criado_em", ExtArgs["result"]["mentoriaMaterial"]>
+  export type MentoriaMaterialInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    mentoria?: boolean | MentoriaDefaultArgs<ExtArgs>
+  }
+  export type MentoriaMaterialIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    mentoria?: boolean | MentoriaDefaultArgs<ExtArgs>
+  }
+  export type MentoriaMaterialIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    mentoria?: boolean | MentoriaDefaultArgs<ExtArgs>
+  }
+
+  export type $MentoriaMaterialPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MentoriaMaterial"
+    objects: {
+      mentoria: Prisma.$MentoriaPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      mentoria_id: string
+      nome: string
+      categoria: string | null
+      caminho: string
+      tamanho: number
+      criado_em: Date
+    }, ExtArgs["result"]["mentoriaMaterial"]>
+    composites: {}
+  }
+
+  type MentoriaMaterialGetPayload<S extends boolean | null | undefined | MentoriaMaterialDefaultArgs> = $Result.GetResult<Prisma.$MentoriaMaterialPayload, S>
+
+  type MentoriaMaterialCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MentoriaMaterialFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MentoriaMaterialCountAggregateInputType | true
+    }
+
+  export interface MentoriaMaterialDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MentoriaMaterial'], meta: { name: 'MentoriaMaterial' } }
+    /**
+     * Find zero or one MentoriaMaterial that matches the filter.
+     * @param {MentoriaMaterialFindUniqueArgs} args - Arguments to find a MentoriaMaterial
+     * @example
+     * // Get one MentoriaMaterial
+     * const mentoriaMaterial = await prisma.mentoriaMaterial.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MentoriaMaterialFindUniqueArgs>(args: SelectSubset<T, MentoriaMaterialFindUniqueArgs<ExtArgs>>): Prisma__MentoriaMaterialClient<$Result.GetResult<Prisma.$MentoriaMaterialPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MentoriaMaterial that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MentoriaMaterialFindUniqueOrThrowArgs} args - Arguments to find a MentoriaMaterial
+     * @example
+     * // Get one MentoriaMaterial
+     * const mentoriaMaterial = await prisma.mentoriaMaterial.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MentoriaMaterialFindUniqueOrThrowArgs>(args: SelectSubset<T, MentoriaMaterialFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MentoriaMaterialClient<$Result.GetResult<Prisma.$MentoriaMaterialPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MentoriaMaterial that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentoriaMaterialFindFirstArgs} args - Arguments to find a MentoriaMaterial
+     * @example
+     * // Get one MentoriaMaterial
+     * const mentoriaMaterial = await prisma.mentoriaMaterial.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MentoriaMaterialFindFirstArgs>(args?: SelectSubset<T, MentoriaMaterialFindFirstArgs<ExtArgs>>): Prisma__MentoriaMaterialClient<$Result.GetResult<Prisma.$MentoriaMaterialPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MentoriaMaterial that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentoriaMaterialFindFirstOrThrowArgs} args - Arguments to find a MentoriaMaterial
+     * @example
+     * // Get one MentoriaMaterial
+     * const mentoriaMaterial = await prisma.mentoriaMaterial.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MentoriaMaterialFindFirstOrThrowArgs>(args?: SelectSubset<T, MentoriaMaterialFindFirstOrThrowArgs<ExtArgs>>): Prisma__MentoriaMaterialClient<$Result.GetResult<Prisma.$MentoriaMaterialPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MentoriaMaterials that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentoriaMaterialFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MentoriaMaterials
+     * const mentoriaMaterials = await prisma.mentoriaMaterial.findMany()
+     *
+     * // Get first 10 MentoriaMaterials
+     * const mentoriaMaterials = await prisma.mentoriaMaterial.findMany({ take: 10 })
+     *
+     * // Only select the `id`
+     * const mentoriaMaterialWithIdOnly = await prisma.mentoriaMaterial.findMany({ select: { id: true } })
+     *
+     */
+    findMany<T extends MentoriaMaterialFindManyArgs>(args?: SelectSubset<T, MentoriaMaterialFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MentoriaMaterialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MentoriaMaterial.
+     * @param {MentoriaMaterialCreateArgs} args - Arguments to create a MentoriaMaterial.
+     * @example
+     * // Create one MentoriaMaterial
+     * const MentoriaMaterial = await prisma.mentoriaMaterial.create({
+     *   data: {
+     *     // ... data to create a MentoriaMaterial
+     *   }
+     * })
+     *
+     */
+    create<T extends MentoriaMaterialCreateArgs>(args: SelectSubset<T, MentoriaMaterialCreateArgs<ExtArgs>>): Prisma__MentoriaMaterialClient<$Result.GetResult<Prisma.$MentoriaMaterialPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MentoriaMaterials.
+     * @param {MentoriaMaterialCreateManyArgs} args - Arguments to create many MentoriaMaterials.
+     * @example
+     * // Create many MentoriaMaterials
+     * const mentoriaMaterial = await prisma.mentoriaMaterial.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     */
+    createMany<T extends MentoriaMaterialCreateManyArgs>(args?: SelectSubset<T, MentoriaMaterialCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MentoriaMaterials and returns the data saved in the database.
+     * @param {MentoriaMaterialCreateManyAndReturnArgs} args - Arguments to create many MentoriaMaterials.
+     * @example
+     * // Create many MentoriaMaterials
+     * const mentoriaMaterial = await prisma.mentoriaMaterial.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Create many MentoriaMaterials and only return the `id`
+     * const mentoriaMaterialWithIdOnly = await prisma.mentoriaMaterial.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    createManyAndReturn<T extends MentoriaMaterialCreateManyAndReturnArgs>(args?: SelectSubset<T, MentoriaMaterialCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MentoriaMaterialPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a MentoriaMaterial.
+     * @param {MentoriaMaterialDeleteArgs} args - Arguments to delete one MentoriaMaterial.
+     * @example
+     * // Delete one MentoriaMaterial
+     * const MentoriaMaterial = await prisma.mentoriaMaterial.delete({
+     *   where: {
+     *     // ... filter to delete one MentoriaMaterial
+     *   }
+     * })
+     *
+     */
+    delete<T extends MentoriaMaterialDeleteArgs>(args: SelectSubset<T, MentoriaMaterialDeleteArgs<ExtArgs>>): Prisma__MentoriaMaterialClient<$Result.GetResult<Prisma.$MentoriaMaterialPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MentoriaMaterial.
+     * @param {MentoriaMaterialUpdateArgs} args - Arguments to update one MentoriaMaterial.
+     * @example
+     * // Update one MentoriaMaterial
+     * const mentoriaMaterial = await prisma.mentoriaMaterial.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    update<T extends MentoriaMaterialUpdateArgs>(args: SelectSubset<T, MentoriaMaterialUpdateArgs<ExtArgs>>): Prisma__MentoriaMaterialClient<$Result.GetResult<Prisma.$MentoriaMaterialPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MentoriaMaterials.
+     * @param {MentoriaMaterialDeleteManyArgs} args - Arguments to filter MentoriaMaterials to delete.
+     * @example
+     * // Delete a few MentoriaMaterials
+     * const { count } = await prisma.mentoriaMaterial.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     *
+     */
+    deleteMany<T extends MentoriaMaterialDeleteManyArgs>(args?: SelectSubset<T, MentoriaMaterialDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MentoriaMaterials.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentoriaMaterialUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MentoriaMaterials
+     * const mentoriaMaterial = await prisma.mentoriaMaterial.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    updateMany<T extends MentoriaMaterialUpdateManyArgs>(args: SelectSubset<T, MentoriaMaterialUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MentoriaMaterials and returns the data updated in the database.
+     * @param {MentoriaMaterialUpdateManyAndReturnArgs} args - Arguments to update many MentoriaMaterials.
+     * @example
+     * // Update many MentoriaMaterials
+     * const mentoriaMaterial = await prisma.mentoriaMaterial.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Update zero or more MentoriaMaterials and only return the `id`
+     * const mentoriaMaterialWithIdOnly = await prisma.mentoriaMaterial.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    updateManyAndReturn<T extends MentoriaMaterialUpdateManyAndReturnArgs>(args: SelectSubset<T, MentoriaMaterialUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MentoriaMaterialPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one MentoriaMaterial.
+     * @param {MentoriaMaterialUpsertArgs} args - Arguments to update or create a MentoriaMaterial.
+     * @example
+     * // Update or create a MentoriaMaterial
+     * const mentoriaMaterial = await prisma.mentoriaMaterial.upsert({
+     *   create: {
+     *     // ... data to create a MentoriaMaterial
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MentoriaMaterial we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MentoriaMaterialUpsertArgs>(args: SelectSubset<T, MentoriaMaterialUpsertArgs<ExtArgs>>): Prisma__MentoriaMaterialClient<$Result.GetResult<Prisma.$MentoriaMaterialPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MentoriaMaterials.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentoriaMaterialCountArgs} args - Arguments to filter MentoriaMaterials to count.
+     * @example
+     * // Count the number of MentoriaMaterials
+     * const count = await prisma.mentoriaMaterial.count({
+     *   where: {
+     *     // ... the filter for the MentoriaMaterials we want to count
+     *   }
+     * })
+    **/
+    count<T extends MentoriaMaterialCountArgs>(
+      args?: Subset<T, MentoriaMaterialCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MentoriaMaterialCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MentoriaMaterial.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentoriaMaterialAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MentoriaMaterialAggregateArgs>(args: Subset<T, MentoriaMaterialAggregateArgs>): Prisma.PrismaPromise<GetMentoriaMaterialAggregateType<T>>
+
+    /**
+     * Group by MentoriaMaterial.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentoriaMaterialGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     *
+    **/
+    groupBy<
+      T extends MentoriaMaterialGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MentoriaMaterialGroupByArgs['orderBy'] }
+        : { orderBy?: MentoriaMaterialGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MentoriaMaterialGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMentoriaMaterialGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MentoriaMaterial model
+   */
+  readonly fields: MentoriaMaterialFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MentoriaMaterial.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MentoriaMaterialClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    mentoria<T extends MentoriaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MentoriaDefaultArgs<ExtArgs>>): Prisma__MentoriaClient<$Result.GetResult<Prisma.$MentoriaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MentoriaMaterial model
+   */
+  interface MentoriaMaterialFieldRefs {
+    readonly id: FieldRef<"MentoriaMaterial", 'String'>
+    readonly mentoria_id: FieldRef<"MentoriaMaterial", 'String'>
+    readonly nome: FieldRef<"MentoriaMaterial", 'String'>
+    readonly categoria: FieldRef<"MentoriaMaterial", 'String'>
+    readonly caminho: FieldRef<"MentoriaMaterial", 'String'>
+    readonly tamanho: FieldRef<"MentoriaMaterial", 'Int'>
+    readonly criado_em: FieldRef<"MentoriaMaterial", 'DateTime'>
+  }
+
+
+  // Custom InputTypes
+  /**
+   * MentoriaMaterial findUnique
+   */
+  export type MentoriaMaterialFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaMaterial
+     */
+    select?: MentoriaMaterialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaMaterial
+     */
+    omit?: MentoriaMaterialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaMaterialInclude<ExtArgs> | null
+    /**
+     * Filter, which MentoriaMaterial to fetch.
+     */
+    where: MentoriaMaterialWhereUniqueInput
+  }
+
+  /**
+   * MentoriaMaterial findUniqueOrThrow
+   */
+  export type MentoriaMaterialFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaMaterial
+     */
+    select?: MentoriaMaterialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaMaterial
+     */
+    omit?: MentoriaMaterialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaMaterialInclude<ExtArgs> | null
+    /**
+     * Filter, which MentoriaMaterial to fetch.
+     */
+    where: MentoriaMaterialWhereUniqueInput
+  }
+
+  /**
+   * MentoriaMaterial findFirst
+   */
+  export type MentoriaMaterialFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaMaterial
+     */
+    select?: MentoriaMaterialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaMaterial
+     */
+    omit?: MentoriaMaterialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaMaterialInclude<ExtArgs> | null
+    /**
+     * Filter, which MentoriaMaterial to fetch.
+     */
+    where?: MentoriaMaterialWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of MentoriaMaterials to fetch.
+     */
+    orderBy?: MentoriaMaterialOrderByWithRelationInput | MentoriaMaterialOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for MentoriaMaterials.
+     */
+    cursor?: MentoriaMaterialWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` MentoriaMaterials from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` MentoriaMaterials.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of MentoriaMaterials.
+     */
+    distinct?: MentoriaMaterialScalarFieldEnum | MentoriaMaterialScalarFieldEnum[]
+  }
+
+  /**
+   * MentoriaMaterial findFirstOrThrow
+   */
+  export type MentoriaMaterialFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaMaterial
+     */
+    select?: MentoriaMaterialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaMaterial
+     */
+    omit?: MentoriaMaterialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaMaterialInclude<ExtArgs> | null
+    /**
+     * Filter, which MentoriaMaterial to fetch.
+     */
+    where?: MentoriaMaterialWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of MentoriaMaterials to fetch.
+     */
+    orderBy?: MentoriaMaterialOrderByWithRelationInput | MentoriaMaterialOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for MentoriaMaterials.
+     */
+    cursor?: MentoriaMaterialWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` MentoriaMaterials from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` MentoriaMaterials.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of MentoriaMaterials.
+     */
+    distinct?: MentoriaMaterialScalarFieldEnum | MentoriaMaterialScalarFieldEnum[]
+  }
+
+  /**
+   * MentoriaMaterial findMany
+   */
+  export type MentoriaMaterialFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaMaterial
+     */
+    select?: MentoriaMaterialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaMaterial
+     */
+    omit?: MentoriaMaterialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaMaterialInclude<ExtArgs> | null
+    /**
+     * Filter, which MentoriaMaterials to fetch.
+     */
+    where?: MentoriaMaterialWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of MentoriaMaterials to fetch.
+     */
+    orderBy?: MentoriaMaterialOrderByWithRelationInput | MentoriaMaterialOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for listing MentoriaMaterials.
+     */
+    cursor?: MentoriaMaterialWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` MentoriaMaterials from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` MentoriaMaterials.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of MentoriaMaterials.
+     */
+    distinct?: MentoriaMaterialScalarFieldEnum | MentoriaMaterialScalarFieldEnum[]
+  }
+
+  /**
+   * MentoriaMaterial create
+   */
+  export type MentoriaMaterialCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaMaterial
+     */
+    select?: MentoriaMaterialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaMaterial
+     */
+    omit?: MentoriaMaterialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaMaterialInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MentoriaMaterial.
+     */
+    data: XOR<MentoriaMaterialCreateInput, MentoriaMaterialUncheckedCreateInput>
+  }
+
+  /**
+   * MentoriaMaterial createMany
+   */
+  export type MentoriaMaterialCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MentoriaMaterials.
+     */
+    data: MentoriaMaterialCreateManyInput | MentoriaMaterialCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MentoriaMaterial createManyAndReturn
+   */
+  export type MentoriaMaterialCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaMaterial
+     */
+    select?: MentoriaMaterialSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaMaterial
+     */
+    omit?: MentoriaMaterialOmit<ExtArgs> | null
+    /**
+     * The data used to create many MentoriaMaterials.
+     */
+    data: MentoriaMaterialCreateManyInput | MentoriaMaterialCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaMaterialIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MentoriaMaterial update
+   */
+  export type MentoriaMaterialUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaMaterial
+     */
+    select?: MentoriaMaterialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaMaterial
+     */
+    omit?: MentoriaMaterialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaMaterialInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MentoriaMaterial.
+     */
+    data: XOR<MentoriaMaterialUpdateInput, MentoriaMaterialUncheckedUpdateInput>
+    /**
+     * Choose, which MentoriaMaterial to update.
+     */
+    where: MentoriaMaterialWhereUniqueInput
+  }
+
+  /**
+   * MentoriaMaterial updateMany
+   */
+  export type MentoriaMaterialUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MentoriaMaterials.
+     */
+    data: XOR<MentoriaMaterialUpdateManyMutationInput, MentoriaMaterialUncheckedUpdateManyInput>
+    /**
+     * Filter which MentoriaMaterials to update
+     */
+    where?: MentoriaMaterialWhereInput
+    /**
+     * Limit how many MentoriaMaterials to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MentoriaMaterial updateManyAndReturn
+   */
+  export type MentoriaMaterialUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaMaterial
+     */
+    select?: MentoriaMaterialSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaMaterial
+     */
+    omit?: MentoriaMaterialOmit<ExtArgs> | null
+    /**
+     * The data used to update MentoriaMaterials.
+     */
+    data: XOR<MentoriaMaterialUpdateManyMutationInput, MentoriaMaterialUncheckedUpdateManyInput>
+    /**
+     * Filter which MentoriaMaterials to update
+     */
+    where?: MentoriaMaterialWhereInput
+    /**
+     * Limit how many MentoriaMaterials to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaMaterialIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MentoriaMaterial upsert
+   */
+  export type MentoriaMaterialUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaMaterial
+     */
+    select?: MentoriaMaterialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaMaterial
+     */
+    omit?: MentoriaMaterialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaMaterialInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MentoriaMaterial to update in case it exists.
+     */
+    where: MentoriaMaterialWhereUniqueInput
+    /**
+     * In case the MentoriaMaterial found by the `where` argument doesn't exist, create a new MentoriaMaterial with this data.
+     */
+    create: XOR<MentoriaMaterialCreateInput, MentoriaMaterialUncheckedCreateInput>
+    /**
+     * In case the MentoriaMaterial was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MentoriaMaterialUpdateInput, MentoriaMaterialUncheckedUpdateInput>
+  }
+
+  /**
+   * MentoriaMaterial delete
+   */
+  export type MentoriaMaterialDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaMaterial
+     */
+    select?: MentoriaMaterialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaMaterial
+     */
+    omit?: MentoriaMaterialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaMaterialInclude<ExtArgs> | null
+    /**
+     * Filter which MentoriaMaterial to delete.
+     */
+    where: MentoriaMaterialWhereUniqueInput
+  }
+
+  /**
+   * MentoriaMaterial deleteMany
+   */
+  export type MentoriaMaterialDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MentoriaMaterials to delete
+     */
+    where?: MentoriaMaterialWhereInput
+    /**
+     * Limit how many MentoriaMaterials to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MentoriaMaterial without action
+   */
+  export type MentoriaMaterialDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentoriaMaterial
+     */
+    select?: MentoriaMaterialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentoriaMaterial
+     */
+    omit?: MentoriaMaterialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentoriaMaterialInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -88344,6 +92029,45 @@ export namespace Prisma {
   };
 
   export type MentoriaArquivoScalarFieldEnum = (typeof MentoriaArquivoScalarFieldEnum)[keyof typeof MentoriaArquivoScalarFieldEnum]
+
+
+  export const MentoriaPaginaScalarFieldEnum: {
+    id: 'id',
+    mentoria_id: 'mentoria_id',
+    titulo: 'titulo',
+    conteudo: 'conteudo',
+    criada_em: 'criada_em',
+    alterada_em: 'alterada_em'
+  };
+
+  export type MentoriaPaginaScalarFieldEnum = (typeof MentoriaPaginaScalarFieldEnum)[keyof typeof MentoriaPaginaScalarFieldEnum]
+
+
+  export const MentoriaItemScalarFieldEnum: {
+    id: 'id',
+    mentoria_id: 'mentoria_id',
+    titulo: 'titulo',
+    descricao: 'descricao',
+    responsavel: 'responsavel',
+    prazo: 'prazo',
+    concluida_em: 'concluida_em',
+    criado_em: 'criado_em'
+  };
+
+  export type MentoriaItemScalarFieldEnum = (typeof MentoriaItemScalarFieldEnum)[keyof typeof MentoriaItemScalarFieldEnum]
+
+
+  export const MentoriaMaterialScalarFieldEnum: {
+    id: 'id',
+    mentoria_id: 'mentoria_id',
+    nome: 'nome',
+    categoria: 'categoria',
+    caminho: 'caminho',
+    tamanho: 'tamanho',
+    criado_em: 'criado_em'
+  };
+
+  export type MentoriaMaterialScalarFieldEnum = (typeof MentoriaMaterialScalarFieldEnum)[keyof typeof MentoriaMaterialScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -94518,6 +98242,9 @@ export namespace Prisma {
     encontros?: MentoriaEncontroListRelationFilter
     posts?: MentoriaPostListRelationFilter
     tokens?: TokenPortalListRelationFilter
+    paginas?: MentoriaPaginaListRelationFilter
+    itens?: MentoriaItemListRelationFilter
+    materiais?: MentoriaMaterialListRelationFilter
   }
 
   export type MentoriaOrderByWithRelationInput = {
@@ -94533,6 +98260,9 @@ export namespace Prisma {
     encontros?: MentoriaEncontroOrderByRelationAggregateInput
     posts?: MentoriaPostOrderByRelationAggregateInput
     tokens?: TokenPortalOrderByRelationAggregateInput
+    paginas?: MentoriaPaginaOrderByRelationAggregateInput
+    itens?: MentoriaItemOrderByRelationAggregateInput
+    materiais?: MentoriaMaterialOrderByRelationAggregateInput
   }
 
   export type MentoriaWhereUniqueInput = Prisma.AtLeast<{
@@ -94551,6 +98281,9 @@ export namespace Prisma {
     encontros?: MentoriaEncontroListRelationFilter
     posts?: MentoriaPostListRelationFilter
     tokens?: TokenPortalListRelationFilter
+    paginas?: MentoriaPaginaListRelationFilter
+    itens?: MentoriaItemListRelationFilter
+    materiais?: MentoriaMaterialListRelationFilter
   }, "id">
 
   export type MentoriaOrderByWithAggregationInput = {
@@ -94996,6 +98729,203 @@ export namespace Prisma {
     caminho?: StringWithAggregatesFilter<"MentoriaArquivo"> | string
     tamanho?: IntWithAggregatesFilter<"MentoriaArquivo"> | number
     criado_em?: DateTimeWithAggregatesFilter<"MentoriaArquivo"> | Date | string
+  }
+
+  export type MentoriaPaginaWhereInput = {
+    AND?: MentoriaPaginaWhereInput | MentoriaPaginaWhereInput[]
+    OR?: MentoriaPaginaWhereInput[]
+    NOT?: MentoriaPaginaWhereInput | MentoriaPaginaWhereInput[]
+    id?: StringFilter<"MentoriaPagina"> | string
+    mentoria_id?: StringFilter<"MentoriaPagina"> | string
+    titulo?: StringFilter<"MentoriaPagina"> | string
+    conteudo?: StringFilter<"MentoriaPagina"> | string
+    criada_em?: DateTimeFilter<"MentoriaPagina"> | Date | string
+    alterada_em?: DateTimeFilter<"MentoriaPagina"> | Date | string
+    mentoria?: XOR<MentoriaScalarRelationFilter, MentoriaWhereInput>
+  }
+
+  export type MentoriaPaginaOrderByWithRelationInput = {
+    id?: SortOrder
+    mentoria_id?: SortOrder
+    titulo?: SortOrder
+    conteudo?: SortOrder
+    criada_em?: SortOrder
+    alterada_em?: SortOrder
+    mentoria?: MentoriaOrderByWithRelationInput
+  }
+
+  export type MentoriaPaginaWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: MentoriaPaginaWhereInput | MentoriaPaginaWhereInput[]
+    OR?: MentoriaPaginaWhereInput[]
+    NOT?: MentoriaPaginaWhereInput | MentoriaPaginaWhereInput[]
+    mentoria_id?: StringFilter<"MentoriaPagina"> | string
+    titulo?: StringFilter<"MentoriaPagina"> | string
+    conteudo?: StringFilter<"MentoriaPagina"> | string
+    criada_em?: DateTimeFilter<"MentoriaPagina"> | Date | string
+    alterada_em?: DateTimeFilter<"MentoriaPagina"> | Date | string
+    mentoria?: XOR<MentoriaScalarRelationFilter, MentoriaWhereInput>
+  }, "id">
+
+  export type MentoriaPaginaOrderByWithAggregationInput = {
+    id?: SortOrder
+    mentoria_id?: SortOrder
+    titulo?: SortOrder
+    conteudo?: SortOrder
+    criada_em?: SortOrder
+    alterada_em?: SortOrder
+    _count?: MentoriaPaginaCountOrderByAggregateInput
+    _max?: MentoriaPaginaMaxOrderByAggregateInput
+    _min?: MentoriaPaginaMinOrderByAggregateInput
+  }
+
+  export type MentoriaPaginaScalarWhereWithAggregatesInput = {
+    AND?: MentoriaPaginaScalarWhereWithAggregatesInput | MentoriaPaginaScalarWhereWithAggregatesInput[]
+    OR?: MentoriaPaginaScalarWhereWithAggregatesInput[]
+    NOT?: MentoriaPaginaScalarWhereWithAggregatesInput | MentoriaPaginaScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MentoriaPagina"> | string
+    mentoria_id?: StringWithAggregatesFilter<"MentoriaPagina"> | string
+    titulo?: StringWithAggregatesFilter<"MentoriaPagina"> | string
+    conteudo?: StringWithAggregatesFilter<"MentoriaPagina"> | string
+    criada_em?: DateTimeWithAggregatesFilter<"MentoriaPagina"> | Date | string
+    alterada_em?: DateTimeWithAggregatesFilter<"MentoriaPagina"> | Date | string
+  }
+
+  export type MentoriaItemWhereInput = {
+    AND?: MentoriaItemWhereInput | MentoriaItemWhereInput[]
+    OR?: MentoriaItemWhereInput[]
+    NOT?: MentoriaItemWhereInput | MentoriaItemWhereInput[]
+    id?: StringFilter<"MentoriaItem"> | string
+    mentoria_id?: StringFilter<"MentoriaItem"> | string
+    titulo?: StringFilter<"MentoriaItem"> | string
+    descricao?: StringNullableFilter<"MentoriaItem"> | string | null
+    responsavel?: StringNullableFilter<"MentoriaItem"> | string | null
+    prazo?: DateTimeNullableFilter<"MentoriaItem"> | Date | string | null
+    concluida_em?: DateTimeNullableFilter<"MentoriaItem"> | Date | string | null
+    criado_em?: DateTimeFilter<"MentoriaItem"> | Date | string
+    mentoria?: XOR<MentoriaScalarRelationFilter, MentoriaWhereInput>
+  }
+
+  export type MentoriaItemOrderByWithRelationInput = {
+    id?: SortOrder
+    mentoria_id?: SortOrder
+    titulo?: SortOrder
+    descricao?: SortOrderInput | SortOrder
+    responsavel?: SortOrderInput | SortOrder
+    prazo?: SortOrderInput | SortOrder
+    concluida_em?: SortOrderInput | SortOrder
+    criado_em?: SortOrder
+    mentoria?: MentoriaOrderByWithRelationInput
+  }
+
+  export type MentoriaItemWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: MentoriaItemWhereInput | MentoriaItemWhereInput[]
+    OR?: MentoriaItemWhereInput[]
+    NOT?: MentoriaItemWhereInput | MentoriaItemWhereInput[]
+    mentoria_id?: StringFilter<"MentoriaItem"> | string
+    titulo?: StringFilter<"MentoriaItem"> | string
+    descricao?: StringNullableFilter<"MentoriaItem"> | string | null
+    responsavel?: StringNullableFilter<"MentoriaItem"> | string | null
+    prazo?: DateTimeNullableFilter<"MentoriaItem"> | Date | string | null
+    concluida_em?: DateTimeNullableFilter<"MentoriaItem"> | Date | string | null
+    criado_em?: DateTimeFilter<"MentoriaItem"> | Date | string
+    mentoria?: XOR<MentoriaScalarRelationFilter, MentoriaWhereInput>
+  }, "id">
+
+  export type MentoriaItemOrderByWithAggregationInput = {
+    id?: SortOrder
+    mentoria_id?: SortOrder
+    titulo?: SortOrder
+    descricao?: SortOrderInput | SortOrder
+    responsavel?: SortOrderInput | SortOrder
+    prazo?: SortOrderInput | SortOrder
+    concluida_em?: SortOrderInput | SortOrder
+    criado_em?: SortOrder
+    _count?: MentoriaItemCountOrderByAggregateInput
+    _max?: MentoriaItemMaxOrderByAggregateInput
+    _min?: MentoriaItemMinOrderByAggregateInput
+  }
+
+  export type MentoriaItemScalarWhereWithAggregatesInput = {
+    AND?: MentoriaItemScalarWhereWithAggregatesInput | MentoriaItemScalarWhereWithAggregatesInput[]
+    OR?: MentoriaItemScalarWhereWithAggregatesInput[]
+    NOT?: MentoriaItemScalarWhereWithAggregatesInput | MentoriaItemScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MentoriaItem"> | string
+    mentoria_id?: StringWithAggregatesFilter<"MentoriaItem"> | string
+    titulo?: StringWithAggregatesFilter<"MentoriaItem"> | string
+    descricao?: StringNullableWithAggregatesFilter<"MentoriaItem"> | string | null
+    responsavel?: StringNullableWithAggregatesFilter<"MentoriaItem"> | string | null
+    prazo?: DateTimeNullableWithAggregatesFilter<"MentoriaItem"> | Date | string | null
+    concluida_em?: DateTimeNullableWithAggregatesFilter<"MentoriaItem"> | Date | string | null
+    criado_em?: DateTimeWithAggregatesFilter<"MentoriaItem"> | Date | string
+  }
+
+  export type MentoriaMaterialWhereInput = {
+    AND?: MentoriaMaterialWhereInput | MentoriaMaterialWhereInput[]
+    OR?: MentoriaMaterialWhereInput[]
+    NOT?: MentoriaMaterialWhereInput | MentoriaMaterialWhereInput[]
+    id?: StringFilter<"MentoriaMaterial"> | string
+    mentoria_id?: StringFilter<"MentoriaMaterial"> | string
+    nome?: StringFilter<"MentoriaMaterial"> | string
+    categoria?: StringNullableFilter<"MentoriaMaterial"> | string | null
+    caminho?: StringFilter<"MentoriaMaterial"> | string
+    tamanho?: IntFilter<"MentoriaMaterial"> | number
+    criado_em?: DateTimeFilter<"MentoriaMaterial"> | Date | string
+    mentoria?: XOR<MentoriaScalarRelationFilter, MentoriaWhereInput>
+  }
+
+  export type MentoriaMaterialOrderByWithRelationInput = {
+    id?: SortOrder
+    mentoria_id?: SortOrder
+    nome?: SortOrder
+    categoria?: SortOrderInput | SortOrder
+    caminho?: SortOrder
+    tamanho?: SortOrder
+    criado_em?: SortOrder
+    mentoria?: MentoriaOrderByWithRelationInput
+  }
+
+  export type MentoriaMaterialWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    caminho?: string
+    AND?: MentoriaMaterialWhereInput | MentoriaMaterialWhereInput[]
+    OR?: MentoriaMaterialWhereInput[]
+    NOT?: MentoriaMaterialWhereInput | MentoriaMaterialWhereInput[]
+    mentoria_id?: StringFilter<"MentoriaMaterial"> | string
+    nome?: StringFilter<"MentoriaMaterial"> | string
+    categoria?: StringNullableFilter<"MentoriaMaterial"> | string | null
+    tamanho?: IntFilter<"MentoriaMaterial"> | number
+    criado_em?: DateTimeFilter<"MentoriaMaterial"> | Date | string
+    mentoria?: XOR<MentoriaScalarRelationFilter, MentoriaWhereInput>
+  }, "id" | "caminho">
+
+  export type MentoriaMaterialOrderByWithAggregationInput = {
+    id?: SortOrder
+    mentoria_id?: SortOrder
+    nome?: SortOrder
+    categoria?: SortOrderInput | SortOrder
+    caminho?: SortOrder
+    tamanho?: SortOrder
+    criado_em?: SortOrder
+    _count?: MentoriaMaterialCountOrderByAggregateInput
+    _avg?: MentoriaMaterialAvgOrderByAggregateInput
+    _max?: MentoriaMaterialMaxOrderByAggregateInput
+    _min?: MentoriaMaterialMinOrderByAggregateInput
+    _sum?: MentoriaMaterialSumOrderByAggregateInput
+  }
+
+  export type MentoriaMaterialScalarWhereWithAggregatesInput = {
+    AND?: MentoriaMaterialScalarWhereWithAggregatesInput | MentoriaMaterialScalarWhereWithAggregatesInput[]
+    OR?: MentoriaMaterialScalarWhereWithAggregatesInput[]
+    NOT?: MentoriaMaterialScalarWhereWithAggregatesInput | MentoriaMaterialScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MentoriaMaterial"> | string
+    mentoria_id?: StringWithAggregatesFilter<"MentoriaMaterial"> | string
+    nome?: StringWithAggregatesFilter<"MentoriaMaterial"> | string
+    categoria?: StringNullableWithAggregatesFilter<"MentoriaMaterial"> | string | null
+    caminho?: StringWithAggregatesFilter<"MentoriaMaterial"> | string
+    tamanho?: IntWithAggregatesFilter<"MentoriaMaterial"> | number
+    criado_em?: DateTimeWithAggregatesFilter<"MentoriaMaterial"> | Date | string
   }
 
   export type EmpresaCreateInput = {
@@ -101226,6 +105156,9 @@ export namespace Prisma {
     encontros?: MentoriaEncontroCreateNestedManyWithoutMentoriaInput
     posts?: MentoriaPostCreateNestedManyWithoutMentoriaInput
     tokens?: TokenPortalCreateNestedManyWithoutMentoriaInput
+    paginas?: MentoriaPaginaCreateNestedManyWithoutMentoriaInput
+    itens?: MentoriaItemCreateNestedManyWithoutMentoriaInput
+    materiais?: MentoriaMaterialCreateNestedManyWithoutMentoriaInput
   }
 
   export type MentoriaUncheckedCreateInput = {
@@ -101240,6 +105173,9 @@ export namespace Prisma {
     encontros?: MentoriaEncontroUncheckedCreateNestedManyWithoutMentoriaInput
     posts?: MentoriaPostUncheckedCreateNestedManyWithoutMentoriaInput
     tokens?: TokenPortalUncheckedCreateNestedManyWithoutMentoriaInput
+    paginas?: MentoriaPaginaUncheckedCreateNestedManyWithoutMentoriaInput
+    itens?: MentoriaItemUncheckedCreateNestedManyWithoutMentoriaInput
+    materiais?: MentoriaMaterialUncheckedCreateNestedManyWithoutMentoriaInput
   }
 
   export type MentoriaUpdateInput = {
@@ -101254,6 +105190,9 @@ export namespace Prisma {
     encontros?: MentoriaEncontroUpdateManyWithoutMentoriaNestedInput
     posts?: MentoriaPostUpdateManyWithoutMentoriaNestedInput
     tokens?: TokenPortalUpdateManyWithoutMentoriaNestedInput
+    paginas?: MentoriaPaginaUpdateManyWithoutMentoriaNestedInput
+    itens?: MentoriaItemUpdateManyWithoutMentoriaNestedInput
+    materiais?: MentoriaMaterialUpdateManyWithoutMentoriaNestedInput
   }
 
   export type MentoriaUncheckedUpdateInput = {
@@ -101268,6 +105207,9 @@ export namespace Prisma {
     encontros?: MentoriaEncontroUncheckedUpdateManyWithoutMentoriaNestedInput
     posts?: MentoriaPostUncheckedUpdateManyWithoutMentoriaNestedInput
     tokens?: TokenPortalUncheckedUpdateManyWithoutMentoriaNestedInput
+    paginas?: MentoriaPaginaUncheckedUpdateManyWithoutMentoriaNestedInput
+    itens?: MentoriaItemUncheckedUpdateManyWithoutMentoriaNestedInput
+    materiais?: MentoriaMaterialUncheckedUpdateManyWithoutMentoriaNestedInput
   }
 
   export type MentoriaCreateManyInput = {
@@ -101729,6 +105671,213 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     aluno_id?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
+    caminho?: StringFieldUpdateOperationsInput | string
+    tamanho?: IntFieldUpdateOperationsInput | number
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MentoriaPaginaCreateInput = {
+    id?: string
+    titulo: string
+    conteudo: string
+    criada_em?: Date | string
+    alterada_em?: Date | string
+    mentoria: MentoriaCreateNestedOneWithoutPaginasInput
+  }
+
+  export type MentoriaPaginaUncheckedCreateInput = {
+    id?: string
+    mentoria_id: string
+    titulo: string
+    conteudo: string
+    criada_em?: Date | string
+    alterada_em?: Date | string
+  }
+
+  export type MentoriaPaginaUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    conteudo?: StringFieldUpdateOperationsInput | string
+    criada_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    alterada_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    mentoria?: MentoriaUpdateOneRequiredWithoutPaginasNestedInput
+  }
+
+  export type MentoriaPaginaUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mentoria_id?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    conteudo?: StringFieldUpdateOperationsInput | string
+    criada_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    alterada_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MentoriaPaginaCreateManyInput = {
+    id?: string
+    mentoria_id: string
+    titulo: string
+    conteudo: string
+    criada_em?: Date | string
+    alterada_em?: Date | string
+  }
+
+  export type MentoriaPaginaUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    conteudo?: StringFieldUpdateOperationsInput | string
+    criada_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    alterada_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MentoriaPaginaUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mentoria_id?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    conteudo?: StringFieldUpdateOperationsInput | string
+    criada_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    alterada_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MentoriaItemCreateInput = {
+    id?: string
+    titulo: string
+    descricao?: string | null
+    responsavel?: string | null
+    prazo?: Date | string | null
+    concluida_em?: Date | string | null
+    criado_em?: Date | string
+    mentoria: MentoriaCreateNestedOneWithoutItensInput
+  }
+
+  export type MentoriaItemUncheckedCreateInput = {
+    id?: string
+    mentoria_id: string
+    titulo: string
+    descricao?: string | null
+    responsavel?: string | null
+    prazo?: Date | string | null
+    concluida_em?: Date | string | null
+    criado_em?: Date | string
+  }
+
+  export type MentoriaItemUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    responsavel?: NullableStringFieldUpdateOperationsInput | string | null
+    prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    mentoria?: MentoriaUpdateOneRequiredWithoutItensNestedInput
+  }
+
+  export type MentoriaItemUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mentoria_id?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    responsavel?: NullableStringFieldUpdateOperationsInput | string | null
+    prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MentoriaItemCreateManyInput = {
+    id?: string
+    mentoria_id: string
+    titulo: string
+    descricao?: string | null
+    responsavel?: string | null
+    prazo?: Date | string | null
+    concluida_em?: Date | string | null
+    criado_em?: Date | string
+  }
+
+  export type MentoriaItemUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    responsavel?: NullableStringFieldUpdateOperationsInput | string | null
+    prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MentoriaItemUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mentoria_id?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    responsavel?: NullableStringFieldUpdateOperationsInput | string | null
+    prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MentoriaMaterialCreateInput = {
+    id?: string
+    nome: string
+    categoria?: string | null
+    caminho: string
+    tamanho: number
+    criado_em?: Date | string
+    mentoria: MentoriaCreateNestedOneWithoutMateriaisInput
+  }
+
+  export type MentoriaMaterialUncheckedCreateInput = {
+    id?: string
+    mentoria_id: string
+    nome: string
+    categoria?: string | null
+    caminho: string
+    tamanho: number
+    criado_em?: Date | string
+  }
+
+  export type MentoriaMaterialUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    categoria?: NullableStringFieldUpdateOperationsInput | string | null
+    caminho?: StringFieldUpdateOperationsInput | string
+    tamanho?: IntFieldUpdateOperationsInput | number
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    mentoria?: MentoriaUpdateOneRequiredWithoutMateriaisNestedInput
+  }
+
+  export type MentoriaMaterialUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mentoria_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    categoria?: NullableStringFieldUpdateOperationsInput | string | null
+    caminho?: StringFieldUpdateOperationsInput | string
+    tamanho?: IntFieldUpdateOperationsInput | number
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MentoriaMaterialCreateManyInput = {
+    id?: string
+    mentoria_id: string
+    nome: string
+    categoria?: string | null
+    caminho: string
+    tamanho: number
+    criado_em?: Date | string
+  }
+
+  export type MentoriaMaterialUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    categoria?: NullableStringFieldUpdateOperationsInput | string | null
+    caminho?: StringFieldUpdateOperationsInput | string
+    tamanho?: IntFieldUpdateOperationsInput | number
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MentoriaMaterialUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mentoria_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    categoria?: NullableStringFieldUpdateOperationsInput | string | null
     caminho?: StringFieldUpdateOperationsInput | string
     tamanho?: IntFieldUpdateOperationsInput | number
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -105997,11 +110146,41 @@ export namespace Prisma {
     none?: MentoriaPostWhereInput
   }
 
+  export type MentoriaPaginaListRelationFilter = {
+    every?: MentoriaPaginaWhereInput
+    some?: MentoriaPaginaWhereInput
+    none?: MentoriaPaginaWhereInput
+  }
+
+  export type MentoriaItemListRelationFilter = {
+    every?: MentoriaItemWhereInput
+    some?: MentoriaItemWhereInput
+    none?: MentoriaItemWhereInput
+  }
+
+  export type MentoriaMaterialListRelationFilter = {
+    every?: MentoriaMaterialWhereInput
+    some?: MentoriaMaterialWhereInput
+    none?: MentoriaMaterialWhereInput
+  }
+
   export type MentoriaEncontroOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type MentoriaPostOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MentoriaPaginaOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MentoriaItemOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MentoriaMaterialOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -106343,6 +110522,104 @@ export namespace Prisma {
   }
 
   export type MentoriaArquivoSumOrderByAggregateInput = {
+    tamanho?: SortOrder
+  }
+
+  export type MentoriaPaginaCountOrderByAggregateInput = {
+    id?: SortOrder
+    mentoria_id?: SortOrder
+    titulo?: SortOrder
+    conteudo?: SortOrder
+    criada_em?: SortOrder
+    alterada_em?: SortOrder
+  }
+
+  export type MentoriaPaginaMaxOrderByAggregateInput = {
+    id?: SortOrder
+    mentoria_id?: SortOrder
+    titulo?: SortOrder
+    conteudo?: SortOrder
+    criada_em?: SortOrder
+    alterada_em?: SortOrder
+  }
+
+  export type MentoriaPaginaMinOrderByAggregateInput = {
+    id?: SortOrder
+    mentoria_id?: SortOrder
+    titulo?: SortOrder
+    conteudo?: SortOrder
+    criada_em?: SortOrder
+    alterada_em?: SortOrder
+  }
+
+  export type MentoriaItemCountOrderByAggregateInput = {
+    id?: SortOrder
+    mentoria_id?: SortOrder
+    titulo?: SortOrder
+    descricao?: SortOrder
+    responsavel?: SortOrder
+    prazo?: SortOrder
+    concluida_em?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type MentoriaItemMaxOrderByAggregateInput = {
+    id?: SortOrder
+    mentoria_id?: SortOrder
+    titulo?: SortOrder
+    descricao?: SortOrder
+    responsavel?: SortOrder
+    prazo?: SortOrder
+    concluida_em?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type MentoriaItemMinOrderByAggregateInput = {
+    id?: SortOrder
+    mentoria_id?: SortOrder
+    titulo?: SortOrder
+    descricao?: SortOrder
+    responsavel?: SortOrder
+    prazo?: SortOrder
+    concluida_em?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type MentoriaMaterialCountOrderByAggregateInput = {
+    id?: SortOrder
+    mentoria_id?: SortOrder
+    nome?: SortOrder
+    categoria?: SortOrder
+    caminho?: SortOrder
+    tamanho?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type MentoriaMaterialAvgOrderByAggregateInput = {
+    tamanho?: SortOrder
+  }
+
+  export type MentoriaMaterialMaxOrderByAggregateInput = {
+    id?: SortOrder
+    mentoria_id?: SortOrder
+    nome?: SortOrder
+    categoria?: SortOrder
+    caminho?: SortOrder
+    tamanho?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type MentoriaMaterialMinOrderByAggregateInput = {
+    id?: SortOrder
+    mentoria_id?: SortOrder
+    nome?: SortOrder
+    categoria?: SortOrder
+    caminho?: SortOrder
+    tamanho?: SortOrder
+    criado_em?: SortOrder
+  }
+
+  export type MentoriaMaterialSumOrderByAggregateInput = {
     tamanho?: SortOrder
   }
 
@@ -113688,6 +117965,27 @@ export namespace Prisma {
     connect?: TokenPortalWhereUniqueInput | TokenPortalWhereUniqueInput[]
   }
 
+  export type MentoriaPaginaCreateNestedManyWithoutMentoriaInput = {
+    create?: XOR<MentoriaPaginaCreateWithoutMentoriaInput, MentoriaPaginaUncheckedCreateWithoutMentoriaInput> | MentoriaPaginaCreateWithoutMentoriaInput[] | MentoriaPaginaUncheckedCreateWithoutMentoriaInput[]
+    connectOrCreate?: MentoriaPaginaCreateOrConnectWithoutMentoriaInput | MentoriaPaginaCreateOrConnectWithoutMentoriaInput[]
+    createMany?: MentoriaPaginaCreateManyMentoriaInputEnvelope
+    connect?: MentoriaPaginaWhereUniqueInput | MentoriaPaginaWhereUniqueInput[]
+  }
+
+  export type MentoriaItemCreateNestedManyWithoutMentoriaInput = {
+    create?: XOR<MentoriaItemCreateWithoutMentoriaInput, MentoriaItemUncheckedCreateWithoutMentoriaInput> | MentoriaItemCreateWithoutMentoriaInput[] | MentoriaItemUncheckedCreateWithoutMentoriaInput[]
+    connectOrCreate?: MentoriaItemCreateOrConnectWithoutMentoriaInput | MentoriaItemCreateOrConnectWithoutMentoriaInput[]
+    createMany?: MentoriaItemCreateManyMentoriaInputEnvelope
+    connect?: MentoriaItemWhereUniqueInput | MentoriaItemWhereUniqueInput[]
+  }
+
+  export type MentoriaMaterialCreateNestedManyWithoutMentoriaInput = {
+    create?: XOR<MentoriaMaterialCreateWithoutMentoriaInput, MentoriaMaterialUncheckedCreateWithoutMentoriaInput> | MentoriaMaterialCreateWithoutMentoriaInput[] | MentoriaMaterialUncheckedCreateWithoutMentoriaInput[]
+    connectOrCreate?: MentoriaMaterialCreateOrConnectWithoutMentoriaInput | MentoriaMaterialCreateOrConnectWithoutMentoriaInput[]
+    createMany?: MentoriaMaterialCreateManyMentoriaInputEnvelope
+    connect?: MentoriaMaterialWhereUniqueInput | MentoriaMaterialWhereUniqueInput[]
+  }
+
   export type MentoriaAlunoUncheckedCreateNestedManyWithoutMentoriaInput = {
     create?: XOR<MentoriaAlunoCreateWithoutMentoriaInput, MentoriaAlunoUncheckedCreateWithoutMentoriaInput> | MentoriaAlunoCreateWithoutMentoriaInput[] | MentoriaAlunoUncheckedCreateWithoutMentoriaInput[]
     connectOrCreate?: MentoriaAlunoCreateOrConnectWithoutMentoriaInput | MentoriaAlunoCreateOrConnectWithoutMentoriaInput[]
@@ -113714,6 +118012,27 @@ export namespace Prisma {
     connectOrCreate?: TokenPortalCreateOrConnectWithoutMentoriaInput | TokenPortalCreateOrConnectWithoutMentoriaInput[]
     createMany?: TokenPortalCreateManyMentoriaInputEnvelope
     connect?: TokenPortalWhereUniqueInput | TokenPortalWhereUniqueInput[]
+  }
+
+  export type MentoriaPaginaUncheckedCreateNestedManyWithoutMentoriaInput = {
+    create?: XOR<MentoriaPaginaCreateWithoutMentoriaInput, MentoriaPaginaUncheckedCreateWithoutMentoriaInput> | MentoriaPaginaCreateWithoutMentoriaInput[] | MentoriaPaginaUncheckedCreateWithoutMentoriaInput[]
+    connectOrCreate?: MentoriaPaginaCreateOrConnectWithoutMentoriaInput | MentoriaPaginaCreateOrConnectWithoutMentoriaInput[]
+    createMany?: MentoriaPaginaCreateManyMentoriaInputEnvelope
+    connect?: MentoriaPaginaWhereUniqueInput | MentoriaPaginaWhereUniqueInput[]
+  }
+
+  export type MentoriaItemUncheckedCreateNestedManyWithoutMentoriaInput = {
+    create?: XOR<MentoriaItemCreateWithoutMentoriaInput, MentoriaItemUncheckedCreateWithoutMentoriaInput> | MentoriaItemCreateWithoutMentoriaInput[] | MentoriaItemUncheckedCreateWithoutMentoriaInput[]
+    connectOrCreate?: MentoriaItemCreateOrConnectWithoutMentoriaInput | MentoriaItemCreateOrConnectWithoutMentoriaInput[]
+    createMany?: MentoriaItemCreateManyMentoriaInputEnvelope
+    connect?: MentoriaItemWhereUniqueInput | MentoriaItemWhereUniqueInput[]
+  }
+
+  export type MentoriaMaterialUncheckedCreateNestedManyWithoutMentoriaInput = {
+    create?: XOR<MentoriaMaterialCreateWithoutMentoriaInput, MentoriaMaterialUncheckedCreateWithoutMentoriaInput> | MentoriaMaterialCreateWithoutMentoriaInput[] | MentoriaMaterialUncheckedCreateWithoutMentoriaInput[]
+    connectOrCreate?: MentoriaMaterialCreateOrConnectWithoutMentoriaInput | MentoriaMaterialCreateOrConnectWithoutMentoriaInput[]
+    createMany?: MentoriaMaterialCreateManyMentoriaInputEnvelope
+    connect?: MentoriaMaterialWhereUniqueInput | MentoriaMaterialWhereUniqueInput[]
   }
 
   export type EnumTipoMentoriaFieldUpdateOperationsInput = {
@@ -113784,6 +118103,48 @@ export namespace Prisma {
     deleteMany?: TokenPortalScalarWhereInput | TokenPortalScalarWhereInput[]
   }
 
+  export type MentoriaPaginaUpdateManyWithoutMentoriaNestedInput = {
+    create?: XOR<MentoriaPaginaCreateWithoutMentoriaInput, MentoriaPaginaUncheckedCreateWithoutMentoriaInput> | MentoriaPaginaCreateWithoutMentoriaInput[] | MentoriaPaginaUncheckedCreateWithoutMentoriaInput[]
+    connectOrCreate?: MentoriaPaginaCreateOrConnectWithoutMentoriaInput | MentoriaPaginaCreateOrConnectWithoutMentoriaInput[]
+    upsert?: MentoriaPaginaUpsertWithWhereUniqueWithoutMentoriaInput | MentoriaPaginaUpsertWithWhereUniqueWithoutMentoriaInput[]
+    createMany?: MentoriaPaginaCreateManyMentoriaInputEnvelope
+    set?: MentoriaPaginaWhereUniqueInput | MentoriaPaginaWhereUniqueInput[]
+    disconnect?: MentoriaPaginaWhereUniqueInput | MentoriaPaginaWhereUniqueInput[]
+    delete?: MentoriaPaginaWhereUniqueInput | MentoriaPaginaWhereUniqueInput[]
+    connect?: MentoriaPaginaWhereUniqueInput | MentoriaPaginaWhereUniqueInput[]
+    update?: MentoriaPaginaUpdateWithWhereUniqueWithoutMentoriaInput | MentoriaPaginaUpdateWithWhereUniqueWithoutMentoriaInput[]
+    updateMany?: MentoriaPaginaUpdateManyWithWhereWithoutMentoriaInput | MentoriaPaginaUpdateManyWithWhereWithoutMentoriaInput[]
+    deleteMany?: MentoriaPaginaScalarWhereInput | MentoriaPaginaScalarWhereInput[]
+  }
+
+  export type MentoriaItemUpdateManyWithoutMentoriaNestedInput = {
+    create?: XOR<MentoriaItemCreateWithoutMentoriaInput, MentoriaItemUncheckedCreateWithoutMentoriaInput> | MentoriaItemCreateWithoutMentoriaInput[] | MentoriaItemUncheckedCreateWithoutMentoriaInput[]
+    connectOrCreate?: MentoriaItemCreateOrConnectWithoutMentoriaInput | MentoriaItemCreateOrConnectWithoutMentoriaInput[]
+    upsert?: MentoriaItemUpsertWithWhereUniqueWithoutMentoriaInput | MentoriaItemUpsertWithWhereUniqueWithoutMentoriaInput[]
+    createMany?: MentoriaItemCreateManyMentoriaInputEnvelope
+    set?: MentoriaItemWhereUniqueInput | MentoriaItemWhereUniqueInput[]
+    disconnect?: MentoriaItemWhereUniqueInput | MentoriaItemWhereUniqueInput[]
+    delete?: MentoriaItemWhereUniqueInput | MentoriaItemWhereUniqueInput[]
+    connect?: MentoriaItemWhereUniqueInput | MentoriaItemWhereUniqueInput[]
+    update?: MentoriaItemUpdateWithWhereUniqueWithoutMentoriaInput | MentoriaItemUpdateWithWhereUniqueWithoutMentoriaInput[]
+    updateMany?: MentoriaItemUpdateManyWithWhereWithoutMentoriaInput | MentoriaItemUpdateManyWithWhereWithoutMentoriaInput[]
+    deleteMany?: MentoriaItemScalarWhereInput | MentoriaItemScalarWhereInput[]
+  }
+
+  export type MentoriaMaterialUpdateManyWithoutMentoriaNestedInput = {
+    create?: XOR<MentoriaMaterialCreateWithoutMentoriaInput, MentoriaMaterialUncheckedCreateWithoutMentoriaInput> | MentoriaMaterialCreateWithoutMentoriaInput[] | MentoriaMaterialUncheckedCreateWithoutMentoriaInput[]
+    connectOrCreate?: MentoriaMaterialCreateOrConnectWithoutMentoriaInput | MentoriaMaterialCreateOrConnectWithoutMentoriaInput[]
+    upsert?: MentoriaMaterialUpsertWithWhereUniqueWithoutMentoriaInput | MentoriaMaterialUpsertWithWhereUniqueWithoutMentoriaInput[]
+    createMany?: MentoriaMaterialCreateManyMentoriaInputEnvelope
+    set?: MentoriaMaterialWhereUniqueInput | MentoriaMaterialWhereUniqueInput[]
+    disconnect?: MentoriaMaterialWhereUniqueInput | MentoriaMaterialWhereUniqueInput[]
+    delete?: MentoriaMaterialWhereUniqueInput | MentoriaMaterialWhereUniqueInput[]
+    connect?: MentoriaMaterialWhereUniqueInput | MentoriaMaterialWhereUniqueInput[]
+    update?: MentoriaMaterialUpdateWithWhereUniqueWithoutMentoriaInput | MentoriaMaterialUpdateWithWhereUniqueWithoutMentoriaInput[]
+    updateMany?: MentoriaMaterialUpdateManyWithWhereWithoutMentoriaInput | MentoriaMaterialUpdateManyWithWhereWithoutMentoriaInput[]
+    deleteMany?: MentoriaMaterialScalarWhereInput | MentoriaMaterialScalarWhereInput[]
+  }
+
   export type MentoriaAlunoUncheckedUpdateManyWithoutMentoriaNestedInput = {
     create?: XOR<MentoriaAlunoCreateWithoutMentoriaInput, MentoriaAlunoUncheckedCreateWithoutMentoriaInput> | MentoriaAlunoCreateWithoutMentoriaInput[] | MentoriaAlunoUncheckedCreateWithoutMentoriaInput[]
     connectOrCreate?: MentoriaAlunoCreateOrConnectWithoutMentoriaInput | MentoriaAlunoCreateOrConnectWithoutMentoriaInput[]
@@ -113838,6 +118199,48 @@ export namespace Prisma {
     update?: TokenPortalUpdateWithWhereUniqueWithoutMentoriaInput | TokenPortalUpdateWithWhereUniqueWithoutMentoriaInput[]
     updateMany?: TokenPortalUpdateManyWithWhereWithoutMentoriaInput | TokenPortalUpdateManyWithWhereWithoutMentoriaInput[]
     deleteMany?: TokenPortalScalarWhereInput | TokenPortalScalarWhereInput[]
+  }
+
+  export type MentoriaPaginaUncheckedUpdateManyWithoutMentoriaNestedInput = {
+    create?: XOR<MentoriaPaginaCreateWithoutMentoriaInput, MentoriaPaginaUncheckedCreateWithoutMentoriaInput> | MentoriaPaginaCreateWithoutMentoriaInput[] | MentoriaPaginaUncheckedCreateWithoutMentoriaInput[]
+    connectOrCreate?: MentoriaPaginaCreateOrConnectWithoutMentoriaInput | MentoriaPaginaCreateOrConnectWithoutMentoriaInput[]
+    upsert?: MentoriaPaginaUpsertWithWhereUniqueWithoutMentoriaInput | MentoriaPaginaUpsertWithWhereUniqueWithoutMentoriaInput[]
+    createMany?: MentoriaPaginaCreateManyMentoriaInputEnvelope
+    set?: MentoriaPaginaWhereUniqueInput | MentoriaPaginaWhereUniqueInput[]
+    disconnect?: MentoriaPaginaWhereUniqueInput | MentoriaPaginaWhereUniqueInput[]
+    delete?: MentoriaPaginaWhereUniqueInput | MentoriaPaginaWhereUniqueInput[]
+    connect?: MentoriaPaginaWhereUniqueInput | MentoriaPaginaWhereUniqueInput[]
+    update?: MentoriaPaginaUpdateWithWhereUniqueWithoutMentoriaInput | MentoriaPaginaUpdateWithWhereUniqueWithoutMentoriaInput[]
+    updateMany?: MentoriaPaginaUpdateManyWithWhereWithoutMentoriaInput | MentoriaPaginaUpdateManyWithWhereWithoutMentoriaInput[]
+    deleteMany?: MentoriaPaginaScalarWhereInput | MentoriaPaginaScalarWhereInput[]
+  }
+
+  export type MentoriaItemUncheckedUpdateManyWithoutMentoriaNestedInput = {
+    create?: XOR<MentoriaItemCreateWithoutMentoriaInput, MentoriaItemUncheckedCreateWithoutMentoriaInput> | MentoriaItemCreateWithoutMentoriaInput[] | MentoriaItemUncheckedCreateWithoutMentoriaInput[]
+    connectOrCreate?: MentoriaItemCreateOrConnectWithoutMentoriaInput | MentoriaItemCreateOrConnectWithoutMentoriaInput[]
+    upsert?: MentoriaItemUpsertWithWhereUniqueWithoutMentoriaInput | MentoriaItemUpsertWithWhereUniqueWithoutMentoriaInput[]
+    createMany?: MentoriaItemCreateManyMentoriaInputEnvelope
+    set?: MentoriaItemWhereUniqueInput | MentoriaItemWhereUniqueInput[]
+    disconnect?: MentoriaItemWhereUniqueInput | MentoriaItemWhereUniqueInput[]
+    delete?: MentoriaItemWhereUniqueInput | MentoriaItemWhereUniqueInput[]
+    connect?: MentoriaItemWhereUniqueInput | MentoriaItemWhereUniqueInput[]
+    update?: MentoriaItemUpdateWithWhereUniqueWithoutMentoriaInput | MentoriaItemUpdateWithWhereUniqueWithoutMentoriaInput[]
+    updateMany?: MentoriaItemUpdateManyWithWhereWithoutMentoriaInput | MentoriaItemUpdateManyWithWhereWithoutMentoriaInput[]
+    deleteMany?: MentoriaItemScalarWhereInput | MentoriaItemScalarWhereInput[]
+  }
+
+  export type MentoriaMaterialUncheckedUpdateManyWithoutMentoriaNestedInput = {
+    create?: XOR<MentoriaMaterialCreateWithoutMentoriaInput, MentoriaMaterialUncheckedCreateWithoutMentoriaInput> | MentoriaMaterialCreateWithoutMentoriaInput[] | MentoriaMaterialUncheckedCreateWithoutMentoriaInput[]
+    connectOrCreate?: MentoriaMaterialCreateOrConnectWithoutMentoriaInput | MentoriaMaterialCreateOrConnectWithoutMentoriaInput[]
+    upsert?: MentoriaMaterialUpsertWithWhereUniqueWithoutMentoriaInput | MentoriaMaterialUpsertWithWhereUniqueWithoutMentoriaInput[]
+    createMany?: MentoriaMaterialCreateManyMentoriaInputEnvelope
+    set?: MentoriaMaterialWhereUniqueInput | MentoriaMaterialWhereUniqueInput[]
+    disconnect?: MentoriaMaterialWhereUniqueInput | MentoriaMaterialWhereUniqueInput[]
+    delete?: MentoriaMaterialWhereUniqueInput | MentoriaMaterialWhereUniqueInput[]
+    connect?: MentoriaMaterialWhereUniqueInput | MentoriaMaterialWhereUniqueInput[]
+    update?: MentoriaMaterialUpdateWithWhereUniqueWithoutMentoriaInput | MentoriaMaterialUpdateWithWhereUniqueWithoutMentoriaInput[]
+    updateMany?: MentoriaMaterialUpdateManyWithWhereWithoutMentoriaInput | MentoriaMaterialUpdateManyWithWhereWithoutMentoriaInput[]
+    deleteMany?: MentoriaMaterialScalarWhereInput | MentoriaMaterialScalarWhereInput[]
   }
 
   export type MentoriaCreateNestedOneWithoutAlunosInput = {
@@ -114130,6 +118533,48 @@ export namespace Prisma {
     upsert?: MentoriaAlunoUpsertWithoutArquivosInput
     connect?: MentoriaAlunoWhereUniqueInput
     update?: XOR<XOR<MentoriaAlunoUpdateToOneWithWhereWithoutArquivosInput, MentoriaAlunoUpdateWithoutArquivosInput>, MentoriaAlunoUncheckedUpdateWithoutArquivosInput>
+  }
+
+  export type MentoriaCreateNestedOneWithoutPaginasInput = {
+    create?: XOR<MentoriaCreateWithoutPaginasInput, MentoriaUncheckedCreateWithoutPaginasInput>
+    connectOrCreate?: MentoriaCreateOrConnectWithoutPaginasInput
+    connect?: MentoriaWhereUniqueInput
+  }
+
+  export type MentoriaUpdateOneRequiredWithoutPaginasNestedInput = {
+    create?: XOR<MentoriaCreateWithoutPaginasInput, MentoriaUncheckedCreateWithoutPaginasInput>
+    connectOrCreate?: MentoriaCreateOrConnectWithoutPaginasInput
+    upsert?: MentoriaUpsertWithoutPaginasInput
+    connect?: MentoriaWhereUniqueInput
+    update?: XOR<XOR<MentoriaUpdateToOneWithWhereWithoutPaginasInput, MentoriaUpdateWithoutPaginasInput>, MentoriaUncheckedUpdateWithoutPaginasInput>
+  }
+
+  export type MentoriaCreateNestedOneWithoutItensInput = {
+    create?: XOR<MentoriaCreateWithoutItensInput, MentoriaUncheckedCreateWithoutItensInput>
+    connectOrCreate?: MentoriaCreateOrConnectWithoutItensInput
+    connect?: MentoriaWhereUniqueInput
+  }
+
+  export type MentoriaUpdateOneRequiredWithoutItensNestedInput = {
+    create?: XOR<MentoriaCreateWithoutItensInput, MentoriaUncheckedCreateWithoutItensInput>
+    connectOrCreate?: MentoriaCreateOrConnectWithoutItensInput
+    upsert?: MentoriaUpsertWithoutItensInput
+    connect?: MentoriaWhereUniqueInput
+    update?: XOR<XOR<MentoriaUpdateToOneWithWhereWithoutItensInput, MentoriaUpdateWithoutItensInput>, MentoriaUncheckedUpdateWithoutItensInput>
+  }
+
+  export type MentoriaCreateNestedOneWithoutMateriaisInput = {
+    create?: XOR<MentoriaCreateWithoutMateriaisInput, MentoriaUncheckedCreateWithoutMateriaisInput>
+    connectOrCreate?: MentoriaCreateOrConnectWithoutMateriaisInput
+    connect?: MentoriaWhereUniqueInput
+  }
+
+  export type MentoriaUpdateOneRequiredWithoutMateriaisNestedInput = {
+    create?: XOR<MentoriaCreateWithoutMateriaisInput, MentoriaUncheckedCreateWithoutMateriaisInput>
+    connectOrCreate?: MentoriaCreateOrConnectWithoutMateriaisInput
+    upsert?: MentoriaUpsertWithoutMateriaisInput
+    connect?: MentoriaWhereUniqueInput
+    update?: XOR<XOR<MentoriaUpdateToOneWithWhereWithoutMateriaisInput, MentoriaUpdateWithoutMateriaisInput>, MentoriaUncheckedUpdateWithoutMateriaisInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -116526,6 +120971,9 @@ export namespace Prisma {
     encontros?: MentoriaEncontroCreateNestedManyWithoutMentoriaInput
     posts?: MentoriaPostCreateNestedManyWithoutMentoriaInput
     tokens?: TokenPortalCreateNestedManyWithoutMentoriaInput
+    paginas?: MentoriaPaginaCreateNestedManyWithoutMentoriaInput
+    itens?: MentoriaItemCreateNestedManyWithoutMentoriaInput
+    materiais?: MentoriaMaterialCreateNestedManyWithoutMentoriaInput
   }
 
   export type MentoriaUncheckedCreateWithoutEmpresaInput = {
@@ -116539,6 +120987,9 @@ export namespace Prisma {
     encontros?: MentoriaEncontroUncheckedCreateNestedManyWithoutMentoriaInput
     posts?: MentoriaPostUncheckedCreateNestedManyWithoutMentoriaInput
     tokens?: TokenPortalUncheckedCreateNestedManyWithoutMentoriaInput
+    paginas?: MentoriaPaginaUncheckedCreateNestedManyWithoutMentoriaInput
+    itens?: MentoriaItemUncheckedCreateNestedManyWithoutMentoriaInput
+    materiais?: MentoriaMaterialUncheckedCreateNestedManyWithoutMentoriaInput
   }
 
   export type MentoriaCreateOrConnectWithoutEmpresaInput = {
@@ -140761,6 +145212,9 @@ export namespace Prisma {
     alunos?: MentoriaAlunoCreateNestedManyWithoutMentoriaInput
     encontros?: MentoriaEncontroCreateNestedManyWithoutMentoriaInput
     posts?: MentoriaPostCreateNestedManyWithoutMentoriaInput
+    paginas?: MentoriaPaginaCreateNestedManyWithoutMentoriaInput
+    itens?: MentoriaItemCreateNestedManyWithoutMentoriaInput
+    materiais?: MentoriaMaterialCreateNestedManyWithoutMentoriaInput
   }
 
   export type MentoriaUncheckedCreateWithoutTokensInput = {
@@ -140774,6 +145228,9 @@ export namespace Prisma {
     alunos?: MentoriaAlunoUncheckedCreateNestedManyWithoutMentoriaInput
     encontros?: MentoriaEncontroUncheckedCreateNestedManyWithoutMentoriaInput
     posts?: MentoriaPostUncheckedCreateNestedManyWithoutMentoriaInput
+    paginas?: MentoriaPaginaUncheckedCreateNestedManyWithoutMentoriaInput
+    itens?: MentoriaItemUncheckedCreateNestedManyWithoutMentoriaInput
+    materiais?: MentoriaMaterialUncheckedCreateNestedManyWithoutMentoriaInput
   }
 
   export type MentoriaCreateOrConnectWithoutTokensInput = {
@@ -140900,6 +145357,9 @@ export namespace Prisma {
     alunos?: MentoriaAlunoUpdateManyWithoutMentoriaNestedInput
     encontros?: MentoriaEncontroUpdateManyWithoutMentoriaNestedInput
     posts?: MentoriaPostUpdateManyWithoutMentoriaNestedInput
+    paginas?: MentoriaPaginaUpdateManyWithoutMentoriaNestedInput
+    itens?: MentoriaItemUpdateManyWithoutMentoriaNestedInput
+    materiais?: MentoriaMaterialUpdateManyWithoutMentoriaNestedInput
   }
 
   export type MentoriaUncheckedUpdateWithoutTokensInput = {
@@ -140913,6 +145373,9 @@ export namespace Prisma {
     alunos?: MentoriaAlunoUncheckedUpdateManyWithoutMentoriaNestedInput
     encontros?: MentoriaEncontroUncheckedUpdateManyWithoutMentoriaNestedInput
     posts?: MentoriaPostUncheckedUpdateManyWithoutMentoriaNestedInput
+    paginas?: MentoriaPaginaUncheckedUpdateManyWithoutMentoriaNestedInput
+    itens?: MentoriaItemUncheckedUpdateManyWithoutMentoriaNestedInput
+    materiais?: MentoriaMaterialUncheckedUpdateManyWithoutMentoriaNestedInput
   }
 
   export type EmpresaCreateWithoutAplicacoes_diagnosticoInput = {
@@ -143488,6 +147951,90 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type MentoriaPaginaCreateWithoutMentoriaInput = {
+    id?: string
+    titulo: string
+    conteudo: string
+    criada_em?: Date | string
+    alterada_em?: Date | string
+  }
+
+  export type MentoriaPaginaUncheckedCreateWithoutMentoriaInput = {
+    id?: string
+    titulo: string
+    conteudo: string
+    criada_em?: Date | string
+    alterada_em?: Date | string
+  }
+
+  export type MentoriaPaginaCreateOrConnectWithoutMentoriaInput = {
+    where: MentoriaPaginaWhereUniqueInput
+    create: XOR<MentoriaPaginaCreateWithoutMentoriaInput, MentoriaPaginaUncheckedCreateWithoutMentoriaInput>
+  }
+
+  export type MentoriaPaginaCreateManyMentoriaInputEnvelope = {
+    data: MentoriaPaginaCreateManyMentoriaInput | MentoriaPaginaCreateManyMentoriaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MentoriaItemCreateWithoutMentoriaInput = {
+    id?: string
+    titulo: string
+    descricao?: string | null
+    responsavel?: string | null
+    prazo?: Date | string | null
+    concluida_em?: Date | string | null
+    criado_em?: Date | string
+  }
+
+  export type MentoriaItemUncheckedCreateWithoutMentoriaInput = {
+    id?: string
+    titulo: string
+    descricao?: string | null
+    responsavel?: string | null
+    prazo?: Date | string | null
+    concluida_em?: Date | string | null
+    criado_em?: Date | string
+  }
+
+  export type MentoriaItemCreateOrConnectWithoutMentoriaInput = {
+    where: MentoriaItemWhereUniqueInput
+    create: XOR<MentoriaItemCreateWithoutMentoriaInput, MentoriaItemUncheckedCreateWithoutMentoriaInput>
+  }
+
+  export type MentoriaItemCreateManyMentoriaInputEnvelope = {
+    data: MentoriaItemCreateManyMentoriaInput | MentoriaItemCreateManyMentoriaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MentoriaMaterialCreateWithoutMentoriaInput = {
+    id?: string
+    nome: string
+    categoria?: string | null
+    caminho: string
+    tamanho: number
+    criado_em?: Date | string
+  }
+
+  export type MentoriaMaterialUncheckedCreateWithoutMentoriaInput = {
+    id?: string
+    nome: string
+    categoria?: string | null
+    caminho: string
+    tamanho: number
+    criado_em?: Date | string
+  }
+
+  export type MentoriaMaterialCreateOrConnectWithoutMentoriaInput = {
+    where: MentoriaMaterialWhereUniqueInput
+    create: XOR<MentoriaMaterialCreateWithoutMentoriaInput, MentoriaMaterialUncheckedCreateWithoutMentoriaInput>
+  }
+
+  export type MentoriaMaterialCreateManyMentoriaInputEnvelope = {
+    data: MentoriaMaterialCreateManyMentoriaInput | MentoriaMaterialCreateManyMentoriaInput[]
+    skipDuplicates?: boolean
+  }
+
   export type EmpresaUpsertWithoutMentoriasInput = {
     update: XOR<EmpresaUpdateWithoutMentoriasInput, EmpresaUncheckedUpdateWithoutMentoriasInput>
     create: XOR<EmpresaCreateWithoutMentoriasInput, EmpresaUncheckedCreateWithoutMentoriasInput>
@@ -143693,6 +148240,93 @@ export namespace Prisma {
     data: XOR<TokenPortalUpdateManyMutationInput, TokenPortalUncheckedUpdateManyWithoutMentoriaInput>
   }
 
+  export type MentoriaPaginaUpsertWithWhereUniqueWithoutMentoriaInput = {
+    where: MentoriaPaginaWhereUniqueInput
+    update: XOR<MentoriaPaginaUpdateWithoutMentoriaInput, MentoriaPaginaUncheckedUpdateWithoutMentoriaInput>
+    create: XOR<MentoriaPaginaCreateWithoutMentoriaInput, MentoriaPaginaUncheckedCreateWithoutMentoriaInput>
+  }
+
+  export type MentoriaPaginaUpdateWithWhereUniqueWithoutMentoriaInput = {
+    where: MentoriaPaginaWhereUniqueInput
+    data: XOR<MentoriaPaginaUpdateWithoutMentoriaInput, MentoriaPaginaUncheckedUpdateWithoutMentoriaInput>
+  }
+
+  export type MentoriaPaginaUpdateManyWithWhereWithoutMentoriaInput = {
+    where: MentoriaPaginaScalarWhereInput
+    data: XOR<MentoriaPaginaUpdateManyMutationInput, MentoriaPaginaUncheckedUpdateManyWithoutMentoriaInput>
+  }
+
+  export type MentoriaPaginaScalarWhereInput = {
+    AND?: MentoriaPaginaScalarWhereInput | MentoriaPaginaScalarWhereInput[]
+    OR?: MentoriaPaginaScalarWhereInput[]
+    NOT?: MentoriaPaginaScalarWhereInput | MentoriaPaginaScalarWhereInput[]
+    id?: StringFilter<"MentoriaPagina"> | string
+    mentoria_id?: StringFilter<"MentoriaPagina"> | string
+    titulo?: StringFilter<"MentoriaPagina"> | string
+    conteudo?: StringFilter<"MentoriaPagina"> | string
+    criada_em?: DateTimeFilter<"MentoriaPagina"> | Date | string
+    alterada_em?: DateTimeFilter<"MentoriaPagina"> | Date | string
+  }
+
+  export type MentoriaItemUpsertWithWhereUniqueWithoutMentoriaInput = {
+    where: MentoriaItemWhereUniqueInput
+    update: XOR<MentoriaItemUpdateWithoutMentoriaInput, MentoriaItemUncheckedUpdateWithoutMentoriaInput>
+    create: XOR<MentoriaItemCreateWithoutMentoriaInput, MentoriaItemUncheckedCreateWithoutMentoriaInput>
+  }
+
+  export type MentoriaItemUpdateWithWhereUniqueWithoutMentoriaInput = {
+    where: MentoriaItemWhereUniqueInput
+    data: XOR<MentoriaItemUpdateWithoutMentoriaInput, MentoriaItemUncheckedUpdateWithoutMentoriaInput>
+  }
+
+  export type MentoriaItemUpdateManyWithWhereWithoutMentoriaInput = {
+    where: MentoriaItemScalarWhereInput
+    data: XOR<MentoriaItemUpdateManyMutationInput, MentoriaItemUncheckedUpdateManyWithoutMentoriaInput>
+  }
+
+  export type MentoriaItemScalarWhereInput = {
+    AND?: MentoriaItemScalarWhereInput | MentoriaItemScalarWhereInput[]
+    OR?: MentoriaItemScalarWhereInput[]
+    NOT?: MentoriaItemScalarWhereInput | MentoriaItemScalarWhereInput[]
+    id?: StringFilter<"MentoriaItem"> | string
+    mentoria_id?: StringFilter<"MentoriaItem"> | string
+    titulo?: StringFilter<"MentoriaItem"> | string
+    descricao?: StringNullableFilter<"MentoriaItem"> | string | null
+    responsavel?: StringNullableFilter<"MentoriaItem"> | string | null
+    prazo?: DateTimeNullableFilter<"MentoriaItem"> | Date | string | null
+    concluida_em?: DateTimeNullableFilter<"MentoriaItem"> | Date | string | null
+    criado_em?: DateTimeFilter<"MentoriaItem"> | Date | string
+  }
+
+  export type MentoriaMaterialUpsertWithWhereUniqueWithoutMentoriaInput = {
+    where: MentoriaMaterialWhereUniqueInput
+    update: XOR<MentoriaMaterialUpdateWithoutMentoriaInput, MentoriaMaterialUncheckedUpdateWithoutMentoriaInput>
+    create: XOR<MentoriaMaterialCreateWithoutMentoriaInput, MentoriaMaterialUncheckedCreateWithoutMentoriaInput>
+  }
+
+  export type MentoriaMaterialUpdateWithWhereUniqueWithoutMentoriaInput = {
+    where: MentoriaMaterialWhereUniqueInput
+    data: XOR<MentoriaMaterialUpdateWithoutMentoriaInput, MentoriaMaterialUncheckedUpdateWithoutMentoriaInput>
+  }
+
+  export type MentoriaMaterialUpdateManyWithWhereWithoutMentoriaInput = {
+    where: MentoriaMaterialScalarWhereInput
+    data: XOR<MentoriaMaterialUpdateManyMutationInput, MentoriaMaterialUncheckedUpdateManyWithoutMentoriaInput>
+  }
+
+  export type MentoriaMaterialScalarWhereInput = {
+    AND?: MentoriaMaterialScalarWhereInput | MentoriaMaterialScalarWhereInput[]
+    OR?: MentoriaMaterialScalarWhereInput[]
+    NOT?: MentoriaMaterialScalarWhereInput | MentoriaMaterialScalarWhereInput[]
+    id?: StringFilter<"MentoriaMaterial"> | string
+    mentoria_id?: StringFilter<"MentoriaMaterial"> | string
+    nome?: StringFilter<"MentoriaMaterial"> | string
+    categoria?: StringNullableFilter<"MentoriaMaterial"> | string | null
+    caminho?: StringFilter<"MentoriaMaterial"> | string
+    tamanho?: IntFilter<"MentoriaMaterial"> | number
+    criado_em?: DateTimeFilter<"MentoriaMaterial"> | Date | string
+  }
+
   export type MentoriaCreateWithoutAlunosInput = {
     id?: string
     nome: string
@@ -143704,6 +148338,9 @@ export namespace Prisma {
     encontros?: MentoriaEncontroCreateNestedManyWithoutMentoriaInput
     posts?: MentoriaPostCreateNestedManyWithoutMentoriaInput
     tokens?: TokenPortalCreateNestedManyWithoutMentoriaInput
+    paginas?: MentoriaPaginaCreateNestedManyWithoutMentoriaInput
+    itens?: MentoriaItemCreateNestedManyWithoutMentoriaInput
+    materiais?: MentoriaMaterialCreateNestedManyWithoutMentoriaInput
   }
 
   export type MentoriaUncheckedCreateWithoutAlunosInput = {
@@ -143717,6 +148354,9 @@ export namespace Prisma {
     encontros?: MentoriaEncontroUncheckedCreateNestedManyWithoutMentoriaInput
     posts?: MentoriaPostUncheckedCreateNestedManyWithoutMentoriaInput
     tokens?: TokenPortalUncheckedCreateNestedManyWithoutMentoriaInput
+    paginas?: MentoriaPaginaUncheckedCreateNestedManyWithoutMentoriaInput
+    itens?: MentoriaItemUncheckedCreateNestedManyWithoutMentoriaInput
+    materiais?: MentoriaMaterialUncheckedCreateNestedManyWithoutMentoriaInput
   }
 
   export type MentoriaCreateOrConnectWithoutAlunosInput = {
@@ -143915,6 +148555,9 @@ export namespace Prisma {
     encontros?: MentoriaEncontroUpdateManyWithoutMentoriaNestedInput
     posts?: MentoriaPostUpdateManyWithoutMentoriaNestedInput
     tokens?: TokenPortalUpdateManyWithoutMentoriaNestedInput
+    paginas?: MentoriaPaginaUpdateManyWithoutMentoriaNestedInput
+    itens?: MentoriaItemUpdateManyWithoutMentoriaNestedInput
+    materiais?: MentoriaMaterialUpdateManyWithoutMentoriaNestedInput
   }
 
   export type MentoriaUncheckedUpdateWithoutAlunosInput = {
@@ -143928,6 +148571,9 @@ export namespace Prisma {
     encontros?: MentoriaEncontroUncheckedUpdateManyWithoutMentoriaNestedInput
     posts?: MentoriaPostUncheckedUpdateManyWithoutMentoriaNestedInput
     tokens?: TokenPortalUncheckedUpdateManyWithoutMentoriaNestedInput
+    paginas?: MentoriaPaginaUncheckedUpdateManyWithoutMentoriaNestedInput
+    itens?: MentoriaItemUncheckedUpdateManyWithoutMentoriaNestedInput
+    materiais?: MentoriaMaterialUncheckedUpdateManyWithoutMentoriaNestedInput
   }
 
   export type ClienteUpsertWithoutMentoriasInput = {
@@ -144122,6 +148768,9 @@ export namespace Prisma {
     alunos?: MentoriaAlunoCreateNestedManyWithoutMentoriaInput
     posts?: MentoriaPostCreateNestedManyWithoutMentoriaInput
     tokens?: TokenPortalCreateNestedManyWithoutMentoriaInput
+    paginas?: MentoriaPaginaCreateNestedManyWithoutMentoriaInput
+    itens?: MentoriaItemCreateNestedManyWithoutMentoriaInput
+    materiais?: MentoriaMaterialCreateNestedManyWithoutMentoriaInput
   }
 
   export type MentoriaUncheckedCreateWithoutEncontrosInput = {
@@ -144135,6 +148784,9 @@ export namespace Prisma {
     alunos?: MentoriaAlunoUncheckedCreateNestedManyWithoutMentoriaInput
     posts?: MentoriaPostUncheckedCreateNestedManyWithoutMentoriaInput
     tokens?: TokenPortalUncheckedCreateNestedManyWithoutMentoriaInput
+    paginas?: MentoriaPaginaUncheckedCreateNestedManyWithoutMentoriaInput
+    itens?: MentoriaItemUncheckedCreateNestedManyWithoutMentoriaInput
+    materiais?: MentoriaMaterialUncheckedCreateNestedManyWithoutMentoriaInput
   }
 
   export type MentoriaCreateOrConnectWithoutEncontrosInput = {
@@ -144188,6 +148840,9 @@ export namespace Prisma {
     alunos?: MentoriaAlunoUpdateManyWithoutMentoriaNestedInput
     posts?: MentoriaPostUpdateManyWithoutMentoriaNestedInput
     tokens?: TokenPortalUpdateManyWithoutMentoriaNestedInput
+    paginas?: MentoriaPaginaUpdateManyWithoutMentoriaNestedInput
+    itens?: MentoriaItemUpdateManyWithoutMentoriaNestedInput
+    materiais?: MentoriaMaterialUpdateManyWithoutMentoriaNestedInput
   }
 
   export type MentoriaUncheckedUpdateWithoutEncontrosInput = {
@@ -144201,6 +148856,9 @@ export namespace Prisma {
     alunos?: MentoriaAlunoUncheckedUpdateManyWithoutMentoriaNestedInput
     posts?: MentoriaPostUncheckedUpdateManyWithoutMentoriaNestedInput
     tokens?: TokenPortalUncheckedUpdateManyWithoutMentoriaNestedInput
+    paginas?: MentoriaPaginaUncheckedUpdateManyWithoutMentoriaNestedInput
+    itens?: MentoriaItemUncheckedUpdateManyWithoutMentoriaNestedInput
+    materiais?: MentoriaMaterialUncheckedUpdateManyWithoutMentoriaNestedInput
   }
 
   export type MentoriaPresencaUpsertWithWhereUniqueWithoutEncontroInput = {
@@ -144230,6 +148888,9 @@ export namespace Prisma {
     alunos?: MentoriaAlunoCreateNestedManyWithoutMentoriaInput
     encontros?: MentoriaEncontroCreateNestedManyWithoutMentoriaInput
     tokens?: TokenPortalCreateNestedManyWithoutMentoriaInput
+    paginas?: MentoriaPaginaCreateNestedManyWithoutMentoriaInput
+    itens?: MentoriaItemCreateNestedManyWithoutMentoriaInput
+    materiais?: MentoriaMaterialCreateNestedManyWithoutMentoriaInput
   }
 
   export type MentoriaUncheckedCreateWithoutPostsInput = {
@@ -144243,6 +148904,9 @@ export namespace Prisma {
     alunos?: MentoriaAlunoUncheckedCreateNestedManyWithoutMentoriaInput
     encontros?: MentoriaEncontroUncheckedCreateNestedManyWithoutMentoriaInput
     tokens?: TokenPortalUncheckedCreateNestedManyWithoutMentoriaInput
+    paginas?: MentoriaPaginaUncheckedCreateNestedManyWithoutMentoriaInput
+    itens?: MentoriaItemUncheckedCreateNestedManyWithoutMentoriaInput
+    materiais?: MentoriaMaterialUncheckedCreateNestedManyWithoutMentoriaInput
   }
 
   export type MentoriaCreateOrConnectWithoutPostsInput = {
@@ -144272,6 +148936,9 @@ export namespace Prisma {
     alunos?: MentoriaAlunoUpdateManyWithoutMentoriaNestedInput
     encontros?: MentoriaEncontroUpdateManyWithoutMentoriaNestedInput
     tokens?: TokenPortalUpdateManyWithoutMentoriaNestedInput
+    paginas?: MentoriaPaginaUpdateManyWithoutMentoriaNestedInput
+    itens?: MentoriaItemUpdateManyWithoutMentoriaNestedInput
+    materiais?: MentoriaMaterialUpdateManyWithoutMentoriaNestedInput
   }
 
   export type MentoriaUncheckedUpdateWithoutPostsInput = {
@@ -144285,6 +148952,9 @@ export namespace Prisma {
     alunos?: MentoriaAlunoUncheckedUpdateManyWithoutMentoriaNestedInput
     encontros?: MentoriaEncontroUncheckedUpdateManyWithoutMentoriaNestedInput
     tokens?: TokenPortalUncheckedUpdateManyWithoutMentoriaNestedInput
+    paginas?: MentoriaPaginaUncheckedUpdateManyWithoutMentoriaNestedInput
+    itens?: MentoriaItemUncheckedUpdateManyWithoutMentoriaNestedInput
+    materiais?: MentoriaMaterialUncheckedUpdateManyWithoutMentoriaNestedInput
   }
 
   export type MentoriaEncontroCreateWithoutPresencasInput = {
@@ -144529,6 +149199,246 @@ export namespace Prisma {
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
     presencas?: MentoriaPresencaUncheckedUpdateManyWithoutAlunoNestedInput
     tarefas?: MentoriaTarefaUncheckedUpdateManyWithoutAlunoNestedInput
+  }
+
+  export type MentoriaCreateWithoutPaginasInput = {
+    id?: string
+    nome: string
+    turma?: string | null
+    descricao?: string | null
+    tipo: $Enums.TipoMentoria
+    criado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutMentoriasInput
+    alunos?: MentoriaAlunoCreateNestedManyWithoutMentoriaInput
+    encontros?: MentoriaEncontroCreateNestedManyWithoutMentoriaInput
+    posts?: MentoriaPostCreateNestedManyWithoutMentoriaInput
+    tokens?: TokenPortalCreateNestedManyWithoutMentoriaInput
+    itens?: MentoriaItemCreateNestedManyWithoutMentoriaInput
+    materiais?: MentoriaMaterialCreateNestedManyWithoutMentoriaInput
+  }
+
+  export type MentoriaUncheckedCreateWithoutPaginasInput = {
+    id?: string
+    empresa_id: string
+    nome: string
+    turma?: string | null
+    descricao?: string | null
+    tipo: $Enums.TipoMentoria
+    criado_em?: Date | string
+    alunos?: MentoriaAlunoUncheckedCreateNestedManyWithoutMentoriaInput
+    encontros?: MentoriaEncontroUncheckedCreateNestedManyWithoutMentoriaInput
+    posts?: MentoriaPostUncheckedCreateNestedManyWithoutMentoriaInput
+    tokens?: TokenPortalUncheckedCreateNestedManyWithoutMentoriaInput
+    itens?: MentoriaItemUncheckedCreateNestedManyWithoutMentoriaInput
+    materiais?: MentoriaMaterialUncheckedCreateNestedManyWithoutMentoriaInput
+  }
+
+  export type MentoriaCreateOrConnectWithoutPaginasInput = {
+    where: MentoriaWhereUniqueInput
+    create: XOR<MentoriaCreateWithoutPaginasInput, MentoriaUncheckedCreateWithoutPaginasInput>
+  }
+
+  export type MentoriaUpsertWithoutPaginasInput = {
+    update: XOR<MentoriaUpdateWithoutPaginasInput, MentoriaUncheckedUpdateWithoutPaginasInput>
+    create: XOR<MentoriaCreateWithoutPaginasInput, MentoriaUncheckedCreateWithoutPaginasInput>
+    where?: MentoriaWhereInput
+  }
+
+  export type MentoriaUpdateToOneWithWhereWithoutPaginasInput = {
+    where?: MentoriaWhereInput
+    data: XOR<MentoriaUpdateWithoutPaginasInput, MentoriaUncheckedUpdateWithoutPaginasInput>
+  }
+
+  export type MentoriaUpdateWithoutPaginasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    turma?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo?: EnumTipoMentoriaFieldUpdateOperationsInput | $Enums.TipoMentoria
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutMentoriasNestedInput
+    alunos?: MentoriaAlunoUpdateManyWithoutMentoriaNestedInput
+    encontros?: MentoriaEncontroUpdateManyWithoutMentoriaNestedInput
+    posts?: MentoriaPostUpdateManyWithoutMentoriaNestedInput
+    tokens?: TokenPortalUpdateManyWithoutMentoriaNestedInput
+    itens?: MentoriaItemUpdateManyWithoutMentoriaNestedInput
+    materiais?: MentoriaMaterialUpdateManyWithoutMentoriaNestedInput
+  }
+
+  export type MentoriaUncheckedUpdateWithoutPaginasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    turma?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo?: EnumTipoMentoriaFieldUpdateOperationsInput | $Enums.TipoMentoria
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    alunos?: MentoriaAlunoUncheckedUpdateManyWithoutMentoriaNestedInput
+    encontros?: MentoriaEncontroUncheckedUpdateManyWithoutMentoriaNestedInput
+    posts?: MentoriaPostUncheckedUpdateManyWithoutMentoriaNestedInput
+    tokens?: TokenPortalUncheckedUpdateManyWithoutMentoriaNestedInput
+    itens?: MentoriaItemUncheckedUpdateManyWithoutMentoriaNestedInput
+    materiais?: MentoriaMaterialUncheckedUpdateManyWithoutMentoriaNestedInput
+  }
+
+  export type MentoriaCreateWithoutItensInput = {
+    id?: string
+    nome: string
+    turma?: string | null
+    descricao?: string | null
+    tipo: $Enums.TipoMentoria
+    criado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutMentoriasInput
+    alunos?: MentoriaAlunoCreateNestedManyWithoutMentoriaInput
+    encontros?: MentoriaEncontroCreateNestedManyWithoutMentoriaInput
+    posts?: MentoriaPostCreateNestedManyWithoutMentoriaInput
+    tokens?: TokenPortalCreateNestedManyWithoutMentoriaInput
+    paginas?: MentoriaPaginaCreateNestedManyWithoutMentoriaInput
+    materiais?: MentoriaMaterialCreateNestedManyWithoutMentoriaInput
+  }
+
+  export type MentoriaUncheckedCreateWithoutItensInput = {
+    id?: string
+    empresa_id: string
+    nome: string
+    turma?: string | null
+    descricao?: string | null
+    tipo: $Enums.TipoMentoria
+    criado_em?: Date | string
+    alunos?: MentoriaAlunoUncheckedCreateNestedManyWithoutMentoriaInput
+    encontros?: MentoriaEncontroUncheckedCreateNestedManyWithoutMentoriaInput
+    posts?: MentoriaPostUncheckedCreateNestedManyWithoutMentoriaInput
+    tokens?: TokenPortalUncheckedCreateNestedManyWithoutMentoriaInput
+    paginas?: MentoriaPaginaUncheckedCreateNestedManyWithoutMentoriaInput
+    materiais?: MentoriaMaterialUncheckedCreateNestedManyWithoutMentoriaInput
+  }
+
+  export type MentoriaCreateOrConnectWithoutItensInput = {
+    where: MentoriaWhereUniqueInput
+    create: XOR<MentoriaCreateWithoutItensInput, MentoriaUncheckedCreateWithoutItensInput>
+  }
+
+  export type MentoriaUpsertWithoutItensInput = {
+    update: XOR<MentoriaUpdateWithoutItensInput, MentoriaUncheckedUpdateWithoutItensInput>
+    create: XOR<MentoriaCreateWithoutItensInput, MentoriaUncheckedCreateWithoutItensInput>
+    where?: MentoriaWhereInput
+  }
+
+  export type MentoriaUpdateToOneWithWhereWithoutItensInput = {
+    where?: MentoriaWhereInput
+    data: XOR<MentoriaUpdateWithoutItensInput, MentoriaUncheckedUpdateWithoutItensInput>
+  }
+
+  export type MentoriaUpdateWithoutItensInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    turma?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo?: EnumTipoMentoriaFieldUpdateOperationsInput | $Enums.TipoMentoria
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutMentoriasNestedInput
+    alunos?: MentoriaAlunoUpdateManyWithoutMentoriaNestedInput
+    encontros?: MentoriaEncontroUpdateManyWithoutMentoriaNestedInput
+    posts?: MentoriaPostUpdateManyWithoutMentoriaNestedInput
+    tokens?: TokenPortalUpdateManyWithoutMentoriaNestedInput
+    paginas?: MentoriaPaginaUpdateManyWithoutMentoriaNestedInput
+    materiais?: MentoriaMaterialUpdateManyWithoutMentoriaNestedInput
+  }
+
+  export type MentoriaUncheckedUpdateWithoutItensInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    turma?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo?: EnumTipoMentoriaFieldUpdateOperationsInput | $Enums.TipoMentoria
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    alunos?: MentoriaAlunoUncheckedUpdateManyWithoutMentoriaNestedInput
+    encontros?: MentoriaEncontroUncheckedUpdateManyWithoutMentoriaNestedInput
+    posts?: MentoriaPostUncheckedUpdateManyWithoutMentoriaNestedInput
+    tokens?: TokenPortalUncheckedUpdateManyWithoutMentoriaNestedInput
+    paginas?: MentoriaPaginaUncheckedUpdateManyWithoutMentoriaNestedInput
+    materiais?: MentoriaMaterialUncheckedUpdateManyWithoutMentoriaNestedInput
+  }
+
+  export type MentoriaCreateWithoutMateriaisInput = {
+    id?: string
+    nome: string
+    turma?: string | null
+    descricao?: string | null
+    tipo: $Enums.TipoMentoria
+    criado_em?: Date | string
+    empresa: EmpresaCreateNestedOneWithoutMentoriasInput
+    alunos?: MentoriaAlunoCreateNestedManyWithoutMentoriaInput
+    encontros?: MentoriaEncontroCreateNestedManyWithoutMentoriaInput
+    posts?: MentoriaPostCreateNestedManyWithoutMentoriaInput
+    tokens?: TokenPortalCreateNestedManyWithoutMentoriaInput
+    paginas?: MentoriaPaginaCreateNestedManyWithoutMentoriaInput
+    itens?: MentoriaItemCreateNestedManyWithoutMentoriaInput
+  }
+
+  export type MentoriaUncheckedCreateWithoutMateriaisInput = {
+    id?: string
+    empresa_id: string
+    nome: string
+    turma?: string | null
+    descricao?: string | null
+    tipo: $Enums.TipoMentoria
+    criado_em?: Date | string
+    alunos?: MentoriaAlunoUncheckedCreateNestedManyWithoutMentoriaInput
+    encontros?: MentoriaEncontroUncheckedCreateNestedManyWithoutMentoriaInput
+    posts?: MentoriaPostUncheckedCreateNestedManyWithoutMentoriaInput
+    tokens?: TokenPortalUncheckedCreateNestedManyWithoutMentoriaInput
+    paginas?: MentoriaPaginaUncheckedCreateNestedManyWithoutMentoriaInput
+    itens?: MentoriaItemUncheckedCreateNestedManyWithoutMentoriaInput
+  }
+
+  export type MentoriaCreateOrConnectWithoutMateriaisInput = {
+    where: MentoriaWhereUniqueInput
+    create: XOR<MentoriaCreateWithoutMateriaisInput, MentoriaUncheckedCreateWithoutMateriaisInput>
+  }
+
+  export type MentoriaUpsertWithoutMateriaisInput = {
+    update: XOR<MentoriaUpdateWithoutMateriaisInput, MentoriaUncheckedUpdateWithoutMateriaisInput>
+    create: XOR<MentoriaCreateWithoutMateriaisInput, MentoriaUncheckedCreateWithoutMateriaisInput>
+    where?: MentoriaWhereInput
+  }
+
+  export type MentoriaUpdateToOneWithWhereWithoutMateriaisInput = {
+    where?: MentoriaWhereInput
+    data: XOR<MentoriaUpdateWithoutMateriaisInput, MentoriaUncheckedUpdateWithoutMateriaisInput>
+  }
+
+  export type MentoriaUpdateWithoutMateriaisInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    turma?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo?: EnumTipoMentoriaFieldUpdateOperationsInput | $Enums.TipoMentoria
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    empresa?: EmpresaUpdateOneRequiredWithoutMentoriasNestedInput
+    alunos?: MentoriaAlunoUpdateManyWithoutMentoriaNestedInput
+    encontros?: MentoriaEncontroUpdateManyWithoutMentoriaNestedInput
+    posts?: MentoriaPostUpdateManyWithoutMentoriaNestedInput
+    tokens?: TokenPortalUpdateManyWithoutMentoriaNestedInput
+    paginas?: MentoriaPaginaUpdateManyWithoutMentoriaNestedInput
+    itens?: MentoriaItemUpdateManyWithoutMentoriaNestedInput
+  }
+
+  export type MentoriaUncheckedUpdateWithoutMateriaisInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    empresa_id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    turma?: NullableStringFieldUpdateOperationsInput | string | null
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    tipo?: EnumTipoMentoriaFieldUpdateOperationsInput | $Enums.TipoMentoria
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    alunos?: MentoriaAlunoUncheckedUpdateManyWithoutMentoriaNestedInput
+    encontros?: MentoriaEncontroUncheckedUpdateManyWithoutMentoriaNestedInput
+    posts?: MentoriaPostUncheckedUpdateManyWithoutMentoriaNestedInput
+    tokens?: TokenPortalUncheckedUpdateManyWithoutMentoriaNestedInput
+    paginas?: MentoriaPaginaUncheckedUpdateManyWithoutMentoriaNestedInput
+    itens?: MentoriaItemUncheckedUpdateManyWithoutMentoriaNestedInput
   }
 
   export type MembroEmpresaCreateManyEmpresaInput = {
@@ -147019,6 +151929,9 @@ export namespace Prisma {
     encontros?: MentoriaEncontroUpdateManyWithoutMentoriaNestedInput
     posts?: MentoriaPostUpdateManyWithoutMentoriaNestedInput
     tokens?: TokenPortalUpdateManyWithoutMentoriaNestedInput
+    paginas?: MentoriaPaginaUpdateManyWithoutMentoriaNestedInput
+    itens?: MentoriaItemUpdateManyWithoutMentoriaNestedInput
+    materiais?: MentoriaMaterialUpdateManyWithoutMentoriaNestedInput
   }
 
   export type MentoriaUncheckedUpdateWithoutEmpresaInput = {
@@ -147032,6 +151945,9 @@ export namespace Prisma {
     encontros?: MentoriaEncontroUncheckedUpdateManyWithoutMentoriaNestedInput
     posts?: MentoriaPostUncheckedUpdateManyWithoutMentoriaNestedInput
     tokens?: TokenPortalUncheckedUpdateManyWithoutMentoriaNestedInput
+    paginas?: MentoriaPaginaUncheckedUpdateManyWithoutMentoriaNestedInput
+    itens?: MentoriaItemUncheckedUpdateManyWithoutMentoriaNestedInput
+    materiais?: MentoriaMaterialUncheckedUpdateManyWithoutMentoriaNestedInput
   }
 
   export type MentoriaUncheckedUpdateManyWithoutEmpresaInput = {
@@ -153046,6 +157962,33 @@ export namespace Prisma {
     criado_em?: Date | string
   }
 
+  export type MentoriaPaginaCreateManyMentoriaInput = {
+    id?: string
+    titulo: string
+    conteudo: string
+    criada_em?: Date | string
+    alterada_em?: Date | string
+  }
+
+  export type MentoriaItemCreateManyMentoriaInput = {
+    id?: string
+    titulo: string
+    descricao?: string | null
+    responsavel?: string | null
+    prazo?: Date | string | null
+    concluida_em?: Date | string | null
+    criado_em?: Date | string
+  }
+
+  export type MentoriaMaterialCreateManyMentoriaInput = {
+    id?: string
+    nome: string
+    categoria?: string | null
+    caminho: string
+    tamanho: number
+    criado_em?: Date | string
+  }
+
   export type MentoriaAlunoUpdateWithoutMentoriaInput = {
     id?: StringFieldUpdateOperationsInput | string
     ativo?: BoolFieldUpdateOperationsInput | boolean
@@ -153174,6 +158117,87 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     expira_em?: DateTimeFieldUpdateOperationsInput | Date | string
     usado_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MentoriaPaginaUpdateWithoutMentoriaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    conteudo?: StringFieldUpdateOperationsInput | string
+    criada_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    alterada_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MentoriaPaginaUncheckedUpdateWithoutMentoriaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    conteudo?: StringFieldUpdateOperationsInput | string
+    criada_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    alterada_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MentoriaPaginaUncheckedUpdateManyWithoutMentoriaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    conteudo?: StringFieldUpdateOperationsInput | string
+    criada_em?: DateTimeFieldUpdateOperationsInput | Date | string
+    alterada_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MentoriaItemUpdateWithoutMentoriaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    responsavel?: NullableStringFieldUpdateOperationsInput | string | null
+    prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MentoriaItemUncheckedUpdateWithoutMentoriaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    responsavel?: NullableStringFieldUpdateOperationsInput | string | null
+    prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MentoriaItemUncheckedUpdateManyWithoutMentoriaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    responsavel?: NullableStringFieldUpdateOperationsInput | string | null
+    prazo?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    concluida_em?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MentoriaMaterialUpdateWithoutMentoriaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    categoria?: NullableStringFieldUpdateOperationsInput | string | null
+    caminho?: StringFieldUpdateOperationsInput | string
+    tamanho?: IntFieldUpdateOperationsInput | number
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MentoriaMaterialUncheckedUpdateWithoutMentoriaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    categoria?: NullableStringFieldUpdateOperationsInput | string | null
+    caminho?: StringFieldUpdateOperationsInput | string
+    tamanho?: IntFieldUpdateOperationsInput | number
+    criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MentoriaMaterialUncheckedUpdateManyWithoutMentoriaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nome?: StringFieldUpdateOperationsInput | string
+    categoria?: NullableStringFieldUpdateOperationsInput | string | null
+    caminho?: StringFieldUpdateOperationsInput | string
+    tamanho?: IntFieldUpdateOperationsInput | number
     criado_em?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

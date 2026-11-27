@@ -33,7 +33,7 @@ export function GerenciarEncontro({ encontro, grupo, alunos, zoom }: {
   const participantes = alunos.filter((aluno) => aluno.ativo || presencas.has(aluno.id));
 
   return (
-    <article className="space-y-4 rounded-xl border border-[#e4ebed] bg-[#f8fafb] p-3 sm:p-4">
+    <article id={`encontro-${encontro.id}`} className="scroll-mt-24 space-y-4 rounded-xl border border-[#e4ebed] bg-[#f8fafb] p-3 sm:p-4">
       <div className="flex flex-wrap items-start gap-3">
         <DataEncontro data={encontro.inicio} />
         <div className="flex min-w-0 flex-1 flex-col items-start gap-1 lg:flex-row lg:justify-between lg:gap-3">
@@ -129,7 +129,7 @@ export function CamposTarefa({ tarefa }: { tarefa?: MentoriaTarefa }) {
 
 export function TarefaMentoria({ tarefa, children }: { tarefa: MentoriaTarefa; children?: React.ReactNode }) {
   return (
-    <li className="space-y-2 p-3 first:pt-0">
+    <li id={`tarefa-${tarefa.id}`} className="scroll-mt-24 space-y-2 p-3 first:pt-0">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h3 className="font-medium">{tarefa.titulo}</h3>
         <Badge variant={tarefa.concluida_em ? "secondary" : "outline"}>{tarefa.concluida_em ? "Concluída" : "Pendente"}</Badge>

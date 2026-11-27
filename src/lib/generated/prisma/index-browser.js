@@ -1024,6 +1024,36 @@ exports.Prisma.MentoriaArquivoScalarFieldEnum = {
   criado_em: 'criado_em'
 };
 
+exports.Prisma.MentoriaPaginaScalarFieldEnum = {
+  id: 'id',
+  mentoria_id: 'mentoria_id',
+  titulo: 'titulo',
+  conteudo: 'conteudo',
+  criada_em: 'criada_em',
+  alterada_em: 'alterada_em'
+};
+
+exports.Prisma.MentoriaItemScalarFieldEnum = {
+  id: 'id',
+  mentoria_id: 'mentoria_id',
+  titulo: 'titulo',
+  descricao: 'descricao',
+  responsavel: 'responsavel',
+  prazo: 'prazo',
+  concluida_em: 'concluida_em',
+  criado_em: 'criado_em'
+};
+
+exports.Prisma.MentoriaMaterialScalarFieldEnum = {
+  id: 'id',
+  mentoria_id: 'mentoria_id',
+  nome: 'nome',
+  categoria: 'categoria',
+  caminho: 'caminho',
+  tamanho: 'tamanho',
+  criado_em: 'criado_em'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1287,7 +1317,10 @@ exports.Prisma.ModelName = {
   MentoriaPost: 'MentoriaPost',
   MentoriaPresenca: 'MentoriaPresenca',
   MentoriaTarefa: 'MentoriaTarefa',
-  MentoriaArquivo: 'MentoriaArquivo'
+  MentoriaArquivo: 'MentoriaArquivo',
+  MentoriaPagina: 'MentoriaPagina',
+  MentoriaItem: 'MentoriaItem',
+  MentoriaMaterial: 'MentoriaMaterial'
 };
 
 /**

@@ -63,7 +63,7 @@ export function CheckinMentoria({ mentoriaId, encontroId, abre, fecha, agora }: 
   return <Formulario acao={confirmarPresenca.bind(null, mentoriaId, encontroId)} botao="Fazer check-in" />;
 }
 
-export function AnexarArquivo({ alunoId }: { alunoId: string }) {
+export function AnexarArquivo({ alunoId, biblioteca = false }: { alunoId: string; biblioteca?: boolean }) {
   const router = useRouter();
   const [pendente, setPendente] = useState(false);
   const [resultado, setResultado] = useState<Resultado>({});
@@ -81,7 +81,7 @@ export function AnexarArquivo({ alunoId }: { alunoId: string }) {
     setPendente(true);
     setResultado({});
     try {
-      const resposta = await fetch(`/portal/mentorias/arquivos/${alunoId}`, { method: "POST", body: dados });
+      const resposta = await fetch(`/portal/mentorias/${biblioteca ? "biblioteca" : "arquivos"}/${alunoId}`, { method: "POST", body: dados });
       if (!resposta.headers.get("content-type")?.includes("application/json")) throw new Error();
       const retorno: Resultado = await resposta.json();
       setResultado(retorno);
@@ -98,11 +98,16 @@ export function AnexarArquivo({ alunoId }: { alunoId: string }) {
 
   return (
     <form onSubmit={anexar} className="space-y-2">
+      {biblioteca && (
+        <label className="block text-sm font-medium">Categoria
+          <input name="categoria" maxLength={80} className="mt-1 block w-full max-w-sm rounded-md border px-3 py-2 text-sm" />
+        </label>
+      )}
       <label className="block text-sm font-medium">
         Documento de até 4 MB
         <input className="mt-1 block max-w-full text-sm" type="file" name="arquivo" required accept=".pdf,.docx,.xlsx,.pptx,.csv,.txt,.jpg,.jpeg,.png" />
       </label>
-      <Button type="submit" size="sm" variant="outline" disabled={pendente}>{pendente ? "Anexando…" : "Anexar documento"}</Button>
+      <Button type="submit" size="sm" variant="outline" disabled={pendente}>{pendente ? "Anexando…" : biblioteca ? "Adicionar à biblioteca" : "Anexar documento"}</Button>
       {resultado.erro && <p role="alert" className="text-sm text-destructive">{resultado.erro}</p>}
       {resultado.sucesso && <p role="status" className="text-sm text-muted-foreground">{resultado.sucesso}</p>}
     </form>

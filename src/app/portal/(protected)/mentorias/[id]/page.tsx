@@ -3,13 +3,16 @@ import { Play, Video } from "lucide-react";
 import { comentarMentoria, concluirTarefa } from "@/actions/mentorias";
 import { AnexarArquivo, CheckinMentoria, Formulario } from "@/components/mentorias/formulario";
 import { TarefaMentoria } from "@/components/mentorias/gestao";
-import { CapaMentorias, campo, DataEncontro, ListaArquivos, ListaPosts, NavegacaoMentoria, paginaMentorias, rotulo, Secao, StatusEncontro, Vazio, VoltarMentorias } from "@/components/mentorias/painel";
+import { CabecalhoMentorias, campo, DataEncontro, ListaArquivos, ListaPosts, NavegacaoMentoria, paginaMentorias, rotulo, Secao, StatusEncontro, Vazio, VoltarMentorias } from "@/components/mentorias/painel";
 import { Badge } from "@/components/ui/badge";
-import { alunoMentoria, horarioMentoria } from "@/lib/mentorias";
+import { alunoMentoria, carregarEspacoMentoria, horarioMentoria } from "@/lib/mentorias";
 import { prisma } from "@/lib/prisma";
+import { BibliotecaEspaco, BuscaEspaco, CalendarioEspaco, indexarEspaco, InicioEspaco, ListaAcompanhamento, PaginasEspaco, secaoSelecionada, secoesComuns } from "@/components/mentorias/espaco";
 
-export default async function MentoriaDoAluno({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
+type Props = { params: Promise<{ id: string }>; searchParams: Promise<Record<string, string | undefined>> };
+
+export default async function MentoriaDoAluno({ params, searchParams }: Props) {
+  const [{ id }, filtros] = await Promise.all([params, searchParams]);
   const aluno = await alunoMentoria(id);
   if (!aluno) notFound();
 
@@ -30,24 +33,39 @@ export default async function MentoriaDoAluno({ params }: { params: Promise<{ id
     ...encontros.filter((e) => e.status === "AGENDADO" && e.inicio.getTime() + e.duracao * 60_000 >= agora).reverse(),
     ...encontros.filter((e) => e.status !== "AGENDADO" || e.inicio.getTime() + e.duracao * 60_000 < agora),
   ];
-  const secoes: [string, string][] = [["encontros", "Encontros"], ["mural", "Mural"], ["publicacoes", "Publicações"]];
-  if (!grupo) secoes.push(["tarefas", "Tarefas"], ["documentos", "Documentos"]);
+  const secoes: [string, string][] = [...secoesComuns];
+  if (grupo) secoes.push(["acompanhamento", "Acompanhamento"]);
+  else secoes.push(["tarefas", "Tarefas"], ["documentos", "Meus documentos"]);
+  const ativa = secaoSelecionada(filtros.secao, secoes);
+  const consulta = typeof filtros.q === "string" ? filtros.q.trim().slice(0, 100) : "";
+  const projeto = await carregarEspacoMentoria(id, grupo, ativa, Boolean(consulta));
+  const noticias = posts.filter((post) => post.tipo === "PUBLICACAO");
 
   return (
     <div className={`space-y-5 ${paginaMentorias}`}>
       <VoltarMentorias href="/portal/mentorias">Minhas mentorias</VoltarMentorias>
-      <CapaMentorias titulo={aluno.mentoria.nome} contexto={grupo ? "Mentoria em grupo" : "Mentoria individual"}
-        detalhe={aluno.mentoria.turma} descricao={aluno.mentoria.descricao} compacta />
-      <NavegacaoMentoria secoes={secoes} />
-
-      <Secao id="encontros" titulo="Encontros e gravações">
+      <CabecalhoMentorias titulo={aluno.mentoria.nome} contexto={grupo ? "Mentoria em grupo" : "Mentoria individual"}
+        detalhe={aluno.mentoria.turma} descricao={aluno.mentoria.descricao} />
+      <NavegacaoMentoria secoes={secoes} ativa={consulta ? "" : ativa} />
+      <BuscaEspaco url={`/portal/mentorias/${id}`} consulta={consulta}
+        itens={consulta ? indexarEspaco({ encontros, posts, tarefas, arquivos, ...projeto }) : []} />
+      {!consulta && ativa === "inicio" && (
+        <InicioEspaco secoes={secoes} encontros={encontros} noticias={noticias} agora={agora}
+          acoesEncontro={(encontro) => grupo && !encontro.presencas[0]?.checkin_em && (
+            <CheckinMentoria mentoriaId={id} encontroId={encontro.id} agora={agora}
+              abre={encontro.inicio.getTime() - 30 * 60_000} fecha={encontro.inicio.getTime() + encontro.duracao * 60_000} />
+          )} />
+      )}
+        {!consulta && ativa === "encontros" && (
+          <Secao id="encontros" titulo="Calendário de encontros">
+        <CalendarioEspaco encontros={encontros} mes={filtros.mes} agora={agora} />
         {!emOrdem.length && <Vazio>Nenhum encontro cadastrado.</Vazio>}
         {!!emOrdem.length && <Vazio>Horários de Cuiabá</Vazio>}
         {emOrdem.map((encontro) => {
           const presenca = encontro.presencas[0];
           const inicio = encontro.inicio.getTime();
           return (
-            <article key={encontro.id} className="space-y-3 rounded-xl border border-[#e4ebed] bg-[#f8fafb] p-3 sm:p-4">
+            <article key={encontro.id} id={`encontro-${encontro.id}`} className="scroll-mt-24 space-y-3 rounded-xl border border-[#e4ebed] bg-[#f8fafb] p-3 sm:p-4">
               <div className="flex flex-wrap items-start gap-3">
                 <DataEncontro data={encontro.inicio} />
                 <div className="flex min-w-0 flex-1 flex-col items-start gap-1 lg:flex-row lg:justify-between lg:gap-3">
@@ -76,21 +94,21 @@ export default async function MentoriaDoAluno({ params }: { params: Promise<{ id
           );
         })}
       </Secao>
-
-      <div className="grid items-start gap-5 md:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
-        <Secao id="mural" titulo="Mural">
+        )}
+        {!consulta && ativa === "mural" && (
+          <Secao id="mural" titulo="Mural">
           <Formulario acao={comentarMentoria.bind(null, id)} botao="Enviar mensagem">
             <label className={rotulo}>Mensagem<textarea name="texto" required maxLength={5000} rows={3} className={campo} /></label>
           </Formulario>
           <ListaPosts posts={posts.filter((post) => post.tipo === "MURAL")} />
         </Secao>
-        <Secao id="publicacoes" titulo="Publicações da Raccolto">
-          <ListaPosts posts={posts.filter((post) => post.tipo === "PUBLICACAO")} publicacoes />
+        )}
+        {!consulta && ativa === "publicacoes" && (
+          <Secao id="publicacoes" titulo="Notícias da Raccolto">
+          <ListaPosts posts={noticias} publicacoes />
         </Secao>
-      </div>
-
-      {!grupo && (
-        <div className="grid items-start gap-5 md:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
+        )}
+        {!consulta && ativa === "tarefas" && (
           <Secao id="tarefas" titulo="Minhas tarefas">
             {!tarefas.length && <Vazio>Nenhuma tarefa cadastrada.</Vazio>}
             <ul className="divide-y">
@@ -101,11 +119,19 @@ export default async function MentoriaDoAluno({ params }: { params: Promise<{ id
               ))}
             </ul>
           </Secao>
+        )}
+        {!consulta && ativa === "documentos" && (
           <Secao id="documentos" titulo="Meus documentos">
             <AnexarArquivo alunoId={aluno.id} />
             <ListaArquivos arquivos={arquivos} />
           </Secao>
-        </div>
+        )}
+      {!consulta && ativa === "paginas" && <PaginasEspaco paginas={projeto.paginas} paginaId={filtros.pagina} />}
+      {!consulta && ativa === "biblioteca" && (
+        <Secao id="biblioteca" titulo="Biblioteca de materiais"><BibliotecaEspaco materiais={projeto.materiais} /></Secao>
+      )}
+      {!consulta && ativa === "acompanhamento" && grupo && (
+        <Secao id="acompanhamento" titulo="Acompanhamento da turma"><ListaAcompanhamento itens={projeto.itens} /></Secao>
       )}
     </div>
   );

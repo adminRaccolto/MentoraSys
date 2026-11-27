@@ -374,3 +374,69 @@ export async function alterarTarefaPelaEquipe(id: string, alunoId: string, taref
     return { sucesso: concluir ? "Tarefa concluída." : "Tarefa reaberta." };
   });
 }
+
+export async function salvarPaginaMentoria(id: string, paginaId: string | null, _: Resultado, form: FormData) {
+  return executar(async () => {
+    await buscarMentoria(id);
+    const dados = campos(form, { titulo: textoObrigatorio(140), conteudo: textoObrigatorio(16000) });
+    if (paginaId) {
+      const atual = await prisma.mentoriaPagina.updateMany({ where: { id: paginaId, mentoria_id: id }, data: dados });
+      if (!atual.count) throw new ErroFormulario("Página não encontrada.");
+    } else {
+      await prisma.mentoriaPagina.create({ data: { ...dados, mentoria_id: id } });
+    }
+    atualizarPaginas(id);
+    return { sucesso: "Página publicada." };
+  });
+}
+
+export async function salvarItemMentoria(id: string, itemId: string | null, _: Resultado, form: FormData) {
+  return executar(async () => {
+    const mentoria = await buscarMentoria(id);
+    if (mentoria.tipo !== "GRUPO") throw new ErroFormulario("Lista de acompanhamento indisponível.");
+    const dados = campos(form, {
+      titulo: textoObrigatorio(160),
+      descricao: textoOpcional(3000),
+      responsavel: textoOpcional(120),
+      prazo: z.string().regex(/^(\d{4}-\d{2}-\d{2})?$/, "Prazo inválido.").transform((s) => {
+        if (!s) return null;
+        const data = new Date(`${s}T00:00:00Z`);
+        if (!Number.isFinite(data.getTime()) || data.toISOString().slice(0, 10) !== s) throw new ErroFormulario("Prazo inválido.");
+        return data;
+      }),
+    });
+    if (itemId) {
+      const atual = await prisma.mentoriaItem.updateMany({ where: { id: itemId, mentoria_id: id }, data: dados });
+      if (!atual.count) throw new ErroFormulario("Item não encontrado.");
+    } else {
+      await prisma.mentoriaItem.create({ data: { ...dados, mentoria_id: id } });
+    }
+    atualizarPaginas(id);
+    return { sucesso: "Item salvo." };
+  });
+}
+
+export async function alterarItemMentoria(id: string, itemId: string, concluir: boolean) {
+  return executar(async () => {
+    const mentoria = await buscarMentoria(id);
+    if (mentoria.tipo !== "GRUPO") throw new ErroFormulario("Lista de acompanhamento indisponível.");
+    const atual = await prisma.mentoriaItem.updateMany({
+      where: { id: itemId, mentoria_id: id },
+      data: { concluida_em: concluir ? new Date() : null },
+    });
+    if (!atual.count) throw new ErroFormulario("Item não encontrado.");
+    atualizarPaginas(id);
+    return { sucesso: concluir ? "Item concluído." : "Item reaberto." };
+  });
+}
+
+export async function editarNoticiaMentoria(id: string, noticiaId: string, _: Resultado, form: FormData) {
+  return executar(async () => {
+    await buscarMentoria(id);
+    const dados = campos(form, { titulo: textoObrigatorio(140), texto: textoObrigatorio(5000), url: urlOpcional });
+    const atual = await prisma.mentoriaPost.updateMany({ where: { id: noticiaId, mentoria_id: id, tipo: "PUBLICACAO" }, data: dados });
+    if (!atual.count) throw new ErroFormulario("Notícia não encontrada.");
+    atualizarPaginas(id);
+    return { sucesso: "Notícia atualizada." };
+  });
+}

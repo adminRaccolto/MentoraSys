@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { CapaMentorias, caixa, LinhaMentoria, paginaMentorias, Vazio } from "@/components/mentorias/painel";
+import { CabecalhoMentorias, caixa, LinhaMentoria, paginaMentorias, Vazio } from "@/components/mentorias/painel";
 import { obterClientePortal } from "@/lib/portal-sessao";
 import { prisma } from "@/lib/prisma";
 
@@ -14,7 +14,7 @@ export default async function MentoriasDoAluno() {
 
   return (
     <div className={`space-y-5 ${paginaMentorias}`}>
-      <CapaMentorias titulo="Minhas mentorias" contexto="Portal do aluno" />
+      <CabecalhoMentorias titulo="Minhas mentorias" contexto="Portal do aluno" />
       <section className={caixa} aria-labelledby="mentorias-disponiveis">
         <h2 id="mentorias-disponiveis" className="text-xl font-semibold tracking-tight">Mentorias disponíveis</h2>
         {!alunos.length && <Vazio>Nenhuma mentoria disponível para seu acesso.</Vazio>}

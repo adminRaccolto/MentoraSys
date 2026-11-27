@@ -49,3 +49,9 @@ Os links de videoconferência e de gravação podem ser cadastrados pela equipe.
 - `ZOOM_WEBHOOK_SECRET_TOKEN` valida as solicitações enviadas pelo Zoom.
 
 Cadastre `/api/webhooks/zoom` no domínio da aplicação como destino para `meeting.participant_joined` e `recording.completed`. A entrada na sala é identificada pelo e-mail quando o Zoom o disponibiliza e há um único aluno correspondente na turma. A gravação automática exige que o anfitrião tenha gravação na nuvem habilitada. A equipe confere as permissões de compartilhamento da gravação no Zoom antes de publicá-la no portal.
+
+### Espaço de projeto da mentoria
+
+A gestão e o portal têm início com próximos encontros, notícias e atalhos, além das seções de calendário, páginas, mural e biblioteca. A busca encontra conteúdo dentro da mentoria a que o usuário tem acesso.
+
+A equipe da empresa publica e edita páginas e notícias, organiza os materiais compartilhados por categoria e controla o acompanhamento das turmas, com responsáveis, prazos e conclusão. Os alunos da turma consultam a lista e podem fazer check-in nos encontros. Nas mentorias individuais, o aluno acompanha suas tarefas e envia documentos privados. A matrícula ativa controla a visualização no portal.

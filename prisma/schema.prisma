@@ -1547,6 +1547,9 @@ model Mentoria {
   encontros MentoriaEncontro[]
   posts     MentoriaPost[]
   tokens    TokenPortal[]
+  paginas   MentoriaPagina[]
+  itens     MentoriaItem[]
+  materiais MentoriaMaterial[]
 
   @@index([empresa_id, criado_em])
   @@map("mentorias")
@@ -1648,4 +1651,49 @@ model MentoriaArquivo {
 
   @@index([aluno_id, criado_em])
   @@map("mentoria_arquivos")
+}
+
+model MentoriaPagina {
+  id          String   @id @default(cuid())
+  mentoria_id String
+  titulo      String
+  conteudo    String
+  criada_em   DateTime @default(now())
+  alterada_em DateTime @updatedAt
+
+  mentoria Mentoria @relation(fields: [mentoria_id], references: [id], onDelete: Cascade)
+
+  @@index([mentoria_id, alterada_em])
+  @@map("mentoria_paginas")
+}
+
+model MentoriaItem {
+  id           String    @id @default(cuid())
+  mentoria_id  String
+  titulo       String
+  descricao    String?
+  responsavel  String?
+  prazo        DateTime? @db.Date
+  concluida_em DateTime?
+  criado_em    DateTime  @default(now())
+
+  mentoria Mentoria @relation(fields: [mentoria_id], references: [id], onDelete: Cascade)
+
+  @@index([mentoria_id, criado_em])
+  @@map("mentoria_itens")
+}
+
+model MentoriaMaterial {
+  id          String   @id @default(cuid())
+  mentoria_id String
+  nome        String
+  categoria   String?
+  caminho     String   @unique
+  tamanho     Int
+  criado_em   DateTime @default(now())
+
+  mentoria Mentoria @relation(fields: [mentoria_id], references: [id], onDelete: Cascade)
+
+  @@index([mentoria_id, criado_em])
+  @@map("mentoria_materiais")
 }

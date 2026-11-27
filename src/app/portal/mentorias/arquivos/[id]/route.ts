@@ -1,9 +1,7 @@
-import { randomUUID } from "node:crypto";
-import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { obterClientePortal } from "@/lib/portal-sessao";
 import { empresaMentorias } from "@/lib/mentorias";
-import { arquivosMentoria, LIMITE_ARQUIVO, prepararArquivosMentoria, TIPOS_ARQUIVO } from "@/lib/mentorias-arquivos";
+import { baixarArquivoMentoria, salvarArquivoMentoria } from "@/lib/mentorias-arquivos";
 
 type Contexto = { params: Promise<{ id: string }> };
 
@@ -26,9 +24,7 @@ export async function GET(_request: Request, { params }: Contexto) {
   });
   if (!arquivo || !await autorizar(arquivo.aluno)) return new Response(null, { status: 404 });
 
-  const { data, error } = await arquivosMentoria.createSignedUrl(arquivo.caminho, 60, { download: arquivo.nome });
-  if (error) return Response.json({ erro: "Arquivo temporariamente indisponível." }, { status: 503 });
-  return NextResponse.redirect(data.signedUrl, { headers: { "Cache-Control": "private, no-store", "Referrer-Policy": "no-referrer" } });
+  return baixarArquivoMentoria(arquivo);
 }
 
 export async function POST(request: Request, { params }: Contexto) {
@@ -40,34 +36,7 @@ export async function POST(request: Request, { params }: Contexto) {
   });
   if (!aluno || !await autorizar(aluno)) return new Response(null, { status: 404 });
 
-  try {
-    const form = await request.formData();
-    const arquivo = form.get("arquivo");
-    if (!(arquivo instanceof File) || arquivo.size < 1 || arquivo.size > LIMITE_ARQUIVO) {
-      return Response.json({ erro: "Selecione um arquivo de até 4 MB." }, { status: 400 });
-    }
-    const nome = arquivo.name.replace(/[\u0000-\u001f\u007f/\\]/g, "_").slice(-180);
-    const extensao = nome.split(".").pop()?.toLowerCase();
-    if (!extensao || !Object.hasOwn(TIPOS_ARQUIVO, extensao)) {
-      return Response.json({ erro: "Formato de arquivo não aceito." }, { status: 400 });
-    }
-    const caminho = `${aluno.mentoria.empresa_id}/${aluno.id}/${randomUUID()}.${extensao}`;
-    await prepararArquivosMentoria();
-    const { error } = await arquivosMentoria.upload(caminho, arquivo, {
-      contentType: TIPOS_ARQUIVO[extensao as keyof typeof TIPOS_ARQUIVO],
-      upsert: false,
-    });
-    if (error) throw error;
-
-    try {
-      await prisma.mentoriaArquivo.create({ data: { aluno_id: aluno.id, nome, caminho, tamanho: arquivo.size } });
-    } catch (erro) {
-      await arquivosMentoria.remove([caminho]);
-      throw erro;
-    }
-    return Response.json({ sucesso: "Documento anexado." }, { status: 201 });
-  } catch (erro) {
-    console.error("Falha ao anexar documento da mentoria", erro instanceof Error ? erro.name : typeof erro);
-    return Response.json({ erro: "Não foi possível anexar o documento." }, { status: 500 });
-  }
+  return salvarArquivoMentoria(request, `${aluno.mentoria.empresa_id}/${aluno.id}`, (arquivo) => (
+    prisma.mentoriaArquivo.create({ data: { ...arquivo, aluno_id: aluno.id } })
+  ));
 }

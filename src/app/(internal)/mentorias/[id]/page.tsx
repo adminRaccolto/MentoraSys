@@ -4,13 +4,17 @@ import { CalendarPlus, PencilLine } from "lucide-react";
 import { alterarAcessoAluno, editarMentoria, emitirAcessoAluno, matricularAluno, publicarMentoria, salvarEncontro } from "@/actions/mentorias";
 import { AnexarArquivo, Formulario } from "@/components/mentorias/formulario";
 import { CamposEncontro, GerenciarEncontro, GerenciarTarefas } from "@/components/mentorias/gestao";
-import { BlocoAcao, CapaMentorias, campo, ListaArquivos, ListaPosts, NavegacaoMentoria, paginaMentorias, rotulo, Secao, Vazio, VoltarMentorias } from "@/components/mentorias/painel";
+import { BlocoAcao, CabecalhoMentorias, campo, ListaArquivos, ListaPosts, NavegacaoMentoria, paginaMentorias, rotulo, Secao, Vazio, VoltarMentorias } from "@/components/mentorias/painel";
 import { prisma } from "@/lib/prisma";
-import { empresaMentorias } from "@/lib/mentorias";
+import { carregarEspacoMentoria, empresaMentorias } from "@/lib/mentorias";
 import { zoomDisponivel } from "@/lib/mentorias-zoom";
+import { BibliotecaEspaco, BuscaEspaco, CalendarioEspaco, indexarEspaco, InicioEspaco, ListaAcompanhamento, PaginasEspaco, secaoSelecionada, secoesComuns } from "@/components/mentorias/espaco";
+import { EditorItemMentoria, EditorNoticiaMentoria, EditorPaginaMentoria } from "@/components/mentorias/editor-espaco";
 
-export default async function MentoriaInterna({ params }: { params: Promise<{ id: string }> }) {
-  const [{ id }, empresaId] = await Promise.all([params, empresaMentorias().catch(() => null)]);
+type Props = { params: Promise<{ id: string }>; searchParams: Promise<Record<string, string | undefined>> };
+
+export default async function MentoriaInterna({ params, searchParams }: Props) {
+  const [{ id }, empresaId, filtros] = await Promise.all([params, empresaMentorias().catch(() => null), searchParams]);
   if (!empresaId) notFound();
 
   const mentoria = await prisma.mentoria.findUnique({
@@ -38,26 +42,39 @@ export default async function MentoriaInterna({ params }: { params: Promise<{ id
     alunoIndividual ? prisma.mentoriaTarefa.findMany({ where: { aluno_id: alunoIndividual.id }, orderBy: { criado_em: "desc" } }) : [],
     alunoIndividual ? prisma.mentoriaArquivo.findMany({ where: { aluno_id: alunoIndividual.id }, orderBy: { criado_em: "desc" } }) : [],
   ]);
-  const secoes: [string, string][] = [["encontros", "Encontros"], ["alunos", grupo ? "Alunos" : "Aluno"], ["mural", "Mural"], ["publicacoes", "Publicações"]];
-  if (alunoIndividual) secoes.push(["tarefas", "Tarefas"], ["documentos", "Documentos"]);
+  const secoes: [string, string][] = [...secoesComuns, ["alunos", grupo ? "Alunos" : "Aluno"]];
+  if (grupo) secoes.push(["acompanhamento", "Acompanhamento"]);
+  if (alunoIndividual) secoes.push(["tarefas", "Tarefas"], ["documentos", "Documentos individuais"]);
+  secoes.push(["cadastro", "Cadastro"]);
+  const ativa = secaoSelecionada(filtros.secao, secoes);
+  const consulta = typeof filtros.q === "string" ? filtros.q.trim().slice(0, 100) : "";
+  const projeto = await carregarEspacoMentoria(id, grupo, ativa, Boolean(consulta));
+  const noticias = mentoria.posts.filter((post) => post.tipo === "PUBLICACAO");
+  // eslint-disable-next-line react-hooks/purity -- relógio da requisição no servidor
+  const agora = Date.now();
 
   return (
     <div className={paginaMentorias}>
       <div className="mx-auto max-w-[83rem] space-y-5 p-3.5 sm:p-7 xl:p-9">
         <VoltarMentorias href="/mentorias">Mentorias</VoltarMentorias>
-        <CapaMentorias titulo={mentoria.nome} contexto={grupo ? "Mentoria em grupo" : "Mentoria individual"}
-          detalhe={mentoria.turma} descricao={mentoria.descricao} compacta />
-        <NavegacaoMentoria secoes={secoes} />
-        <BlocoAcao titulo="Editar cadastro" icone={PencilLine}>
-          <Formulario className="mt-3 space-y-3 pb-2" acao={editarMentoria.bind(null, id)} botao="Salvar cadastro">
-            <label className={rotulo}>Nome<input name="nome" required maxLength={140} className={campo} defaultValue={mentoria.nome} /></label>
-            {grupo && <label className={rotulo}>Nome da turma<input name="turma" required maxLength={100} className={campo} defaultValue={mentoria.turma ?? ""} /></label>}
-            <label className={rotulo}>Descrição<textarea name="descricao" maxLength={3000} rows={2} className={campo} defaultValue={mentoria.descricao ?? ""} /></label>
-          </Formulario>
-        </BlocoAcao>
-
-        <div className="grid items-start gap-5 xl:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)]">
-          <Secao id="encontros" titulo="Encontros e gravações">
+        <CabecalhoMentorias titulo={mentoria.nome} contexto={grupo ? "Mentoria em grupo" : "Mentoria individual"}
+          detalhe={mentoria.turma} descricao={mentoria.descricao} />
+        <NavegacaoMentoria secoes={secoes} ativa={consulta ? "" : ativa} />
+        <BuscaEspaco url={`/mentorias/${id}`} consulta={consulta}
+          itens={consulta ? indexarEspaco({ encontros: mentoria.encontros, posts: mentoria.posts, tarefas, arquivos, ...projeto }) : []} />
+        {!consulta && ativa === "inicio" && <InicioEspaco secoes={secoes} encontros={mentoria.encontros} noticias={noticias} agora={agora} />}
+        {!consulta && ativa === "cadastro" && (
+          <BlocoAcao titulo="Editar cadastro" icone={PencilLine}>
+            <Formulario className="mt-3 space-y-3 pb-2" acao={editarMentoria.bind(null, id)} botao="Salvar cadastro">
+              <label className={rotulo}>Nome<input name="nome" required maxLength={140} className={campo} defaultValue={mentoria.nome} /></label>
+              {grupo && <label className={rotulo}>Nome da turma<input name="turma" required maxLength={100} className={campo} defaultValue={mentoria.turma ?? ""} /></label>}
+              <label className={rotulo}>Descrição<textarea name="descricao" maxLength={3000} rows={2} className={campo} defaultValue={mentoria.descricao ?? ""} /></label>
+            </Formulario>
+          </BlocoAcao>
+        )}
+        {!consulta && ativa === "encontros" && (
+          <Secao id="encontros" titulo="Calendário de encontros">
+            <CalendarioEspaco encontros={mentoria.encontros} mes={filtros.mes} agora={agora} />
             <BlocoAcao titulo="Agendar encontro" icone={CalendarPlus} aberto={mentoria.encontros.length === 0}>
               <Formulario className="mt-3 space-y-3 pb-2" acao={salvarEncontro.bind(null, id, null)} botao="Agendar encontro" variant="default">
                 <CamposEncontro />
@@ -66,7 +83,8 @@ export default async function MentoriaInterna({ params }: { params: Promise<{ id
             {!mentoria.encontros.length && <Vazio>Nenhum encontro agendado.</Vazio>}
             {mentoria.encontros.map((encontro) => <GerenciarEncontro key={encontro.id} encontro={encontro} grupo={grupo} alunos={mentoria.alunos} zoom={zoomDisponivel(empresaId)} />)}
           </Secao>
-
+        )}
+        {!consulta && ativa === "alunos" && (
           <Secao id="alunos" titulo={grupo ? "Alunos da turma" : "Aluno da mentoria"}>
             {grupo && clientes.length > 0 && (
               <Formulario acao={matricularAluno.bind(null, id)} botao="Matricular aluno">
@@ -90,30 +108,42 @@ export default async function MentoriaInterna({ params }: { params: Promise<{ id
               ))}
             </ul>
           </Secao>
-        </div>
-
-        <div className="grid gap-5 lg:grid-cols-2">
+        )}
+        {!consulta && ativa === "mural" && (
           <Secao id="mural" titulo="Mural">
             <Formulario acao={publicarMentoria.bind(null, id, "MURAL")} botao="Enviar mensagem">
               <label className={rotulo}>Mensagem<textarea name="texto" required maxLength={5000} rows={3} className={campo} /></label>
             </Formulario>
             <ListaPosts posts={mentoria.posts.filter((post) => post.tipo === "MURAL")} />
           </Secao>
-          <Secao id="publicacoes" titulo="Publicações da Raccolto">
-            <Formulario acao={publicarMentoria.bind(null, id, "PUBLICACAO")} botao="Publicar">
-              <label className={rotulo}>Título<input name="titulo" required maxLength={140} className={campo} /></label>
-              <label className={rotulo}>Conteúdo<textarea name="texto" required maxLength={5000} rows={3} className={campo} /></label>
-              <label className={rotulo}>Link do material<input name="url" type="url" className={campo} /></label>
-            </Formulario>
-            <ListaPosts posts={mentoria.posts.filter((post) => post.tipo === "PUBLICACAO")} publicacoes />
+        )}
+        {!consulta && ativa === "publicacoes" && (
+          <Secao id="publicacoes" titulo="Notícias da Raccolto">
+            <EditorNoticiaMentoria mentoriaId={id} />
+            <ListaPosts posts={noticias} publicacoes acoes={(noticia) => <EditorNoticiaMentoria mentoriaId={id} noticia={noticia} />} />
           </Secao>
-        </div>
-
-        {alunoIndividual && (
-          <div className="grid gap-5 lg:grid-cols-2">
-            <Secao id="tarefas" titulo="Tarefas do aluno"><GerenciarTarefas id={id} alunoId={alunoIndividual.id} tarefas={tarefas} /></Secao>
-            <Secao id="documentos" titulo="Documentos do aluno"><AnexarArquivo alunoId={alunoIndividual.id} /><ListaArquivos arquivos={arquivos} /></Secao>
-          </div>
+        )}
+        {!consulta && ativa === "paginas" && (
+          <PaginasEspaco paginas={projeto.paginas} paginaId={filtros.pagina}
+            editor={(pagina) => <EditorPaginaMentoria mentoriaId={id} pagina={pagina} />} />
+        )}
+        {!consulta && ativa === "biblioteca" && (
+          <Secao id="biblioteca" titulo="Biblioteca de materiais">
+            <AnexarArquivo alunoId={id} biblioteca />
+            <BibliotecaEspaco materiais={projeto.materiais} />
+          </Secao>
+        )}
+        {!consulta && ativa === "acompanhamento" && grupo && (
+          <Secao id="acompanhamento" titulo="Acompanhamento da turma">
+            <EditorItemMentoria mentoriaId={id} />
+            <ListaAcompanhamento itens={projeto.itens} acoes={(item) => <EditorItemMentoria mentoriaId={id} item={item} />} />
+          </Secao>
+        )}
+        {!consulta && ativa === "tarefas" && alunoIndividual && (
+          <Secao id="tarefas" titulo="Tarefas do aluno"><GerenciarTarefas id={id} alunoId={alunoIndividual.id} tarefas={tarefas} /></Secao>
+        )}
+        {!consulta && ativa === "documentos" && alunoIndividual && (
+          <Secao id="documentos" titulo="Documentos individuais"><AnexarArquivo alunoId={alunoIndividual.id} /><ListaArquivos arquivos={arquivos} /></Secao>
         )}
       </div>
     </div>

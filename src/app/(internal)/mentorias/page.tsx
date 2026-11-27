@@ -2,7 +2,7 @@ import Link from "next/link";
 import { CalendarDays, Layers3, UserRound, UsersRound } from "lucide-react";
 import { cadastrarMentoria } from "@/actions/mentorias";
 import { Formulario } from "@/components/mentorias/formulario";
-import { AtalhoCapa, BlocoAcao, CapaMentorias, caixa, campo, LinhaMentoria, paginaMentorias, rotulo, superficieMentorias, Vazio } from "@/components/mentorias/painel";
+import { AtalhoCapa, BlocoAcao, CabecalhoMentorias, caixa, campo, LinhaMentoria, paginaMentorias, rotulo, superficieMentorias, Vazio } from "@/components/mentorias/painel";
 import { prisma } from "@/lib/prisma";
 import { empresaMentorias, NOME_MESA } from "@/lib/mentorias";
 
@@ -32,9 +32,9 @@ export default async function MentoriasPage() {
   return (
     <div className={paginaMentorias}>
       <div className="mx-auto max-w-[83rem] space-y-5 p-3.5 sm:space-y-6 sm:p-7 xl:p-9">
-        <CapaMentorias titulo="Mentorias" contexto="Raccolto">
+        <CabecalhoMentorias titulo="Mentorias" contexto="Raccolto">
           {podeCriar && <AtalhoCapa href="#nova-mentoria">Nova mentoria</AtalhoCapa>}
-        </CapaMentorias>
+        </CabecalhoMentorias>
 
         <dl className="grid grid-cols-3 gap-2 sm:gap-4">
           {totais.map(({ rotulo, valor, icone: Icon }) => (

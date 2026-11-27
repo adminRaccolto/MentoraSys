@@ -46,3 +46,15 @@ export function checkinAberto(encontro: { status: string; inicio: Date; duracao:
   const inicio = encontro.inicio.getTime();
   return encontro.status === "AGENDADO" && agora >= inicio - 30 * 60_000 && agora <= inicio + encontro.duracao * 60_000;
 }
+
+export async function carregarEspacoMentoria(id: string, grupo: boolean, secao: string, buscando: boolean) {
+  const [paginas, materiais, itens] = await Promise.all([
+    secao === "paginas" || buscando ? prisma.mentoriaPagina.findMany({ where: { mentoria_id: id }, orderBy: { alterada_em: "desc" } }) : [],
+    secao === "biblioteca" || buscando ? prisma.mentoriaMaterial.findMany({ where: { mentoria_id: id }, orderBy: [{ categoria: "asc" }, { criado_em: "desc" }] }) : [],
+    grupo && (secao === "acompanhamento" || buscando)
+      ? prisma.mentoriaItem.findMany({ where: { mentoria_id: id }, orderBy: [{ concluida_em: { sort: "asc", nulls: "first" } }, { prazo: { sort: "asc", nulls: "last" } }, { criado_em: "desc" }] })
+      : [],
+  ]);
+
+  return { paginas, materiais, itens };
+}

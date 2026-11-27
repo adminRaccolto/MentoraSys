@@ -1,6 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowDownRight, ArrowLeft, ArrowRight, CalendarDays, CheckSquare, ChevronDown, FileText, FolderLock, GraduationCap, MessageCircle, Newspaper, UserRound, UsersRound } from "lucide-react";
+import { ArrowLeft, ArrowRight, CalendarDays, CheckSquare, ChevronDown, FileText, FolderLock, FolderOpen, GraduationCap, House, Settings, MessageCircle, Newspaper, UserRound, UsersRound } from "lucide-react";
 import type { ReactNode } from "react";
 import type { MentoriaArquivo, MentoriaPost, StatusEncontroMentoria } from "@/lib/generated/prisma";
 import { Badge } from "@/components/ui/badge";
@@ -13,35 +12,35 @@ export const superficieMentorias = styles.superficie;
 export const caixa = `space-y-4 p-4 sm:p-5 ${superficieMentorias}`;
 export const paginaMentorias = styles.pagina;
 
-const iconesSecao: Partial<Record<string, ReactNode>> = {
+export const iconesSecao: Partial<Record<string, ReactNode>> = {
+  inicio: <House aria-hidden className="size-4" />,
   alunos: <UsersRound aria-hidden className="size-4" />,
   encontros: <CalendarDays aria-hidden className="size-4" />,
   mural: <MessageCircle aria-hidden className="size-4" />,
   publicacoes: <Newspaper aria-hidden className="size-4" />,
   tarefas: <CheckSquare aria-hidden className="size-4" />,
+  acompanhamento: <CheckSquare aria-hidden className="size-4" />,
   documentos: <FolderLock aria-hidden className="size-4" />,
+  biblioteca: <FolderOpen aria-hidden className="size-4" />,
+  paginas: <FileText aria-hidden className="size-4" />,
+  cadastro: <Settings aria-hidden className="size-4" />,
 };
 
-export function CapaMentorias({ titulo, contexto, detalhe, descricao, compacta, children }: {
-  titulo: string;
-  contexto?: string;
-  detalhe?: string | null;
-  descricao?: string | null;
-  compacta?: boolean;
-  children?: ReactNode;
+export function CabecalhoMentorias({ titulo, contexto, detalhe, descricao, children }: {
+  titulo: string; contexto?: string; detalhe?: string | null; descricao?: string | null; children?: ReactNode;
 }) {
   return (
-    <header className={`${styles.hero} ${compacta ? styles.heroCompacto : ""}`}>
-      <div className={styles.foto} aria-hidden>
-        <Image src="/mentorias/capa-agro.webp" alt="" fill sizes="(max-width: 640px) 100vw, 72vw" />
+    <header className={styles.cabecalho}>
+      <div className="flex min-w-0 items-start gap-3 sm:gap-4">
+        <span className={styles.marca}><GraduationCap aria-hidden className="size-6" /></span>
+        <div className="min-w-0">
+          {contexto && <p className="mb-1 text-xs font-medium text-[#526875]">{contexto}</p>}
+          <h1 className="break-words text-2xl font-semibold leading-tight tracking-tight sm:text-3xl">{titulo}</h1>
+          {detalhe && <p className="mt-1 break-words text-sm font-medium text-[#526875]">{detalhe}</p>}
+          {descricao && <p className="mt-2 max-w-2xl whitespace-pre-wrap break-words text-sm text-[#526875]">{descricao}</p>}
+        </div>
       </div>
-      <div className={styles.heroCopy}>
-        {contexto && <p className={styles.sobreTitulo}><GraduationCap aria-hidden className="size-4" /> {contexto}</p>}
-        <h1 className={styles.titulo}>{titulo}</h1>
-        {detalhe && <p className="mt-3 text-base font-medium text-[#f3d49e]">{detalhe}</p>}
-        {descricao && <p className="mt-2 max-w-lg whitespace-pre-wrap break-words text-sm leading-relaxed text-white/90">{descricao}</p>}
-        {children}
-      </div>
+      {children}
     </header>
   );
 }
@@ -51,7 +50,7 @@ export function VoltarMentorias({ href, children }: { href: string; children: Re
 }
 
 export function AtalhoCapa({ href, children }: { href: string; children: ReactNode }) {
-  return <a href={href} className="mt-5 inline-flex items-center gap-2 rounded-lg bg-[#edc785] px-3.5 py-2 text-sm font-semibold text-[#182e3b] hover:bg-[#f5d5a0]">{children}<ArrowDownRight className="size-4" aria-hidden /></a>;
+  return <a href={href} className="inline-flex w-fit shrink-0 items-center gap-2 self-start rounded-md bg-[#15394f] px-3.5 py-2 text-sm font-semibold text-white hover:bg-[#214e67]">{children}<ArrowRight className="size-4" aria-hidden /></a>;
 }
 
 export function BlocoAcao({ titulo, children, icone: Icon, aberto }: { titulo: string; children: ReactNode; icone: typeof CalendarDays; aberto?: boolean }) {
@@ -115,25 +114,32 @@ export function LinkExterno({ href, children }: { href: string; children: ReactN
   return <a href={href} target="_blank" rel="noreferrer" className="font-medium text-primary underline underline-offset-4">{children}</a>;
 }
 
-export function NavegacaoMentoria({ secoes }: { secoes: [string, string][] }) {
+export function hrefSecao(secao: string) {
+  return secao === "inicio" ? "?secao=inicio" : `?secao=${secao}`;
+}
+
+export function NavegacaoMentoria({ secoes, ativa }: { secoes: [string, string][]; ativa: string }) {
   return (
     <nav aria-label="Seções da mentoria" className={styles.nav}>
-      {secoes.map(([id, nome]) => <a key={id} href={`#${id}`}>{iconesSecao[id]}{nome}</a>)}
+      {secoes.map(([id, nome]) => <Link key={id} href={hrefSecao(id)} aria-current={id === ativa ? "page" : undefined}>{iconesSecao[id]}{nome}</Link>)}
     </nav>
   );
 }
 
-export function ListaPosts({ posts, publicacoes = false }: { posts: MentoriaPost[]; publicacoes?: boolean }) {
+export function ListaPosts({ posts, publicacoes = false, acoes }: {
+  posts: MentoriaPost[]; publicacoes?: boolean; acoes?: (post: MentoriaPost) => ReactNode;
+}) {
   if (!posts.length) return <Vazio>{publicacoes ? "Nenhuma publicação disponível." : "Nenhuma mensagem no mural."}</Vazio>;
 
   return (
     <ul className="divide-y">
       {posts.map((post) => (
-        <li key={post.id} className="space-y-1 py-3 first:pt-0">
+        <li key={post.id} id={`post-${post.id}`} className="scroll-mt-24 space-y-1 py-3 first:pt-0">
           <p className="text-xs text-muted-foreground">{post.autor} · {horarioMentoria(post.criado_em)}</p>
           {post.titulo && <h3 className="font-medium">{post.titulo}</h3>}
           <p className="whitespace-pre-wrap break-words text-sm">{post.texto}</p>
           {post.url && <LinkExterno href={post.url}>Abrir material</LinkExterno>}
+          {acoes?.(post)}
         </li>
       ))}
     </ul>
@@ -146,7 +152,7 @@ export function ListaArquivos({ arquivos }: { arquivos: MentoriaArquivo[] }) {
   return (
     <ul className="divide-y">
       {arquivos.map((arquivo) => (
-        <li key={arquivo.id} className="flex flex-wrap items-center justify-between gap-2 py-2 text-sm">
+        <li key={arquivo.id} id={`arquivo-${arquivo.id}`} className="scroll-mt-24 flex flex-wrap items-center justify-between gap-2 py-2 text-sm">
           <span className="inline-flex min-w-0 items-center gap-2 break-all"><FileText className="size-4 shrink-0 text-[#315c73]" aria-hidden />{arquivo.nome}</span>
           <a className="text-primary underline" href={`/portal/mentorias/arquivos/${arquivo.id}`} download>Baixar</a>
         </li>
