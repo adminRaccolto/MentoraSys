@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useTransition, useMemo, useEffect, useRef } from "react";
+import { useState, useTransition, useMemo } from "react";
 import { useRouter } from "next/navigation";
+import { useAtualizarAoRetomarTela } from "@/hooks/useAtualizarAoRetomarTela";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -142,21 +143,17 @@ function toDateInput(s: string | null | undefined) {
 
 export default function CrmClient({ etapasIniciais, leadsIniciais, clientes, servicos, usuarios }: Props) {
   const router = useRouter();
+  useAtualizarAoRetomarTela();
   const [isPending, startTransition] = useTransition();
 
+  const [listaServidor, setListaServidor] = useState(leadsIniciais);
   const [leads, setLeads] = useState<Lead[]>(leadsIniciais);
-  const [etapas] = useState<EtapaCrm[]>(etapasIniciais);
-
-  // Rastreia IDs excluídos localmente para evitar que dados novos do servidor os restaurem
-  const deletedIdsRef = useRef(new Set<string>());
-  useEffect(() => {
-    setLeads(prev => {
-      const prevIds = new Set(prev.map(l => l.id));
-      const novos = leadsIniciais.filter(l => !prevIds.has(l.id) && !deletedIdsRef.current.has(l.id));
-      if (novos.length === 0) return prev;
-      return [...novos, ...prev];
-    });
-  }, [leadsIniciais]);
+  const [leadsExcluidos, setLeadsExcluidos] = useState<string[]>([]);
+  const etapas = etapasIniciais;
+  if (listaServidor !== leadsIniciais) {
+    setListaServidor(leadsIniciais);
+    setLeads(leadsIniciais.filter((lead) => !leadsExcluidos.includes(lead.id)));
+  }
   const [viewMode, setViewMode] = useState<ViewMode>("KANBAN");
 
   const [selectedId, setSelectedId] = useState<string | null>(leadsIniciais[0]?.id ?? null);
@@ -280,7 +277,7 @@ export default function CrmClient({ etapasIniciais, leadsIniciais, clientes, ser
             previsao_fechamento: created.previsao_fechamento?.toISOString() ?? null,
             data_proxima_acao: created.data_proxima_acao?.toISOString() ?? null,
             comentarios: [],
-          }, ...prev]);
+          }, ...prev.filter((lead) => lead.id !== created.id)]);
           setSelectedId(created.id);
           toast.success("Lead criado");
         }
@@ -314,7 +311,7 @@ export default function CrmClient({ etapasIniciais, leadsIniciais, clientes, ser
     startTransition(async () => {
       try {
         await excluirLead(idParaExcluir);
-        deletedIdsRef.current.add(idParaExcluir);
+        setLeadsExcluidos((prev) => [...prev, idParaExcluir]);
         setLeads((prev) => prev.filter((l) => l.id !== idParaExcluir));
         if (selectedId === idParaExcluir) setSelectedId(null);
         setExcluirId(null);

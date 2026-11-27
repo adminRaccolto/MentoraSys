@@ -16,6 +16,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { criarCliente, editarCliente, excluirCliente, deletarCliente, reativarCliente } from "@/actions/clientes";
 import { gerarConviteCliente } from "@/actions/convites";
+import { useAtualizarAoRetomarTela } from "@/hooks/useAtualizarAoRetomarTela";
 
 // ─── Schema ──────────────────────────────────────────────────────────────────
 
@@ -134,7 +135,13 @@ function Field({ label, error, children }: { label: string; error?: string; chil
 // ─── Component ───────────────────────────────────────────────────────────────
 
 export default function ClientesClient({ clientes: inicial }: { clientes: Cliente[] }) {
+  useAtualizarAoRetomarTela();
+  const [listaServidor, setListaServidor] = useState(inicial);
   const [clientes, setClientes] = useState(inicial);
+  if (listaServidor !== inicial) {
+    setListaServidor(inicial);
+    setClientes(inicial);
+  }
   const [modalAberto, setModalAberto] = useState(false);
   const [clienteEditando, setClienteEditando] = useState<Cliente | null>(null);
   const [clienteExcluindo, setClienteExcluindo] = useState<Cliente | null>(null);
@@ -250,7 +257,8 @@ export default function ClientesClient({ clientes: inicial }: { clientes: Client
           toast.success("Cliente atualizado");
         } else {
           const res = await criarCliente(payload);
-          setClientes((prev) => [...prev, res.data as unknown as Cliente]);
+          const cliente = res.data as unknown as Cliente;
+          setClientes((prev) => prev.some((item) => item.id === cliente.id) ? prev : [...prev, cliente]);
           toast.success("Cliente criado");
         }
         setModalAberto(false);
