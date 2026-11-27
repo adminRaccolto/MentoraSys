@@ -53,6 +53,7 @@ const RECURSOS = [
   { key: "projetos", label: "Projetos" },
   { key: "modelos", label: "Modelos" },
   { key: "agenda", label: "Agenda" },
+  { key: "mentorias", label: "Mentorias" },
   { key: "financeiro", label: "Financeiro" },
   { key: "faturamento", label: "Faturamento" },
   { key: "diagnosticos", label: "Diagnósticos" },

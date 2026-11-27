@@ -1,3 +1,4 @@
+import { COOKIE_PORTAL, DURACAO_PORTAL } from "@/lib/portal-sessao";
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
@@ -30,13 +31,15 @@ export async function GET(
   }
 
   const cookieStore = await cookies();
-  cookieStore.set("portal_cliente", tokenPortal.cliente_id, {
+  cookieStore.delete("portal_cliente");
+  cookieStore.set(COOKIE_PORTAL, token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
-    maxAge: 7 * 24 * 60 * 60,
+    maxAge: Math.min(DURACAO_PORTAL, Math.max(0, Math.floor((tokenPortal.expira_em.getTime() - Date.now()) / 1000))),
     path: "/",
   });
 
-  return NextResponse.redirect(`${origin}/portal`);
+  const destino = tokenPortal.mentoria_id ? `/portal/mentorias/${tokenPortal.mentoria_id}` : "/portal";
+  return NextResponse.redirect(`${origin}${destino}`, { headers: { "Referrer-Policy": "no-referrer", "Cache-Control": "no-store" } });
 }

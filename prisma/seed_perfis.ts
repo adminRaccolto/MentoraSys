@@ -9,7 +9,7 @@ const prisma = new PrismaClient({ adapter });
 
 const RECURSOS_TODOS = [
   "clientes", "fornecedores", "servicos", "crm", "propostas", "contratos",
-  "projetos", "modelos", "agenda", "financeiro", "faturamento",
+  "projetos", "modelos", "agenda", "mentorias", "financeiro", "faturamento",
   "diagnosticos", "configuracoes",
 ];
 const ACOES = ["criar", "editar", "excluir"];

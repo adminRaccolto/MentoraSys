@@ -821,6 +821,7 @@ exports.Prisma.DiagnosticoScalarFieldEnum = {
 exports.Prisma.TokenPortalScalarFieldEnum = {
   id: 'id',
   cliente_id: 'cliente_id',
+  mentoria_id: 'mentoria_id',
   token: 'token',
   email: 'email',
   expira_em: 'expira_em',
@@ -949,6 +950,77 @@ exports.Prisma.ReembolsoItemScalarFieldEnum = {
   km: 'km',
   valor_km: 'valor_km',
   clientes_ids: 'clientes_ids',
+  criado_em: 'criado_em'
+};
+
+exports.Prisma.MentoriaScalarFieldEnum = {
+  id: 'id',
+  empresa_id: 'empresa_id',
+  nome: 'nome',
+  turma: 'turma',
+  descricao: 'descricao',
+  tipo: 'tipo',
+  criado_em: 'criado_em'
+};
+
+exports.Prisma.MentoriaAlunoScalarFieldEnum = {
+  id: 'id',
+  mentoria_id: 'mentoria_id',
+  cliente_id: 'cliente_id',
+  ativo: 'ativo',
+  criado_em: 'criado_em'
+};
+
+exports.Prisma.MentoriaEncontroScalarFieldEnum = {
+  id: 'id',
+  mentoria_id: 'mentoria_id',
+  titulo: 'titulo',
+  pauta: 'pauta',
+  inicio: 'inicio',
+  duracao: 'duracao',
+  status: 'status',
+  sala_url: 'sala_url',
+  gravacao_url: 'gravacao_url',
+  zoom_id: 'zoom_id',
+  zoom_gravacao: 'zoom_gravacao',
+  zoom_pendente: 'zoom_pendente'
+};
+
+exports.Prisma.MentoriaPostScalarFieldEnum = {
+  id: 'id',
+  mentoria_id: 'mentoria_id',
+  tipo: 'tipo',
+  autor: 'autor',
+  titulo: 'titulo',
+  texto: 'texto',
+  url: 'url',
+  criado_em: 'criado_em'
+};
+
+exports.Prisma.MentoriaPresencaScalarFieldEnum = {
+  encontro_id: 'encontro_id',
+  aluno_id: 'aluno_id',
+  checkin_em: 'checkin_em',
+  entrada_zoom_em: 'entrada_zoom_em',
+  presente_manual: 'presente_manual'
+};
+
+exports.Prisma.MentoriaTarefaScalarFieldEnum = {
+  id: 'id',
+  aluno_id: 'aluno_id',
+  titulo: 'titulo',
+  descricao: 'descricao',
+  prazo: 'prazo',
+  concluida_em: 'concluida_em',
+  criado_em: 'criado_em'
+};
+
+exports.Prisma.MentoriaArquivoScalarFieldEnum = {
+  id: 'id',
+  aluno_id: 'aluno_id',
+  nome: 'nome',
+  caminho: 'caminho',
+  tamanho: 'tamanho',
   criado_em: 'criado_em'
 };
 
@@ -1136,6 +1208,22 @@ exports.TipoDesconto = exports.$Enums.TipoDesconto = {
   FIXO: 'FIXO'
 };
 
+exports.TipoMentoria = exports.$Enums.TipoMentoria = {
+  GRUPO: 'GRUPO',
+  INDIVIDUAL: 'INDIVIDUAL'
+};
+
+exports.StatusEncontroMentoria = exports.$Enums.StatusEncontroMentoria = {
+  AGENDADO: 'AGENDADO',
+  REALIZADO: 'REALIZADO',
+  CANCELADO: 'CANCELADO'
+};
+
+exports.TipoPostMentoria = exports.$Enums.TipoPostMentoria = {
+  MURAL: 'MURAL',
+  PUBLICACAO: 'PUBLICACAO'
+};
+
 exports.Prisma.ModelName = {
   Empresa: 'Empresa',
   Usuario: 'Usuario',
@@ -1192,7 +1280,14 @@ exports.Prisma.ModelName = {
   CampanhaCupom: 'CampanhaCupom',
   Assinatura: 'Assinatura',
   Reembolso: 'Reembolso',
-  ReembolsoItem: 'ReembolsoItem'
+  ReembolsoItem: 'ReembolsoItem',
+  Mentoria: 'Mentoria',
+  MentoriaAluno: 'MentoriaAluno',
+  MentoriaEncontro: 'MentoriaEncontro',
+  MentoriaPost: 'MentoriaPost',
+  MentoriaPresenca: 'MentoriaPresenca',
+  MentoriaTarefa: 'MentoriaTarefa',
+  MentoriaArquivo: 'MentoriaArquivo'
 };
 
 /**

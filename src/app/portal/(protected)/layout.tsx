@@ -1,4 +1,5 @@
-import { cookies } from "next/headers";
+import Link from "next/link";
+import { obterClientePortal } from "@/lib/portal-sessao";
 import { redirect } from "next/navigation";
 
 export default async function PortalProtectedLayout({
@@ -6,8 +7,7 @@ export default async function PortalProtectedLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const cookieStore = await cookies();
-  const clienteId = cookieStore.get("portal_cliente")?.value;
+  const clienteId = (await obterClientePortal())?.id;
 
   if (!clienteId) redirect("/portal/acesso");
 
@@ -15,8 +15,9 @@ export default async function PortalProtectedLayout({
     <div className="min-h-screen bg-background">
       <header className="border-b border-border bg-white">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center gap-3">
-          <span className="font-bold text-lg tracking-tight text-primary">MentoraSys</span>
+          <Link href="/portal" className="font-bold text-lg tracking-tight text-primary">MentoraSys</Link>
           <span className="text-muted-foreground text-sm">— Área do Cliente</span>
+        <Link href="/portal/mentorias" className="ml-auto text-sm font-medium text-primary hover:underline">Mentorias</Link>
         </div>
       </header>
       <main className="max-w-4xl mx-auto px-4 py-8">{children}</main>

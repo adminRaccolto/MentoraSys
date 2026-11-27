@@ -1,4 +1,4 @@
-import { cookies } from "next/headers";
+import { obterClientePortal } from "@/lib/portal-sessao";
 import { prisma } from "@/lib/prisma";
 import { redirect, notFound } from "next/navigation";
 import Link from "next/link";
@@ -19,9 +19,10 @@ interface Props {
 export default async function PortalProjetoPage({ params }: Props) {
   const { id } = await params;
 
-  const cookieStore = await cookies();
-  const clienteId = cookieStore.get("portal_cliente")?.value;
-  if (!clienteId) redirect("/portal/acesso");
+  const sessao = await obterClientePortal();
+  if (!sessao) redirect("/portal/acesso");
+  if (sessao.mentoria_id) notFound();
+  const clienteId = sessao.id;
 
   const projeto = await prisma.projeto.findUnique({
     where: { id, cliente_id: clienteId },

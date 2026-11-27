@@ -20,7 +20,7 @@ export default async function InternalLayout({
   const empresaId = cookieStore.get("empresa_ativa")?.value;
   if (!empresaId) redirect("/selecionar-empresa");
 
-  const [usuario, empresa, notificacoes] = await Promise.all([
+  const [usuario, empresa, notificacoes, acessoMentorias] = await Promise.all([
     prisma.usuario.findUnique({
       where: { id: user.id },
       select: { nome: true, avatar_url: true },
@@ -46,6 +46,12 @@ export default async function InternalLayout({
         criado_em: true,
       },
     }),
+    prisma.membroEmpresa.count({
+      where: {
+        empresa_id: empresaId, usuario_id: user.id, ativo: true,
+        perfil: { permissoes: { some: { permissao: { recurso: "mentorias", acao: "editar" } } } },
+      },
+    }),
   ]);
 
   return (
@@ -61,6 +67,7 @@ export default async function InternalLayout({
         }))}
         empresaId={empresaId}
         usuarioId={user.id}
+        acessoMentorias={acessoMentorias > 0}
       />
       <main className="flex-1 overflow-y-auto bg-muted/30">{children}</main>
     </div>

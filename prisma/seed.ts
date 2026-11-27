@@ -14,7 +14,7 @@ const SUPABASE_USER_NOME = "Gino Migotto";
 // Todos os recursos e ações do sistema
 const PERMISSOES = [
   "clientes", "servicos", "crm", "propostas", "contratos",
-  "projetos", "modelos", "agenda", "financeiro", "faturamento",
+  "projetos", "modelos", "agenda", "mentorias", "financeiro", "faturamento",
   "diagnosticos",
 ].flatMap((recurso) =>
   ["criar", "editar", "excluir"].map((acao) => ({ recurso, acao }))

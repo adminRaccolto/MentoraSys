@@ -14,6 +14,7 @@ import {
   FileText,
   FileSignature,
   FolderKanban,
+  GraduationCap,
   FolderOpen,
   FileEdit,
   DollarSign,
@@ -60,6 +61,7 @@ const NAV_OPERACIONAL = [
   { label: "Documentos", href: "/documentos", icon: FolderOpen },
   { label: "Modelos", href: "/modelos", icon: FileEdit },
   { label: "Agenda", href: "/agenda", icon: Calendar },
+  { label: "Mentorias", href: "/mentorias", icon: GraduationCap },
   { label: "Diagnósticos", href: "/diagnosticos", icon: BarChart2 },
   { label: "O Conselho Agro", href: "/diagnosticos/conselho-agro", icon: Sprout },
 ];
@@ -94,6 +96,7 @@ interface Props {
   notificacoesIniciais: Notificacao[];
   empresaId: string;
   usuarioId: string;
+  acessoMentorias: boolean;
 }
 
 export default function AppSidebar({
@@ -104,6 +107,7 @@ export default function AppSidebar({
   notificacoesIniciais,
   empresaId,
   usuarioId,
+  acessoMentorias,
 }: Props) {
   const pathname = usePathname();
   const router = useRouter();
@@ -178,7 +182,7 @@ export default function AppSidebar({
         <p className="text-[11px] font-semibold text-sidebar-foreground/40 px-3 pb-1 pt-4 uppercase tracking-wider">
           Operacional
         </p>
-        {NAV_OPERACIONAL.map((item) => (
+        {NAV_OPERACIONAL.filter((item) => item.href !== "/mentorias" || acessoMentorias).map((item) => (
           <NavLink key={item.href} {...item} />
         ))}
 

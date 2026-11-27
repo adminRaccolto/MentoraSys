@@ -72,6 +72,8 @@ model Empresa {
   campanhas_cupom           CampanhaCupom[]
   reembolsos                Reembolso[]
 
+  mentorias Mentoria[]
+
   @@map("empresas")
 }
 
@@ -283,6 +285,8 @@ model Cliente {
   documentos             Documento[]
   aplicacoes_diagnostico AplicacaoDiagnostico[]
   assinaturas            Assinatura[]
+
+  mentorias MentoriaAluno[]
 
   @@map("clientes")
 }
@@ -1300,16 +1304,20 @@ model Diagnostico {
 // ─── PORTAL DO CLIENTE ────────────────────────────────────────────────────────
 
 model TokenPortal {
-  id         String    @id @default(cuid())
-  cliente_id String
-  token      String    @unique @default(cuid())
-  email      String
-  expira_em  DateTime
-  usado_em   DateTime?
-  criado_em  DateTime  @default(now())
+  id          String    @id @default(cuid())
+  cliente_id  String
+  mentoria_id String?
+  token       String    @unique @default(cuid())
+  email       String
+  expira_em   DateTime
+  usado_em    DateTime?
+  criado_em   DateTime  @default(now())
 
   cliente Cliente @relation(fields: [cliente_id], references: [id], onDelete: Cascade)
 
+  mentoria Mentoria? @relation(fields: [mentoria_id], references: [id], onDelete: Cascade)
+
+  @@index([mentoria_id])
   @@map("tokens_portal")
 }
 
@@ -1507,4 +1515,137 @@ model ReembolsoItem {
 
   @@index([reembolso_id])
   @@map("reembolso_itens")
+}
+
+enum TipoMentoria {
+  GRUPO
+  INDIVIDUAL
+}
+
+enum StatusEncontroMentoria {
+  AGENDADO
+  REALIZADO
+  CANCELADO
+}
+
+enum TipoPostMentoria {
+  MURAL
+  PUBLICACAO
+}
+
+model Mentoria {
+  id         String       @id @default(cuid())
+  empresa_id String
+  nome       String
+  turma      String?
+  descricao  String?
+  tipo       TipoMentoria
+  criado_em  DateTime     @default(now())
+
+  empresa   Empresa            @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
+  alunos    MentoriaAluno[]
+  encontros MentoriaEncontro[]
+  posts     MentoriaPost[]
+  tokens    TokenPortal[]
+
+  @@index([empresa_id, criado_em])
+  @@map("mentorias")
+}
+
+model MentoriaAluno {
+  id          String   @id @default(cuid())
+  mentoria_id String
+  cliente_id  String
+  ativo       Boolean  @default(true)
+  criado_em   DateTime @default(now())
+
+  mentoria  Mentoria           @relation(fields: [mentoria_id], references: [id], onDelete: Cascade)
+  cliente   Cliente            @relation(fields: [cliente_id], references: [id], onDelete: Cascade)
+  presencas MentoriaPresenca[]
+  tarefas   MentoriaTarefa[]
+  arquivos  MentoriaArquivo[]
+
+  @@unique([mentoria_id, cliente_id])
+  @@index([cliente_id, ativo])
+  @@map("mentoria_alunos")
+}
+
+model MentoriaEncontro {
+  id            String                 @id @default(cuid())
+  mentoria_id   String
+  titulo        String
+  pauta         String?
+  inicio        DateTime
+  duracao       Int
+  status        StatusEncontroMentoria @default(AGENDADO)
+  sala_url      String?
+  gravacao_url  String?
+  zoom_id       String?                @unique
+  zoom_gravacao String?
+  zoom_pendente DateTime?
+
+  mentoria  Mentoria           @relation(fields: [mentoria_id], references: [id], onDelete: Cascade)
+  presencas MentoriaPresenca[]
+
+  @@index([mentoria_id, inicio])
+  @@map("mentoria_encontros")
+}
+
+model MentoriaPost {
+  id          String           @id @default(cuid())
+  mentoria_id String
+  tipo        TipoPostMentoria
+  autor       String
+  titulo      String?
+  texto       String
+  url         String?
+  criado_em   DateTime         @default(now())
+
+  mentoria Mentoria @relation(fields: [mentoria_id], references: [id], onDelete: Cascade)
+
+  @@index([mentoria_id, tipo, criado_em])
+  @@map("mentoria_posts")
+}
+
+model MentoriaPresenca {
+  encontro_id     String
+  aluno_id        String
+  checkin_em      DateTime?
+  entrada_zoom_em DateTime?
+  presente_manual Boolean?
+
+  encontro MentoriaEncontro @relation(fields: [encontro_id], references: [id], onDelete: Cascade)
+  aluno    MentoriaAluno    @relation(fields: [aluno_id], references: [id], onDelete: Cascade)
+
+  @@id([encontro_id, aluno_id])
+  @@map("mentoria_presencas")
+}
+
+model MentoriaTarefa {
+  id           String    @id @default(cuid())
+  aluno_id     String
+  titulo       String
+  descricao    String?
+  prazo        DateTime? @db.Date
+  concluida_em DateTime?
+  criado_em    DateTime  @default(now())
+
+  aluno MentoriaAluno @relation(fields: [aluno_id], references: [id], onDelete: Cascade)
+
+  @@index([aluno_id, criado_em])
+  @@map("mentoria_tarefas")
+}
+
+model MentoriaArquivo {
+  id        String   @id @default(cuid())
+  aluno_id  String
+  nome      String
+  caminho   String   @unique
+  tamanho   Int
+  criado_em DateTime @default(now())
+
+  aluno MentoriaAluno @relation(fields: [aluno_id], references: [id], onDelete: Cascade)
+
+  @@index([aluno_id, criado_em])
+  @@map("mentoria_arquivos")
 }
