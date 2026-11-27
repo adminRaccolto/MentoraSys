@@ -7,8 +7,8 @@ type Contexto = { params: Promise<{ id: string }> };
 
 async function autorizar(aluno: { ativo: boolean; cliente_id: string; mentoria_id: string; mentoria: { empresa_id: string } }) {
   const cliente = await obterClientePortal();
-  if (aluno.ativo && aluno.cliente_id === cliente?.id && aluno.mentoria.empresa_id === cliente.empresa_id &&
-    (!cliente.mentoria_id || cliente.mentoria_id === aluno.mentoria_id)) return true;
+  if (cliente?.tipo === "ALUNO" && aluno.ativo && aluno.cliente_id === cliente.id &&
+      aluno.mentoria.empresa_id === cliente.empresa_id) return true;
   try {
     return aluno.mentoria.empresa_id === await empresaMentorias();
   } catch {

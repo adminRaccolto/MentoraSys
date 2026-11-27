@@ -12,7 +12,7 @@ export async function empresaMentorias(acao = "editar") {
 
 export async function alunoMentoria(mentoriaId: string) {
   const cliente = await obterClientePortal();
-  if (!cliente || (cliente.mentoria_id && cliente.mentoria_id !== mentoriaId)) return null;
+  if (cliente?.tipo !== "ALUNO") return null;
   return prisma.mentoriaAluno.findFirst({
     where: { mentoria_id: mentoriaId, cliente_id: cliente.id, ativo: true, mentoria: { empresa_id: cliente.empresa_id } },
     include: { mentoria: true, cliente: { select: { nome: true } } },

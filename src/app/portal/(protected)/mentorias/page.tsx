@@ -5,9 +5,9 @@ import { prisma } from "@/lib/prisma";
 
 export default async function MentoriasDoAluno() {
   const cliente = await obterClientePortal();
-  if (!cliente) redirect("/portal/acesso");
+  if (cliente?.tipo !== "ALUNO") redirect("/portal/acesso");
   const alunos = await prisma.mentoriaAluno.findMany({
-    where: { cliente_id: cliente.id, ativo: true, mentoria_id: cliente.mentoria_id ?? undefined, mentoria: { empresa_id: cliente.empresa_id } },
+    where: { cliente_id: cliente.id, ativo: true, mentoria: { empresa_id: cliente.empresa_id } },
     include: { mentoria: true },
     orderBy: { criado_em: "desc" },
   });

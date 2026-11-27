@@ -1,14 +1,20 @@
 "use server";
 
+import { randomBytes } from "node:crypto";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
-import { criarTokenPortal } from "@/lib/portal-sessao";
+import { emailAluno, protegerSenhaAluno } from "@/lib/portal-aluno-seguranca";
 import { alunoMentoria, checkinAberto, empresaMentorias, localEncontro, NOME_MESA, textoObrigatorio, textoOpcional, urlOpcional } from "@/lib/mentorias";
 import { atualizarSalaZoom, criarSalaZoom, ErroZoom } from "@/lib/mentorias-zoom";
 import { obterConfiguracaoZoom } from "@/lib/mentorias-zoom-config";
 
-type Resultado = { erro?: string; sucesso?: string; link?: string };
+type Resultado = {
+  erro?: string;
+  sucesso?: string;
+  link?: string;
+  acesso?: { email: string; senha: string };
+};
 
 class ErroFormulario extends Error {}
 
@@ -121,12 +127,32 @@ export async function alterarAcessoAluno(id: string, alunoId: string, ativo: boo
   });
 }
 
-export async function emitirAcessoAluno(id: string, alunoId: string) {
+export async function gerarSenhaAluno(id: string, alunoId: string, _: Resultado, form: FormData) {
   return executar(async () => {
     const { aluno } = await buscarAluno(id, alunoId);
-    if (!aluno.ativo) throw new ErroFormulario("Ative o acesso do aluno antes de gerar o link.");
-    const token = await criarTokenPortal(aluno.cliente, id);
-    return { link: `/portal/acesso/${token}` };
+    if (!aluno.ativo) throw new ErroFormulario("Ative a matrícula do aluno antes de configurar o acesso.");
+    const { email } = campos(form, { email: emailAluno });
+    const senha = randomBytes(15).toString("base64url");
+    const senha_hash = await protegerSenhaAluno(senha);
+    const provisoria_expira_em = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+
+    try {
+      await prisma.$transaction(async (tx) => {
+        await tx.portalAlunoAcesso.upsert({
+          where: { cliente_id: aluno.cliente_id },
+          create: { cliente_id: aluno.cliente_id, email, senha_hash, provisoria_expira_em },
+          update: { email, senha_hash, provisoria_expira_em, versao: { increment: 1 } },
+        });
+        await tx.portalAlunoSessao.deleteMany({ where: { cliente_id: aluno.cliente_id } });
+      });
+    } catch (erro) {
+      if (erro && typeof erro === "object" && "code" in erro && erro.code === "P2002") {
+        throw new ErroFormulario("Este e-mail já está vinculado ao acesso de outro aluno. Informe outro e-mail.");
+      }
+      throw erro;
+    }
+    atualizarPaginas(id);
+    return { acesso: { email, senha } };
   });
 }
 

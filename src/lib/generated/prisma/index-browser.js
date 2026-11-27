@@ -1059,6 +1059,27 @@ exports.Prisma.IntegracaoZoomMentoriaScalarFieldEnum = {
   dados: 'dados'
 };
 
+exports.Prisma.PortalAlunoAcessoScalarFieldEnum = {
+  cliente_id: 'cliente_id',
+  email: 'email',
+  senha_hash: 'senha_hash',
+  provisoria_expira_em: 'provisoria_expira_em',
+  versao: 'versao'
+};
+
+exports.Prisma.PortalAlunoSessaoScalarFieldEnum = {
+  token_hash: 'token_hash',
+  cliente_id: 'cliente_id',
+  versao: 'versao',
+  expira_em: 'expira_em'
+};
+
+exports.Prisma.PortalAlunoLimiteScalarFieldEnum = {
+  chave: 'chave',
+  tentativas: 'tentativas',
+  expira_em: 'expira_em'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1326,7 +1347,10 @@ exports.Prisma.ModelName = {
   MentoriaPagina: 'MentoriaPagina',
   MentoriaItem: 'MentoriaItem',
   MentoriaMaterial: 'MentoriaMaterial',
-  IntegracaoZoomMentoria: 'IntegracaoZoomMentoria'
+  IntegracaoZoomMentoria: 'IntegracaoZoomMentoria',
+  PortalAlunoAcesso: 'PortalAlunoAcesso',
+  PortalAlunoSessao: 'PortalAlunoSessao',
+  PortalAlunoLimite: 'PortalAlunoLimite'
 };
 
 /**

@@ -19,31 +19,13 @@ export function Formulario({
   variant?: "default" | "outline" | "destructive";
 }) {
   const [estado, executar, pendente] = useActionState(acao, {});
-  const [copiado, setCopiado] = useState(false);
-  const acessoPortal = estado.link?.startsWith("/portal/acesso/");
-
-  async function copiarLink(caminho: string) {
-    try {
-      await navigator.clipboard.writeText(new URL(caminho, location.origin).href);
-      setCopiado(true);
-    } catch {
-      setCopiado(false);
-    }
-  }
-
   return (
     <form action={executar} className={className}>
       {children}
       <Button size="sm" type="submit" variant={variant} disabled={pendente}>{pendente ? "Salvando…" : botao}</Button>
       {estado.erro && <p className="text-sm text-destructive" role="alert">{estado.erro}</p>}
       {estado.sucesso && <p className="text-sm text-muted-foreground" role="status">{estado.sucesso}</p>}
-      {estado.link && acessoPortal && (
-        <div className="space-y-2">
-          <Button type="button" size="sm" variant="outline" onClick={() => copiarLink(estado.link!)}>{copiado ? "Copiado" : "Copiar link de acesso"}</Button>
-          <a className="ml-2 text-sm text-primary underline" href={estado.link} target="_blank" rel="noreferrer">Abrir link</a>
-        </div>
-      )}
-      {estado.link && !acessoPortal && <Link className="ml-2 text-sm text-primary underline" href={estado.link}>Abrir mentoria</Link>}
+      {estado.link && <Link className="ml-2 text-sm text-primary underline" href={estado.link}>Abrir mentoria</Link>}
     </form>
   );
 }

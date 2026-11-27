@@ -15,7 +15,7 @@ const STATUS_CONFIG = {
 export default async function PortalPage() {
   const sessao = await obterClientePortal();
   if (!sessao) redirect("/portal/acesso");
-  if (sessao.mentoria_id) redirect("/portal/mentorias");
+  if (sessao.tipo === "ALUNO") redirect("/portal/mentorias");
   const clienteId = sessao.id;
 
   const [cliente, projetos] = await Promise.all([

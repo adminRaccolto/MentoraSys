@@ -4,9 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export function PortalMarca({ conviteMentoria }: { conviteMentoria: boolean }) {
+export function PortalMarca({ sessaoAluno }: { sessaoAluno: boolean }) {
   const caminho = usePathname();
-  const areaAluno = conviteMentoria || caminho === "/portal/mentorias" || caminho.startsWith("/portal/mentorias/");
+  const areaAluno = sessaoAluno || caminho === "/portal/mentorias" || caminho.startsWith("/portal/mentorias/");
 
   return (
     <Link href={areaAluno ? "/portal/mentorias" : "/portal"} className="flex min-w-0 items-center gap-2.5 sm:gap-3">

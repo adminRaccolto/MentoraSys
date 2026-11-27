@@ -277,6 +277,7 @@ model Cliente {
   contratos     Contrato[]
   projetos      Projeto[]
   tokens_portal TokenPortal[]
+  acesso_portal_aluno PortalAlunoAcesso?
   recebiveis    Recebivel[]
   boletos       Boleto[]
   eventos       Evento[]
@@ -1706,4 +1707,39 @@ model IntegracaoZoomMentoria {
   empresa Empresa @relation(fields: [empresa_id], references: [id], onDelete: Cascade)
 
   @@map("integracoes_zoom_mentorias")
+}
+
+model PortalAlunoAcesso {
+  cliente_id           String     @id
+  email                String     @unique
+  senha_hash           String
+  provisoria_expira_em DateTime?
+  versao               Int        @default(0)
+
+  cliente Cliente            @relation(fields: [cliente_id], references: [id], onDelete: Cascade)
+  sessoes PortalAlunoSessao[]
+
+  @@map("portal_aluno_acessos")
+}
+
+model PortalAlunoSessao {
+  token_hash   String   @id
+  cliente_id   String
+  versao       Int
+  expira_em    DateTime
+
+  acesso PortalAlunoAcesso @relation(fields: [cliente_id], references: [cliente_id], onDelete: Cascade)
+
+  @@index([cliente_id])
+  @@index([expira_em])
+  @@map("portal_aluno_sessoes")
+}
+
+model PortalAlunoLimite {
+  chave      String   @id
+  tentativas Int
+  expira_em  DateTime
+
+  @@index([expira_em])
+  @@map("portal_aluno_limites")
 }

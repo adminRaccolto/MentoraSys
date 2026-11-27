@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CalendarPlus, PencilLine, Video } from "lucide-react";
-import { alterarAcessoAluno, editarMentoria, emitirAcessoAluno, matricularAluno, publicarMentoria, salvarEncontro } from "@/actions/mentorias";
+import { alterarAcessoAluno, editarMentoria, matricularAluno, publicarMentoria, salvarEncontro } from "@/actions/mentorias";
+import { AcessoAluno } from "@/components/mentorias/acesso-aluno";
 import { AnexarArquivo, Formulario } from "@/components/mentorias/formulario";
 import { CamposEncontro, GerenciarEncontro, GerenciarTarefas } from "@/components/mentorias/gestao";
 import { BlocoAcao, CabecalhoMentorias, campo, ListaArquivos, ListaPosts, NavegacaoMentoria, paginaMentorias, rotulo, Secao, Vazio, VoltarMentorias } from "@/components/mentorias/painel";
@@ -23,7 +24,7 @@ export default async function MentoriaInterna({ params, searchParams }: Props) {
     include: {
       alunos: {
         where: { cliente: { empresa_id: empresaId } },
-        include: { cliente: { select: { nome: true } } },
+        include: { cliente: { select: { nome: true, email: true, acesso_portal_aluno: { select: { email: true } } } } },
         orderBy: { cliente: { nome: "asc" } },
       },
       encontros: { include: { presencas: true }, orderBy: { inicio: "desc" } },
@@ -115,7 +116,8 @@ export default async function MentoriaInterna({ params, searchParams }: Props) {
                 <li key={aluno.id} className="space-y-2 py-3">
                   <div><p className="font-medium">{aluno.cliente.nome}</p><Vazio>{aluno.ativo ? "Acesso ativo" : "Acesso suspenso"}</Vazio></div>
                   <div className="flex flex-wrap gap-2">
-                    {aluno.ativo && <Formulario acao={emitirAcessoAluno.bind(null, id, aluno.id)} botao="Gerar convite do aluno" />}
+                    {aluno.ativo && <AcessoAluno mentoriaId={id} alunoId={aluno.id}
+                      email={aluno.cliente.acesso_portal_aluno?.email ?? aluno.cliente.email} cadastrado={Boolean(aluno.cliente.acesso_portal_aluno)} />}
                     <Formulario acao={alterarAcessoAluno.bind(null, id, aluno.id, !aluno.ativo)} botao={aluno.ativo ? "Suspender acesso" : "Ativar acesso"} />
                   </div>
                 </li>

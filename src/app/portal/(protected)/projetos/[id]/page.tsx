@@ -21,7 +21,7 @@ export default async function PortalProjetoPage({ params }: Props) {
 
   const sessao = await obterClientePortal();
   if (!sessao) redirect("/portal/acesso");
-  if (sessao.mentoria_id) notFound();
+  if (sessao.tipo === "ALUNO") notFound();
   const clienteId = sessao.id;
 
   const projeto = await prisma.projeto.findUnique({

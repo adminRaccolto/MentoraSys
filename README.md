@@ -37,7 +37,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Mentorias
 
-Os perfis Administrador e Gestor recebem acesso pela migração de mentorias. Em **Mentorias**, crie uma turma de **A Mesa das Decisões** ou vincule um cliente a uma mentoria individual. O link gerado para um aluno dá acesso a uma mentoria por sete dias. O Supabase Storage cria o bucket privado `mentorias-privadas` no primeiro anexo, com limite de 4 MB por arquivo.
+Os perfis Administrador e Gestor recebem acesso pela migração de mentorias. Em **Mentorias**, crie uma turma de **A Mesa das Decisões** ou vincule um cliente a uma mentoria individual. Na aba **Alunos**, cadastre o e-mail de acesso e gere uma senha provisória válida por sete dias. O aluno entra em `/portal/acesso`, define sua senha pessoal no primeiro acesso e vê as mentorias em que tem matrícula ativa. O Supabase Storage cria o bucket privado `mentorias-privadas` no primeiro anexo, com limite de 4 MB por arquivo.
 
 ### Integração com Zoom
 
@@ -45,7 +45,7 @@ Abra **Mentorias → Configurar Zoom** com um perfil que pode editar as configur
 
 Use a URL de webhook exibida na tela e cadastre o Secret Token para receber `meeting.participant_joined` e `recording.completed`. A entrada na sala é identificada pelo e-mail quando o Zoom o disponibiliza e há um único aluno correspondente na turma. A gravação automática exige que o anfitrião tenha gravação na nuvem habilitada. A equipe confere as permissões de compartilhamento da gravação no Zoom antes de publicá-la no portal.
 
-Em **Mentorias → turma → Reuniões**, agende a reunião. Em seguida, crie a sala Zoom ou informe um link de videoconferência existente. Em **Alunos**, gere o convite individual e compartilhe o link. Ele abre a mentoria vinculada e vence em sete dias. A configuração anterior por variáveis `ZOOM_EMPRESA_ID`, `ZOOM_ACCOUNT_ID`, `ZOOM_CLIENT_ID`, `ZOOM_CLIENT_SECRET`, `ZOOM_HOST_ID` e `ZOOM_WEBHOOK_SECRET_TOKEN` segue compatível com `/api/webhooks/zoom`.
+Em **Mentorias → turma → Reuniões**, agende a reunião. Em seguida, crie a sala Zoom ou informe um link de videoconferência existente. Em **Alunos**, a equipe pode cadastrar ou redefinir o login do aluno. A redefinição gera uma senha provisória e encerra as sessões anteriores. A configuração anterior por variáveis `ZOOM_EMPRESA_ID`, `ZOOM_ACCOUNT_ID`, `ZOOM_CLIENT_ID`, `ZOOM_CLIENT_SECRET`, `ZOOM_HOST_ID` e `ZOOM_WEBHOOK_SECRET_TOKEN` segue compatível com `/api/webhooks/zoom`.
 
 ### Espaço de projeto da mentoria
 

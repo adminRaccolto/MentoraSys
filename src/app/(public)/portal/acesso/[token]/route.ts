@@ -1,6 +1,7 @@
 import { COOKIE_PORTAL, DURACAO_PORTAL } from "@/lib/portal-sessao";
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
+import { finalizarSessaoAluno } from "@/lib/portal-aluno-sessao";
 import { cookies } from "next/headers";
 
 export async function GET(
@@ -18,6 +19,10 @@ export async function GET(
     return NextResponse.redirect(`${origin}/portal/acesso?erro=invalido`);
   }
 
+  if (tokenPortal.mentoria_id) {
+    return NextResponse.redirect(`${origin}/portal/acesso`, { headers: { "Referrer-Policy": "no-referrer", "Cache-Control": "no-store" } });
+  }
+
   if (tokenPortal.expira_em < new Date()) {
     return NextResponse.redirect(`${origin}/portal/acesso?erro=expirado`);
   }
@@ -30,6 +35,7 @@ export async function GET(
     });
   }
 
+  await finalizarSessaoAluno();
   const cookieStore = await cookies();
   cookieStore.delete("portal_cliente");
   cookieStore.set(COOKIE_PORTAL, token, {
@@ -40,6 +46,5 @@ export async function GET(
     path: "/",
   });
 
-  const destino = tokenPortal.mentoria_id ? `/portal/mentorias/${tokenPortal.mentoria_id}` : "/portal";
-  return NextResponse.redirect(`${origin}${destino}`, { headers: { "Referrer-Policy": "no-referrer", "Cache-Control": "no-store" } });
+  return NextResponse.redirect(`${origin}/portal`, { headers: { "Referrer-Policy": "no-referrer", "Cache-Control": "no-store" } });
 }
