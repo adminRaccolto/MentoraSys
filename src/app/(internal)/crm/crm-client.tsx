@@ -577,6 +577,12 @@ export default function CrmClient({ etapasIniciais, leadsIniciais, clientes, ser
                         <td className="py-2 pr-4 text-xs text-muted-foreground">{fmtData(lead.previsao_fechamento) ?? "—"}</td>
                         <td className="py-2">
                           <div className="flex gap-1">
+                            {lead.etapa_chave === "GANHO" && (
+                              <Link href={`/mentorias/matricular/${lead.id}`} onClick={(event) => event.stopPropagation()}
+                                className="inline-flex h-7 shrink-0 items-center rounded-md px-2 text-xs font-medium text-primary hover:bg-muted">
+                                Matricular mentorado
+                              </Link>
+                            )}
                             <Button size="icon" variant="ghost" className="size-7" onClick={(e) => { e.stopPropagation(); abrirEditar(lead); }}><ChevronRight className="size-3.5" /></Button>
                             <Button size="icon" variant="ghost" className="size-7 text-destructive hover:text-destructive" onClick={(e) => { e.stopPropagation(); setExcluirId(lead.id); }}><Trash2 className="size-3.5" /></Button>
                           </div>
