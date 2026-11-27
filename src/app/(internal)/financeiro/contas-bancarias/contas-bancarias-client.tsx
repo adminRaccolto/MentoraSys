@@ -1,5 +1,6 @@
 "use client";
 
+import { BarraSelecaoEmLote, BotaoExclusaoEmLote, useSelecaoEmLote } from "@/components/exclusao-em-lote";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -117,6 +118,12 @@ export default function ContasBancariasClient({ contas: inicial, bancos }: { con
     });
   };
 
+  const lote = useSelecaoEmLote(contas.filter((c) => c.ativo).map((c) => ({ id: c.id, nome: c.nome })));
+  const concluirLote = (ids: Set<string>) => {
+    lote.remover(ids);
+    setContas((prev) => prev.filter((c) => !ids.has(c.id)));
+  };
+
   return (
     <div className="p-6 space-y-5">
       <div className="flex items-center justify-between">
@@ -130,9 +137,13 @@ export default function ContasBancariasClient({ contas: inicial, bancos }: { con
       </div>
 
       <div className="rounded-lg border bg-card overflow-hidden">
+        <BarraSelecaoEmLote quantidade={lote.selecionados.length} limpar={lote.limpar}>
+          <BotaoExclusaoEmLote tipo="contasBancarias" itens={lote.selecionados} verbo="Desativar" onConcluido={concluirLote} />
+        </BarraSelecaoEmLote>
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead className="w-8">{lote.selecionarTodos}</TableHead>
               <TableHead>Nome / Apelido</TableHead>
               <TableHead>Banco</TableHead>
               <TableHead>Agência / Conta</TableHead>
@@ -146,13 +157,14 @@ export default function ContasBancariasClient({ contas: inicial, bancos }: { con
           <TableBody>
             {contas.length === 0 && (
               <TableRow>
-                <TableCell colSpan={8} className="text-center text-muted-foreground py-10">
+                <TableCell colSpan={9} className="text-center text-muted-foreground py-10">
                   Nenhuma conta cadastrada
                 </TableCell>
               </TableRow>
             )}
             {contas.map((c) => (
               <TableRow key={c.id} className={!c.ativo ? "opacity-50" : ""}>
+                <TableCell onClick={(event) => event.stopPropagation()}>{lote.seletor(c.id, c.nome)}</TableCell>
                 <TableCell className="font-medium">{c.nome}</TableCell>
                 <TableCell className="text-muted-foreground text-sm">{c.banco_nome ?? "—"}</TableCell>
                 <TableCell className="text-muted-foreground text-sm">

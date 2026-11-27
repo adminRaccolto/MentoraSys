@@ -1,5 +1,6 @@
 "use client"
 
+import { BarraSelecaoEmLote, BotaoExclusaoEmLote, useSelecaoEmLote } from "@/components/exclusao-em-lote"
 import { useState, useTransition } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -179,6 +180,12 @@ export default function CampanhasCupomClient({
 
   const tipoDesconto = form.watch("tipo_desconto")
 
+  const lote = useSelecaoEmLote(lista.map((cupom) => ({ id: cupom.id, nome: cupom.codigo })))
+  const concluirLote = (ids: Set<string>) => {
+    lote.remover(ids)
+    setLista((prev) => prev.filter((cupom) => !ids.has(cupom.id)))
+  }
+
   return (
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
@@ -192,9 +199,13 @@ export default function CampanhasCupomClient({
         </Button>
       </div>
 
+      <BarraSelecaoEmLote quantidade={lote.selecionados.length} limpar={lote.limpar}>
+        <BotaoExclusaoEmLote tipo="cupons" itens={lote.selecionados} onConcluido={concluirLote} />
+      </BarraSelecaoEmLote>
       <Table>
         <TableHeader>
           <TableRow>
+            <TableHead className="w-8">{lote.selecionarTodos}</TableHead>
             <TableHead>Código</TableHead>
             <TableHead>Nome / Campanha</TableHead>
             <TableHead>Desconto</TableHead>
@@ -208,13 +219,14 @@ export default function CampanhasCupomClient({
         <TableBody>
           {lista.length === 0 && (
             <TableRow>
-              <TableCell colSpan={8} className="text-center text-muted-foreground py-10">
+              <TableCell colSpan={9} className="text-center text-muted-foreground py-10">
                 Nenhum cupom cadastrado.
               </TableCell>
             </TableRow>
           )}
           {lista.map((cupom) => (
             <TableRow key={cupom.id}>
+              <TableCell onClick={(event) => event.stopPropagation()}>{lote.seletor(cupom.id, cupom.codigo)}</TableCell>
               <TableCell className="font-mono font-semibold tracking-wider">{cupom.codigo}</TableCell>
               <TableCell>{cupom.nome}</TableCell>
               <TableCell>

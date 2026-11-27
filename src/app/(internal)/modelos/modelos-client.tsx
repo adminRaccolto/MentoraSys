@@ -1,5 +1,6 @@
 "use client";
 
+import { BarraSelecaoEmLote, BotaoExclusaoEmLote, useSelecaoEmLote } from "@/components/exclusao-em-lote";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -82,6 +83,8 @@ export default function ModelosClient({ modelos }: Props) {
 
   const modelosFiltrados =
     tabAtiva === "TODOS" ? modelos : modelos.filter((m) => m.tipo === tabAtiva);
+
+  const lote = useSelecaoEmLote(modelosFiltrados.map((item) => ({ id: item.id, nome: item.nome })));
 
   const handleCriar = form.handleSubmit(async (data) => {
     startTransition(async () => {
@@ -223,6 +226,13 @@ export default function ModelosClient({ modelos }: Props) {
       </div>
 
       {/* Grid de cards */}
+      <div className="flex items-center gap-2 text-sm">
+        {lote.selecionarTodos}
+        <span>Selecionar todos visíveis</span>
+      </div>
+      <BarraSelecaoEmLote quantidade={lote.selecionados.length} limpar={lote.limpar}>
+        <BotaoExclusaoEmLote tipo="modelos" itens={lote.selecionados} onConcluido={lote.remover} />
+      </BarraSelecaoEmLote>
       {modelosFiltrados.length === 0 ? (
         <div className="text-center py-16 text-muted-foreground">
           <FileText className="size-10 mx-auto mb-3 opacity-30" />
@@ -249,6 +259,7 @@ export default function ModelosClient({ modelos }: Props) {
               onClick={() => router.push(`/modelos/${modelo.id}`)}
             >
               <div className="flex items-start justify-between gap-2">
+                {lote.seletor(modelo.id, modelo.nome)}
                 <div className="flex-1 min-w-0">
                   <p className="font-medium truncate">{modelo.nome}</p>
                   <p className="text-xs text-muted-foreground mt-0.5">

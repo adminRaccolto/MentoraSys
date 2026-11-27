@@ -162,7 +162,19 @@ export async function deletarCliente(id: string) {
     };
   }
 
-  await prisma.cliente.delete({ where: { id } });
+  const { count } = await prisma.cliente.deleteMany({
+    where: {
+      id,
+      empresa_id: empresaId,
+      contratos: { none: {} },
+      propostas: { none: {} },
+      recebiveis: { none: {} },
+      leads: { none: {} },
+    },
+  });
+  if (!count) {
+    return { ok: false as const, error: "O cliente recebeu vínculos ou deixou de existir." };
+  }
   await registrar({ recurso: "clientes", acao: "excluir_definitivo", registroId: id });
   revalidatePath("/clientes");
   return { ok: true as const };

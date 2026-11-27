@@ -1,5 +1,6 @@
 "use client";
 
+import { BarraSelecaoEmLote, BotaoExclusaoEmLote, useSelecaoEmLote } from "@/components/exclusao-em-lote";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -112,6 +113,8 @@ export default function AgendaClient({
 }: Props) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
+  const lote = useSelecaoEmLote(eventos.map((item) => ({ id: item.id, nome: item.titulo })));
+
   const [vista, setVista] = useState<"calendario" | "lista">("calendario");
   const [modalAberto, setModalAberto] = useState(false);
   const [eventoEditando, setEventoEditando] = useState<Evento | null>(null);
@@ -322,6 +325,9 @@ export default function AgendaClient({
       {/* Vista Lista */}
       {vista === "lista" && (
         <div className="border border-border rounded-lg overflow-hidden">
+          <BarraSelecaoEmLote quantidade={lote.selecionados.length} limpar={lote.limpar}>
+            <BotaoExclusaoEmLote tipo="eventos" itens={lote.selecionados} onConcluido={lote.remover} />
+          </BarraSelecaoEmLote>
           {eventos.length === 0 ? (
             <div className="py-16 text-center text-muted-foreground text-sm">
               Nenhum evento neste mês.
@@ -330,6 +336,7 @@ export default function AgendaClient({
             <table className="w-full text-sm">
               <thead className="bg-muted text-xs text-muted-foreground">
                 <tr>
+                  <th className="w-8 pl-3">{lote.selecionarTodos}</th>
                   <th className="px-4 py-2 text-left font-medium">Evento</th>
                   <th className="px-4 py-2 text-left font-medium">Data / Hora</th>
                   <th className="px-4 py-2 text-left font-medium">Vínculo</th>
@@ -344,6 +351,7 @@ export default function AgendaClient({
                     className="hover:bg-muted/50 cursor-pointer"
                     onClick={() => abrirEditar(ev)}
                   >
+                    <td className="w-8 pl-3" onClick={(event) => event.stopPropagation()}>{lote.seletor(ev.id, ev.titulo)}</td>
                     <td className="px-4 py-2.5 font-medium">{ev.titulo}</td>
                     <td className="px-4 py-2.5 text-muted-foreground">
                       <div className="flex items-center gap-1">

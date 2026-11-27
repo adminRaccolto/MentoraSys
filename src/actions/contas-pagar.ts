@@ -180,8 +180,10 @@ export async function excluirContaPagar(id: string) {
   const conta = await prisma.contaPagar.findFirst({ where: { id, empresa_id: empresaId } });
   if (!conta) throw new Error("Conta não encontrada");
   if (conta.status === "PAGO") throw new Error("Conta paga não pode ser excluída");
-
-  await prisma.contaPagar.delete({ where: { id } });
+  const { count } = await prisma.contaPagar.deleteMany({
+    where: { id, empresa_id: empresaId, status: { not: "PAGO" } },
+  });
+  if (!count) throw new Error("A conta foi paga ou deixou de existir.");
   await registrar({ recurso: "contas-pagar", acao: "excluir", registroId: id });
   revalidatePath("/financeiro/contas-a-pagar");
   return { data: null };

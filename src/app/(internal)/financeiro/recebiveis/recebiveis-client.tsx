@@ -1,5 +1,6 @@
 "use client";
 
+import { BarraSelecaoEmLote, BotaoExclusaoEmLote, useSelecaoEmLote } from "@/components/exclusao-em-lote";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -169,7 +170,6 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
   const [modalEditar, setModalEditar] = useState<Recebivel | null>(null);
   const [excluindo, setExcluindo] = useState<Recebivel | null>(null);
   const [isPending, startTransition] = useTransition();
-  const [selecionados, setSelecionados] = useState<Set<string>>(new Set());
   const [modalLote, setModalLote] = useState(false);
   const [formLoteData, setFormLoteData] = useState({ data_pagamento: new Date().toISOString().split("T")[0], forma_pagamento: "", conta_bancaria_id: "" });
   const [filtroDe, setFiltroDe] = useState(de);
@@ -454,7 +454,7 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
         setRecebiveis(prev => prev.map(r =>
           selecionados.has(r.id) ? { ...r, status: "PAGO" as Status, forma_pagamento: formLoteData.forma_pagamento } : r
         ));
-        setSelecionados(new Set());
+        lote.remover(selecionados);
         setModalLote(false);
         toast.success(`${res.data.qtd} lançamento(s) baixado(s)`);
       } catch (e: unknown) { toast.error(e instanceof Error ? e.message : "Erro na baixa em lote"); }
@@ -527,13 +527,12 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
     toast.success("PIX copiado");
   };
 
-  const toggleSelecionado = (id: string) => setSelecionados(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
-  const elegiveisLote = exibidos.filter(r => r.status === "PENDENTE" || r.status === "VENCIDO" || r.status === "PARCIAL");
-  const todosElegivelsSelecionados = elegiveisLote.length > 0 && elegiveisLote.every(r => selecionados.has(r.id));
-  const toggleTodos = () => {
-    if (todosElegivelsSelecionados) setSelecionados(new Set());
-    else setSelecionados(new Set(elegiveisLote.map(r => r.id)));
-  };
+  const lote = useSelecaoEmLote(exibidos
+    .filter((r) => r.status !== "PAGO")
+    .map((r) => ({ id: r.id, nome: r.descricao })));
+  const idsBaixaveis = new Set(exibidos.filter((r) =>
+    ["PENDENTE", "VENCIDO", "PARCIAL"].includes(r.status)).map((r) => r.id));
+  const selecionados = new Set(lote.selecionados.filter((item) => idsBaixaveis.has(item.id)).map((item) => item.id));
 
   const tabs: { key: string; label: string }[] = [
     { key: "TODOS", label: "Todos" },
@@ -641,17 +640,17 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
       </div>
 
       {/* Toolbar de lote */}
-      {selecionados.size > 0 && (
-        <div className="flex items-center gap-3 px-4 py-2 bg-primary/5 border border-primary/20 rounded-lg">
-          <span className="text-sm font-medium text-primary">{selecionados.size} selecionado(s)</span>
+      <BarraSelecaoEmLote quantidade={lote.selecionados.length} limpar={lote.limpar}>
+        {selecionados.size > 0 && (
           <Button size="sm" className="h-7 text-xs" onClick={() => setModalLote(true)}>
             <CheckCircle className="size-3 mr-1" /> Baixar selecionados
           </Button>
-          <button className="text-xs text-muted-foreground hover:text-foreground ml-auto" onClick={() => setSelecionados(new Set())}>
-            Limpar seleção
-          </button>
-        </div>
-      )}
+        )}
+        <BotaoExclusaoEmLote tipo="recebiveis" itens={lote.selecionados} onConcluido={(ids) => {
+          lote.remover(ids);
+          setRecebiveis((prev) => prev.filter((r) => !ids.has(r.id)));
+        }} />
+      </BarraSelecaoEmLote>
 
       {/* Tabela */}
       <div className="rounded-lg border bg-card overflow-hidden">
@@ -659,7 +658,7 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
           <TableHeader>
             <TableRow>
               <TableHead className="w-8">
-                <input type="checkbox" className="accent-primary" checked={todosElegivelsSelecionados} onChange={toggleTodos} disabled={elegiveisLote.length === 0} />
+                {lote.selecionarTodos}
               </TableHead>
               <TableHead>Descrição</TableHead>
               <TableHead>Cliente</TableHead>
@@ -682,13 +681,10 @@ export default function RecebiveisClient({ recebiveis: inicial, clientes, contra
             {exibidos.map((r) => {
               const vencido = isVencido(r.data_vencimento, r.status);
               const cfg = STATUS_CONFIG[vencido ? "VENCIDO" : r.status];
-              const elegivel = r.status === "PENDENTE" || r.status === "VENCIDO" || r.status === "PARCIAL";
               return (
-                <TableRow key={r.id} className={selecionados.has(r.id) ? "bg-primary/5" : ""}>
+                <TableRow key={r.id} className={lote.estaSelecionado(r.id) ? "bg-primary/5" : ""}>
                   <TableCell>
-                    {elegivel && (
-                      <input type="checkbox" className="accent-primary" checked={selecionados.has(r.id)} onChange={() => toggleSelecionado(r.id)} />
-                    )}
+                    {lote.seletor(r.id, r.descricao)}
                   </TableCell>
                   <TableCell className="font-medium max-w-[220px]">
                     <span className="block truncate" title={r.descricao}>{r.descricao}</span>

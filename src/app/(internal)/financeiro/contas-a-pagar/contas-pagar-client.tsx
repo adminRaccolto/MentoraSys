@@ -1,5 +1,6 @@
 "use client";
 
+import { BarraSelecaoEmLote, BotaoExclusaoEmLote, useSelecaoEmLote } from "@/components/exclusao-em-lote";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -116,7 +117,6 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
   const [excluindo, setExcluindo] = useState<ContaPagar | null>(null);
   const [modalEditar, setModalEditar] = useState<ContaPagar | null>(null);
   const [isPending, startTransition] = useTransition();
-  const [selecionados, setSelecionados] = useState<Set<string>>(new Set());
   const [modalLote, setModalLote] = useState(false);
   const [formLoteData, setFormLoteData] = useState({ data_pagamento: new Date().toISOString().split("T")[0], forma_pagamento: "", conta_bancaria_id: "" });
   const [filtroDe, setFiltroDe] = useState(de);
@@ -271,20 +271,19 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
         setContas(prev => prev.map(c =>
           selecionados.has(c.id) ? { ...c, status: "PAGO" as Status, forma_pagamento: formLoteData.forma_pagamento } : c
         ));
-        setSelecionados(new Set());
+        lote.remover(selecionados);
         setModalLote(false);
         toast.success(`${res.data.qtd} conta(s) baixada(s)`);
       } catch (e: unknown) { toast.error(e instanceof Error ? e.message : "Erro na baixa em lote"); }
     });
   };
 
-  const toggleSelecionado = (id: string) => setSelecionados(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
-  const elegiveisLote = exibidas.filter(c => c.status === "PENDENTE" || c.status === "VENCIDO" || c.status === "PARCIAL");
-  const todosElegivelsSelecionados = elegiveisLote.length > 0 && elegiveisLote.every(c => selecionados.has(c.id));
-  const toggleTodos = () => {
-    if (todosElegivelsSelecionados) setSelecionados(new Set());
-    else setSelecionados(new Set(elegiveisLote.map(c => c.id)));
-  };
+  const lote = useSelecaoEmLote(exibidas
+    .filter((c) => c.status !== "PAGO")
+    .map((c) => ({ id: c.id, nome: c.descricao })));
+  const idsBaixaveis = new Set(exibidas.filter((c) =>
+    ["PENDENTE", "VENCIDO", "PARCIAL"].includes(c.status)).map((c) => c.id));
+  const selecionados = new Set(lote.selecionados.filter((item) => idsBaixaveis.has(item.id)).map((item) => item.id));
 
   const tabs = [
     { key: "TODOS", label: "Todos" }, { key: "PENDENTE", label: "Pendente" },
@@ -342,22 +341,24 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
       </div>
 
       {/* Toolbar lote */}
-      {selecionados.size > 0 && (
-        <div className="flex items-center gap-3 px-4 py-2 bg-primary/5 border border-primary/20 rounded-lg">
-          <span className="text-sm font-medium text-primary">{selecionados.size} selecionada(s)</span>
+      <BarraSelecaoEmLote quantidade={lote.selecionados.length} limpar={lote.limpar}>
+        {selecionados.size > 0 && (
           <Button size="sm" className="h-7 text-xs" onClick={() => setModalLote(true)}>
             <CheckCircle className="size-3 mr-1" /> Baixar selecionadas
           </Button>
-          <button className="text-xs text-muted-foreground hover:text-foreground ml-auto" onClick={() => setSelecionados(new Set())}>Limpar seleção</button>
-        </div>
-      )}
+        )}
+        <BotaoExclusaoEmLote tipo="contasPagar" itens={lote.selecionados} onConcluido={(ids) => {
+          lote.remover(ids);
+          setContas((prev) => prev.filter((c) => !ids.has(c.id)));
+        }} />
+      </BarraSelecaoEmLote>
 
       <div className="rounded-lg border bg-card overflow-hidden">
         <Table>
           <TableHeader>
             <TableRow>
               <TableHead className="w-8">
-                <input type="checkbox" className="accent-primary" checked={todosElegivelsSelecionados} onChange={toggleTodos} disabled={elegiveisLote.length === 0} />
+                {lote.selecionarTodos}
               </TableHead>
               <TableHead>Descrição</TableHead>
               <TableHead>Fornecedor</TableHead>
@@ -378,11 +379,10 @@ export default function ContasPagarClient({ contas: inicial, categorias, contasB
             {exibidas.map((c) => {
               const vencido = isVencido(c.data_vencimento, c.status);
               const cfg = STATUS_CONFIG[vencido ? "VENCIDO" : c.status];
-              const elegivel = c.status === "PENDENTE" || c.status === "VENCIDO" || c.status === "PARCIAL";
               return (
-                <TableRow key={c.id} className={selecionados.has(c.id) ? "bg-primary/5" : ""}>
+                <TableRow key={c.id} className={lote.estaSelecionado(c.id) ? "bg-primary/5" : ""}>
                   <TableCell>
-                    {elegivel && <input type="checkbox" className="accent-primary" checked={selecionados.has(c.id)} onChange={() => toggleSelecionado(c.id)} />}
+                    {lote.seletor(c.id, c.descricao)}
                   </TableCell>
                   <TableCell className="font-medium">{c.descricao}</TableCell>
                   <TableCell className="text-muted-foreground text-sm">{c.fornecedor ?? "—"}</TableCell>

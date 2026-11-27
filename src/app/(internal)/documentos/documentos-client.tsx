@@ -1,5 +1,6 @@
 "use client";
 
+import { BarraSelecaoEmLote, BotaoExclusaoEmLote, useSelecaoEmLote } from "@/components/exclusao-em-lote";
 import { useState, useCallback, useTransition, useRef } from "react";
 import { toast } from "sonner";
 import {
@@ -204,6 +205,8 @@ export default function DocumentosClient({ documentos: inicial, pastas: iniciais
       .some((s) => s.toLowerCase().includes(busca.toLowerCase()));
     return passaPasta && passaCategoria && passaBusca;
   });
+  const lote = useSelecaoEmLote(docsFiltrados.map((doc) => ({ id: doc.id, nome: doc.titulo })));
+
 
   // subpastas visíveis no painel atual
   const subpastasVisiveis = pastas.filter((p) =>
@@ -592,6 +595,13 @@ export default function DocumentosClient({ documentos: inicial, pastas: iniciais
               {subpastasVisiveis.length > 0 && (
                 <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest">Arquivos</p>
               )}
+              <div className="flex items-center gap-2 text-sm">
+                {lote.selecionarTodos}
+                <span>Selecionar todos visíveis</span>
+              </div>
+              <BarraSelecaoEmLote quantidade={lote.selecionados.length} limpar={lote.limpar}>
+                <BotaoExclusaoEmLote tipo="documentos" itens={lote.selecionados} onConcluido={(ids) => { lote.remover(ids); setDocs((prev) => prev.filter((doc) => !ids.has(doc.id))); }} />
+              </BarraSelecaoEmLote>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
                 {docsFiltrados.map((doc) => (
                   <div
@@ -599,7 +609,7 @@ export default function DocumentosClient({ documentos: inicial, pastas: iniciais
                     className="bg-background border rounded-xl p-4 space-y-3 hover:shadow-md transition-shadow group"
                   >
                     <div className="flex items-start justify-between">
-                      {iconeArquivo(doc.mime_type)}
+                      <div className="flex items-center gap-3">{lote.seletor(doc.id, doc.titulo)}{iconeArquivo(doc.mime_type)}</div>
                       <div className="flex items-center gap-1">
                         <span className={`text-[10px] font-medium px-1.5 py-0.5 rounded-full ${CAT_CORES[doc.categoria]}`}>
                           {CATEGORIAS.find((c) => c.value === doc.categoria)?.label}

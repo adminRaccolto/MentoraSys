@@ -1,5 +1,6 @@
 "use client";
 
+import { BarraSelecaoEmLote, BotaoExclusaoEmLote, useSelecaoEmLote } from "@/components/exclusao-em-lote";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeftRight, Trash2, TrendingUp, TrendingDown, Building2 } from "lucide-react";
@@ -100,6 +101,12 @@ export default function TesourariaClient({ contas, transferencias: inicial, extr
     return { ...item, saldoAcum: acum };
   });
 
+  const lote = useSelecaoEmLote(transferencias.map((t) => ({ id: t.id, nome: t.descricao || `Transferência de ${t.conta_origem_nome} para ${t.conta_destino_nome}` })));
+  const concluirLote = (ids: Set<string>) => {
+    lote.remover(ids);
+    setTransferencias((prev) => prev.filter((t) => !ids.has(t.id)));
+  };
+
   return (
     <div className="p-6 space-y-5">
       <div className="flex items-center gap-2">
@@ -157,37 +164,44 @@ export default function TesourariaClient({ contas, transferencias: inicial, extr
 
         {/* ── TRANSFERÊNCIAS ── */}
         {aba === "transferencias" && (
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Data</TableHead>
-                <TableHead>Origem</TableHead>
-                <TableHead>Destino</TableHead>
-                <TableHead>Descrição</TableHead>
-                <TableHead className="text-right">Valor</TableHead>
-                <TableHead className="w-12" />
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {transferencias.length === 0 && (
-                <TableRow><TableCell colSpan={6} className="text-center text-muted-foreground py-10">Nenhuma transferência registrada</TableCell></TableRow>
-              )}
-              {transferencias.map(t => (
-                <TableRow key={t.id}>
-                  <TableCell className="text-muted-foreground text-sm">{fmtData(t.data)}</TableCell>
-                  <TableCell className="font-medium text-sm">{t.conta_origem_nome}</TableCell>
-                  <TableCell className="font-medium text-sm">{t.conta_destino_nome}</TableCell>
-                  <TableCell className="text-muted-foreground text-sm">{t.descricao ?? "—"}</TableCell>
-                  <TableCell className="text-right font-semibold text-primary">{fmtBRL(t.valor)}</TableCell>
-                  <TableCell>
-                    <Button size="icon" variant="ghost" className="size-7 text-destructive hover:text-destructive" onClick={() => handleExcluir(t.id)}>
-                      <Trash2 className="size-3.5" />
-                    </Button>
-                  </TableCell>
+          <>
+            <BarraSelecaoEmLote quantidade={lote.selecionados.length} limpar={lote.limpar}>
+              <BotaoExclusaoEmLote tipo="transferencias" itens={lote.selecionados} onConcluido={concluirLote} />
+            </BarraSelecaoEmLote>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="w-8">{lote.selecionarTodos}</TableHead>
+                  <TableHead>Data</TableHead>
+                  <TableHead>Origem</TableHead>
+                  <TableHead>Destino</TableHead>
+                  <TableHead>Descrição</TableHead>
+                  <TableHead className="text-right">Valor</TableHead>
+                  <TableHead className="w-12" />
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHeader>
+              <TableBody>
+                {transferencias.length === 0 && (
+                  <TableRow><TableCell colSpan={7} className="text-center text-muted-foreground py-10">Nenhuma transferência registrada</TableCell></TableRow>
+                )}
+                {transferencias.map(t => (
+                  <TableRow key={t.id}>
+                    <TableCell onClick={(event) => event.stopPropagation()}>{lote.seletor(t.id, t.descricao || `Transferência de ${t.conta_origem_nome} para ${t.conta_destino_nome}`)}</TableCell>
+                    <TableCell className="text-muted-foreground text-sm">{fmtData(t.data)}</TableCell>
+                    <TableCell className="font-medium text-sm">{t.conta_origem_nome}</TableCell>
+                    <TableCell className="font-medium text-sm">{t.conta_destino_nome}</TableCell>
+                    <TableCell className="text-muted-foreground text-sm">{t.descricao ?? "—"}</TableCell>
+                    <TableCell className="text-right font-semibold text-primary">{fmtBRL(t.valor)}</TableCell>
+                    <TableCell>
+                      <Button size="icon" variant="ghost" className="size-7 text-destructive hover:text-destructive" onClick={() => handleExcluir(t.id)}>
+                        <Trash2 className="size-3.5" />
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </>
         )}
 
         {/* ── EXTRATO ── */}

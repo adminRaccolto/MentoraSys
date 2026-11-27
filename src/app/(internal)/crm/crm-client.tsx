@@ -3,6 +3,7 @@
 import { useState, useTransition, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { useAtualizarAoRetomarTela } from "@/hooks/useAtualizarAoRetomarTela";
+import { BarraSelecaoEmLote, BotaoExclusaoEmLote, useSelecaoEmLote } from "@/components/exclusao-em-lote";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -187,6 +188,9 @@ export default function CrmClient({ etapasIniciais, leadsIniciais, clientes, ser
     if (filtroServico && l.servico?.id !== filtroServico) return false;
     return true;
   }), [leads, filtroEtapa, filtroResponsavel, filtroServico]);
+  const lote = useSelecaoEmLote(leadsFiltrados
+    .filter((lead) => viewMode === "LISTA" || Boolean(etapaMap[lead.etapa_chave]))
+    .map((lead) => ({ id: lead.id, nome: lead.nome })));
 
   const selected = useMemo(() => leads.find((l) => l.id === selectedId) ?? null, [leads, selectedId]);
 
@@ -435,6 +439,21 @@ export default function CrmClient({ etapasIniciais, leadsIniciais, clientes, ser
         </div>
       </header>
 
+      <div className="flex flex-wrap items-center gap-3 border-b px-4 py-2">
+        <div className="flex items-center gap-2 text-sm">
+          {lote.selecionarTodos}
+          <span>Selecionar oportunidades visíveis</span>
+        </div>
+        <BarraSelecaoEmLote quantidade={lote.selecionados.length} limpar={lote.limpar}>
+          <BotaoExclusaoEmLote tipo="leads" itens={lote.selecionados} onConcluido={(ids) => {
+            lote.remover(ids);
+            setLeadsExcluidos((prev) => [...prev, ...ids]);
+            setLeads((prev) => prev.filter((lead) => !ids.has(lead.id)));
+            setSelectedId((atual) => atual && ids.has(atual) ? null : atual);
+          }} />
+        </BarraSelecaoEmLote>
+      </div>
+
       {/* Conteúdo */}
       <div className="flex-1 overflow-hidden">
 
@@ -482,7 +501,10 @@ export default function CrmClient({ etapasIniciais, leadsIniciais, clientes, ser
                         >
                           <X className="size-3" />
                         </button>
-                        <p className="font-medium text-xs leading-tight pr-5 truncate">{lead.nome}</p>
+                        <div className="flex items-center gap-2 pr-5">
+                          <div onDoubleClick={(event) => event.stopPropagation()}>{lote.seletor(lead.id, lead.nome)}</div>
+                          <p className="truncate text-xs font-medium leading-tight">{lead.nome}</p>
+                        </div>
                         <p className="text-[10px] text-muted-foreground mt-0.5 truncate">{lead.empresa_nome}</p>
                         <div className="flex items-center gap-1 mt-1.5">
                           {lead.responsavel && <span className="text-[10px] text-muted-foreground truncate flex-1">{lead.responsavel.nome}</span>}
@@ -520,7 +542,7 @@ export default function CrmClient({ etapasIniciais, leadsIniciais, clientes, ser
               <table className="w-full text-sm">
                 <thead>
                   <tr className="text-left border-b border-border">
-                    {["Oportunidade", "Etapa", "Tags", "Responsável", "Valor", "Previsão", ""].map((h) => (
+                    {["Seleção", "Oportunidade", "Etapa", "Tags", "Responsável", "Valor", "Previsão", ""].map((h) => (
                       <th key={h} className="pb-2 pr-4 text-xs font-semibold text-muted-foreground">{h}</th>
                     ))}
                   </tr>
@@ -530,6 +552,9 @@ export default function CrmClient({ etapasIniciais, leadsIniciais, clientes, ser
                     const etapa = etapaMap[lead.etapa_chave];
                     return (
                       <tr key={lead.id} className={`border-b border-border/50 hover:bg-muted/40 cursor-pointer transition-colors ${selectedId === lead.id ? "bg-primary/5" : ""}`} onClick={() => setSelectedId(lead.id)} onDoubleClick={() => abrirEditar(lead)}>
+                        <td className="w-10 py-2" onClick={(event) => event.stopPropagation()} onDoubleClick={(event) => event.stopPropagation()}>
+                          {lote.seletor(lead.id, lead.nome)}
+                        </td>
                         <td className="py-2 pr-4">
                           <p className="font-medium truncate max-w-52">{lead.nome}</p>
                           <p className="text-xs text-muted-foreground truncate">{lead.empresa_nome}{lead.contato_nome ? ` · ${lead.contato_nome}` : ""}</p>

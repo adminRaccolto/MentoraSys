@@ -224,7 +224,10 @@ export async function excluirDocumento(documentoId: string) {
   const caminho = new URL(doc.arquivo_url).pathname
     .split(`/storage/v1/object/public/${BUCKET}/`)[1];
 
-  if (caminho) await supabaseAdmin.storage.from(BUCKET).remove([caminho]);
+  if (caminho) {
+    const { error } = await supabaseAdmin.storage.from(BUCKET).remove([caminho]);
+    if (error) return { ok: false, error: "Não foi possível excluir o arquivo do armazenamento." };
+  }
 
   await prisma.documento.delete({ where: { id: documentoId } });
 

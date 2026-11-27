@@ -289,9 +289,10 @@ export async function excluirNota(id: string) {
   await verificarPermissao("faturamento", "excluir");
   const empresaId = await obterEmpresaAtiva();
 
-  await prisma.notaFiscal.deleteMany({
+  const { count } = await prisma.notaFiscal.deleteMany({
     where: { id, empresa_id: empresaId, status: "PENDENTE" },
   });
+  if (!count) throw new Error("Somente notas pendentes podem ser excluídas.");
 
   await registrar({ recurso: "faturamento", acao: "excluir", registroId: id });
   revalidatePath("/faturamento");

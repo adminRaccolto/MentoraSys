@@ -275,8 +275,10 @@ export async function excluirRecebivel(id: string) {
   const recebivel = await prisma.recebivel.findFirst({ where: { id, empresa_id: empresaId } });
   if (!recebivel) throw new Error("Recebível não encontrado");
   if (recebivel.status === "PAGO") throw new Error("Recebível pago não pode ser excluído");
-
-  await prisma.recebivel.delete({ where: { id } });
+  const { count } = await prisma.recebivel.deleteMany({
+    where: { id, empresa_id: empresaId, status: { not: "PAGO" } },
+  });
+  if (!count) throw new Error("O recebível foi pago ou deixou de existir.");
   await registrar({ recurso: "recebiveis", acao: "excluir", registroId: id });
   revalidatePath("/financeiro/recebiveis");
   return { data: null };

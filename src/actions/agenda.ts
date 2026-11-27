@@ -89,7 +89,8 @@ export async function excluirEvento(id: string) {
   await verificarPermissao("agenda", "excluir");
   const empresaId = await obterEmpresaAtiva();
 
-  await prisma.evento.deleteMany({ where: { id, empresa_id: empresaId } });
+  const { count } = await prisma.evento.deleteMany({ where: { id, empresa_id: empresaId } });
+  if (!count) throw new Error("Evento não encontrado.");
 
   await registrar({ recurso: "agenda", acao: "excluir", registroId: id });
   revalidatePath("/agenda");

@@ -1,5 +1,6 @@
 "use client";
 
+import { BarraSelecaoEmLote, BotaoExclusaoEmLote, useSelecaoEmLote } from "@/components/exclusao-em-lote";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -136,6 +137,8 @@ export default function CampanhaClient({ campanhasIniciais, empresaSlug }: Props
     toast.success("Link copiado!");
   }
 
+  const lote = useSelecaoEmLote(campanhas.map((campanha) => ({ id: campanha.id, nome: campanha.titulo })));
+
   return (
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
@@ -148,6 +151,14 @@ export default function CampanhaClient({ campanhasIniciais, empresaSlug }: Props
         </Button>
       </div>
 
+      <div className="flex items-center gap-2 text-sm">
+        {lote.selecionarTodos}
+        <span>Selecionar todas visíveis</span>
+      </div>
+      <BarraSelecaoEmLote quantidade={lote.selecionados.length} limpar={lote.limpar}>
+        <BotaoExclusaoEmLote tipo="campanhasDiagnostico" itens={lote.selecionados} onConcluido={lote.remover} />
+      </BarraSelecaoEmLote>
+
       {campanhas.length === 0 ? (
         <div className="py-20 text-center border-2 border-dashed border-border rounded-xl text-muted-foreground">
           <p className="font-medium mb-1">Nenhuma campanha criada</p>
@@ -157,6 +168,7 @@ export default function CampanhaClient({ campanhasIniciais, empresaSlug }: Props
         <div className="grid gap-4">
           {campanhas.map((c) => (
             <div key={c.id} className="border border-border rounded-xl bg-card p-5 flex items-start gap-4">
+              {lote.seletor(c.id, c.titulo)}
               <div className="flex-1 min-w-0 space-y-2">
                 <div className="flex items-center gap-2 flex-wrap">
                   <span className="font-semibold">{c.titulo}</span>

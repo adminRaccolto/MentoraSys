@@ -44,7 +44,8 @@ export async function excluirCampanha(id: string) {
   await verificarPermissao("crm", "excluir");
   const empresaId = await obterEmpresaAtiva();
 
-  await prisma.campanhaDiagnostico.deleteMany({ where: { id, empresa_id: empresaId } });
+  const { count } = await prisma.campanhaDiagnostico.deleteMany({ where: { id, empresa_id: empresaId } });
+  if (!count) throw new Error("Campanha não encontrada.");
   revalidatePath("/crm/diagnostico");
 }
 

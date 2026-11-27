@@ -1,5 +1,6 @@
 "use client";
 
+import { BarraSelecaoEmLote, BotaoExclusaoEmLote, useSelecaoEmLote } from "@/components/exclusao-em-lote";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -95,6 +96,8 @@ export default function DiagnosticosClient({ diagnosticos, clientes, projetos }:
   const filtrados =
     tabAtiva === "TODOS" ? diagnosticos : diagnosticos.filter((d) => d.tipo === tabAtiva);
 
+  const lote = useSelecaoEmLote(filtrados.map((item) => ({ id: item.id, nome: item.titulo })));
+
   const handleCriar = form.handleSubmit((data) => {
     startTransition(async () => {
       const res = await criarDiagnostico({
@@ -156,6 +159,13 @@ export default function DiagnosticosClient({ diagnosticos, clientes, projetos }:
         ))}
       </div>
 
+      <div className="flex items-center gap-2 text-sm">
+        {lote.selecionarTodos}
+        <span>Selecionar todos visíveis</span>
+      </div>
+      <BarraSelecaoEmLote quantidade={lote.selecionados.length} limpar={lote.limpar}>
+        <BotaoExclusaoEmLote tipo="diagnosticos" itens={lote.selecionados} onConcluido={lote.remover} />
+      </BarraSelecaoEmLote>
       {/* Grid */}
       {filtrados.length === 0 ? (
         <div className="py-16 text-center text-muted-foreground text-sm">
@@ -170,6 +180,7 @@ export default function DiagnosticosClient({ diagnosticos, clientes, projetos }:
               onClick={() => router.push(`/diagnosticos/${d.id}`)}
             >
               <div className="flex items-start justify-between gap-2">
+                {lote.seletor(d.id, d.titulo)}
                 <div className="flex-1 min-w-0">
                   <p className="font-medium truncate">{d.titulo}</p>
                   <p className="text-xs text-muted-foreground mt-0.5">

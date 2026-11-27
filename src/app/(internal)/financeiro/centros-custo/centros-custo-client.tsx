@@ -1,5 +1,6 @@
 "use client";
 
+import { BarraSelecaoEmLote, BotaoExclusaoEmLote, useSelecaoEmLote } from "@/components/exclusao-em-lote";
 import { useState, useTransition } from "react";
 import { toast } from "sonner";
 import { Plus, Pencil, Trash2, FolderKanban, Tag, ToggleLeft, ToggleRight } from "lucide-react";
@@ -65,6 +66,8 @@ export default function CentrosCustoClient({ centros: ini }: Props) {
   const ativos   = lista.filter(c => c.ativo);
   const inativos = lista.filter(c => !c.ativo);
 
+  const lote = useSelecaoEmLote(lista.filter((item) => !item.projeto_id).map((item) => ({ id: item.id, nome: item.nome })));
+
   return (
     <div className="p-6 max-w-3xl mx-auto space-y-6">
       <div className="flex items-center justify-between">
@@ -79,6 +82,13 @@ export default function CentrosCustoClient({ centros: ini }: Props) {
         </Button>
       </div>
 
+      <div className="flex items-center gap-2 text-sm">
+        {lote.selecionarTodos}
+        <span>Selecionar todos visíveis</span>
+      </div>
+      <BarraSelecaoEmLote quantidade={lote.selecionados.length} limpar={lote.limpar}>
+        <BotaoExclusaoEmLote tipo="centrosCusto" itens={lote.selecionados} aviso="Centros de custo vinculados a projetos ou lançamentos serão preservados." onConcluido={(ids) => { lote.remover(ids); setLista((prev) => prev.filter((item) => !ids.has(item.id))); }} />
+      </BarraSelecaoEmLote>
       {lista.length === 0 ? (
         <div className="text-center py-20 text-muted-foreground">
           <Tag className="size-10 mx-auto mb-3 opacity-20" />
@@ -94,6 +104,7 @@ export default function CentrosCustoClient({ centros: ini }: Props) {
                 <div className="border rounded-xl divide-y">
                   {items.map(cc => (
                     <div key={cc.id} className="flex items-center gap-3 px-4 py-3 group hover:bg-muted/30 transition-colors">
+                      <div className="w-4">{lote.seletor(cc.id, cc.nome)}</div>
                       <div className="size-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
                         {cc.projeto_id
                           ? <FolderKanban className="size-4 text-primary" />

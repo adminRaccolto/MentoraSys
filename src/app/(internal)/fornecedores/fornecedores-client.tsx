@@ -1,5 +1,6 @@
 "use client";
 
+import { BarraSelecaoEmLote, BotaoExclusaoEmLote, useSelecaoEmLote } from "@/components/exclusao-em-lote";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -202,6 +203,12 @@ export default function FornecedoresClient({ fornecedores: inicial }: Props) {
     (f.cidade ?? "").toLowerCase().includes(busca.toLowerCase())
   );
 
+  const lote = useSelecaoEmLote(filtrados.map((f) => ({ id: f.id, nome: f.nome })));
+  const concluirLote = (ids: Set<string>) => {
+    lote.remover(ids);
+    setFornecedores((prev) => prev.filter((f) => !ids.has(f.id)));
+  };
+
   return (
     <div className="p-6 space-y-6">
       {/* Header */}
@@ -232,9 +239,13 @@ export default function FornecedoresClient({ fornecedores: inicial }: Props) {
         </div>
       ) : (
         <div className="border rounded-lg overflow-hidden">
+          <BarraSelecaoEmLote quantidade={lote.selecionados.length} limpar={lote.limpar}>
+            <BotaoExclusaoEmLote tipo="fornecedores" itens={lote.selecionados} verbo="Desativar" onConcluido={concluirLote} />
+          </BarraSelecaoEmLote>
           <Table>
             <TableHeader>
               <TableRow>
+                <TableHead className="w-8">{lote.selecionarTodos}</TableHead>
                 <TableHead>Nome</TableHead>
                 <TableHead>CNPJ / CPF</TableHead>
                 <TableHead>Contato</TableHead>
@@ -246,6 +257,7 @@ export default function FornecedoresClient({ fornecedores: inicial }: Props) {
             <TableBody>
               {filtrados.map((f) => (
                 <TableRow key={f.id} className="cursor-pointer hover:bg-muted/50" onClick={() => abrirEditar(f)}>
+                  <TableCell onClick={(event) => event.stopPropagation()}>{lote.seletor(f.id, f.nome)}</TableCell>
                   <TableCell className="font-medium">{f.nome}</TableCell>
                   <TableCell className="text-muted-foreground tabular-nums">{f.cnpj_cpf ?? "—"}</TableCell>
                   <TableCell className="text-muted-foreground">

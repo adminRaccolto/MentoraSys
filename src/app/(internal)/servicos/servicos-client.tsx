@@ -1,5 +1,6 @@
 "use client";
 
+import { BarraSelecaoEmLote, BotaoExclusaoEmLote, useSelecaoEmLote } from "@/components/exclusao-em-lote";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -178,6 +179,12 @@ export default function ServicosClient({
     });
   };
 
+  const lote = useSelecaoEmLote(servicos.filter((s) => s.ativo).map((s) => ({ id: s.id, nome: s.nome })));
+  const concluirLote = (ids: Set<string>) => {
+    lote.remover(ids);
+    setServicos((prev) => prev.map((s) => ids.has(s.id) ? { ...s, ativo: false } : s));
+  };
+
   return (
     <div className="p-6 space-y-4">
       <div className="flex items-center justify-between">
@@ -202,9 +209,13 @@ export default function ServicosClient({
       </div>
 
       <div className="rounded-lg border bg-card overflow-hidden">
+        <BarraSelecaoEmLote quantidade={lote.selecionados.length} limpar={lote.limpar}>
+          <BotaoExclusaoEmLote tipo="servicos" itens={lote.selecionados} verbo="Desativar" onConcluido={concluirLote} />
+        </BarraSelecaoEmLote>
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead className="w-8">{lote.selecionarTodos}</TableHead>
               <TableHead>Nome</TableHead>
               <TableHead>Canal / Plano</TableHead>
               <TableHead>Tipo</TableHead>
@@ -216,13 +227,14 @@ export default function ServicosClient({
           <TableBody>
             {servicos.length === 0 && (
               <TableRow>
-                <TableCell colSpan={6} className="text-center text-muted-foreground py-10">
+                <TableCell colSpan={7} className="text-center text-muted-foreground py-10">
                   Nenhum serviço cadastrado
                 </TableCell>
               </TableRow>
             )}
             {servicos.map((s) => (
               <TableRow key={s.id} className="cursor-pointer hover:bg-muted/50" onClick={() => abrirEditar(s)}>
+                <TableCell onClick={(event) => event.stopPropagation()}>{lote.seletor(s.id, s.nome)}</TableCell>
                 <TableCell>
                   <p className="font-medium">{s.nome}</p>
                   {s.descricao && <p className="text-xs text-muted-foreground truncate max-w-xs">{s.descricao}</p>}

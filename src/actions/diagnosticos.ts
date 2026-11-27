@@ -79,10 +79,12 @@ export async function excluirDiagnostico(id: string) {
   await verificarPermissao("diagnosticos", "excluir");
   const empresaId = await obterEmpresaAtiva();
 
-  await prisma.diagnostico.deleteMany({ where: { id, empresa_id: empresaId } });
+  const { count } = await prisma.diagnostico.deleteMany({ where: { id, empresa_id: empresaId } });
+  if (!count) throw new Error("Diagnóstico não encontrado.");
 
   await registrar({ recurso: "diagnosticos", acao: "excluir", registroId: id });
   revalidatePath("/diagnosticos");
+  revalidatePath("/diagnosticos/conselho-agro");
   return { ok: true };
 }
 

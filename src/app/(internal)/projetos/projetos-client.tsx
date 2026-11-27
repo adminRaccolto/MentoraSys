@@ -1,5 +1,6 @@
 "use client";
 
+import { BarraSelecaoEmLote, BotaoExclusaoEmLote, useSelecaoEmLote } from "@/components/exclusao-em-lote";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -122,6 +123,12 @@ export default function ProjetosClient({ projetos: inicial, clientes, contratos 
     return `${concluidas}/${p.tarefas.length}`;
   };
 
+  const lote = useSelecaoEmLote(projetos.map((p) => ({ id: p.id, nome: p.titulo })));
+  const concluirLote = (ids: Set<string>) => {
+    lote.remover(ids);
+    setProjetos((prev) => prev.filter((p) => !ids.has(p.id)));
+  };
+
   return (
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
@@ -136,9 +143,13 @@ export default function ProjetosClient({ projetos: inicial, clientes, contratos 
       </div>
 
       <div className="rounded-lg border bg-card overflow-hidden">
+        <BarraSelecaoEmLote quantidade={lote.selecionados.length} limpar={lote.limpar}>
+          <BotaoExclusaoEmLote tipo="projetos" itens={lote.selecionados} aviso="Os projetos e seus dados vinculados, como etapas, tarefas e documentos, serão excluídos." onConcluido={concluirLote} />
+        </BarraSelecaoEmLote>
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead className="w-8">{lote.selecionarTodos}</TableHead>
               <TableHead>Título</TableHead>
               <TableHead>Cliente</TableHead>
               <TableHead>Status</TableHead>
@@ -151,7 +162,7 @@ export default function ProjetosClient({ projetos: inicial, clientes, contratos 
           <TableBody>
             {projetos.length === 0 && (
               <TableRow>
-                <TableCell colSpan={7} className="text-center text-muted-foreground py-10">
+                <TableCell colSpan={8} className="text-center text-muted-foreground py-10">
                   Nenhum projeto cadastrado
                 </TableCell>
               </TableRow>
@@ -165,6 +176,7 @@ export default function ProjetosClient({ projetos: inicial, clientes, contratos 
                   className="cursor-pointer hover:bg-muted/50"
                   onClick={() => router.push(`/projetos/${p.id}`)}
                 >
+                  <TableCell onClick={(event) => event.stopPropagation()}>{lote.seletor(p.id, p.titulo)}</TableCell>
                   <TableCell className="font-medium">{p.titulo}</TableCell>
                   <TableCell>
                     {p.interno

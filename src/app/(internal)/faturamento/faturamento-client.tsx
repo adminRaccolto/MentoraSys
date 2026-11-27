@@ -1,5 +1,6 @@
 "use client";
 
+import { BarraSelecaoEmLote, BotaoExclusaoEmLote, useSelecaoEmLote } from "@/components/exclusao-em-lote";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -385,6 +386,8 @@ export default function FaturamentoClient({
     });
   });
 
+  const lote = useSelecaoEmLote(notas.filter((item) => item.status === "PENDENTE").map((item) => ({ id: item.id, nome: item.descricao })));
+
   const totalFaturado = notas
     .filter((n) => n.status !== "CANCELADA")
     .reduce((s, n) => s + n.valor, 0);
@@ -620,6 +623,9 @@ export default function FaturamentoClient({
       </div>
 
       {/* Tabela */}
+      <BarraSelecaoEmLote quantidade={lote.selecionados.length} limpar={lote.limpar}>
+        <BotaoExclusaoEmLote tipo="notasFiscais" itens={lote.selecionados} onConcluido={lote.remover} />
+      </BarraSelecaoEmLote>
       <div className="border border-border rounded-lg overflow-hidden">
         {notas.length === 0 ? (
           <div className="py-16 text-center text-sm text-muted-foreground">
@@ -629,6 +635,7 @@ export default function FaturamentoClient({
           <table className="w-full text-sm">
             <thead className="bg-muted text-xs text-muted-foreground">
               <tr>
+                <th className="w-8 pl-3">{lote.selecionarTodos}</th>
                 <th className="px-4 py-2.5 text-left font-medium">NF / Descrição</th>
                 <th className="px-4 py-2.5 text-left font-medium">Cliente</th>
                 <th className="px-4 py-2.5 text-left font-medium">Competência</th>
@@ -645,6 +652,7 @@ export default function FaturamentoClient({
                   className="hover:bg-muted/40 cursor-pointer"
                   onClick={() => nota.status === "PENDENTE" && abrirEditar(nota)}
                 >
+                  <td className="w-8 pl-3" onClick={(event) => event.stopPropagation()}>{lote.seletor(nota.id, nota.descricao)}</td>
                   <td className="px-4 py-2.5">
                     <p className="font-medium">{nota.descricao}</p>
                     {nota.numero && (

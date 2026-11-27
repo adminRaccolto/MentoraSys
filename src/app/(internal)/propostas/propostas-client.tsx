@@ -1,5 +1,6 @@
 "use client";
 
+import { BarraSelecaoEmLote, BotaoExclusaoEmLote, useSelecaoEmLote } from "@/components/exclusao-em-lote";
 import { useEffect, useState, useTransition } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -433,6 +434,12 @@ export default function PropostasClient({ propostas: inicial, clientes, servicos
     });
   };
 
+  const lote = useSelecaoEmLote(propostas.map((p) => ({ id: p.id, nome: p.titulo })));
+  const concluirLote = (ids: Set<string>) => {
+    lote.remover(ids);
+    setPropostas((prev) => prev.filter((p) => !ids.has(p.id)));
+  };
+
   return (
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
@@ -447,9 +454,13 @@ export default function PropostasClient({ propostas: inicial, clientes, servicos
       </div>
 
       <div className="rounded-lg border bg-card overflow-hidden">
+        <BarraSelecaoEmLote quantidade={lote.selecionados.length} limpar={lote.limpar}>
+          <BotaoExclusaoEmLote tipo="propostas" itens={lote.selecionados} onConcluido={concluirLote} />
+        </BarraSelecaoEmLote>
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead className="w-8">{lote.selecionarTodos}</TableHead>
               <TableHead>Proposta</TableHead>
               <TableHead>Cliente</TableHead>
               <TableHead>Condições</TableHead>
@@ -462,7 +473,7 @@ export default function PropostasClient({ propostas: inicial, clientes, servicos
           <TableBody>
             {propostas.length === 0 && (
               <TableRow>
-                <TableCell colSpan={7} className="text-center text-muted-foreground py-10">
+                <TableCell colSpan={8} className="text-center text-muted-foreground py-10">
                   Nenhuma proposta criada
                 </TableCell>
               </TableRow>
@@ -471,6 +482,7 @@ export default function PropostasClient({ propostas: inicial, clientes, servicos
               const cfg = STATUS_CONFIG[p.status];
               return (
                 <TableRow key={p.id} className="hover:bg-muted/50 cursor-pointer" onClick={() => abrirEditar(p)}>
+                  <TableCell onClick={(event) => event.stopPropagation()}>{lote.seletor(p.id, p.titulo)}</TableCell>
                   <TableCell>
                     <p className="font-medium">{p.titulo}</p>
                     {p.objeto && <p className="text-xs text-muted-foreground truncate max-w-[220px]">{p.objeto}</p>}

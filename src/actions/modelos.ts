@@ -487,9 +487,10 @@ export async function excluirModelo(id: string) {
   await verificarPermissao("modelos", "excluir");
   const empresaId = await obterEmpresaAtiva();
 
-  await prisma.modeloDocumento.deleteMany({
+  const { count } = await prisma.modeloDocumento.deleteMany({
     where: { id, empresa_id: empresaId },
   });
+  if (!count) throw new Error("Modelo não encontrado.");
 
   revalidatePath("/modelos");
   return { ok: true };

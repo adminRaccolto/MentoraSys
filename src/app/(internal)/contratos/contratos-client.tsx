@@ -1,5 +1,6 @@
 "use client";
 
+import { BarraSelecaoEmLote, BotaoExclusaoEmLote, useSelecaoEmLote } from "@/components/exclusao-em-lote";
 import { useState, useTransition, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useForm, useFieldArray } from "react-hook-form";
@@ -673,6 +674,12 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
     });
   });
 
+  const lote = useSelecaoEmLote(contratos.map((c) => ({ id: c.id, nome: c.titulo })));
+  const concluirLote = (ids: Set<string>) => {
+    lote.remover(ids);
+    setContratos((prev) => prev.filter((c) => !ids.has(c.id)));
+  };
+
   return (
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
@@ -707,9 +714,13 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
       )}
 
       <div className="rounded-lg border bg-card overflow-hidden">
+        <BarraSelecaoEmLote quantidade={lote.selecionados.length} limpar={lote.limpar}>
+          <BotaoExclusaoEmLote tipo="contratos" itens={lote.selecionados} aviso="Os contratos e todos os seus recebíveis, inclusive os pagos, serão excluídos. Projetos, eventos e notas fiscais perdem o vínculo." onConcluido={concluirLote} />
+        </BarraSelecaoEmLote>
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead className="w-8">{lote.selecionarTodos}</TableHead>
               <TableHead>Contrato</TableHead>
               <TableHead>Cliente</TableHead>
               <TableHead>Responsável</TableHead>
@@ -723,7 +734,7 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
           <TableBody>
             {contratos.length === 0 && (
               <TableRow>
-                <TableCell colSpan={8} className="text-center text-muted-foreground py-10">
+                <TableCell colSpan={9} className="text-center text-muted-foreground py-10">
                   Nenhum contrato cadastrado
                 </TableCell>
               </TableRow>
@@ -732,6 +743,7 @@ export default function ContratosClient({ contratos: inicial, clientes, proposta
               const cfg = STATUS_CONFIG[c.status];
               return (
                 <TableRow key={c.id} className="cursor-pointer hover:bg-muted/50" onClick={() => abrirEditar(c)}>
+                  <TableCell onClick={(event) => event.stopPropagation()}>{lote.seletor(c.id, c.titulo)}</TableCell>
                   <TableCell>
                     <p className="font-medium">{c.titulo}</p>
                     {c.numero_contrato && (

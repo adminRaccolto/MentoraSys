@@ -1,5 +1,6 @@
 "use client";
 
+import { BarraSelecaoEmLote, BotaoExclusaoEmLote, useSelecaoEmLote } from "@/components/exclusao-em-lote";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -317,6 +318,12 @@ export default function ClientesClient({ clientes: inicial }: { clientes: Client
     { value: "INATIVO", label: "Inativos", count: clientes.filter((c) => c.status === "INATIVO").length },
   ];
 
+  const lote = useSelecaoEmLote(clientesFiltrados.map((c) => ({ id: c.id, nome: c.nome })));
+  const concluirLote = (ids: Set<string>) => {
+    lote.remover(ids);
+    setClientes((prev) => prev.filter((c) => !ids.has(c.id)));
+  };
+
   return (
     <div className="p-6 space-y-4">
       {/* Cabeçalho */}
@@ -364,9 +371,21 @@ export default function ClientesClient({ clientes: inicial }: { clientes: Client
 
       {/* Tabela */}
       <div className="rounded-lg border bg-card overflow-hidden">
+        <BarraSelecaoEmLote quantidade={lote.selecionados.length} limpar={lote.limpar}>
+          <BotaoExclusaoEmLote tipo="clientes" itens={lote.selecionados} aviso="Clientes com contratos, propostas, recebíveis ou leads vinculados serão preservados." onConcluido={concluirLote} />
+          <BotaoExclusaoEmLote
+            tipo="desativarClientes" verbo="Desativar"
+            itens={lote.selecionados.filter(({ id }) => clientes.some((cliente) => cliente.id === id && cliente.status !== "INATIVO"))}
+            onConcluido={(ids) => {
+              lote.remover(ids);
+              setClientes((prev) => prev.map((cliente) => ids.has(cliente.id) ? { ...cliente, status: "INATIVO" } : cliente));
+            }}
+          />
+        </BarraSelecaoEmLote>
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead className="w-8">{lote.selecionarTodos}</TableHead>
               <TableHead>Nome / Fantasia</TableHead>
               <TableHead>Tipo</TableHead>
               <TableHead>Contato</TableHead>
@@ -378,7 +397,7 @@ export default function ClientesClient({ clientes: inicial }: { clientes: Client
           <TableBody>
             {clientesFiltrados.length === 0 && (
               <TableRow>
-                <TableCell colSpan={6} className="text-center text-muted-foreground py-10">
+                <TableCell colSpan={7} className="text-center text-muted-foreground py-10">
                   {busca || filtroStatus ? "Nenhum cliente corresponde à busca." : "Nenhum cliente cadastrado."}
                 </TableCell>
               </TableRow>
@@ -389,6 +408,7 @@ export default function ClientesClient({ clientes: inicial }: { clientes: Client
                 className="cursor-pointer hover:bg-muted/50"
                 onClick={() => abrirEditar(c)}
               >
+                <TableCell onClick={(event) => event.stopPropagation()}>{lote.seletor(c.id, c.nome)}</TableCell>
                 <TableCell>
                   <p className="font-medium">{c.nome}</p>
                   {c.nome_fantasia && <p className="text-xs text-muted-foreground">{c.nome_fantasia}</p>}

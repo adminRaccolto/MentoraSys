@@ -1,5 +1,6 @@
 "use client";
 
+import { BarraSelecaoEmLote, BotaoExclusaoEmLote, useSelecaoEmLote } from "@/components/exclusao-em-lote";
 import { useState, useTransition } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -38,6 +39,8 @@ export default function ConselhoAgroListClient({ rows: inicial }: { rows: Row[] 
   const [excluindo, setExcluindo] = useState<Row | null>(null);
   const [isPending, startTransition] = useTransition();
 
+  const lote = useSelecaoEmLote(rows.map((item) => ({ id: item.id, nome: item.nome })));
+
   const confirmarExcluir = () => {
     if (!excluindo) return;
     const id = excluindo.id;
@@ -63,9 +66,13 @@ export default function ConselhoAgroListClient({ rows: inicial }: { rows: Row[] 
         </div>
       ) : (
         <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+          <BarraSelecaoEmLote quantidade={lote.selecionados.length} limpar={lote.limpar}>
+            <BotaoExclusaoEmLote tipo="diagnosticos" itens={lote.selecionados} onConcluido={(ids) => { lote.remover(ids); setRows((prev) => prev.filter((item) => !ids.has(item.id))); }} />
+          </BarraSelecaoEmLote>
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gray-100 bg-gray-50">
+                <th className="w-8 pl-3">{lote.selecionarTodos}</th>
                 <th className="text-left px-5 py-3 font-semibold text-gray-600">Nome</th>
                 <th className="text-left px-4 py-3 font-semibold text-gray-600">Atividade</th>
                 <th className="text-center px-4 py-3 font-semibold text-gray-600">Score</th>
@@ -77,6 +84,7 @@ export default function ConselhoAgroListClient({ rows: inicial }: { rows: Row[] 
             <tbody>
               {rows.map((r) => (
                 <tr key={r.id} className="border-b border-gray-50 last:border-0 hover:bg-gray-50 transition-colors">
+                  <td className="w-8 pl-3">{lote.seletor(r.id, r.nome)}</td>
                   <td className="px-5 py-4">
                     <Link
                       href={`/diagnosticos/conselho-agro/${r.id}`}
