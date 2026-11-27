@@ -2,6 +2,7 @@ import {
   AsaasApiError,
   asaasGetCustomer,
   asaasGetSubscription,
+  asaasListInstallmentPayments,
   asaasListPayments,
   type AsaasPaymentFull,
 } from "@/lib/asaas";
@@ -41,7 +42,37 @@ export async function importarRecebiveisCheckoutAsaas(
     }
     if (!hasMore || data.length === 0) break;
   }
+  return importarPagamentosConfirmados(pagamentos, empresaId, apiKey);
+}
 
+export async function importarParcelamentoCheckoutAsaas(
+  cobranca: AsaasPaymentFull,
+  empresaId: string,
+  apiKey: string,
+) {
+  const pagamentos = new Map<string, AsaasPaymentFull>([[cobranca.id, cobranca]]);
+  if (cobranca.checkoutSession && cobranca.installment) {
+    const limit = 100;
+    for (let offset = 0; ; offset += limit) {
+      const { data, hasMore } = await asaasListInstallmentPayments(cobranca.installment, { offset, limit }, apiKey);
+      for (const pagamento of data) {
+        if (pagamento.checkoutSession === cobranca.checkoutSession &&
+            pagamento.installment === cobranca.installment &&
+            pagamento.customer === cobranca.customer) {
+          pagamentos.set(pagamento.id, pagamento);
+        }
+      }
+      if (!hasMore || data.length === 0) break;
+    }
+  }
+  return importarPagamentosConfirmados(pagamentos, empresaId, apiKey);
+}
+
+async function importarPagamentosConfirmados(
+  pagamentos: Map<string, AsaasPaymentFull>,
+  empresaId: string,
+  apiKey: string,
+) {
   const parcelas = new Map<string, number>();
   for (const pagamento of pagamentos.values()) {
     if (pagamento.installment) {

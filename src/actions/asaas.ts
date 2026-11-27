@@ -20,7 +20,7 @@ import {
   idCobrancaAsaasValido,
   obterChaveAsaas,
 } from "@/lib/asaas";
-import { importarRecebivelAsaas, importarRecebiveisCheckoutAsaas, localizarVendaConselhoAgro } from "@/lib/asaas-recebiveis";
+import { importarParcelamentoCheckoutAsaas, importarRecebivelAsaas, importarRecebiveisCheckoutAsaas, localizarVendaConselhoAgro, pagamentoAsaasConfirmado } from "@/lib/asaas-recebiveis";
 
 // ─── COBRANÇAS (Recebíveis) ───────────────────────────────────────────────────
 
@@ -203,6 +203,12 @@ export async function importarCobrancaAsaas(id: string) {
       return { checkout: info };
     }
     const pagamento = await asaasGetPayment(pagamentoId, apiKey);
+    if (pagamento.checkoutSession && pagamento.installment && pagamentoAsaasConfirmado(pagamento)) {
+      const info = await importarParcelamentoCheckoutAsaas(pagamento, empresaId, apiKey);
+      revalidatePath("/financeiro/recebiveis");
+      revalidatePath("/financeiro/fluxo-de-caixa");
+      return { checkout: info };
+    }
     const conselho = ehEmpresaConselho
       ? await localizarVendaConselhoAgro(pagamento, empresaId, apiKey)
       : null;

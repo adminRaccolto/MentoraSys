@@ -79,6 +79,17 @@ export async function asaasListPayments(params?: {
   return { data: res.data, totalCount: res.totalCount ?? res.data.length, hasMore: res.hasMore ?? false }
 }
 
+export async function asaasListInstallmentPayments(
+  installmentId: string,
+  { offset, limit }: { offset: number; limit: number },
+  apiKey: string,
+) {
+  const qs = new URLSearchParams({ offset: String(offset), limit: String(limit) });
+  return req<AsaasListResponse<AsaasPaymentFull>>(
+    "GET", `/installments/${encodeURIComponent(installmentId)}/payments?${qs}`, undefined, apiKey,
+  );
+}
+
 export async function asaasGetOrCreateCustomer(nome: string, cpfCnpj?: string, email?: string, apiKey?: string): Promise<AsaasCustomer> {
   const cpf = cpfCnpj?.replace(/\D/g, "");
   if (cpf) {

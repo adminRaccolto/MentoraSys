@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { AsaasApiError, asaasGetCustomer, asaasGetPayment, idCheckoutAsaasValido, idCobrancaAsaasValido, obterChaveAsaas } from "@/lib/asaas";
-import { importarRecebivelAsaas, importarRecebiveisCheckoutAsaas, localizarVendaConselhoAgro, pagamentoAsaasConfirmado } from "@/lib/asaas-recebiveis";
+import { importarParcelamentoCheckoutAsaas, importarRecebivelAsaas, importarRecebiveisCheckoutAsaas, localizarVendaConselhoAgro, pagamentoAsaasConfirmado } from "@/lib/asaas-recebiveis";
 
 // Eventos Asaas que nos interessam
 // Docs: https://docs.asaas.com/reference/webhooks
@@ -152,6 +152,13 @@ async function handlePaymentReceived(payment: Record<string, unknown>, event: st
     return null;
   });
   if (!cobranca || !pagamentoAsaasConfirmado(cobranca)) return;
+  if (cobranca.checkoutSession && cobranca.installment) {
+    const resultado = await importarParcelamentoCheckoutAsaas(cobranca, empresaId, apiKey);
+    revalidatePath("/financeiro/recebiveis");
+    revalidatePath("/financeiro/fluxo-de-caixa");
+    console.info(`[asaas-webhook] parcelamento ${cobranca.installment}:`, resultado);
+    return;
+  }
   const conselho = await localizarVendaConselhoAgro(cobranca, empresaId, apiKey);
   if (!conselho && !cobranca.checkoutSession) {
     console.info(`[asaas-webhook] cobrança sem referência do Conselho Agro: ${asaasId}`);
