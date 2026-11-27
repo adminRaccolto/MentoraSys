@@ -1,0 +1,339 @@
+:global(.portal-cliente):has(.pagina) {
+  background: #fbfdf9;
+}
+
+.ferramentas {
+  display: grid;
+  gap: .6rem 1rem;
+  min-width: 0;
+  align-items: center;
+}
+
+.ferramentas nav {
+  position: static;
+  min-width: 0;
+  padding: .2rem 0;
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+}
+
+.ferramentas nav a[aria-current="page"] {
+  color: #07594a;
+  background: #e3f4ea;
+  box-shadow: inset 0 -2px #0a856c;
+}
+
+.inicio {
+  display: grid;
+  min-width: 0;
+  gap: clamp(1.6rem, 4vw, 2.6rem);
+  color: #163b2e;
+}
+
+.destaques {
+  display: grid;
+  min-width: 0;
+  gap: .8rem;
+}
+
+.capa {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: end;
+  min-height: 20.5rem;
+  overflow: hidden;
+  border-radius: 1.2rem;
+  background: #1c4f37;
+  color: white;
+}
+
+.capa::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  background: linear-gradient(0deg, rgb(6 30 21 / 94%), rgb(9 43 26 / 55%) 45%, transparent 96%);
+}
+
+.foto {
+  z-index: -2;
+  object-fit: cover;
+  object-position: 56% 48%;
+}
+
+.textoCapa {
+  min-width: 0;
+  width: 100%;
+  padding: clamp(1.15rem, 4vw, 2.6rem);
+}
+
+.tipo {
+  display: inline-block;
+  margin-bottom: .65rem;
+  color: #ffdb84;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .055em;
+  text-transform: uppercase;
+}
+
+.textoCapa h1 {
+  max-width: 14ch;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 500;
+  font-size: clamp(2.4rem, 5vw, 4.6rem);
+  letter-spacing: -.055em;
+  line-height: .97;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+.turma, .descricao {
+  margin-top: .55rem;
+  color: #fff;
+  font-size: .9rem;
+  overflow-wrap: anywhere;
+}
+
+.descricao {
+  display: -webkit-box;
+  max-width: 44ch;
+  overflow: hidden;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.botaoCapa, .botaoSala, .linkSecao {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: .45rem;
+  font-size: .85rem;
+  line-height: 1.2;
+  font-weight: 650;
+}
+
+.botaoCapa {
+  min-height: 2.65rem;
+  margin-top: 1.2rem;
+  padding: .55rem .85rem;
+  border-radius: 100vmax;
+  background: #ffda75;
+  color: #203322;
+}
+
+.botaoCapa:hover {
+  background: #ffe49a;
+}
+
+.lateral {
+  display: grid;
+  min-width: 0;
+  gap: .8rem;
+}
+
+.proxima {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+  gap: 1rem;
+  min-height: 10.25rem;
+  padding: clamp(1.25rem, 2.4vw, 1.8rem);
+  border-radius: 1.2rem;
+  background: #dff4e8;
+  color: #124c38;
+}
+
+.label {
+  margin-bottom: .7rem;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.data {
+  color: #335b4e;
+  font-size: .8rem;
+}
+
+.nomeReuniao {
+  display: block;
+  margin-top: .3rem;
+  font-size: clamp(1.2rem, 2.6vw, 1.85rem);
+  font-weight: 650;
+  line-height: 1.15;
+  letter-spacing: -.035em;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+.nomeReuniao a:hover {
+  text-decoration: underline;
+}
+
+.botaoSala {
+  min-height: 2.3rem;
+  padding: .4rem .75rem;
+  border-radius: 100vmax;
+  color: #fff;
+  background: #076c57;
+}
+
+.botaoSala:hover {
+  background: #055743;
+}
+
+.atalhos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  min-width: 0;
+  gap: .8rem;
+}
+
+.atalho {
+  display: grid;
+  align-content: space-between;
+  min-height: 5.7rem;
+  gap: 1rem;
+  padding: .95rem;
+  border-radius: .95rem;
+  background: #ffe8a3;
+  color: #473717;
+  font-size: .95rem;
+  font-weight: 700;
+}
+
+.atalho:last-child {
+  color: white;
+  background: #087968;
+}
+
+.atalho:hover {
+  box-shadow: inset 0 0 0 2px currentColor;
+}
+
+.noticias {
+  min-width: 0;
+  padding-inline: clamp(0rem, 2vw, 1rem);
+}
+
+.linhaTitulo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem 1rem;
+  margin-bottom: .9rem;
+}
+
+.linhaTitulo h2 {
+  font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+  font-weight: 650;
+  line-height: 1.2;
+  letter-spacing: -.045em;
+}
+
+.linkSecao {
+  color: #065f4e;
+  text-underline-offset: .22rem;
+}
+
+.linkSecao:hover {
+  text-decoration: underline;
+}
+
+.listaNoticias {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  gap: .9rem 1.5rem;
+}
+
+.listaNoticias li {
+  min-width: 0;
+  border-top: 1px solid #bad7c6;
+}
+
+.noticia {
+  padding: .95rem 0 .25rem;
+  overflow-wrap: anywhere;
+}
+
+.noticia time {
+  color: #086451;
+  font-size: .75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.noticia h3 {
+  margin-top: .35rem;
+  font-size: 1rem;
+  font-weight: 650;
+}
+
+.noticia h3 a:hover {
+  text-decoration: underline;
+}
+
+.noticia p {
+  display: -webkit-box;
+  margin-top: .35rem;
+  overflow: hidden;
+  color: #4b6558;
+  font-size: .875rem;
+  white-space: pre-wrap;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.noticia span, .semNoticias {
+  color: #4b6558;
+  font-size: .8rem;
+}
+
+.noticia span {
+  display: block;
+  margin-top: .6rem;
+}
+
+.semNoticias {
+  padding: .95rem 0;
+  border-top: 1px solid #bad7c6;
+}
+
+@media (min-width: 62rem) {
+  .ferramentas {
+    grid-template-columns: minmax(0, 1fr) minmax(13rem, 16rem);
+  }
+}
+
+@media (min-width: 56.25rem) {
+  .destaques {
+    grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+  }
+
+  .capa {
+    min-height: 25.5rem;
+  }
+
+  .lateral {
+    grid-template-rows: minmax(0, 1fr) auto;
+  }
+
+  .atalho {
+    min-height: 7.4rem;
+    padding: 1.15rem;
+  }
+}
+
+@media (max-width: 28rem) {
+  .capa {
+    min-height: 18rem;
+  }
+}

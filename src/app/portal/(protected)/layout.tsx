@@ -8,7 +8,7 @@ export default async function PortalProtectedLayout({ children }: { children: Re
   if (!cliente) redirect("/portal/acesso");
 
   return (
-    <div className="min-h-dvh bg-[#f4f6ef]">
+    <div className="portal-cliente min-h-dvh bg-[#f4f6ef]">
       <header className="border-b border-[#dfe5da] bg-white">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-3 sm:px-7">
           <PortalMarca conviteMentoria={Boolean(cliente.mentoria_id)} />

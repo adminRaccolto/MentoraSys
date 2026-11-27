@@ -3,11 +3,13 @@ import { Play, Video } from "lucide-react";
 import { comentarMentoria, concluirTarefa } from "@/actions/mentorias";
 import { AnexarArquivo, CheckinMentoria, Formulario } from "@/components/mentorias/formulario";
 import { TarefaMentoria } from "@/components/mentorias/gestao";
-import { CabecalhoMentorias, campo, DataEncontro, ListaArquivos, ListaPosts, NavegacaoMentoria, paginaMentorias, rotulo, Secao, StatusEncontro, Vazio, VoltarMentorias } from "@/components/mentorias/painel";
+import { CabecalhoMentorias, campo, DataEncontro, ListaArquivos, ListaPosts, NavegacaoMentoria, rotulo, Secao, StatusEncontro, Vazio, VoltarMentorias } from "@/components/mentorias/painel";
 import { Badge } from "@/components/ui/badge";
 import { alunoMentoria, carregarEspacoMentoria, horarioMentoria } from "@/lib/mentorias";
 import { prisma } from "@/lib/prisma";
-import { BibliotecaEspaco, BuscaEspaco, CalendarioEspaco, indexarEspaco, InicioEspaco, ListaAcompanhamento, PaginasEspaco, secaoSelecionada, secoesComuns } from "@/components/mentorias/espaco";
+import { BibliotecaEspaco, BuscaEspaco, CalendarioEspaco, indexarEspaco, ListaAcompanhamento, PaginasEspaco, secaoSelecionada, secoesComuns } from "@/components/mentorias/espaco";
+import { InicioMentoriaAluno } from "@/components/mentorias/aluno-inicio";
+import styles from "@/components/mentorias/aluno-inicio.module.css";
 
 type Props = { params: Promise<{ id: string }>; searchParams: Promise<Record<string, string | undefined>> };
 
@@ -40,17 +42,23 @@ export default async function MentoriaDoAluno({ params, searchParams }: Props) {
   const consulta = typeof filtros.q === "string" ? filtros.q.trim().slice(0, 100) : "";
   const projeto = await carregarEspacoMentoria(id, grupo, ativa, Boolean(consulta));
   const noticias = posts.filter((post) => post.tipo === "PUBLICACAO");
+  const inicio = !consulta && ativa === "inicio";
 
   return (
-    <div className={`space-y-5 ${paginaMentorias}`}>
+    <div className={`space-y-4 sm:space-y-5 ${styles.pagina}`} data-aluno-mentoria>
       <VoltarMentorias href="/portal/mentorias">Minhas mentorias</VoltarMentorias>
-      <CabecalhoMentorias titulo={aluno.mentoria.nome} contexto={grupo ? "Mentoria em grupo" : "Mentoria individual"}
-        detalhe={aluno.mentoria.turma} descricao={aluno.mentoria.descricao} />
-      <NavegacaoMentoria secoes={secoes} ativa={consulta ? "" : ativa} />
-      <BuscaEspaco url={`/portal/mentorias/${id}`} consulta={consulta}
-        itens={consulta ? indexarEspaco({ encontros, posts, tarefas, arquivos, ...projeto }) : []} />
-      {!consulta && ativa === "inicio" && (
-        <InicioEspaco secoes={secoes} encontros={encontros} noticias={noticias} agora={agora}
+      {!inicio && (
+        <CabecalhoMentorias titulo={aluno.mentoria.nome} contexto={grupo ? "Mentoria em grupo" : "Mentoria individual"}
+          detalhe={aluno.mentoria.turma} descricao={aluno.mentoria.descricao} />
+      )}
+      <div className={styles.ferramentas}>
+        <NavegacaoMentoria secoes={secoes} ativa={consulta ? "" : ativa} />
+        <BuscaEspaco url={`/portal/mentorias/${id}`} consulta={consulta} compacta
+          itens={consulta ? indexarEspaco({ encontros, posts, tarefas, arquivos, ...projeto }) : []} />
+      </div>
+      {inicio && (
+        <InicioMentoriaAluno nome={aluno.mentoria.nome} turma={aluno.mentoria.turma}
+          descricao={aluno.mentoria.descricao} grupo={grupo} encontros={encontros} noticias={noticias} agora={agora}
           acoesEncontro={(encontro) => grupo && !encontro.presencas[0]?.checkin_em && (
             <CheckinMentoria mentoriaId={id} encontroId={encontro.id} agora={agora}
               abre={encontro.inicio.getTime() - 30 * 60_000} fecha={encontro.inicio.getTime() + encontro.duracao * 60_000} />

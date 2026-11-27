@@ -6,7 +6,7 @@ import { caixa, campo, DataEncontro, hrefSecao, iconesSecao, LinkExterno, ListaP
 
 type Busca = { id: string; titulo: string; secao: string; texto?: string | null; href?: string };
 type NomeArquivo = Pick<MentoriaMaterial, "id" | "nome" | "categoria" | "tamanho">;
-type Evento = Pick<MentoriaEncontro, "id" | "titulo" | "inicio" | "duracao" | "status" | "sala_url">;
+export type Evento = Pick<MentoriaEncontro, "id" | "titulo" | "inicio" | "duracao" | "status" | "sala_url">;
 
 export const secoesComuns: [string, string][] = [
   ["inicio", "Início"], ["encontros", "Reuniões"], ["publicacoes", "Notícias"],
@@ -21,7 +21,9 @@ function normalizar(s: string) {
   return s.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLocaleLowerCase("pt-BR");
 }
 
-export function BuscaEspaco({ url, consulta, itens }: { url: string; consulta: string; itens: Busca[] }) {
+export function BuscaEspaco({ url, consulta, itens, compacta = false }: {
+  url: string; consulta: string; itens: Busca[]; compacta?: boolean;
+}) {
   const palavras = normalizar(consulta).split(/\s+/).filter(Boolean);
   const resultados = consulta ? itens.filter((item) => {
     const conteudo = normalizar(`${item.titulo} ${item.texto ?? ""}`);
@@ -30,16 +32,21 @@ export function BuscaEspaco({ url, consulta, itens }: { url: string; consulta: s
 
   return (
     <>
-      <form action={url} className="flex max-w-md items-end gap-2" role="search">
-        <label className="w-full text-sm font-medium">Buscar neste espaço
-          <input type="search" name="q" defaultValue={consulta} maxLength={100} className={campo} placeholder="Páginas, encontros, materiais…" />
+      <form action={url} className={compacta ? "relative min-w-0" : "flex max-w-md items-end gap-2"} role="search">
+        <label className={compacta ? "block" : "w-full text-sm font-medium"}>
+          <span className={compacta ? "sr-only" : undefined}>Buscar neste espaço</span>
+          <input type="search" name="q" defaultValue={consulta} maxLength={100}
+            className={compacta ? "h-10 w-full min-w-0 rounded-full border border-[#dce8df] bg-white pl-3 pr-10 text-sm focus-visible:outline-2 focus-visible:outline-[#087968]" : campo}
+            placeholder={compacta ? "Buscar na mentoria" : "Páginas, encontros, materiais…"} />
         </label>
-        <button type="submit" className="grid h-10 w-10 shrink-0 place-items-center rounded-md bg-[#15394f] text-white" aria-label="Buscar">
+        <button type="submit" aria-label="Buscar" className={compacta
+          ? "absolute right-1 top-1 grid size-8 place-items-center rounded-full text-[#07594a] hover:bg-[#e9f5ed]"
+          : "grid h-10 w-10 shrink-0 place-items-center rounded-md bg-[#15394f] text-white"}>
           <Search className="size-4" aria-hidden />
         </button>
       </form>
       {consulta && (
-        <section className={caixa} aria-labelledby="titulo-busca">
+        <section className={`${caixa} ${compacta ? "col-span-full" : ""}`} aria-labelledby="titulo-busca">
           <h2 id="titulo-busca" className="font-semibold">Resultados para “{consulta}”</h2>
           {!resultados.length && <Vazio>Nenhum resultado neste espaço.</Vazio>}
           {!!resultados.length && <p className="text-sm text-muted-foreground">{resultados.length} {resultados.length === 1 ? "resultado" : "resultados"}</p>}
@@ -80,12 +87,16 @@ export function indexarEspaco({ encontros, posts, paginas, materiais, tarefas, a
   ];
 }
 
+export function proximosEncontros<E extends Evento>(encontros: E[], agora: number) {
+  return encontros.filter((encontro) => encontro.status === "AGENDADO" && encontro.inicio.getTime() + encontro.duracao * 60_000 >= agora)
+    .sort((a, b) => a.inicio.getTime() - b.inicio.getTime());
+}
+
 export function InicioEspaco<E extends Evento>({ secoes, encontros, noticias, agora, acoesEncontro }: {
   secoes: [string, string][]; encontros: E[]; noticias: MentoriaPost[]; agora: number;
   acoesEncontro?: (encontro: E) => React.ReactNode;
 }) {
-  const proximos = encontros.filter((e) => e.status === "AGENDADO" && e.inicio.getTime() + e.duracao * 60_000 >= agora)
-    .sort((a, b) => a.inicio.getTime() - b.inicio.getTime()).slice(0, 3);
+  const proximos = proximosEncontros(encontros, agora).slice(0, 3);
   const atalhos = secoes.filter(([id]) => ["encontros", "biblioteca", "tarefas", "documentos", "acompanhamento", "alunos", "paginas"].includes(id));
 
   return (
