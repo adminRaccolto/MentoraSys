@@ -7,7 +7,13 @@ import {
   type AsaasPaymentFull,
 } from "@/lib/asaas";
 import type { StatusRecebivel } from "@/lib/generated/prisma";
+import { localizarVendaNoCrm, registrarVendaNoCrm } from "@/lib/crm-vendas";
 import { prisma } from "@/lib/prisma";
+
+interface VinculoConselho {
+  clienteId?: string | null;
+  email?: string;
+}
 
 const statusRecebivel: Partial<Record<string, StatusRecebivel>> = {
   PENDING: "PENDENTE",
@@ -26,6 +32,52 @@ export type ResultadoImportacaoAsaas = "criado" | "atualizado" | "ignorado";
 
 export function pagamentoAsaasConfirmado(pagamento: AsaasPaymentFull): boolean {
   return !pagamento.deleted && statusRecebivel[pagamento.status] === "PAGO";
+}
+
+export async function registrarVendaAsaasNoCrm(
+  pagamento: AsaasPaymentFull,
+  empresaId: string,
+  apiKey: string,
+  conselho?: VinculoConselho,
+  valor?: number,
+) {
+  if (!pagamentoAsaasConfirmado(pagamento) || (!pagamento.checkoutSession && !conselho)) return null;
+  const referencia = pagamento.checkoutSession ?? pagamento.installment ?? pagamento.id;
+  const existente = await localizarVendaNoCrm(empresaId, referencia);
+  if (existente) return existente;
+
+  const cliente = await prisma.cliente.findFirst({
+    where: {
+      empresa_id: empresaId,
+      OR: [
+        ...(pagamento.customer ? [{ asaas_id: pagamento.customer }] : []),
+        ...(conselho?.clienteId ? [{ id: conselho.clienteId }] : []),
+      ],
+    },
+    select: { id: true, nome: true, email: true, cpf_cnpj: true, telefone: true },
+  });
+  const comprador = pagamento.customer && !cliente?.email
+    ? await asaasGetCustomer(pagamento.customer, apiKey)
+    : null;
+  const email = comprador?.email ?? cliente?.email ?? conselho?.email;
+  const nome = comprador?.name ?? cliente?.nome ?? email?.split("@")[0];
+  if (!nome) return null;
+
+  return registrarVendaNoCrm({
+    empresaId,
+    origem: "Asaas",
+    referencia,
+    valor: valor ?? (pagamento.installment ? undefined : pagamento.value),
+    tags: conselho ? ["O Conselho Agro"] : [],
+    comprador: {
+      clienteId: cliente?.id,
+      asaasId: comprador?.id ?? pagamento.customer,
+      nome,
+      email,
+      cpfCnpj: comprador?.cpfCnpj ?? cliente?.cpf_cnpj,
+      telefone: comprador?.mobilePhone ?? comprador?.phone ?? cliente?.telefone,
+    },
+  });
 }
 
 export async function importarRecebiveisCheckoutAsaas(
@@ -81,18 +133,23 @@ async function importarPagamentosConfirmados(
   }
   let confirmados = 0, criados = 0, atualizados = 0;
   const referencias = new Map<string, string>();
+  const primeiro = [...pagamentos.values()].find(pagamentoAsaasConfirmado);
+  const conselho = primeiro && empresaId === process.env.CONSELHO_AGRO_EMPRESA_ID
+    ? await localizarVendaConselhoAgro(primeiro, empresaId, apiKey, referencias)
+    : null;
+  const valorVenda = [...pagamentos.values()].reduce((total, p) => total + Math.round(p.value * 100), 0) / 100;
+  const venda = primeiro
+    ? await registrarVendaAsaasNoCrm(primeiro, empresaId, apiKey, conselho ?? undefined, valorVenda)
+    : null;
   for (const pagamento of pagamentos.values()) {
     if (!pagamentoAsaasConfirmado(pagamento)) continue;
     confirmados++;
-    const conselho = empresaId === process.env.CONSELHO_AGRO_EMPRESA_ID
-      ? await localizarVendaConselhoAgro(pagamento, empresaId, apiKey, referencias)
-      : null;
     const cobranca = {
       ...pagamento,
       installmentCount: pagamento.installmentCount ??
         (pagamento.installment ? parcelas.get(pagamento.installment) : undefined),
     };
-    const resultado = await importarRecebivelAsaas(cobranca, empresaId, apiKey, conselho ?? undefined);
+    const resultado = await importarRecebivelAsaas(cobranca, empresaId, apiKey, conselho ?? undefined, venda?.clienteId);
     if (resultado === "criado") criados++;
     if (resultado === "atualizado") atualizados++;
   }
@@ -141,7 +198,8 @@ export async function importarRecebivelAsaas(
   pagamento: AsaasPaymentFull,
   empresaId: string,
   apiKey: string,
-  conselho?: { clienteId?: string | null; email?: string },
+  conselho?: VinculoConselho,
+  clienteVendaId?: string,
 ): Promise<ResultadoImportacaoAsaas> {
   const status = pagamento.deleted ? "CANCELADO" : statusRecebivel[pagamento.status];
   const dataAsaas = pagamento.paymentDate ?? pagamento.clientPaymentDate ?? pagamento.confirmedDate;
@@ -164,7 +222,7 @@ export async function importarRecebivelAsaas(
 
   const existente = await prisma.recebivel.findFirst({ where: vinculo, select: { id: true } });
   if (!existente && (!status || pagamento.deleted)) return "ignorado";
-  const customer = !existente && pagamento.customer
+  const customer = !existente && !clienteVendaId && pagamento.customer
     ? await asaasGetCustomer(pagamento.customer, apiKey).catch((err: unknown) => {
         if (conselho?.email && err instanceof AsaasApiError && err.status === 404) return null;
         throw err;
@@ -184,14 +242,16 @@ export async function importarRecebivelAsaas(
       const boleto = atual.boleto;
       const atualizarBoleto = boleto && statusBoleto && boleto.status !== statusBoleto;
       const jaVinculado = atual.asaas_payment_id === pagamento.id || boleto?.asaas_id === pagamento.id;
+      const vincularCliente = !atual.cliente_id && clienteVendaId;
       if (jaVinculado && atual.asaas_status === pagamento.status &&
-          atual.status === (status ?? atual.status) && !atualizarBoleto) {
+          atual.status === (status ?? atual.status) && !atualizarBoleto && !vincularCliente) {
         return "ignorado";
       }
       await tx.recebivel.update({
         where: { id: atual.id },
         data: {
           ...(boleto?.asaas_id === pagamento.id ? {} : { asaas_payment_id: pagamento.id }),
+          ...(vincularCliente ? { cliente_id: clienteVendaId } : {}),
           asaas_status: pagamento.status,
           status,
           ...dadosPagamento,
@@ -206,7 +266,7 @@ export async function importarRecebivelAsaas(
     if (existente || !status || pagamento.deleted) return "ignorado";
     const email = conselho?.email ?? customer?.email ?? null;
     const cpfCnpj = customer?.cpfCnpj?.replace(/\D/g, "") || null;
-    const cliente = await tx.cliente.findFirst({
+    const cliente = clienteVendaId ? null : await tx.cliente.findFirst({
       where: {
         empresa_id: empresaId,
         OR: [
@@ -218,7 +278,7 @@ export async function importarRecebivelAsaas(
       },
       select: { id: true, asaas_id: true },
     });
-    let clienteId = cliente?.id;
+    let clienteId = clienteVendaId ?? cliente?.id;
     const nomeCliente = customer?.name || email?.split("@")[0];
     if (!clienteId && nomeCliente) {
       const novo = await tx.cliente.create({

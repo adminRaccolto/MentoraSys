@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import { after } from "next/server"
+import { revalidatePath } from "next/cache"
 import { prisma } from "@/lib/prisma"
 
 const CORS_HEADERS = {
@@ -95,7 +96,7 @@ export async function POST(req: Request) {
   // Registra Lead convertido + cria Assinatura para segmentação
   after(async () => {
     try {
-      // 1. Move lead para GANHO com tags e observação de venda
+      // 1. Complementa o lead da venda com as informações do contrato.
       const lead = await prisma.lead.findFirst({
         where: { empresa_id: empresaId, email },
         orderBy: { criado_em: "desc" },
@@ -103,6 +104,10 @@ export async function POST(req: Request) {
       })
 
       if (lead) {
+        const etapaGanho = await prisma.etapaCrm.findUnique({
+          where: { empresa_id_chave: { empresa_id: empresaId, chave: "GANHO" } },
+          select: { id: true },
+        })
         const obsVenda = [
           `✅ Venda realizada em ${dataInicio.toLocaleDateString("pt-BR")}`,
           `Produto: ${String(produto ?? "conselho_agro")}`,
@@ -118,11 +123,14 @@ export async function POST(req: Request) {
           where: { id: lead.id },
           data: {
             etapa_chave: "GANHO",
+            etapa_id: etapaGanho?.id ?? null,
+            probabilidade: 100,
             cliente_id:  cliente.id,
             tags: [...new Set([...lead.tags, ...tags])],
             observacoes: [lead.observacoes, obsVenda].filter(Boolean).join("\n\n"),
           },
         })
+        revalidatePath("/crm")
 
         if (cupom && typeof cupom === "string") {
           await prisma.campanhaCupom.updateMany({

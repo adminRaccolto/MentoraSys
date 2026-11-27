@@ -48,7 +48,9 @@ async function req<T = unknown>(method: string, path: string, body?: object, api
   return json as T;
 }
 
-interface AsaasCustomer { id: string; name: string; cpfCnpj?: string; email?: string; }
+interface AsaasCustomer {
+  id: string; name: string; cpfCnpj?: string; email?: string; mobilePhone?: string; phone?: string;
+}
 interface AsaasPayment {
   id: string; status: string; value: number; dueDate: string;
   bankSlipUrl?: string; invoiceUrl?: string; nossoNumero?: string;

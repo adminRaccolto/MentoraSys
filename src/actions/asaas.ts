@@ -20,7 +20,7 @@ import {
   idCobrancaAsaasValido,
   obterChaveAsaas,
 } from "@/lib/asaas";
-import { importarParcelamentoCheckoutAsaas, importarRecebivelAsaas, importarRecebiveisCheckoutAsaas, localizarVendaConselhoAgro, pagamentoAsaasConfirmado } from "@/lib/asaas-recebiveis";
+import { importarParcelamentoCheckoutAsaas, importarRecebivelAsaas, importarRecebiveisCheckoutAsaas, localizarVendaConselhoAgro, pagamentoAsaasConfirmado, registrarVendaAsaasNoCrm } from "@/lib/asaas-recebiveis";
 
 // ─── COBRANÇAS (Recebíveis) ───────────────────────────────────────────────────
 
@@ -162,7 +162,8 @@ export async function sincronizarReceiveisConselhoAgro(): Promise<{
           if (debug.length < 20) debug.push(`Sem referência do Conselho Agro: ${pagamento.id}`);
           continue;
         }
-        const resultado = await importarRecebivelAsaas(pagamento, empresaId, apiKey, conselho);
+        const venda = await registrarVendaAsaasNoCrm(pagamento, empresaId, apiKey, conselho);
+        const resultado = await importarRecebivelAsaas(pagamento, empresaId, apiKey, conselho, venda?.clienteId);
         if (resultado === "criado") criados++;
         else if (resultado === "atualizado") atualizados++;
         else ignorados++;
@@ -176,6 +177,8 @@ export async function sincronizarReceiveisConselhoAgro(): Promise<{
 
   revalidatePath("/financeiro/recebiveis");
   revalidatePath("/financeiro/fluxo-caixa");
+  revalidatePath("/crm");
+  revalidatePath("/clientes");
   return { criados, atualizados, ignorados, erros, debug };
 }
 
@@ -199,22 +202,29 @@ export async function importarCobrancaAsaas(id: string) {
           : "Nenhuma cobrança vinculada a esse checkout foi encontrada na conta Asaas desta empresa." };
       }
       revalidatePath("/financeiro/recebiveis");
-      revalidatePath("/financeiro/fluxo-caixa");
+      revalidatePath("/financeiro/fluxo-de-caixa");
+      revalidatePath("/crm");
+      revalidatePath("/clientes");
       return { checkout: info };
     }
     const pagamento = await asaasGetPayment(pagamentoId, apiKey);
-    if (pagamento.checkoutSession && pagamento.installment && pagamentoAsaasConfirmado(pagamento)) {
+    if (pagamento.checkoutSession && pagamentoAsaasConfirmado(pagamento)) {
       const info = await importarParcelamentoCheckoutAsaas(pagamento, empresaId, apiKey);
       revalidatePath("/financeiro/recebiveis");
       revalidatePath("/financeiro/fluxo-de-caixa");
+      revalidatePath("/crm");
+      revalidatePath("/clientes");
       return { checkout: info };
     }
     const conselho = ehEmpresaConselho
       ? await localizarVendaConselhoAgro(pagamento, empresaId, apiKey)
       : null;
-    const resultado = await importarRecebivelAsaas(pagamento, empresaId, apiKey, conselho ?? undefined);
+    const venda = await registrarVendaAsaasNoCrm(pagamento, empresaId, apiKey, conselho ?? undefined);
+    const resultado = await importarRecebivelAsaas(pagamento, empresaId, apiKey, conselho ?? undefined, venda?.clienteId);
     revalidatePath("/financeiro/recebiveis");
-    revalidatePath("/financeiro/fluxo-caixa");
+    revalidatePath("/financeiro/fluxo-de-caixa");
+    revalidatePath("/crm");
+    revalidatePath("/clientes");
     return { resultado };
   } catch (err) {
     return { erro: err instanceof Error ? err.message : "Erro ao importar cobrança do Asaas." };

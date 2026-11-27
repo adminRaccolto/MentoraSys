@@ -2,7 +2,8 @@ import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { AsaasApiError, asaasGetCustomer, asaasGetPayment, idCheckoutAsaasValido, idCobrancaAsaasValido, obterChaveAsaas } from "@/lib/asaas";
-import { importarParcelamentoCheckoutAsaas, importarRecebivelAsaas, importarRecebiveisCheckoutAsaas, localizarVendaConselhoAgro, pagamentoAsaasConfirmado } from "@/lib/asaas-recebiveis";
+import { importarParcelamentoCheckoutAsaas, importarRecebivelAsaas, importarRecebiveisCheckoutAsaas, localizarVendaConselhoAgro, pagamentoAsaasConfirmado, registrarVendaAsaasNoCrm } from "@/lib/asaas-recebiveis";
+import { localizarVendaNoCrm } from "@/lib/crm-vendas";
 
 // Eventos Asaas que nos interessam
 // Docs: https://docs.asaas.com/reference/webhooks
@@ -50,7 +51,9 @@ export async function POST(req: Request) {
       const apiKey = await obterChaveAsaas(empresaId);
       const resultado = await importarRecebiveisCheckoutAsaas(id.toLowerCase(), empresaId, apiKey);
       revalidatePath("/financeiro/recebiveis");
-      revalidatePath("/financeiro/fluxo-caixa");
+      revalidatePath("/financeiro/fluxo-de-caixa");
+      revalidatePath("/crm");
+      revalidatePath("/clientes");
       console.info(`[asaas-webhook] checkout ${id}:`, resultado);
     }
   }
@@ -91,6 +94,11 @@ export async function POST(req: Request) {
 async function handlePaymentReceived(payment: Record<string, unknown>, event: string, autenticado: boolean) {
   const asaasId = String(payment.id ?? "");
   if (!idCobrancaAsaasValido(asaasId)) return;
+  const checkoutSession = typeof payment.checkoutSession === "string" && idCheckoutAsaasValido(payment.checkoutSession)
+    ? payment.checkoutSession
+    : null;
+  const referenciaConselho = typeof payment.externalReference === "string" && payment.externalReference.includes("@");
+  const possivelVenda = checkoutSession || referenciaConselho || typeof payment.subscription === "string";
   const valor   = Number(payment.value ?? 0);
   const netValue = Number(payment.netValue ?? valor);
   const dataAsaas = payment.paymentDate ?? payment.clientPaymentDate ?? payment.confirmedDate;
@@ -119,8 +127,13 @@ async function handlePaymentReceived(payment: Record<string, unknown>, event: st
       },
     });
     revalidatePath("/financeiro/recebiveis");
-    revalidatePath("/financeiro/fluxo-caixa");
+    revalidatePath("/financeiro/fluxo-de-caixa");
     console.log(`[asaas-webhook] recebível ${recebivel.id} marcado como PAGO`);
+    const referencia = checkoutSession ?? (typeof payment.installment === "string" ? payment.installment : asaasId);
+    if (autenticado && possivelVenda && recebivel.empresa_id === process.env.CONSELHO_AGRO_EMPRESA_ID &&
+        !await localizarVendaNoCrm(recebivel.empresa_id, referencia)) {
+      await importarVendaConfirmada(asaasId, recebivel.empresa_id);
+    }
     return;
   }
 
@@ -138,12 +151,14 @@ async function handlePaymentReceived(payment: Record<string, unknown>, event: st
   }
 
   const empresaId = process.env.CONSELHO_AGRO_EMPRESA_ID;
-  const referencia = typeof payment.externalReference === "string" && payment.externalReference.includes("@");
-  if (!autenticado || !empresaId || (!referencia && !payment.subscription && !payment.checkoutSession)) {
+  if (!autenticado || !empresaId || !possivelVenda) {
     console.info(`[asaas-webhook] cobrança sem vínculo local: ${asaasId}`);
     return;
   }
+  await importarVendaConfirmada(asaasId, empresaId);
+}
 
+async function importarVendaConfirmada(asaasId: string, empresaId: string) {
   const apiKey = await obterChaveAsaas(empresaId);
   // Confirma que a cobrança pertence à conta configurada para o Conselho Agro.
   const cobranca = await asaasGetPayment(asaasId, apiKey).catch((err: unknown) => {
@@ -152,22 +167,23 @@ async function handlePaymentReceived(payment: Record<string, unknown>, event: st
     return null;
   });
   if (!cobranca || !pagamentoAsaasConfirmado(cobranca)) return;
-  if (cobranca.checkoutSession && cobranca.installment) {
+  if (cobranca.checkoutSession) {
     const resultado = await importarParcelamentoCheckoutAsaas(cobranca, empresaId, apiKey);
-    revalidatePath("/financeiro/recebiveis");
-    revalidatePath("/financeiro/fluxo-de-caixa");
-    console.info(`[asaas-webhook] parcelamento ${cobranca.installment}:`, resultado);
-    return;
+    console.info(`[asaas-webhook] checkout ${cobranca.checkoutSession}:`, resultado);
+  } else {
+    const conselho = await localizarVendaConselhoAgro(cobranca, empresaId, apiKey);
+    if (!conselho) {
+      console.info(`[asaas-webhook] cobrança sem referência do Conselho Agro: ${asaasId}`);
+      return;
+    }
+    const venda = await registrarVendaAsaasNoCrm(cobranca, empresaId, apiKey, conselho);
+    const resultado = await importarRecebivelAsaas(cobranca, empresaId, apiKey, conselho, venda?.clienteId);
+    console.info(`[asaas-webhook] cobrança ${asaasId}: ${resultado}`);
   }
-  const conselho = await localizarVendaConselhoAgro(cobranca, empresaId, apiKey);
-  if (!conselho && !cobranca.checkoutSession) {
-    console.info(`[asaas-webhook] cobrança sem referência do Conselho Agro: ${asaasId}`);
-    return;
-  }
-  const resultado = await importarRecebivelAsaas(cobranca, empresaId, apiKey, conselho ?? undefined);
   revalidatePath("/financeiro/recebiveis");
-  revalidatePath("/financeiro/fluxo-caixa");
-  console.info(`[asaas-webhook] cobrança ${asaasId}: ${resultado}`);
+  revalidatePath("/financeiro/fluxo-de-caixa");
+  revalidatePath("/crm");
+  revalidatePath("/clientes");
 }
 
 async function handlePaymentOverdue(payment: Record<string, unknown>) {

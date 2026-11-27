@@ -6,18 +6,9 @@ import { prisma } from "@/lib/prisma";
 import { verificarPermissao, obterEmpresaAtiva } from "@/lib/permissoes";
 import { createClient } from "@/lib/supabase/server";
 import { registrar } from "@/lib/auditoria";
+import { ETAPAS_PADRAO } from "@/lib/crm-etapas";
 
 // ─── ETAPAS CRM ──────────────────────────────────────────────────────────────
-
-const ETAPAS_PADRAO = [
-  { chave: "NOVO",       nome: "Novo",              cor: "#64748b", ordem: 0 },
-  { chave: "CONTATO",    nome: "Em contato",        cor: "#3b82f6", ordem: 1 },
-  { chave: "QUALIFICADO",nome: "Qualificado",       cor: "#8b5cf6", ordem: 2 },
-  { chave: "PROPOSTA",   nome: "Proposta enviada",  cor: "#f59e0b", ordem: 3 },
-  { chave: "NEGOCIACAO", nome: "Em negociação",     cor: "#f97316", ordem: 4 },
-  { chave: "GANHO",      nome: "Ganho",             cor: "#22c55e", ordem: 5 },
-  { chave: "PERDIDO",    nome: "Perdido",           cor: "#ef4444", ordem: 6 },
-];
 
 export async function listarEtapas() {
   const empresaId = await obterEmpresaAtiva();
@@ -28,12 +19,14 @@ export async function listarEtapas() {
   });
 
   if (etapas.length === 0) {
-    etapas = await prisma.$transaction(
-      ETAPAS_PADRAO.map((e) =>
-        prisma.etapaCrm.create({ data: { empresa_id: empresaId, ...e } })
-      )
-    );
-    etapas = etapas.sort((a, b) => a.ordem - b.ordem);
+    await prisma.etapaCrm.createMany({
+      data: ETAPAS_PADRAO.map((etapa) => ({ empresa_id: empresaId, ...etapa })),
+      skipDuplicates: true,
+    });
+    etapas = await prisma.etapaCrm.findMany({
+      where: { empresa_id: empresaId },
+      orderBy: { ordem: "asc" },
+    });
   }
 
   return etapas;
