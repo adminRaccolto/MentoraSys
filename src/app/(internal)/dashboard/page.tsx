@@ -1,10 +1,12 @@
+import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { obterEmpresaAtiva } from "@/lib/permissoes";
 import {
   ArrowDownCircle,
+  ArrowUpRight,
+  Wallet,
   ArrowUpCircle,
   DollarSign,
-  TrendingUp,
   Calendar,
   FolderKanban,
   Users,
@@ -146,58 +148,61 @@ export default async function DashboardPage() {
   const naoInidiadasTotal = tarefasRaw.filter((t) => t.status === "PENDENTE").length;
   const emAndamentoTotal = tarefasRaw.filter((t) => t.status === "EM_ANDAMENTO").length;
 
+  const indicadores = [
+    { rotulo: "A receber", valor: aReceber, detalhe: "Em aberto", icone: ArrowDownCircle, href: "/financeiro/recebiveis", cor: "bg-[#e7f0ed] text-[#2d6457]" },
+    { rotulo: "Recebido", valor: recebido, detalhe: "Neste mês", icone: DollarSign, href: "/financeiro/recebiveis", cor: "bg-[#eaf0df] text-[#50653b]" },
+    { rotulo: "A pagar", valor: aPagar, detalhe: "Em aberto", icone: ArrowUpCircle, href: "/financeiro/contas-a-pagar", cor: "bg-[#f5eae5] text-[#8b4e3a]" },
+    { rotulo: "Saldo", valor: saldo, detalhe: "Recebido − a pagar", icone: Wallet, href: "/financeiro", cor: "bg-[#f1e8d2] text-[#76582a]" },
+  ];
+  const dataHoje = agora.toLocaleDateString("pt-BR", { dateStyle: "full", timeZone: "America/Cuiaba" });
+  const maiorEtapa = Math.max(1, ...Object.values(leadMap));
+
   return (
-    <div className="p-6 space-y-6">
-      <h1 className="text-2xl font-bold">Dashboard</h1>
-
-      {/* KPIs Financeiros */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="border border-border rounded-lg p-4 bg-card">
-          <div className="flex items-center gap-2 text-muted-foreground mb-1">
-            <ArrowDownCircle className="size-4 text-blue-500" />
-            <span className="text-xs font-medium uppercase tracking-wide">A Receber</span>
-          </div>
-          <p className="text-2xl font-bold">{fmtMoney(aReceber)}</p>
-          <p className="text-xs text-muted-foreground mt-0.5">em aberto</p>
-        </div>
-
-        <div className="border border-border rounded-lg p-4 bg-card">
-          <div className="flex items-center gap-2 text-muted-foreground mb-1">
-            <DollarSign className="size-4 text-emerald-500" />
-            <span className="text-xs font-medium uppercase tracking-wide">Recebido</span>
-          </div>
-          <p className="text-2xl font-bold">{fmtMoney(recebido)}</p>
-          <p className="text-xs text-muted-foreground mt-0.5">neste mês</p>
-        </div>
-
-        <div className="border border-border rounded-lg p-4 bg-card">
-          <div className="flex items-center gap-2 text-muted-foreground mb-1">
-            <ArrowUpCircle className="size-4 text-rose-500" />
-            <span className="text-xs font-medium uppercase tracking-wide">A Pagar</span>
-          </div>
-          <p className="text-2xl font-bold">{fmtMoney(aPagar)}</p>
-          <p className="text-xs text-muted-foreground mt-0.5">em aberto</p>
-        </div>
-
-        <div className="border border-border rounded-lg p-4 bg-card">
-          <div className="flex items-center gap-2 text-muted-foreground mb-1">
-            <TrendingUp className={`size-4 ${saldo >= 0 ? "text-emerald-500" : "text-rose-500"}`} />
-            <span className="text-xs font-medium uppercase tracking-wide">Saldo</span>
-          </div>
-          <p className={`text-2xl font-bold ${saldo < 0 ? "text-rose-600" : ""}`}>
-            {fmtMoney(saldo)}
+    <div className="mx-auto max-w-[92rem] space-y-6 p-4 sm:p-6 xl:space-y-7 xl:p-8">
+      <section className="dashboard-hero grid gap-5 rounded-[1.3rem] border border-[#355347] p-5 text-white sm:p-7 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end xl:p-9" aria-labelledby="titulo-dashboard">
+        <div className="space-y-3">
+          <p className="flex items-center gap-2 text-xs font-medium text-[#ecdab0] sm:text-sm">
+            <Calendar className="size-4" aria-hidden />
+            <time dateTime={new Intl.DateTimeFormat("sv-SE", { dateStyle: "short", timeZone: "America/Cuiaba" }).format(agora)} className="block first-letter:uppercase">{dataHoje}</time>
           </p>
-          <p className="text-xs text-muted-foreground mt-0.5">recebido − a pagar</p>
+          <h1 id="titulo-dashboard">Visão geral</h1>
+          <p className="max-w-md text-sm leading-relaxed text-[#e0ebe2]">Acompanhe o financeiro, o funil comercial e as próximas entregas da equipe.</p>
         </div>
-      </div>
+        <div className="flex flex-wrap gap-2">
+          <Link href="/agenda" className="inline-flex items-center gap-2 rounded-lg border border-[#adbfaf]/55 px-3.5 py-2.5 text-sm font-medium hover:bg-white/10">
+            <Calendar className="size-4" aria-hidden /> Abrir agenda
+          </Link>
+          <Link href="/financeiro" className="inline-flex items-center gap-2 rounded-lg bg-[#ead6aa] px-3.5 py-2.5 text-sm font-semibold text-[#283427] hover:bg-[#f3e3c1]">
+            Ver financeiro <ArrowUpRight className="size-4" aria-hidden />
+          </Link>
+        </div>
+      </section>
+
+      <section className="space-y-3" aria-labelledby="titulo-indicadores">
+        <h2 id="titulo-indicadores" className="text-lg font-semibold">Resumo financeiro</h2>
+        <div className="grid grid-cols-[repeat(2,minmax(0,1fr))] gap-2.5 sm:gap-4 xl:grid-cols-4">
+          {indicadores.map(({ rotulo, valor, detalhe, icone: Icon, href, cor }) => (
+            <Link href={href} key={rotulo} className="group min-w-0 space-y-2 rounded-xl border bg-card p-3 transition-colors hover:border-primary/50 sm:p-4">
+              <div className="flex items-center justify-between gap-2">
+                <span className={`grid size-8 shrink-0 place-items-center rounded-lg ${cor}`}><Icon className="size-4" aria-hidden /></span>
+                <ArrowUpRight className="hidden size-4 text-muted-foreground group-hover:text-primary sm:block" aria-hidden />
+              </div>
+              <p className="text-sm font-medium text-muted-foreground">{rotulo}</p>
+              <p className={`break-words text-lg leading-tight font-semibold tracking-tight tabular-nums sm:text-2xl ${valor < 0 ? "text-destructive" : ""}`}>{fmtMoney(valor)}</p>
+              <p className="text-xs text-muted-foreground">{detalhe}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
 
       {/* Linha 2 — 3 widgets */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 items-start gap-4 lg:grid-cols-2 xl:grid-cols-3">
         {/* Funil CRM */}
-        <div className="border border-border rounded-lg p-4 bg-card space-y-3">
+        <div className="min-w-0 space-y-4 rounded-xl border bg-card p-4 sm:p-5">
           <div className="flex items-center gap-2">
-            <Users className="size-4 text-primary" />
-            <h2 className="font-semibold text-sm">Funil CRM</h2>
+            <Users className="size-4 text-primary" aria-hidden />
+            <h2 className="flex-1 font-semibold">Funil comercial</h2>
+            <Link href="/crm" aria-label="Abrir CRM" className="text-primary hover:underline"><ArrowUpRight className="size-4" aria-hidden /></Link>
           </div>
           <div className="space-y-2">
             {(
@@ -211,10 +216,12 @@ export default async function DashboardPage() {
             ).map(([status, label, cor]) => {
               const qtd = leadMap[status] ?? 0;
               return (
-                <div key={status} className="flex items-center gap-2">
-                  <span className={`w-2.5 h-2.5 rounded-full shrink-0 ${cor}`} />
-                  <span className="text-sm flex-1">{label}</span>
-                  <span className="text-sm font-semibold tabular-nums">{qtd}</span>
+                <div key={status} className="grid grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)_auto] items-center gap-2">
+                  <span className="text-sm">{label}</span>
+                  <span aria-hidden className="h-1.5 overflow-hidden rounded-full bg-muted">
+                    <span className={`block h-full rounded-full ${cor}`} style={{ width: `${(qtd / maiorEtapa) * 100}%` }} />
+                  </span>
+                  <span className="min-w-5 text-right text-sm font-semibold tabular-nums">{qtd}</span>
                 </div>
               );
             })}
@@ -231,10 +238,11 @@ export default async function DashboardPage() {
         </div>
 
         {/* Projetos */}
-        <div className="border border-border rounded-lg p-4 bg-card space-y-3">
+        <div className="min-w-0 space-y-4 rounded-xl border bg-card p-4 sm:p-5">
           <div className="flex items-center gap-2">
-            <FolderKanban className="size-4 text-primary" />
-            <h2 className="font-semibold text-sm">Projetos</h2>
+            <FolderKanban className="size-4 text-primary" aria-hidden />
+            <h2 className="flex-1 font-semibold">Projetos</h2>
+            <Link href="/projetos" aria-label="Abrir projetos" className="text-primary hover:underline"><ArrowUpRight className="size-4" aria-hidden /></Link>
           </div>
           <div className="space-y-2">
             {(
@@ -267,10 +275,11 @@ export default async function DashboardPage() {
         </div>
 
         {/* Próximos eventos */}
-        <div className="border border-border rounded-lg p-4 bg-card space-y-3">
+        <div className="min-w-0 space-y-4 rounded-xl border bg-card p-4 sm:p-5">
           <div className="flex items-center gap-2">
-            <Calendar className="size-4 text-primary" />
-            <h2 className="font-semibold text-sm">Próximos 7 dias</h2>
+            <Calendar className="size-4 text-primary" aria-hidden />
+            <h2 className="flex-1 font-semibold">Próximos 7 dias</h2>
+            <Link href="/agenda" aria-label="Ver agenda" className="text-primary hover:underline"><ArrowUpRight className="size-4" aria-hidden /></Link>
           </div>
           {eventosProximos.length === 0 ? (
             <p className="text-sm text-muted-foreground py-4 text-center">

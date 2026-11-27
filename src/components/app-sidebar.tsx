@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { createClient } from "@/lib/supabase/client";
 import {
@@ -38,12 +38,21 @@ import {
   Ticket,
   Car,
   Percent,
+  ArrowRight,
+  ChevronRight,
+  Menu,
+  Search,
+  X,
 } from "lucide-react";
 import NotificacoesBell from "@/components/notificacoes-bell";
 import { type Notificacao } from "@/hooks/useNotificacoes";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetClose, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 
 const NAV_GERAL = [
-  { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+  { label: "Visão geral", href: "/dashboard", icon: LayoutDashboard },
 ];
 
 const NAV_COMERCIAL = [
@@ -88,6 +97,14 @@ const NAV_FINANCEIRO = [
   { label: "Assinaturas",      href: "/financeiro/assinaturas",      icon: Repeat2 },
 ];
 
+const grupos = [
+  { nome: "Início", itens: NAV_GERAL },
+  { nome: "Comercial", itens: NAV_COMERCIAL },
+  { nome: "Operacional", itens: NAV_OPERACIONAL },
+  { nome: "Financeiro", itens: NAV_FINANCEIRO },
+  { nome: "Sistema", itens: NAV_SISTEMA },
+];
+
 interface Props {
   nomeUsuario: string;
   nomeEmpresa: string;
@@ -97,146 +114,201 @@ interface Props {
   empresaId: string;
   usuarioId: string;
   acessoMentorias: boolean;
+  children: ReactNode;
 }
 
-export default function AppSidebar({
-  nomeUsuario,
-  nomeEmpresa,
-  logoUrl,
-  avatarUrl,
-  notificacoesIniciais,
-  empresaId,
-  usuarioId,
-  acessoMentorias,
+function MarcaEmpresa({ logoUrl, nomeEmpresa, aoNavegar }: Pick<Props, "logoUrl" | "nomeEmpresa"> & { aoNavegar?: () => void }) {
+  const [falhou, setFalhou] = useState(false);
+  return (
+    <Link href="/dashboard" onClick={aoNavegar} className="flex min-w-0 items-center gap-3 rounded-xl px-2 py-1.5 hover:bg-white/8">
+      <span className="grid size-9 shrink-0 place-items-center overflow-hidden rounded-[0.65rem] bg-[#f1e4c6] text-[13px] font-bold text-[#263c34]">
+        {logoUrl && !falhou ? (
+          <Image src={logoUrl} alt="" width={36} height={36} unoptimized onError={() => setFalhou(true)} className="size-full bg-white object-contain p-1" />
+        ) : nomeEmpresa.trim().slice(0, 2).toUpperCase()}
+      </span>
+      <span className="min-w-0">
+        <span className="block truncate text-[15px] leading-tight font-semibold tracking-tight text-white">MentoraSys</span>
+        <span className="mt-0.5 block truncate text-[11px] text-[#bbc9bc]">{nomeEmpresa}</span>
+      </span>
+    </Link>
+  );
+}
+
+function AvatarUsuario({ nomeUsuario, avatarUrl }: Pick<Props, "nomeUsuario" | "avatarUrl">) {
+  const [falhou, setFalhou] = useState(false);
+  const iniciais = nomeUsuario.trim().split(/\s+/).slice(0, 2).map((p) => p.charAt(0).toUpperCase()).join("") || "U";
+  return (
+    <span className="grid size-8 shrink-0 place-items-center overflow-hidden rounded-full bg-[#e3ebe3] text-xs font-semibold text-[#254b40]">
+      {avatarUrl && !falhou
+        ? <Image src={avatarUrl} width={32} height={32} alt="" unoptimized onError={() => setFalhou(true)} className="size-full object-cover" />
+        : iniciais}
+    </span>
+  );
+}
+
+export default function AppShell({
+  nomeUsuario, nomeEmpresa, logoUrl, avatarUrl, notificacoesIniciais, empresaId, usuarioId, acessoMentorias, children,
 }: Props) {
   const pathname = usePathname();
   const router = useRouter();
-  const emMentorias = pathname === "/mentorias" || pathname.startsWith("/mentorias/");
-  const textoMenu = emMentorias ? "max-sm:sr-only" : undefined;
-  const [logoError, setLogoError] = useState(false);
+  const [menuAberto, setMenuAberto] = useState(false);
+  const [buscaAberta, setBuscaAberta] = useState(false);
+  const [termo, setTermo] = useState("");
+  const menu = grupos.map((grupo) => ({
+    ...grupo,
+    itens: grupo.itens.filter((item) => item.href !== "/mentorias" || acessoMentorias),
+  }));
+  const atual = menu.flatMap(({ nome, itens }) => itens.map((item) => ({ ...item, grupo: nome })))
+    .filter(({ href }) => pathname === href || pathname.startsWith(`${href}/`))
+    .sort((a, b) => b.href.length - a.href.length)[0];
 
-  const handleLogout = async () => {
+  useEffect(() => {
+    function abrirBusca(evento: KeyboardEvent) {
+      if (!(evento.metaKey || evento.ctrlKey) || evento.key.toLowerCase() !== "k") return;
+      if (evento.target instanceof HTMLElement && (evento.target.isContentEditable || evento.target.closest("input, textarea, select"))) return;
+      evento.preventDefault();
+      setMenuAberto(false);
+      setBuscaAberta(true);
+    }
+    const telaAmpla = window.matchMedia("(min-width: 64rem)");
+    const fecharMenuDesktop = (evento: MediaQueryListEvent) => {
+      if (evento.matches) setMenuAberto(false);
+    };
+    window.addEventListener("keydown", abrirBusca);
+    telaAmpla.addEventListener("change", fecharMenuDesktop);
+    return () => {
+      window.removeEventListener("keydown", abrirBusca);
+      telaAmpla.removeEventListener("change", fecharMenuDesktop);
+    };
+  }, []);
+
+  async function sair() {
     const supabase = createClient();
     await supabase.auth.signOut();
     router.push("/login");
     router.refresh();
-  };
+  }
 
-  const isActive = (href: string) =>
-    href === "/dashboard" ? pathname === href : pathname.startsWith(href);
+  function mudarBusca(aberta: boolean) {
+    setBuscaAberta(aberta);
+    if (!aberta) setTermo("");
+  }
 
-  const NavLink = ({ href, icon: Icon, label }: (typeof NAV_COMERCIAL)[0]) => (
-    <Link
-      href={href}
-      aria-current={pathname === href || (emMentorias && href === "/mentorias") ? "page" : undefined}
-      title={emMentorias ? label : undefined}
-      className={cn(
-        "flex items-center gap-2.5 px-3 py-2 rounded-md text-sm transition-colors",
-        emMentorias && "max-sm:justify-center max-sm:px-0 max-sm:py-2.5",
-        isActive(href)
-          ? "bg-sidebar-primary text-sidebar-primary-foreground font-medium"
-          : "text-sidebar-foreground/80 hover:bg-sidebar-accent hover:text-sidebar-foreground"
-      )}
-    >
-      <Icon className="size-4 shrink-0" />
-      <span className={textoMenu}>{label}</span>
-    </Link>
-  );
+  const normalizar = (texto: string) => texto.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
+  const consulta = normalizar(termo.trim());
+
+  function renderMenu(aoNavegar?: () => void) {
+    return (
+      <>
+        <div className="px-3 pb-4 pt-5 pr-12 lg:px-4 lg:pt-6">
+          <MarcaEmpresa key={logoUrl} nomeEmpresa={nomeEmpresa} logoUrl={logoUrl} aoNavegar={aoNavegar} />
+        </div>
+        <nav aria-label="Menu principal" className="min-h-0 flex-1 overflow-y-auto px-3 pb-4 [scrollbar-color:#52736a_transparent] [scrollbar-width:thin]">
+          {menu.map(({ nome, itens }) => (
+            <div key={nome} className="mb-4 space-y-0.5">
+              <p className="px-3 pb-1.5 text-[10px] font-semibold uppercase tracking-[0.13em] text-[#acbfb4]">{nome}</p>
+              {itens.map(({ href, icon: Icon, label }) => (
+                <Link key={href} href={href} onClick={aoNavegar} aria-current={href === atual?.href ? "page" : undefined}
+                  className={cn(
+                    "flex min-h-9 items-center gap-2.5 rounded-lg px-3 py-1.5 text-[13px] font-medium outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#e3c27b]",
+                    href === atual?.href
+                      ? "bg-[#e9d4a5] font-semibold text-[#22382f]"
+                      : "text-[#e3eae2] hover:bg-white/10 hover:text-white",
+                  )}>
+                  <Icon aria-hidden className="size-[16px] shrink-0" />
+                  <span className="min-w-0 flex-1 truncate">{label}</span>
+                  {href === atual?.href && <ChevronRight aria-hidden className="size-3.5 shrink-0" />}
+                </Link>
+              ))}
+            </div>
+          ))}
+        </nav>
+        <div className="border-t border-white/12 p-3">
+          <Link href="/selecionar-empresa" onClick={aoNavegar}
+            className="flex min-h-9 items-center gap-2 rounded-lg px-3 text-[13px] text-[#e3eae2] hover:bg-white/10">
+            <ArrowLeftRight className="size-4" aria-hidden /> Trocar empresa
+          </Link>
+          <button type="button" onClick={sair} className="flex min-h-9 w-full items-center gap-2 rounded-lg px-3 text-[13px] text-[#e3eae2] hover:bg-white/10">
+            <LogOut className="size-4" aria-hidden /> Sair
+          </button>
+        </div>
+      </>
+    );
+  }
 
   return (
-    <aside className={cn("w-60 shrink-0 bg-sidebar text-sidebar-foreground flex flex-col h-full border-r border-sidebar-border", emMentorias && "max-sm:relative max-sm:w-13")}>
-      {/* Logo + bell */}
-      <div className={cn("px-4 py-4 border-b border-sidebar-border flex items-center justify-between gap-2 bg-white", emMentorias && "max-sm:justify-center max-sm:px-0")}>
-        {logoUrl && !logoError ? (
-          <div className={cn("relative h-8 flex-1 min-w-0", emMentorias && "max-sm:hidden")}>
-            <Image
-              src={logoUrl}
-              alt={nomeEmpresa}
-              fill
-              className="object-contain object-left"
-              unoptimized
-              onError={() => setLogoError(true)}
-            />
-          </div>
-        ) : (
-          <span className={cn("font-bold text-base tracking-tight truncate flex-1", emMentorias && "max-sm:hidden")}>{nomeEmpresa}</span>
-        )}
-        <NotificacoesBell
-          iniciais={notificacoesIniciais}
-          empresaId={empresaId}
-          usuarioId={usuarioId}
-        />
-      </div>
-
-      {/* Nav */}
-      <nav aria-label="Menu do MentoraSys" className={cn("flex-1 overflow-y-auto px-2 py-4 space-y-0.5", emMentorias && "max-sm:relative max-sm:px-1.5 max-sm:py-2 max-sm:[scrollbar-width:thin]")}>
-        <p className={cn("text-[11px] font-semibold text-sidebar-foreground/40 px-3 pb-1 uppercase tracking-wider", textoMenu)}>
-          Geral
-        </p>
-        {NAV_GERAL.map((item) => (
-          <NavLink key={item.href} {...item} />
-        ))}
-
-        <p className={cn("text-[11px] font-semibold text-sidebar-foreground/40 px-3 pb-1 pt-4 uppercase tracking-wider", textoMenu)}>
-          Comercial
-        </p>
-        {NAV_COMERCIAL.map((item) => (
-          <NavLink key={item.href} {...item} />
-        ))}
-
-        <p className={cn("text-[11px] font-semibold text-sidebar-foreground/40 px-3 pb-1 pt-4 uppercase tracking-wider", textoMenu)}>
-          Operacional
-        </p>
-        {NAV_OPERACIONAL.filter((item) => item.href !== "/mentorias" || acessoMentorias).map((item) => (
-          <NavLink key={item.href} {...item} />
-        ))}
-
-        <p className={cn("text-[11px] font-semibold text-sidebar-foreground/40 px-3 pb-1 pt-4 uppercase tracking-wider", textoMenu)}>
-          Financeiro
-        </p>
-        {NAV_FINANCEIRO.map((item) => (
-          <NavLink key={item.href} {...item} />
-        ))}
-
-        <p className={cn("text-[11px] font-semibold text-sidebar-foreground/40 px-3 pb-1 pt-4 uppercase tracking-wider", textoMenu)}>
-          Sistema
-        </p>
-        {NAV_SISTEMA.map((item) => (
-          <NavLink key={item.href} {...item} />
-        ))}
-      </nav>
-
-      {/* Rodapé do usuário */}
-      <div className="px-2 py-3 border-t border-sidebar-border">
-        <div className={cn("px-3 py-2 rounded-md flex items-center gap-2.5", emMentorias && "max-sm:justify-center max-sm:px-0")}>
-          {avatarUrl ? (
-            <div className="relative size-7 rounded-full overflow-hidden shrink-0">
-              <Image src={avatarUrl} alt={nomeUsuario} fill className="object-cover" unoptimized />
+    <div className="app-shell flex h-dvh overflow-hidden">
+      <a href="#conteudo-principal" className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:rounded-lg focus:bg-white focus:p-3">Ir para o conteúdo</a>
+      <aside className="hidden w-[15rem] shrink-0 flex-col bg-[#172e29] lg:flex xl:w-[15.75rem]">
+        {renderMenu()}
+      </aside>
+      <div className="flex min-w-0 flex-1 flex-col">
+        <header className="app-topbar flex min-h-16 shrink-0 items-center justify-between gap-2.5 px-3 sm:px-6 xl:px-8">
+          <div className="flex min-w-0 items-center gap-2 sm:gap-3">
+            <Sheet open={menuAberto} onOpenChange={setMenuAberto}>
+              <SheetTrigger render={<Button variant="outline" size="icon" className="shrink-0 lg:hidden" />} aria-label="Abrir menu">
+                <Menu className="size-5" aria-hidden />
+              </SheetTrigger>
+              <SheetContent side="left" showCloseButton={false} className="w-[min(85vw,20rem)] gap-0 border-none bg-[#172e29] text-white lg:hidden">
+                <SheetTitle className="sr-only">Menu principal</SheetTitle>
+                <SheetClose render={<Button variant="ghost" size="icon-sm" className="absolute right-3 top-4 text-white hover:bg-white/10 hover:text-white" />} aria-label="Fechar menu">
+                  <X aria-hidden className="size-4" />
+                </SheetClose>
+                {renderMenu(() => setMenuAberto(false))}
+              </SheetContent>
+            </Sheet>
+            <div className="min-w-0">
+              <p className="hidden truncate text-xs text-muted-foreground sm:block">{atual?.grupo ?? nomeEmpresa}</p>
+              <p className="truncate text-sm font-semibold tracking-tight">{atual?.label ?? "MentoraSys"}</p>
             </div>
-          ) : (
-            <div className="size-7 rounded-full bg-sidebar-accent flex items-center justify-center shrink-0">
-              <span className="text-xs font-semibold text-sidebar-foreground/70">
-                {nomeUsuario.charAt(0).toUpperCase()}
+          </div>
+          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+            <Dialog open={buscaAberta} onOpenChange={mudarBusca}>
+              <DialogTrigger render={<Button variant="outline" className="h-9 gap-2 px-2.5 sm:min-w-40 sm:justify-start" />} aria-label="Buscar no menu">
+                <Search className="size-4 text-primary" aria-hidden />
+                <span className="hidden text-muted-foreground sm:inline">Buscar no menu</span>
+                <kbd className="ml-2 hidden rounded border bg-muted/75 px-1.5 text-[10px] leading-5 text-muted-foreground xl:inline">⌘ / Ctrl K</kbd>
+              </DialogTrigger>
+              <DialogContent className="w-[calc(100vw-2rem)] max-w-lg p-0">
+                <DialogHeader className="px-4 pt-4">
+                  <DialogTitle>Buscar no menu</DialogTitle>
+                  <DialogDescription>Encontre e abra uma área do MentoraSys.</DialogDescription>
+                </DialogHeader>
+                <Command shouldFilter={false} className="px-3 pb-3">
+                  <CommandInput placeholder="Ex. Clientes, Projetos, Agenda" value={termo} onValueChange={setTermo} />
+                  <CommandList className="mt-2">
+                    <CommandEmpty>Nenhuma área encontrada.</CommandEmpty>
+                    {menu.map(({ nome, itens }) => {
+                      const encontrados = itens.filter(({ label, href }) => normalizar(`${nome} ${label} ${href}`).includes(consulta));
+                      return encontrados.length > 0 && (
+                        <CommandGroup key={nome} heading={nome}>
+                          {encontrados.map(({ href, label, icon: Icon }) => (
+                            <CommandItem key={href} value={href} onSelect={() => { mudarBusca(false); router.push(href); }}>
+                              <Icon className="size-4" aria-hidden /> {label}<ArrowRight className="ml-auto size-4" aria-hidden />
+                            </CommandItem>
+                          ))}
+                        </CommandGroup>
+                      );
+                    })}
+                  </CommandList>
+                </Command>
+              </DialogContent>
+            </Dialog>
+            <NotificacoesBell iniciais={notificacoesIniciais} empresaId={empresaId} usuarioId={usuarioId} />
+            <Link href="/selecionar-empresa" aria-label={`Trocar empresa. Empresa atual: ${nomeEmpresa}`}
+              className="flex min-w-0 items-center gap-2 rounded-lg p-0.5 hover:bg-muted lg:pr-2">
+              <AvatarUsuario key={avatarUrl} nomeUsuario={nomeUsuario} avatarUrl={avatarUrl} />
+              <span className="hidden min-w-0 xl:block">
+                <span className="block max-w-32 truncate text-xs font-semibold">{nomeUsuario}</span>
+                <span className="block max-w-32 truncate text-[10px] text-muted-foreground">{nomeEmpresa}</span>
               </span>
-            </div>
-          )}
-          <div className={cn("min-w-0 flex-1", emMentorias && "max-sm:hidden")}>
-            <p className="text-sm font-medium truncate">{nomeUsuario}</p>
-            <p className="text-xs text-sidebar-foreground/50 truncate flex items-center gap-1 mt-0.5">
-              <Building2 className="size-3 shrink-0" />
-              {nomeEmpresa}
-            </p>
+            </Link>
           </div>
-        </div>
-        <button
-          onClick={handleLogout}
-          title={emMentorias ? "Sair" : undefined}
-          className={cn("flex w-full items-center gap-2.5 px-3 py-2 rounded-md text-sm text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground transition-colors", emMentorias && "max-sm:justify-center max-sm:px-0")}
-        >
-          <LogOut className="size-4" />
-          <span className={textoMenu}>Sair</span>
-        </button>
+        </header>
+        <main id="conteudo-principal" tabIndex={-1} className="app-content min-h-0 min-w-0 flex-1 overflow-auto outline-none">
+          {children}
+        </main>
       </div>
-    </aside>
+    </div>
   );
 }

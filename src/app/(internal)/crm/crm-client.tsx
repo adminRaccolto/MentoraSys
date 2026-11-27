@@ -384,15 +384,15 @@ export default function CrmClient({ etapasIniciais, leadsIniciais, clientes, ser
   // ─── Render ───────────────────────────────────────────────────────────────
 
   return (
-    <div className="flex flex-col h-screen overflow-hidden bg-background">
+    <div className="flex h-full min-h-0 flex-col overflow-hidden">
 
       {/* Header */}
-      <header className="shrink-0 flex items-center justify-between gap-3 px-6 py-3 border-b bg-background z-10">
+      <header className="z-10 flex shrink-0 flex-wrap items-center justify-between gap-3 border-b bg-card px-4 py-3 sm:px-6">
         <div>
           <h1 className="text-xl font-bold">CRM</h1>
           <p className="text-xs text-muted-foreground">{leadsFiltrados.length} oportunidade(s)</p>
         </div>
-        <div className="flex items-center gap-2 flex-wrap">
+        <div className="flex flex-wrap items-center gap-2">
           <Select value={filtroEtapa} onValueChange={(v) => setFiltroEtapa(v ?? "")}>
             <SelectTrigger className="h-8 text-xs w-36"><SelectValue placeholder="Todas as etapas" /></SelectTrigger>
             <SelectContent>
@@ -455,7 +455,7 @@ export default function CrmClient({ etapasIniciais, leadsIniciais, clientes, ser
       </div>
 
       {/* Conteúdo */}
-      <div className="flex-1 overflow-hidden">
+      <div className="min-h-0 flex-1 overflow-hidden">
 
         {/* ── Kanban ── */}
         {viewMode === "KANBAN" && (
@@ -466,7 +466,7 @@ export default function CrmClient({ etapasIniciais, leadsIniciais, clientes, ser
               return (
                 <div
                   key={etapa.chave}
-                  className="shrink-0 w-64 flex flex-col rounded-xl border border-border bg-muted/30 mr-3 overflow-hidden"
+                  className="shrink-0 w-64 flex flex-col rounded-xl border border-border bg-card mr-3 overflow-hidden"
                   onDragOver={(e) => e.preventDefault()}
                   onDrop={() => handleDrop(etapa.chave, etapa.id)}
                 >

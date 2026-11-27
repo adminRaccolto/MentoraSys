@@ -7,6 +7,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Building2, Plus, X, Loader2, ChevronRight } from "lucide-react";
 import { criarEmpresa } from "@/actions/empresas";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 const schema = z.object({
   nome: z.string().min(2, "Nome obrigatório"),
@@ -62,123 +65,62 @@ export default function SelecionarEmpresaClient({ membros }: { membros: Membro[]
   if (criando) {
     return (
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h2 className="text-xl font-bold text-white">Nova Empresa</h2>
-            <p className="text-sm text-white/60 mt-0.5">Preencha os dados para criar</p>
-          </div>
-          <button
-            onClick={() => { setCriando(false); reset(); setErro(null); }}
-            className="p-2 rounded-lg text-white/60 hover:text-white hover:bg-white/10 transition-colors"
-          >
-            <X className="size-5" />
-          </button>
+        <div className="flex items-start justify-between gap-3">
+          <h1 className="font-serif text-3xl leading-tight tracking-tight">Nova empresa</h1>
+          <Button type="button" variant="ghost" size="icon" aria-label="Voltar à seleção de empresa"
+            onClick={() => { setCriando(false); reset(); setErro(null); }}>
+            <X className="size-5" aria-hidden />
+          </Button>
         </div>
-
         <form onSubmit={handleSubmit(onCriar)} className="space-y-4">
           <div className="space-y-1.5">
-            <label className="text-sm font-medium text-white/80 block">Razão Social / Nome *</label>
-            <input
-              {...register("nome")}
-              placeholder="Ex: Raccolto Agronegócios Ltda"
-              className="w-full h-11 rounded-lg px-3 text-sm text-white placeholder:text-white/35 outline-none transition-all"
-              style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)" }}
-              onFocus={(e) => { e.currentTarget.style.border = "1px solid rgba(212,172,13,0.7)"; e.currentTarget.style.boxShadow = "0 0 0 3px rgba(212,172,13,0.12)"; }}
-              onBlur={(e) => { e.currentTarget.style.border = "1px solid rgba(255,255,255,0.2)"; e.currentTarget.style.boxShadow = "none"; }}
-            />
-            {errors.nome && <p className="text-red-300 text-xs">{errors.nome.message}</p>}
+            <label htmlFor="empresa-nome" className="block text-sm font-medium">Razão social ou nome</label>
+            <Input id="empresa-nome" {...register("nome")} className="h-11 bg-background"
+              aria-invalid={Boolean(errors.nome)} aria-describedby={errors.nome ? "erro-nome-empresa" : undefined} />
+            {errors.nome && <p id="erro-nome-empresa" className="text-xs text-destructive">{errors.nome.message}</p>}
           </div>
           <div className="space-y-1.5">
-            <label className="text-sm font-medium text-white/80 block">CNPJ</label>
-            <input
-              {...register("cnpj")}
-              placeholder="00.000.000/0001-00"
-              className="w-full h-11 rounded-lg px-3 text-sm text-white placeholder:text-white/35 outline-none transition-all"
-              style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)" }}
-              onFocus={(e) => { e.currentTarget.style.border = "1px solid rgba(212,172,13,0.7)"; e.currentTarget.style.boxShadow = "0 0 0 3px rgba(212,172,13,0.12)"; }}
-              onBlur={(e) => { e.currentTarget.style.border = "1px solid rgba(255,255,255,0.2)"; e.currentTarget.style.boxShadow = "none"; }}
-            />
+            <label htmlFor="empresa-cnpj" className="block text-sm font-medium">CNPJ</label>
+            <Input id="empresa-cnpj" {...register("cnpj")} placeholder="00.000.000/0001-00" className="h-11 bg-background" />
           </div>
-
-          {erro && (
-            <p className="text-red-300 text-sm">{erro}</p>
-          )}
-
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full h-11 rounded-lg font-semibold text-sm flex items-center justify-center gap-2 transition-all disabled:opacity-60"
-            style={{ background: "#D4AC0D", color: "#1B4F72" }}
-          >
-            {isSubmitting ? <><Loader2 className="size-4 animate-spin" /> Criando...</> : "Criar empresa"}
-          </button>
+          {erro && <p role="alert" className="text-sm text-destructive">{erro}</p>}
+          <Button type="submit" disabled={isSubmitting} className="h-11 w-full">
+            {isSubmitting && <Loader2 className="size-4 animate-spin" aria-hidden />}
+            {isSubmitting ? "Criando…" : "Criar empresa"}
+          </Button>
         </form>
       </div>
     );
   }
 
   return (
-    <div className="space-y-6">
-      <div className="text-center">
-        <h2 className="text-2xl font-bold text-white">Selecione a empresa</h2>
-        <p className="text-sm text-white/60 mt-1">Escolha com qual empresa deseja trabalhar</p>
-      </div>
-
-      <div className="space-y-3">
-        {membros.length === 0 && (
-          <p className="text-sm text-white/50 text-center py-4">
-            Nenhuma empresa vinculada ainda.
-          </p>
-        )}
-        {membros.map(({ empresa, perfil }) => (
-          <button
-            key={empresa.id}
-            disabled={!!selecionando}
-            onClick={() => selecionar(empresa.id)}
-            className="w-full flex items-center gap-4 px-5 py-4 rounded-xl transition-all group disabled:opacity-50"
-            style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)" }}
-            onMouseEnter={(e) => {
-              if (!selecionando) {
-                e.currentTarget.style.background = "rgba(212,172,13,0.12)";
-                e.currentTarget.style.border = "1px solid rgba(212,172,13,0.4)";
-              }
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "rgba(255,255,255,0.08)";
-              e.currentTarget.style.border = "1px solid rgba(255,255,255,0.15)";
-            }}
-          >
-            <div className="size-11 rounded-xl flex items-center justify-center shrink-0" style={{ background: "rgba(212,172,13,0.15)" }}>
-              {selecionando === empresa.id
-                ? <Loader2 className="size-5 text-[#D4AC0D] animate-spin" />
-                : <Building2 className="size-5 text-[#D4AC0D]" />
-              }
-            </div>
-            <div className="flex-1 text-left">
-              <p className="font-semibold text-white text-base leading-tight">{empresa.nome}</p>
-              <p className="text-xs text-white/50 mt-0.5">{perfil.nome}</p>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-medium px-2.5 py-1 rounded-full" style={{ background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.6)" }}>
-                {PLANO_LABEL[empresa.plano] ?? empresa.plano}
-              </span>
-              <ChevronRight className="size-4 text-white/30 group-hover:text-[#D4AC0D] transition-colors" />
-            </div>
-          </button>
-        ))}
-      </div>
-
-      <div className="pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.1)" }}>
-        <button
-          onClick={() => setCriando(true)}
-          className="w-full flex items-center justify-center gap-2 h-11 rounded-xl text-sm font-medium transition-all"
-          style={{ color: "rgba(255,255,255,0.5)" }}
-          onMouseEnter={(e) => { e.currentTarget.style.color = "#D4AC0D"; e.currentTarget.style.background = "rgba(212,172,13,0.08)"; }}
-          onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(255,255,255,0.5)"; e.currentTarget.style.background = "transparent"; }}
-        >
-          <Plus className="size-4" />
-          Criar nova empresa
-        </button>
+    <div className="space-y-5">
+      <h1 className="font-serif text-3xl leading-tight tracking-tight">Selecione a empresa</h1>
+      {membros.length === 0 && <p className="text-sm text-muted-foreground">Nenhuma empresa vinculada ainda.</p>}
+      {membros.length > 0 && (
+        <ul className="space-y-2">
+          {membros.map(({ empresa, perfil }) => (
+            <li key={empresa.id}>
+              <button type="button" disabled={!!selecionando} onClick={() => selecionar(empresa.id)}
+                className="group flex w-full items-center gap-2.5 rounded-xl border bg-background px-3 py-3 text-left transition-colors hover:border-primary/40 hover:bg-muted disabled:opacity-60 sm:gap-3">
+                <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-secondary text-primary">
+                  {selecionando === empresa.id ? <Loader2 className="size-4 animate-spin" aria-hidden /> : <Building2 className="size-4" aria-hidden />}
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block break-words text-sm font-semibold">{empresa.nome}</span>
+                  <span className="mt-0.5 block text-xs text-muted-foreground">{perfil.nome}</span>
+                </span>
+                <Badge variant="secondary" className="hidden sm:inline-flex">{PLANO_LABEL[empresa.plano] ?? empresa.plano}</Badge>
+                <ChevronRight className="size-4 shrink-0 text-muted-foreground group-hover:text-primary" aria-hidden />
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+      <div className="border-t pt-4">
+        <Button type="button" variant="outline" className="w-full" onClick={() => setCriando(true)}>
+          <Plus className="size-4" aria-hidden /> Criar nova empresa
+        </Button>
       </div>
     </div>
   );

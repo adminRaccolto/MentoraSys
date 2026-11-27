@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Bell, Check, CheckCheck } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Bell, CheckCheck } from "lucide-react";
 import {
   Popover,
   PopoverContent,
@@ -44,8 +43,8 @@ export default function NotificacoesBell({ iniciais, empresaId, usuarioId }: Pro
 
   return (
     <Popover open={aberto} onOpenChange={setAberto}>
-      <PopoverTrigger>
-        <span className="relative p-1.5 rounded-md hover:bg-sidebar-accent transition-colors inline-flex">
+      <PopoverTrigger aria-label="Notificações">
+        <span className="relative inline-flex size-9 items-center justify-center rounded-lg border bg-card transition-colors hover:bg-muted">
           <Bell className="size-5 text-primary" />
           {naoLidas > 0 && (
             <span className="absolute -top-0.5 -right-0.5 flex items-center justify-center w-4 h-4 text-[10px] font-bold bg-rose-500 text-white rounded-full leading-none">
@@ -55,9 +54,9 @@ export default function NotificacoesBell({ iniciais, empresaId, usuarioId }: Pro
         </span>
       </PopoverTrigger>
       <PopoverContent
-        side="right"
+        side="bottom"
         align="end"
-        className="w-80 p-0 shadow-xl"
+        className="w-[min(20rem,calc(100vw-1.5rem))] p-0 shadow-xl"
         sideOffset={8}
       >
         {/* Header */}

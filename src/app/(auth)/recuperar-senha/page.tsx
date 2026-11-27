@@ -9,7 +9,6 @@ import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 const schema = z.object({
   email: z.string().email("E-mail inválido"),
@@ -35,43 +34,27 @@ export default function RecuperarSenhaPage() {
   };
 
   return (
-    <Card>
-      <CardHeader className="text-center">
-        <CardTitle className="text-xl text-primary">Recuperar senha</CardTitle>
-        <CardDescription>
-          Enviaremos um link para redefinir sua senha
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        {enviado ? (
-          <div className="text-center space-y-4">
-            <p className="text-sm text-muted-foreground">
-              Verifique seu e-mail e siga o link enviado.
-            </p>
-            <Link href="/login" className="text-sm text-primary hover:underline">
-              Voltar ao login
-            </Link>
+    <div className="space-y-5">
+      <div>
+        <h1 className="font-serif text-3xl leading-tight tracking-tight">Recuperar senha</h1>
+        <p className="mt-2 text-sm text-muted-foreground">
+          {enviado ? "Verifique seu e-mail e siga o link enviado." : "Informe seu e-mail para receber um link de redefinição."}
+        </p>
+      </div>
+      {!enviado && (
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <div className="space-y-1.5">
+            <Label htmlFor="email">E-mail</Label>
+            <Input id="email" type="email" placeholder="seu@email.com" autoComplete="email" {...register("email")}
+              className="h-11 bg-background" aria-invalid={Boolean(errors.email)} />
+            {errors.email && <p className="text-xs text-destructive">{errors.email.message}</p>}
           </div>
-        ) : (
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <div className="space-y-1">
-              <Label htmlFor="email">E-mail</Label>
-              <Input id="email" type="email" placeholder="seu@email.com" {...register("email")} />
-              {errors.email && <p className="text-destructive text-xs">{errors.email.message}</p>}
-            </div>
-
-            <Button type="submit" className="w-full" disabled={isSubmitting}>
-              {isSubmitting ? "Enviando..." : "Enviar link"}
-            </Button>
-
-            <p className="text-center text-xs text-muted-foreground">
-              <Link href="/login" className="hover:text-primary">
-                Voltar ao login
-              </Link>
-            </p>
-          </form>
-        )}
-      </CardContent>
-    </Card>
+          <Button type="submit" className="h-11 w-full" disabled={isSubmitting}>
+            {isSubmitting ? "Enviando…" : "Enviar link"}
+          </Button>
+        </form>
+      )}
+      <p className="border-t pt-4 text-sm"><Link href="/login" className="font-medium text-primary underline underline-offset-4">Voltar ao login</Link></p>
+    </div>
   );
 }

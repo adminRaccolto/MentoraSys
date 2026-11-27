@@ -1,5 +1,6 @@
 "use client";
 
+import { CabecalhoModulo } from "@/components/cabecalho-modulo";
 import { BarraSelecaoEmLote, BotaoExclusaoEmLote, useSelecaoEmLote } from "@/components/exclusao-em-lote";
 import { useEffect, useState, useTransition } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
@@ -10,7 +11,6 @@ import { Plus, FileText, Trash2, Send, Copy, ExternalLink, CheckCircle, Calculat
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
@@ -441,19 +441,14 @@ export default function PropostasClient({ propostas: inicial, clientes, servicos
   };
 
   return (
-    <div className="p-6 space-y-6">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <FileText className="size-5 text-primary" />
-          <h1 className="text-xl font-semibold">Propostas</h1>
-          <Badge variant="secondary">{propostas.length}</Badge>
-        </div>
+    <div className="mx-auto max-w-[92rem] space-y-5 p-4 sm:p-6 xl:p-8">
+      <CabecalhoModulo titulo="Propostas" icone={<FileText />} quantidade={propostas.length}>
         <Button onClick={abrirCriar} size="sm">
           <Plus className="size-4 mr-1.5" /> Nova proposta
         </Button>
-      </div>
+      </CabecalhoModulo>
 
-      <div className="rounded-lg border bg-card overflow-hidden">
+      <div className="min-w-0 overflow-hidden rounded-xl border bg-card">
         <BarraSelecaoEmLote quantidade={lote.selecionados.length} limpar={lote.limpar}>
           <BotaoExclusaoEmLote tipo="propostas" itens={lote.selecionados} onConcluido={concluirLote} />
         </BarraSelecaoEmLote>

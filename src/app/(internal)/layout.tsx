@@ -2,7 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
-import AppSidebar from "@/components/app-sidebar";
+import AppShell from "@/components/app-sidebar";
 
 export default async function InternalLayout({
   children,
@@ -55,21 +55,20 @@ export default async function InternalLayout({
   ]);
 
   return (
-    <div className="flex h-screen overflow-hidden">
-      <AppSidebar
-        nomeUsuario={usuario?.nome ?? user.email ?? "Usuário"}
-        nomeEmpresa={empresa?.nome ?? "Empresa"}
-        logoUrl={empresa?.logo_url ?? ""}
-        avatarUrl={usuario?.avatar_url ?? ""}
-        notificacoesIniciais={notificacoes.map((n: { id: string; tipo: string; titulo: string; mensagem: string | null; url: string | null; lida: boolean; criado_em: Date }) => ({
-          ...n,
-          criado_em: n.criado_em.toISOString(),
-        }))}
-        empresaId={empresaId}
-        usuarioId={user.id}
-        acessoMentorias={acessoMentorias > 0}
-      />
-      <main className="flex-1 overflow-y-auto bg-muted/30">{children}</main>
-    </div>
+    <AppShell
+      nomeUsuario={usuario?.nome ?? user.email ?? "Usuário"}
+      nomeEmpresa={empresa?.nome ?? "Empresa"}
+      logoUrl={empresa?.logo_url ?? ""}
+      avatarUrl={usuario?.avatar_url ?? ""}
+      notificacoesIniciais={notificacoes.map((n: { id: string; tipo: string; titulo: string; mensagem: string | null; url: string | null; lida: boolean; criado_em: Date }) => ({
+        ...n,
+        criado_em: n.criado_em.toISOString(),
+      }))}
+      empresaId={empresaId}
+      usuarioId={user.id}
+      acessoMentorias={acessoMentorias > 0}
+    >
+      {children}
+    </AppShell>
   );
 }

@@ -14,7 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Raccolto",
+  metadataBase: new URL("https://app.raccolto.com.br"),
+  title: "MentoraSys · Raccolto",
   description: "Plataforma de gestão para consultoria",
   openGraph: {
     title: "Raccolto",

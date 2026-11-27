@@ -6,7 +6,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Loader2 } from "lucide-react";
+import { ArrowRight, Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { createClient } from "@/lib/supabase/client";
 
 const schema = z.object({
@@ -34,88 +36,43 @@ export default function LoginPage() {
 
   return (
     <div className="space-y-6">
-      {/* cabeçalho */}
-      <div className="text-center">
-        <h1 className="text-2xl font-bold text-white">Bem-vindo de volta</h1>
-        <p className="text-sm text-white/60 mt-1">Entre na sua conta para continuar</p>
+      <div>
+        <h1 className="font-serif text-[2rem] leading-tight tracking-tight sm:text-[2.45rem]">Entrar no MentoraSys</h1>
+        <p className="mt-2 text-sm text-muted-foreground">Acesse com o e-mail da sua conta.</p>
       </div>
 
-      {/* formulário */}
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div className="space-y-1.5">
-          <label htmlFor="email" className="text-sm font-medium text-white/80 block">
-            E-mail
-          </label>
-          <input
-            id="email"
-            type="email"
-            placeholder="seu@email.com"
-            autoComplete="email"
-            {...register("email")}
-            className="w-full h-11 rounded-lg px-3 text-sm text-white placeholder:text-white/35 outline-none transition-all"
-            style={{
-              background: "rgba(255,255,255,0.1)",
-              border: "1px solid rgba(255,255,255,0.2)",
-            }}
-            onFocus={(e) => { e.currentTarget.style.border = "1px solid rgba(212,172,13,0.7)"; e.currentTarget.style.boxShadow = "0 0 0 3px rgba(212,172,13,0.12)"; }}
-            onBlur={(e) => { e.currentTarget.style.border = "1px solid rgba(255,255,255,0.2)"; e.currentTarget.style.boxShadow = "none"; }}
-          />
-          {errors.email && <p className="text-red-300 text-xs">{errors.email.message}</p>}
+          <label htmlFor="email" className="block text-sm font-medium">E-mail</label>
+          <Input id="email" type="email" placeholder="seu@email.com" autoComplete="email"
+            aria-invalid={Boolean(errors.email)} aria-describedby={errors.email ? "erro-email" : undefined}
+            {...register("email")} className="h-11 bg-background" />
+          {errors.email && <p id="erro-email" className="text-xs text-destructive">{errors.email.message}</p>}
         </div>
 
         <div className="space-y-1.5">
-          <div className="flex items-center justify-between">
-            <label htmlFor="senha" className="text-sm font-medium text-white/80">
-              Senha
-            </label>
-            <Link href="/recuperar-senha" className="text-xs text-[#D4AC0D] hover:text-[#D4AC0D]/80 transition-colors">
+          <div className="flex flex-wrap items-center justify-between gap-1">
+            <label htmlFor="senha" className="text-sm font-medium">Senha</label>
+            <Link href="/recuperar-senha" className="text-xs font-medium text-primary underline decoration-primary/35 underline-offset-4 hover:decoration-primary">
               Esqueceu a senha?
             </Link>
           </div>
-          <input
-            id="senha"
-            type="password"
-            placeholder="••••••••"
-            autoComplete="current-password"
-            {...register("senha")}
-            className="w-full h-11 rounded-lg px-3 text-sm text-white placeholder:text-white/35 outline-none transition-all"
-            style={{
-              background: "rgba(255,255,255,0.1)",
-              border: "1px solid rgba(255,255,255,0.2)",
-            }}
-            onFocus={(e) => { e.currentTarget.style.border = "1px solid rgba(212,172,13,0.7)"; e.currentTarget.style.boxShadow = "0 0 0 3px rgba(212,172,13,0.12)"; }}
-            onBlur={(e) => { e.currentTarget.style.border = "1px solid rgba(255,255,255,0.2)"; e.currentTarget.style.boxShadow = "none"; }}
-          />
-          {errors.senha && <p className="text-red-300 text-xs">{errors.senha.message}</p>}
+          <Input id="senha" type="password" autoComplete="current-password"
+            aria-invalid={Boolean(errors.senha)} aria-describedby={errors.senha ? "erro-senha" : undefined}
+            {...register("senha")} className="h-11 bg-background" />
+          {errors.senha && <p id="erro-senha" className="text-xs text-destructive">{errors.senha.message}</p>}
         </div>
 
-        {erro && (
-          <div className="rounded-lg px-4 py-3" style={{ background: "rgba(239,68,68,0.15)", border: "1px solid rgba(239,68,68,0.3)" }}>
-            <p className="text-red-300 text-sm">{erro}</p>
-          </div>
-        )}
+        {erro && <p role="alert" className="rounded-lg border border-destructive/20 bg-destructive/5 px-3 py-2 text-sm text-destructive">{erro}</p>}
 
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="w-full h-11 rounded-lg font-semibold text-sm transition-all disabled:opacity-60 flex items-center justify-center gap-2 mt-2"
-          style={{ background: "#D4AC0D", color: "#1B4F72" }}
-          onMouseEnter={(e) => { if (!isSubmitting) e.currentTarget.style.background = "#c9a20c"; }}
-          onMouseLeave={(e) => { e.currentTarget.style.background = "#D4AC0D"; }}
-        >
-          {isSubmitting ? (
-            <><Loader2 className="size-4 animate-spin" /> Entrando...</>
-          ) : (
-            "Entrar"
-          )}
-        </button>
+        <Button type="submit" disabled={isSubmitting} className="h-11 w-full justify-between px-4 text-sm font-semibold">
+          {isSubmitting ? "Entrando…" : "Entrar"}
+          {isSubmitting ? <Loader2 aria-hidden className="size-4 animate-spin" /> : <ArrowRight aria-hidden className="size-4" />}
+        </Button>
       </form>
 
-      <p className="text-xs text-center text-white/40">
-        Problemas para acessar?{" "}
-        <a href="mailto:suporte@raccolto.com.br" className="text-white/60 hover:text-white transition-colors underline underline-offset-2">
-          Fale conosco
-        </a>
+      <p className="border-t pt-4 text-sm text-muted-foreground">
+        <a href="mailto:suporte@raccolto.com.br" className="font-medium text-primary underline underline-offset-4">Suporte para acesso</a>
       </p>
     </div>
   );

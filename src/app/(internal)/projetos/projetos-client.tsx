@@ -1,5 +1,6 @@
 "use client";
 
+import { CabecalhoModulo } from "@/components/cabecalho-modulo";
 import { BarraSelecaoEmLote, BotaoExclusaoEmLote, useSelecaoEmLote } from "@/components/exclusao-em-lote";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
@@ -130,19 +131,14 @@ export default function ProjetosClient({ projetos: inicial, clientes, contratos 
   };
 
   return (
-    <div className="p-6 space-y-6">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <FolderKanban className="size-5 text-primary" />
-          <h1 className="text-xl font-semibold">Projetos</h1>
-          <Badge variant="secondary">{projetos.length}</Badge>
-        </div>
+    <div className="mx-auto max-w-[92rem] space-y-5 p-4 sm:p-6 xl:p-8">
+      <CabecalhoModulo titulo="Projetos" icone={<FolderKanban />} quantidade={projetos.length}>
         <Button onClick={() => { reset(); setModalAberto(true); }} size="sm">
           <Plus className="size-4 mr-1.5" /> Novo projeto
         </Button>
-      </div>
+      </CabecalhoModulo>
 
-      <div className="rounded-lg border bg-card overflow-hidden">
+      <div className="min-w-0 overflow-hidden rounded-xl border bg-card">
         <BarraSelecaoEmLote quantidade={lote.selecionados.length} limpar={lote.limpar}>
           <BotaoExclusaoEmLote tipo="projetos" itens={lote.selecionados} aviso="Os projetos e seus dados vinculados, como etapas, tarefas e documentos, serão excluídos." onConcluido={concluirLote} />
         </BarraSelecaoEmLote>

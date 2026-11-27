@@ -1,3 +1,4 @@
+import { CabecalhoModulo } from "@/components/cabecalho-modulo";
 import { prisma } from "@/lib/prisma";
 import { obterEmpresaAtiva } from "@/lib/permissoes";
 import { saldoRecebivel, saldoContaPagar } from "@/lib/recebiveis";
@@ -72,23 +73,20 @@ export default async function FinanceiroPage() {
   ].sort((a, b) => a.data.getTime() - b.data.getTime());
 
   return (
-    <div className="p-6 space-y-6">
-      <div className="flex items-center gap-2">
-        <DollarSign className="size-5 text-primary" />
-        <h1 className="text-xl font-semibold">Financeiro</h1>
-      </div>
+    <div className="mx-auto max-w-[92rem] space-y-5 p-4 sm:p-6 xl:p-8">
+      <CabecalhoModulo titulo="Financeiro" icone={<DollarSign />} />
 
       {/* Cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <Link href="/financeiro/recebiveis?status=PENDENTE" className="rounded-lg border bg-card p-4 hover:bg-muted/30 transition-colors">
+      <div className="grid grid-cols-[repeat(2,minmax(0,1fr))] gap-2.5 sm:gap-4 xl:grid-cols-4">
+        <Link href="/financeiro/recebiveis?status=PENDENTE" className="min-w-0 rounded-xl border bg-card p-3 transition-colors hover:border-primary/50 sm:p-4">
           <p className="text-xs text-muted-foreground mb-1">A Receber</p>
-          <p className="text-2xl font-bold text-primary">{formatBRL(totalReceber)}</p>
+          <p className="break-words text-lg font-semibold tracking-tight tabular-nums sm:text-2xl text-primary">{formatBRL(totalReceber)}</p>
           <p className="text-xs text-muted-foreground mt-1">{recebiveis.length} títulos pendentes</p>
         </Link>
 
-        <Link href="/financeiro/recebiveis?status=VENCIDO" className="rounded-lg border bg-card p-4 hover:bg-muted/30 transition-colors">
+        <Link href="/financeiro/recebiveis?status=VENCIDO" className="min-w-0 rounded-xl border bg-card p-3 transition-colors hover:border-primary/50 sm:p-4">
           <p className="text-xs text-muted-foreground mb-1">Vencidos</p>
-          <p className={`text-2xl font-bold ${totalVencidos > 0 ? "text-destructive" : "text-muted-foreground"}`}>
+          <p className={`break-words text-lg font-semibold tracking-tight tabular-nums sm:text-2xl ${totalVencidos > 0 ? "text-destructive" : "text-muted-foreground"}`}>
             {formatBRL(totalVencidos)}
           </p>
           <p className="text-xs text-muted-foreground mt-1">
@@ -96,15 +94,15 @@ export default async function FinanceiroPage() {
           </p>
         </Link>
 
-        <Link href="/financeiro/contas-a-pagar?status=PENDENTE" className="rounded-lg border bg-card p-4 hover:bg-muted/30 transition-colors">
+        <Link href="/financeiro/contas-a-pagar?status=PENDENTE" className="min-w-0 rounded-xl border bg-card p-3 transition-colors hover:border-primary/50 sm:p-4">
           <p className="text-xs text-muted-foreground mb-1">A Pagar</p>
-          <p className="text-2xl font-bold text-orange-600">{formatBRL(totalPagar)}</p>
+          <p className="break-words text-lg font-semibold tracking-tight tabular-nums sm:text-2xl text-orange-600">{formatBRL(totalPagar)}</p>
           <p className="text-xs text-muted-foreground mt-1">{contasPagar.length} contas pendentes</p>
         </Link>
 
-        <Link href="/financeiro/contas-bancarias" className="rounded-lg border bg-card p-4 hover:bg-muted/30 transition-colors">
+        <Link href="/financeiro/contas-bancarias" className="min-w-0 rounded-xl border bg-card p-3 transition-colors hover:border-primary/50 sm:p-4">
           <p className="text-xs text-muted-foreground mb-1">Saldo Contas</p>
-          <p className={`text-2xl font-bold ${saldoContas >= 0 ? "text-green-600" : "text-destructive"}`}>
+          <p className={`break-words text-lg font-semibold tracking-tight tabular-nums sm:text-2xl ${saldoContas >= 0 ? "text-green-600" : "text-destructive"}`}>
             {formatBRL(saldoContas)}
           </p>
           <p className="text-xs text-muted-foreground mt-1">{contasBancarias.length} contas cadastradas</p>

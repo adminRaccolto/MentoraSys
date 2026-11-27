@@ -1,5 +1,6 @@
 "use client";
 
+import { CabecalhoModulo } from "@/components/cabecalho-modulo";
 import { BarraSelecaoEmLote, BotaoExclusaoEmLote, useSelecaoEmLote } from "@/components/exclusao-em-lote";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
@@ -325,33 +326,27 @@ export default function ClientesClient({ clientes: inicial }: { clientes: Client
   };
 
   return (
-    <div className="p-6 space-y-4">
+    <div className="mx-auto max-w-[92rem] space-y-4 p-4 sm:p-6 xl:p-8">
       {/* Cabeçalho */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Users className="size-5 text-primary" />
-          <h1 className="text-xl font-semibold">Clientes</h1>
-          <Badge variant="secondary">{clientes.length}</Badge>
-        </div>
-        <div className="flex gap-2">
-          <Button variant="outline" size="sm" onClick={handleGerarConvite} disabled={isPending}>
-            <Link2 className="size-4 mr-1.5" /> Gerar link de cadastro
-          </Button>
-          <Button onClick={abrirCriar} size="sm">
-            <Plus className="size-4 mr-1.5" /> Novo cliente
-          </Button>
-        </div>
-      </div>
+      <CabecalhoModulo titulo="Clientes" icone={<Users />} quantidade={clientes.length}>
+        <Button variant="outline" size="sm" onClick={handleGerarConvite} disabled={isPending}>
+          <Link2 className="size-4 mr-1.5" /> Gerar link de cadastro
+        </Button>
+        <Button onClick={abrirCriar} size="sm">
+          <Plus className="size-4 mr-1.5" /> Novo cliente
+        </Button>
+      </CabecalhoModulo>
 
       {/* Filtros */}
-      <div className="flex items-center gap-3">
+      <div className="flex flex-wrap items-center gap-3">
         <Input
-          placeholder="Buscar por nome, cidade ou CPF/CNPJ..."
+          aria-label="Buscar clientes"
+          placeholder="Buscar por nome, cidade ou CPF/CNPJ…"
           value={busca}
           onChange={(e) => setBusca(e.target.value)}
           className="max-w-xs h-8 text-sm"
         />
-        <div className="flex rounded-md border overflow-hidden text-sm">
+        <div className="flex max-w-full flex-wrap overflow-hidden rounded-lg border bg-card text-sm">
           {statusTabs.map((tab) => (
             <button
               key={tab.value}
@@ -370,7 +365,7 @@ export default function ClientesClient({ clientes: inicial }: { clientes: Client
       </div>
 
       {/* Tabela */}
-      <div className="rounded-lg border bg-card overflow-hidden">
+      <div className="min-w-0 overflow-hidden rounded-xl border bg-card">
         <BarraSelecaoEmLote quantidade={lote.selecionados.length} limpar={lote.limpar}>
           <BotaoExclusaoEmLote tipo="clientes" itens={lote.selecionados} aviso="Clientes com contratos, propostas, recebíveis ou leads vinculados serão preservados." onConcluido={concluirLote} />
           <BotaoExclusaoEmLote
