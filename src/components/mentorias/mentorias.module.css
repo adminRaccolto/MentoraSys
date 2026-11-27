@@ -1,0 +1,236 @@
+.pagina {
+  --mentoria-azul: #102d42;
+  --mentoria-ouro: #e8c078;
+  --mentoria-borda: #e3e8e8;
+  --mentoria-fundo: #f6f8f8;
+  background: var(--mentoria-fundo);
+  color: #173044;
+  min-height: 100%;
+  color-scheme: light;
+}
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  border-radius: 1.25rem;
+  background: var(--mentoria-azul);
+  color: #fff;
+  min-height: 15rem;
+  padding: clamp(1.25rem, 4.5vw, 3.25rem);
+}
+
+.heroCompacto {
+  min-height: 12.5rem;
+}
+
+.foto {
+  position: absolute;
+  inset: 0 0 0 29%;
+  z-index: -2;
+}
+
+.foto img {
+  object-fit: cover;
+  object-position: 66% 51%;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(91deg, #102d42 21%, rgba(16, 45, 66, 0.96) 37%, rgba(16, 45, 66, 0.33) 77%, rgba(16, 45, 66, 0.04)),
+    linear-gradient(0deg, rgba(9, 28, 42, 0.52), transparent 65%);
+}
+
+.heroCopy {
+  max-width: 36rem;
+  min-width: 0;
+}
+
+.titulo {
+  font-size: clamp(2.2rem, 5.25vw, 4.1rem);
+  line-height: 0.99;
+  letter-spacing: -0.061em;
+  font-weight: 650;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+
+.heroCompacto .titulo {
+  font-size: clamp(1.85rem, 4.7vw, 3.35rem);
+}
+
+.sobreTitulo {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.75rem;
+  color: var(--mentoria-ouro);
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.superficie {
+  min-width: 0;
+  border: 1px solid var(--mentoria-borda, #e3e8e8);
+  border-radius: 1rem;
+  background: #fff;
+  box-shadow: 0 3px 12px rgba(19, 46, 65, 0.035);
+}
+
+.secao {
+  scroll-margin-top: 5rem;
+}
+
+.icone {
+  display: inline-grid;
+  flex-shrink: 0;
+  height: 2.5rem;
+  width: 2.5rem;
+  place-items: center;
+  border-radius: 0.7rem;
+  background: #eaf2f5;
+  color: #18415a;
+}
+
+.icone[data-grupo="true"] {
+  background: #f7eddb;
+  color: #7e5220;
+}
+
+.linhaLink {
+  border-radius: 0.75rem;
+  transition: background-color 150ms ease;
+}
+
+.linhaLink:hover {
+  background: #f2f6f7;
+}
+
+.campo {
+  background: #fbfcfc;
+  border-color: #dbe4e8;
+  border-radius: 0.625rem;
+  color: #173044;
+}
+
+.campo:focus-visible {
+  outline: 2px solid #236082;
+  outline-offset: 2px;
+}
+
+.nav {
+  z-index: 2;
+  position: sticky;
+  top: 0;
+  padding: 0.45rem;
+  display: flex;
+  gap: 0.2rem;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  background: rgba(255, 255, 255, 0.99);
+  border: 1px solid var(--mentoria-borda);
+  border-radius: 0.85rem;
+}
+
+.nav a {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 0.55rem;
+  white-space: nowrap;
+  font-size: 0.8rem;
+  font-weight: 560;
+}
+
+.nav a:hover, .nav a:focus-visible {
+  background: #edf3f5;
+}
+
+.cadastro {
+  border-radius: 0.75rem;
+  background: #f5f8f8;
+  border: 1px solid #e4ebed;
+}
+
+.cadastro > summary {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 2.8rem;
+  font-weight: 620;
+  list-style: none;
+  cursor: pointer;
+}
+
+.cadastro > summary::-webkit-details-marker {
+  display: none;
+}
+
+.cadastro > summary svg:last-child {
+  transition: transform 150ms ease;
+}
+
+.cadastro[open] > summary svg:last-child {
+  transform: rotate(180deg);
+}
+
+.dataEncontro {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  flex: none;
+  width: 3.25rem;
+  min-height: 3.4rem;
+  border-radius: 0.65rem;
+  background: #f7eddb;
+  color: #714d20;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.dataEncontro span:first-child {
+  font-size: 1.35rem;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+
+.dataEncontro span:last-child {
+  margin-top: 0.25rem;
+  font-size: 0.64rem;
+  font-weight: 650;
+  letter-spacing: 0.055em;
+}
+
+@media (max-width: 639px) {
+  .hero {
+    min-height: 12.3rem;
+    border-radius: 1rem;
+  }
+
+  .heroCompacto {
+    min-height: 10.5rem;
+  }
+
+  .foto {
+    left: 0;
+  }
+
+  .hero::after {
+    background: linear-gradient(90deg, rgba(16, 45, 66, 0.98), rgba(16, 45, 66, 0.63) 72%, rgba(16, 45, 66, 0.48));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cadastro > summary svg:last-child, .linhaLink {
+    transition: none;
+  }
+}

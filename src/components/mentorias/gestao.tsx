@@ -4,7 +4,7 @@ import {
 } from "@/actions/mentorias";
 import { horarioMentoria, localEncontro } from "@/lib/mentorias";
 import { Formulario } from "./formulario";
-import { campo, LinkExterno, rotulo, StatusEncontro, Vazio } from "./painel";
+import { campo, DataEncontro, LinkExterno, rotulo, StatusEncontro, Vazio } from "./painel";
 import { Badge } from "@/components/ui/badge";
 
 type Aluno = MentoriaAluno & { cliente: { nome: string } };
@@ -33,13 +33,16 @@ export function GerenciarEncontro({ encontro, grupo, alunos, zoom }: {
   const participantes = alunos.filter((aluno) => aluno.ativo || presencas.has(aluno.id));
 
   return (
-    <article className="space-y-4 rounded-lg border p-4">
-      <div className="flex flex-wrap items-start justify-between gap-2">
-        <div>
-          <h3 className="font-semibold">{encontro.titulo}</h3>
-          <p className="text-sm text-muted-foreground">{horarioMentoria(encontro.inicio)} · {encontro.duracao} min</p>
+    <article className="space-y-4 rounded-xl border border-[#e4ebed] bg-[#f8fafb] p-3 sm:p-4">
+      <div className="flex flex-wrap items-start gap-3">
+        <DataEncontro data={encontro.inicio} />
+        <div className="flex min-w-0 flex-1 flex-col items-start gap-1 lg:flex-row lg:justify-between lg:gap-3">
+          <div className="min-w-0">
+            <h3 className="break-words font-semibold">{encontro.titulo}</h3>
+            <p className="text-sm text-muted-foreground">{horarioMentoria(encontro.inicio)} · {encontro.duracao} min</p>
+          </div>
+          <StatusEncontro status={encontro.status} />
         </div>
-        <StatusEncontro status={encontro.status} />
       </div>
       {encontro.pauta && <p className="whitespace-pre-wrap text-sm">{encontro.pauta}</p>}
       <div className="flex flex-wrap gap-3 text-sm">
